@@ -1,0 +1,3 @@
+pluginManagement {}
+
+rootProject.name = "VisualModel"
