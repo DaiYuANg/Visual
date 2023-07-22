@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.visual.model.controllers.GlobalMenuController">
+    <MenuBar useSystemMenuBar="true" cache="true">
+        <Menu text="File">
+            <MenuItem text="New Project"/>
+            <MenuItem text="Open"/>
+            <MenuItem text="Save"/>
+            <MenuItem text="Exit"/>
+        </Menu>
+        <Menu text="Edit">
+            <MenuItem text="New Project"/>
+            <MenuItem text="Open"/>
+            <MenuItem text="Save"/>
+            <MenuItem text="Exit"/>
+        </Menu>
+        <!-- Add more menus and menu items as needed -->
+    </MenuBar>
+</VBox>
