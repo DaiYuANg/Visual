@@ -7,8 +7,10 @@ module org.visual.model.visualmodel {
     requires org.slf4j;
     requires org.jetbrains.annotations;
     requires org.reflections;
-    requires io.vertx.core;
+    //    requires io.vertx.core;
     requires java.prefs;
+    //    requires com.jthemedetector;
+    requires atlantafx.base;
 
     opens org.visual.model to
             javafx.fxml;
@@ -33,4 +35,6 @@ module org.visual.model.visualmodel {
 
     opens org.visual.model.initializing to
             javafx.fxml;
+    exports org.visual.model.contexts;
+    opens org.visual.model.contexts to javafx.fxml;
 }

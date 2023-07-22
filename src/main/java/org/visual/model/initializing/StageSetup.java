@@ -5,7 +5,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.ApplicationContext;
+import org.visual.model.contexts.ApplicationContext;
 import org.visual.model.components.MainScene;
 import org.visual.model.i18n.I18nKeys;
 
@@ -20,7 +20,7 @@ public class StageSetup {
         this.mainScene = mainScene;
         setOnClose();
         setView();
-        ApplicationContext.CONTEXT.getEventBus().consumer("test", System.err::println);
+        //        ApplicationContext.CONTEXT.getEventBus().consumer("test", System.err::println);
     }
 
     private void setOnClose() {

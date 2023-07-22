@@ -18,6 +18,7 @@ repositories {
   mavenCentral()
   gradlePluginPortal()
   google()
+  maven { setUrl("https://jitpack.io") }
 }
 //
 
@@ -44,13 +45,18 @@ dependencies {
   implementation("org.jetbrains:annotations:24.0.1")
   implementation("ch.qos.logback:logback-classic:1.4.8")
   implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
-  implementation("io.vertx:vertx-core:4.4.4")
+  //  implementation("io.vertx:vertx-core:4.4.4")
   implementation("io.reactivex.rxjava3:rxjava:3.1.6")
   implementation("org.mapstruct:mapstruct:1.5.5.Final")
   implementation("com.google.guava:guava:32.1.1-jre")
   implementation("org.reflections:reflections:0.10.2")
+  implementation("io.github.mkpaz:atlantafx-base:2.0.1")
+  implementation("com.github.Dansoftowner:jSystemThemeDetector:3.6")
   annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
   implementation("net.synedra:validatorfx:0.4.2")
+  implementation("net.java.dev.jna:jna:5.13.0")
+  implementation("net.java.dev.jna:jna-platform:5.13.0")
+  //    implementation("com.github.oshi:oshi-core-java11:6.4.4")
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
   testImplementation("ch.qos.logback:logback-classic:1.4.8")

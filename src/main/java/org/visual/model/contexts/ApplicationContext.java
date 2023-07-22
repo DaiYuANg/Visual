@@ -1,13 +1,11 @@
-package org.visual.model;
+package org.visual.model.contexts;
 
-import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.EventBus;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.EventSubscriber;
 
 public enum ApplicationContext {
     CONTEXT;
@@ -20,13 +18,15 @@ public enum ApplicationContext {
     @Setter
     private EventSubscriber eventSubscriber;
 
-    @Setter
-    @Getter
-    private Vertx vertx;
+    //    @Setter
+    //    @Getter
+    //    private Vertx vertx;
+    //
+    //    @Setter
+    //    @Getter
+    //    private EventBus eventBus;
 
-    @Setter
-    @Getter
-    private EventBus eventBus;
+    ApplicationContext() {}
 
     public @NotNull String getI18nResource(String key) {
         return i18nResource.getString(key);
