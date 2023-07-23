@@ -12,14 +12,8 @@ public enum ApplicationContext {
 
     private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
 
-    @Setter
-    private ResourceBundle i18nResource;
-
     ApplicationContext() {}
 
-    public @NotNull String getI18nResource(String key) {
-        return i18nResource.getString(key);
-    }
 
     public Object get(Object key) {
         return global.get(key);

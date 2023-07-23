@@ -15,10 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.components.MainScene;
-import org.visual.model.contexts.ApplicationContext;
-import org.visual.model.contexts.EventContext;
-import org.visual.model.contexts.PreferencesContext;
-import org.visual.model.contexts.VertxContext;
+import org.visual.model.contexts.*;
 import org.visual.model.initializing.StageSetup;
 import org.visual.model.initializing.VertxSetup;
 import org.w3c.dom.events.Event;
@@ -29,17 +26,10 @@ public class VisualModelApplication extends Application {
 
     @Override
     public void init() {
-        System.err.println(PreferencesContext.PREFERENCES);
+        I18nContext i18n = I18nContext.I18N;
         loadApplication();
         log.info("visual modeling starting");
         logging();
-        System.err.println(VertxContext.VERTX);
-        ApplicationContext.APPLICATION.setI18nResource(ResourceBundle.getBundle("bundle", Locale.getDefault()));
-//        ApplicationContext.APPLICATION.setEventSubscriber(new EventSubscriber());
-        val vs = new VertxSetup();
-        System.err.println(EventContext.EVENT);
-        //        ApplicationContext.CONTEXT.setVertx(vs.getVertx());
-        //        ApplicationContext.CONTEXT.setEventBus(vs.getEventBus());
         this.mainScene = new MainScene();
     }
 
@@ -54,7 +44,6 @@ public class VisualModelApplication extends Application {
                 Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
             }
         });
-        //        });
         val p = new Properties();
         p.load(this.getClass().getClassLoader().getResourceAsStream("application.properties"));
         p.forEach((k, v) -> System.setProperty(k.toString(), v.toString()));
@@ -67,7 +56,6 @@ public class VisualModelApplication extends Application {
     @Override
     public void start(@NotNull Stage stage) {
         new StageSetup(stage, mainScene);
-        //        ApplicationContext.CONTEXT.getEventBus().publisher("test");
     }
 
     public static void main(String[] args) {
