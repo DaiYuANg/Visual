@@ -6,9 +6,10 @@
 <MenuBar xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="org.visual.model.controllers.GlobalMenuController" useSystemMenuBar="true" cache="true">
     <Menu text="File">
-        <MenuItem text="New Project"/>
+        <MenuItem fx:id="newProject" text="New Project" onAction="#newProject"/>
         <MenuItem text="Open"/>
         <MenuItem text="Save"/>
+        <MenuItem text="Settings" onAction="#openSettings"/>
         <MenuItem text="Exit"/>
     </Menu>
     <Menu text="Edit">

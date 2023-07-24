@@ -1,18 +1,23 @@
 package org.visual.model.contexts;
 
-import java.util.ResourceBundle;
+import lombok.SneakyThrows;
+import lombok.val;
+
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
-import org.visual.model.EventSubscriber;
 
 public enum ApplicationContext {
     APPLICATION;
 
     private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
 
-    ApplicationContext() {}
+    @SneakyThrows
+    ApplicationContext() {
+        val p = new Properties();
+        p.load(this.getClass().getClassLoader().getResourceAsStream("application.properties"));
+        p.forEach((k, v) -> System.setProperty(k.toString(), v.toString()));
+    }
 
 
     public Object get(Object key) {
