@@ -1,4 +1,4 @@
-package org.visual.model.components;
+package org.visual.model.views;
 
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -29,6 +29,6 @@ public enum Settings {
         settings.setHeight(bounds.getHeight() * 0.65);
         settings.setTitle("Settings");
         log.info("open settings");
-        settings.show();
+        settings.showAndWait();
     }
 }

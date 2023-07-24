@@ -1,13 +1,14 @@
 package org.visual.model.initializing;
 
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.components.MainScene;
-import org.visual.model.contexts.ApplicationContext;
+import org.visual.model.views.MainScene;
 import org.visual.model.contexts.I18nContext;
 import org.visual.model.i18n.I18nKeys;
 
@@ -43,6 +44,7 @@ public class StageSetup {
         stage.centerOnScreen();
         stage.setTitle(System.getProperty("application.name"));
         stage.setScene(mainScene.getMainScene());
+        MFXThemeManager.addOn(mainScene.getMainScene(), Themes.DEFAULT, Themes.LEGACY);
         stage.show();
     }
 }

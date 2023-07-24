@@ -11,6 +11,7 @@ module org.visual.model.ide {
     requires org.reflections;
     requires java.prefs;
     requires atlantafx.base;
+    requires MaterialFX;
 
     opens org.visual.model to
             javafx.fxml;
@@ -21,9 +22,9 @@ module org.visual.model.ide {
     opens org.visual.model.controllers to
             javafx.fxml;
 
-    exports org.visual.model.components;
+    exports org.visual.model.views;
 
-    opens org.visual.model.components to
+    opens org.visual.model.views to
             javafx.fxml;
 
     exports org.visual.model.i18n;

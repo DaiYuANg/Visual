@@ -1,4 +1,4 @@
-package org.visual.model.components;
+package org.visual.model.views;
 
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -11,7 +11,9 @@ import org.visual.model.utils.FxmlLoaderHelper;
 
 @Slf4j
 @ToString
-public class MainScene {
+public enum MainScene {
+    MAIN_SCENE;
+
     private double initializeWidth;
 
     private double initializeHeight;
@@ -21,7 +23,7 @@ public class MainScene {
 
     private static final String fxml = "MainScene";
 
-    public MainScene() {
+    MainScene() {
 
         initDefaultWidthAndHeight();
         loadFXML();

@@ -4,9 +4,14 @@ plugins {
     id("org.beryx.jlink")
 }
 
+repositories{
+    mavenCentral()
+}
+
 dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("com.github.almasb:fxgl:17.3")
+    implementation("io.github.palexdev:materialfx:11.16.1")
     implementation("io.vertx:vertx-core:4.4.4")
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")

@@ -1,11 +1,13 @@
 package org.visual.model;
 
 import atlantafx.base.theme.PrimerLight;
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.components.MainScene;
+import org.visual.model.views.MainScene;
 import org.visual.model.initializing.StageSetup;
 
 @Slf4j
@@ -17,13 +19,14 @@ public class VisualModelApplication extends Application {
         loadApplication();
         log.info("visual modeling starting");
         logging();
-        this.mainScene = new MainScene();
+        this.mainScene = MainScene.MAIN_SCENE;
     }
 
     private void loadApplication() {
 //                final OsThemeDetector detector = OsThemeDetector.getDetector();
         //        detector.registerListener(isDark -> {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+//        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 //        Platform.runLater(() -> {
 //            if (false) {
 //                Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());

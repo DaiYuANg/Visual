@@ -9,8 +9,8 @@ plugins {
 
 allprojects {
   repositories {
-    mavenLocal()
     mavenCentral()
+    mavenLocal()
     gradlePluginPortal()
     google()
     maven { setUrl("https://jitpack.io") }
