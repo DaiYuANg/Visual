@@ -1,6 +1,5 @@
 package org.visual.model.components;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import lombok.Getter;
@@ -8,7 +7,7 @@ import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.VisualModelApplication;
+import org.visual.model.utils.FxmlLoaderHelper;
 
 @Slf4j
 @ToString
@@ -20,7 +19,7 @@ public class MainScene {
     @Getter
     private Scene mainScene;
 
-    private static final String fxml = "MainScene.fxml";
+    private static final String fxml = "MainScene";
 
     public MainScene() {
 
@@ -36,7 +35,6 @@ public class MainScene {
 
     @SneakyThrows
     private void loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(VisualModelApplication.class.getResource(fxml));
-        mainScene = new Scene(fxmlLoader.load(), initializeWidth, initializeHeight);
+        mainScene = new Scene(FxmlLoaderHelper.load(fxml), initializeWidth, initializeHeight);
     }
 }
