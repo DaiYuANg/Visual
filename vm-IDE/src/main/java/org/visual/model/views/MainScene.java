@@ -1,6 +1,7 @@
 package org.visual.model.views;
 
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -38,5 +39,6 @@ public enum MainScene {
     @SneakyThrows
     private void loadFXML() {
         mainScene = new Scene(FxmlLoaderHelper.load(fxml), initializeWidth, initializeHeight);
+        mainScene.setFill(Color.TRANSPARENT);
     }
 }

@@ -11,6 +11,5 @@ public enum PreferencesContext {
     private final Preferences preferences = Preferences.userRoot().node(preferenceNode);
 
     PreferencesContext() {
-
     }
 }

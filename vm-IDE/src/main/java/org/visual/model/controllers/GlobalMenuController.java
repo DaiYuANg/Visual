@@ -17,7 +17,6 @@ public class GlobalMenuController implements Controller {
         val stage = new Stage();
         stage.centerOnScreen();
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        val directory = directoryChooser.showDialog(stage);
     }
 
     public void openSettings(ActionEvent actionEvent) {

@@ -1,8 +1,6 @@
 package org.visual.model;
 
-import atlantafx.base.theme.PrimerLight;
-import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
-import io.github.palexdev.materialfx.css.themes.Themes;
+import atlantafx.base.theme.CupertinoDark;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +23,7 @@ public class VisualModelApplication extends Application {
     private void loadApplication() {
 //                final OsThemeDetector detector = OsThemeDetector.getDetector();
         //        detector.registerListener(isDark -> {
-        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+        Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
 //        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 //        Platform.runLater(() -> {
 //            if (false) {

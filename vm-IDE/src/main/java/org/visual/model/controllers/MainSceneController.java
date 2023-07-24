@@ -3,11 +3,9 @@ package org.visual.model.controllers;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import lombok.val;
 import org.visual.model.base.Controller;
 
 public class MainSceneController implements Controller {
@@ -17,6 +15,7 @@ public class MainSceneController implements Controller {
     public VBox centerPane;
     public VBox rightDrawer;
     public VBox rootVBox;
+    public TreeView<String> tree;
 
     @FXML
     private Label welcomeText;
@@ -28,6 +27,9 @@ public class MainSceneController implements Controller {
 
     @FXML
     public void initialize() {
+        val root = new TreeItem<>("test");
+        root.getChildren().addAll(new TreeItem<>("123"),new TreeItem<>("321"));
+        tree.setRoot(root);
 //        splitPane.getDividers().addListener((ListChangeListener<SplitPane.Divider>) c -> System.err.println(c));
 //        splitPane.getChildrenUnmodifiable().add(new MenuBar());
 //        leftToggleBtn.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {

@@ -3,13 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTreeView?>
 <StackPane xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="org.visual.model.controllers.MainSceneController">
     <VBox fx:id="rootVBox">
         <fx:include source="GlobalMenu.fxml"/>
         <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2, 0.8">
             <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
-                <Label text="File Explorer"/>
+                <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
+                   <TreeItem expanded="true">
+
+                   </TreeItem>
+                </TreeView>
             </VBox>
 
             <VBox fx:id="centerPane" VBox.vgrow="ALWAYS">
