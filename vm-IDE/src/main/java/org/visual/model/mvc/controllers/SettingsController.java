@@ -1,16 +1,9 @@
 package org.visual.model.mvc.controllers;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.base.Controller;
-import org.visual.model.contexts.AsyncContext;
+import org.visual.model.mvc.base.Controller;
 
 @Slf4j
 public class SettingsController implements Controller {

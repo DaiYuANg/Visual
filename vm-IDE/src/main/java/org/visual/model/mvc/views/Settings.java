@@ -1,6 +1,7 @@
 package org.visual.model.mvc.views;
 
 import com.dlsc.preferencesfx.PreferencesFx;
+import com.dlsc.preferencesfx.PreferencesFxEvent;
 import com.dlsc.preferencesfx.model.Category;
 import com.dlsc.preferencesfx.model.Group;
 import com.dlsc.preferencesfx.model.Setting;
@@ -44,6 +45,8 @@ public enum Settings {
     }
 
     public void openSettings() {
+        settings.addEventHandler(PreferencesFxEvent.EVENT_PREFERENCES_SAVED,event -> {
+        });
         settings.show(true);
     }
 }

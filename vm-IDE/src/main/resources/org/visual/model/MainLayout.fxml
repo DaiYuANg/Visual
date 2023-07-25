@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.visual.model.mvc.controllers.LayoutController">
+    <fx:include source="GlobalMenu.fxml"/>
+    <VBox fx:id="rootVBox">
+        <MenuBar>
+            <Menu text="test">
+                <MenuItem text="test"/>
+            </Menu>
+        </MenuBar>
+        <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2">
+            <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
+                <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
+                   <TreeItem expanded="true">
+
+                   </TreeItem>
+                </TreeView>
+            </VBox>
+
+            <VBox fx:id="centerPane" VBox.vgrow="ALWAYS">
+                <Label text="Draw Canvas"/>
+            </VBox>
+        </SplitPane>
+    </VBox>
+</StackPane>

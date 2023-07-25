@@ -4,10 +4,6 @@ plugins {
     id("org.beryx.jlink")
 }
 
-repositories{
-    mavenCentral()
-}
-
 dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("com.github.almasb:fxgl:17.3")
@@ -20,7 +16,10 @@ dependencies {
     implementation("net.synedra:validatorfx:0.4.2")
     implementation("com.google.jimfs:jimfs:1.3.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
+    implementation(projects.vmContext.vmContextCore)
+    annotationProcessor(projects.vmContext.vmContextAnnotationProcessor)
 }
 
 application {

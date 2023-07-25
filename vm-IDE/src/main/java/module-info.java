@@ -36,9 +36,9 @@ module org.visual.model.ide {
     opens org.visual.model.i18n to
             javafx.fxml;
 
-    exports org.visual.model.initializing;
+    exports org.visual.model.setup;
 
-    opens org.visual.model.initializing to
+    opens org.visual.model.setup to
             javafx.fxml;
 
     exports org.visual.model.contexts;

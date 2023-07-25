@@ -6,7 +6,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.base.Controller;
+import org.visual.model.mvc.base.Controller;
 import org.visual.model.mvc.views.Settings;
 
 @Slf4j
