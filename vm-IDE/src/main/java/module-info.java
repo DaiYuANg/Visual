@@ -21,14 +21,14 @@ module org.visual.model.ide {
             javafx.fxml;
 
     exports org.visual.model;
-    exports org.visual.model.controllers;
+    exports org.visual.model.mvc.controllers;
 
-    opens org.visual.model.controllers to
+    opens org.visual.model.mvc.controllers to
             javafx.fxml;
 
-    exports org.visual.model.views;
+    exports org.visual.model.mvc.views;
 
-    opens org.visual.model.views to
+    opens org.visual.model.mvc.views to
             javafx.fxml;
 
     exports org.visual.model.i18n;

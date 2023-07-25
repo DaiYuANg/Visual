@@ -1,4 +1,4 @@
-package org.visual.model.controllers;
+package org.visual.model.mvc.controllers;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;

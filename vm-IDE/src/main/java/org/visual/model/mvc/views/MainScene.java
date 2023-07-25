@@ -1,4 +1,4 @@
-package org.visual.model.views;
+package org.visual.model.mvc.views;
 
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;

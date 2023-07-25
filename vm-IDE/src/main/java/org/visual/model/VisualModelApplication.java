@@ -1,12 +1,16 @@
 package org.visual.model;
 
-import atlantafx.base.theme.CupertinoDark;
+import atlantafx.base.theme.NordLight;
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.views.MainScene;
+import org.visual.model.contexts.ProjectContext;
+import org.visual.model.initializing.EventSetup;
 import org.visual.model.initializing.StageSetup;
+import org.visual.model.mvc.views.MainScene;
 
 @Slf4j
 public class VisualModelApplication extends Application {
@@ -21,17 +25,11 @@ public class VisualModelApplication extends Application {
     }
 
     private void loadApplication() {
+        log.info(ProjectContext.PROJECT.toString());
+        log.info(EventSetup.EVENT_SETUP.toString());
 //                final OsThemeDetector detector = OsThemeDetector.getDetector();
         //        detector.registerListener(isDark -> {
-        Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
-//        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
-//        Platform.runLater(() -> {
-//            if (false) {
-//                Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-//            } else {
-//                Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
-//            }
-//        });
+        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
     }
 
     private void logging() {
@@ -40,6 +38,13 @@ public class VisualModelApplication extends Application {
 
     @Override
     public void start(@NotNull Stage stage) {
+        Thread.currentThread().setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                val alert = new Alert(Alert.AlertType.ERROR);
+                alert.show();
+            }
+        });
         new StageSetup(stage, mainScene);
     }
 

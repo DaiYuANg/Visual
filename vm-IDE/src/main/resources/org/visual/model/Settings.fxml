@@ -12,7 +12,7 @@
 <?import javafx.scene.control.TreeCell?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="org.visual.model.controllers.SettingsController"
+           fx:controller="org.visual.model.mvc.controllers.SettingsController"
            prefHeight="400.0" prefWidth="600.0">
     <fx:include source="GlobalMenu.fxml"/>
     <SplitPane fx:id="splitPane">

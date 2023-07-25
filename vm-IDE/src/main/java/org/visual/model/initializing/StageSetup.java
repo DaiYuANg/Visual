@@ -8,7 +8,7 @@ import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.views.MainScene;
+import org.visual.model.mvc.views.MainScene;
 import org.visual.model.contexts.I18nContext;
 import org.visual.model.i18n.I18nKeys;
 
