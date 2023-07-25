@@ -18,6 +18,11 @@ dependencies {
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
     implementation("com.github.Dansoftowner:jSystemThemeDetector:3.6")
     implementation("net.synedra:validatorfx:0.4.2")
+    implementation("com.google.jimfs:jimfs:1.3.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.dlsc.preferencesfx:preferencesfx-core:11.8.0"){
+        exclude("com.google.code.gson","gson")
+    }
 }
 
 application {

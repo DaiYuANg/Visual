@@ -12,6 +12,10 @@ module org.visual.model.ide {
     requires java.prefs;
     requires atlantafx.base;
     requires MaterialFX;
+    requires com.dlsc.preferencesfx;
+    requires com.google.gson;
+    requires com.google.common.jimfs;
+
 
     opens org.visual.model to
             javafx.fxml;

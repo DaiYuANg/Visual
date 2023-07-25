@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import io.github.palexdev.materialfx.controls.MFXTreeView?>
+<?import javafx.scene.layout.*?>
 <StackPane xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="org.visual.model.controllers.MainSceneController">
     <VBox fx:id="rootVBox">
         <fx:include source="GlobalMenu.fxml"/>
+        <MenuBar>
+            <Menu text="test">
+                <MenuItem text="test"/>
+            </Menu>
+        </MenuBar>
         <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2, 0.8">
             <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
                 <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
