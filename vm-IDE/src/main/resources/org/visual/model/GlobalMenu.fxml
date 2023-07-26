@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <MenuBar xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="org.visual.model.mvc.controllers.GlobalMenuController">
+         fx:controller="org.visual.model.mvc.controllers.GlobalMenuController" useSystemMenuBar="true">
     <Menu text="File">
         <MenuItem fx:id="newProject" text="New Project" onAction="#newProject"/>
         <MenuItem text="Open"/>

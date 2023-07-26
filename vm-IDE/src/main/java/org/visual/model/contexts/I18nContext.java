@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@Getter
 public enum I18nContext {
     I18N;
 
-    @Getter
     private final ResourceBundle i18nResource;
 
     I18nContext() {

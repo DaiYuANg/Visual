@@ -1,13 +1,20 @@
 package org.visual.model.contexts;
 
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public enum UIContext {
-    UICONTEXT(null);
+    UICONTEXT;
 
-    final Stage stage;
+    @Setter
+    @Nullable
+    private Stage stage;
 
-    UIContext(Stage stage) {
-        this.stage = stage;
+    private Optional<Stage> getStage(){
+        return Optional.ofNullable(stage);
     }
 }

@@ -17,9 +17,7 @@ public enum ApplicationContext {
 
     @SneakyThrows
     ApplicationContext() {
-        val p = new Properties();
-        p.load(this.getClass().getClassLoader().getResourceAsStream("application.properties"));
-        p.forEach((k, v) -> System.setProperty(k.toString(), v.toString()));
+
     }
 
 

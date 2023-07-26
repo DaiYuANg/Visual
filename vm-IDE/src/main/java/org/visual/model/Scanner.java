@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 
+@Getter
 @AllArgsConstructor
 public enum Scanner {
     INSTANCE(new Reflections(
@@ -13,6 +14,5 @@ public enum Scanner {
                     .forPackages(VisualModelApplication.class.getPackageName())
     ));
 
-    @Getter
     private final Reflections scanner;
 }
