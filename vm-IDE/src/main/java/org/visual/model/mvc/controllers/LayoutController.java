@@ -2,19 +2,17 @@ package org.visual.model.mvc.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 import lombok.val;
-import org.visual.model.mvc.base.Controller;
 import org.visual.model.contexts.ProjectContext;
+import org.visual.model.mvc.base.Controller;
 
 public class LayoutController implements Controller {
     public SplitPane splitPane;
     public VBox leftDrawer;
-    public VBox centerPane;
     public VBox rootVBox;
     public TreeView<String> tree;
 
