@@ -15,7 +15,6 @@ public enum ApplicationContext {
 
     private final Path cwd = Path.of("").toAbsolutePath();
 
-    @SneakyThrows
     ApplicationContext() {
 
     }

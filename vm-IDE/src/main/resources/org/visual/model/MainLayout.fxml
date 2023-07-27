@@ -2,19 +2,40 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<StackPane xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="org.visual.model.mvc.controllers.LayoutController">
-    <VBox fx:id="rootVBox">
-        <fx:include source="GlobalMenu.fxml"/>
-        <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2">
-            <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
-                <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
-                </TreeView>
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.visual.model.mvc.controllers.LayoutController">
+    <fx:include source="TitleBar.fxml"/>
+    <BorderPane VBox.vgrow="ALWAYS">
+
+        <top>
+            <MenuBar>
+                <Menu text="test button">
+                    <MenuItem text="test"/>
+                </Menu>
+            </MenuBar>
+        </top>
+        <left>
+            <Label text="left"/>
+        </left>
+        <center>
+            <VBox fx:id="rootVBox" style="-fx-background-color: lightgreen;">
+                <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2">
+                    <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
+                        <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
+                        </TreeView>
+                    </VBox>
+                    <VBox VBox.vgrow="ALWAYS">
+                        <Label text="Draw Canvas"/>
+                        <fx:include source="TextEditor.fxml"/>
+                    </VBox>
+                </SplitPane>
             </VBox>
-            <VBox VBox.vgrow="ALWAYS">
-                <Label text="Draw Canvas"/>
-                <fx:include source="TextEditor.fxml"/>
-            </VBox>
-        </SplitPane>
-    </VBox>
-</StackPane>
+        </center>
+        <right>
+            <Label text="right"/>
+        </right>
+        <bottom>
+            <Label text="button"/>
+        </bottom>
+    </BorderPane>
+</VBox>

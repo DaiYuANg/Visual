@@ -2,6 +2,7 @@ package org.visual.model.contexts;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,5 +41,10 @@ public enum TasksContext {
 
     public void schedule(Runnable runnable,long delay,TimeUnit timeUnit){
 //        scheduledExecutor.schedule();
+    }
+
+    public void shutdown(){
+        executor.shutdown();
+        scheduledExecutor.shutdown();
     }
 }

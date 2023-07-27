@@ -1,5 +1,6 @@
 package org.visual.model.mvc.views;
 
+import atlantafx.base.theme.PrimerDark;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.scene.Parent;
@@ -16,13 +17,11 @@ public enum MainLayout {
 
     private final Parent parent = FxmlLoaderHelper.load(fxml);
 
-    private final double initializeWidth = Screen.getPrimary().getBounds().getWidth() * 0.8;
-    private final double initializeHeight = Screen.getPrimary().getBounds().getHeight() * 0.8;
-
     @Getter
-    private Scene scene = new Scene(parent, initializeWidth, initializeHeight);
+    private Scene scene = new Scene(parent);
 
     MainLayout() {
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
+//        scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
     }
 }

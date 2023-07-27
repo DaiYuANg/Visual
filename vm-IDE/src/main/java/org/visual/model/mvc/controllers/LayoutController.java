@@ -18,13 +18,13 @@ public class LayoutController implements Controller {
 
     @FXML
     public void initialize() {
-        val root = new TreeItem<>(ProjectContext.PROJECT.getRoot().getAbsolutePath());
-        root.setExpanded(true);
-        val items = ProjectContext.PROJECT.getProjectFiles().stream()
-                .map(file -> new TreeItem<>(file.getAbsolutePath())).toList();
-        root.getChildren().addAll(items);
-        tree.setRoot(root);
-        tree.setShowRoot(true);
+//        val root = new TreeItem<>(ProjectContext.PROJECT.getRoot().getAbsolutePath());
+//        root.setExpanded(true);
+//        val items = ProjectContext.PROJECT.getProjectFiles().stream()
+//                .map(file -> new TreeItem<>(file.getAbsolutePath())).toList();
+//        root.getChildren().addAll(items);
+//        tree.setRoot(root);
+//        tree.setShowRoot(true);
     }
 
     public void toggleLeftDrawer(ActionEvent actionEvent) {

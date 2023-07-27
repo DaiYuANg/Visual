@@ -1,16 +1,17 @@
 package org.visual.model;
 
+import atlantafx.base.theme.PrimerDark;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.contexts.TasksContext;
 import org.visual.model.contexts.UIContext;
 import org.visual.model.mvc.views.MainLayout;
 
-import java.util.Optional;
-
 @Slf4j
-public class VisualModelApplication extends Application {
+public class VisualModelIDE extends Application {
     @Override
     public void init() {
         loadApplication();
@@ -28,7 +29,9 @@ public class VisualModelApplication extends Application {
     @Override
     public void start(@NotNull Stage stage) {
         UIContext.UICONTEXT.setStage(stage);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(MainLayout.INSTANCE.getScene());
+        UIContext.UICONTEXT.initializeSize();
         stage.show();
     }
 
@@ -38,6 +41,7 @@ public class VisualModelApplication extends Application {
 
     @Override
     public void stop() {
+        TasksContext.ASYNC.shutdown();
         log.info("visual model stop");
     }
 }
