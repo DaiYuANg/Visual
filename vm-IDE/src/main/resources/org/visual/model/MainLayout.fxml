@@ -6,7 +6,6 @@
         fx:controller="org.visual.model.mvc.controllers.LayoutController">
     <fx:include source="TitleBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
-
         <top>
             <MenuBar>
                 <Menu text="test button">

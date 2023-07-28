@@ -1,6 +1,5 @@
 package org.visual.model;
 
-import atlantafx.base.theme.PrimerDark;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,7 +28,7 @@ public class VisualModelIDE extends Application {
     @Override
     public void start(@NotNull Stage stage) {
         UIContext.UICONTEXT.setStage(stage);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(MainLayout.INSTANCE.getScene());
         UIContext.UICONTEXT.initializeSize();
         stage.show();

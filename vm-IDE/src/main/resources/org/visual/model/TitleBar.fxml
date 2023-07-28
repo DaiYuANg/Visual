@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.control.Button?>
-<HBox fx:id="titleBar" minWidth="Infinity" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<HBox fx:id="titleBar" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.visual.model.mvc.controllers.TitleBarController"
       onMousePressed="#handleMousePressed"
       onMouseDragged="#handleMouseDragged"
       onMouseReleased="#handleMouseDragReleased"
 >
-    <HBox style="-fx-background-color: transparent;">
+    <HBox>
         <Button text="✕" style="-fx-padding: 0 5px;" onMouseClicked="#closeWindow" />
         <Button text="o" style="-fx-padding: 0 5px;" onMouseClicked="#maximizeWindow" />
         <Button text="-" style="-fx-padding: 0 5px;" onMouseClicked="#minimizeWindow" />
