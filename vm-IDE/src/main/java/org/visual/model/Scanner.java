@@ -8,10 +8,7 @@ import org.reflections.util.ConfigurationBuilder;
 @Getter
 @AllArgsConstructor
 public enum Scanner {
-    INSTANCE(new Reflections(
-            new ConfigurationBuilder()
-                    .forPackages(VisualModelIDE.class.getPackageName())
-    ));
+	INSTANCE(new Reflections(new ConfigurationBuilder().forPackages(VisualModelIDE.class.getPackageName())));
 
-    private final Reflections scanner;
+	private final Reflections scanner;
 }

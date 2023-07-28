@@ -1,18 +1,16 @@
 package org.visual.model.context.annotation.processor;
 
 import com.google.auto.service.AutoService;
-import lombok.SneakyThrows;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
-import java.lang.annotation.Annotation;
-import java.util.List;
-import java.util.Set;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 @SupportedAnnotationTypes({"Inject"})
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
@@ -20,90 +18,90 @@ import java.util.Set;
 @Slf4j
 public class InjectProcessor extends AbstractProcessor {
 
-    @SneakyThrows
-    @Override
-    public synchronized void init(@NotNull ProcessingEnvironment processingEnv) {
-        processingEnv.getFiler().createSourceFile("test", new TypeElement() {
-            @Override
-            public TypeMirror asType() {
-                return null;
-            }
+	@SneakyThrows
+	@Override
+	public synchronized void init(@NotNull ProcessingEnvironment processingEnv) {
+		processingEnv.getFiler().createSourceFile("test", new TypeElement() {
+			@Override
+			public TypeMirror asType() {
+				return null;
+			}
 
-            @Override
-            public List<? extends Element> getEnclosedElements() {
-                return null;
-            }
+			@Override
+			public List<? extends Element> getEnclosedElements() {
+				return null;
+			}
 
-            @Override
-            public NestingKind getNestingKind() {
-                return null;
-            }
+			@Override
+			public NestingKind getNestingKind() {
+				return null;
+			}
 
-            @Override
-            public Name getQualifiedName() {
-                return null;
-            }
+			@Override
+			public Name getQualifiedName() {
+				return null;
+			}
 
-            @Override
-            public Name getSimpleName() {
-                return null;
-            }
+			@Override
+			public Name getSimpleName() {
+				return null;
+			}
 
-            @Override
-            public TypeMirror getSuperclass() {
-                return null;
-            }
+			@Override
+			public TypeMirror getSuperclass() {
+				return null;
+			}
 
-            @Override
-            public List<? extends TypeMirror> getInterfaces() {
-                return null;
-            }
+			@Override
+			public List<? extends TypeMirror> getInterfaces() {
+				return null;
+			}
 
-            @Override
-            public List<? extends TypeParameterElement> getTypeParameters() {
-                return null;
-            }
+			@Override
+			public List<? extends TypeParameterElement> getTypeParameters() {
+				return null;
+			}
 
-            @Override
-            public Element getEnclosingElement() {
-                return null;
-            }
+			@Override
+			public Element getEnclosingElement() {
+				return null;
+			}
 
-            @Override
-            public ElementKind getKind() {
-                return null;
-            }
+			@Override
+			public ElementKind getKind() {
+				return null;
+			}
 
-            @Override
-            public Set<Modifier> getModifiers() {
-                return null;
-            }
+			@Override
+			public Set<Modifier> getModifiers() {
+				return null;
+			}
 
-            @Override
-            public List<? extends AnnotationMirror> getAnnotationMirrors() {
-                return null;
-            }
+			@Override
+			public List<? extends AnnotationMirror> getAnnotationMirrors() {
+				return null;
+			}
 
-            @Override
-            public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-                return null;
-            }
+			@Override
+			public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
+				return null;
+			}
 
-            @Override
-            public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationType) {
-                return null;
-            }
+			@Override
+			public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationType) {
+				return null;
+			}
 
-            @Override
-            public <R, P> R accept(ElementVisitor<R, P> v, P p) {
-                return null;
-            }
-        });
-        log.info("test");
-    }
+			@Override
+			public <R, P> R accept(ElementVisitor<R, P> v, P p) {
+				return null;
+			}
+		});
+		log.info("test");
+	}
 
-    @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        return false;
-    }
+	@Override
+	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+		return false;
+	}
 }

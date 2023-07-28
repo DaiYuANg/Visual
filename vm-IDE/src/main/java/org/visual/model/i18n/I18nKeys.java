@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum I18nKeys {
-    CONFIRM("confirm"),
+	CONFIRM("confirm"),
 
-    CONFIRM_CLOSE_HEADER("confirm.close.header");
+	CONFIRM_CLOSE_HEADER("confirm.close.header");
 
-    private final String value;
+	private final String value;
 }

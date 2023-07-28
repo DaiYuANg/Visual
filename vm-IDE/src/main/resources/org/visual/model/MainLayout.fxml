@@ -2,16 +2,19 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="org.visual.model.mvc.controllers.LayoutController">
+      fx:controller="org.visual.model.mvc.controllers.LayoutController">
     <fx:include source="TitleBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
-            <MenuBar>
-                <Menu text="test button">
-                    <MenuItem text="test"/>
-                </Menu>
-            </MenuBar>
+            <ToolBar>
+                <MFXButton>?</MFXButton>
+                <MFXButton>test</MFXButton>
+                <!--                <Menu text="test button">-->
+                <!--                    <MenuItem text="test"/>-->
+                <!--                </Menu>-->
+            </ToolBar>
         </top>
         <left>
             <Label text="left"/>
@@ -20,12 +23,12 @@
             <VBox fx:id="rootVBox" style="-fx-background-color: lightgreen;">
                 <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2">
                     <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
-                        <TreeView fx:id="tree" VBox.vgrow="ALWAYS">
-                        </TreeView>
+<!--                        <TreeView fx:id="tree" >-->
+<!--                        </TreeView>-->
                     </VBox>
                     <VBox VBox.vgrow="ALWAYS">
                         <Label text="Draw Canvas"/>
-                        <fx:include source="TextEditor.fxml"/>
+<!--                        <fx:include source="TextEditor.fxml"/>-->
                     </VBox>
                 </SplitPane>
             </VBox>

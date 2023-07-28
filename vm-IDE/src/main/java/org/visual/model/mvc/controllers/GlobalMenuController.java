@@ -1,5 +1,7 @@
 package org.visual.model.mvc.controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
 import javafx.stage.DirectoryChooser;
@@ -11,20 +13,23 @@ import org.visual.model.mvc.views.Settings;
 
 @Slf4j
 public class GlobalMenuController implements Controller {
-    public MenuItem newProject;
+	public MenuItem newProject;
 
-    public void newProject(ActionEvent actionEvent) {
-        val stage = new Stage();
-        stage.centerOnScreen();
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-    }
+	public void newProject(ActionEvent actionEvent) {
+		val stage = new Stage();
+		stage.centerOnScreen();
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+	}
 
-    public void openSettings(ActionEvent actionEvent) {
-        Settings.SETTINGS.openSettings();
-    }
+	public void openSettings(ActionEvent actionEvent) {
+		Settings.SETTINGS.openSettings();
+	}
 
-    @Override
-    public void initialize() {
+	@Override
+	public void initialize() {
+	}
 
-    }
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 }

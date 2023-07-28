@@ -1,30 +1,24 @@
 package org.visual.model.contexts;
 
-import lombok.SneakyThrows;
-import lombok.val;
-
 import java.nio.file.Path;
-import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public enum ApplicationContext {
-    INSTANCE;
+	INSTANCE;
 
-    private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
+	private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
 
-    private final Path cwd = Path.of("").toAbsolutePath();
+	private final Path cwd = Path.of("").toAbsolutePath();
 
-    ApplicationContext() {
+	ApplicationContext() {
+	}
 
-    }
+	public Object get(Object key) {
+		return global.get(key);
+	}
 
-
-    public Object get(Object key) {
-        return global.get(key);
-    }
-
-    public void put(Object key, Object value) {
-        global.put(key, value);
-    }
+	public void put(Object key, Object value) {
+		global.put(key, value);
+	}
 }

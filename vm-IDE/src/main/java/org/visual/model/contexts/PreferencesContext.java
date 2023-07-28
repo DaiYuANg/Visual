@@ -1,15 +1,13 @@
 package org.visual.model.contexts;
 
-import lombok.SneakyThrows;
-
 import java.util.prefs.Preferences;
 
 public enum PreferencesContext {
-    PREFERENCES;
+	PREFERENCES;
 
-    private final String preferenceNode = "org.visual.model.preference";
-    private final Preferences preferences = Preferences.userRoot().node(preferenceNode);
+	private final String preferenceNode = "org.visual.model.preference";
+	private final Preferences preferences = Preferences.userRoot().node(preferenceNode);
 
-    PreferencesContext() {
-    }
+	PreferencesContext() {
+	}
 }

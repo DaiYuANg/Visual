@@ -1,9 +1,10 @@
 package org.visual.model.mvc.controllers;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
@@ -15,62 +16,73 @@ import org.visual.model.mvc.base.Controller;
 
 @Slf4j
 public class TitleBarController implements Controller {
-    private double xOffset = 0;
-    private double yOffset = 0;
+	@FXML
+	public MFXButton closeButton;
 
-    private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+	private double xOffset = 0;
+	private double yOffset = 0;
 
-    @FXML
-    private HBox titleBar;
+	private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 
-    @Override
-    public void initialize() {
-        log.info("title bar init");
-    }
+	@FXML
+	private HBox titleBar;
 
-    public void minimizeWindow(MouseEvent mouseEvent) {
-        Stage stage = (Stage) titleBar.getScene().getWindow();
-        stage.setIconified(true);
-    }
+	@Override
+	public void initialize() {
+		log.info("title bar init");
+		// closeButton
+		// new Bounce(text).play();
+	}
 
-    public void closeWindow(@NotNull MouseEvent mouseEvent) {
-        log.info("close window");
-        val stage = (Stage)titleBar.getScene().getWindow();
-        stage.close();
-        mouseEvent.consume();
-    }
+	public void minimizeWindow(MouseEvent mouseEvent) {
+		Stage stage = (Stage) titleBar.getScene().getWindow();
+		stage.setIconified(true);
+	}
 
-    public void handleMousePressed(@NotNull MouseEvent mouseEvent) {
-        titleBar.getScene().getWindow().setOpacity(0.5);
-        xOffset = mouseEvent.getSceneX();
-        yOffset = mouseEvent.getSceneY();
-    }
+	public void closeWindow(@NotNull MouseEvent mouseEvent) {
+		log.info("close window");
+		val stage = (Stage) titleBar.getScene().getWindow();
+		stage.close();
+		mouseEvent.consume();
+	}
 
-    public void handleMouseDragged(@NotNull MouseEvent mouseEvent) {
-        log.info("mouse drag dragged");
-        titleBar.getScene().getWindow().setX(mouseEvent.getScreenX() - xOffset);
-        titleBar.getScene().getWindow().setY(mouseEvent.getScreenY() - yOffset);
-    }
+	public void handleMousePressed(@NotNull MouseEvent mouseEvent) {
+		titleBar.getScene().getWindow().setOpacity(0.5);
+		xOffset = mouseEvent.getSceneX();
+		yOffset = mouseEvent.getSceneY();
+	}
 
-    public void handleMouseDragReleased(MouseEvent mouseDragEvent) {
-        log.info("mouse drag released");
-        titleBar.getScene().getWindow().setOpacity(1.0);
-    }
+	public void handleMouseDragged(@NotNull MouseEvent mouseEvent) {
+		log.info("mouse drag dragged");
+		titleBar.getScene().getWindow().setX(mouseEvent.getScreenX() - xOffset);
+		titleBar.getScene().getWindow().setY(mouseEvent.getScreenY() - yOffset);
+	}
 
-    public void maximizeWindow(@NotNull MouseEvent mouseEvent) {
-        val stage = (Stage)titleBar.getScene().getWindow();
-        if (mouseEvent.getClickCount() == 2){
-            max(stage);
-            stage.setFullScreen(true);
-            return;
-        }
-        max(stage);
-    }
+	public void handleMouseDragReleased(MouseEvent mouseDragEvent) {
+		log.info("mouse drag released");
+		titleBar.getScene().getWindow().setOpacity(1.0);
+	}
 
-    private void max(@NotNull Stage stage){
-        stage.setX(bounds.getMinX());
-        stage.setY(bounds.getMinY());
-        stage.setWidth(bounds.getWidth());
-        stage.setHeight(bounds.getHeight());
-    }
+	public void maximizeWindow(@NotNull MouseEvent mouseEvent) {
+		val stage = (Stage) titleBar.getScene().getWindow();
+		if (mouseEvent.getClickCount() == 2) {
+			max(stage);
+			stage.setFullScreen(true);
+			return;
+		}
+		max(stage);
+	}
+
+	private void max(@NotNull Stage stage) {
+		stage.setX(bounds.getMinX());
+		stage.setY(bounds.getMinY());
+		stage.setWidth(bounds.getWidth());
+		stage.setHeight(bounds.getHeight());
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		System.err.println(location);
+		System.err.println(resources);
+	}
 }

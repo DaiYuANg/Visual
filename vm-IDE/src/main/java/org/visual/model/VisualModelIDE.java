@@ -11,36 +11,35 @@ import org.visual.model.mvc.views.MainLayout;
 
 @Slf4j
 public class VisualModelIDE extends Application {
-    @Override
-    public void init() {
-        loadApplication();
-        logging();
-    }
+	@Override
+	public void init() {
+		loadApplication();
+		logging();
+	}
 
-    private void loadApplication() {
+	private void loadApplication() {
+	}
 
-    }
+	private void logging() {
+		log.info("Current User: " + System.getProperty("user.name"));
+	}
 
-    private void logging() {
-        log.info("Current User: " + System.getProperty("user.name"));
-    }
+	@Override
+	public void start(@NotNull Stage stage) {
+		UIContext.UICONTEXT.setStage(stage);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.setScene(MainLayout.INSTANCE.getScene());
+		UIContext.UICONTEXT.initializeSize();
+		stage.show();
+	}
 
-    @Override
-    public void start(@NotNull Stage stage) {
-        UIContext.UICONTEXT.setStage(stage);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(MainLayout.INSTANCE.getScene());
-        UIContext.UICONTEXT.initializeSize();
-        stage.show();
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void stop() {
-        TasksContext.ASYNC.shutdown();
-        log.info("visual model stop");
-    }
+	@Override
+	public void stop() {
+		TasksContext.ASYNC.shutdown();
+		log.info("visual model stop");
+	}
 }

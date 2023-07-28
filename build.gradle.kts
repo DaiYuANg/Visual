@@ -74,5 +74,9 @@ spotless {
   java {
     target("**/*.java")
     palantirJavaFormat()
+    removeUnusedImports()
+    importOrder()
+    eclipse()
+    formatAnnotations()
   }
 }

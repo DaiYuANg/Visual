@@ -1,23 +1,21 @@
 package org.visual.model.contexts;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 @Getter
 public enum I18nContext {
-    I18N;
+	I18N;
 
-    private final ResourceBundle i18nResource;
+	private final ResourceBundle i18nResource;
 
-    I18nContext() {
-        i18nResource = ResourceBundle.getBundle("bundle", Locale.getDefault());
-    }
+	I18nContext() {
+		i18nResource = ResourceBundle.getBundle("bundle", Locale.getDefault());
+	}
 
-    public @NotNull String getI18nResource(String key) {
-        return i18nResource.getString(key);
-    }
+	public @NotNull String getI18nResource(String key) {
+		return i18nResource.getString(key);
+	}
 }

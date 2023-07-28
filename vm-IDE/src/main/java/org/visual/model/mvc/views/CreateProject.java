@@ -9,20 +9,20 @@ import org.visual.model.utils.FxmlLoaderHelper;
 @Slf4j
 @ToString
 public enum CreateProject {
-    CREATE_PROJECT;
+	CREATE_PROJECT;
 
-    private final String fxml = "CreateProject";
+	private final String fxml = "CreateProject";
 
-    private final Stage window = new Stage();
+	private final Stage window = new Stage();
 
-    private final Parent createProjectScene;
+	private final Parent createProjectScene;
 
-    CreateProject() {
-        createProjectScene = FxmlLoaderHelper.load(fxml);
-        window.setScene(createProjectScene.getScene());
-    }
+	CreateProject() {
+		createProjectScene = FxmlLoaderHelper.load(fxml);
+		window.setScene(createProjectScene.getScene());
+	}
 
-    public void show(){
-        window.showAndWait();
-    }
+	public void show() {
+		window.showAndWait();
+	}
 }

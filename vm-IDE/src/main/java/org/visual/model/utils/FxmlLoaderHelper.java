@@ -9,8 +9,8 @@ import org.visual.model.VisualModelIDE;
 @UtilityClass
 public class FxmlLoaderHelper {
 
-    @SneakyThrows
-    public static Parent load(String prefix) {
-        return new FXMLLoader(VisualModelIDE.class.getResource(prefix + ".fxml")).load();
-    }
+	@SneakyThrows
+	public static Parent load(String prefix) {
+		return new FXMLLoader(VisualModelIDE.class.getResource(prefix + ".fxml")).load();
+	}
 }

@@ -6,14 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public enum VertxContext {
-    VERTX;
+	VERTX;
 
-    private final Vertx vertx = Vertx.vertx();
+	private final Vertx vertx = Vertx.vertx();
 
-    private final NetServer netServer = vertx.createNetServer()
-            .connectHandler(System.err::println);
+	private final NetServer netServer = vertx.createNetServer().connectHandler(System.err::println);
 
-    VertxContext() {
-        TasksContext.ASYNC.run(() -> netServer.listen(8080));
-    }
+	VertxContext() {
+		TasksContext.ASYNC.run(() -> netServer.listen(8080));
+	}
 }
