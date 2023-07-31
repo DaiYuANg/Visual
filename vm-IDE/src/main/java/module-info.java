@@ -11,7 +11,6 @@ module org.visual.model.ide {
 	requires org.reflections;
 	requires java.prefs;
 	requires atlantafx.base;
-	requires MaterialFX;
 	requires com.almasb.fxgl.all;
 	requires com.dlsc.preferencesfx;
 	requires com.google.gson;

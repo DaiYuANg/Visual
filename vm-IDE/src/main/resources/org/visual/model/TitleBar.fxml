@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <HBox fx:id="titleBar" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.visual.model.mvc.controllers.TitleBarController"
@@ -9,9 +9,9 @@
       onMouseReleased="#handleMouseDragReleased"
 >
     <HBox>
-        <MFXButton fx:id="closeButton" text="✕"  onMouseClicked="#closeWindow" />
-        <MFXButton text="o"  onMouseClicked="#maximizeWindow" />
-        <MFXButton text="-"  onMouseClicked="#minimizeWindow" />
+        <Button fx:id="closeButton" text="✕" onMouseClicked="#closeWindow"/>
+        <Button text="o" onMouseClicked="#maximizeWindow"/>
+        <Button text="-" onMouseClicked="#minimizeWindow"/>
     </HBox>
     <fx:include source="GlobalMenu.fxml"/>
 </HBox>

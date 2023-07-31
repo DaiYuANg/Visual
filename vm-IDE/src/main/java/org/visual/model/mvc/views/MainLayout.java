@@ -1,7 +1,5 @@
 package org.visual.model.mvc.views;
 
-import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
-import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import lombok.Getter;
@@ -18,7 +16,7 @@ public enum MainLayout {
 	private Scene scene = new Scene(parent);
 
 	MainLayout() {
-		MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
+//		MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 		// scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 	}
 }

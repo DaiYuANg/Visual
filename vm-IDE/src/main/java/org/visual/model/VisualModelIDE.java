@@ -1,6 +1,9 @@
 package org.visual.model;
 
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +21,8 @@ public class VisualModelIDE extends Application {
 	}
 
 	private void loadApplication() {
+//		Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+		Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 	}
 
 	private void logging() {

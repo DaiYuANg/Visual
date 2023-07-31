@@ -8,7 +8,6 @@ plugins {
 dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("com.github.almasb:fxgl:17.3")
-    implementation("io.github.palexdev:materialfx:11.16.1")
     implementation("io.vertx:vertx-core:4.4.4")
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
     implementation("com.tangorabox:component-inspector-fx:1.1.0")
@@ -19,7 +18,6 @@ dependencies {
     implementation("com.dlsc.formsfx:formsfx-core:11.3.2")
     implementation("com.github.iAmGio:froxty:1.4.0")
     implementation("io.github.eckig.grapheditor:grapheditor-core:19.0.0")
-    // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
@@ -34,7 +32,7 @@ application {
 }
 
 javafx {
-    version = "20"
+    version = "21-ea+24"
     modules = listOf(
         "javafx.controls",
         "javafx.fxml",

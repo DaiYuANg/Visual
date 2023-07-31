@@ -2,36 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.visual.model.mvc.controllers.LayoutController">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.model.mvc.controllers.LayoutController"
+      prefHeight="400.0" prefWidth="600.0">
     <fx:include source="TitleBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <ToolBar>
-                <MFXButton>?</MFXButton>
-                <MFXButton>test</MFXButton>
-                <!--                <Menu text="test button">-->
-                <!--                    <MenuItem text="test"/>-->
-                <!--                </Menu>-->
+                <Button>?</Button>
+                <Button>test</Button>
             </ToolBar>
         </top>
         <left>
             <Label text="left"/>
         </left>
         <center>
-            <VBox fx:id="rootVBox" style="-fx-background-color: lightgreen;">
-                <SplitPane VBox.vgrow="ALWAYS" fx:id="splitPane" dividerPositions="0.2">
-                    <VBox fx:id="leftDrawer" VBox.vgrow="ALWAYS">
-<!--                        <TreeView fx:id="tree" >-->
-<!--                        </TreeView>-->
-                    </VBox>
-                    <VBox VBox.vgrow="ALWAYS">
-                        <Label text="Draw Canvas"/>
-<!--                        <fx:include source="TextEditor.fxml"/>-->
-                    </VBox>
-                </SplitPane>
-            </VBox>
+            <SplitPane dividerPositions="0.01,0.8">
+                <VBox>
+                    <!-- 左侧内容 -->
+                </VBox>
+                <VBox>
+                    <!-- 右侧内容 -->
+                </VBox>
+            </SplitPane>
         </center>
         <right>
             <Label text="right"/>
@@ -41,3 +35,4 @@
         </bottom>
     </BorderPane>
 </VBox>
+

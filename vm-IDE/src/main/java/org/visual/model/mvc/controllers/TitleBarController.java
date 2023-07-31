@@ -1,10 +1,10 @@
 package org.visual.model.mvc.controllers;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
@@ -17,7 +17,7 @@ import org.visual.model.mvc.base.Controller;
 @Slf4j
 public class TitleBarController implements Controller {
 	@FXML
-	public MFXButton closeButton;
+	public Button closeButton;
 
 	private double xOffset = 0;
 	private double yOffset = 0;
