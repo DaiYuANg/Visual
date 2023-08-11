@@ -6,7 +6,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.model.mvc.controllers.LayoutController"
       prefHeight="400.0" prefWidth="600.0">
-    <fx:include source="TitleBar.fxml"/>
+<!--    <fx:include source="TitleBar.fxml"/>-->
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <ToolBar>
@@ -18,14 +18,22 @@
             <Label text="left"/>
         </left>
         <center>
-            <SplitPane dividerPositions="0.01,0.8">
-                <VBox>
-                    <!-- 左侧内容 -->
-                </VBox>
-                <VBox>
-                    <!-- 右侧内容 -->
-                </VBox>
-            </SplitPane>
+            <HBox>
+                <AnchorPane>
+                    <fx:include source="Graphics.fxml" />
+                </AnchorPane>
+                <AnchorPane>
+                    <Label text="123" />
+                </AnchorPane>
+            </HBox>
+<!--            <SplitPane dividerPositions="0.1">-->
+<!--                <VBox>-->
+<!--                    <fx:include source="Graphics.fxml" />-->
+<!--                </VBox>-->
+<!--                <VBox>-->
+<!--                    &lt;!&ndash; 右侧内容 &ndash;&gt;-->
+<!--                </VBox>-->
+<!--            </SplitPane>-->
         </center>
         <right>
             <Label text="right"/>

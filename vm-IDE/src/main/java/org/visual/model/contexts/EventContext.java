@@ -4,15 +4,12 @@ import com.google.common.eventbus.EventBus;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.reflections.Reflections;
 import org.visual.model.Scanner;
 import org.visual.model.annotations.EventSubscriber;
 
 @Slf4j
 public enum EventContext {
 	EVENT;
-
-	private Reflections reflections;
 
 	private final EventBus eventBus = new EventBus();
 

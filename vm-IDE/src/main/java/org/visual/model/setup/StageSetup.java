@@ -1,6 +1,5 @@
 package org.visual.model.setup;
 
-import atlantafx.base.theme.CupertinoDark;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -39,7 +38,7 @@ public class StageSetup {
 			val alert = new Alert(Alert.AlertType.ERROR);
 			alert.show();
 		});
-//		MFXThemeManager.addOn(stage.getScene(), Themes.DEFAULT, Themes.LEGACY);
+		// MFXThemeManager.addOn(stage.getScene(), Themes.DEFAULT, Themes.LEGACY);
 		stage.show();
 	}
 }

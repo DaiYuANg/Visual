@@ -51,10 +51,6 @@ rootProject.name = "VisualModel"
 
 include("vm-IDE")
 
-include(":vm-context:vm-context-core")
-
-include(":vm-context:vm-context-annotation-processor")
-
 include(":vml-compiler:vml-parser")
 
 include(":vml-compiler:vml-cmd")

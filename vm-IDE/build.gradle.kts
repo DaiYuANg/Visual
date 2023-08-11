@@ -11,7 +11,6 @@ dependencies {
     implementation("io.vertx:vertx-core:4.4.4")
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
     implementation("com.tangorabox:component-inspector-fx:1.1.0")
-    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
     implementation("net.synedra:validatorfx:0.4.2")
     implementation("com.google.jimfs:jimfs:1.3.0")
@@ -22,8 +21,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
-    implementation(projects.vmContext.vmContextCore)
-    annotationProcessor(projects.vmContext.vmContextAnnotationProcessor)
+    implementation("com.tangorabox:component-inspector-fx:1.1.0")
+    implementation("com.google.inject:guice:7.0.0")
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 }
 
 application {
@@ -44,7 +44,7 @@ javafx {
 }
 
 jlink {
-    imageZip.set(project.file("$buildDir/distributions/app-${javafx.platform.classifier}.zip"))
+    imageZip.set(project.file("${layout.buildDirectory}/distributions/app-${javafx.platform.classifier}.zip"))
     launcher { name = "VisualModeling" }
     group = "distribution"
 }

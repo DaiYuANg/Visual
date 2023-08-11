@@ -1,11 +1,8 @@
 package org.visual.model;
 
 import atlantafx.base.theme.PrimerDark;
-import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.contexts.TasksContext;
@@ -21,7 +18,8 @@ public class VisualModelIDE extends Application {
 	}
 
 	private void loadApplication() {
-//		Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+		// Application.setUserAgentStylesheet(new
+		// PrimerLight().getUserAgentStylesheet());
 		Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 	}
 
@@ -32,7 +30,6 @@ public class VisualModelIDE extends Application {
 	@Override
 	public void start(@NotNull Stage stage) {
 		UIContext.UICONTEXT.setStage(stage);
-		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.setScene(MainLayout.INSTANCE.getScene());
 		UIContext.UICONTEXT.initializeSize();
 		stage.show();
