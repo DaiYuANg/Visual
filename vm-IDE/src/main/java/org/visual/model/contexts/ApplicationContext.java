@@ -1,8 +1,11 @@
 package org.visual.model.contexts;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
 
 public enum ApplicationContext {
 	INSTANCE;
@@ -12,6 +15,7 @@ public enum ApplicationContext {
 	private final Path cwd = Path.of("").toAbsolutePath();
 
 	ApplicationContext() {
+
 	}
 
 	public Object get(Object key) {

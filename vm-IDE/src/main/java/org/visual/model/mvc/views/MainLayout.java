@@ -16,6 +16,7 @@ public enum MainLayout {
 	private Scene scene = new Scene(parent);
 
 	MainLayout() {
+//		scene.getch
 		// MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 		// scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 	}

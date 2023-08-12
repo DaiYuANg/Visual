@@ -4,14 +4,13 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 @Slf4j
-@Setter
-public class DraggableNode extends Pane {
-	private boolean disable = false;
+public class DraggableNode extends BaseContainer {
 
 	private double xOffset = 0;
 

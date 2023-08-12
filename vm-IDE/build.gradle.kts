@@ -2,6 +2,7 @@ plugins {
     id("org.javamodularity.moduleplugin")
     id("org.openjfx.javafxplugin")
     id("org.beryx.jlink")
+    id("io.freefair.sass-java") version "8.2.2"
     id("org.zeroturnaround.gradle.jrebel") version "1.1.12"
 }
 
@@ -32,7 +33,7 @@ application {
 }
 
 javafx {
-    version = "21-ea+24"
+    version = "21"
     modules = listOf(
         "javafx.controls",
         "javafx.fxml",
@@ -48,3 +49,4 @@ jlink {
     launcher { name = "VisualModeling" }
     group = "distribution"
 }
+

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.val;
+import org.visual.model.components.DraggableNode;
 import org.visual.model.mvc.base.Controller;
 
 public class GraphicsController implements Controller {
@@ -21,21 +22,13 @@ public class GraphicsController implements Controller {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		val b = new BorderPane();
-		// b.setBorder(Border.stroke());
-		b.setCenter(new Label("test"));
-		BorderStroke borderStroke = new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, null, BorderStroke.THIN);
-		Border border = new Border(borderStroke);
-		b.setBorder(border);
+		val b = new DraggableNode();
+		b.getChildren();
+		b.addNode(new Label("test"));
+//		BorderStroke borderStroke = new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, null, BorderStroke.THIN);
+//		Border border = new Border(borderStroke);
+//		b.setBorder(border);
 		b.setPadding(new Insets(10));
-		b.setOnMousePressed(event -> {
-			xOffset = event.getSceneX() - b.getLayoutX();
-			yOffset = event.getSceneY() - b.getLayoutY();
-		});
-		b.setOnMouseDragged(event -> {
-			b.setLayoutX(event.getSceneX() - xOffset);
-			b.setLayoutY(event.getSceneY() - yOffset);
-		});
 		root.getChildren().add(b);
 	}
 }
