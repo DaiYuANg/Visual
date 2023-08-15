@@ -36,6 +36,11 @@ subprojects {
     implementation("org.mapstruct:mapstruct:$mapstructVersion")
     annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
     implementation("com.google.guava:guava:32.1.1-jre")
+    implementation("com.google.dagger:dagger:2.47")
+    annotationProcessor("com.google.dagger:dagger-compiler:2.27")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.6")
+    implementation("net.java.dev.jna:jna:5.13.0")
+    implementation("net.java.dev.jna:jna-platform:5.13.0")
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
@@ -52,12 +57,6 @@ subprojects {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-}
-
-dependencies {
-  implementation("io.reactivex.rxjava3:rxjava:3.1.6")
-  implementation("net.java.dev.jna:jna:5.13.0")
-  implementation("net.java.dev.jna:jna-platform:5.13.0")
 }
 
 spotless {
@@ -78,5 +77,14 @@ spotless {
     importOrder()
     eclipse()
     formatAnnotations()
+  }
+  format("styling") {
+    target("**/*/.scss")
+    prettier()
+  }
+  antlr4 {
+    target("src/*/antlr4/**/*.g4") // default value, you can change if you want
+    antlr4Formatter() // has its own section below
+    //        licenseHeader '/* (C) $YEAR */' // or licenseHeaderFile
   }
 }
