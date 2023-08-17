@@ -7,6 +7,7 @@ module org.visual.model.gui.ide {
 	requires com.google.common;
 	requires io.vertx.core;
 	requires org.slf4j;
+	requires dagger;
 	requires org.jetbrains.annotations;
 	requires org.reflections;
 	requires java.prefs;
@@ -15,8 +16,9 @@ module org.visual.model.gui.ide {
 	requires com.dlsc.preferencesfx;
 	requires com.google.gson;
 	requires com.google.common.jimfs;
+    requires java.compiler;
 
-	opens org.visual.model to javafx.fxml;
+    opens org.visual.model to javafx.fxml;
 
 	exports org.visual.model;
 	exports org.visual.model.mvc.controllers;

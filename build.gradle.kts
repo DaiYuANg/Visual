@@ -79,7 +79,7 @@ spotless {
     formatAnnotations()
   }
   format("styling") {
-    target("**/*/.scss")
+    target("**/*/*.scss")
     prettier()
   }
   antlr4 {

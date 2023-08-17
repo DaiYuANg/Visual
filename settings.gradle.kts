@@ -58,3 +58,4 @@ include(":vml-compiler:vml-cmd")
 include("vm-gui:vm-components")
 
 findProject(":vm-gui:vm-components")?.name = "vm-components"
+include(":libs:theme-detector")
