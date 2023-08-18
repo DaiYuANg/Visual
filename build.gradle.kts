@@ -35,7 +35,7 @@ subprojects {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("org.mapstruct:mapstruct:$mapstructVersion")
     annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
-    implementation("com.google.guava:guava:32.1.1-jre")
+    implementation("com.google.guava:guava:32.1.2-jre")
     implementation("com.google.dagger:dagger:2.47")
     annotationProcessor("com.google.dagger:dagger-compiler:2.27")
     implementation("io.reactivex.rxjava3:rxjava:3.1.6")

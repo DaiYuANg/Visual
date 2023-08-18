@@ -13,8 +13,6 @@ import org.visual.model.mvc.views.MainLayout;
 
 @Slf4j
 public class VisualModelIDE extends Application {
-    @Inject
-    Test test;
 
     @Override
     public void init() {
