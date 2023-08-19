@@ -1,22 +1,29 @@
 package org.visual.model.language.cmd;
 
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import picocli.CommandLine;
 
-@CommandLine.Command
+import static picocli.CommandLine.*;
+
+@Command(
+		subcommands = {
+				VMLBuild.class,
+				VMLFormatter.class
+		},
+		description = "Visual Model Language Command Line",
+		helpCommand = true,
+		mixinStandardHelpOptions = true
+)
+@Slf4j
 public class VMLCommand implements Runnable {
-	@CommandLine.Option(names = "--interactive", interactive = true)
-	String value;
 
 	public static void main(String[] args) {
-		new CommandLine(new VMLCommand()).execute(args);
+		val exitCode = new CommandLine(new VMLCommand()).execute(args);
+		System.exit(exitCode);
 	}
 
 	@Override
 	public void run() {
-		if (value == null && System.console() != null) {
-			// alternatively, use Console::readPassword
-			value = System.console().readLine("Enter value for --interactive: ");
-		}
-		System.out.println("You provided value '" + value + "'");
 	}
 }

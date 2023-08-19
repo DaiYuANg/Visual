@@ -7,6 +7,7 @@ module org.visual.model.gui.ide {
 	requires com.google.common;
 	requires io.vertx.core;
 	requires org.slf4j;
+//	requires static;
 	requires dagger;
 	requires org.jetbrains.annotations;
 	requires org.reflections;

@@ -49,13 +49,13 @@ gradleEnterprise {
 
 rootProject.name = "VisualModel"
 
-include(":vm-gui:vm-IDE")
+include(":vml-gui:vml-IDE")
 
 include(":vml-compiler:vml-parser")
 
 include(":vml-compiler:vml-cmd")
 
-include("vm-gui:vm-components")
+include(":vml-gui:vml-components")
 
-findProject(":vm-gui:vm-components")?.name = "vm-components"
+findProject(":vml-gui:vm-components")?.name = "vm-components"
 include(":libs:theme-detector")

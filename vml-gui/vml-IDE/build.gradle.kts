@@ -19,7 +19,7 @@ dependencies {
     implementation("io.github.eckig.grapheditor:grapheditor-core:19.0.0")
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation(projects.vmGui.vmComponents)
+//    implementation(projects.vmGui.vmComponents)
 //    implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
