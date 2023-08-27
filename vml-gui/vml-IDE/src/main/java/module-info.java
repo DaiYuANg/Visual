@@ -8,9 +8,9 @@ module org.visual.model.gui.ide {
 	requires io.vertx.core;
 	requires org.slf4j;
 //	requires static;
-	requires dagger;
 	requires org.jetbrains.annotations;
 	requires org.reflections;
+	requires com.google.guice;
 	requires java.prefs;
 	requires atlantafx.base;
 	requires com.almasb.fxgl.all;

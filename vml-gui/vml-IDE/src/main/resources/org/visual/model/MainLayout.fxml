@@ -19,8 +19,8 @@
             <Label text="left"/>
         </left>
         <center>
-            <HBox>
-                <AnchorPane >
+            <HBox VBox.vgrow="ALWAYS">
+                <AnchorPane VBox.vgrow="ALWAYS">
                     <fx:include source="Graphics.fxml" />
                 </AnchorPane>
                 <AnchorPane>

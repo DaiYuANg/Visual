@@ -1,11 +1,11 @@
 package org.visual.model.modules;
 
-import dagger.Module;
-import dagger.Provides;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-@Module
+@Singleton
 public class AppModule {
     @Provides
     public Test provideSomeDependency() {
