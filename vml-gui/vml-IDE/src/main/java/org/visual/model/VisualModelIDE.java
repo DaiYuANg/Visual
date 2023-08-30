@@ -1,7 +1,13 @@
 package org.visual.model;
 
+import app.supernaut.fx.ApplicationDelegate;
+import app.supernaut.fx.FxLauncher;
 import atlantafx.base.theme.PrimerLight;
+import jakarta.inject.Singleton;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +18,8 @@ import org.visual.model.mvc.views.MainLayout;
 
 
 @Slf4j
-public class VisualModelIDE extends Application {
+@Singleton
+public class VisualModelIDE implements ApplicationDelegate {
 
     @Override
     public void init() {
@@ -31,15 +38,20 @@ public class VisualModelIDE extends Application {
     }
 
     @Override
-    public void start(@NotNull Stage stage) {
-        UIContext.UICONTEXT.setStage(stage);
-        stage.setScene(MainLayout.INSTANCE.getScene());
-        UIContext.UICONTEXT.initializeSize();
-        stage.show();
+    public void start(@NotNull Stage primaryStage) {
+        var label = new Label("Hello, " + "123" + "!");
+        var scene = new Scene(new StackPane(label), 300, 200);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("SupernautFX Minimal App");
+        primaryStage.show();
+//        UIContext.UICONTEXT.setStage(stage);
+//        stage.setScene(MainLayout.INSTANCE.getScene());
+//        UIContext.UICONTEXT.initializeSize();
+//        stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        FxLauncher.find().launch(args, VisualModelIDE.class);
     }
 
     @Override

@@ -24,7 +24,6 @@ dependencies {
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
 //    implementation(projects.vmGui.vmComponents)
-//    implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 }
@@ -32,12 +31,26 @@ dependencies {
 application {
     mainModule.set("org.visual.model")
     mainClass.set("org.visual.model.VisualModelApplication")
+    run {
+    }
+}
+
+configurations{
+    all{
+        exclude("javax.annotation",module = "javax.annotation-api")
+        exclude("javax.annotation",module = "javax.annotation-api")
+    }
 }
 
 jlink {
     imageZip.set(project.file("${layout.buildDirectory}/distributions/app-${javafx.platform.classifier}.zip"))
     launcher { name = "VisualModeling" }
     group = "distribution"
+    mergedModule {
+        requires("org.slf4j")
+        requires("jakarta.inject")
+        requires("jakarta.annotation")
+    }
 }
 
 tasks {
@@ -49,19 +62,3 @@ tasks {
 patchModules {
 
 }
-//extraJavaModuleInfo {
-//    // This does not have to be a complete description (e.g. here 'org.apache.commons.collections' does not export anything here).
-//    // It only needs to be good enough to work in the context of this application we are building.
-////    module("commons-beanutils-1.9.4.jar", "org.apache.commons.beanutils", "1.9.4") {
-////        exports("org.apache.commons.beanutils")
-////
-////        requires("org.apache.commons.logging")
-////        requires("java.sql")
-////        requires("java.desktop")
-////    }
-////    module("commons-cli-1.4.jar", "org.apache.commons.cli", "3.2.2") {
-////        exports("org.apache.commons.cli")
-////    }
-////    module("commons-collections-3.2.2.jar", "org.apache.commons.collections", "3.2.2")
-////    automaticModule("commons-logging-1.2.jar", "org.apache.commons.logging")
-//}
