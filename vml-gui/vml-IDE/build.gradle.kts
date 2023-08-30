@@ -1,6 +1,8 @@
 plugins {
     id("org.javamodularity.moduleplugin")
     id("org.beryx.jlink")
+    id ("io.micronaut.minimal.application")  version "3.4.0"
+    id ("com.gluonhq.gluonfx-gradle-plugin") version "1.0.15"
     application
 //    id("org.gradlex.extra-java-module-info") version "1.4.1"
 }
@@ -15,8 +17,10 @@ dependencies {
     implementation("com.google.jimfs:jimfs:1.3.0")
     implementation("com.dlsc.formsfx:formsfx-core:11.3.2")
     implementation("jakarta.inject:jakarta.inject-api:1.0.5")
-//    implementation("com.github.iAmGio:froxty:1.4.0")
+    implementation("app.supernaut:app.supernaut.fx:0.4.0")
+    implementation("app.supernaut:app.supernaut.fx.micronaut:0.4.0")
     implementation("io.github.eckig.grapheditor:grapheditor-core:19.0.0")
+    implementation("jakarta.inject:jakarta.inject-api")
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
 //    implementation(projects.vmGui.vmComponents)
@@ -36,8 +40,8 @@ jlink {
     group = "distribution"
 }
 
-tasks{
-    withType<Jar>{
+tasks {
+    withType<Jar> {
 
     }
 }
