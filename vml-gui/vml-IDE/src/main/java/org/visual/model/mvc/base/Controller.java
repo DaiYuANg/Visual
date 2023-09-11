@@ -5,6 +5,5 @@ import javafx.fxml.Initializable;
 
 public interface Controller extends Initializable {
 
-	@FXML
-	void initialize();
+
 }

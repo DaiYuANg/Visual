@@ -2,7 +2,6 @@ plugins {
     id("org.javamodularity.moduleplugin")
     id("org.beryx.jlink")
     application
-//    id("org.gradlex.extra-java-module-info") version "1.4.1"
 }
 
 dependencies {
@@ -12,6 +11,10 @@ dependencies {
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
     implementation("net.synedra:validatorfx:0.4.2")
+    implementation("com.google.inject:guice:7.0.0")
+    testImplementation("com.google.inject.extensions:guice-testlib:7.0.0")
+
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.jimfs:jimfs:1.3.0")
     implementation("com.dlsc.formsfx:formsfx-core:11.3.2")
     implementation("jakarta.inject:jakarta.inject-api:1.0.5")
@@ -36,8 +39,8 @@ jlink {
     group = "distribution"
 }
 
-tasks{
-    withType<Jar>{
+tasks {
+    withType<Jar> {
 
     }
 }
@@ -45,19 +48,3 @@ tasks{
 patchModules {
 
 }
-//extraJavaModuleInfo {
-//    // This does not have to be a complete description (e.g. here 'org.apache.commons.collections' does not export anything here).
-//    // It only needs to be good enough to work in the context of this application we are building.
-////    module("commons-beanutils-1.9.4.jar", "org.apache.commons.beanutils", "1.9.4") {
-////        exports("org.apache.commons.beanutils")
-////
-////        requires("org.apache.commons.logging")
-////        requires("java.sql")
-////        requires("java.desktop")
-////    }
-////    module("commons-cli-1.4.jar", "org.apache.commons.cli", "3.2.2") {
-////        exports("org.apache.commons.cli")
-////    }
-////    module("commons-collections-3.2.2.jar", "org.apache.commons.collections", "3.2.2")
-////    automaticModule("commons-logging-1.2.jar", "org.apache.commons.logging")
-//}

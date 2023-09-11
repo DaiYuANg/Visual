@@ -1,18 +1,24 @@
 package org.visual.model;
 
 import atlantafx.base.theme.PrimerLight;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.contexts.TasksContext;
 import org.visual.model.contexts.UIContext;
+import org.visual.model.modules.AppModule;
+import org.visual.model.modules.ITest;
 import org.visual.model.modules.Test;
 import org.visual.model.mvc.views.MainLayout;
 
 
 @Slf4j
 public class VisualModelIDE extends Application {
+
 
     @Override
     public void init() {

@@ -7,7 +7,7 @@
       stylesheets="@styles/app.css"
       fx:controller="org.visual.model.mvc.controllers.LayoutController"
       prefHeight="400.0" prefWidth="600.0">
-<!--    <fx:include source="TitleBar.fxml"/>-->
+    <fx:include source="TitleBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <ToolBar>
@@ -20,10 +20,8 @@
         </left>
         <center>
             <HBox VBox.vgrow="ALWAYS">
+                <fx:include source="Graphics.fxml" />
                 <AnchorPane VBox.vgrow="ALWAYS">
-                    <fx:include source="Graphics.fxml" />
-                </AnchorPane>
-                <AnchorPane>
                     <Label text="123" />
                 </AnchorPane>
             </HBox>
