@@ -4,7 +4,6 @@ plugins {
     id ("io.micronaut.minimal.application")  version "3.4.0"
     id ("com.gluonhq.gluonfx-gradle-plugin") version "1.0.15"
     application
-//    id("org.gradlex.extra-java-module-info") version "1.4.1"
 }
 
 dependencies {
@@ -14,6 +13,10 @@ dependencies {
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
     implementation("net.synedra:validatorfx:0.4.2")
+    implementation("com.google.inject:guice:7.0.0")
+    testImplementation("com.google.inject.extensions:guice-testlib:7.0.0")
+
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.jimfs:jimfs:1.3.0")
     implementation("com.dlsc.formsfx:formsfx-core:11.3.2")
     implementation("jakarta.inject:jakarta.inject-api:1.0.5")

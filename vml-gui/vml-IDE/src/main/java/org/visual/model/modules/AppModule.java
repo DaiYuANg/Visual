@@ -8,14 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Singleton
 public class AppModule extends AbstractModule {
-
     @Override
     protected void configure() {
-        super.configure();
-    }
-
-    @Provides
-    public Test provideSomeDependency() {
-        return new Test();
+        bind(ITest.class).to(Test.class);
     }
 }

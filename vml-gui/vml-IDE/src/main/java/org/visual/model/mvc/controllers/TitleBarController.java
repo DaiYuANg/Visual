@@ -3,6 +3,7 @@ package org.visual.model.mvc.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.model.mvc.base.Controller;
 
 @Slf4j
-public class TitleBarController implements Controller {
+public class TitleBarController implements Initializable {
 	@FXML
 	public Button closeButton;
 
@@ -27,12 +28,6 @@ public class TitleBarController implements Controller {
 	@FXML
 	private HBox titleBar;
 
-	@Override
-	public void initialize() {
-		log.info("title bar init");
-		// closeButton
-		// new Bounce(text).play();
-	}
 
 	public void minimizeWindow(MouseEvent mouseEvent) {
 		Stage stage = (Stage) titleBar.getScene().getWindow();
