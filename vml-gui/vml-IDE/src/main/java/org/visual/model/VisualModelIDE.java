@@ -5,6 +5,8 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import javafx.application.Application;
+import javafx.application.ConditionalFeature;
+import javafx.application.Preloader;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -28,8 +30,7 @@ public class VisualModelIDE extends Application {
 
     private void loadApplication() {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        // Application.setUserAgentStylesheet(new
-        // PrimerDark().getUserAgentStylesheet());
+        this.notifyPreloader(new Preloader.ErrorNotification("/","",new Throwable()));
     }
 
     private void logging() {
