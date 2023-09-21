@@ -21,16 +21,20 @@ import org.visual.model.mvc.views.MainLayout;
 @Slf4j
 public class VisualModelIDE extends Application {
 
+    @Inject
+    ITest test;
 
     @Override
     public void init() {
+        Guice.createInjector(new AppModule());
+        System.err.println(test);
         loadApplication();
         logging();
     }
 
     private void loadApplication() {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        this.notifyPreloader(new Preloader.ErrorNotification("/","",new Throwable()));
+        this.notifyPreloader(new Preloader.ErrorNotification("/", "", new Throwable()));
     }
 
     private void logging() {

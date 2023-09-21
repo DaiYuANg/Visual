@@ -18,6 +18,7 @@ module org.visual.model.gui.ide {
     requires com.google.gson;
     requires com.google.common.jimfs;
     requires java.compiler;
+    requires org.visual.model.gui.components;
 
     opens org.visual.model to javafx.fxml;
 

@@ -15,19 +15,16 @@ dependencies {
     implementation("net.synedra:validatorfx:0.4.2")
     implementation("com.google.inject:guice:7.0.0")
     testImplementation("com.google.inject.extensions:guice-testlib:7.0.0")
-
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.jimfs:jimfs:1.3.0")
     implementation("com.dlsc.formsfx:formsfx-core:11.3.2")
     implementation("jakarta.inject:jakarta.inject-api:1.0.5")
-    implementation("app.supernaut:app.supernaut.fx:0.4.0")
-    implementation("app.supernaut:app.supernaut.fx.micronaut:0.4.0")
     implementation("io.github.eckig.grapheditor:grapheditor-core:19.0.0")
     implementation("jakarta.inject:jakarta.inject-api")
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
-//    implementation(projects.vmGui.vmComponents)
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
+    implementation(projects.vmlGui.vmlComponents)
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 }
 

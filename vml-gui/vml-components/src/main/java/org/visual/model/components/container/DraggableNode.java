@@ -1,11 +1,10 @@
-package org.visual.model.components;
+package org.visual.model.components.container;
 
 import java.util.List;
 
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
