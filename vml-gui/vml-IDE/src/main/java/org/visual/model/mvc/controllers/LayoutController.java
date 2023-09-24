@@ -2,11 +2,15 @@ package org.visual.model.mvc.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.google.inject.Inject;
+import io.vertx.core.Vertx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
+import org.visual.model.modules.ITest;
 import org.visual.model.mvc.base.Controller;
 
 public class LayoutController implements Controller {
@@ -14,6 +18,13 @@ public class LayoutController implements Controller {
 	public VBox leftDrawer;
 	public VBox rootVBox;
 	public TreeView<String> tree;
+
+	Vertx vertx;
+
+	@Inject
+	public LayoutController(ITest test){
+		System.err.println(test);
+	}
 
 	@FXML
 	public void initialize() {
@@ -32,6 +43,7 @@ public class LayoutController implements Controller {
 	}
 
 	@Override
+	@Inject
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 }

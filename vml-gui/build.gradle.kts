@@ -10,14 +10,14 @@ subprojects {
     }
 
     javafx {
-        version = "21"
+        version = "20"
         modules = listOf(
             "javafx.controls",
             "javafx.fxml",
             "javafx.media",
             "javafx.media",
             "javafx.web",
-            "javafx.swing"
+//            "javafx.swing"
         )
     }
 }

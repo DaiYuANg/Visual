@@ -1,4 +1,4 @@
-module org.visual.model.gui.ide {
+module org.visual.model {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
@@ -18,7 +18,7 @@ module org.visual.model.gui.ide {
     requires com.google.gson;
     requires com.google.common.jimfs;
     requires java.compiler;
-    requires org.visual.model.gui.components;
+//    requires org.visual.model.gui.components;
 
     opens org.visual.model to javafx.fxml;
 

@@ -6,7 +6,4 @@ module org.visual.model.gui.components {
 	requires org.slf4j;
     requires org.jetbrains.annotations;
 
-    opens org.visual.model.components;
-
-	exports org.visual.model.components;
 }

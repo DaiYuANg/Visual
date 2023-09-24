@@ -10,10 +10,6 @@
     <fx:include source="TitleBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
-            <ToolBar>
-                <Button>?</Button>
-                <Button>test</Button>
-            </ToolBar>
         </top>
         <left>
             <Label text="left"/>
@@ -25,14 +21,6 @@
                     <Label text="123" />
                 </AnchorPane>
             </HBox>
-<!--            <SplitPane dividerPositions="0.1">-->
-<!--                <VBox>-->
-<!--                    <fx:include source="Graphics.fxml" />-->
-<!--                </VBox>-->
-<!--                <VBox>-->
-<!--                    &lt;!&ndash; 右侧内容 &ndash;&gt;-->
-<!--                </VBox>-->
-<!--            </SplitPane>-->
         </center>
         <right>
             <Label text="right"/>

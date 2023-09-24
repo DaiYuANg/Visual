@@ -4,11 +4,17 @@ import atlantafx.base.theme.PrimerLight;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import io.vertx.core.Vertx;
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Preloader;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.util.Builder;
+import javafx.util.BuilderFactory;
+import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.contexts.TasksContext;
 import org.visual.model.contexts.UIContext;
@@ -26,8 +32,9 @@ public class VisualModelIDE extends Application {
 
     @Override
     public void init() {
-        Guice.createInjector(new AppModule());
-        System.err.println(test);
+        val i = Guice.createInjector(new AppModule());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VisualModelIDE.class.getName()));
+        loader.setControllerFactory(i::getInstance);
         loadApplication();
         logging();
     }
@@ -47,10 +54,6 @@ public class VisualModelIDE extends Application {
         stage.setScene(MainLayout.INSTANCE.getScene());
         UIContext.UICONTEXT.initializeSize();
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     @Override

@@ -1,8 +1,7 @@
 plugins {
     id("org.javamodularity.moduleplugin")
     id("org.beryx.jlink")
-    id ("io.micronaut.minimal.application")  version "3.4.0"
-    id ("com.gluonhq.gluonfx-gradle-plugin") version "1.0.15"
+//    id ("com.gluonhq.gluonfx-gradle-plugin") version "1.0.15"
     application
 }
 
@@ -24,7 +23,7 @@ dependencies {
     implementation("org.controlsfx:controlsfx:11.1.2")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.dlsc.preferencesfx:preferencesfx-core:11.16.0")
-    implementation(projects.vmlGui.vmlComponents)
+//    implementation(projects.vmlGui.vmlComponents)
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 }
 
