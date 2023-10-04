@@ -5,10 +5,10 @@
 <VBox fx:id="rootVBox" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       stylesheets="@styles/app.css"
-      fx:controller="org.visual.model.mvc.controllers.LayoutController"
+      fx:controller="org.visual.model.controllers.LayoutController"
       prefHeight="400.0" prefWidth="600.0">
     <fx:include source="TitleBar.fxml"/>
-    <BorderPane VBox.vgrow="ALWAYS">
+    <BorderPane fx:id="layoutPane" VBox.vgrow="ALWAYS">
         <top>
         </top>
         <left>

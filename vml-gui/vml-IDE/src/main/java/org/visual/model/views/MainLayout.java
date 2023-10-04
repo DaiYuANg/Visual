@@ -1,7 +1,8 @@
-package org.visual.model.mvc.views;
+package org.visual.model.views;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.visual.model.utils.FxmlLoaderHelper;
 
@@ -13,9 +14,10 @@ public enum MainLayout {
 	private final Parent parent = FxmlLoaderHelper.load(fxml);
 
 	@Getter
-	private Scene scene = new Scene(parent);
+	private final Scene scene = new Scene(parent);
 
 	MainLayout() {
+		scene.setFill(Color.TRANSPARENT);
 		// scene.getch
 		// MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 		// scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());

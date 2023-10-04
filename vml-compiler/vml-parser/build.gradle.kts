@@ -4,18 +4,19 @@ plugins {
 }
 
 dependencies {
-    antlr("org.antlr:antlr4:4.5")
+    antlr("org.antlr:antlr4:4.13.1")
 }
 
 sourceSets {
     main {
         antlr {
             srcDirs("src/main/antlr")
+
         }
     }
 }
 
 tasks.generateGrammarSource {
-    maxHeapSize = "1024m"
+    maxHeapSize = "2048m"
     arguments = arguments + listOf("-visitor", "-long-messages")
 }

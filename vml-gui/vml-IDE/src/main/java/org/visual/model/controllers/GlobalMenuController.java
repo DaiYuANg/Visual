@@ -1,4 +1,4 @@
-package org.visual.model.mvc.controllers;
+package org.visual.model.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.model.mvc.base.Controller;
-import org.visual.model.mvc.views.Settings;
+import org.visual.model.views.Settings;
 
 @Slf4j
 public class GlobalMenuController implements Initializable {

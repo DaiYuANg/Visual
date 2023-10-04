@@ -1,10 +1,9 @@
-package org.visual.model.mvc.controllers;
+package org.visual.model.controllers;
+
+import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.fxml.Initializable;
-import org.visual.model.mvc.base.Controller;
 
 public class CanvasController implements Initializable {
 

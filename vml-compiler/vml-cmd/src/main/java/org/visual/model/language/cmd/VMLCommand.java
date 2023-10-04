@@ -18,12 +18,8 @@ import static picocli.CommandLine.*;
 @Slf4j
 public class VMLCommand implements Runnable {
 
-	public static void main(String[] args) {
-		val exitCode = new CommandLine(new VMLCommand()).execute(args);
-		System.exit(exitCode);
-	}
-
 	@Override
 	public void run() {
+
 	}
 }

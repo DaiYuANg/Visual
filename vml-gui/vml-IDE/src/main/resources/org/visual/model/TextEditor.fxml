@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.visual.model.mvc.controllers.TextEditorController">
+      fx:controller="org.visual.model.controllers.TextEditorController">
 <!--    <TextArea wrapText="true">-->
 
 <!--    </TextArea>-->

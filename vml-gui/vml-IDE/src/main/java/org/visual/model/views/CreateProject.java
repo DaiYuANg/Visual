@@ -1,4 +1,4 @@
-package org.visual.model.mvc.views;
+package org.visual.model.views;
 
 import javafx.scene.Parent;
 import javafx.stage.Stage;

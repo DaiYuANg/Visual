@@ -1,4 +1,4 @@
-package org.visual.model.mvc.controllers;
+package org.visual.model.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.mvc.base.Controller;
 
 @Slf4j
 public class SettingsController implements Initializable {

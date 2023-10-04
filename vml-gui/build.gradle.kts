@@ -17,7 +17,7 @@ subprojects {
             "javafx.media",
             "javafx.media",
             "javafx.web",
-//            "javafx.swing"
+            "javafx.swing"
         )
     }
 }

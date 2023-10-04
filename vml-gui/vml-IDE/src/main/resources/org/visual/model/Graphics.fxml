@@ -6,5 +6,5 @@
 <?import javafx.scene.control.TreeItem?>
 <VBox fx:id="root" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.visual.model.mvc.controllers.GraphicsController">
+      fx:controller="org.visual.model.controllers.GraphicsController">
 </VBox>

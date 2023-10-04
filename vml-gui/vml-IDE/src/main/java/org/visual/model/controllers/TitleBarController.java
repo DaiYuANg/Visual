@@ -1,4 +1,4 @@
-package org.visual.model.mvc.controllers;
+package org.visual.model.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,12 +13,12 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.mvc.base.Controller;
 
 @Slf4j
 public class TitleBarController implements Initializable {
 	@FXML
 	public Button closeButton;
+	public HBox common;
 
 	private double xOffset = 0;
 	private double yOffset = 0;
@@ -77,7 +77,7 @@ public class TitleBarController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.err.println(location);
-		System.err.println(resources);
+		common.managedProperty().bind(common.visibleProperty());
+		common.setVisible(false);
 	}
 }

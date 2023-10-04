@@ -2,39 +2,27 @@ package org.visual.model;
 
 import atlantafx.base.theme.PrimerLight;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import io.vertx.core.Vertx;
 import javafx.application.Application;
-import javafx.application.ConditionalFeature;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.util.Builder;
-import javafx.util.BuilderFactory;
-import javafx.util.Callback;
+import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.contexts.TasksContext;
 import org.visual.model.contexts.UIContext;
-import org.visual.model.modules.AppModule;
-import org.visual.model.modules.ITest;
-import org.visual.model.modules.Test;
-import org.visual.model.mvc.views.MainLayout;
+import org.visual.model.modules.RootModule;
+import org.visual.model.views.MainLayout;
 
 
 @Slf4j
 public class VisualModelIDE extends Application {
 
-    @Inject
-    ITest test;
-
     @Override
     public void init() {
-        val i = Guice.createInjector(new AppModule());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(VisualModelIDE.class.getName()));
-        loader.setControllerFactory(i::getInstance);
+        val i = Guice.createInjector(new RootModule());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainLayout.fxml"));
         loadApplication();
         logging();
     }
@@ -51,6 +39,8 @@ public class VisualModelIDE extends Application {
     @Override
     public void start(@NotNull Stage stage) {
         UIContext.UICONTEXT.setStage(stage);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(true);
         stage.setScene(MainLayout.INSTANCE.getScene());
         UIContext.UICONTEXT.initializeSize();
         stage.show();

@@ -1,6 +1,5 @@
-package org.visual.model.mvc.controllers;
+package org.visual.model.controllers;
 
-import com.almasb.fxgl.dsl.components.DraggableComponent;
 import com.google.inject.Inject;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
@@ -19,7 +18,6 @@ public class GraphicsController implements Initializable {
     private double yOffset = 0;
 
     @Override
-    @Inject
     public void initialize(URL location, ResourceBundle resources) {
         // 创建根节点
         TreeItem<String> rootNode = new TreeItem<>("Root");
@@ -30,7 +28,6 @@ public class GraphicsController implements Initializable {
 
         // 将子节点添加到根节点
         rootNode.getChildren().addAll(child1, child2);
-        new DraggableComponent();
         // 创建TreeView并设置根节点
         TreeView<String> treeView = new TreeView<>(rootNode);
         root.getChildren().add(treeView);

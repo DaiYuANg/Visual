@@ -1,6 +1,6 @@
 package org.visual.model.contexts;
 
-import com.google.common.jimfs.Jimfs;
+//import com.google.common.jimfs.Jimfs;
 import java.nio.file.FileSystem;
 import java.nio.file.WatchService;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public enum ProjectContext {
 	ProjectContext() {
 		root = new java.io.File(System.getProperty("user.home"));
 		projectFiles = Arrays.stream(Objects.requireNonNull(root.listFiles())).toList();
-		fileSystem = Jimfs.newFileSystem();
+//		fileSystem = Jimfs.newFileSystem();
 		watchService = fileSystem.newWatchService();
 	}
 

@@ -1,24 +1,31 @@
 package org.visual.model.contexts;
 
+import com.google.inject.Inject;
+import io.vertx.core.Vertx;
+
 import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public enum ApplicationContext {
-	INSTANCE;
+    INSTANCE;
 
-	private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Object, Object> global = new ConcurrentHashMap<>();
 
-	private final Path cwd = Path.of("").toAbsolutePath();
+    private final Path cwd = Path.of("").toAbsolutePath();
 
-	ApplicationContext() {
-	}
+    @Inject
+    Vertx vertx;
 
-	public Object get(Object key) {
-		return global.get(key);
-	}
+    ApplicationContext() {
+        System.err.println(vertx);
+    }
 
-	public void put(Object key, Object value) {
-		global.put(key, value);
-	}
+    public Object get(Object key) {
+        return global.get(key);
+    }
+
+    public void put(Object key, Object value) {
+        global.put(key, value);
+    }
 }
