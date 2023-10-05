@@ -2,7 +2,6 @@ package org.visual.model.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;

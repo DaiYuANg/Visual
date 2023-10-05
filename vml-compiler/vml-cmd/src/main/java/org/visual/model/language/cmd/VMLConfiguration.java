@@ -5,9 +5,9 @@ import picocli.CommandLine;
 
 @CommandLine.Command(name = "config")
 @Slf4j
-public class VMLConfiguration implements Runnable{
-    @Override
-    public void run() {
-        log.info("config");
-    }
+public class VMLConfiguration implements Runnable {
+	@Override
+	public void run() {
+		log.info("config");
+	}
 }

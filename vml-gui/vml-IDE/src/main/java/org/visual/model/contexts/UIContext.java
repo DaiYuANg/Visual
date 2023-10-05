@@ -1,11 +1,14 @@
 package org.visual.model.contexts;
 
+import java.util.Objects;
 import java.util.Optional;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
+import org.visual.model.views.MainLayout;
 
 public enum UIContext {
 	UICONTEXT;
@@ -20,18 +23,12 @@ public enum UIContext {
 	}
 
 	public void initializeSize() {
+		Objects.requireNonNull(stage).initStyle(StageStyle.TRANSPARENT);
+		stage.setResizable(true);
+		stage.setScene(MainLayout.INSTANCE.getScene());
 		if (stage != null) {
 			stage.setWidth(bounds.getWidth() * 0.9);
 			stage.setHeight(bounds.getHeight() * 0.9);
 		}
-	}
-
-	private void minimize() {
-	}
-
-	private void maximize() {
-	}
-
-	private void fullScreen() {
 	}
 }

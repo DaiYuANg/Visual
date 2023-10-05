@@ -1,7 +1,6 @@
 package org.visual.model.components.container;
 
 import java.util.List;
-
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;

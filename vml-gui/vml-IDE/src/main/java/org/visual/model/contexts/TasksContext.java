@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Slf4j
 public enum TasksContext {
-	ASYNC;
+	INSTANCE;
 
 	private final int cpuCount = Runtime.getRuntime().availableProcessors();
 
@@ -16,9 +16,14 @@ public enum TasksContext {
 			new LinkedBlockingDeque<>(cpuCount * 5),
 			new ThreadFactoryBuilder().setNameFormat("VisualModel-%d").build());
 
-	private final ScheduledThreadPoolExecutor scheduledExecutor = new ScheduledThreadPoolExecutor(cpuCount / 2,
+	private final ScheduledThreadPoolExecutor scheduledExecutor = new ScheduledThreadPoolExecutor(cpuCount,
 			new ThreadFactoryBuilder().setNameFormat("VisualModel-Scheduler-%d").build(),
 			new ThreadPoolExecutor.CallerRunsPolicy());
+
+	TasksContext() {
+		executor.prestartAllCoreThreads();
+		scheduledExecutor.prestartAllCoreThreads();
+	}
 
 	@Contract("_ -> new")
 	public @NotNull CompletableFuture<Void> run(Runnable runnable) {
@@ -27,7 +32,6 @@ public enum TasksContext {
 	}
 
 	public void schedule(Runnable runnable, long delay, TimeUnit timeUnit) {
-		// scheduledExecutor.schedule();
 	}
 
 	public void shutdown() {

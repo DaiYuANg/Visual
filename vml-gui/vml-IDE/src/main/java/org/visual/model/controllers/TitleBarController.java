@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class TitleBarController implements Initializable {
 	@FXML
 	public Button closeButton;
+
 	public HBox common;
 
 	private double xOffset = 0;
@@ -27,7 +28,6 @@ public class TitleBarController implements Initializable {
 
 	@FXML
 	private HBox titleBar;
-
 
 	public void minimizeWindow(MouseEvent mouseEvent) {
 		Stage stage = (Stage) titleBar.getScene().getWindow();
