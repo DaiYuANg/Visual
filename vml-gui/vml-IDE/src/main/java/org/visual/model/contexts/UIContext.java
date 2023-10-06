@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
-import org.visual.model.views.MainLayout;
+import org.visual.model.views.scene.WorkspaceScene;
 
 public enum UIContext {
 	UICONTEXT;
@@ -25,7 +25,7 @@ public enum UIContext {
 	public void initializeSize() {
 		Objects.requireNonNull(stage).initStyle(StageStyle.TRANSPARENT);
 		stage.setResizable(true);
-		stage.setScene(MainLayout.INSTANCE.getScene());
+		stage.setScene(WorkspaceScene.INSTANCE.getScene());
 		if (stage != null) {
 			stage.setWidth(bounds.getWidth() * 0.9);
 			stage.setHeight(bounds.getHeight() * 0.9);

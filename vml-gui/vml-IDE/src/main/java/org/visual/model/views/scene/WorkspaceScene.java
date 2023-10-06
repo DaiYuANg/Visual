@@ -1,4 +1,4 @@
-package org.visual.model.views;
+package org.visual.model.views.scene;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.visual.model.utils.FxmlLoaderHelper;
 
-public enum MainLayout {
+public enum WorkspaceScene {
 	INSTANCE;
 
 	private final String fxml = "MainLayout";
@@ -16,7 +16,7 @@ public enum MainLayout {
 	@Getter
 	private final Scene scene = new Scene(parent);
 
-	MainLayout() {
+	WorkspaceScene() {
 		scene.setFill(Color.TRANSPARENT);
 		// scene.getch
 		// MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);

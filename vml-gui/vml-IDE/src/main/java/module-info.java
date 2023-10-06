@@ -51,4 +51,6 @@ module org.visual.model {
 	exports org.visual.model.di;
 
 	opens org.visual.model.di to javafx.fxml;
+    exports org.visual.model.views.scene;
+    opens org.visual.model.views.scene to javafx.fxml;
 }

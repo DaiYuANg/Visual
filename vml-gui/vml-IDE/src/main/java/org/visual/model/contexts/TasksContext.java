@@ -16,7 +16,7 @@ public enum TasksContext {
 			new LinkedBlockingDeque<>(cpuCount * 5),
 			new ThreadFactoryBuilder().setNameFormat("VisualModel-%d").build());
 
-	private final ScheduledThreadPoolExecutor scheduledExecutor = new ScheduledThreadPoolExecutor(cpuCount,
+	private final ScheduledThreadPoolExecutor scheduledExecutor = new ScheduledThreadPoolExecutor(cpuCount / 2,
 			new ThreadFactoryBuilder().setNameFormat("VisualModel-Scheduler-%d").build(),
 			new ThreadPoolExecutor.CallerRunsPolicy());
 

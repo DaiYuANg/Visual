@@ -2,6 +2,7 @@ package org.visual.model.di.modules;
 
 import com.google.inject.AbstractModule;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -23,6 +24,7 @@ public class InternalPropertyModule extends AbstractModule {
 
     @SneakyThrows
     public InternalPropertyModule() {
+        log.atInfo().log("load internal property config");
         properties.load(inputStream);
     }
 
@@ -39,6 +41,6 @@ public class InternalPropertyModule extends AbstractModule {
 
         bind(String.class)
                 .annotatedWith(Names.named("ApplicationWorkspace"))
-                .toInstance(BaseDirectories.get().homeDir + applicationName);
+                .toInstance(BaseDirectories.get().homeDir + File.separator + applicationName);
     }
 }

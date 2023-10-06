@@ -12,7 +12,7 @@ public class OperationSystemService implements IOperationSystemService {
 	private final SystemInfo systemInfo = new SystemInfo();
 
 	public OperationSystemService() {
-		log.info("test");
+		log.atInfo().log("operation system service");
 	}
 
 	@Override
