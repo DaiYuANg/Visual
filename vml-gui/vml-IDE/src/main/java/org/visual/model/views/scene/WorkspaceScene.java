@@ -25,6 +25,9 @@ public class WorkspaceScene implements Initializer {
     public void initialize() {
         this.parent = FxmlLoaderHelper.load(fxml);
         this.scene = new Scene(parent);
+    }
+
+    private void initScene (){
         scene.setFill(Color.TRANSPARENT);
         scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
     }

@@ -18,6 +18,7 @@ dependencies {
     implementation("com.dustinredmond.fxtrayicon:FXTrayIcon:4.0.1")
     implementation("dev.dirs:directories:26")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    testImplementation("io.vertx:vertx-junit5:4.4.5")
 }
 //
 //application {

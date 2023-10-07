@@ -3,6 +3,7 @@ package org.visual.model.services.impl;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Singleton
-public class WorkspaceService implements IWorkspaceService {
+public class WorkspaceService extends AbstractVerticle implements IWorkspaceService {
 
     private final String workspaceRoot;
 
@@ -47,13 +48,13 @@ public class WorkspaceService implements IWorkspaceService {
         monitor.addObserver(observer);
         // 启动监视器
         monitor.start();
-        eventBus.consumer("shutdown",event -> {
-            log.info("accpet shutdown");
-            try {
-                monitor.stop();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+
+    }
+
+    private void onShutdown(){
+        eventBus.consumer("shutdown", event -> {
+            log.info("accept shutdown");
+//            monitor.stop();
         });
     }
 }
