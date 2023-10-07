@@ -7,11 +7,12 @@ import javafx.stage.Stage;
 
 public class FxTrayIconProvider implements Provider<FXTrayIcon> {
 
-	@Inject
-	Stage stage;
+    @Inject
+    private Stage stage;
 
-	@Override
-	public FXTrayIcon get() {
-		return new FXTrayIcon(stage);
-	}
+    @Override
+    public FXTrayIcon get() {
+        System.err.println(stage);
+        return new FXTrayIcon(stage);
+    }
 }

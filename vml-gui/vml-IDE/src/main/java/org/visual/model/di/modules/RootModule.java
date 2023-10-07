@@ -18,22 +18,22 @@ import org.visual.model.services.impl.WorkspaceService;
 
 @Slf4j
 public class RootModule extends AbstractModule {
-	@Override
-	protected void configure() {
-		log.atInfo().log("bind root modules");
-		bindProviders();
-		bindServices();
-	}
+    @Override
+    protected void configure() {
+        log.atInfo().log("bind root modules");
+        bindProviders();
+        bindServices();
+    }
 
-	private void bindServices() {
-		bind(IOperationSystemService.class).to(OperationSystemService.class).asEagerSingleton();
-		bind(IPreferenceService.class).to(PreferenceService.class).asEagerSingleton();
-		bind(ICacheService.class).to(CacheService.class).asEagerSingleton();
-		bind(IWorkspaceService.class).to(WorkspaceService.class).asEagerSingleton();
-	}
+    private void bindServices() {
+        bind(IOperationSystemService.class).to(OperationSystemService.class).in(Singleton.class);
+        bind(IPreferenceService.class).to(PreferenceService.class).asEagerSingleton();
+        bind(ICacheService.class).to(CacheService.class).asEagerSingleton();
+        bind(IWorkspaceService.class).to(WorkspaceService.class).asEagerSingleton();
+    }
 
-	private void bindProviders() {
-		bind(Vertx.class).toProvider(VertxProvider.class);
-		bind(EventBus.class).toProvider(EventBusProvider.class);
-	}
+    private void bindProviders() {
+        bind(Vertx.class).toProvider(VertxProvider.class).in(Singleton.class);
+        bind(EventBus.class).toProvider(EventBusProvider.class).in(Singleton.class);
+    }
 }

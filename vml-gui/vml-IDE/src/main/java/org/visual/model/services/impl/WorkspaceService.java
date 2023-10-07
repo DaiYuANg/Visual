@@ -3,6 +3,7 @@ package org.visual.model.services.impl;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import io.vertx.core.eventbus.EventBus;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -26,29 +27,33 @@ public class WorkspaceService implements IWorkspaceService {
 
     private final File workspace;
 
+    private EventBus eventBus;
+
     @Inject
-    public WorkspaceService(@Named("ApplicationWorkspace") String workspaceRoot){
+    public WorkspaceService(@Named("ApplicationWorkspace") String workspaceRoot, EventBus eventBus) {
         log.info("init workspace");
         this.workspaceRoot = workspaceRoot;
+        this.eventBus = eventBus;
         workspace = new File(workspaceRoot);
         initializeWorkspace();
     }
 
     @SneakyThrows
-    private void initializeWorkspace(){
+    private void initializeWorkspace() {
         FileUtils.forceMkdir(workspace);
         FileAlterationObserver observer = new FileAlterationObserver(workspace);
         observer.addListener(new WorkspaceFileSystemListener());
         FileAlterationMonitor monitor = new FileAlterationMonitor(10);
         monitor.addObserver(observer);
-
         // 启动监视器
         monitor.start();
-
-        // 持续监听，你可以在此处添加逻辑来处理文件变化
-        TimeUnit.MINUTES.sleep(5); // 监听5分钟
-
-        // 停止监视器
-        monitor.stop();
+        eventBus.consumer("shutdown",event -> {
+            log.info("accpet shutdown");
+            try {
+                monitor.stop();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
