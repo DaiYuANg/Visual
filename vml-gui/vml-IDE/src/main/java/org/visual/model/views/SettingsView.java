@@ -17,7 +17,7 @@ public class SettingsView {
 
 	private final PreferencesFx settings;
 
-	SettingsView() {
+	public SettingsView() {
 		settings =
 				PreferencesFx.of(SettingsView.class, // Save class (will be used to reference saved values of Settings to)
 						Category.of("Category title 1",

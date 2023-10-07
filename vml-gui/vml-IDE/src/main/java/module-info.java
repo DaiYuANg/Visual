@@ -47,6 +47,7 @@ module org.visual.model {
     opens org.visual.model.services to com.google.guice;
     opens org.visual.model.services.impl to com.google.guice;
     opens org.visual.model.di.providers to com.google.guice;
+    opens org.visual.model.verticles to com.google.guice;
 
     exports org.visual.model.di;
 

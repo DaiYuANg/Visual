@@ -5,20 +5,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import lombok.Getter;
+import lombok.SneakyThrows;
+import org.visual.model.di.DIContainer;
+import org.visual.model.initializing.Initializer;
 import org.visual.model.utils.FxmlLoaderHelper;
 
-public class WorkspaceScene {
+import java.io.IOException;
+
+public class WorkspaceScene implements Initializer {
 
     private final String fxml = "Workspace";
 
-    private final Parent parent = FxmlLoaderHelper.load(fxml);
+    private Parent parent;
 
     @Getter
-    private final Scene scene = new Scene(parent);
+    private Scene scene;
 
-    public WorkspaceScene() {
+    @Override
+    public void initialize() {
+        this.parent = FxmlLoaderHelper.load(fxml);
+        this.scene = new Scene(parent);
         scene.setFill(Color.TRANSPARENT);
         scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
-
     }
 }

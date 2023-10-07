@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.model.handlers.OnCloseRequestHandler;
 
 @Slf4j
 @Singleton
@@ -17,28 +18,22 @@ public class StageInitializer implements Initializer {
 
     @Override
     public void initialize() {
+        log.atInfo().log("stage initializer executing");
         setOnClose();
         setView();
     }
 
     private void setOnClose() {
-        stage.setOnCloseRequest(event -> {
-            val alert = new Alert(Alert.AlertType.CONFIRMATION);
-            if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-                stage.close();
-                return;
-            }
-            event.consume();
-        });
+        stage.setOnCloseRequest(new OnCloseRequestHandler(stage));
     }
 
     private void setView() {
         stage.centerOnScreen();
         stage.setTitle(System.getProperty("application.name"));
-        Thread.currentThread().setUncaughtExceptionHandler((t, e) -> {
-            val alert = new Alert(Alert.AlertType.ERROR);
-            alert.show();
-        });
-		stage.show();
+
+//        Thread.currentThread().setUncaughtExceptionHandler((t, e) -> {
+//            val alert = new Alert(Alert.AlertType.ERROR);
+//            alert.show();
+//        });
     }
 }

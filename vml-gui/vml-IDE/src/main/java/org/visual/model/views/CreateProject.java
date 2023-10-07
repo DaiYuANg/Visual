@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.utils.FxmlLoaderHelper;
@@ -17,12 +18,13 @@ public class CreateProject {
 
 	private final Stage window = new Stage(StageStyle.DECORATED);
 
-	private final Parent createProjectScene;
+//	private final Parent createProjectScene;
 
-	@Inject
+//	@SneakyThrows
+//	@Inject
 	CreateProject() {
-		createProjectScene = FxmlLoaderHelper.load(fxml);
-		window.setScene(createProjectScene.getScene());
+//		createProjectScene = FxmlLoaderHelper.load(fxml);
+//		window.setScene(createProjectScene.getScene());
 	}
 
 	public void show() {

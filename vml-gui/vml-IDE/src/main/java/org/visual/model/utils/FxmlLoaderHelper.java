@@ -7,6 +7,8 @@ import lombok.experimental.UtilityClass;
 import org.visual.model.VisualModelIDE;
 import org.visual.model.di.DIContainer;
 
+import java.io.IOException;
+
 @UtilityClass
 public class FxmlLoaderHelper {
 

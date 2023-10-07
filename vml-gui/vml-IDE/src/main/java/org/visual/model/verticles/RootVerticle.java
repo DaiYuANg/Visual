@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RootVerticle extends AbstractVerticle {
 
     @Override
-    public void start(Promise<Void> startPromise) throws Exception {
-        super.start(startPromise);
+    public void start(Promise<Void> startPromise) {
+        log.atInfo().log("root verticle start");
     }
 }

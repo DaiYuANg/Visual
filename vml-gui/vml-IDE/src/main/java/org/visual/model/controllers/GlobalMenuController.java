@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.stage.DirectoryChooser;
@@ -18,19 +19,19 @@ public class GlobalMenuController implements Initializable {
 	public MenuItem newProject;
 
 	@Inject
-	SettingsView settingsView;
+	private SettingsView settingsView;
 
 	public void newProject(ActionEvent actionEvent) {
 		val stage = new Stage();
 		stage.centerOnScreen();
-		DirectoryChooser directoryChooser = new DirectoryChooser();
 	}
 
 	public void openSettings(ActionEvent actionEvent) {
-//		Settings.SETTINGS.openSettings();
+		settingsView.openSettings();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.err.println(location);
 	}
 }
