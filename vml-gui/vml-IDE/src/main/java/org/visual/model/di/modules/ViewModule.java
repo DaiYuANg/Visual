@@ -2,13 +2,17 @@ package org.visual.model.di.modules;
 
 import com.dustinredmond.fxtrayicon.FXTrayIcon;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.di.providers.FxTrayIconProvider;
-import org.visual.model.initializing.IStageInitializer;
-import org.visual.model.initializing.StageInitializer;
+import org.visual.model.views.CreateProject;
+import org.visual.model.views.scene.CreateProjectScene;
+import org.visual.model.views.scene.WorkspaceScene;
 
 @Slf4j
 public class ViewModule extends AbstractModule {
+
 
     public ViewModule() {
         log.atInfo().log("bind view modules");
@@ -16,6 +20,7 @@ public class ViewModule extends AbstractModule {
 
     @Override
     protected void configure() {
-//        bind(FXTrayIcon.class).toProvider(FxTrayIconProvider.class);
+        bind(WorkspaceScene.class).toProvider(WorkspaceScene::new).in(Singleton.class);
+//        bind(CreateProjectScene.class).toProvider(CreateProjectScene::new).in(Singleton.class);
     }
 }

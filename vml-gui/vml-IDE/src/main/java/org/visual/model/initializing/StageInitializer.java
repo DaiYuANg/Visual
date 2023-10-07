@@ -10,14 +10,13 @@ import lombok.val;
 
 @Slf4j
 @Singleton
-public class StageInitializer implements IStageInitializer {
+public class StageInitializer implements Initializer {
 
     @Inject
     private Stage stage;
 
     @Override
-    public void init() {
-        System.err.println(stage);
+    public void initialize() {
         setOnClose();
         setView();
     }
@@ -25,8 +24,6 @@ public class StageInitializer implements IStageInitializer {
     private void setOnClose() {
         stage.setOnCloseRequest(event -> {
             val alert = new Alert(Alert.AlertType.CONFIRMATION);
-            // alert.setTitle(I18nContext.I18N.getI18nResource(I18nKeys.CONFIRM.getValue()));
-            // alert.setHeaderText(I18nContext.I18N.getI18nResource(I18nKeys.CONFIRM_CLOSE_HEADER.getValue()));
             if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
                 stage.close();
                 return;
@@ -42,7 +39,6 @@ public class StageInitializer implements IStageInitializer {
             val alert = new Alert(Alert.AlertType.ERROR);
             alert.show();
         });
-//		 MFXThemeManager.addOn(stage.getScene(), Themes.DEFAULT, Themes.LEGACY);
-//		stage.show();
+		stage.show();
     }
 }

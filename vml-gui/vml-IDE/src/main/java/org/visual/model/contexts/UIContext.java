@@ -23,12 +23,12 @@ public enum UIContext {
 	}
 
 	public void initializeSize() {
-		Objects.requireNonNull(stage).initStyle(StageStyle.TRANSPARENT);
-		stage.setResizable(true);
-		stage.setScene(WorkspaceScene.INSTANCE.getScene());
-		if (stage != null) {
-			stage.setWidth(bounds.getWidth() * 0.9);
-			stage.setHeight(bounds.getHeight() * 0.9);
-		}
+//		Objects.requireNonNull(stage).initStyle(StageStyle.TRANSPARENT);
+//		stage.setResizable(true);
+//		stage.setScene(WorkspaceScene.INSTANCE.getScene());
+//		if (stage != null) {
+//			stage.setWidth(bounds.getWidth() * 0.9);
+//			stage.setHeight(bounds.getHeight() * 0.9);
+//		}
 	}
 }
