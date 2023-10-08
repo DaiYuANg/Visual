@@ -36,16 +36,14 @@ module org.visual.model {
 
     opens org.visual.model.i18n to javafx.fxml;
 
-    exports org.visual.model.initializing;
+    exports org.visual.model.lifecycle;
 
-    opens org.visual.model.initializing to javafx.fxml, com.google.guice;
+    opens org.visual.model.lifecycle to javafx.fxml, com.google.guice;
 
     exports org.visual.model.contexts;
 
     opens org.visual.model.contexts to javafx.fxml;
     opens org.visual.model.di.modules to com.google.guice;
-    opens org.visual.model.services to com.google.guice;
-    opens org.visual.model.services.impl to com.google.guice;
     opens org.visual.model.di.providers to com.google.guice;
     opens org.visual.model.verticles to com.google.guice;
 
@@ -54,4 +52,7 @@ module org.visual.model {
     opens org.visual.model.di to javafx.fxml;
     exports org.visual.model.views.scene;
     opens org.visual.model.views.scene to javafx.fxml;
+    exports org.visual.model.lifecycle.managers;
+    opens org.visual.model.lifecycle.managers to com.google.guice, javafx.fxml;
+    opens org.visual.model.functional to com.google.guice;
 }

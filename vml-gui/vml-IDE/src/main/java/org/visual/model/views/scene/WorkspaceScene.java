@@ -5,14 +5,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import lombok.Getter;
-import lombok.SneakyThrows;
-import org.visual.model.di.DIContainer;
-import org.visual.model.initializing.Initializer;
-import org.visual.model.utils.FxmlLoaderHelper;
+import org.visual.model.lifecycle.LifecycleManager;
+import org.visual.model.utils.FxmlLoaderUtil;
 
-import java.io.IOException;
-
-public class WorkspaceScene implements Initializer {
+public class WorkspaceScene implements LifecycleManager {
 
     private final String fxml = "Workspace";
 
@@ -23,8 +19,13 @@ public class WorkspaceScene implements Initializer {
 
     @Override
     public void initialize() {
-        this.parent = FxmlLoaderHelper.load(fxml);
+        this.parent = FxmlLoaderUtil.load(fxml);
         this.scene = new Scene(parent);
+    }
+
+    @Override
+    public void stop() {
+
     }
 
     private void initScene (){

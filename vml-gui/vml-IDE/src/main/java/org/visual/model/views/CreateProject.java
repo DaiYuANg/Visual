@@ -1,14 +1,9 @@
 package org.visual.model.views;
 
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lombok.SneakyThrows;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.utils.FxmlLoaderHelper;
 
 @Slf4j
 @Singleton

@@ -1,10 +1,7 @@
 package org.visual.model;
 
 import atlantafx.base.theme.PrimerLight;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Key;
-import com.google.inject.TypeLiteral;
+import com.google.inject.*;
 import io.vertx.core.eventbus.EventBus;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -14,20 +11,26 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.contexts.TasksContext;
+import org.visual.model.contexts.AsyncContext;
 import org.visual.model.di.DIContainer;
-import org.visual.model.initializing.InitializeModule;
-import org.visual.model.initializing.Initializer;
+import org.visual.model.lifecycle.LifeCycileManagerModule;
+import org.visual.model.lifecycle.LifecycleManager;
 import org.visual.model.views.scene.WorkspaceScene;
 
 import java.util.Set;
-import java.util.concurrent.Executors;
 
 @Slf4j
 public class VisualModelIDE extends Application {
 
     @Inject
     private EventBus eventBus;
+
+    private final TypeLiteral<Set<LifecycleManager>> typeLiteral = new TypeLiteral<>() {
+    };
+
+    private Injector lifeCycileManagerInjector;
+
+    private Set<LifecycleManager> lifecycleManagers;
 
     @Override
     public void init() {
@@ -39,6 +42,7 @@ public class VisualModelIDE extends Application {
 
     @Override
     public void start(@NotNull Stage stage) {
+//        DIContainer.INSTANCE.getInjector().injectMembers(this);
         stageInitialize(stage);
         val workspaceScene = DIContainer.INSTANCE.getInjector().getInstance(WorkspaceScene.class);
         workspaceScene.initialize();
@@ -47,17 +51,16 @@ public class VisualModelIDE extends Application {
     }
 
     private void stageInitialize(Stage stage) {
-        Guice.createInjector(new InitializeModule(stage))
-                .getInstance(Key.get(new TypeLiteral<Set<Initializer>>() {
-                }))
-                .forEach(Initializer::initialize);
+        lifeCycileManagerInjector = Guice.createInjector(new LifeCycileManagerModule(stage));
+        lifecycleManagers = lifeCycileManagerInjector.getInstance(Key.get(typeLiteral));
+        lifecycleManagers.forEach(LifecycleManager::initialize);
     }
 
     @SneakyThrows
     @Override
     public void stop() {
-        eventBus.publish("shutdown", "now");
-        TasksContext.INSTANCE.shutdown();
+        lifecycleManagers.forEach(LifecycleManager::stop);
+        AsyncContext.INSTANCE.shutdown();
         log.info("visual model stop");
         System.exit(0);
     }

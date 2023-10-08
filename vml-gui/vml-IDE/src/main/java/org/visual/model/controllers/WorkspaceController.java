@@ -14,8 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.services.IOperationSystemService;
-import org.visual.model.services.IPreferenceService;
 
 @Slf4j
 public class WorkspaceController implements Initializable {
@@ -31,14 +29,11 @@ public class WorkspaceController implements Initializable {
     @Inject
     private EventBus eventBus;
 
-    @Inject
-    private IOperationSystemService operationSystemService;
+//    @Inject
+//    private IOperationSystemService operationSystemService;
 
-    @Inject
-    private IPreferenceService preferenceService;
-
-    @Inject
-    Stage stage;
+//    @Inject
+//    private IPreferenceService preferenceService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

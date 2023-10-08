@@ -1,4 +1,4 @@
-package org.visual.model.handlers;
+package org.visual.model.event.fx.handlers;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;

@@ -1,19 +1,17 @@
-package org.visual.model.initializing;
+package org.visual.model.lifecycle.managers;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.visual.model.handlers.OnCloseRequestHandler;
+import org.visual.model.event.fx.handlers.OnCloseRequestHandler;
+import org.visual.model.lifecycle.LifecycleManager;
 
 @Slf4j
 @Singleton
-public class StageInitializer implements Initializer {
+public class StageLifecycleManager implements LifecycleManager {
 
     @Inject
     private Stage stage;
@@ -25,6 +23,11 @@ public class StageInitializer implements Initializer {
         log.atInfo().log("stage initializer executing");
         setOnClose();
         setView();
+    }
+
+    @Override
+    public void stop() {
+
     }
 
     private void setOnClose() {

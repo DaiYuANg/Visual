@@ -1,28 +1,24 @@
-package org.visual.model.services.impl;
+package org.visual.model.verticles;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Context;
+import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.EventBus;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.monitor.FileAlterationListener;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
-import org.visual.model.services.IWorkspaceService;
+import org.visual.model.functional.WorkspaceFileSystemListener;
 
 import java.io.File;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Singleton
-public class WorkspaceService extends AbstractVerticle implements IWorkspaceService {
+public class WorkspaceVerticle extends AbstractVerticle {
 
     private final String workspaceRoot;
 
@@ -30,31 +26,34 @@ public class WorkspaceService extends AbstractVerticle implements IWorkspaceServ
 
     private EventBus eventBus;
 
+    private FileAlterationMonitor monitor;
+
+    @SneakyThrows
     @Inject
-    public WorkspaceService(@Named("ApplicationWorkspace") String workspaceRoot, EventBus eventBus) {
+    public WorkspaceVerticle(@Named("ApplicationWorkspace") String workspaceRoot, EventBus eventBus) {
         log.info("init workspace");
         this.workspaceRoot = workspaceRoot;
         this.eventBus = eventBus;
         workspace = new File(workspaceRoot);
-        initializeWorkspace();
+        FileUtils.forceMkdir(workspace);
+
     }
 
     @SneakyThrows
-    private void initializeWorkspace() {
-        FileUtils.forceMkdir(workspace);
+    @Override
+    public void init(Vertx vertx, Context context) {
         FileAlterationObserver observer = new FileAlterationObserver(workspace);
         observer.addListener(new WorkspaceFileSystemListener());
-        FileAlterationMonitor monitor = new FileAlterationMonitor(10);
+        monitor = new FileAlterationMonitor(10);
         monitor.addObserver(observer);
-        // 启动监视器
         monitor.start();
-
     }
 
-    private void onShutdown(){
-        eventBus.consumer("shutdown", event -> {
-            log.info("accept shutdown");
-//            monitor.stop();
-        });
+
+    @SneakyThrows
+    @Override
+    public void stop() {
+        log.atInfo().log("workspace verticle stopping");
+        monitor.stop();
     }
 }

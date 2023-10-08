@@ -6,10 +6,7 @@ import com.google.inject.Stage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.visual.model.di.modules.InternalPropertyModule;
-import org.visual.model.di.modules.RootModule;
-import org.visual.model.di.modules.VerticleModule;
-import org.visual.model.di.modules.ViewModule;
+import org.visual.model.di.modules.*;
 
 @ToString
 @NoArgsConstructor
@@ -24,6 +21,8 @@ public enum DIContainer {
 
     private final VerticleModule verticle = new VerticleModule();
 
+    private final ProviderModule provider = new ProviderModule();
+
     @Getter
-    final Injector injector = Guice.createInjector(root, internal, view, verticle);
+    final Injector injector = Guice.createInjector(root, provider, internal, view, verticle);
 }

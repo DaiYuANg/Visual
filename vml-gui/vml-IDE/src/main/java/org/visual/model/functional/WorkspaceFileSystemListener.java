@@ -1,14 +1,15 @@
-package org.visual.model.services.impl;
+package org.visual.model.functional;
 
+import com.google.inject.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.monitor.FileAlterationListener;
 import org.apache.commons.io.monitor.FileAlterationObserver;
-import org.visual.model.contexts.TasksContext;
+import org.visual.model.contexts.AsyncContext;
 
 import java.io.File;
 
 @Slf4j
-public class WorkspaceFileSystemListener implements FileAlterationListener {
+public class WorkspaceFileSystemListener implements FileAlterationListener{
     @Override
     public void onDirectoryChange(File directory) {
 
@@ -31,7 +32,7 @@ public class WorkspaceFileSystemListener implements FileAlterationListener {
 
     @Override
     public void onFileCreate(File file) {
-        TasksContext.INSTANCE.run(()->log.atInfo().log(file.getAbsolutePath()));
+        AsyncContext.INSTANCE.run(()->log.atInfo().log(file.getAbsolutePath()));
     }
 
     @Override

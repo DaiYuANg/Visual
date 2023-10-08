@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Properties;
 
 import com.google.inject.name.Named;
@@ -30,6 +31,18 @@ public class InternalPropertyModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        bindAboutApplication();
+        bindLocale();
+    }
+
+    private void bindLocale() {
+        val locale = Locale.getDefault();
+        bind(String.class)
+                .annotatedWith(Names.named("Locale"))
+                .toInstance("%s_%s".formatted(locale.getLanguage(), locale.getCountry()));
+    }
+
+    private void bindAboutApplication() {
         val applicationName = properties.getProperty(InternalConfigKey.APPLICATION_NAME.getValue());
         bind(String.class)
                 .annotatedWith(Names.named("ApplicationName"))

@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 @Slf4j
-public enum TasksContext {
+public enum AsyncContext {
 	INSTANCE;
 
 	private final int cpuCount = Runtime.getRuntime().availableProcessors();
@@ -20,18 +20,18 @@ public enum TasksContext {
 			new ThreadFactoryBuilder().setNameFormat("VisualModel-Scheduler-%d").build(),
 			new ThreadPoolExecutor.CallerRunsPolicy());
 
-	TasksContext() {
+	AsyncContext() {
 		executor.prestartAllCoreThreads();
 		scheduledExecutor.prestartAllCoreThreads();
 	}
 
 	@Contract("_ -> new")
 	public @NotNull CompletableFuture<Void> run(Runnable runnable) {
-		log.info("test");
 		return CompletableFuture.runAsync(runnable, executor);
 	}
 
-	public void schedule(Runnable runnable, long delay, TimeUnit timeUnit) {
+	public @NotNull ScheduledFuture<?> schedule(Runnable runnable, long delay, TimeUnit timeUnit) {
+		return scheduledExecutor.schedule(runnable,delay,timeUnit);
 	}
 
 	public void shutdown() {
