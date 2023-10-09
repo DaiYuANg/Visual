@@ -1,8 +1,12 @@
 package org.visual.model;
 
 import atlantafx.base.theme.PrimerLight;
-import com.google.inject.*;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
 import io.vertx.core.eventbus.EventBus;
+import jakarta.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -42,15 +46,13 @@ public class VisualModelIDE extends Application {
 
     @Override
     public void start(@NotNull Stage stage) {
-//        DIContainer.INSTANCE.getInjector().injectMembers(this);
         stageInitialize(stage);
-        val workspaceScene = DIContainer.INSTANCE.getInjector().getInstance(WorkspaceScene.class);
-        workspaceScene.initialize();
-        stage.setScene(workspaceScene.getScene());
+
         stage.show();
     }
 
     private void stageInitialize(Stage stage) {
+        log.atInfo().log("stage initialize:{}", stage);
         lifeCycileManagerInjector = Guice.createInjector(new LifeCycileManagerModule(stage));
         lifecycleManagers = lifeCycileManagerInjector.getInstance(Key.get(typeLiteral));
         lifecycleManagers.forEach(LifecycleManager::initialize);

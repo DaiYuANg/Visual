@@ -2,6 +2,8 @@ package org.visual.model.lifecycle.managers;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -39,5 +41,15 @@ public class StageLifecycleManager implements LifecycleManager {
         stage.setTitle(System.getProperty("application.name"));
         stage.setWidth(bounds.getWidth() * 0.8);
         stage.setHeight(bounds.getHeight() * 0.8);
+    }
+
+    private void listenResize(){
+        stage.widthProperty().addListener((observable, oldValue, newValue) -> {
+
+        });
+
+        stage.heightProperty().addListener((observable, oldValue, newValue) -> {
+
+        });
     }
 }

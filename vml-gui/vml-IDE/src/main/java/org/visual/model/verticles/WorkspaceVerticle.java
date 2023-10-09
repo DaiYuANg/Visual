@@ -24,7 +24,7 @@ public class WorkspaceVerticle extends AbstractVerticle {
 
     private final File workspace;
 
-    private EventBus eventBus;
+    private final EventBus eventBus;
 
     private FileAlterationMonitor monitor;
 

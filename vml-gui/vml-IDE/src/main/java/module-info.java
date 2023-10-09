@@ -20,8 +20,12 @@ module org.visual.model {
     requires org.apache.commons.io;
     requires dev.dirs;
     requires com.dustinredmond.fxtrayicon;
+    requires io.ebean;
+    requires io.ebean.jackson.mapper;
+    requires io.ebean.migration;
+    requires com.fasterxml.jackson.databind;
 
-    opens org.visual.model to javafx.fxml,com.google.guice;
+    opens org.visual.model to javafx.fxml, com.google.guice;
 
     exports org.visual.model;
     exports org.visual.model.controllers;

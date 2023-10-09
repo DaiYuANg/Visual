@@ -1,8 +1,6 @@
 package org.visual.model.views.scene;
 
-import org.visual.model.views.CreateProject;
-
-public class CreateProjectScene {
+public class CreateProjectScene implements SceneView{
     private final String fxml = "CreateProject";
 
     public CreateProjectScene(){

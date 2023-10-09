@@ -1,12 +1,7 @@
 package org.visual.model.di.modules;
 
-import com.dustinredmond.fxtrayicon.FXTrayIcon;
 import com.google.inject.AbstractModule;
-import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.di.providers.FxTrayIconProvider;
-import org.visual.model.views.CreateProject;
 import org.visual.model.views.SettingsView;
 import org.visual.model.views.scene.CreateProjectScene;
 import org.visual.model.views.scene.WorkspaceScene;

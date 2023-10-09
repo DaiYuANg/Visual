@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.di.providers.FxTrayIconProvider;
 import org.visual.model.lifecycle.LifecycleManager;
+import org.visual.model.lifecycle.managers.SceneLifecycleManager;
 import org.visual.model.lifecycle.managers.StageLifecycleManager;
 import org.visual.model.lifecycle.managers.VertxLifecycleManager;
 
@@ -27,6 +28,7 @@ public class LifeCycileManagerModule extends AbstractModule {
         val initializerMultibinder = Multibinder.newSetBinder(binder(), LifecycleManager.class);
         initializerMultibinder.addBinding().to(StageLifecycleManager.class).in(Singleton.class);
         initializerMultibinder.addBinding().to(VertxLifecycleManager.class).in(Singleton.class);
+        initializerMultibinder.addBinding().to(SceneLifecycleManager.class).in(Singleton.class);
         bind(FXTrayIcon.class).toProvider(FxTrayIconProvider.class);
     }
 }

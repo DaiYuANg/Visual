@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTreeView?>
-<?import io.github.palexdev.materialfx.controls.cell.MFXSimpleTreeCell?>
-<?import io.github.palexdev.materialfx.controls.cell.MFXCheckTreeCell?>
-<?import javafx.scene.control.TreeCell?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="org.visual.model.controllers.SettingsController"

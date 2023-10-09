@@ -1,19 +1,17 @@
 package org.visual.model.di.modules;
 
 import com.google.inject.AbstractModule;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.Locale;
-import java.util.Properties;
-
-import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import dev.dirs.BaseDirectories;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.constants.InternalConfigKey;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.Locale;
+import java.util.Properties;
 
 @Slf4j
 public class InternalPropertyModule extends AbstractModule {

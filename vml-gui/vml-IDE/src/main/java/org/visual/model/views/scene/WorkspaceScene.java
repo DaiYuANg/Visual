@@ -8,7 +8,7 @@ import lombok.Getter;
 import org.visual.model.lifecycle.LifecycleManager;
 import org.visual.model.utils.FxmlLoaderUtil;
 
-public class WorkspaceScene implements LifecycleManager {
+public class WorkspaceScene implements SceneView {
 
     private final String fxml = "Workspace";
 
@@ -17,13 +17,13 @@ public class WorkspaceScene implements LifecycleManager {
     @Getter
     private Scene scene;
 
-    @Override
+//    @Override
     public void initialize() {
         this.parent = FxmlLoaderUtil.load(fxml);
         this.scene = new Scene(parent);
     }
 
-    @Override
+//    @Override
     public void stop() {
 
     }
