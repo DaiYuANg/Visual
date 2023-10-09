@@ -8,16 +8,15 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.di.providers.FxTrayIconProvider;
-import org.visual.model.lifecycle.LifecycleManager;
 import org.visual.model.lifecycle.managers.SceneLifecycleManager;
 import org.visual.model.lifecycle.managers.StageLifecycleManager;
 import org.visual.model.lifecycle.managers.VertxLifecycleManager;
 
 @Slf4j
-public class LifeCycileManagerModule extends AbstractModule {
+public class LifeCycleManagerModule extends AbstractModule {
     private final Stage stage;
 
-    public LifeCycileManagerModule(Stage stage) {
+    public LifeCycleManagerModule(Stage stage) {
         log.atInfo().log("bind view modules");
         this.stage = stage;
     }

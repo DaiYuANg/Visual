@@ -5,6 +5,7 @@ import com.google.inject.TypeLiteral;
 import io.vertx.core.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.model.contexts.AsyncContext;
 import org.visual.model.di.DIContainer;
 import org.visual.model.lifecycle.LifecycleManager;
 
@@ -31,12 +32,14 @@ public class VertxLifecycleManager implements LifecycleManager {
         val dp = new DeploymentOptions()
                 .setHa(true)
                 .setWorker(true);
-        verticles.values().stream()
-                .map(verticle -> vertx.deployVerticle(verticle, dp))
-                .forEach(d -> {
-                    d.onFailure(event -> log.error(event.getMessage(), event.fillInStackTrace()));
-                    d.onComplete(event -> log.info(event.result()));
-                });
+        AsyncContext.INSTANCE.run(()->{
+            verticles.values().stream()
+                    .map(verticle -> vertx.deployVerticle(verticle, dp))
+                    .forEach(d -> {
+                        d.onFailure(event -> log.error(event.getMessage(), event.fillInStackTrace()));
+                        d.onComplete(event -> log.info(event.result()));
+                    });
+        });
     }
 
     @Override

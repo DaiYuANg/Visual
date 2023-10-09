@@ -3,6 +3,7 @@ package org.visual.model.di;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Stage;
+import com.google.inject.grapher.graphviz.GraphvizModule;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,5 +25,5 @@ public enum DIContainer {
     private final ProviderModule provider = new ProviderModule();
 
     @Getter
-    final Injector injector = Guice.createInjector(root, provider, internal, view, verticle);
+    final Injector injector = Guice.createInjector(root, provider, internal, view, verticle,new GraphvizModule());
 }

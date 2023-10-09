@@ -10,7 +10,6 @@ import org.visual.model.constants.InternalConfigKey;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.Locale;
 import java.util.Properties;
 
 @Slf4j
@@ -30,14 +29,11 @@ public class InternalPropertyModule extends AbstractModule {
     @Override
     protected void configure() {
         bindAboutApplication();
-        bindLocale();
+        bindAboutWindow();
     }
 
-    private void bindLocale() {
-        val locale = Locale.getDefault();
-        bind(String.class)
-                .annotatedWith(Names.named("Locale"))
-                .toInstance("%s_%s".formatted(locale.getLanguage(), locale.getCountry()));
+    private void bindAboutWindow() {
+
     }
 
     private void bindAboutApplication() {

@@ -19,5 +19,6 @@ subprojects {
             "javafx.web",
             "javafx.swing"
         )
+        configurations = arrayOf("implementation", "testImplementation")
     }
 }

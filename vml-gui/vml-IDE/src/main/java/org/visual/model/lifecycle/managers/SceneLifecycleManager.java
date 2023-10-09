@@ -8,6 +8,7 @@ import jakarta.inject.Singleton;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.constants.EventBuses;
@@ -32,12 +33,10 @@ public class SceneLifecycleManager implements LifecycleManager {
         listenSwitchScene();
     }
 
+    @SneakyThrows
     @Override
     public void initialize() {
-        val workspaceScene = DIContainer.INSTANCE.getInjector().getInstance(WorkspaceScene.class);
         val createProject = DIContainer.INSTANCE.getInjector().getInstance(CreateProjectScene.class);
-//        workspaceScene.initializeScene();
-//        stage.setScene(workspaceScene.getScene());
         stage.setScene(createProject.initializeScene());
     }
 

@@ -38,8 +38,8 @@ public class StageLifecycleManager implements LifecycleManager {
     private void setView() {
         stage.centerOnScreen();
         stage.setTitle(System.getProperty("application.name"));
-        stage.setWidth(bounds.getWidth() * 0.8);
-        stage.setHeight(bounds.getHeight() * 0.8);
+        stage.setWidth(bounds.getWidth() * 0.5);
+        stage.setHeight(bounds.getHeight() * 0.6);
     }
 
     private void listenResizeAndPosition(){

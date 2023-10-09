@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-<SplitPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="org.visual.model.controllers.CreateProjectController"
-           prefHeight="400.0" prefWidth="800.0" dividerPositions="0.2,0.8">
-    <VBox>
-        <Label text="left">123</Label>
-    </VBox>
-    <VBox>
-        <Label text="right">123</Label>
-    </VBox>
-</SplitPane>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Button?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ListView?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.model.controllers.CreateProjectController"
+fx:id="vbox">
+    <HBox fx:id="hbox" VBox.vgrow="ALWAYS">
+        <HBox fx:id="leftPane" prefWidth="300.0">
+            <ListView fx:id="listView" HBox.hgrow="ALWAYS">
+                <String fx:value="Item 1"/>
+                <String fx:value="Item 2"/>
+                <String fx:value="Item 3"/>
+            </ListView>
+        </HBox>
+        <Separator fx:id="separator" VBox.vgrow="ALWAYS" orientation="VERTICAL" style="-fx-padding: 0"/>
+        <Pane HBox.hgrow="ALWAYS" fx:id="rightPane" style="-fx-background-color: lightgreen;">
+            <Label text="right"/>
+            <ButtonBar>
+                <buttons>
+                    <Button text="OK"/>
+                    <Button text="Cancel"/>
+                </buttons>
+            </ButtonBar>
+        </Pane>
+    </HBox>
+</VBox>

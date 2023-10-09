@@ -54,6 +54,6 @@ public class WorkspaceVerticle extends AbstractVerticle {
     @Override
     public void stop() {
         log.atInfo().log("workspace verticle stopping");
-        monitor.stop();
+        monitor.stop(5);
     }
 }

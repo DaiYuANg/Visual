@@ -10,20 +10,15 @@ import jakarta.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.application.Preloader;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.contexts.AsyncContext;
 import org.visual.model.di.DIContainer;
-import org.visual.model.lifecycle.LifeCycileManagerModule;
+import org.visual.model.lifecycle.LifeCycleManagerModule;
 import org.visual.model.lifecycle.LifecycleManager;
-import org.visual.model.views.scene.WorkspaceScene;
 
-import java.util.Date;
 import java.util.Set;
 
 @Slf4j
@@ -56,7 +51,7 @@ public class VisualModelIDE extends Application {
 
     private void stageInitialize(Stage stage) {
         log.atInfo().log("stage initialize:{}", stage);
-        lifeCycileManagerInjector = Guice.createInjector(new LifeCycileManagerModule(stage));
+        lifeCycileManagerInjector = Guice.createInjector(new LifeCycleManagerModule(stage));
         lifecycleManagers = lifeCycileManagerInjector.getInstance(Key.get(typeLiteral));
         lifecycleManagers.forEach(LifecycleManager::initialize);
     }
@@ -67,6 +62,5 @@ public class VisualModelIDE extends Application {
         lifecycleManagers.forEach(LifecycleManager::stop);
         AsyncContext.INSTANCE.shutdown();
         log.info("visual model stop");
-        System.exit(0);
     }
 }

@@ -11,6 +11,8 @@ module org.visual.model {
     requires jakarta.inject;
     requires org.jetbrains.annotations;
     requires com.google.guice;
+    requires com.google.guice.extensions.grapher;
+    requires com.google.guice.extensions.assistedinject;
     requires java.prefs;
     requires atlantafx.base;
     requires com.dlsc.preferencesfx;
@@ -24,6 +26,7 @@ module org.visual.model {
     requires io.ebean.jackson.mapper;
     requires io.ebean.migration;
     requires com.fasterxml.jackson.databind;
+    requires org.visual.model.gui.components;
 
     opens org.visual.model to javafx.fxml, com.google.guice;
 

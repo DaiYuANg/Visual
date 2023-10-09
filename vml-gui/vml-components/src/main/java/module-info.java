@@ -5,4 +5,8 @@ module org.visual.model.gui.components {
 	requires static lombok;
 	requires org.slf4j;
 	requires org.jetbrains.annotations;
+
+	exports org.visual.model.components.controls;
+	exports org.visual.model.components.container;
+	exports org.visual.model.components.frame;
 }

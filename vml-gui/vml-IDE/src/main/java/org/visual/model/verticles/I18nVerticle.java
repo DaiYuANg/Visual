@@ -16,13 +16,9 @@ import java.util.ResourceBundle;
 @Singleton
 public class I18nVerticle extends AbstractVerticle {
 
-    private final String locale;
 
-    @Inject
-    public I18nVerticle(@Named("Locale") String locale){
+    public I18nVerticle(){
         log.info("i18n vertx init");
-        this.locale = locale;
-
     }
 
     @Override

@@ -38,6 +38,7 @@ subprojects {
         annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
         implementation("com.google.guava:guava:32.1.2-jre")
         implementation("com.google.inject:guice:7.0.0")
+        implementation("com.google.inject.extensions:guice-grapher:7.0.0")
         testImplementation("com.google.inject.extensions:guice-testlib:7.0.0")
         implementation ("org.eclipse.collections:eclipse-collections-api:11.1.0")
         implementation ("org.eclipse.collections:eclipse-collections:11.1.0")
