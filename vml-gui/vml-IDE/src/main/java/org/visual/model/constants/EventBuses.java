@@ -9,7 +9,9 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @ToString
 public enum EventBuses {
-    SET_LOCALE_EVENT("SET_LOCALE_EVENT");
+    SET_LOCALE_EVENT("SET_LOCALE_EVENT"),
+
+    STAGE_SWITCH_SCENE("STAGE_SWITCH_SCENE");
 
     private final String value;
 }

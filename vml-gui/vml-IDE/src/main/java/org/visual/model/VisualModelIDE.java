@@ -10,7 +10,9 @@ import jakarta.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.application.Preloader;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -21,6 +23,7 @@ import org.visual.model.lifecycle.LifeCycileManagerModule;
 import org.visual.model.lifecycle.LifecycleManager;
 import org.visual.model.views.scene.WorkspaceScene;
 
+import java.util.Date;
 import java.util.Set;
 
 @Slf4j
@@ -47,7 +50,7 @@ public class VisualModelIDE extends Application {
     @Override
     public void start(@NotNull Stage stage) {
         stageInitialize(stage);
-
+        stage.setOnShowing(event -> eventBus.publish("GUI.SHOW", event));
         stage.show();
     }
 

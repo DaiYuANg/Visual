@@ -27,8 +27,6 @@ public class I18nVerticle extends AbstractVerticle {
 
     @Override
     public void init(Vertx vertx, Context context) {
-       val bunle =  ResourceBundle.getBundle(locale);
-        System.err.println(bunle);
         val bundle = ResourceBundle.getBundle("bundle", Locale.getDefault());
         bundle.getKeys().asIterator().forEachRemaining(System.err::println);
     }

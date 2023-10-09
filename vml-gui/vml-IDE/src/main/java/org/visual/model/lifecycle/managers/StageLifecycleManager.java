@@ -2,8 +2,6 @@ package org.visual.model.lifecycle.managers;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -25,6 +23,7 @@ public class StageLifecycleManager implements LifecycleManager {
         log.atInfo().log("stage initializer executing");
         setOnClose();
         setView();
+        listenResizeAndPosition();
     }
 
     @Override
@@ -43,13 +42,19 @@ public class StageLifecycleManager implements LifecycleManager {
         stage.setHeight(bounds.getHeight() * 0.8);
     }
 
-    private void listenResize(){
+    private void listenResizeAndPosition(){
         stage.widthProperty().addListener((observable, oldValue, newValue) -> {
-
+            log.info(newValue.toString());
         });
 
         stage.heightProperty().addListener((observable, oldValue, newValue) -> {
-
+            log.info(newValue.toString());
+        });
+        stage.xProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("X 坐标位置变化：从 " + oldValue + " 到 " + newValue);
+        });
+        stage.yProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Y 坐标位置变化：从 " + oldValue + " 到 " + newValue);
         });
     }
 }

@@ -8,6 +8,8 @@ import lombok.Getter;
 import org.visual.model.lifecycle.LifecycleManager;
 import org.visual.model.utils.FxmlLoaderUtil;
 
+import java.util.Objects;
+
 public class WorkspaceScene implements SceneView {
 
     private final String fxml = "Workspace";
@@ -17,19 +19,15 @@ public class WorkspaceScene implements SceneView {
     @Getter
     private Scene scene;
 
-//    @Override
-    public void initialize() {
-        this.parent = FxmlLoaderUtil.load(fxml);
-        this.scene = new Scene(parent);
-    }
-
-//    @Override
-    public void stop() {
-
-    }
-
-    private void initScene (){
+    private void initScene() {
         scene.setFill(Color.TRANSPARENT);
         scene.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
+    }
+
+    @Override
+    public Scene initializeScene() {
+        this.parent = FxmlLoaderUtil.load(fxml);
+        this.scene = new Scene(parent);
+        return scene;
     }
 }

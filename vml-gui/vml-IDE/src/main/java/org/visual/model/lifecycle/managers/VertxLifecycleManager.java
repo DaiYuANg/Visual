@@ -2,9 +2,7 @@ package org.visual.model.lifecycle.managers;
 
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
-import io.vertx.core.Vertx;
+import io.vertx.core.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.di.DIContainer;
@@ -15,11 +13,11 @@ import java.util.Map;
 @Slf4j
 public class VertxLifecycleManager implements LifecycleManager {
 
-    private final Map<String,AbstractVerticle> verticles;
+    private final Map<String, AbstractVerticle> verticles;
 
     private final Vertx vertx;
 
-    private final TypeLiteral<Map<String,AbstractVerticle>> type = new TypeLiteral<>() {
+    private final TypeLiteral<Map<String, AbstractVerticle>> type = new TypeLiteral<>() {
     };
 
     public VertxLifecycleManager() {
@@ -30,11 +28,15 @@ public class VertxLifecycleManager implements LifecycleManager {
     @Override
     public void initialize() {
         log.atInfo().log("vertx initializer executing");
-        verticles.values().stream().map(vertx::deployVerticle).forEach(d->{
-            if (d.failed()){
-                System.err.println(d.result());
-            }
-        });
+        val dp = new DeploymentOptions()
+                .setHa(true)
+                .setWorker(true);
+        verticles.values().stream()
+                .map(verticle -> vertx.deployVerticle(verticle, dp))
+                .forEach(d -> {
+                    d.onFailure(event -> log.error(event.getMessage(), event.fillInStackTrace()));
+                    d.onComplete(event -> log.info(event.result()));
+                });
     }
 
     @Override
