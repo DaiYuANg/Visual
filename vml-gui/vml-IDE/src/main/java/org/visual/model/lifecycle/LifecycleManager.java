@@ -1,7 +1,5 @@
 package org.visual.model.lifecycle;
 
-public interface LifecycleManager {
-    void initialize();
-
+public interface LifecycleManager extends Initialize {
     void stop();
 }

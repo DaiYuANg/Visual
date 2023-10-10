@@ -27,22 +27,7 @@ public class CacheVerticle extends AbstractVerticle {
 
     @Inject
     public CacheVerticle(@Named("ApplicationCache") String cacheRoot) {
-        // datasource
-        DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setUsername("");
-        dataSourceConfig.setPassword("");
-        dataSourceConfig.setUrl("jdbc:sqlite:test.db");
-//        DbMigration dbMigration = DbMigration.;
-//        dbMigration.setPlatform(Platform.POSTGRES);
-//
-//        dbMigration.generateMigration();
-
-// configuration ...
-        DatabaseConfig config = new DatabaseConfig();
-        config.setDataSourceConfig(dataSourceConfig);
-// create database instance
-        Database database = DatabaseFactory.create(config);
-        this.cacheRoot = cacheRoot;
+       this.cacheRoot = cacheRoot;
     }
 
     @Override

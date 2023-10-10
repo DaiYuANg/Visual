@@ -5,13 +5,14 @@ import javafx.scene.Scene;
 import lombok.Getter;
 import org.visual.model.utils.FxmlLoaderUtil;
 
-public class CreateProjectScene implements SceneView{
+public class CreateProjectScene implements SceneView {
     private final String fxml = "CreateProject";
     private Parent parent;
 
     @Getter
     private Scene scene;
-    public CreateProjectScene(){
+
+    public CreateProjectScene() {
 
     }
 

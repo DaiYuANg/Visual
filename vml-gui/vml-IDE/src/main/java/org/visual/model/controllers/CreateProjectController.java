@@ -1,10 +1,12 @@
 package org.visual.model.controllers;
 
+import io.vertx.core.eventbus.EventBus;
 import jakarta.inject.Inject;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -30,6 +32,12 @@ public class CreateProjectController implements Initializable {
     public VBox vbox;
 
     @FXML
+    public ListView<HBox> projectView;
+
+    @FXML
+    public Button saveButton;
+
+    @FXML
     private HBox hbox;
 
     @FXML
@@ -40,6 +48,9 @@ public class CreateProjectController implements Initializable {
 
     @FXML
     private Pane rightPane;
+
+    @Inject
+    private EventBus eventBus;
 
     private double startX;
     private double startWidth;
@@ -54,6 +65,7 @@ public class CreateProjectController implements Initializable {
         separator.setOnMousePressed(this::onSeparatorPressed);
         separator.setOnMouseDragged(this::onSeparatorDragged);
         separator.setOnMouseReleased(this::onSeparatorReleased);
+        saveButton.setOnMouseClicked(event -> eventBus.publish("clickSetting",""));
     }
 
     private void onSeparatorPressed(@NotNull MouseEvent event) {

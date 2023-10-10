@@ -49,5 +49,9 @@ public class InternalPropertyModule extends AbstractModule {
         bind(String.class)
                 .annotatedWith(Names.named("ApplicationWorkspace"))
                 .toInstance(BaseDirectories.get().homeDir + File.separator + applicationName);
+
+        bind(String.class)
+                .annotatedWith(Names.named("ApplicationData"))
+                .toInstance(BaseDirectories.get().dataDir + File.separator + applicationName);
     }
 }

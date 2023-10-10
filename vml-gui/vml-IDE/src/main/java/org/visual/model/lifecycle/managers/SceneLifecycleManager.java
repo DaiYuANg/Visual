@@ -14,6 +14,7 @@ import lombok.val;
 import org.visual.model.constants.EventBuses;
 import org.visual.model.di.DIContainer;
 import org.visual.model.lifecycle.LifecycleManager;
+import org.visual.model.service.IProjectManager;
 import org.visual.model.views.scene.CreateProjectScene;
 import org.visual.model.views.scene.WorkspaceScene;
 
@@ -25,10 +26,13 @@ public class SceneLifecycleManager implements LifecycleManager {
 
     private final EventBus eventBus;
 
+    private final IProjectManager projectManager;
+
     @Inject
     public SceneLifecycleManager(Stage stage) {
         this.stage = stage;
         eventBus = DIContainer.INSTANCE.getInjector().getInstance(EventBus.class);
+        projectManager = DIContainer.INSTANCE.getInjector().getInstance(IProjectManager.class);
         log.info("scene lifecycle executing:{}", stage);
         listenSwitchScene();
     }
@@ -36,6 +40,7 @@ public class SceneLifecycleManager implements LifecycleManager {
     @SneakyThrows
     @Override
     public void initialize() {
+        projectManager.initialize();
         val createProject = DIContainer.INSTANCE.getInjector().getInstance(CreateProjectScene.class);
         stage.setScene(createProject.initializeScene());
     }
@@ -47,6 +52,6 @@ public class SceneLifecycleManager implements LifecycleManager {
 
     @Override
     public void stop() {
-
+        projectManager.saveProjects();
     }
 }

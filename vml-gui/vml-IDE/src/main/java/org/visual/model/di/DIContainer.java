@@ -14,8 +14,6 @@ import org.visual.model.di.modules.*;
 public enum DIContainer {
     INSTANCE;
 
-    private final RootModule root = new RootModule();
-
     private final InternalPropertyModule internal = new InternalPropertyModule();
 
     private final ViewModule view = new ViewModule();
@@ -24,6 +22,8 @@ public enum DIContainer {
 
     private final ProviderModule provider = new ProviderModule();
 
+    private final ServiceModule service = new ServiceModule();
+
     @Getter
-    final Injector injector = Guice.createInjector(root, provider, internal, view, verticle,new GraphvizModule());
+    final Injector injector = Guice.createInjector(service,provider, internal, view, verticle,new GraphvizModule());
 }

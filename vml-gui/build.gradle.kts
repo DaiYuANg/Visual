@@ -2,7 +2,7 @@ plugins {
     id("org.openjfx.javafxplugin")
     id("io.freefair.sass-java") version "8.2.2"
 }
-
+val javafxVersion:String by project
 subprojects {
     apply {
         plugin("org.openjfx.javafxplugin")
@@ -10,7 +10,7 @@ subprojects {
     }
 
     javafx {
-        version = "21"
+        version = javafxVersion
         modules = listOf(
             "javafx.controls",
             "javafx.fxml",
@@ -19,6 +19,5 @@ subprojects {
             "javafx.web",
             "javafx.swing"
         )
-        configurations = arrayOf("implementation", "testImplementation")
     }
 }

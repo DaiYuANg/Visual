@@ -5,6 +5,7 @@ plugins {
     idea
     id("io.freefair.lombok") apply false
     id("com.diffplug.spotless")
+    id("me.champeau.jmh") version "0.7.1"
 }
 
 allprojects {
@@ -31,20 +32,20 @@ subprojects {
         val slf4jVersion: String by project
         val logbackVersion: String by project
         val mapstructVersion: String by project
+        val guiceVersion: String by project
+        val guavaVersion: String by project
+        val jbAnnotationVersion: String by project
+        val rxjavaVersion:String by project
         implementation("org.slf4j:slf4j-api:$slf4jVersion")
-        implementation("org.jetbrains:annotations:24.0.1")
+        implementation("org.jetbrains:annotations:$jbAnnotationVersion")
         implementation("ch.qos.logback:logback-classic:$logbackVersion")
         implementation("org.mapstruct:mapstruct:$mapstructVersion")
         annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
-        implementation("com.google.guava:guava:32.1.2-jre")
-        implementation("com.google.inject:guice:7.0.0")
-        implementation("com.google.inject.extensions:guice-grapher:7.0.0")
-        testImplementation("com.google.inject.extensions:guice-testlib:7.0.0")
-        implementation ("org.eclipse.collections:eclipse-collections-api:11.1.0")
-        implementation ("org.eclipse.collections:eclipse-collections:11.1.0")
-        implementation("io.reactivex.rxjava3:rxjava:3.1.6")
-        implementation("net.java.dev.jna:jna:5.13.0")
-        implementation("net.java.dev.jna:jna-platform:5.13.0")
+        implementation("com.google.guava:guava:$guavaVersion")
+        implementation("com.google.inject:guice:$guiceVersion")
+        implementation("com.google.inject.extensions:guice-grapher:$guiceVersion")
+        testImplementation("com.google.inject.extensions:guice-testlib:$guiceVersion")
+        implementation("io.reactivex.rxjava3:rxjava:$rxjavaVersion")
         testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
         testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
