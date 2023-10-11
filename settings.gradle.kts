@@ -51,9 +51,9 @@ rootProject.name = "VisualModel"
 
 include(":vml-gui:vml-IDE")
 
-include(":vml-compiler:vml-parser")
+include(":vml-language:vml-parser")
 
-include(":vml-compiler:vml-cmd")
+include(":vml-language:vml-cmd")
 
 include(":vml-gui:vml-components")
 
@@ -62,4 +62,13 @@ findProject(":vml-gui:vm-components")?.name = "vm-components"
 include(":libs:theme-detector")
 
 include(":libs:shared")
+
 include("vml-codegen")
+
+include(":docs")
+
+include("vml-language:vml-lsp")
+
+findProject(":vml-language:vml-lsp")?.name = "vml-lsp"
+
+include("vml-server")

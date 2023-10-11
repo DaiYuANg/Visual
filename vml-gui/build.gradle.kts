@@ -20,4 +20,20 @@ subprojects {
             "javafx.swing"
         )
     }
+
+    dependencies{
+        val mapstructVersion: String by project
+        val junitVersion: String by project
+        val slf4jVersion: String by project
+        val guiceVersion: String by project
+        val guavaVersion: String by project
+        val rxjavaVersion:String by project
+        implementation("org.mapstruct:mapstruct:$mapstructVersion")
+        annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
+        implementation("com.google.guava:guava:$guavaVersion")
+        implementation("com.google.inject:guice:$guiceVersion")
+        implementation("com.google.inject.extensions:guice-grapher:$guiceVersion")
+        testImplementation("com.google.inject.extensions:guice-testlib:$guiceVersion")
+        implementation("io.reactivex.rxjava3:rxjava:$rxjavaVersion")
+    }
 }

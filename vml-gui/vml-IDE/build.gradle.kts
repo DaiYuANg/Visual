@@ -4,13 +4,13 @@ plugins {
     application
 }
 
-val vertxVersion = "4.4.5"
 val atlantafxVersion = "2.0.1"
 val oshiVersion = "6.4.4"
 val ebeanVersion = "13.15.0-jakarta"
 val ikonliVersion = "12.3.1"
 
 dependencies {
+    val vertxVersion:String by project
     implementation("io.vertx:vertx-core:$vertxVersion")
     implementation("io.vertx:vertx-uri-template:$vertxVersion")
     implementation("io.github.mkpaz:atlantafx-base:$atlantafxVersion")
@@ -41,8 +41,8 @@ dependencies {
 }
 
 application {
-    mainModule.set("org.visual.model")
-    mainClass.set("org.visual.model.VisualModelApplication")
+    mainModule.set("org.visual.model.language.gui.ide")
+    mainClass.set("org.visual.model.language.gui.ide.VisualModelApplication")
 }
 
 configurations {

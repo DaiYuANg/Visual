@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class DraggableLayout extends VBox {
-    public DraggableLayout(){
-
-    }
+	public DraggableLayout() {
+	}
 }

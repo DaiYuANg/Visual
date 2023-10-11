@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.TreeItem?>
+<VBox fx:id="root" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.model.language.gui.ide.controllers.GraphicsController">
+</VBox>

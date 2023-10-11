@@ -1,3 +1,3 @@
 module visual.module.codegen {
-    requires freemarker;
+	requires freemarker;
 }
