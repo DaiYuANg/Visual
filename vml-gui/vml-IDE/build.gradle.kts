@@ -6,12 +6,13 @@ plugins {
 
 val vertxVersion = "4.4.5"
 val atlantafxVersion = "2.0.1"
-val oshiVersion="6.4.4"
+val oshiVersion = "6.4.4"
 val ebeanVersion = "13.15.0-jakarta"
 val ikonliVersion = "12.3.1"
 
 dependencies {
     implementation("io.vertx:vertx-core:$vertxVersion")
+    implementation("io.vertx:vertx-uri-template:$vertxVersion")
     implementation("io.github.mkpaz:atlantafx-base:$atlantafxVersion")
     implementation("com.github.oshi:oshi-core-java11:$oshiVersion")
     implementation("com.google.code.gson:gson:2.10.1")
@@ -36,7 +37,6 @@ dependencies {
     testImplementation("io.ebean:ebean-test:$ebeanVersion")
     testImplementation("org.testfx:testfx-junit5:4.0.17")
     testImplementation("io.vertx:vertx-junit5:$vertxVersion")
-
     annotationProcessor("io.ebean:querybean-generator:13.15.0-jakarta")
 }
 

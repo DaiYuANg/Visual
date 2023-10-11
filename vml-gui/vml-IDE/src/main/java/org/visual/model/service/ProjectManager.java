@@ -36,7 +36,7 @@ public class ProjectManager implements IProjectManager {
     @SneakyThrows
     @Inject
     public ProjectManager(@Named("ApplicationData") String saved, @Named("ApplicationWorkspace") String workspacePath) {
-        val savedFile =  Path.of(saved,"projects").toFile();
+        val savedFile = Path.of(saved, "projects").toFile();
         FileUtils.forceMkdir(savedFile);
         this.saved = savedFile;
         this.workspacePath = workspacePath;
@@ -49,12 +49,20 @@ public class ProjectManager implements IProjectManager {
 
     @Override
     public void initialize() {
-        IOFileFilter prefixFilter = new PrefixFileFilter(PersistencePrefix.toString());
-        IOFileFilter suffixFilter = new SuffixFileFilter(PersistenceSuffix.toString());
+        IOFileFilter prefixFilter = new PrefixFileFilter(PersistencePrefix.getValue());
+        IOFileFilter suffixFilter = new SuffixFileFilter(PersistenceSuffix.getValue());
         // 同时满足前缀和后缀的过滤器
         IOFileFilter combinedFilter = new AndFileFilter(prefixFilter, suffixFilter);
         val savedProjects = FileUtils.listFiles(saved, combinedFilter, null);
-        log.info("exists projects:{}", savedProjects);
+        val converted = savedProjects.stream().map(r -> {
+            try {
+                val oss = new ObjectInputStream(new FileInputStream(r));
+                return (Project) oss.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
+        log.info("exists projects:{}", converted);
     }
 
     public List<Project> historyProjects() {

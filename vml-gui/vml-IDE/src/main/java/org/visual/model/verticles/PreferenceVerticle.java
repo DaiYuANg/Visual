@@ -18,4 +18,9 @@ public class PreferenceVerticle extends AbstractVerticle {
     public void init(Vertx vertx, Context context) {
         super.init(vertx, context);
     }
+
+    @Override
+    public void start() throws Exception {
+
+    }
 }
