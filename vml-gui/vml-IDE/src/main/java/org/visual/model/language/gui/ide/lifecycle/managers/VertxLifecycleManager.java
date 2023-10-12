@@ -20,7 +20,7 @@ public class VertxLifecycleManager implements LifecycleManager {
 	private final TypeLiteral<Map<String, AbstractVerticle>> type = new TypeLiteral<>() {
 	};
 
-	public VertxLifecycleManager() {
+	{
 		this.verticles = DIContainer.INSTANCE.getInjector().getInstance(Key.get(type));
 		this.vertx = DIContainer.INSTANCE.getInjector().getInstance(Vertx.class);
 	}

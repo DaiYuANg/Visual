@@ -46,12 +46,12 @@
             </HBox>
             <ScrollPane HBox.hgrow="ALWAYS">
                 <ListView fx:id="projectView" prefWidth="450.0" minHeight="300.0" HBox.hgrow="ALWAYS">
-                    <HBox>
-                        <Label HBox.hgrow="ALWAYS" text="Project"/>
-                    </HBox>
-                    <HBox>
-                        <Label text="12"/>
-                    </HBox>
+<!--                    <HBox>-->
+<!--                        <Label HBox.hgrow="ALWAYS" text="Project"/>-->
+<!--                    </HBox>-->
+<!--                    <HBox>-->
+<!--                        <Label text="12"/>-->
+<!--                    </HBox>-->
                 </ListView>
             </ScrollPane>
             <ButtonBar HBox.hgrow="ALWAYS">

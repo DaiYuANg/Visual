@@ -6,8 +6,12 @@ plugins {
 
 dependencies {
     val picocliVersion: String by project
+    val guiceVersion: String by project
     implementation("info.picocli:picocli:$picocliVersion")
     annotationProcessor("info.picocli:picocli-codegen:$picocliVersion")
+    implementation("com.google.inject:guice:$guiceVersion")
+    implementation("com.google.inject.extensions:guice-grapher:$guiceVersion")
+    testImplementation("com.google.inject.extensions:guice-testlib:$guiceVersion")
     implementation(projects.vmlLanguage.vmlLsp)
     implementation(projects.vmlLanguage.vmlParser)
 }

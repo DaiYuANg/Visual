@@ -9,4 +9,5 @@ module org.visual.model.gui.components {
 	exports org.visual.model.components.controls;
 	exports org.visual.model.components.container;
 	exports org.visual.model.components.frame;
+	exports org.visual.model.components.callbacks;
 }

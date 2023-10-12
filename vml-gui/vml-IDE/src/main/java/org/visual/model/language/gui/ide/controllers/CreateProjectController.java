@@ -9,9 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -19,9 +17,13 @@ import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 
+import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.components.callbacks.ProjectCellFactory;
 import org.visual.model.language.gui.ide.di.DIContainer;
+import org.visual.model.language.gui.ide.functional.Project;
 import org.visual.model.language.gui.ide.service.IProjectManager;
 
 @Slf4j
@@ -34,7 +36,7 @@ public class CreateProjectController implements Initializable {
     public VBox vbox;
 
     @FXML
-    public ListView<HBox> projectView;
+    public ListView<String> projectView;
 
     @FXML
     public Button saveButton;
@@ -54,7 +56,11 @@ public class CreateProjectController implements Initializable {
     @Inject
     private EventBus eventBus;
 
-    private IProjectManager projectManager;
+    private final IProjectManager projectManager;
+
+    {
+        this.projectManager = DIContainer.INSTANCE.getInjector().getInstance(IProjectManager.class);
+    }
 
     private double startX;
     private double startWidth;
@@ -63,7 +69,8 @@ public class CreateProjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bindEvent();
-        this.projectManager = DIContainer.INSTANCE.getInjector().getInstance(IProjectManager.class);
+        projectView.setCellFactory(new ProjectCellFactory());
+        projectView.getItems().addAll(projectManager.historyProjects().stream().map(Project::getName).toList());
     }
 
     private void bindEvent() {

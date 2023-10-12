@@ -8,6 +8,7 @@ import jakarta.inject.Singleton;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -19,6 +20,7 @@ import org.visual.model.language.gui.ide.views.scene.CreateProjectScene;
 
 @Slf4j
 @Singleton
+@NoArgsConstructor(force = true)
 public class SceneLifecycleManager implements LifecycleManager {
 
 	private final Stage stage;
