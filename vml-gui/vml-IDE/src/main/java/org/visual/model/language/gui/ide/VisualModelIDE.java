@@ -42,7 +42,7 @@ public class VisualModelIDE extends Application {
 		Platform.runLater(() -> DIContainer.INSTANCE.getInjector().injectMembers(this));
 //		Boolean theme = Boolean
 //				.parseBoolean(Toolkit.getDefaultToolkit().getDesktopProperty("win.xpstyle.themeActive").toString());
-		val theme = true;
+		val theme = false;
 		Application.setUserAgentStylesheet(
 				theme ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet());
 		this.notifyPreloader(new Preloader.ErrorNotification("/", "", new Throwable()));

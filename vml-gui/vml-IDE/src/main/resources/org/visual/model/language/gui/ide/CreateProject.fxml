@@ -27,14 +27,11 @@
             <HBox HBox.hgrow="ALWAYS">
                 <GridPane HBox.hgrow="ALWAYS" GridPane.columnSpan="2" GridPane.rowIndex="1">
                     <columnConstraints>
-                        <ColumnConstraints fillWidth="true" halignment="RIGHT" hgrow="NEVER"/>
-                        <ColumnConstraints fillWidth="true" halignment="LEFT" hgrow="NEVER"/>
+                        <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints fillHeight="true" valignment="CENTER" vgrow="NEVER"/>
-                        <RowConstraints fillHeight="true" valignment="CENTER" vgrow="NEVER"/>
-                        <RowConstraints fillHeight="true" valignment="CENTER" vgrow="NEVER"/>
-                        <RowConstraints fillHeight="true" valignment="CENTER" vgrow="NEVER"/>
+                        <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
+                        <RowConstraints valignment="CENTER" vgrow="NEVER"/>
                     </rowConstraints>
                     <CustomTextField HBox.hgrow="ALWAYS"/>
                     <Button>
@@ -44,16 +41,15 @@
                     </Button>
                 </GridPane>
             </HBox>
-            <ScrollPane HBox.hgrow="ALWAYS">
-                <ListView fx:id="projectView" prefWidth="450.0" minHeight="300.0" HBox.hgrow="ALWAYS">
-<!--                    <HBox>-->
-<!--                        <Label HBox.hgrow="ALWAYS" text="Project"/>-->
-<!--                    </HBox>-->
-<!--                    <HBox>-->
-<!--                        <Label text="12"/>-->
-<!--                    </HBox>-->
-                </ListView>
-            </ScrollPane>
+            <HBox VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="projectScrollArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <ListView style=" -fx-border-color: red;
+    -fx-border-radius: 15 15 15 15;
+    -fx-min-width: 500px;
+    -fx-border-width: 1px;" fx:id="projectView" HBox.hgrow="ALWAYS">
+                    </ListView>
+                </ScrollPane>
+            </HBox>
             <ButtonBar HBox.hgrow="ALWAYS">
                 <buttons>
                     <Button text="save" fx:id="saveButton"/>

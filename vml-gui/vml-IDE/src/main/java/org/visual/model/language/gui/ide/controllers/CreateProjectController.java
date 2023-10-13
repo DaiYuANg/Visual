@@ -40,6 +40,7 @@ public class CreateProjectController implements Initializable {
 
     @FXML
     public Button saveButton;
+    public ScrollPane projectScrollArea;
 
     @FXML
     private HBox hbox;
@@ -69,6 +70,8 @@ public class CreateProjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bindEvent();
+        projectView.setMinWidth(Control.USE_PREF_SIZE);
+        projectView.setPrefWidth(Control.USE_COMPUTED_SIZE);
         projectView.setCellFactory(new ProjectCellFactory());
         projectView.getItems().addAll(projectManager.historyProjects().stream().map(Project::getName).toList());
     }

@@ -8,6 +8,12 @@
   //  -fx-border-width: 1px;
 }
 
+.debug{
+    -fx-border-color: red;
+    -fx-border-radius: 15 15 15 15;
+    -fx-border-width: 1px;
+}
+
 #rootVBox {
   -fx-background-radius: 15 15 15 15;
   -fx-border-radius: 15 15 15 15;
