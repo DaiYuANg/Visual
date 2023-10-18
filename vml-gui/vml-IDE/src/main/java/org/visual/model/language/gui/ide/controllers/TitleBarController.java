@@ -2,6 +2,8 @@ package org.visual.model.language.gui.ide.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -20,6 +22,9 @@ public class TitleBarController implements Initializable {
 	public Button closeButton;
 
 	public HBox common;
+
+	@Inject
+	private Stage mainStage;
 
 	private double xOffset = 0;
 	private double yOffset = 0;
@@ -78,6 +83,7 @@ public class TitleBarController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		common.managedProperty().bind(common.visibleProperty());
-		common.setVisible(false);
+		common.setVisible(true);
+		System.err.println(mainStage);
 	}
 }

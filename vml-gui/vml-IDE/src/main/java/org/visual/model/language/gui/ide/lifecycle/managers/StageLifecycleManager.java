@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.language.gui.ide.event.fx.handlers.OnCloseRequestHandler;
 import org.visual.model.language.gui.ide.lifecycle.LifecycleManager;
@@ -14,7 +15,7 @@ import org.visual.model.language.gui.ide.lifecycle.LifecycleManager;
 public class StageLifecycleManager implements LifecycleManager {
 
 	@Inject
-	private Stage stage;
+	private Stage mainStage;
 
 	private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 
@@ -31,28 +32,23 @@ public class StageLifecycleManager implements LifecycleManager {
 	}
 
 	private void setOnClose() {
-		stage.setOnCloseRequest(new OnCloseRequestHandler(stage));
+		mainStage.setOnCloseRequest(new OnCloseRequestHandler(mainStage));
 	}
 
 	private void setView() {
-		stage.centerOnScreen();
-		stage.setTitle(System.getProperty("application.name"));
-		stage.setWidth(bounds.getWidth() * 0.5);
-		stage.setHeight(bounds.getHeight() * 0.6);
+		mainStage.initStyle(StageStyle.UNDECORATED);
+		mainStage.centerOnScreen();
+		mainStage.setTitle(System.getProperty("application.name"));
+		mainStage.setWidth(bounds.getWidth() * 0.5);
+		mainStage.setHeight(bounds.getHeight() * 0.6);
 	}
 
 	private void listenResizeAndPosition() {
-		stage.widthProperty().addListener((observable, oldValue, newValue) -> {
-			log.info(newValue.toString());
-		});
+		mainStage.widthProperty().addListener((observable, oldValue, newValue) -> log.info(newValue.toString()));
 
-		stage.heightProperty().addListener((observable, oldValue, newValue) -> {
-			log.info(newValue.toString());
-		});
-		stage.xProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("X 坐标位置变化：从 " + oldValue + " 到 " + newValue);
-		});
-		stage.yProperty().addListener((observable, oldValue, newValue) -> {
+		mainStage.heightProperty().addListener((observable, oldValue, newValue) -> log.info(newValue.toString()));
+		mainStage.xProperty().addListener((observable, oldValue, newValue) -> System.out.println("X 坐标位置变化：从 " + oldValue + " 到 " + newValue));
+		mainStage.yProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Y 坐标位置变化：从 " + oldValue + " 到 " + newValue);
 		});
 	}
