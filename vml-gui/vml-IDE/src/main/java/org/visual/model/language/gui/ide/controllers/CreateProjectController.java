@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -81,7 +82,7 @@ public class CreateProjectController implements Initializable {
         separator.setOnMousePressed(this::onSeparatorPressed);
         separator.setOnMouseDragged(this::onSeparatorDragged);
         separator.setOnMouseReleased(this::onSeparatorReleased);
-        saveButton.setOnMouseClicked(event -> eventBus.publish("clickSetting", ""));
+        saveButton.setOnMouseClicked(event -> eventBus.publish("changeScene", ""));
     }
 
     private void onSeparatorPressed(@NotNull MouseEvent event) {

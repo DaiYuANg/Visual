@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import io.github.eckig.grapheditor.core.view.GraphEditorContainer?>
 <VBox fx:id="rootVBox" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       stylesheets="@styles/Application.css"
@@ -16,9 +17,9 @@
         </left>
         <center>
             <HBox VBox.vgrow="ALWAYS">
-                <fx:include source="Graphics.fxml" />
+                <fx:include source="Graphics.fxml"/>
                 <AnchorPane VBox.vgrow="ALWAYS">
-                    <Label text="123" />
+                    <GraphEditorContainer prefWidth="500" minHeight="500"/>
                 </AnchorPane>
             </HBox>
         </center>

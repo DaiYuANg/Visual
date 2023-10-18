@@ -26,7 +26,7 @@ public class SettingsViewStage implements ISettingView {
 	public SettingsViewStage(@NotNull EventBus eventBus) {
 		this.eventBus = eventBus;
 		initStage();
-		eventBus.consumer("clickSetting", event -> Platform.runLater(this::openSettings));
+		eventBus.consumer("xxx", event -> Platform.runLater(this::openSettings));
 	}
 
 	private void initStage() {

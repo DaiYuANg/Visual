@@ -38,6 +38,7 @@ dependencies {
     testImplementation("org.testfx:testfx-junit5:4.0.17")
     testImplementation("io.vertx:vertx-junit5:$vertxVersion")
     annotationProcessor("io.ebean:querybean-generator:13.15.0-jakarta")
+    implementation("io.github.eckig.grapheditor:grapheditor-core:19.0.0")
 }
 
 application {

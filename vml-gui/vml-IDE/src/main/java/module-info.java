@@ -30,6 +30,9 @@ module org.visual.model.language.gui.ide {
 	requires io.ebean.migration;
 	requires com.fasterxml.jackson.databind;
 	requires org.visual.model.gui.components;
+	requires io.github.eckig.grapheditor.api;
+	requires io.github.eckig.grapheditor.model;
+	requires io.github.eckig.grapheditor.core;
 
 	opens org.visual.model.language.gui.ide to javafx.fxml, com.google.guice;
 
