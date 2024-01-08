@@ -1,3 +1,10 @@
+import com.diffplug.gradle.spotless.SpotlessPlugin
+import io.freefair.gradle.plugins.lombok.LombokPlugin
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
+val javaVersion :String by project
 plugins {
   java
   checkstyle
@@ -6,12 +13,14 @@ plugins {
   id("io.freefair.lombok") apply false
   id("com.diffplug.spotless")
   id("me.champeau.jmh") version "0.7.1"
+  kotlin("jvm")
+  kotlin("plugin.lombok") apply false
 }
 
 allprojects {
   repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
     gradlePluginPortal()
     google()
     maven { setUrl("https://jitpack.io") }
@@ -24,10 +33,12 @@ allprojects {
 
 subprojects {
   apply {
-    plugin("java")
-    plugin("idea")
-    plugin("io.freefair.lombok")
-    plugin("com.diffplug.spotless")
+    apply<KotlinPluginWrapper>()
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply<JavaPlugin>()
+    apply<IdeaPlugin>()
+    apply<LombokPlugin>()
+    apply<SpotlessPlugin>()
   }
 
   dependencies {
@@ -41,7 +52,6 @@ subprojects {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.jetbrains:annotations:$jbAnnotationVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
-
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
@@ -55,8 +65,14 @@ subprojects {
   }
 
   java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    targetCompatibility = JavaVersion.toVersion(javaVersion)
+  }
+
+  kotlin{
+    target {
+      jvmToolchain(javaVersion.toInt())
+    }
   }
 }
 

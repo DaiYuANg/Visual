@@ -1,9 +1,20 @@
+import org.openjfx.gradle.JavaFXModule
+
 plugins {
     id("org.openjfx.javafxplugin")
     id("io.freefair.sass-java") version "8.2.2"
 }
 val javafxVersion:String by project
 subprojects {
+//    configurations.matching {
+//        it.isCanBeResolved && it.name.contains("javafx")
+//    }.configureEach {
+//        attributes {
+//            attribute(Usage.USAGE_ATTRIBUTE, objects.named<Usage>(Usage.JAVA_RUNTIME))
+//            attribute(OperatingSystemFamily.OPERATING_SYSTEM_ATTRIBUTE, objects.named<OperatingSystemFamily>("mac-aarch64Runtime"))
+//            attribute(MachineArchitecture.ARCHITECTURE_ATTRIBUTE, objects.named<MachineArchitecture>("arm64"))
+//        }
+//    }
     apply {
         plugin("org.openjfx.javafxplugin")
         plugin("io.freefair.sass-java")

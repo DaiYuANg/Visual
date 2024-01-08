@@ -10,6 +10,8 @@ import io.vertx.core.eventbus.EventBus;
 import jakarta.inject.Inject;
 import java.awt.*;
 import java.util.Set;
+import java.util.concurrent.Executors;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -38,6 +40,10 @@ public class VisualModelIDE extends Application {
 
 	@Override
 	public void init() {
+		val e = Executors.newVirtualThreadPerTaskExecutor();
+		e.submit(()->{
+			log.info("virtual");
+		});
 		log.info("Visual Model init");
 		Platform.runLater(() -> DIContainer.INSTANCE.getInjector().injectMembers(this));
 //		Boolean theme = Boolean
