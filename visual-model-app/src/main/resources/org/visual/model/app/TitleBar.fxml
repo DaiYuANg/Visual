@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import org.visual.model.ui.bar.SystemMenuBar?>
+<?import org.visual.model.ui.bar.TitleBar?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+<?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.StackPane?>
+<TitleBar xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 0">
+    <SystemMenuBar>
+        <Menu text="File">
+            <MenuItem fx:id="newProject" text="New Project"/>
+            <MenuItem text="Open"/>
+            <MenuItem text="Save"/>
+            <MenuItem text="Settings"/>
+            <MenuItem text="Exit"/>
+        </Menu>
+        <Menu text="Edit">
+            <MenuItem text="New Project"/>
+            <MenuItem text="Open"/>
+            <MenuItem text="Save"/>
+            <MenuItem text="Exit"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="New Project"/>
+            <MenuItem text="Open"/>
+            <MenuItem text="Save"/>
+            <MenuItem text="Exit"/>
+        </Menu>
+    </SystemMenuBar>
+    <ToolBar styleClass="transparent-background" style="-fx-padding: 0">
+        <Button text="File" styleClass="button"/>
+    </ToolBar>
+    <HBox fx:id="common" HBox.hgrow="ALWAYS" alignment="BASELINE_RIGHT">
+        <padding>
+            <Insets/>
+        </padding>
+        <Button styleClass="circular-button">
+            <graphic>
+                <Circle radius="6" fill="red" stroke="BLACK"/>
+            </graphic>
+        </Button>
+        <Button styleClass="circular-button">
+            <graphic>
+                <Circle radius="6" fill="yellow" stroke="BLACK"/>
+            </graphic>
+        </Button>
+        <Button styleClass="circular-button">
+            <graphic>
+                <StackPane>
+                    <Circle radius="6" styleClass="circle" />
+                    <!-- 初始状态的文本 -->
+                    <Label text="X" styleClass="icon-label" />
+                </StackPane>
+<!--                <Circle radius="6" fill="springgreen" stroke="BLACK"/>-->
+            </graphic>
+        </Button>
+        <Button>
+
+        </Button>
+        <Button>
+            <graphic>
+                <!--                    <FontIcon iconLiteral="far-window-maximize" iconSize="64"/>-->
+            </graphic>
+        </Button>
+        <Button styleClass="flat-button">
+            <graphic>
+                <FontIcon iconLiteral="fltfal-dismiss-24" iconSize="20"/>
+            </graphic>
+        </Button>
+    </HBox>
+</TitleBar>

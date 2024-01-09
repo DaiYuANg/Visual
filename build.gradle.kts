@@ -1,4 +1,6 @@
 import io.freefair.gradle.plugins.lombok.LombokPlugin
+import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
+import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -6,10 +8,10 @@ plugins {
     checkstyle
     jacoco
     idea
-    kotlin("jvm")
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
 //    id("com.diffplug.spotless")
+    alias(libs.plugins.plantuml)
     id("me.champeau.jmh") version "0.7.1"
 }
 
@@ -21,17 +23,17 @@ allprojects {
         google()
     }
 }
-
+val plantUMLSuffix = "puml"
 subprojects {
     apply {
-        apply(plugin = "org.jetbrains.kotlin.jvm")
         apply<JavaLibraryPlugin>()
         apply<IdeaPlugin>()
         apply<LombokPlugin>()
+        apply<PlantUmlPlugin>()
     }
 
     dependencies {
-        compileOnly(rootProject.libs.jetbrainsAnnotation)
+        implementation(rootProject.libs.jetbrainsAnnotation)
         implementation(rootProject.libs.slf4j)
         implementation(rootProject.libs.logback)
         testImplementation(rootProject.libs.junitBom)
@@ -51,20 +53,14 @@ subprojects {
 //    val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 //    val details = versionDetails()
 //    version = details.lastTag
-
+    System.err.println(group)
     tasks.compileJava {
         options.encoding = StandardCharsets.UTF_8.name()
     }
 
-    tasks.test { // See 5️⃣
-        useJUnitPlatform() // JUnitPlatform for tests. See 6️⃣
+    tasks.test {
+        useJUnitPlatform()
     }
-
-//    tasks.compileJava {
-//        options.compilerArgumentProviders.add(CommandLineArgumentProvider {
-//            listOf("--patch-module", "${group}=${sourceSets["main"].output.asPath}")
-//        })
-//    }
 
     java {
 //        modularity.inferModulePath.set(true)
@@ -72,10 +68,30 @@ subprojects {
         targetCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
     }
 
-    kotlin {
-        target {
-            jvmToolchain(rootProject.libs.versions.jdk.get().toInt())
-        }
+    classDiagrams {
+        val glob = "org.${project.name.replace("-", ".")}.**"
+        val internal = "internal_class_diagram"
+        val full = "full_class_diagram"
+        @Suppress("UNCHECKED_CAST")
+        diagram(
+            internal,
+            closureOf<ClassDiagramsExtension.ClassDiagram> {
+                include(packages().withNameLike(glob))
+                writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
+            }
+                    as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+        )
+
+        @Suppress("UNCHECKED_CAST")
+        diagram(
+            full,
+            closureOf<ClassDiagramsExtension.ClassDiagram> {
+                include(packages().withNameLike(glob))
+                include(packages().recursive())
+                writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
+            }
+                    as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+        )
     }
 }
 

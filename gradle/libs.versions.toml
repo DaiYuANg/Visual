@@ -1,6 +1,5 @@
 [versions]
 jdk = "21"
-kotlin = "1.9.22"
 apacheCommonIO = "2.14.0"
 directories = "26"
 ikonliJavafx = "12.3.1"
@@ -22,9 +21,13 @@ spotless = "6.23.3"
 gitVersion = "3.0.0"
 jreleaser = "1.9.0"
 antlr = "4.5"
-koin = "3.5.3"
-kotlinSerializationJson= "1.6.0"
-kotlinCoroutines="1.8.0-RC2"
+oshi = "6.4.10"
+avajeInject = "9.10"
+guice = "7.0.0"
+apacheCommonLang3 = "3.14.0"
+gestalt = "0.24.3"
+guava = "33.0.0-jre"
+plantuml = "2.1.3"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
@@ -33,19 +36,19 @@ lombok = { id = "io.freefair.lombok", version.ref = "freefairPlugin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitVersion = { id = "com.palantir.git-version", version.ref = "gitVersion" }
 jreleaser = { id = "org.jreleaser", version.ref = "jreleaser" }
+plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
 
 [libraries]
-koinBom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
-koinCore = { group = "io.insert-koin", name = "koin-core-jvm", version.ref = "koin" }
-koinCoreCoroutines = { group = "io.insert-koin", name = "koin-core-coroutines", version.ref = "koin" }
-koinTest = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
-koinSlf4j = { group = "io.insert-koin", name = "koin-logger-slf4j", version.ref = "koin" }
 apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "apacheCommonIO" }
+apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "apacheCommonLang3" }
 directories = { group = "dev.dirs", name = "directories", version.ref = "directories" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version.ref = "oshi" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
+fluentuiIcon = { group = "org.kordamp.ikonli", name = "ikonli-fluentui-pack", version.ref = "ikonli" }
 devicons = { group = "org.kordamp.ikonli", name = "ikonli-devicons-pack", version.ref = "ikonli" }
 fontawesome5 = { group = "org.kordamp.ikonli", name = "ikonli-fontawesome5-pack", version.ref = "ikonli" }
 groovy = { group = "org.apache.groovy", name = "groovy-all", version.ref = "groovy" }
@@ -64,5 +67,13 @@ mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "moc
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version.ref = "caffine" }
 antlr = { group = "org.antlr", name = "antlr4", version.ref = "antlr" }
-kotlinSerializationJson = {group="org.jetbrains.kotlinx",name="kotlinx-serialization-json",version.ref="kotlinSerializationJson"}
-kotlinCoroutines={group="org.jetbrains.kotlinx",name="kotlinx-coroutines-core",version.ref="kotlinCoroutines"}
+avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
+avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
+avajeInjectTest = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
+guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
+guiceAssistedinject = { group = "com.google.inject.extensions", name = "guice-assistedinject", version.ref = "guice" }
+guiceThrowingproviders = { group = "com.google.inject.extensions", name = "guice-throwingproviders", version.ref = "guice" }
+guiceTestlib = { group = "com.google.inject.extensions", name = "guice-testlib", version.ref = "guice" }
+gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
+gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
