@@ -18,7 +18,7 @@ class VisualModelEditor : Application() {
     }
 
     override fun start(p0: Stage?) {
-        FXMLLoader().load<Parent>()
+//        FXMLLoader().load<Parent>()
         val root = Pane()
         p0?.apply {
             title = "My first chart!"
