@@ -1,11 +1,8 @@
-package org.visual.model.editor
+@file:JvmName("VisualModelEditor")
+package org.visual.model.ui
 
-import com.sun.javafx.fxml.FXMLLoaderHelper
 import javafx.application.Application
-import javafx.fxml.FXMLLoader
-import javafx.scene.Parent
 import javafx.scene.Scene
-import javafx.scene.control.Menu
 import javafx.scene.layout.Pane
 import javafx.stage.Stage
 import org.slf4j.LoggerFactory
@@ -20,15 +17,18 @@ class VisualModelEditor : Application() {
     override fun start(p0: Stage?) {
 //        FXMLLoader().load<Parent>()
         val root = Pane()
+//        val sb = SystemManuBar()
+//        val menu = Menu()
+//        val item = MenuItem()
+//        item.text = "test"
+//        menu.items.add(item)
+//        sb.menus.add(menu)
+//        root.children.add(sb)
         p0?.apply {
-            title = "My first chart!"
+            title = "VisualModel"
             scene = (Scene(root, width, height))
             show()
         }
     }
-
 }
 
-fun main() {
-    Application.launch(VisualModelEditor::class.java)
-}

@@ -78,3 +78,5 @@ rootProject.name = "VisualModel"
 //include("vml-server")
 include("visual-model-ui")
 include("visual-model-sql")
+include("visual-model-ui-component")
+include("shared")
