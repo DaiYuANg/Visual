@@ -2,6 +2,7 @@ plugins {
     `kotlin-extra`
     alias(libs.plugins.javafx)
     application
+//    id("org.javamodularity.moduleplugin") version "1.8.12"
 }
 
 javafx {
@@ -16,7 +17,7 @@ javafx {
 }
 
 application{
-    mainClass.set("org.visual.model.ui.Main")
+    mainClass.set("org.visual.model.ui.MainKt")
     mainModule.set("org.visual.model.ui")
 }
 
@@ -32,7 +33,7 @@ java {
 }
 
 tasks.compileJava {
-    options.compilerArgumentProviders.add(CommandLineArgumentProvider {
-        listOf("--patch-module", "org.visual.model.ui=${sourceSets["main"].output.asPath}")
-    })
+//    options.compilerArgumentProviders.add(CommandLineArgumentProvider {
+//        listOf("--patch-module", "org.visual.model.ui=${sourceSets["main"].output.asPath}")
+//    })
 }

@@ -2,6 +2,6 @@ package org.visual.model.ui
 
 import javafx.application.Application
 
-fun main() {
-    Application.launch(VisualModelEditor::class.java)
+fun main(vararg arg: String) {
+    Application.launch(VisualModelEditor::class, arg)
 }
