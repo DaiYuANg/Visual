@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.javafx)
+    `java-library`
+    kotlin("jvm")
 }
 
 group = "org.visual.model.ui.component"
@@ -27,3 +29,14 @@ dependencies {
     api(libs.fluentuiIcon)
 }
 
+
+java {
+    modularity.inferModulePath.set(true)
+}
+
+tasks.compileJava{
+    options.compilerArgumentProviders.add(CommandLineArgumentProvider {
+        // Provide compiled Kotlin classes to javac – needed for Java/Kotlin mixed sources to work
+        listOf("--patch-module", "org.visual.model.ui=${sourceSets["main"].output.asPath}")
+    })
+}

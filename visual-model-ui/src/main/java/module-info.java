@@ -1,4 +1,4 @@
-module org.visual.model.ui.component {
+module org.visual.model.ui {
     requires javafx.graphics;
     requires javafx.controls;
     requires static lombok;
@@ -9,6 +9,7 @@ module org.visual.model.ui.component {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
     requires org.kordamp.ikonli.fluentui;
+    requires kotlin.stdlib;
 
     exports org.visual.model.ui;
     exports org.visual.model.ui.window;

@@ -9,7 +9,8 @@ module org.visual.model.app {
     requires com.google.guice.extensions.throwingproviders;
     requires jakarta.inject;
     requires javafx.fxml;
-    requires org.visual.model.ui.component;
+    requires org.visual.model.ui;
+    requires kotlin.stdlib;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;

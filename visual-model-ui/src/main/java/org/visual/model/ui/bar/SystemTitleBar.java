@@ -5,7 +5,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import lombok.Getter;
 import lombok.ToString;
-import org.visual.model.ui.util.SystemUtil;
+import org.visual.model.ui.TitleBar;
+
+import static org.visual.model.ui.SystemKt.detect;
 
 @Getter
 @ToString
@@ -13,7 +15,7 @@ public class SystemTitleBar extends HBox {
 
     private final HBox rootBox = new HBox();
 
-    private final TitleBar titleBar;
+    private final org.visual.model.ui.TitleBar titleBar;
 
     {
         rootBox.setAlignment(Pos.BASELINE_RIGHT);
@@ -21,7 +23,7 @@ public class SystemTitleBar extends HBox {
     }
 
     public SystemTitleBar() {
-        titleBar = switch (SystemUtil.detect()) {
+        titleBar = switch (detect()) {
             case MAC -> new MacosTitleBar();
             case LINUX -> new LinuxTitleBar();
             case WINDOWS -> new WindowsTitleBar();

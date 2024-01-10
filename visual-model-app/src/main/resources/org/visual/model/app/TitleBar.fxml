@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import org.visual.model.ui.bar.SystemMenuBar?>
-<?import org.visual.model.ui.bar.TitleBar?>
+<?import org.visual.model.ui.TitleBar?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.geometry.Insets?>
 <?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>

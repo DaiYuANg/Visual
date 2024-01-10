@@ -20,8 +20,10 @@ public enum DIContainer {
 
     private final UIModule uiModule = new UIModule();
 
+
+    private final SimpleModule simpleModule = new SimpleModule();
     @Getter
-    private final Injector injector = Guice.createInjector(rootModule, uiModule);
+    private final Injector injector = Guice.createInjector(rootModule, uiModule,simpleModule);
 
     @SneakyThrows
     public Parent load(String prefix) {

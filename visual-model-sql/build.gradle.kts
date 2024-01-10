@@ -1,5 +1,6 @@
 plugins {
     antlr
+    `java-library`
 }
 
 group = "org.visual.model.sql"

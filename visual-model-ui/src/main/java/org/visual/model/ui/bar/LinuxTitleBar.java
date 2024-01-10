@@ -1,4 +1,6 @@
 package org.visual.model.ui.bar;
 
-public class LinuxTitleBar extends TitleBar{
+import org.visual.model.ui.TitleBar;
+
+public class LinuxTitleBar extends TitleBar {
 }

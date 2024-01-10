@@ -98,3 +98,4 @@ javadoc/
 cwallet.sso.lck
 .idea
 *.db
+.kotlin

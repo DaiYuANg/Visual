@@ -1,11 +1,11 @@
 package org.visual.model.ui.bar;
 
 
-import javafx.scene.control.Button;
 import lombok.val;
 import org.kordamp.ikonli.fluentui.FluentUiFilledAL;
 import org.kordamp.ikonli.fluentui.FluentUiFilledMZ;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.visual.model.ui.TitleBar;
 import org.visual.model.ui.control.IconButton;
 
 public class WindowsTitleBar extends TitleBar {
