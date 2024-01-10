@@ -13,7 +13,9 @@ public class Test extends Application {
     public void start(@NotNull Stage stage) throws Exception {
         val panningWindow = new PanningWindow();
         panningWindow.getChildren().add(new Button("test"));
-        stage.setScene(new Scene(new StackPane(panningWindow), 100, 100));
+        val scene = new Scene(new StackPane(panningWindow), 600, 600);
+        scene.getStylesheets().add("/window.css");
+        stage.setScene(scene);
         stage.show();
     }
 }

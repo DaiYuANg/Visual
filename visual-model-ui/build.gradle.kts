@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.javafx)
 }
@@ -16,6 +15,7 @@ javafx {
         "javafx.swing",
         "javafx.media",
     )
+    configurations = arrayOf("implementation", "testImplementation")
 }
 
 dependencies {

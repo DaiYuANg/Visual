@@ -17,9 +17,4 @@ public class TestPanningWindow extends Application {
         stage.setScene(new Scene(new StackPane(panningWindow), 100, 100));
         stage.show();
     }
-
-    @Test
-    public void should_contain_button_with_text() {
-//        FxAssert.verifyThat(".button", LabeledMatchers.hasText("click me!"));
-    }
 }

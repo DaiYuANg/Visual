@@ -41,7 +41,7 @@ buildCache {
 //  }
 //}
 
-rootProject.name = "VisualModel"
+rootProject.name = "visual-model"
 include("visual-model-app")
 include("visual-model-sql")
 include("visual-model-ui")

@@ -1,10 +1,12 @@
 package org.visual.model.ui.window;
 
+import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Orientation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -18,7 +20,11 @@ import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
+import javafx.stage.WindowEvent;
 import lombok.val;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class PanningWindow extends Region {
     private static final float SCALE_MIN = 0.5f;
@@ -77,7 +83,8 @@ public class PanningWindow extends Region {
 
         scrollY.valueProperty().bindBidirectional(contentY);
         scrollY.setOrientation(Orientation.VERTICAL);
-        scrollY.getStyleClass().add("graph-editor-scroll-bar"); //$NON-NLS-1$
+        scrollY.getStyleClass().add("graph-editor-scroll-bar"); //$NON-NLS-1$\
+//        this.getParent().getStylesheets().add("window");
     }
 
     public void panTo(final double x, final double y) {

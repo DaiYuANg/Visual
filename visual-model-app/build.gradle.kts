@@ -14,6 +14,7 @@ javafx {
         "javafx.swing",
         "javafx.media",
     )
+    configurations = arrayOf("implementation", "testImplementation")
 }
 
 application {

@@ -1,4 +1,4 @@
-module orgvisual.model.app {
+module org.visual.model.app {
     requires javafx.graphics;
     requires static lombok;
     requires org.slf4j;
