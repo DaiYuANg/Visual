@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.javafx)
     application
     java
-    kotlin("jvm")
+    `kotlin-project`
     id("org.javamodularity.moduleplugin") version "1.8.12"
 }
 

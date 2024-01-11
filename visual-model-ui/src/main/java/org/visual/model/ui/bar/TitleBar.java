@@ -7,7 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.val;
-import org.apache.commons.lang3.SystemUtils;
 import org.jetbrains.annotations.NotNull;
 
 public class TitleBar extends HBox {
@@ -35,10 +34,10 @@ public class TitleBar extends HBox {
 
     protected void close() {
         val stage = getStage();
-        if (SystemUtils.IS_OS_MAC) {
-            stage.setIconified(true);
-            return;
-        }
+//        if () {
+//            stage.setIconified(true);
+//            return;
+//        }
         getStage().close();
     }
 

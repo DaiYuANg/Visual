@@ -1,6 +1,5 @@
-package org.visual.model.ui
+package org.visual.model.shared
 
-import org.apache.commons.lang3.SystemUtils
 import org.apache.commons.lang3.SystemUtils.*
 
 fun detect(): OperationSystem {

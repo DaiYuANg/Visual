@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import org.visual.model.ui.TitleBar;
 
-import static org.visual.model.ui.SystemKt.detect;
+import static org.visual.model.shared.SystemKt.detect;
+
 
 @Getter
 @ToString

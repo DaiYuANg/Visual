@@ -6,7 +6,8 @@ import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.stage.Screen
 import javafx.stage.Stage
-import org.apache.commons.lang3.SystemUtils
+import org.visual.model.shared.OperationSystem
+import org.visual.model.shared.detect
 
 open class TitleBar : HBox() {
     private val bounds: Rectangle2D = Screen.getPrimary().visualBounds
@@ -32,7 +33,7 @@ open class TitleBar : HBox() {
 
     protected fun close() {
         val stage = stage
-        if (SystemUtils.IS_OS_MAC) {
+        if (detect() == OperationSystem.MAC) {
             stage.isIconified = true
             return
         }

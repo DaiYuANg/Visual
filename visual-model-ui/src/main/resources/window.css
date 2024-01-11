@@ -30,3 +30,6 @@
 .graph-editor-scroll-bar .thumb:hover {
     -fx-opacity: 0.5;
 }
+.graph-editor-grid {
+    -grid-color: lightgray;
+}

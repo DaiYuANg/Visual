@@ -1,4 +1,4 @@
-package org.visual.model.ui
+package org.visual.model.shared
 
 enum class OperationSystem {
     MAC,
