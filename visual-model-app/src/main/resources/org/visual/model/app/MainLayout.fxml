@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import org.visual.model.ui.bar.SystemMenuBar?>
-<?import org.visual.model.ui.TitleBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
-<?import org.visual.model.ui.TestButton?>
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.model.app.controller.MainLayoutController"
@@ -17,6 +9,5 @@
     <padding>
         <Insets/>
     </padding>
-    <TestButton />
     <fx:include source="TitleBar.fxml" />
 </VBox>

@@ -1,12 +1,14 @@
 package org.visual.model.ui.layout
 
 import com.google.common.collect.HashBasedTable
+import javafx.application.Platform
 import javafx.beans.property.DoubleProperty
 import javafx.beans.property.DoublePropertyBase
 import javafx.css.CssMetaData
 import javafx.css.StyleConverter
 import javafx.css.StyleableObjectProperty
 import javafx.css.StyleableProperty
+import javafx.scene.CacheHint
 import javafx.scene.layout.Region
 import javafx.scene.paint.Color
 import javafx.scene.shape.LineTo
@@ -20,7 +22,7 @@ import org.visual.model.shared.KSlf4j
 @KSlf4j
 data class GirdBackground @JvmOverloads constructor(
     private val halfPixelOffset: Double = -0.5,
-    private val defaultGirdColor: Color = Color.GRAY
+    private val defaultGirdColor: Color = Color.GRAY,
 ) : Region() {
     private val girdColorSelector = "-grid-color"
     private val girdColorPropertyName = "gridColor"
@@ -99,6 +101,8 @@ data class GirdBackground @JvmOverloads constructor(
         styleClass.add(internalStyleClass)
         mGrid.strokeProperty().bind(mGridColor)
         children.add(mGrid)
+        isCacheShape = true
+        cacheHint = CacheHint.SPEED
     }
 
     override fun resize(pWidth: Double, pHeight: Double) {
@@ -106,7 +110,9 @@ data class GirdBackground @JvmOverloads constructor(
         if (mLastHeight != pHeight || mLastWidth != pWidth) {
             mLastHeight = pHeight
             mLastWidth = pWidth
-            draw(pWidth, pHeight)
+            Platform.runLater {
+                draw(pWidth, pHeight)
+            }
         }
     }
 

@@ -17,4 +17,5 @@ module org.visual.model.ui {
     exports org.visual.model.ui.window;
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.layout;
+    exports org.visual.model.ui.widget;
 }

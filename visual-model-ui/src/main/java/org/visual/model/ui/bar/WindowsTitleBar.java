@@ -16,7 +16,7 @@ public class WindowsTitleBar extends TitleBar {
 
     private final IconButton maximizeButton = new IconButton(FluentUiFilledMZ.MAXIMIZE_24);
 
-    {
+    static {
         val frontendIcon = new FontIcon(FluentUiFilledMZ.MAXIMIZE_16);
         val behind = new FontIcon(FluentUiFilledMZ.MAXIMIZE_16);
     }
