@@ -2,6 +2,7 @@ plugins{
     kotlin("jvm")
     kotlin("plugin.allopen")
     kotlin("plugin.lombok")
+    kotlin("kapt")
 }
 
 dependencies{
@@ -19,3 +20,15 @@ tasks.compileJava{
         listOf("--patch-module", "${project.group}=${sourceSets["main"].output.asPath}")
     })
 }
+
+kotlin{
+    jvmToolchain(jdkVersion = 21)
+    compilerOptions {
+        freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
+}
+
+kapt {
+    keepJavacAnnotationProcessors = true
+}
+

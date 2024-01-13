@@ -1,3 +1,19 @@
 * {
     -fx-radius-default: 10px;
 }
+
+* {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+.hover-button:hover {
+    -fx-background-color: #4CAF50; /* 设置hover时的背景颜色 */
+    -fx-text-fill: white; /* 设置hover时的文本颜色 */
+    -fx-border-color: #4CAF50; /* 设置hover时的边框颜色 */
+}
+
+.root-window {
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-radius: 15 15 15 15;
+}

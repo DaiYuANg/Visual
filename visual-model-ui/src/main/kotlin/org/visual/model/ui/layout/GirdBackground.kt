@@ -68,7 +68,6 @@ data class GirdBackground @JvmOverloads constructor(
             override fun isSettable(node: GirdBackground): Boolean {
                 return !node.mGridColor.isBound
             }
-
             override fun getStyleableProperty(node: GirdBackground): StyleableProperty<Color> {
                 return node.mGridColor
             }

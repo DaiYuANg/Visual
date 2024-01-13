@@ -23,11 +23,11 @@
 /*}*/
 
 .flat-button {
-  -fx-background-color: transparent;
-  -fx-background-insets: 0, 0, 1, 2;
-  -fx-background-radius: 0, 0, 0, 0;
-  -fx-border-color: transparent;
-  -fx-padding: 0.416667em 0.833333em 0.416667em 0.833333em; /* 根据需要调整边距 */
+  /*-fx-background-color: transparent;*/
+  /*-fx-background-insets: 0, 0, 1, 2;*/
+  /*-fx-background-radius: 0, 0, 0, 0;*/
+  /*-fx-border-color: transparent;*/
+  /*-fx-padding: 0.416667em 0.833333em 0.416667em 0.833333em; !* 根据需要调整边距 *!*/
 }
 
 .radio-button:selected .radio .dot {

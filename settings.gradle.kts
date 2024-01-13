@@ -34,15 +34,17 @@ buildCache {
     }
 }
 
-//gradleEnterprise {
-//  buildScan {
-//    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-//    termsOfServiceAgree = "yes"
-//  }
-//}
+gradleEnterprise {
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
+}
 
 rootProject.name = "visual-model"
 include("visual-model-app")
-include("visual-model-sql")
+include("visual-model-database")
 include("visual-model-ui")
 include("visual-model-shared")
+include("visual-model-git")
+include("visual-model-i18n")

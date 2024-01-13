@@ -16,6 +16,12 @@ module org.visual.model.app {
     requires org.kordamp.ikonli.fontawesome5;
     requires org.github.gestalt.core;
     requires org.github.gestalt.toml;
+    requires org.github.gestalt.guice;
+    requires org.github.gestalt.config.kotlin;
+    requires javafx.controls;
+    requires java.logging;
+    requires org.visual.model.shared;
+    requires dev.dirs;
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
     exports org.visual.model.app.controller to
@@ -23,4 +29,9 @@ module org.visual.model.app {
             javafx.graphics,
             com.google.guice;
     exports org.visual.model.app.provider to com.google.guice;
+    exports org.visual.model.app.module to com.google.guice;
+    exports org.visual.model.app.config to kotlin.reflect;
+
+    opens org.visual.model.app.controller to javafx.fxml,com.google.guice;
+    opens org.visual.model.app.module to com.google.guice;
 }

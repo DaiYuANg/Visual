@@ -1,3 +1,4 @@
+import com.palantir.gradle.gitversion.VersionDetails
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
@@ -28,7 +29,7 @@ val plantUMLSuffix = "puml"
 subprojects {
 
     apply<BasePlugin>()
-    if (!project.name.contains("theme")){
+    if (!project.name.contains("theme")) {
         apply {
             apply<IdeaPlugin>()
             apply<LombokPlugin>()
@@ -55,9 +56,6 @@ subprojects {
         }
 
         group = "org." + project.name.replace("-", ".")
-//    val versionDetails: groovy.lang.Closure<VersionDetails> by extra
-//    val details = versionDetails()
-//    version = details.lastTag
         tasks.compileJava {
             options.encoding = StandardCharsets.UTF_8.name()
         }

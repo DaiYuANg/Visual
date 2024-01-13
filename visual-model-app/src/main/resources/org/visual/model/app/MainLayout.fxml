@@ -2,12 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
+<?import org.visual.model.ui.bar.CommonTitleBar?>
+<?import org.visual.model.ui.bar.SystemTitleBar?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.model.app.controller.MainLayoutController"
-      prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0">
+      prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
     <padding>
         <Insets/>
     </padding>
-    <fx:include source="TitleBar.fxml" />
+    <SystemTitleBar fx:id="titleBar"/>
+<!--    <fx:include source="TitleBar.fxml" />-->
 </VBox>

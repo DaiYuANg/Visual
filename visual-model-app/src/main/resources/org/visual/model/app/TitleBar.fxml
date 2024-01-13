@@ -3,14 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import org.visual.model.ui.bar.SystemMenuBar?>
-<?import org.visual.model.ui.TitleBar?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.geometry.Insets?>
-<?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.layout.StackPane?>
-<TitleBar xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 0">
+<?import org.visual.model.ui.bar.CommonTitleBar?>
+<CommonTitleBar xmlns="http://javafx.com/javafx"
+                xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 0"
+                fx:controller="org.visual.model.app.controller.TitleBarController"
+>
     <SystemMenuBar>
         <Menu text="File">
             <MenuItem fx:id="newProject" text="New Project"/>
@@ -49,28 +50,10 @@
                 <Circle radius="6" fill="yellow" stroke="BLACK"/>
             </graphic>
         </Button>
-        <Button styleClass="circular-button">
-            <graphic>
-                <StackPane>
-                    <Circle radius="6" styleClass="circle" />
-                    <!-- 初始状态的文本 -->
-                    <Label text="X" styleClass="icon-label" />
-                </StackPane>
-<!--                <Circle radius="6" fill="springgreen" stroke="BLACK"/>-->
-            </graphic>
-        </Button>
-        <Button>
-
-        </Button>
-        <Button>
-            <graphic>
-                <!--                    <FontIcon iconLiteral="far-window-maximize" iconSize="64"/>-->
-            </graphic>
-        </Button>
-        <Button styleClass="flat-button">
+        <Button styleClass="flat-button" onAction="#close">
             <graphic>
                 <FontIcon iconLiteral="fltfal-dismiss-24" iconSize="20"/>
             </graphic>
         </Button>
     </HBox>
-</TitleBar>
+</CommonTitleBar>
