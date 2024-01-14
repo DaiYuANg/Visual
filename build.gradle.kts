@@ -62,6 +62,11 @@ subprojects {
             options.encoding = StandardCharsets.UTF_8.name()
         }
 
+        tasks.jar{
+            enabled = true
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+
         tasks.test {
             useJUnitPlatform()
         }

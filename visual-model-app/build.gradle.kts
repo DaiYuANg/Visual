@@ -64,6 +64,9 @@ dependencies {
     implementation(projects.visualModelDatabase)
     implementation(projects.visualModelI18n)
     implementation(projects.visualModelGit)
+    implementation("info.picocli:picocli:4.7.5")
+    annotationProcessor("info.picocli:picocli-codegen:4.7.5")
+    kapt("info.picocli:picocli-codegen:4.7.5")
     testImplementation(libs.guiceTestlib)
     testImplementation(libs.javafxUnitTest)
 }
@@ -115,5 +118,15 @@ graalvmNative {
     }
     binaries.all {
         buildArgs.add("--verbose")
+    }
+}
+
+tasks.compileJava {
+    options.compilerArgs = listOf("-Aproject=${project.group}/${project.name}")
+}
+
+kapt {
+    arguments {
+        arg("project", "${project.group}/${project.name}")
     }
 }

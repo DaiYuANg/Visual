@@ -1,39 +1,28 @@
 package org.visual.model.app;
 
 import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.visual.model.app.command.OpenCommand;
+import org.visual.model.app.factory.GuiceFactory;
+import picocli.CommandLine;
 
-import static org.visual.model.ui.util.StageInspector.inspect;
-
+@CommandLine.Command(name = "VisualModel", helpCommand = true,
+        mixinStandardHelpOptions = true,
+        subcommands = OpenCommand.class
+)
 @Slf4j
-@NoArgsConstructor
-public class VisualModelApplication extends Application {
-    private final Parent rootFxml = DIContainer.INSTANCE.load("MainLayout");
-
-    private final Scene rootScene = new Scene(rootFxml);
-
-    private final Stage rootStage = DIContainer.INSTANCE.getInjector().getInstance(Stage.class);
-
-    @Override
-    public void init() {
-        rootScene.getStylesheets().addAll("/help.css", "/theme.css");
-        rootScene.setFill(Color.TRANSPARENT);
-    }
-
-    @Override
-    public void start(Stage stage) {
-        rootStage.setScene(rootScene);
-        log.info("start");
-        rootStage.show();
-        inspect(rootStage);
-    }
+public class VisualModelApplication implements Runnable {
+    private final static GuiceFactory guiceFactory = new GuiceFactory();
 
     public static void main(String[] args) {
-        Application.launch(VisualModelApplication.class, args);
+        val exitCode = new CommandLine(new VisualModelApplication(), guiceFactory).execute(args);
+        System.exit(exitCode);
+    }
+
+    @Override
+    public void run() {
+        log.info("run");
+        Application.launch(VisualModelUIApplication.class);
     }
 }

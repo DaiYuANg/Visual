@@ -3,8 +3,6 @@ module org.visual.model.sql {
     requires static lombok;
     requires org.slf4j;
     requires java.sql;
-    requires antlr4.runtime;
-    requires antlr4;
     requires org.apache.maven.resolver;
     requires org.apache.maven.resolver.impl;
     requires org.apache.maven.resolver.named;
