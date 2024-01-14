@@ -7,13 +7,12 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
-import static org.visual.model.i18n.I18nHelper.baseName;
 
 public class I18n {
     private final ResourceBundle resourceBundle;
 
     public I18n(Locale locale) {
-        this.resourceBundle = ResourceBundle.getBundle(baseName, locale);
+        this.resourceBundle = ResourceBundle.getBundle(I18nHelper.baseName, locale);
     }
 
     public String get(@NotNull I18nKeys keys) {

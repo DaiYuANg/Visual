@@ -8,7 +8,7 @@ group = "org.visual.model.ui"
 version = "unspecified"
 
 javafx {
-    version = "21"
+    version = libs.versions.javafxVersion.get()
     modules(
         "javafx.controls",
         "javafx.fxml",

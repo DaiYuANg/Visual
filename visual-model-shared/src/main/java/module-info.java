@@ -4,6 +4,5 @@ module org.visual.model.shared {
     requires org.slf4j;
     exports org.visual.model.shared;
     requires com.google.common;
-    requires com.github.benmanes.caffeine;
-
+//    requires ecli
 }

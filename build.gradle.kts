@@ -41,7 +41,9 @@ subprojects {
             implementation(rootProject.libs.jetbrainsAnnotation)
             implementation(rootProject.libs.slf4j)
             implementation(rootProject.libs.logback)
-            implementation(rootProject.libs.guava)
+            implementation(rootProject.libs.guava){
+                exclude("com.google.code.gson","gson")
+            }
             testImplementation(rootProject.libs.junitBom)
             testImplementation(platform(rootProject.libs.junitBom))
             testImplementation(rootProject.libs.junitJuiter)

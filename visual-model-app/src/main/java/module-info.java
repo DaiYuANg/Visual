@@ -9,6 +9,7 @@ module org.visual.model.app {
     requires com.google.guice.extensions.throwingproviders;
     requires jakarta.inject;
     requires javafx.fxml;
+    requires javafx.controls;
     requires org.visual.model.ui;
     requires kotlin.stdlib;
     requires org.kordamp.ikonli.core;
@@ -18,10 +19,11 @@ module org.visual.model.app {
     requires org.github.gestalt.toml;
     requires org.github.gestalt.guice;
     requires org.github.gestalt.config.kotlin;
-    requires javafx.controls;
     requires java.logging;
     requires org.visual.model.shared;
     requires dev.dirs;
+    requires org.visual.model.i18n;
+    requires org.visual.model.sql;
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
     exports org.visual.model.app.controller to

@@ -9,6 +9,7 @@ import javafx.css.StyleConverter
 import javafx.css.StyleableObjectProperty
 import javafx.css.StyleableProperty
 import javafx.scene.CacheHint
+import javafx.scene.layout.Pane
 import javafx.scene.layout.Region
 import javafx.scene.paint.Color
 import javafx.scene.shape.LineTo
@@ -23,7 +24,7 @@ import org.visual.model.shared.KSlf4j
 data class GirdBackground @JvmOverloads constructor(
     private val halfPixelOffset: Double = -0.5,
     private val defaultGirdColor: Color = Color.GRAY,
-) : Region() {
+) : Pane() {
     private val girdColorSelector = "-grid-color"
     private val girdColorPropertyName = "gridColor"
     private var mLastWidth: Double = -1.0
@@ -68,6 +69,7 @@ data class GirdBackground @JvmOverloads constructor(
             override fun isSettable(node: GirdBackground): Boolean {
                 return !node.mGridColor.isBound
             }
+
             override fun getStyleableProperty(node: GirdBackground): StyleableProperty<Color> {
                 return node.mGridColor
             }

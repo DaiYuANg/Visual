@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.cli.jvm.main
+
 plugins {
     alias(libs.plugins.javafx)
     application
@@ -7,6 +9,21 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.9.28"
 }
 
+val jvmArgs = listOf(
+    "-XX:+UseZGC",
+    "-XX:+ZGenerational",
+    "-XX:+UseCompressedClassPointers",
+    "-verbose:gc",
+    "-XX:+UseStringDeduplication",
+    "-XX:+OptimizeStringConcat",
+    "-XX:+PrintGCDetails",
+    "-XX:+UseCompressedOops",
+    "-Xnoclassgc",
+    "-XX:MaxInlineLevel=32",
+    "-XX:+AlwaysPreTouch",
+    "-XX:+TieredCompilation",
+    "-XX:SoftRefLRUPolicyMSPerMB=50"
+)
 group = "org.visual.model.app"
 
 val mainClassPath = "${group}.VisualModelApplication"
@@ -14,7 +31,7 @@ val mainClassPath = "${group}.VisualModelApplication"
 val mainModule = group
 
 javafx {
-    version = "21"
+    version = libs.versions.javafxVersion.get()
     modules(
         "javafx.controls",
         "javafx.fxml",
@@ -28,6 +45,7 @@ javafx {
 application {
     mainClass.set(mainClassPath)
     mainModule.set(group.toString())
+    applicationDefaultJvmArgs = jvmArgs
 }
 
 dependencies {
@@ -43,18 +61,20 @@ dependencies {
     implementation(libs.gestaltToml)
     implementation(libs.gestaltGuice)
     implementation(libs.gestaltKotlin)
+    implementation(projects.visualModelDatabase)
+    implementation(projects.visualModelI18n)
+    implementation(projects.visualModelGit)
     testImplementation(libs.guiceTestlib)
     testImplementation(libs.javafxUnitTest)
 }
 
 jlink {
+    options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
+    enableCds()
     launcher {
+        noConsole = true
         name = "visual-model"
-        jvmArgs = listOf(
-            "-XX:+UseZGC",
-            "-XX:+ZGenerational",
-            "-XX:+AlwaysPreTouch"
-        )
+        jvmArgs = jvmArgs
     }
     imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))
     jpackage {
