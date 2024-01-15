@@ -1,4 +1,4 @@
-module org.visual.model.sql {
+module org.visual.model.database {
     requires com.zaxxer.hikari;
     requires static lombok;
     requires org.slf4j;
@@ -13,6 +13,7 @@ module org.visual.model.sql {
     requires org.apache.maven.resolver.connector.basic;
     requires org.mapstruct;
     requires org.jetbrains.annotations;
+    requires kotlin.stdlib;
 
     exports org.visual.model.database;
 }

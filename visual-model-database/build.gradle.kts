@@ -3,7 +3,7 @@ plugins {
     `java-library`
 }
 
-group = "org.visual.model.sql"
+group = "org.visual.model.database"
 
 dependencies {
     implementation("com.zaxxer:HikariCP:5.1.0")

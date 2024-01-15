@@ -17,7 +17,7 @@ module org.visual.model.app {
     requires org.visual.model.shared;
     requires dev.dirs;
     requires org.visual.model.i18n;
-    requires org.visual.model.sql;
+    requires org.visual.model.database;
     requires io.avaje.inject;
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
