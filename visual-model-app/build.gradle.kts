@@ -50,6 +50,8 @@ application {
 
 dependencies {
     implementation(libs.directories)
+    implementation(libs.avajeInject)
+    annotationProcessor(libs.avajeInjectGenerator)
     implementation(libs.guice)
     implementation(libs.guiceAssistedinject)
     implementation(libs.guiceThrowingproviders)

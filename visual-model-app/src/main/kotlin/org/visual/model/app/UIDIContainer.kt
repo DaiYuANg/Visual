@@ -15,7 +15,7 @@ object UIDIContainer {
     val injector: Injector = Guice.createInjector(uiModule)
 
     fun load(prefix: String): Parent {
-        val loader = FXMLLoader(VisualModelUIApplication::class.java.getResource("$prefix.fxml"))
+        val loader = FXMLLoader(VisualModuleApplication::class.java.getResource("$prefix.fxml"))
         loader.controllerFactory = Callback {
             try {
                 DIContainer.injector.getInstance(it)

@@ -2,6 +2,7 @@ package org.visual.model.app
 
 import com.google.inject.Guice
 import com.google.inject.Injector
+import io.avaje.inject.BeanScope
 import org.github.gestalt.config.Gestalt
 import org.github.gestalt.config.builder.GestaltBuilder
 import org.github.gestalt.config.guice.GestaltModule
@@ -15,11 +16,11 @@ import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder
 import org.github.gestalt.config.toml.TomlLoader
 import org.visual.model.app.module.*
 
-private const val defaultConfig = "visual.model.properties"
+const val defaultConfig = "visual.model.properties"
 
 private val configLoaders = listOf(EnvironmentVarsLoader(), TomlLoader(), PropertyLoader(), MapConfigLoader())
 
-private val parentDir = VisualModelUIApplication::class.java.packageName
+private val parentDir = VisualModuleApplication::class.java.packageName
 
 private val configFileName = "visual.model.toml"
 private val environmentSource = EnvironmentConfigSourceBuilder.builder().setPrefix("VISUAL_MODEL")
@@ -46,6 +47,8 @@ object DIContainer {
     private val gestaltModule by lazy {
         GestaltModule(gestaltInstance)
     }
+
+    val scope = BeanScope.builder().build()
 
     val injector: Injector by lazy {
         Guice.createInjector(

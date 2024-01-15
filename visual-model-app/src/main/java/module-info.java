@@ -25,6 +25,7 @@ module org.visual.model.app {
     requires org.visual.model.i18n;
     requires org.visual.model.sql;
     requires info.picocli;
+    requires io.avaje.inject;
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
     exports org.visual.model.app.controller to
@@ -36,6 +37,7 @@ module org.visual.model.app {
     exports org.visual.model.app.config to kotlin.reflect;
     exports org.visual.model.app.command to com.google.guice;
 
-    opens org.visual.model.app.controller to javafx.fxml,com.google.guice;
+    opens org.visual.model.app.controller to javafx.fxml, com.google.guice;
     opens org.visual.model.app.module to com.google.guice;
+    provides io.avaje.inject.spi.Module with org.visual.model.app.factory.FactoryModule;
 }
