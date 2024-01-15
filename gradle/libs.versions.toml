@@ -1,7 +1,6 @@
 [versions]
 jdk = "21"
 apacheCommonIO = "2.14.0"
-kotlin = "2.0.0-Beta2"
 directories = "26"
 ikonliJavafx = "12.3.1"
 slf4j = "2.1.0-alpha1"
@@ -17,7 +16,6 @@ junitPlatformSuite = "1.10.1"
 jerbrainsAnnotation = "24.0.1"
 mockito = "5.8.0"
 caffine = "3.1.8"
-dokka = "1.9.10"
 spotless = "6.23.3"
 gitVersion = "3.0.0"
 jreleaser = "1.9.0"
@@ -41,7 +39,6 @@ eclipseCollections = "12.0.0.M3"
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
 sass = { id = "io.freefair.sass-java", version.ref = "freefairPlugin" }
 lombok = { id = "io.freefair.lombok", version.ref = "freefairPlugin" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitVersion = { id = "com.palantir.git-version", version.ref = "gitVersion" }
 jreleaser = { id = "org.jreleaser", version.ref = "jreleaser" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
@@ -81,22 +78,11 @@ antlr = { group = "org.antlr", name = "antlr4", version.ref = "antlr" }
 avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
 avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
 avajeInjectTest = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
-guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
-guiceAssistedinject = { group = "com.google.inject.extensions", name = "guice-assistedinject", version.ref = "guice" }
-guiceThrowingproviders = { group = "com.google.inject.extensions", name = "guice-throwingproviders", version.ref = "guice" }
-guiceTestlib = { group = "com.google.inject.extensions", name = "guice-testlib", version.ref = "guice" }
 gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
 gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
-gestaltKotlin = { group = "com.github.gestalt-config", name = "gestalt-kotlin", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
-kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
-kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
-kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
-kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
 mavenResloverImpl = { group = "org.apache.maven.resolver", name = "maven-resolver-impl", version.ref = "mavenResolver" }
 mavenResloverJDK21 = { group = "org.apache.maven.resolver", name = "maven-resolver-transport-jdk", version.ref = "mavenResolver" }

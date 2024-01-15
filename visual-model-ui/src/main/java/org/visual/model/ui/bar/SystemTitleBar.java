@@ -8,7 +8,7 @@ import static org.visual.model.shared.SystemUtil.detect;
 
 
 public class SystemTitleBar extends HBox {
-    private CommonTitleBar titleBar;
+    private final CommonTitleBar titleBar;
     {
         switch (detect()) {
             case MAC:

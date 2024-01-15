@@ -6,7 +6,6 @@ group = "org.visual.model.shared"
 
 dependencies {
     api(libs.apacheCommonLang3)
-    implementation("org.apache.commons:commons-pool2:2.12.0")
     implementation(libs.eclipseCollectionsAPI)
     implementation(libs.eclipseCollections)
     testImplementation(libs.eclipseCollectionsTestUtil)

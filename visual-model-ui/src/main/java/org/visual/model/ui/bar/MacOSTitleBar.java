@@ -9,9 +9,9 @@ import javafx.scene.input.MouseEvent;
 
 public class MacOSTitleBar extends CommonTitleBar {
 
-    private Button closeButton = new Button("close");
-    private Button sizeableButton = new Button("size");
-    private Button minimizeButton = new Button("min");
+    private final Button closeButton = new Button("close");
+    private final Button sizeableButton = new Button("size");
+    private final Button minimizeButton = new Button("min");
 
     {
         closeButton.setOnAction(event -> close());

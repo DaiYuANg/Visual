@@ -6,11 +6,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import lombok.Getter;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.shared.OperationSystem;
-import org.visual.model.ui.ScreenConstant;
+
+import java.util.function.Supplier;
 
 import static org.visual.model.shared.SystemUtil.detect;
 import static org.visual.model.ui.ScreenConstant.primaryScreen;
@@ -21,6 +20,8 @@ public class CommonTitleBar extends HBox {
 
     private double prevWidth;
     private double prevHeight;
+
+    private final Supplier<Stage> stage = () -> (Stage) getScene().getWindow();
 
     {
         setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
@@ -45,34 +46,29 @@ public class CommonTitleBar extends HBox {
     }
 
     public void close() {
-        val s = (Stage) getScene().getWindow();
         if (detect() == OperationSystem.MAC) {
-
-            s.setIconified(true);
+            stage.get().setIconified(true);
             return;
         }
-        s.close();
+        stage.get().close();
     }
 
     public void maximizeWindow() {
-        val s = (Stage) getScene().getWindow();
-        max(s);
+        max(stage.get());
     }
 
     public void minimizeWindow() {
-        val s = (Stage) getScene().getWindow();
-        s.setIconified(true);
+        stage.get().setIconified(true);
     }
 
     public void restoreSizeOrMax() {
-        val s = (Stage) getScene().getWindow();
         if (prevWidth == 0.0 && prevHeight == 0.0) {
             prevWidth = getScene().getWidth();
             prevHeight = getScene().getHeight();
-            max(s);
+            max(stage.get());
         } else {
-            s.setWidth(prevWidth);
-            s.setHeight(prevHeight);
+            stage.get().setWidth(prevWidth);
+            stage.get().setHeight(prevHeight);
         }
     }
 

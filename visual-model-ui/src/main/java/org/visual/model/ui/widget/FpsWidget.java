@@ -29,4 +29,8 @@ public class FpsWidget extends Label {
     public FpsWidget() {
         frameRateMeter.start();
     }
+
+    public void stop(){
+        frameRateMeter.stop();
+    }
 }
