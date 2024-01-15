@@ -29,12 +29,13 @@ apacheCommonLang3 = "3.14.0"
 gestalt = "0.24.3"
 guava = "33.0.0-jre"
 plantuml = "2.1.3"
-mavenResolver="2.0.0-alpha-6"
-apacheCommonPool="2.12.0"
+mavenResolver = "2.0.0-alpha-6"
+apacheCommonPool = "2.12.0"
 javafxVersion = "21"
 mysqlDriver = "8.2.0"
-postgresDriver="42.7.1"
-mssqlDriver="12.5.0.jre11-preview"
+postgresDriver = "42.7.1"
+mssqlDriver = "12.5.0.jre11-preview"
+eclipseCollections = "12.0.0.M3"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
@@ -48,7 +49,7 @@ plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "apacheCommonIO" }
 apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "apacheCommonLang3" }
-apacheCommonPool = {group="org.apache.commons",name="commons-pool2",version.ref="apacheCommonPool"}
+apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version.ref = "apacheCommonPool" }
 directories = { group = "dev.dirs", name = "directories", version.ref = "directories" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
@@ -96,11 +97,15 @@ kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotl
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
 kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
-mavenResloverAPI= {group="org.apache.maven.resolver",name="maven-resolver-api",version.ref="mavenResolver"}
-mavenResloverImpl= {group="org.apache.maven.resolver",name="maven-resolver-impl",version.ref="mavenResolver"}
-mavenResloverJDK21= {group="org.apache.maven.resolver",name="maven-resolver-transport-jdk",version.ref="mavenResolver"}
-mavenResloverUtil= {group="org.apache.maven.resolver",name="maven-resolver-util",version.ref="mavenResolver"}
-mavenResloverSupplier= {group="org.apache.maven.resolver",name="maven-resolver-supplier",version.ref="mavenResolver"}
-mysql={group="com.mysql",name="mysql-connector-j",version.ref="mysqlDriver"}
-postgres= {group="org.postgresql",name="postgresql",version.ref="postgresDriver"}
-mssql={group="com.microsoft.sqlserver",name="mssql-jdbc",version.ref="mssqlDriver"}
+mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
+mavenResloverImpl = { group = "org.apache.maven.resolver", name = "maven-resolver-impl", version.ref = "mavenResolver" }
+mavenResloverJDK21 = { group = "org.apache.maven.resolver", name = "maven-resolver-transport-jdk", version.ref = "mavenResolver" }
+mavenResloverUtil = { group = "org.apache.maven.resolver", name = "maven-resolver-util", version.ref = "mavenResolver" }
+mavenResloverSupplier = { group = "org.apache.maven.resolver", name = "maven-resolver-supplier", version.ref = "mavenResolver" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version.ref = "mysqlDriver" }
+postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgresDriver" }
+mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version.ref = "mssqlDriver" }
+eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
+eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
+eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
+eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }

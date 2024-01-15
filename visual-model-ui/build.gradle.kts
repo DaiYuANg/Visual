@@ -26,6 +26,5 @@ dependencies {
     api(libs.fontawesome5)
     api(libs.ikonliJavafx)
     api(libs.fluentuiIcon)
-    implementation("org.jgrapht:jgrapht-core:1.5.2")
-    implementation("it.unimi.dsi:fastutil:8.5.12")
+
 }

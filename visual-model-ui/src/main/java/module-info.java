@@ -11,14 +11,13 @@ module org.visual.model.ui {
     requires org.kordamp.ikonli.fontawesome5;
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.shared;
-    requires org.jgrapht.core;
 
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.window;
     exports org.visual.model.ui.layout;
     exports org.visual.model.ui.widget;
     exports org.visual.model.ui.control;
-//    exports org.visual.model.ui.util;
+    exports org.visual.model.ui.util;
 
     opens org.visual.model.ui.bar to javafx.graphics, javafx.fxml;
     opens org.visual.model.ui.window to javafx.graphics, javafx.fxml;

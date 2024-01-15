@@ -6,11 +6,14 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.visual.model.ui.constant.ResizeDirection;
 
 import java.util.Objects;
 
-public class StageInspector {
+public class StageInspector extends Stage{
     private final Stage stage;
     private final Scene scene;
 
@@ -43,7 +46,7 @@ public class StageInspector {
     private double resizeMarginBottom = 0.0;
     private double resizeMarginLeft = 0.0;
 
-    public StageInspector(Stage stage) {
+    public StageInspector(@NotNull Stage stage) {
         this.stage = stage;
         this.scene = stage.getScene();
     }
@@ -107,7 +110,7 @@ public class StageInspector {
         return this;
     }
 
-    private boolean detectDraggingBounds(MouseEvent event) {
+    private boolean detectDraggingBounds(@NotNull MouseEvent event) {
         return event.getSceneY() <= dragMarginTop
                 || scene.getHeight() - event.getSceneY() <= dragMarginBottom
                 || event.getSceneX() <= dragMarginLeft
@@ -167,12 +170,12 @@ public class StageInspector {
     }
 
     private boolean detectFullscreenBounds(MouseEvent event) {
-        boolean isWithinBounds = event.getSceneY() <= fullscreenMarginTop
+        val isWithinBounds = event.getSceneY() <= fullscreenMarginTop
                 || scene.getHeight() - event.getSceneY() <= fullscreenMarginBottom
                 || event.getSceneX() <= fullscreenMarginLeft
                 || scene.getWidth() - event.getSceneX() <= fullscreenMarginRight;
 
-        ResizeDirection resizeDirection = detectResizeDirection(event);
+        val resizeDirection = detectResizeDirection(event);
 
         return isWithinBounds && resizeDirection == null;
     }
@@ -196,30 +199,15 @@ public class StageInspector {
         scene.addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
             if (isResizeable && allowResizing && !isResizing) {
                 switch (Objects.requireNonNull(detectResizeDirection(event))) {
-                    case NORTH_WEST:
-                        scene.setCursor(Cursor.NW_RESIZE);
-                        break;
-                    case NORTH_EAST:
-                        scene.setCursor(Cursor.NE_RESIZE);
-                        break;
-                    case SOUTH_WEST:
-                        scene.setCursor(Cursor.SW_RESIZE);
-                        break;
-                    case SOUTH_EAST:
-                        scene.setCursor(Cursor.SE_RESIZE);
-                        break;
-                    case NORTH:
-                        scene.setCursor(Cursor.N_RESIZE);
-                        break;
-                    case SOUTH:
-                        scene.setCursor(Cursor.S_RESIZE);
-                        break;
-                    case WEST:
-                        scene.setCursor(Cursor.W_RESIZE);
-                        break;
-                    case EAST:
-                        scene.setCursor(Cursor.E_RESIZE);
-                        break;
+                    case NORTH_WEST -> scene.setCursor(Cursor.NW_RESIZE);
+                    case NORTH_EAST -> scene.setCursor(Cursor.NE_RESIZE);
+                    case SOUTH_WEST -> scene.setCursor(Cursor.SW_RESIZE);
+                    case SOUTH_EAST -> scene.setCursor(Cursor.SE_RESIZE);
+                    case NORTH -> scene.setCursor(Cursor.N_RESIZE);
+                    case SOUTH -> scene.setCursor(Cursor.S_RESIZE);
+                    case WEST -> scene.setCursor(Cursor.W_RESIZE);
+                    case EAST -> scene.setCursor(Cursor.E_RESIZE);
+
 //                    default:
 //                        scene.get
 //                        if (scene.getCursor().getType().isResizable()) {
@@ -286,34 +274,35 @@ public class StageInspector {
         });
 
         scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-            if (isResizing) {
-                if (resizeDirection == ResizeDirection.NORTH || resizeDirection == ResizeDirection.NORTH_WEST || resizeDirection == ResizeDirection.NORTH_EAST) {
-                    double newHeight = ensureStageHeightIsWithinLimits(resizeStartStageHeight[0] + (resizeStartFromScreenY[0] - event.getScreenY()));
-                    double newY = newHeight == stage.getMaxHeight() || newHeight == stage.getMinHeight() ? stage.getY() : event.getScreenY() - resizeStartFromSceneY[0];
+            if (!isResizing) {
+                return;
+            }
+            if (resizeDirection == ResizeDirection.NORTH || resizeDirection == ResizeDirection.NORTH_WEST || resizeDirection == ResizeDirection.NORTH_EAST) {
+                double newHeight = ensureStageHeightIsWithinLimits(resizeStartStageHeight[0] + (resizeStartFromScreenY[0] - event.getScreenY()));
+                double newY = newHeight == stage.getMaxHeight() || newHeight == stage.getMinHeight() ? stage.getY() : event.getScreenY() - resizeStartFromSceneY[0];
 
-                    stage.setHeight(newHeight);
-                    stage.setY(newY);
-                }
+                stage.setHeight(newHeight);
+                stage.setY(newY);
+            }
 
-                if (resizeDirection == ResizeDirection.SOUTH || resizeDirection == ResizeDirection.SOUTH_WEST || resizeDirection == ResizeDirection.SOUTH_EAST) {
-                    double newHeight = ensureStageHeightIsWithinLimits(resizeStartStageHeight[0] + (event.getScreenY() - resizeStartFromScreenY[0]));
+            if (resizeDirection == ResizeDirection.SOUTH || resizeDirection == ResizeDirection.SOUTH_WEST || resizeDirection == ResizeDirection.SOUTH_EAST) {
+                double newHeight = ensureStageHeightIsWithinLimits(resizeStartStageHeight[0] + (event.getScreenY() - resizeStartFromScreenY[0]));
 
-                    stage.setHeight(newHeight);
-                }
+                stage.setHeight(newHeight);
+            }
 
-                if (resizeDirection == ResizeDirection.WEST || resizeDirection == ResizeDirection.NORTH_WEST || resizeDirection == ResizeDirection.SOUTH_WEST) {
-                    double newWidth = ensureStageWidthIsWithinLimits(resizeStartStageWidth[0] + (resizeStartFromScreenX[0] - event.getScreenX()));
-                    double newX = newWidth == stage.getMaxWidth() || newWidth == stage.getMinWidth() ? stage.getX() : event.getScreenX() - resizeStartFromSceneX[0];
+            if (resizeDirection == ResizeDirection.WEST || resizeDirection == ResizeDirection.NORTH_WEST || resizeDirection == ResizeDirection.SOUTH_WEST) {
+                double newWidth = ensureStageWidthIsWithinLimits(resizeStartStageWidth[0] + (resizeStartFromScreenX[0] - event.getScreenX()));
+                double newX = newWidth == stage.getMaxWidth() || newWidth == stage.getMinWidth() ? stage.getX() : event.getScreenX() - resizeStartFromSceneX[0];
 
-                    stage.setWidth(newWidth);
-                    stage.setX(newX);
-                }
+                stage.setWidth(newWidth);
+                stage.setX(newX);
+            }
 
-                if (resizeDirection == ResizeDirection.EAST || resizeDirection == ResizeDirection.NORTH_EAST || resizeDirection == ResizeDirection.SOUTH_EAST) {
-                    double newWidth = ensureStageWidthIsWithinLimits(resizeStartStageWidth[0] + (event.getScreenX() - resizeStartFromScreenX[0]));
+            if (resizeDirection == ResizeDirection.EAST || resizeDirection == ResizeDirection.NORTH_EAST || resizeDirection == ResizeDirection.SOUTH_EAST) {
+                double newWidth = ensureStageWidthIsWithinLimits(resizeStartStageWidth[0] + (event.getScreenX() - resizeStartFromScreenX[0]));
 
-                    stage.setWidth(newWidth);
-                }
+                stage.setWidth(newWidth);
             }
         });
 
@@ -328,7 +317,7 @@ public class StageInspector {
         return this;
     }
 
-    private ResizeDirection detectResizeDirection(MouseEvent event) {
+    private @Nullable ResizeDirection detectResizeDirection(@NotNull MouseEvent event) {
         boolean isNorthResize = event.getSceneY() <= resizeMarginTop;
         boolean isSouthResize = scene.getHeight() - event.getSceneY() <= resizeMarginBottom;
         boolean isWestResize = event.getSceneX() <= resizeMarginLeft;
@@ -366,25 +355,17 @@ public class StageInspector {
             return stage.getMaxWidth();
         } else if (width < stage.getMinWidth()) {
             return stage.getMinWidth();
-        } else if (width > screen.getVisualBounds().getWidth()) {
-            return screen.getVisualBounds().getWidth();
-        } else {
-            return width;
-        }
+        } else return Math.min(width, screen.getVisualBounds().getWidth());
     }
 
     private double ensureStageHeightIsWithinLimits(double height) {
-        Screen screen = Screen.getPrimary();
+        val screen = Screen.getPrimary();
 
         if (height > stage.getMaxHeight()) {
             return stage.getMaxHeight();
         } else if (height < stage.getMinHeight()) {
             return stage.getMinHeight();
-        } else if (height > screen.getVisualBounds().getHeight()) {
-            return screen.getVisualBounds().getHeight();
-        } else {
-            return height;
-        }
+        } else return Math.min(height, screen.getVisualBounds().getHeight());
     }
 
     public static void inspect(Stage stage) {
