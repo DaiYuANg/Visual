@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.javafx)
     application
     java
-    `kotlin-project`
     id("org.beryx.jlink") version "3.0.1"
     id("org.graalvm.buildtools.native") version "0.9.28"
 }
@@ -22,7 +21,8 @@ val jvmArgs = listOf(
     "-XX:MaxInlineLevel=32",
     "-XX:+AlwaysPreTouch",
     "-XX:+TieredCompilation",
-    "-XX:SoftRefLRUPolicyMSPerMB=50"
+    "-XX:SoftRefLRUPolicyMSPerMB=50",
+    "--enable-preview"
 )
 group = "org.visual.model.app"
 
@@ -52,24 +52,17 @@ dependencies {
     implementation(libs.directories)
     implementation(libs.avajeInject)
     annotationProcessor(libs.avajeInjectGenerator)
-    implementation(libs.guice)
-    implementation(libs.guiceAssistedinject)
-    implementation(libs.guiceThrowingproviders)
     implementation(libs.fontawesome5)
     implementation(libs.ikonliJavafx)
     implementation(libs.fluentuiIcon)
-    implementation(projects.visualModelUi)
+//    implementation(projects.visualModelUi)
     implementation(libs.gestaltConfig)
     implementation(libs.gestaltToml)
-    implementation(libs.gestaltGuice)
-    implementation(libs.gestaltKotlin)
     implementation(projects.visualModelDatabase)
     implementation(projects.visualModelI18n)
     implementation(projects.visualModelGit)
-    implementation("info.picocli:picocli:4.7.5")
-    annotationProcessor("info.picocli:picocli-codegen:4.7.5")
-    kapt("info.picocli:picocli-codegen:4.7.5")
-    testImplementation(libs.guiceTestlib)
+    implementation(projects.visualModelShared)
+    testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
 }
 
@@ -120,15 +113,5 @@ graalvmNative {
     }
     binaries.all {
         buildArgs.add("--verbose")
-    }
-}
-
-tasks.compileJava {
-    options.compilerArgs = listOf("-Aproject=${project.group}/${project.name}")
-}
-
-kapt {
-    arguments {
-        arg("project", "${project.group}/${project.name}")
     }
 }

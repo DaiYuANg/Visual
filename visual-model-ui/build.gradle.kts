@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.javafx)
     `java-library`
-    `kotlin-project`
+//    `kotlin-project`
 }
 
 group = "org.visual.model.ui"

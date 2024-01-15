@@ -1,7 +1,6 @@
 plugins {
 //    antlr
     `java-library`
-    `kotlin-project`
 }
 
 group = "org.visual.model.sql"
@@ -29,6 +28,3 @@ dependencies {
 //tasks.generateTestGrammarSource {
 //    dependsOn("kaptGenerateStubsTestKotlin")
 //}
-java {
-    modularity.inferModulePath = true
-}

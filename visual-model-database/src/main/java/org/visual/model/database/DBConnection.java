@@ -1,4 +1,4 @@
-package org.visual.model.sql;
+package org.visual.model.database;
 
 import com.zaxxer.hikari.HikariDataSource;
 

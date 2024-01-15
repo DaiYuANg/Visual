@@ -16,15 +16,11 @@ public class UIFactory {
     private final Stage rootStage = new Stage();
 
     @Bean
-    @Singleton
     @Primary
     Stage rootStage() {
-        System.err.println(rootStage);
-//        log.info("创建 stage");
-//        val stage = new Stage();
-//        stage.centerOnScreen();
-//        stage.initStyle(StageStyle.TRANSPARENT);
-//        stage.setResizable(true);
+        rootStage.centerOnScreen();
+        rootStage.initStyle(StageStyle.TRANSPARENT);
+        rootStage.setResizable(true);
         return rootStage;
     }
 }

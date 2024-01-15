@@ -1,5 +1,5 @@
 /* (C)2023*/
-package org.visual.model.sql;
+package org.visual.model.database;
 
 import lombok.Builder;
 import lombok.Getter;

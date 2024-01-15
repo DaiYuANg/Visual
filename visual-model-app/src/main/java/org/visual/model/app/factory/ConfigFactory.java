@@ -16,10 +16,10 @@ import org.github.gestalt.config.toml.TomlLoader;
 
 import java.util.List;
 
-import static org.visual.model.app.DIContainerKt.defaultConfig;
-
 @Factory
 public class ConfigFactory {
+
+    private final String defaultConfig = "visual.model.properties";
 
     @SneakyThrows
     @Bean
@@ -31,7 +31,6 @@ public class ConfigFactory {
         val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build();
         val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
         builder.addSources(List.of(classPathSource, environmentSource, systemSource));
-
         return builder.build();
     }
 }

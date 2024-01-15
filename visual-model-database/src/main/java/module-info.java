@@ -11,7 +11,8 @@ module org.visual.model.sql {
     requires org.apache.maven.resolver.transport.jdk;
     requires org.apache.maven.resolver.supplier;
     requires org.apache.maven.resolver.connector.basic;
-    requires kotlin.stdlib;
+    requires org.mapstruct;
+    requires org.jetbrains.annotations;
 
-    exports org.visual.model.sql;
+    exports org.visual.model.database;
 }

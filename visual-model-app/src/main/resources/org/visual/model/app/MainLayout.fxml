@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
-<?import org.visual.model.ui.bar.SystemTitleBar?>
-<?import org.visual.model.ui.layout.GirdBackground?>
-<?import javafx.scene.control.Button?>
-<GirdBackground xmlns="http://javafx.com/javafx"
-                xmlns:fx="http://javafx.com/fxml"
-                fx:controller="org.visual.model.app.controller.MainLayoutController"
-                prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.visual.model.app.controller.MainLayoutController"
+            prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
     <padding>
         <Insets/>
     </padding>
-    <SystemTitleBar fx:id="titleBar"/>
     <!--    </GirdBackground>-->
     <!--    <fx:include source="TitleBar.fxml" />-->
-</GirdBackground>
+</AnchorPane>

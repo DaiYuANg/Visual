@@ -41,9 +41,14 @@ subprojects {
             implementation(rootProject.libs.jetbrainsAnnotation)
             implementation(rootProject.libs.slf4j)
             implementation(rootProject.libs.logback)
-            implementation(rootProject.libs.guava){
-                exclude("com.google.code.gson","gson")
+            implementation(rootProject.libs.guava) {
+                exclude("com.google.code.gson", "gson")
             }
+            compileOnly("com.google.auto.service:auto-service:1.1.1")
+            compileOnly("com.google.auto.factory:auto-factory:1.1.0")
+            annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+            implementation("org.mapstruct:mapstruct:1.5.5.Final")
+            annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
             testImplementation(rootProject.libs.junitBom)
             testImplementation(platform(rootProject.libs.junitBom))
             testImplementation(rootProject.libs.junitJuiter)
@@ -60,9 +65,11 @@ subprojects {
         group = "org." + project.name.replace("-", ".")
         tasks.compileJava {
             options.encoding = StandardCharsets.UTF_8.name()
+            options.compilerArgs.add("-g")
+            options.isFork = true
         }
 
-        tasks.jar{
+        tasks.jar {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }

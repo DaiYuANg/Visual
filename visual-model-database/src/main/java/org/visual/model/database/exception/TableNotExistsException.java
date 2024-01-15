@@ -1,4 +1,4 @@
-package org.visual.model.sql.exception;
+package org.visual.model.database.exception;
 
 import lombok.experimental.StandardException;
 

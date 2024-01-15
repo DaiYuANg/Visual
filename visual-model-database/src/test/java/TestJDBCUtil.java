@@ -12,7 +12,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static org.visual.model.sql.JDBCUtil.*;
+import static org.visual.model.database.util.JDBCUtil.*;
 
 @Slf4j
 @Testcontainers(parallel = true)
