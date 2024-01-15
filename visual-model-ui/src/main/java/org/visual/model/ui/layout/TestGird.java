@@ -11,13 +11,13 @@ import org.jetbrains.annotations.NotNull;
 public class TestGird extends Application {
     @Override
     public void start(@NotNull Stage stage) {
-        val g = new GirdBackground();
-        g.setCache(true);
-        val scene = new Scene(g);
-        scene.getStylesheets().add("/window.css");
-        stage.setWidth(300);
-        stage.setHeight(300);
-        stage.setScene(scene);
-        stage.show();
+//        val g = new GirdBackground();
+//        g.setCache(true);
+//        val scene = new Scene(g);
+//        scene.getStylesheets().add("/window.css");
+//        stage.setWidth(300);
+//        stage.setHeight(300);
+//        stage.setScene(scene);
+//        stage.show();
     }
 }

@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
 public class TestFpsWidget extends Application {
     @Override
     public void start(@NotNull Stage primaryStage) throws Exception {
-        val p = new StackPane();
-        p.getChildren().add(new FpsWidget());
-        primaryStage.setScene(new Scene(p, 250, 150));
-        primaryStage.show();
+//        val p = new StackPane();
+//        p.getChildren().add(new FpsWidget());
+//        primaryStage.setScene(new Scene(p, 250, 150));
+//        primaryStage.show();
     }
 }

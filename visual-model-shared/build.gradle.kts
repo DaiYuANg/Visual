@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    `kotlin-project`
 }
 
 group = "org.visual.model.shared"

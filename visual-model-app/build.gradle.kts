@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.cli.jvm.main
-
 plugins {
     alias(libs.plugins.javafx)
     application
@@ -55,7 +53,7 @@ dependencies {
     implementation(libs.fontawesome5)
     implementation(libs.ikonliJavafx)
     implementation(libs.fluentuiIcon)
-//    implementation(projects.visualModelUi)
+    implementation(projects.visualModelUi)
     implementation(libs.gestaltConfig)
     implementation(libs.gestaltToml)
     implementation(projects.visualModelDatabase)

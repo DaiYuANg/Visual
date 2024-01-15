@@ -13,7 +13,6 @@ module org.visual.model.database {
     requires org.apache.maven.resolver.connector.basic;
     requires org.mapstruct;
     requires org.jetbrains.annotations;
-    requires kotlin.stdlib;
 
     exports org.visual.model.database;
 }

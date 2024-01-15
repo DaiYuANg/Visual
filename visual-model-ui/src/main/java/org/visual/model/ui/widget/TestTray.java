@@ -8,6 +8,6 @@ import java.nio.file.Paths;
 public class TestTray extends Application {
     @Override
     public void start(Stage primaryStage) {
-        new Tray(Paths.get(""), primaryStage);
+//        new Tray(Paths.get(""), primaryStage);
     }
 }
