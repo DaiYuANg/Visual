@@ -59,7 +59,7 @@ dependencies {
     implementation(projects.visualModelShared)
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
-    implementation(projects.visualModelUiInspector)
+    implementation(projects.visualModelDebugger)
 }
 
 jlink {

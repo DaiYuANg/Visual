@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.visual.model.database.DatabaseArgument;
 
 @Mapper
 public interface HikariMapper {
@@ -41,5 +42,5 @@ public interface HikariMapper {
     @Mapping(target = "catalog", ignore = true)
     @Mapping(target = "autoCommit", ignore = true)
     @Mapping(target = "allowPoolSuspension", ignore = true)
-    HikariConfig buildConfig(String jdbcUrl, String username, String password);
+    HikariConfig buildConfig(DatabaseArgument databaseArgument);
 }
