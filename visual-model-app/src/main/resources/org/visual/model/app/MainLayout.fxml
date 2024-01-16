@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import org.visual.model.ui.control.IconButton?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.model.app.controller.MainLayoutController"
@@ -9,6 +10,7 @@
     <padding>
         <Insets/>
     </padding>
+    <IconButton fx:id="test" icon="ACCESS_TIME_24"/>
     <!--    </GirdBackground>-->
     <!--    <fx:include source="TitleBar.fxml" />-->
 </AnchorPane>

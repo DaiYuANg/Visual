@@ -197,8 +197,9 @@ public class StageInspector extends Stage{
         isResizeable = true;
 
         scene.addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
-            if (isResizeable && allowResizing && !isResizing) {
-                switch (Objects.requireNonNull(detectResizeDirection(event))) {
+            val e = detectResizeDirection(event);
+            if (isResizeable && allowResizing && !isResizing && Objects.nonNull(e)) {
+                switch (e) {
                     case NORTH_WEST -> scene.setCursor(Cursor.NW_RESIZE);
                     case NORTH_EAST -> scene.setCursor(Cursor.NE_RESIZE);
                     case SOUTH_WEST -> scene.setCursor(Cursor.SW_RESIZE);
@@ -213,6 +214,7 @@ public class StageInspector extends Stage{
 //                        if (scene.getCursor().getType().isResizable()) {
 //                            scene.setCursor(Cursor.DEFAULT);
 //                        }
+                    default -> throw new IllegalStateException("Unexpected value: " + e);
                 }
             }
         });

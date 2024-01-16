@@ -65,7 +65,7 @@ subprojects {
         group = "org." + project.name.replace("-", ".")
         tasks.compileJava {
             options.encoding = StandardCharsets.UTF_8.name()
-            options.compilerArgs.add("-g")
+//            options.compilerArgs.add("-g")
             options.isFork = true
         }
 

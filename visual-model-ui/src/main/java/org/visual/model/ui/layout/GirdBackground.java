@@ -28,7 +28,6 @@ import java.util.stream.IntStream;
 public class GirdBackground extends Pane {
     private final double halfPixelOffset;
     private Color defaultGirdColor = Color.CORNSILK;
-
     private final String girdColorSelector = "-grid-color";
     private final String girdColorPropertyName = "gridColor";
     private double mLastWidth = -1.0;
@@ -72,7 +71,7 @@ public class GirdBackground extends Pane {
         }
     };
 
-    private final StyleableObjectProperty<Color> mGridColor = new StyleableObjectProperty<Color>(defaultGirdColor) {
+    private final StyleableObjectProperty<Color> mGridColor = new StyleableObjectProperty<>(defaultGirdColor) {
         @Override
         public CssMetaData<GirdBackground, Color> getCssMetaData() {
             return girdColor;

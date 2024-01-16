@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.fluentui.FluentUiRegularAL;
 
 import java.nio.charset.StandardCharsets;
 
@@ -28,4 +29,5 @@ public enum DIContainer {
         loader.setCharset(StandardCharsets.UTF_8);
         return loader.load();
     }
+
 }
