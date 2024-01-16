@@ -7,12 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 
-import java.util.Objects;
-import java.util.concurrent.Executor;
-
-import static org.visual.model.ui.util.StageInspector.inspect;
 
 @Slf4j
 @NoArgsConstructor
@@ -33,7 +28,7 @@ public class VisualModelApplication extends Application {
     public void start(Stage stage) {
         rootStage.setScene(rootScene);
         log.info("start");
-        inspect(rootStage);
+//        inspect(rootStage);
         rootStage.show();
     }
 

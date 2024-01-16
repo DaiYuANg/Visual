@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.model.ui.widget.Tray;
+
+import java.nio.file.Path;
 
 @Factory
 @Slf4j
@@ -22,5 +25,10 @@ public class UIFactory {
         rootStage.initStyle(StageStyle.TRANSPARENT);
         rootStage.setResizable(true);
         return rootStage;
+    }
+
+    @Bean
+    Tray tray(Stage rootStage) {
+        return new Tray(Path.of(""), rootStage);
     }
 }

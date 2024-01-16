@@ -10,6 +10,7 @@ dependencies {
 //    implementation(libs.eclipseCollections)
 //    testImplementation(libs.eclipseCollectionsTestUtil)
 //    implementation(libs.eclipseCollectionsForkjoin)
-    implementation("org.jgrapht:jgrapht-core:1.5.2")
-    implementation("it.unimi.dsi:fastutil:8.5.12")
+    implementation(libs.jgrapht)
+    implementation(libs.fastutil)
+    implementation(libs.apacheCommonLang3)
 }

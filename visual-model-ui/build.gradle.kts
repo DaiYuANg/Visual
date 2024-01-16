@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.javafx)
     `java-library`
-//    `kotlin-project`
 }
 
 group = "org.visual.model.ui"
@@ -26,5 +25,4 @@ dependencies {
     api(libs.fontawesome5)
     api(libs.ikonliJavafx)
     api(libs.fluentuiIcon)
-
 }

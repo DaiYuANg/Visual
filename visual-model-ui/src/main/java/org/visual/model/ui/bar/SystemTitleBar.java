@@ -4,26 +4,17 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import static org.visual.model.shared.SystemUtil.detect;
+import static org.visual.model.shared.Platform.platform;
 
 
 public class SystemTitleBar extends HBox {
-    private final CommonTitleBar titleBar;
     {
-        switch (detect()) {
-            case MAC:
-                titleBar = new MacOSTitleBar();
-                break;
-            case LINUX:
-                titleBar = new LinuxTitleBar();
-                break;
-            case WINDOWS:
-                titleBar = new WindowsTitleBar();
-                break;
-            case UNKNOWN:
-            default:
-                throw new UnsupportedOperationException("NOT SUPPORT PLATFORM");
-        }
+        CommonTitleBar titleBar = switch (platform) {
+            case MAC -> new MacOSTitleBar();
+            case LINUX -> new LinuxTitleBar();
+            case WINDOWS -> new WindowsTitleBar();
+            default -> throw new UnsupportedOperationException("NOT SUPPORT PLATFORM");
+        };
 
         getStylesheets().add("/system.css");
         getStyleClass().add("title-rounded");

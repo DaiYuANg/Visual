@@ -50,9 +50,6 @@ dependencies {
     implementation(libs.directories)
     implementation(libs.avajeInject)
     annotationProcessor(libs.avajeInjectGenerator)
-    implementation(libs.fontawesome5)
-    implementation(libs.ikonliJavafx)
-    implementation(libs.fluentuiIcon)
     implementation(projects.visualModelUi)
     implementation(libs.gestaltConfig)
     implementation(libs.gestaltToml)
@@ -62,6 +59,7 @@ dependencies {
     implementation(projects.visualModelShared)
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
+    implementation(projects.visualModelUiInspector)
 }
 
 jlink {

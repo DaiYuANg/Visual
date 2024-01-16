@@ -99,3 +99,4 @@ cwallet.sso.lck
 .idea
 *.db
 .kotlin
+./scenicView.properties

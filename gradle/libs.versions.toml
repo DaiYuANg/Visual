@@ -34,6 +34,8 @@ mysqlDriver = "8.2.0"
 postgresDriver = "42.7.1"
 mssqlDriver = "12.5.0.jre11-preview"
 eclipseCollections = "12.0.0.M3"
+jgrapht="1.5.2"
+fastutil="8.5.12"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
@@ -80,7 +82,6 @@ avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", ve
 avajeInjectTest = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
 gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
 gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
-gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
@@ -95,3 +96,5 @@ eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-col
 eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
 eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
+jgrapht={group="org.jgrapht",name="jgrapht-core",version.ref="jgrapht"}
+fastutil={group="it.unimi.dsi",name="fastutil",version.ref="fastutil"}

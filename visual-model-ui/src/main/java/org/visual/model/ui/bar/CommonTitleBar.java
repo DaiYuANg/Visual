@@ -1,5 +1,6 @@
 package org.visual.model.ui.bar;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -7,16 +8,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.shared.OperationSystem;
+import org.visual.model.shared.Platform;
 
 import java.util.function.Supplier;
 
-import static org.visual.model.shared.SystemUtil.detect;
+import static org.visual.model.shared.Platform.platform;
 import static org.visual.model.ui.ScreenConstant.primaryScreen;
 
 public class CommonTitleBar extends HBox {
-    private double xOffset = 0.0;
-    private double yOffset = 0.0;
+    private final SimpleDoubleProperty xOffset = new SimpleDoubleProperty(0.0);
+    private final SimpleDoubleProperty yOffset = new SimpleDoubleProperty(0.0);
 
     private double prevWidth;
     private double prevHeight;
@@ -29,13 +30,13 @@ public class CommonTitleBar extends HBox {
 
     {
         addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
-            getScene().getWindow().setX(e.getSceneX() - xOffset);
-            getScene().getWindow().setY(e.getSceneY() - yOffset);
+            getScene().getWindow().setX(e.getSceneX() - xOffset.get());
+            getScene().getWindow().setY(e.getSceneY() - xOffset.get());
         });
         addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             getScene().getWindow().setOpacity(0.5);
-            xOffset = e.getSceneX();
-            yOffset = e.getSceneY();
+            xOffset.set(e.getSceneX());
+            yOffset.set(e.getSceneY());
         });
         addEventHandler(MouseEvent.MOUSE_RELEASED, e -> getScene().getWindow().setOpacity(1.0));
         addEventHandler(KeyEvent.KEY_TYPED, e -> {
@@ -46,7 +47,7 @@ public class CommonTitleBar extends HBox {
     }
 
     public void close() {
-        if (detect() == OperationSystem.MAC) {
+        if (platform == Platform.MAC) {
             stage.get().setIconified(true);
             return;
         }
