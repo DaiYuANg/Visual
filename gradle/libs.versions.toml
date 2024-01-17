@@ -36,6 +36,7 @@ mssqlDriver = "12.5.0.jre11-preview"
 eclipseCollections = "12.0.0.M3"
 jgrapht="1.5.2"
 fastutil="8.5.12"
+hikariCP="5.1.0"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
@@ -98,3 +99,4 @@ eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclips
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
 jgrapht={group="org.jgrapht",name="jgrapht-core",version.ref="jgrapht"}
 fastutil={group="it.unimi.dsi",name="fastutil",version.ref="fastutil"}
+hikariCP={group="com.zaxxer",name="HikariCP",version.ref="hikariCP"}

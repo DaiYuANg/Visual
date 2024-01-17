@@ -70,6 +70,7 @@ public class Detail implements Serializable {
     }
 
     @Setter
+    @Getter
     private boolean isDefault;
     @Setter
     @Getter
@@ -229,14 +230,6 @@ public class Detail implements Serializable {
 
     public void addObject(final Object v, final int rowIndex, final int colIndex) {
         add(v != null ? v.toString() : "-", colIndex, rowIndex);
-    }
-
-    public boolean isDefault() {
-        return isDefault;
-    }
-
-    public void setDefault(final boolean isDefault) {
-        this.isDefault = isDefault;
     }
 
     public boolean hasGridConstraints() {

@@ -13,7 +13,7 @@ import org.visual.model.shared.Platform;
 import java.util.function.Supplier;
 
 import static org.visual.model.shared.Platform.platform;
-import static org.visual.model.ui.ScreenConstant.primaryScreen;
+import static org.visual.model.ui.util.ScreenUtil.primaryScreen;
 
 public class CommonTitleBar extends HBox {
     private final SimpleDoubleProperty xOffset = new SimpleDoubleProperty(0.0);

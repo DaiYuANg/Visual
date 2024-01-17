@@ -6,7 +6,7 @@ plugins {
 group = "org.visual.model.database"
 
 dependencies {
-    implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation(libs.hikariCP)
     implementation(libs.mavenResloverAPI)
     implementation(libs.mavenResloverImpl)
     implementation(libs.mavenResloverJDK21)

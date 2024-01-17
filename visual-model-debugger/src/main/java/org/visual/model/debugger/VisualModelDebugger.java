@@ -38,6 +38,7 @@ import org.visual.model.debugger.model.update.LocalUpdateStrategy;
 import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.model.debugger.remote.FXConnectorFactory;
 import org.visual.model.debugger.view.ScenicViewGui;
+import org.visual.model.ui.util.ScreenUtil;
 
 /**
  * This is the entry point for all different versions of Scenic View.
@@ -45,19 +46,7 @@ import org.visual.model.debugger.view.ScenicViewGui;
 @Slf4j
 public class VisualModelDebugger extends Application {
 
-    /**************************************************************************
-     *
-     * fields
-     *
-     *************************************************************************/
-
     public static final String JDK_PATH_KEY = "jdkPath";
-
-    /**************************************************************************
-     *
-     * Scenic View 'hardcoded show(..)' start point
-     *
-     *************************************************************************/
 
 //    public static void show(final @NotNull Scene target) {
 //        show(target.getRoot());
@@ -120,8 +109,9 @@ public class VisualModelDebugger extends Application {
         val strategy = new RemoteVMsUpdateStrategy();
 
         // workaround for RT-10714
-        stage.setWidth(1024);
-        stage.setHeight(768);
+        val size = ScreenUtil.percentOfScreen(0.7);
+        stage.setWidth(size.getLeft());
+        stage.setHeight(size.getRight());
         stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
         log.info("Platform running");
         log.info("Launching ScenicView v" + ScenicViewGui.VERSION);

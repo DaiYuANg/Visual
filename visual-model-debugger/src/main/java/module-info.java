@@ -17,6 +17,7 @@ module org.model.visual.model.debugger {
     requires io.avaje.inject;
     requires org.github.gestalt.core;
     requires java.management;
+    requires org.apache.commons.lang3;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;
     opens org.visual.model.debugger.view.threedom to javafx.fxml;

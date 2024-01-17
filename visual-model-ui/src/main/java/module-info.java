@@ -11,6 +11,7 @@ module org.visual.model.ui {
     requires org.kordamp.ikonli.fontawesome5;
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.shared;
+    requires org.apache.commons.lang3;
 
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.window;
