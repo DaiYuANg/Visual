@@ -12,6 +12,7 @@ module org.visual.model.ui {
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.shared;
     requires org.apache.commons.lang3;
+    requires org.visual.model.anntation;
 
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.window;

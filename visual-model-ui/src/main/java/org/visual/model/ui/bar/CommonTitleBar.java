@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.annotation.FxProperty;
 import org.visual.model.shared.Platform;
 
 import java.util.function.Supplier;
@@ -16,6 +17,8 @@ import static org.visual.model.shared.Platform.platform;
 import static org.visual.model.ui.util.ScreenUtil.primaryScreen;
 
 public class CommonTitleBar extends HBox {
+
+    @FxProperty
     private final SimpleDoubleProperty xOffset = new SimpleDoubleProperty(0.0);
     private final SimpleDoubleProperty yOffset = new SimpleDoubleProperty(0.0);
 

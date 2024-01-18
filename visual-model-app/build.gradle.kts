@@ -60,6 +60,7 @@ dependencies {
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
     implementation(projects.visualModelDebugger)
+    implementation(projects.visualModelAnntation)
 }
 
 jlink {

@@ -42,8 +42,6 @@ subprojects {
             implementation(rootProject.libs.slf4j)
             implementation(rootProject.libs.logback)
             implementation(rootProject.libs.guava)
-//            implementation("com.google.auto.factory:auto-factory:1.1.0")
-//            annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
             annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
             implementation("org.mapstruct:mapstruct:1.5.5.Final")
             annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
@@ -62,9 +60,16 @@ subprojects {
 
         group = "org." + project.name.replace("-", ".")
         tasks.compileJava {
+            doFirst {
+                println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
+            }
+            options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
             options.encoding = StandardCharsets.UTF_8.name()
-//            options.compilerArgs.add("-g")
+            options.compilerArgs.add("-g")
             options.isFork = true
+            options.isDebug = true
+            options.compilerArgs.add("-Xlint:all")
+            options.isIncremental = true
         }
 
         tasks.jar {
