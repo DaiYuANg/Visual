@@ -20,6 +20,9 @@ module org.visual.model.app {
     requires org.visual.model.database;
     requires io.avaje.inject;
     requires org.kordamp.ikonli.fluentui;
+    requires org.visual.model.anntation;
+    requires org.visual.model.debugger;
+
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
     exports org.visual.model.app.controller to

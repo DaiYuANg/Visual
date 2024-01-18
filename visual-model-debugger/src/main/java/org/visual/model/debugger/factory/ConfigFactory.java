@@ -2,6 +2,7 @@ package org.visual.model.debugger.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
+import jakarta.inject.Named;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.github.gestalt.config.Gestalt;
@@ -18,6 +19,7 @@ public class ConfigFactory {
 
     @SneakyThrows
     @Bean
+    @Named("VisualModelDebuggerGestalt")
     Gestalt gestalt() {
         val configLoaders = List.of(new EnvironmentVarsLoader(), new PropertyLoader(), new MapConfigLoader());
         val environmentSource = EnvironmentConfigSourceBuilder.builder().setPrefix("VISUAL_MODEL")

@@ -28,7 +28,6 @@ public class FxPropertyProcessor extends AbstractProcessor {
         super.init(processingEnv);
         log.info("启动");
         messager = processingEnv.getMessager();
-        messager.printError("测试");
     }
 
     @Override
@@ -37,7 +36,7 @@ public class FxPropertyProcessor extends AbstractProcessor {
             if (element instanceof VariableElement) {
 
             } else {
-                messager.printMessage(Diagnostic.Kind.ERROR, "@FxProperty can only be applied to fields", element);
+                messager.printMessage(Diagnostic.Kind.NOTE, "@FxProperty can only be applied to fields", element);
             }
         });
         return true;

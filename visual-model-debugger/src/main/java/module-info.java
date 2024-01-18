@@ -1,8 +1,8 @@
-module org.model.visual.model.debugger {
+module org.visual.model.debugger {
     requires javafx.fxml;
     requires javafx.controls;
     requires javafx.graphics;
-    requires java.instrument;
+    requires transitive java.instrument;
     requires java.rmi;
     requires java.logging;
     requires org.slf4j;

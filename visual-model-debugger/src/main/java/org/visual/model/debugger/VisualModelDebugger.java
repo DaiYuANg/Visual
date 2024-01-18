@@ -48,34 +48,34 @@ public class VisualModelDebugger extends Application {
 
     public static final String JDK_PATH_KEY = "jdkPath";
 
-//    public static void show(final @NotNull Scene target) {
-//        show(target.getRoot());
-//    }
-//
-//    public static void show(final Parent target) {
-//        if (target == null) {
-//            return;
-//        }
-//
-//        final Stage stage = new Stage();
-//
-//        // workaround for RT-10714
-//        stage.setWidth(1024);
-//        stage.setHeight(768);
-//        stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
-//
-//        final List<AppController> controllers = new ArrayList<>();
-//        final AppController aController = new AppControllerImpl();
-//        final boolean sceneRoot = target.getScene().getRoot() == target;
-//        final StageControllerImpl sController = new StageControllerImpl(target, aController, sceneRoot);
-//
-//        System.out.println("aController = " + aController);
-//        aController.getStages().add(sController);
-//        controllers.add(aController);
-//
-//        final LocalUpdateStrategy updateStrategy = new LocalUpdateStrategy(controllers);
-//        ScenicViewGui.show(new ScenicViewGui(updateStrategy, stage), stage);
-//    }
+    public static void show(final @NotNull Scene target) {
+        show(target.getRoot());
+    }
+
+    public static void show(final Parent target) {
+        if (target == null) {
+            return;
+        }
+
+        final Stage stage = new Stage();
+
+        // workaround for RT-10714
+        stage.setWidth(1024);
+        stage.setHeight(768);
+        stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
+
+        final List<AppController> controllers = new ArrayList<>();
+        final AppController aController = new AppControllerImpl();
+        final boolean sceneRoot = target.getScene().getRoot() == target;
+        final StageControllerImpl sController = new StageControllerImpl(target, aController, sceneRoot);
+
+        System.out.println("aController = " + aController);
+        aController.getStages().add(sController);
+        controllers.add(aController);
+
+        final LocalUpdateStrategy updateStrategy = new LocalUpdateStrategy(controllers);
+        ScenicViewGui.show(new ScenicViewGui(updateStrategy, stage), stage);
+    }
 
 
     /**************************************************************************
@@ -87,6 +87,7 @@ public class VisualModelDebugger extends Application {
     public static void premain(final String agentArgs, final Instrumentation instrumentation) {
         // we start up a new thread to take care of initialising Scenic View
         // so that we don't block the loading of the actual application.
+        log.info("premain execute");
         Platform.runLater(() -> new VisualModelDebugger().start());
     }
 

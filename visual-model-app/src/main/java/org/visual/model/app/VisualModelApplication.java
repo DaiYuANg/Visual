@@ -1,12 +1,14 @@
 package org.visual.model.app;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.visual.model.debugger.VisualModelDebugger;
 
 
 @Slf4j
@@ -27,9 +29,12 @@ public class VisualModelApplication extends Application {
     @Override
     public void start(Stage stage) {
         rootStage.setScene(rootScene);
+        Platform.runLater(()->
+                VisualModelDebugger.show(rootScene));
         log.info("start");
 //        inspect(rootStage);
         rootStage.show();
+
     }
 
     public static void main(String[] args) {

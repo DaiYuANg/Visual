@@ -3,6 +3,7 @@ package org.visual.model.debugger.funcation;
 import io.avaje.inject.Component;
 import io.avaje.inject.PostConstruct;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import lombok.SneakyThrows;
 import org.github.gestalt.config.Gestalt;
 
@@ -10,6 +11,7 @@ import org.github.gestalt.config.Gestalt;
 public class ConfigCentral {
 
     @Inject
+    @Named("VisualModelDebuggerGestalt")
     Gestalt gestalt;
 
     @SneakyThrows
@@ -18,6 +20,6 @@ public class ConfigCentral {
         gestalt.loadConfigs();
     }
 
-    void getConfig(String path){
+    void getConfig(String path) {
     }
 }

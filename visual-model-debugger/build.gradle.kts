@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.javafx)
+    java
 }
 
 group = "org.visual.model.ui.inspector"
@@ -24,4 +25,12 @@ dependencies{
     implementation(libs.avajeInject)
     annotationProcessor(libs.avajeInjectGenerator)
     implementation(libs.gestaltConfig)
+}
+
+tasks.jar{
+    manifest{
+        attributes(
+            "Premain-Class" to "org.visual.model.debugger.VisualModelDebugger"
+        )
+    }
 }

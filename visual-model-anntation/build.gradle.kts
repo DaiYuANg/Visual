@@ -1,19 +1,6 @@
-plugins {
-    id("java")
-}
-
 group = "org.visual.model.annotation"
 version = "unspecified"
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
 }
