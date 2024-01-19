@@ -17,6 +17,9 @@
  */
 package org.visual.model.debugger.view.tabs;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
@@ -64,7 +67,6 @@ public class JavaDocTab extends Tab implements ContextMenuContainer {
     
     public void loadAPI(final String property) {
         SVNode selectedNode = scenicView.getSelectedNode();
-        
         if (selectedNode == null || selectedNode.getNodeClassName() == null || !selectedNode.getNodeClassName().startsWith("javafx.")) {
             webView.doLoad("https://openjfx.io/javadoc/11/index.html");
         } else {

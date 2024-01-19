@@ -26,6 +26,9 @@ allprojects {
     }
 }
 val plantUMLSuffix = "puml"
+val gitVersion: groovy.lang.Closure<String> by extra
+val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
+val details = versionDetails()
 subprojects {
 
     apply<BasePlugin>()
@@ -59,6 +62,7 @@ subprojects {
         }
 
         group = "org." + project.name.replace("-", ".")
+        version = details.version
         tasks.compileJava {
             doFirst {
                 println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
@@ -75,6 +79,8 @@ subprojects {
         tasks.jar {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
+            manifest.attributes["Version"] = version
+            manifest.attributes["Git-Hash"] = details.gitHashFull
         }
 
         tasks.test {

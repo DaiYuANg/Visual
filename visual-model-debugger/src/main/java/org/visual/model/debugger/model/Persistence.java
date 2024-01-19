@@ -70,8 +70,7 @@ public class Persistence {
     }
 
     public static void saveProperties() {
-        for (final Iterator<String> iterator = persistentComponents.keySet().iterator(); iterator.hasNext();) {
-            final String propertyName = iterator.next();
+        for (final String propertyName : persistentComponents.keySet()) {
             final Object component = persistentComponents.get(propertyName);
             if (component instanceof CheckMenuItem) {
                 properties.put(propertyName, Boolean.toString(((CheckMenuItem) component).isSelected()));

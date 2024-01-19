@@ -14,11 +14,11 @@ import org.visual.model.debugger.VisualModelDebugger;
 @Slf4j
 @NoArgsConstructor
 public class VisualModelApplication extends Application {
-    private final Parent rootFxml = DIContainer.INSTANCE.load("MainLayout");
+    private final Parent rootFxml = VisualModelAppContext.INSTANCE.load("MainLayout");
 
     private final Scene rootScene = new Scene(rootFxml);
 
-    private final Stage rootStage = DIContainer.INSTANCE.get(Stage.class);
+    private final Stage rootStage = VisualModelAppContext.INSTANCE.get(Stage.class);
 
     @Override
     public void init() {

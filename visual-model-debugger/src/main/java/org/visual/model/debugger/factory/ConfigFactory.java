@@ -11,6 +11,7 @@ import org.github.gestalt.config.loader.EnvironmentVarsLoader;
 import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
+import org.visual.model.debugger.configuration.DebuggerConfiguration;
 
 import java.util.List;
 
@@ -29,5 +30,9 @@ public class ConfigFactory {
         val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
         builder.addSources(List.of(classPathSource, environmentSource, systemSource));
         return builder.build();
+    }
+
+    DebuggerConfiguration debuggerConfiguration(Gestalt gestalt) {
+        return new DebuggerConfiguration();
     }
 }

@@ -2,18 +2,16 @@ package org.visual.model.app;
 
 import io.avaje.inject.BeanScope;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.kordamp.ikonli.fluentui.FluentUiRegularAL;
 
 import java.nio.charset.StandardCharsets;
 
 @Getter
-public enum DIContainer {
+public enum VisualModelAppContext {
     INSTANCE;
 
     private final BeanScope scope = BeanScope.builder().build();
@@ -29,5 +27,4 @@ public enum DIContainer {
         loader.setCharset(StandardCharsets.UTF_8);
         return loader.load();
     }
-
 }

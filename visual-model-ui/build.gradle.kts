@@ -18,6 +18,12 @@ javafx {
     configurations = arrayOf("implementation", "testImplementation")
 }
 
+tasks.jar{
+    manifest{
+        "JavaFxVersion" to libs.versions.javafxVersion.get()
+    }
+}
+
 dependencies {
     api(libs.oshi)
     testImplementation(libs.javafxUnitTest)
