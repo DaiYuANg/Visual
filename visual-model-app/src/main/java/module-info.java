@@ -22,7 +22,7 @@ module org.visual.model.app {
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.anntation;
     requires org.visual.model.debugger;
-
+    requires info.picocli;
 
     exports org.visual.model.app to javafx.graphics, javafx.fxml;
     exports org.visual.model.app.controller to

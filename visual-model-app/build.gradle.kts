@@ -60,7 +60,9 @@ dependencies {
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
     implementation(projects.visualModelDebugger)
-    implementation(projects.visualModelAnntation)
+    implementation(projects.visualModelAnnotation)
+    implementation ("info.picocli:picocli:4.7.5")
+    annotationProcessor ("info.picocli:picocli-codegen:4.7.5")
 }
 
 jlink {

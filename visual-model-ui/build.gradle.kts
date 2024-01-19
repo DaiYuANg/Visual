@@ -25,7 +25,7 @@ dependencies {
     api(libs.fontawesome5)
     api(libs.ikonliJavafx)
     api(libs.fluentuiIcon)
-    api(projects.visualModelAnntation)
+    api(projects.visualModelAnnotation)
     annotationProcessor(projects.visualModelCodegen)
     compileOnly(projects.visualModelCodegen)
 }
