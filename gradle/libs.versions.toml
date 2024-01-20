@@ -16,13 +16,12 @@ junitPlatformSuite = "1.10.1"
 jerbrainsAnnotation = "24.0.1"
 mockito = "5.8.0"
 caffine = "3.1.8"
-spotless = "6.23.3"
+spotless = "6.24.0"
 gitVersion = "3.0.0"
 jreleaser = "1.9.0"
-antlr = "4.5"
+antlr = "4.13.1"
 oshi = "6.4.10"
-avajeInject = "9.10"
-guice = "7.0.0"
+avajeInject = "9.11-RC1"
 apacheCommonLang3 = "3.14.0"
 gestalt = "0.24.3"
 guava = "33.0.0-jre"
@@ -100,3 +99,4 @@ eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclips
 jgrapht={group="org.jgrapht",name="jgrapht-core",version.ref="jgrapht"}
 fastutil={group="it.unimi.dsi",name="fastutil",version.ref="fastutil"}
 hikariCP={group="com.zaxxer",name="HikariCP",version.ref="hikariCP"}
+spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }

@@ -56,12 +56,7 @@ public class HelpBox {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.getIcons().add(HELP_ICON);
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
-            @Override public void handle(final WindowEvent arg0) {
-                DisplayUtils.showWebView(false);
-            }
-        });
+        stage.setOnCloseRequest(arg0 -> DisplayUtils.showWebView(false));
         stage.show();
     }
 

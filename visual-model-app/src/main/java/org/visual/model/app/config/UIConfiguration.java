@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.visual.model.app.config;
 
 import lombok.Data;
@@ -7,5 +8,4 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-public class UIConfiguration {
-}
+public class UIConfiguration {}

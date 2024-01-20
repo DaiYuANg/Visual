@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -35,6 +36,10 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import lombok.val;
+import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.details.Detail;
 import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.api.ContextMenuContainer;
@@ -44,16 +49,16 @@ import org.visual.model.debugger.view.tabs.details.GDetailPane;
 
 
 /**
- * 
+ *
  */
 public class DetailsTab extends Tab implements ContextMenuContainer {
-    
+
     public static final String TAB_NAME = "Details";
 
     List<GDetailPane> gDetailPanes = new ArrayList<>();
 
     public static boolean showDefaultProperties = true;
-    
+
     private final Consumer<String> loader;
     private final ScenicViewGui scenicView;
 
@@ -62,7 +67,7 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
     Menu menu;
 
     MenuItem dumpDetails;
-    
+
     public DetailsTab(final ScenicViewGui view, final Consumer<String> loader) {
         super(TAB_NAME);
         this.scenicView = view;
@@ -75,8 +80,7 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
         vbox.setFillWidth(true);
         scrollPane.setContent(vbox);
         getStyleClass().add("all-details-pane");
-        
-        setGraphic(new ImageView(DisplayUtils.getUIImage("details.png")));
+        setGraphic(new FontIcon(FontAwesomeRegular.BOOKMARK));
         setContent(scrollPane);
         setClosable(false);
     }
@@ -86,10 +90,10 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
     }
 
     public void filterProperties(final String text) {
-        for (final GDetailPane type : gDetailPanes) {
+        gDetailPanes.forEach(type -> {
             type.filterProperties(text);
             updatedDetailPane(type);
-        }
+        });
     }
 
     public void updateDetails(final DetailPaneType type, final String paneName, final List<Detail> details, final GDetailPane.RemotePropertySetter setter) {
@@ -98,7 +102,7 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
         updatedDetailPane(pane);
     }
 
-    private void updatedDetailPane(final GDetailPane pane) {
+    private void updatedDetailPane(final @NotNull GDetailPane pane) {
         boolean detailVisible = false;
         for (final Node gridChild : pane.gridpane.getChildren()) {
             detailVisible = gridChild.isVisible();
@@ -118,10 +122,10 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
     private GDetailPane getPane(final DetailPaneType type, final String paneName) {
         GDetailPane pane = null;
         boolean found = false;
-        for (int i = 0; i < gDetailPanes.size(); i++) {
-            if (gDetailPanes.get(i).type == type) {
+        for (GDetailPane gDetailPane : gDetailPanes) {
+            if (gDetailPane.type == type) {
                 found = true;
-                pane = gDetailPanes.get(i);
+                pane = gDetailPane;
                 break;
             }
         }
@@ -133,30 +137,29 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
         return pane;
     }
 
-    @Override public Menu getMenu() {
+    @Override
+    public Menu getMenu() {
         if (menu == null) {
             menu = new Menu("Details");
-            
+
             // --- copy to clipboard
             dumpDetails = new MenuItem("Copy Details to Clipboard");
             dumpDetails.setOnAction(event -> {
-                final StringBuilder sb = new StringBuilder();
-                for (final Iterator<GDetailPane> iterator = gDetailPanes.iterator(); iterator.hasNext();) {
-                    sb.append(iterator.next());
-                }
-                final Clipboard clipboard = Clipboard.getSystemClipboard();
-                final ClipboardContent content = new ClipboardContent();
-                content.putString(sb.toString());
+                val sb = gDetailPanes.stream().map(String::valueOf).collect(Collectors.joining());
+                val clipboard = Clipboard.getSystemClipboard();
+                val content = new ClipboardContent();
+                content.putString(sb);
                 clipboard.setContent(content);
             });
             updateDump();
             menu.getItems().addAll(dumpDetails);
-            
+
             // --- show default properties
             final CheckMenuItem showDefaultProperties = scenicView.buildCheckMenuItem("Show Default Properties", "Show default properties",
                     "Hide default properties", "showDefaultProperties", Boolean.TRUE);
             showDefaultProperties.selectedProperty().addListener(new InvalidationListener() {
-                @Override public void invalidated(final Observable arg0) {
+                @Override
+                public void invalidated(final Observable arg0) {
                     setShowDefaultProperties(showDefaultProperties.isSelected());
                     val selected = scenicView.getSelectedNode();
                     scenicView.configurationUpdated();
@@ -183,7 +186,7 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
 
     private void updateDump() {
         boolean anyVisible = false;
-        for (final Iterator<GDetailPane> iterator = gDetailPanes.iterator(); iterator.hasNext();) {
+        for (final Iterator<GDetailPane> iterator = gDetailPanes.iterator(); iterator.hasNext(); ) {
             if (iterator.next().isVisible()) {
                 anyVisible = true;
                 break;

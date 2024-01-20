@@ -23,11 +23,13 @@ module org.visual.model.debugger {
     opens org.visual.model.debugger.view.threedom to javafx.fxml;
     opens org.visual.model.debugger.remote to java.instrument, java.rmi;
 
-    exports org.visual.model.debugger;
     exports org.visual.model.debugger.controller;
     exports org.visual.model.debugger.api;
     exports org.visual.model.debugger.event;
     exports org.visual.model.debugger.node;
+    exports org.visual.model.debugger.configuration;
+    exports org.visual.model.debugger.model.update;
+    exports org.visual.model.debugger.core;
 
-    provides io.avaje.inject.spi.Module with org.visual.model.debugger.DebuggerModule;
+    provides io.avaje.inject.spi.Module with org.visual.model.debugger.factory.FactoryModule;
 }

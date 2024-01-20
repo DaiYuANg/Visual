@@ -20,7 +20,7 @@
 
 import org.visual.model.debugger.node.SVNode;
 
-interface NodeFilter {
+public interface NodeFilter {
     /**
      * Checks if the node is accepted for this filter
      * 

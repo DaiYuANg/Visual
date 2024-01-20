@@ -2,6 +2,7 @@ package org.visual.model.debugger.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
+import io.avaje.inject.PostConstruct;
 import jakarta.inject.Named;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -11,7 +12,8 @@ import org.github.gestalt.config.loader.EnvironmentVarsLoader;
 import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
-import org.visual.model.debugger.configuration.DebuggerConfiguration;
+import org.jetbrains.annotations.NotNull;
+import org.visual.model.shared.pojo.JavaFxProperty;
 
 import java.util.List;
 
@@ -26,13 +28,18 @@ public class ConfigFactory {
         val environmentSource = EnvironmentConfigSourceBuilder.builder().setPrefix("VISUAL_MODEL")
                 .setFailOnErrors(false).build();
         val classPathSource = ClassPathConfigSourceBuilder.builder().setResource("visual.model.debugger.properties").build();
+        val javafxClassPathSource = ClassPathConfigSourceBuilder.builder().setResource("javafx.properties").build();
         val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build();
         val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
-        builder.addSources(List.of(classPathSource, environmentSource, systemSource));
-        return builder.build();
+        builder.addSources(List.of(classPathSource, environmentSource, systemSource, javafxClassPathSource));
+        val gestalt = builder.build();
+        gestalt.loadConfigs();
+        return gestalt;
     }
 
-    DebuggerConfiguration debuggerConfiguration(Gestalt gestalt) {
-        return new DebuggerConfiguration();
+    @SneakyThrows
+    @Bean
+    JavaFxProperty debuggerConfiguration(@NotNull @Named("VisualModelDebuggerGestalt") Gestalt gestalt) {
+        return gestalt.getConfig("javafx", JavaFxProperty.class);
     }
 }

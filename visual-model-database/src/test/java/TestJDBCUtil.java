@@ -1,3 +1,6 @@
+/* (C)2024*/
+import static org.visual.model.database.util.JDBCUtil.*;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.SneakyThrows;
@@ -12,20 +15,17 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static org.visual.model.database.util.JDBCUtil.*;
-
 @Slf4j
 @Testcontainers(parallel = true)
 public class TestJDBCUtil {
 
     @Container
-    MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:latest")
-            .withDatabaseName("test_mysql")
-            .withInitScript("init-mysql.sql");
+    MySQLContainer<?> mySQLContainer =
+            new MySQLContainer<>("mysql:latest").withDatabaseName("test_mysql").withInitScript("init-mysql.sql");
 
     @Container
-    PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:latest")
-            .withDatabaseName("test_postgresql");
+    PostgreSQLContainer<?> postgreSQLContainer =
+            new PostgreSQLContainer<>("postgres:latest").withDatabaseName("test_postgresql");
 
     HikariDataSource mysqlDs;
 
@@ -72,7 +72,6 @@ public class TestJDBCUtil {
         val columns = listColumns(mysqlDs.getConnection(), "test");
         log.info("mysql columns:{}", columns);
     }
-
 
     @SneakyThrows
     @Test

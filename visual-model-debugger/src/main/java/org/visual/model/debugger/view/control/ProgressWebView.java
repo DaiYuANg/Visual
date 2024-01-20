@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package org.visual.model.debugger.view.control;
+package org.visual.model.debugger.view.control;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -33,20 +33,20 @@ import javafx.util.Duration;
 
 public class ProgressWebView extends StackPane {
 
-    WebView wview;
+    WebView webView = new WebView();
     String loadedPage;
 
     public ProgressWebView() {
-        wview = new WebView();
         final ProgressIndicator progressIndicator = new ProgressIndicator();
         progressIndicator.setMaxSize(300, 300);
-        wview.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
+        webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<>() {
             Animation anim;
 
-            @Override public void changed(final ObservableValue<? extends State> arg0, final State old, final State newValue) {
+            @Override
+            public void changed(final ObservableValue<? extends State> arg0, final State old, final State newValue) {
                 if (newValue == State.READY) {
                     anim = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-                        if (wview.getEngine().getLoadWorker().getProgress() == -1) {
+                        if (webView.getEngine().getLoadWorker().getProgress() == -1) {
                             doLoad(loadedPage);
                         }
                     }));
@@ -57,7 +57,7 @@ public class ProgressWebView extends StackPane {
                 }
             }
         });
-        wview.getEngine().getLoadWorker().progressProperty().addListener(new ChangeListener<Number>() {
+        webView.getEngine().getLoadWorker().progressProperty().addListener(new ChangeListener<Number>() {
             private final double DURATION = 500;
             private final FadeTransition fadeIn = new FadeTransition(Duration.millis(DURATION));
             private final FadeTransition fadeOut = new FadeTransition(Duration.millis(DURATION));
@@ -71,15 +71,16 @@ public class ProgressWebView extends StackPane {
                 fadeIn.setToValue(1.0);
             }
 
-            @Override public void changed(final ObservableValue<? extends Number> arg0, final Number arg1, final Number progress) {
+            @Override
+            public void changed(final ObservableValue<? extends Number> arg0, final Number arg1, final Number progress) {
                 final double progressValue = progress.doubleValue();
 
                 if (progressValue == 0) {
                     getChildren().setAll(progressIndicator);
-                    doFade(wview, progressIndicator);
+                    doFade(webView, progressIndicator);
                 } else if (progressValue == 1.0) {
-                    getChildren().setAll(wview);
-                    doFade(progressIndicator, wview);
+                    getChildren().setAll(webView);
+                    doFade(progressIndicator, webView);
                 }
                 progressIndicator.setProgress(progressValue);
             }
@@ -95,10 +96,10 @@ public class ProgressWebView extends StackPane {
     }
 
     public void doLoad(final String page) {
-        String location = wview.getEngine().getLocation();
+        String location = webView.getEngine().getLocation();
         if (location == null || !location.equals(page)) {
             loadedPage = page;
-            wview.getEngine().load(page);
+            webView.getEngine().load(page);
         }
     }
 }

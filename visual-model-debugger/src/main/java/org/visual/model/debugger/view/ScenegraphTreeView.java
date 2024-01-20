@@ -26,8 +26,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.listener.StageCollapsingListener;
 import org.visual.model.debugger.node.NodeType;
 import org.visual.model.debugger.node.SVDummyNode;
 import org.visual.model.debugger.node.SVNode;
@@ -70,8 +72,7 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
 
         getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             if (!blockSelection) {
-                final TreeItem<SVNode> selected = newValue;
-                setSelectedNode(selected != null && !(selected.getValue() instanceof SVDummyNode) ? selected : null);
+                setSelectedNode(newValue != null && !(newValue.getValue() instanceof SVDummyNode) ? newValue : null);
             }
         });
 
@@ -249,7 +250,7 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
          * Create the application node (VM - XXXX)
          */
         if (app == null) {
-            final SVNode dummy = new SVDummyNode("VM - " + controller.getAppController(), "Java", controller.getAppController().getID(), NodeType.VM);
+            val dummy = new SVDummyNode("VM - " + controller.getAppController(), "Java", controller.getAppController().getID(), NodeType.VM);
             app = new TreeItem<>(dummy, new ImageView(DisplayUtils.getIcon(dummy)));
             app.setExpanded(false);
             this.apps.getChildren().add(app);
@@ -288,7 +289,7 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
              * If there were no stages present in the VM or the was only one but
              * was the same the root node will be root node the Stage
              */
-            if (app.getChildren().isEmpty() || (app.getChildren().size() == 1 && app.getChildren().get(0).getValue().equals(stageRoot.getValue()))) {
+            if (app.getChildren().isEmpty() || (app.getChildren().size() == 1 && app.getChildren().getFirst().getValue().equals(stageRoot.getValue()))) {
                 placeNewRoot(stageRoot);
             } else {
                 /**
@@ -308,7 +309,7 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
      *
      * @param realNode
      */
-    void patchRoot(final TreeItem<SVNode> realNode) {
+    void patchRoot(final @NotNull TreeItem<SVNode> realNode) {
         this.patchedNode = realNode;
         final TreeItem<SVNode> real = new TreeItem<>(realNode.getValue(), realNode.getGraphic());
         real.getChildren().addAll(realNode.getChildren());
@@ -388,8 +389,12 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
         blockSelection = true;
         removeForNode(getTreeItem(value));
         blockSelection = false;
-        final TreeItem<SVNode> root = createTreeItem(value, showNodesIdInTree, showFilteredNodesInTree);
-        final StageCollapsingListener listener = new StageCollapsingListener(root, controller);
+        val root = createTreeItem(value, showNodesIdInTree, showFilteredNodesInTree);
+        val listener = StageCollapsingListener.builder()
+                .root(root)
+                .controller(controller)
+                .scenicViewGui(scenicView)
+                .build();
         Objects.requireNonNull(root).addEventHandler(TreeItem.branchCollapsedEvent(), listener);
         root.addEventHandler(TreeItem.branchExpandedEvent(), listener);
         // this.listeners.put(controller, listener);
@@ -683,26 +688,25 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
         treeViewData.remove(treeItem.getValue());
     }
 
-    class StageCollapsingListener implements EventHandler<TreeModificationEvent<Object>> {
-
-        TreeItem<SVNode> root;
-        StageController controller;
-
-        public StageCollapsingListener(final TreeItem<SVNode> root, final StageController controller) {
-            this.root = root;
-            this.controller = controller;
-        }
-
-        @Override
-        public void handle(final TreeModificationEvent<Object> ev) {
-            if (!root.isExpanded() && controller.isOpened()) {
-                // Closing controller
-                controller.close();
-            } else if (root.isExpanded() && !controller.isOpened()) {
-                // Opening controller
-                scenicView.openStage(controller);
-            }
-        }
-    }
-
+//    class StageCollapsingListener implements EventHandler<TreeModificationEvent<Object>> {
+//
+//        TreeItem<SVNode> root;
+//        StageController controller;
+//
+//        public StageCollapsingListener(final TreeItem<SVNode> root, final StageController controller) {
+//            this.root = root;
+//            this.controller = controller;
+//        }
+//
+//        @Override
+//        public void handle(final TreeModificationEvent<Object> ev) {
+//            if (!root.isExpanded() && controller.isOpened()) {
+//                // Closing controller
+//                controller.close();
+//            } else if (root.isExpanded() && !controller.isOpened()) {
+//                // Opening controller
+//                scenicView.openStage(controller);
+//            }
+//        }
+//    }
 }

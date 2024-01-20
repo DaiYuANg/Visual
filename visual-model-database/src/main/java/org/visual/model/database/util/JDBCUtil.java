@@ -1,5 +1,8 @@
+/* (C)2024*/
 package org.visual.model.database.util;
 
+import java.sql.Connection;
+import java.util.*;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
@@ -7,9 +10,6 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.database.DatabaseResultKey;
 import org.visual.model.database.DatabaseTableColumn;
-
-import java.sql.Connection;
-import java.util.*;
 
 @UtilityClass
 public class JDBCUtil {
@@ -29,7 +29,7 @@ public class JDBCUtil {
     public static @NotNull Set<String> listTables(@NonNull Connection conn) {
         val metadata = conn.getMetaData();
         val catalog = conn.getCatalog();
-        val tables = metadata.getTables(catalog, null, null, new String[]{"TABLE"});
+        val tables = metadata.getTables(catalog, null, null, new String[] {"TABLE"});
         val result = new HashSet<String>();
         while (tables.next()) {
             result.add(tables.getString(3));

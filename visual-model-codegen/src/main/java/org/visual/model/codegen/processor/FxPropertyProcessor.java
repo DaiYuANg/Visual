@@ -1,20 +1,20 @@
+/* (C)2024*/
 package org.visual.model.codegen.processor;
 
 import com.google.auto.service.AutoService;
 import com.sun.source.util.Trees;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.objectweb.asm.*;
-import org.visual.model.annotation.FxProperty;
-
+import java.util.Collections;
+import java.util.Set;
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.tools.Diagnostic;
-import java.util.Collections;
-import java.util.Set;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.objectweb.asm.*;
+import org.visual.model.annotation.FxProperty;
 
 /**
  * @author
@@ -38,7 +38,9 @@ public class FxPropertyProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, @NotNull RoundEnvironment roundEnv) {
         roundEnv.getElementsAnnotatedWith(FxProperty.class).forEach(element -> {
             if (element instanceof VariableElement) {
-                String className = ((TypeElement) element.getEnclosingElement()).getQualifiedName().toString();
+                String className = ((TypeElement) element.getEnclosingElement())
+                        .getQualifiedName()
+                        .toString();
                 String fieldName = element.getSimpleName().toString();
 
             } else {
@@ -56,7 +58,8 @@ public class FxPropertyProcessor extends AbstractProcessor {
         // 创建自定义的 ClassVisitor，重写 visitField 方法
         ClassVisitor classVisitor = new ClassVisitor(Opcodes.ASM9, classWriter) {
             @Override
-            public FieldVisitor visitField(int access, @NotNull String name, String descriptor, String signature, Object value) {
+            public FieldVisitor visitField(
+                    int access, @NotNull String name, String descriptor, String signature, Object value) {
                 if (name.equals(fieldName)) {
                     // 在这里可以添加字节码操作，例如修改字段的访问修饰符
                     access |= Opcodes.ACC_PRIVATE; // 修改为私有字段

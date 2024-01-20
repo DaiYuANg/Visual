@@ -87,5 +87,4 @@ public class DisplayUtils {
             Logger.getLogger("webcore.platform.api.SharedBufferInputStream").setLevel(wpLevel);
         }
     }
-
 }

@@ -17,21 +17,22 @@
  */
 package org.visual.model.debugger.helper;
 
+import javafx.application.Platform;
+import javafx.stage.PopupWindow;
+import javafx.stage.Window;
+import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.controller.StageControllerImpl;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.application.Platform;
-import javafx.stage.PopupWindow;
-import javafx.stage.Window;
-import org.visual.model.debugger.controller.StageControllerImpl;
-
 public class SubWindowChecker extends WindowChecker {
 
     StageControllerImpl model;
 
-    public SubWindowChecker(final StageControllerImpl model) {
+    public SubWindowChecker(final @NotNull StageControllerImpl model) {
         super(window -> window instanceof PopupWindow, model.getID().toString());
         this.model = model;
     }

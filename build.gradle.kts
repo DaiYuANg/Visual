@@ -12,7 +12,6 @@ plugins {
     java
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
-//    id("com.diffplug.spotless")
     alias(libs.plugins.plantuml)
     id("me.champeau.jmh") version "0.7.1"
 }
@@ -27,7 +26,7 @@ allprojects {
 }
 val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
-val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
+val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 val details = versionDetails()
 subprojects {
 
@@ -38,11 +37,13 @@ subprojects {
             apply<LombokPlugin>()
             apply<JavaLibraryPlugin>()
             apply<PlantUmlPlugin>()
+            apply<FormatterPlugin>()
         }
 
         dependencies {
             implementation(rootProject.libs.jetbrainsAnnotation)
             implementation(rootProject.libs.slf4j)
+            implementation(rootProject.libs.slf4jJdkPlatform)
             implementation(rootProject.libs.logback)
             implementation(rootProject.libs.guava)
             annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
@@ -62,7 +63,6 @@ subprojects {
         }
 
         group = "org." + project.name.replace("-", ".")
-        version = details.version
         tasks.compileJava {
             doFirst {
                 println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
@@ -72,7 +72,7 @@ subprojects {
             options.compilerArgs.add("-g")
             options.isFork = true
             options.isDebug = true
-            options.compilerArgs.add("-Xlint:all")
+//            options.compilerArgs.add("-Xlint:all")
             options.isIncremental = true
         }
 
@@ -88,10 +88,10 @@ subprojects {
         }
 
         java {
-//        modularity.inferModulePath.set(true)
             sourceCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
             targetCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
         }
+
 
         classDiagrams {
             val glob = "org.${project.name.replace("-", ".")}.**"

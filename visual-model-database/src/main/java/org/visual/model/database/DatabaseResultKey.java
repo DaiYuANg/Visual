@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.visual.model.database;
 
 import lombok.Getter;

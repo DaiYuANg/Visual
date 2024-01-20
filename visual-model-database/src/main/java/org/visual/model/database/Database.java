@@ -1,6 +1,10 @@
+/* (C)2024*/
 package org.visual.model.database;
 
 import com.zaxxer.hikari.HikariDataSource;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.val;
@@ -8,15 +12,12 @@ import org.visual.model.database.api.VMDatabase;
 import org.visual.model.database.mapper.HikariMapper;
 import org.visual.model.database.util.JDBCUtil;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 @ToString
 public class Database implements VMDatabase {
     private final HikariDataSource dataSource;
 
     public Database(DatabaseArgument argument) {
+        new org.visual.model.database.MySqlParserBaseListener();
         val config = HikariMapper.INSTANCE.buildConfig(argument);
         this.dataSource = new HikariDataSource(config);
     }

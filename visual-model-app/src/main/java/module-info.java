@@ -23,11 +23,25 @@ module org.visual.model.app {
     requires org.visual.model.anntation;
     requires org.visual.model.debugger;
     requires info.picocli;
+    requires org.visual.model.graph.editor;
+    requires org.eclipse.emf.common;
+    requires org.eclipse.emf.ecore.xmi;
+    requires org.eclipse.emf.ecore;
+    requires org.eclipse.emf.edit;
 
-    exports org.visual.model.app to javafx.graphics, javafx.fxml;
+    opens org.visual.model.app.controller to
+            javafx.fxml;
+
+    exports org.visual.model.app.core to
+            javafx.graphics,
+            javafx.fxml;
     exports org.visual.model.app.controller to
             javafx.fxml,
             javafx.graphics;
+    exports org.visual.model.app.core to
+            javafx.fxml,
+            javafx.graphics;
 
-    provides io.avaje.inject.spi.Module with org.visual.model.app.AppModule;
+    provides io.avaje.inject.spi.Module with
+            org.visual.model.app.AppModule;
 }

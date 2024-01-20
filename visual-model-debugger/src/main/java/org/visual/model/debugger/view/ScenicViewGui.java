@@ -20,9 +20,13 @@ package org.visual.model.debugger.view;
 import java.util.*;
 import java.util.function.Consumer;
 
+import io.avaje.inject.Component;
+import jakarta.inject.Singleton;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.ConditionalFeature;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -71,7 +75,7 @@ import org.visual.model.debugger.view.tabs.*;
 public class ScenicViewGui {
 
     private static final String HELP_URL = "http://fxexperience.com/scenic-view/help";
-    public static final String STYLESHEETS = ScenicViewGui.class.getResource("scenicview.css").toExternalForm();
+    public static final String STYLESHEETS = Objects.requireNonNull(ScenicViewGui.class.getResource("scenicview.css")).toExternalForm();
     public static final Image APP_ICON = DisplayUtils.getUIImage("mglass.png");
 
     public static final String VERSION = "11.0.2";
@@ -259,13 +263,19 @@ public class ScenicViewGui {
             configurationUpdated();
         });
 
-        // 3Dom
+//        if (Platform.isSupported(ConditionalFeature.SCENE3D)) {
+//            // 3Dom
+//
+//        }
         threeDOMTab = new ThreeDOMTab(this);
+//        tabPane.getTabs().add(threeDOMTab);
+
+        ;
 
         // CSSFX
         cssfxTab = new CSSFXTab(this);
 
-        tabPane.getTabs().addAll(detailsTab, eventsTab, /*animationsTab,*/ javadocTab, threeDOMTab, cssfxTab);
+        tabPane.getTabs().addAll(detailsTab, eventsTab, /*animationsTab,*/ javadocTab, cssfxTab,threeDOMTab);
         // /3Dom
 
         Persistence.loadProperty("splitPaneDividerPosition", splitPane, 0.3);

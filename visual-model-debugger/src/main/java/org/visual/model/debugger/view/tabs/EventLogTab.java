@@ -37,6 +37,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.event.EvLogEvent;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.api.ContextMenuContainer;
@@ -80,7 +83,7 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
         this.scenicView = view;
 
         setContent(buildUI());
-        setGraphic(new ImageView(DisplayUtils.getUIImage("flag_red.png")));
+        setGraphic(new FontIcon(FontAwesomeRegular.FLAG));
         setClosable(false);
     }
 

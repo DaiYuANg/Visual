@@ -31,6 +31,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.SVGPath;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.simpleicons.SimpleIcons;
 import org.visual.model.debugger.event.EvCSSFXEvent;
 import org.visual.model.debugger.event.FXConnectorEvent;
 import org.visual.model.debugger.view.ScenicViewGui;
@@ -43,7 +47,7 @@ public class CSSFXTab extends Tab {
     private static final String CSSFX_TAB_NAME = "CSSFX";
     private ScenicViewGui gui;
     private CSSFXTabContentController cssfxTabContentController;
-    private Map<StageID, ObservableList<MonitoredCSS>> cssByStage = new HashMap<>();
+    private final Map<StageID, ObservableList<MonitoredCSS>> cssByStage = new HashMap<>();
 
     public CSSFXTab(ScenicViewGui gui) {
         super(CSSFX_TAB_NAME);
@@ -58,9 +62,9 @@ public class CSSFXTab extends Tab {
 
     private Node createTabContent() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CSSFXTabContentController.class.getResource("cssfxtabcontent.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CSSFXTabContentController.class.getResource("CssFxTabContent.fxml"));
             Node root = fxmlLoader.load();
-            cssfxTabContentController = (CSSFXTabContentController)fxmlLoader.getController();
+            cssfxTabContentController = fxmlLoader.getController();
             cssfxTabContentController.setScenicViewGui(gui);
             return root;
         } catch (Exception ex) {
@@ -72,15 +76,9 @@ public class CSSFXTab extends Tab {
         }
     }
 
-    private Node createTabGraphic() {
-        SVGPath p = new SVGPath();
-        p.setContent("m 180.75256,334.77228 -0.53721,2.68603 10.93285,0 -0.3412,1.73502 -10.9401,0 -0.52996,2.68603 10.93286,0 -0.6098,3.06352 -4.40654,1.45917 -3.81851,-1.45917 0.26134,-1.32849 -2.68602,0 -0.63884,3.22323 6.31579,2.41742 7.2813,-2.41742 0.96552,-4.84937 0.19601,-0.97277 1.24138,-6.2432 z");
-        StackPane sp = new StackPane(p);
-        sp.setMaxWidth(24.0);
-        sp.setMaxHeight(24.0);
-        sp.setPrefWidth(24.0);
-        sp.setPrefHeight(24.0);
-        return sp;
+    @Contract(" -> new")
+    private @NotNull Node createTabGraphic() {
+        return new FontIcon(SimpleIcons.CSS3);
     }
 
     public void handleEvent(FXConnectorEvent appEvent) {

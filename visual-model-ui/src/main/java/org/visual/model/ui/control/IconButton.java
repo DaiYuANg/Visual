@@ -9,6 +9,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import org.kordamp.ikonli.fluentui.FluentUiRegularAL;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.simpleicons.SimpleIcons;
+import org.visual.model.annotation.FxProperty;
 
 import java.beans.BeanProperty;
 
@@ -17,6 +19,7 @@ import java.beans.BeanProperty;
 @ToString
 public class IconButton extends Button {
 
+    @FxProperty
     private final ObjectProperty<FluentUiRegularAL> icon = new SimpleObjectProperty<>();
 
     {

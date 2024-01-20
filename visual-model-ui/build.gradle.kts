@@ -18,8 +18,8 @@ javafx {
     configurations = arrayOf("implementation", "testImplementation")
 }
 
-tasks.jar{
-    manifest{
+tasks.jar {
+    manifest {
         "JavaFxVersion" to libs.versions.javafxVersion.get()
     }
 }
@@ -32,6 +32,10 @@ dependencies {
     api(libs.ikonliJavafx)
     api(libs.fluentuiIcon)
     api(projects.visualModelAnnotation)
+    api(libs.simpleicon)
+    api("org.controlsfx:controlsfx:11.2.0")
     annotationProcessor(projects.visualModelCodegen)
-    compileOnly(projects.visualModelCodegen)
+    api(projects.libs.jfa)
+    api("com.github.oshi:oshi-core-java11:6.4.11")
+    api("io.github.mkpaz:atlantafx-base:2.0.1")
 }

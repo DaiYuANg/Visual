@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import lombok.Getter;
 import org.visual.model.debugger.view.DisplayUtils;
 
 
@@ -30,6 +31,7 @@ import org.visual.model.debugger.view.DisplayUtils;
  *
  */
 public class FilterTextField extends Region {
+    @Getter
     private final TextField textField;
 
     private final ImageView clearButton;
@@ -40,12 +42,13 @@ public class FilterTextField extends Region {
         this.textField = new TextField();
 
         this.clearButton = new ImageView();
-        this.clearButton.imageProperty().bind(new ObjectBinding<Image>() {
+        this.clearButton.imageProperty().bind(new ObjectBinding<>() {
             {
                 super.bind(clearButton.hoverProperty());
             }
 
-            @Override protected Image computeValue() {
+            @Override
+            protected Image computeValue() {
                 if (clearButton.isHover()) {
                     return DisplayUtils.CLEAR_HOVER_IMAGE;
                 } else {
@@ -75,16 +78,8 @@ public class FilterTextField extends Region {
 
     public void setOnButtonClick(final Runnable onButtonClick) {
         if (onButtonClick != null) {
-            this.clearButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override public void handle(final MouseEvent t) {
-                    onButtonClick.run();
-                }
-            });
+            this.clearButton.setOnMousePressed(t -> onButtonClick.run());
         }
-    }
-
-    public TextField getTextField() {
-        return textField;
     }
 
     public void setText(final String text) {

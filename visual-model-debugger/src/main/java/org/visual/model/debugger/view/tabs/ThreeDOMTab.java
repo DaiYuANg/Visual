@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2014 Jonathan Giles, Ander Ruiz, Amy Fowler, Arnaud Nouard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,15 +24,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Tab;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import org.visual.model.debugger.node.SVNode;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.api.ContextMenuContainer;
-import org.visual.model.debugger.view.DisplayUtils;
+import org.visual.model.debugger.node.SVNode;
+import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.threedom.IThreeDOM;
 import org.visual.model.debugger.view.threedom.ThreeDOM;
 import org.visual.model.debugger.view.threedom.Tile3D;
-import org.visual.model.debugger.view.ScenicViewGui;
 
 
 public class ThreeDOMTab extends Tab implements ContextMenuContainer, IThreeDOM {
@@ -49,7 +49,7 @@ public class ThreeDOMTab extends Tab implements ContextMenuContainer, IThreeDOM 
         super(TAB_NAME);
         this.scenicView = view;
 
-        setGraphic(new ImageView(DisplayUtils.getUIImage("globe.png")));
+        setGraphic(new FontIcon(FontAwesomeSolid.GLOBE));
         setClosable(false);
         selectedProperty().addListener((final ObservableValue<? extends Boolean> arg0, final Boolean arg1, final Boolean newValue) -> {
             if (newValue) {
@@ -117,7 +117,7 @@ public class ThreeDOMTab extends Tab implements ContextMenuContainer, IThreeDOM 
      */
     public void reload() {
         if (threeDOM != null) {
-            threeDOM.reload(root2D.getChildren().get(0));
+            threeDOM.reload(root2D.getChildren().getFirst());
         }
     }
 

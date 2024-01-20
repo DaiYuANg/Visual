@@ -17,16 +17,17 @@
  */
 package org.visual.model.debugger.helper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import javafx.stage.Window;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.StageController;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class WindowChecker extends WorkerThread {
@@ -69,19 +70,13 @@ public abstract class WindowChecker extends WorkerThread {
 
     protected abstract void onWindowsFound(List<Window> windows);
 
-    public static List<Window> getValidWindows(final WindowFilter filter) {
+    public static @NotNull List<Window> getValidWindows(final WindowFilter filter) {
         ObservableList<Window> windows = Window.getWindows();
         if (windows.isEmpty()) {
             return Collections.emptyList();
         }
 
-        final List<Window> validWindows = new ArrayList<>();
-        for (Window window : windows) {
-            if (filter.accept(window)) {
-                validWindows.add(window);
-            }
-        }
-        return validWindows;
+        return windows.stream().filter(filter::accept).collect(Collectors.toList());
     }
 
     @Override

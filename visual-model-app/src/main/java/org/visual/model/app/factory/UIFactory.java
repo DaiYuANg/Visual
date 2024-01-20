@@ -1,22 +1,21 @@
+/* (C)2024*/
 package org.visual.model.app.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.inject.Primary;
-import jakarta.inject.Singleton;
+import java.nio.file.Path;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import org.visual.model.ui.widget.BorderLessStage;
 import org.visual.model.ui.widget.Tray;
-
-import java.nio.file.Path;
 
 @Factory
 @Slf4j
 public class UIFactory {
 
-    private final Stage rootStage = new Stage();
+    private final Stage rootStage = new BorderLessStage();
 
     @Bean
     @Primary

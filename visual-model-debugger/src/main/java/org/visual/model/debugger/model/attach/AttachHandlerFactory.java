@@ -37,10 +37,10 @@ import org.visual.model.debugger.api.AttachHandler;
 import org.visual.model.debugger.utils.PropertiesUtils;
 import org.visual.model.debugger.utils.Utils;
 import org.visual.model.shared.Platform;
-import org.visual.model.debugger.VisualModelDebugger;
+import org.visual.model.debugger.core.VisualModelDebugger;
 
 import static org.visual.model.shared.Platform.platform;
-import static org.visual.model.debugger.VisualModelDebugger.JDK_PATH_KEY;
+import static org.visual.model.debugger.core.VisualModelDebugger.JDK_PATH_KEY;
 
 /**
  *

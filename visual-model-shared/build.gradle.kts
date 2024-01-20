@@ -10,7 +10,7 @@ dependencies {
 //    implementation(libs.eclipseCollections)
 //    testImplementation(libs.eclipseCollectionsTestUtil)
 //    implementation(libs.eclipseCollectionsForkjoin)
-    implementation(libs.jgrapht)
-    implementation(libs.fastutil)
-    implementation(libs.apacheCommonLang3)
+    api(libs.jgrapht)
+    api(libs.fastutil)
+    implementation("com.fasterxml.jackson.core:jackson-core:2.16.1")
 }

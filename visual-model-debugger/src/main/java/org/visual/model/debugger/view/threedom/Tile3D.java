@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Translate;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.node.SVNode;
 
 public class Tile3D extends Box {
@@ -102,48 +103,50 @@ public class Tile3D extends Box {
     @SuppressWarnings("CallToPrintStackTrace")
     public final void snapshot() {
         Bounds layoutBounds = node2d.getImpl().getLayoutBounds();
-        if (layoutBounds.getWidth() > 0 && layoutBounds.getHeight() > 0) {
-            writableImage = new WritableImage((int) layoutBounds.getWidth(), (int) layoutBounds.getHeight());
-            SnapshotParameters snapshotParameters = new SnapshotParameters();
-
-            // Hide children
-            if (node2d.getImpl() instanceof Parent) {
-                ObservableList<Node> childrenUnmodifiable = ((Parent) node2d.getImpl()).getChildrenUnmodifiable();
-                childrenUnmodifiable.stream().forEach((c) -> {
-                    if (!c.visibleProperty().isBound()) {
-                        c.getProperties().put("VISIBLE-STATE", c.isVisible());
-                        c.setVisible(false);
-                    } else {
-                        System.err.println("Bound: " + c.toString());
-                    }
-                });
-            }
-            try {
-                node2d.getImpl().snapshot(snapshotParameters, writableImage);
-                material.setDiffuseMap(writableImage);
-            } catch (Throwable t) {
-                // Sometimes the snapshot hangs (e.g. webview)
-                t.printStackTrace();
-            }
-            // Show children
-            if (node2d.getImpl() instanceof Parent) {
-                ObservableList<Node> childrenUnmodifiable = ((Parent) node2d.getImpl()).getChildrenUnmodifiable();
-                childrenUnmodifiable.stream().forEach((Node c) -> {
-                    if (!c.visibleProperty().isBound()) {
-                        Boolean v = (Boolean) c.getProperties().get("VISIBLE-STATE");
-                        c.getProperties().remove("VISIBLE-STATE");
-                        c.visibleProperty().set(v);
-                    }
-                });
-            }
+        if (!(layoutBounds.getWidth() > 0) || !(layoutBounds.getHeight() > 0)) {
+            return;
         }
+        writableImage = new WritableImage((int) layoutBounds.getWidth(), (int) layoutBounds.getHeight());
+        SnapshotParameters snapshotParameters = new SnapshotParameters();
+
+        // Hide children
+        if (node2d.getImpl() instanceof Parent) {
+            ObservableList<Node> childrenUnmodifiable = ((Parent) node2d.getImpl()).getChildrenUnmodifiable();
+            childrenUnmodifiable.forEach((c) -> {
+                if (!c.visibleProperty().isBound()) {
+                    c.getProperties().put("VISIBLE-STATE", c.isVisible());
+                    c.setVisible(false);
+                } else {
+                    System.err.println("Bound: " + c.toString());
+                }
+            });
+        }
+        try {
+            node2d.getImpl().snapshot(snapshotParameters, writableImage);
+            material.setDiffuseMap(writableImage);
+        } catch (Throwable t) {
+            // Sometimes the snapshot hangs (e.g. webview)
+            t.printStackTrace();
+        }
+        // Show children
+        if (!(node2d.getImpl() instanceof Parent)) {
+            return;
+        }
+        ObservableList<Node> childrenUnmodifiable = ((Parent) node2d.getImpl()).getChildrenUnmodifiable();
+        childrenUnmodifiable.forEach((Node c) -> {
+            if (!c.visibleProperty().isBound()) {
+                Boolean v = (Boolean) c.getProperties().get("VISIBLE-STATE");
+                c.getProperties().remove("VISIBLE-STATE");
+                c.visibleProperty().set(v);
+            }
+        });
     }
 
     public SVNode getSVNode() {
         return node2d;
     }
 
-    private Bounds localetoRoot(SVNode sv) {
+    private @NotNull Bounds localetoRoot(@NotNull SVNode sv) {
         Node n = sv.getImpl();
         Bounds node = n.localToScene(n.getLayoutBounds());
         Bounds root = currentRoot2D.getImpl().localToScene(currentRoot2D.getImpl().getLayoutBounds());
@@ -152,7 +155,7 @@ public class Tile3D extends Box {
 
     public void addChildrenTile(Tile3D child) {
         if (children == null) {
-            children = new ArrayList(5);
+            children = new ArrayList<>(5);
         }
         children.add(child);
     }
