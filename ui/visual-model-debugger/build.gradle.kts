@@ -19,16 +19,18 @@ javafx {
     configurations = arrayOf("implementation", "testImplementation")
 }
 
-dependencies{
-    implementation(projects.visualModelUi)
+dependencies {
+    implementation(projects.ui.visualModelComponent)
     implementation(projects.visualModelShared)
     implementation(libs.avajeInject)
     annotationProcessor(libs.avajeInjectGenerator)
     implementation(libs.gestaltConfig)
+    implementation(libs.pcollections)
+    implementation(libs.avajeConfig)
 }
 
-tasks.jar{
-    manifest{
+tasks.jar {
+    manifest {
         attributes(
             "Premain-Class" to "org.visual.model.debugger.VisualModelDebugger"
         )

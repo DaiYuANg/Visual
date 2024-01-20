@@ -28,6 +28,10 @@ module org.visual.model.app {
     requires org.eclipse.emf.ecore.xmi;
     requires org.eclipse.emf.ecore;
     requires org.eclipse.emf.edit;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.annotation;
+    requires io.avaje.validation.contraints;
 
     opens org.visual.model.app.controller to
             javafx.fxml;

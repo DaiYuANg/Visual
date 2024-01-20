@@ -27,7 +27,7 @@ class FormatterPlugin : Plugin<Project> {
             java {
                 target("**/*.java")
                 importOrder()
-                palantirJavaFormat()
+//                palantirJavaFormat()
                 indentWithSpaces(2)
                 removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
                 formatAnnotations()

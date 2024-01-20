@@ -19,7 +19,8 @@ javafx {
 
 
 dependencies {
-    implementation(projects.visualModelUi)
+    implementation(projects.ui.visualModelComponent)
+    implementation(libs.pcollections)
     api("org.eclipse.emf:org.eclipse.emf.ecore:2.35.0")
     api("org.eclipse.emf:org.eclipse.emf.common:2.29.0")
     api("org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.36.0")
