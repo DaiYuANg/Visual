@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.BitSet;
+import java.util.List;
+import java.util.stream.IntStream;
 import javafx.geometry.Point2D;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EReference;
@@ -15,10 +18,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GraphFactory;
 import org.visual.model.graph.editor.model.GraphPackage;
-
-import java.util.BitSet;
-import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * A set of helper methods to add and remove joints from the default connection skin using EMF commands.

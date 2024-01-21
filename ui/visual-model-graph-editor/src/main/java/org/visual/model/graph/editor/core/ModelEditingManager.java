@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core;
 
+import java.util.Collection;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.visual.model.graph.editor.api.SkinLookup;
@@ -10,10 +13,6 @@ import org.visual.model.graph.editor.api.utils.RemoveContext;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.Collection;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 
 /**

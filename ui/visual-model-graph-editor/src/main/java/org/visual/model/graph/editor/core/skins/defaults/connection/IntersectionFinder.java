@@ -3,13 +3,12 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.Arrays;
+import java.util.Map;
 import javafx.geometry.Point2D;
 import org.visual.model.graph.editor.api.GConnectionSkin;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connections.RectangularConnections;
-
-import java.util.Arrays;
-import java.util.Map;
 
 
 /**

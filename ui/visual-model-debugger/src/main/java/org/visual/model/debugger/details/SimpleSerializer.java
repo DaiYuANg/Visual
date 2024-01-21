@@ -19,8 +19,6 @@ package org.visual.model.debugger.details;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

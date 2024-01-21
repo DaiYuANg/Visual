@@ -3,12 +3,11 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.List;
 import javafx.geometry.Point2D;
 import org.visual.model.graph.editor.api.utils.DraggableBox;
 import org.visual.model.graph.editor.api.utils.ResizableBox;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.List;
 
 /**
  * The skin class for a {@link GNode}. Responsible for visualizing nodes in the graph editor.

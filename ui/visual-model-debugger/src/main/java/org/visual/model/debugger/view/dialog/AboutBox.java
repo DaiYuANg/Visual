@@ -19,7 +19,6 @@ package org.visual.model.debugger.view.dialog;
 
 
 import java.util.Properties;
-
 import javafx.event.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -28,10 +27,10 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.api.StageController;
+import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
 import org.visual.model.debugger.view.DisplayUtils;
-import org.visual.model.debugger.core.VisualModelDebugger;
-import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.view.ScenicViewGui;
 
 public class AboutBox {

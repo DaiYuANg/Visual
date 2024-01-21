@@ -3,6 +3,10 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lombok.Setter;
@@ -14,11 +18,6 @@ import org.visual.model.graph.editor.core.connections.RectangularConnections;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Responsible for how joints align to adjacent joints when dragged close enough to them in the default connection skin.

@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.core.view;
 
+import java.util.Objects;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.layout.Region;
 import lombok.Getter;
@@ -10,8 +11,6 @@ import org.visual.model.graph.editor.api.GraphEditor;
 import org.visual.model.graph.editor.api.window.AutoScrollingWindow;
 import org.visual.model.graph.editor.api.window.GraphEditorMinimap;
 import org.visual.model.graph.editor.model.GModel;
-
-import java.util.Objects;
 
 
 /**

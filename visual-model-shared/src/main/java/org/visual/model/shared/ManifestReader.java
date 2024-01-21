@@ -1,18 +1,13 @@
 package org.visual.model.shared;
 
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
-import lombok.val;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
+import lombok.experimental.UtilityClass;
+import lombok.val;
 
 @UtilityClass
 public class ManifestReader {

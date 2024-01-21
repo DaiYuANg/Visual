@@ -17,16 +17,16 @@
  */
 package org.visual.model.debugger.helper;
 
-import javafx.application.Platform;
-import javafx.stage.PopupWindow;
-import javafx.stage.Window;
-import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.controller.StageControllerImpl;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.application.Platform;
+import javafx.stage.PopupWindow;
+import javafx.stage.Window;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.controller.StageControllerImpl;
 
 public class SubWindowChecker extends WindowChecker {
 
@@ -42,7 +42,7 @@ public class SubWindowChecker extends WindowChecker {
     final Map<PopupWindow, Map> tree = new HashMap<>();
 
     @Override
-    protected void onWindowsFound(final List<Window> tempPopups) {
+    protected void onWindowsFound(final @NotNull List<Window> tempPopups) {
         tree.clear();
         windows.clear();
 
@@ -74,14 +74,14 @@ public class SubWindowChecker extends WindowChecker {
     }
 
     @SuppressWarnings("unchecked")
-    Map<PopupWindow, Map> valid(final PopupWindow window, final Map<PopupWindow, Map> tree) {
+    Map<PopupWindow, Map> valid(final @NotNull PopupWindow window, final Map<PopupWindow, Map> tree) {
         if (window.getOwnerWindow() == model.targetWindow)
             return tree;
         for (final PopupWindow type : tree.keySet()) {
             if (type == window.getOwnerWindow()) {
                 return tree.get(type);
             } else {
-                final Map<PopupWindow, Map> lower = valid(window, tree.get(type));
+                val lower = valid(window, tree.get(type));
                 if (lower != null)
                     return lower;
             }

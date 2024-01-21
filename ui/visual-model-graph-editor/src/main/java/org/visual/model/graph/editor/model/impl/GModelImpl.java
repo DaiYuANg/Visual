@@ -2,6 +2,7 @@
  */
 package org.visual.model.graph.editor.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -15,8 +16,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
 import org.visual.model.graph.editor.model.GNode;
 import org.visual.model.graph.editor.model.GraphPackage;
-
-import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,335 +35,335 @@ import java.util.Collection;
  * @generated
  */
 public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
-	/**
-	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNodes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GNode> nodes;
+  /**
+   * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNodes()
+   * @generated
+   * @ordered
+   */
+  protected EList<GNode> nodes;
 
-	/**
-	 * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnections()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GConnection> connections;
+  /**
+   * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getConnections()
+   * @generated
+   * @ordered
+   */
+  protected EList<GConnection> connections;
 
-	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TYPE_EDEFAULT = null;
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final String TYPE_EDEFAULT = null;
 
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type = TYPE_EDEFAULT;
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected String type = TYPE_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double CONTENT_WIDTH_EDEFAULT = 3000.0;
+  /**
+   * The default value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContentWidth()
+   * @generated
+   * @ordered
+   */
+  protected static final double CONTENT_WIDTH_EDEFAULT = 3000.0;
 
-	/**
-	 * The cached value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected double contentWidth = CONTENT_WIDTH_EDEFAULT;
+  /**
+   * The cached value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContentWidth()
+   * @generated
+   * @ordered
+   */
+  protected double contentWidth = CONTENT_WIDTH_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double CONTENT_HEIGHT_EDEFAULT = 2250.0;
+  /**
+   * The default value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContentHeight()
+   * @generated
+   * @ordered
+   */
+  protected static final double CONTENT_HEIGHT_EDEFAULT = 2250.0;
 
-	/**
-	 * The cached value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected double contentHeight = CONTENT_HEIGHT_EDEFAULT;
+  /**
+   * The cached value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContentHeight()
+   * @generated
+   * @ordered
+   */
+  protected double contentHeight = CONTENT_HEIGHT_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GModelImpl() {
-		super();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected GModelImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return GraphPackage.Literals.GMODEL;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return GraphPackage.Literals.GMODEL;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<GNode> getNodes() {
-		if (nodes == null) {
-			nodes = new EObjectContainmentEList<GNode>(GNode.class, this, GraphPackage.GMODEL__NODES);
-		}
-		return nodes;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<GNode> getNodes() {
+    if (nodes == null) {
+      nodes = new EObjectContainmentEList<GNode>(GNode.class, this, GraphPackage.GMODEL__NODES);
+    }
+    return nodes;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<GConnection> getConnections() {
-		if (connections == null) {
-			connections = new EObjectContainmentEList<>(GConnection.class, this, GraphPackage.GMODEL__CONNECTIONS);
-		}
-		return connections;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<GConnection> getConnections() {
+    if (connections == null) {
+      connections = new EObjectContainmentEList<>(GConnection.class, this, GraphPackage.GMODEL__CONNECTIONS);
+    }
+    return connections;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getType() {
-		return type;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getType() {
+    return type;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__TYPE, oldType, type));
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(String newType) {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__TYPE, oldType, type));
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public double getContentWidth() {
-		return contentWidth;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public double getContentWidth() {
+    return contentWidth;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContentWidth(double newContentWidth) {
-		double oldContentWidth = contentWidth;
-		contentWidth = newContentWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_WIDTH, oldContentWidth, contentWidth));
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setContentWidth(double newContentWidth) {
+    double oldContentWidth = contentWidth;
+    contentWidth = newContentWidth;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_WIDTH, oldContentWidth, contentWidth));
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public double getContentHeight() {
-		return contentHeight;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public double getContentHeight() {
+    return contentHeight;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContentHeight(double newContentHeight) {
-		double oldContentHeight = contentHeight;
-		contentHeight = newContentHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_HEIGHT, oldContentHeight, contentHeight));
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setContentHeight(double newContentHeight) {
+    double oldContentHeight = contentHeight;
+    contentHeight = newContentHeight;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_HEIGHT, oldContentHeight, contentHeight));
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case GraphPackage.GMODEL__NODES:
-				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case GraphPackage.GMODEL__CONNECTIONS:
-				return ((InternalEList<?>)getConnections()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GraphPackage.GMODEL__NODES:
+        return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
+      case GraphPackage.GMODEL__CONNECTIONS:
+        return ((InternalEList<?>)getConnections()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case GraphPackage.GMODEL__NODES:
-				return getNodes();
-			case GraphPackage.GMODEL__CONNECTIONS:
-				return getConnections();
-			case GraphPackage.GMODEL__TYPE:
-				return getType();
-			case GraphPackage.GMODEL__CONTENT_WIDTH:
-				return getContentWidth();
-			case GraphPackage.GMODEL__CONTENT_HEIGHT:
-				return getContentHeight();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+      case GraphPackage.GMODEL__NODES:
+        return getNodes();
+      case GraphPackage.GMODEL__CONNECTIONS:
+        return getConnections();
+      case GraphPackage.GMODEL__TYPE:
+        return getType();
+      case GraphPackage.GMODEL__CONTENT_WIDTH:
+        return getContentWidth();
+      case GraphPackage.GMODEL__CONTENT_HEIGHT:
+        return getContentHeight();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case GraphPackage.GMODEL__NODES:
-				getNodes().clear();
-				getNodes().addAll((Collection<? extends GNode>)newValue);
-				return;
-			case GraphPackage.GMODEL__CONNECTIONS:
-				getConnections().clear();
-				getConnections().addAll((Collection<? extends GConnection>)newValue);
-				return;
-			case GraphPackage.GMODEL__TYPE:
-				setType((String)newValue);
-				return;
-			case GraphPackage.GMODEL__CONTENT_WIDTH:
-				setContentWidth((Double)newValue);
-				return;
-			case GraphPackage.GMODEL__CONTENT_HEIGHT:
-				setContentHeight((Double)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+      case GraphPackage.GMODEL__NODES:
+        getNodes().clear();
+        getNodes().addAll((Collection<? extends GNode>)newValue);
+        return;
+      case GraphPackage.GMODEL__CONNECTIONS:
+        getConnections().clear();
+        getConnections().addAll((Collection<? extends GConnection>)newValue);
+        return;
+      case GraphPackage.GMODEL__TYPE:
+        setType((String)newValue);
+        return;
+      case GraphPackage.GMODEL__CONTENT_WIDTH:
+        setContentWidth((Double)newValue);
+        return;
+      case GraphPackage.GMODEL__CONTENT_HEIGHT:
+        setContentHeight((Double)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case GraphPackage.GMODEL__NODES:
-				getNodes().clear();
-				return;
-			case GraphPackage.GMODEL__CONNECTIONS:
-				getConnections().clear();
-				return;
-			case GraphPackage.GMODEL__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
-			case GraphPackage.GMODEL__CONTENT_WIDTH:
-				setContentWidth(CONTENT_WIDTH_EDEFAULT);
-				return;
-			case GraphPackage.GMODEL__CONTENT_HEIGHT:
-				setContentHeight(CONTENT_HEIGHT_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+      case GraphPackage.GMODEL__NODES:
+        getNodes().clear();
+        return;
+      case GraphPackage.GMODEL__CONNECTIONS:
+        getConnections().clear();
+        return;
+      case GraphPackage.GMODEL__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
+      case GraphPackage.GMODEL__CONTENT_WIDTH:
+        setContentWidth(CONTENT_WIDTH_EDEFAULT);
+        return;
+      case GraphPackage.GMODEL__CONTENT_HEIGHT:
+        setContentHeight(CONTENT_HEIGHT_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case GraphPackage.GMODEL__NODES:
-				return nodes != null && !nodes.isEmpty();
-			case GraphPackage.GMODEL__CONNECTIONS:
-				return connections != null && !connections.isEmpty();
-			case GraphPackage.GMODEL__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case GraphPackage.GMODEL__CONTENT_WIDTH:
-				return contentWidth != CONTENT_WIDTH_EDEFAULT;
-			case GraphPackage.GMODEL__CONTENT_HEIGHT:
-				return contentHeight != CONTENT_HEIGHT_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+      case GraphPackage.GMODEL__NODES:
+        return nodes != null && !nodes.isEmpty();
+      case GraphPackage.GMODEL__CONNECTIONS:
+        return connections != null && !connections.isEmpty();
+      case GraphPackage.GMODEL__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case GraphPackage.GMODEL__CONTENT_WIDTH:
+        return contentWidth != CONTENT_WIDTH_EDEFAULT;
+      case GraphPackage.GMODEL__CONTENT_HEIGHT:
+        return contentHeight != CONTENT_HEIGHT_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (type: ");
-		result.append(type);
-		result.append(", contentWidth: ");
-		result.append(contentWidth);
-		result.append(", contentHeight: ");
-		result.append(contentHeight);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (type: ");
+    result.append(type);
+    result.append(", contentWidth: ");
+    result.append(contentWidth);
+    result.append(", contentHeight: ");
+    result.append(contentHeight);
+    result.append(')');
+    return result.toString();
+  }
 
 } //GModelImpl

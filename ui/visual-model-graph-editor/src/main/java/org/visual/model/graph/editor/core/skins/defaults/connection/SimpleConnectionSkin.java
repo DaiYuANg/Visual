@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -17,10 +20,6 @@ import org.visual.model.graph.editor.core.skins.defaults.connection.segment.Conn
 import org.visual.model.graph.editor.core.skins.defaults.connection.segment.DetouredConnectionSegment;
 import org.visual.model.graph.editor.core.skins.defaults.connection.segment.GappedConnectionSegment;
 import org.visual.model.graph.editor.model.GConnection;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A simple rectangular connection skin.

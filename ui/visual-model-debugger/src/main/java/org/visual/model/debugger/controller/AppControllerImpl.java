@@ -17,10 +17,9 @@
  */
 package org.visual.model.debugger.controller;
 
+import java.util.*;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.api.StageController;
-
-import java.util.*;
 
 public class AppControllerImpl implements AppController {
 

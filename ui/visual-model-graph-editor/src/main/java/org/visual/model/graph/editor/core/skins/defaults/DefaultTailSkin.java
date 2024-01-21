@@ -3,6 +3,8 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
 import javafx.scene.Group;
@@ -16,9 +18,6 @@ import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connectors.DefaultConnectorTypes;
 import org.visual.model.graph.editor.core.skins.defaults.tail.RectangularPathCreator;
 import org.visual.model.graph.editor.model.GConnector;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The default tail skin.

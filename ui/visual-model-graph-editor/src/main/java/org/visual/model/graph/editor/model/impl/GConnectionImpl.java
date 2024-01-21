@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -16,8 +17,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GraphPackage;
-
-import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->

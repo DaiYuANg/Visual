@@ -14,12 +14,11 @@
 
 package org.visual.model.ui.theme;
 
+import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.function.Consumer;
 
 /**
  * For detecting the theme (dark/light) used by the Operating System.
@@ -35,8 +34,7 @@ public abstract class OsThemeDetector {
     OsThemeDetector() {
     }
 
-    @NotNull
-    public static OsThemeDetector getDetector() {
+    @NotNull public static OsThemeDetector getDetector() {
         OsThemeDetector instance = osThemeDetector;
 
         if (instance == null) {

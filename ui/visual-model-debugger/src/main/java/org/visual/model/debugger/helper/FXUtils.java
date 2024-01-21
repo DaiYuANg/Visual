@@ -17,10 +17,7 @@
  */
 package org.visual.model.debugger.helper;
 
-import java.util.Iterator;
 import java.util.Optional;
-
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -3,6 +3,8 @@
  */
 package org.visual.model.graph.editor.model.impl;
 
+import java.util.Collection;
+import java.util.Objects;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.notify.Notification;
@@ -18,9 +20,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GNode;
 import org.visual.model.graph.editor.model.GraphPackage;
-
-import java.util.Collection;
-import java.util.Objects;
 
 /**
  * <!-- begin-user-doc -->

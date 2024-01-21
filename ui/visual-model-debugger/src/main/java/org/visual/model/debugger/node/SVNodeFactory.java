@@ -18,7 +18,6 @@
 package org.visual.model.debugger.node;
 
 import java.util.List;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import lombok.val;

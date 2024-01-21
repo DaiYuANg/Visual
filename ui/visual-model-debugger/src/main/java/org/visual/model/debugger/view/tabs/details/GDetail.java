@@ -19,7 +19,6 @@ package org.visual.model.debugger.view.tabs.details;
 
 import java.util.List;
 import java.util.function.Consumer;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.WritableValue;
@@ -33,14 +32,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-
 import lombok.Setter;
 import lombok.ToString;
-import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.debugger.details.Detail;
 import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.details.GridConstraintsDetail;
+import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.tabs.DetailsTab;
 
 @ToString

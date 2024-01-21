@@ -3,14 +3,13 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.*;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connections.RectangularConnections;
 import org.visual.model.graph.editor.core.skins.defaults.connection.segment.ConnectionSegment;
 import org.visual.model.graph.editor.model.GConnection;
-
-import java.util.List;
 
 /**
  * Helper class for calculating the offset of the cursor to a default connection skin.

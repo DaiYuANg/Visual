@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.Collection;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.layout.Region;
 import org.eclipse.emf.common.command.Command;
@@ -12,10 +15,6 @@ import org.visual.model.graph.editor.api.utils.RemoveContext;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.Collection;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 
 /**

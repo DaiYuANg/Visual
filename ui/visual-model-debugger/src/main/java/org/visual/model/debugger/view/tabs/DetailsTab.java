@@ -22,7 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.Node;
@@ -31,19 +30,16 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.visual.model.debugger.api.ContextMenuContainer;
 import org.visual.model.debugger.details.Detail;
 import org.visual.model.debugger.details.DetailPaneType;
-import org.visual.model.debugger.api.ContextMenuContainer;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.tabs.details.GDetailPane;
 

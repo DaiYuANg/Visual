@@ -1,11 +1,10 @@
 package org.visual.model.graph.editor.core.connections;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import org.eclipse.emf.common.command.Command;
 import org.visual.model.graph.editor.api.utils.RemoveContext;
 import org.visual.model.graph.editor.model.GConnection;
-
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 /**
  * Stores any connection created / removed handlers that are set.

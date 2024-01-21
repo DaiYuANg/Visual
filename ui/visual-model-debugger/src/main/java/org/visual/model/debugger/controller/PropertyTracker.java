@@ -20,8 +20,6 @@ package org.visual.model.debugger.controller;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
-
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;

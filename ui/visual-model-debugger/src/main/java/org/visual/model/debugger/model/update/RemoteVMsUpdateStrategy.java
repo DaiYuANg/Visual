@@ -19,18 +19,17 @@ package org.visual.model.debugger.model.update;
 
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.api.UpdateStrategy;
 import org.visual.model.debugger.helper.WorkerThread;
 import org.visual.model.debugger.remote.FXConnector;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 @Slf4j

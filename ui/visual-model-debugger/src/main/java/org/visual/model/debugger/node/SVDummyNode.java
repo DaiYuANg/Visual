@@ -17,22 +17,19 @@
  */
 package org.visual.model.debugger.node;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.kordamp.ikonli.Ikon;
 
 @Slf4j
 public class SVDummyNode extends SVNodeImpl implements SVNode, Serializable {
@@ -42,6 +39,8 @@ public class SVDummyNode extends SVNodeImpl implements SVNode, Serializable {
      */
     @Serial
     private static final long serialVersionUID = 1L;
+
+    @Getter
     private String name;
     private final List<SVNode> childrens = new ArrayList<>();
     @Setter
@@ -135,17 +134,18 @@ public class SVDummyNode extends SVNodeImpl implements SVNode, Serializable {
     }
 
     @Override
-    public Image getIcon() {
-        if (icon == null && imageInByte != null) {
-            try {
-                final BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageInByte));
-                icon = convertToFxImage(image);
-                imageInByte = null;
-            } catch (final Exception e) {
-                log.error(e.getLocalizedMessage(), e);
-            }
-        }
-        return icon;
+    public Ikon getIcon() {
+        return NodeIconMapping.findNodeIcon(this.name);
+//        if (icon == null && imageInByte != null) {
+//            try {
+//                final BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageInByte));
+//                icon = convertToFxImage(image);
+//                imageInByte = null;
+//            } catch (final Exception e) {
+//                log.error(e.getLocalizedMessage(), e);
+//            }
+//        }
+//        return icon;
     }
 
     public void setRemote(final boolean remote) {

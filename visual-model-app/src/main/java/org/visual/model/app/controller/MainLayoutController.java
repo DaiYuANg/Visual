@@ -2,11 +2,13 @@
 package org.visual.model.app.controller;
 
 import jakarta.inject.Singleton;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -43,7 +45,7 @@ import org.visual.model.graph.editor.model.GraphFactory;
 
 @Singleton
 public class MainLayoutController implements Initializable {
-    private static final String STYLE_CLASS_TITLED_SKINS = "titled-skins"; // $NON-NLS-1$
+    private static final String STYLE_CLASS_TITLED_SKINS = "titled-skins";
 
     @FXML
     private AnchorPane root;

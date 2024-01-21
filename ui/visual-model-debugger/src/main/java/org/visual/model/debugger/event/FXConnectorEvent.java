@@ -17,13 +17,12 @@
  */
 package org.visual.model.debugger.event;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.visual.model.debugger.controller.StageID;
-
-import java.io.Serial;
-import java.io.Serializable;
 
 @Getter
 @ToString

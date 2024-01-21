@@ -1,5 +1,8 @@
 package org.visual.model.graph.editor.core.view.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.DoublePropertyBase;
 import javafx.css.*;
@@ -10,10 +13,6 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import org.visual.model.graph.editor.api.utils.GraphEditorProperties;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 /**

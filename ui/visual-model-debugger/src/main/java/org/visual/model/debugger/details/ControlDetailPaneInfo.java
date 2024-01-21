@@ -19,9 +19,9 @@ package org.visual.model.debugger.details;
 
 import javafx.scene.Node;
 import javafx.scene.control.Control;
+import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.debugger.controller.StageID;
-import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 
 /**
  * 

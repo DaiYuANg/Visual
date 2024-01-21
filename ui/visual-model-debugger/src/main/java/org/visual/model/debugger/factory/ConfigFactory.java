@@ -2,8 +2,8 @@ package org.visual.model.debugger.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import io.avaje.inject.PostConstruct;
 import jakarta.inject.Named;
+import java.util.List;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.github.gestalt.config.Gestalt;
@@ -14,8 +14,6 @@ import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.shared.pojo.JavaFxProperty;
-
-import java.util.List;
 
 @Factory
 public class ConfigFactory {

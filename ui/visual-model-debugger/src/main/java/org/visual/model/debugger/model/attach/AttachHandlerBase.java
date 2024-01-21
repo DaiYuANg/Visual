@@ -17,12 +17,11 @@
  */
 package org.visual.model.debugger.model.attach;
 
-import org.visual.model.debugger.api.AttachHandler;
+import static org.visual.model.debugger.model.attach.AttachHandlerFactory.doBasicJdkSearch;
 
 import java.io.File;
 import java.util.List;
-
-import static org.visual.model.debugger.model.attach.AttachHandlerFactory.doBasicJdkSearch;
+import org.visual.model.debugger.api.AttachHandler;
 
 
 /**

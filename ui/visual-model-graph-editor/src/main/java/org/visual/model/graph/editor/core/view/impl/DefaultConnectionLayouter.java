@@ -1,5 +1,6 @@
 package org.visual.model.graph.editor.core.view.impl;
 
+import java.util.*;
 import javafx.geometry.Point2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +10,6 @@ import org.visual.model.graph.editor.api.VirtualSkin;
 import org.visual.model.graph.editor.core.view.ConnectionLayouter;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
-
-import java.util.*;
 
 
 /**

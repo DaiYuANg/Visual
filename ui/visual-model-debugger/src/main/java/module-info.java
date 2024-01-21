@@ -18,6 +18,7 @@ module org.visual.model.debugger {
     requires org.github.gestalt.core;
     requires java.management;
     requires org.apache.commons.lang3;
+    requires org.visual.model.i18n;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;
     opens org.visual.model.debugger.view.threedom to javafx.fxml;
@@ -30,6 +31,7 @@ module org.visual.model.debugger {
     exports org.visual.model.debugger.configuration;
     exports org.visual.model.debugger.model.update;
     exports org.visual.model.debugger.core;
+    exports org.visual.model.debugger.inspector;
 
-    provides io.avaje.inject.spi.Module with org.visual.model.debugger.factory.FactoryModule;
+    provides io.avaje.inject.spi.Module with org.visual.model.debugger.DebuggerModule;
 }

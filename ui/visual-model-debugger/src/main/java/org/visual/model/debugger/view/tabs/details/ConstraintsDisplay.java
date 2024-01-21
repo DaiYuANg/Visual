@@ -18,7 +18,6 @@
 package org.visual.model.debugger.view.tabs.details;
 
 import java.util.Map;
-
 import javafx.geometry.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

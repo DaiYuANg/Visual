@@ -1,15 +1,13 @@
 package org.visual.model.ui.util;
 
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import lombok.experimental.UtilityClass;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
 
 @UtilityClass
 public class NodeUtil {

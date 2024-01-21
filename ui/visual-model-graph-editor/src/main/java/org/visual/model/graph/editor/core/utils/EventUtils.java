@@ -1,14 +1,13 @@
 package org.visual.model.graph.editor.core.utils;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 
 /**

@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@
 package org.visual.model.debugger.node;
 
 import java.util.List;
-
 import javafx.scene.Node;
-import javafx.scene.image.Image;
+import org.kordamp.ikonli.Ikon;
 
 public interface SVNode {
 
@@ -52,7 +51,6 @@ public interface SVNode {
 
     /**
      * I'm not sure about this three methods...
-     * 
      */
 
     void setInvalidForFilter(boolean invalid);
@@ -65,7 +63,7 @@ public interface SVNode {
 
     void setExpanded(boolean expanded);
 
-    Image getIcon();
+    Ikon getIcon();
 
     public NodeType getNodeType();
 

@@ -23,7 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-
 import javafx.animation.Animation;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -62,7 +61,6 @@ import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.event.*;
 import org.visual.model.debugger.gui.ComponentHighLighter;
 import org.visual.model.debugger.gui.RuleGrid;
-import org.visual.model.ui.util.NodeUtil;
 import org.visual.model.debugger.helper.StyleSheetRefresher;
 import org.visual.model.debugger.helper.SubWindowChecker;
 import org.visual.model.debugger.module.api.CSSFXEvent;
@@ -71,6 +69,7 @@ import org.visual.model.debugger.node.NodeType;
 import org.visual.model.debugger.node.SVDummyNode;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.node.SVNodeFactory;
+import org.visual.model.ui.util.NodeUtil;
 
 @Slf4j
 public class StageControllerImpl implements StageController {

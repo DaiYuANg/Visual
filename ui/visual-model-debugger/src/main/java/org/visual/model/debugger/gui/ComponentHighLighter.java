@@ -24,9 +24,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import org.visual.model.debugger.node.SVNode;
-import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.debugger.api.StageController;
+import org.visual.model.debugger.controller.ConnectorUtils;
+import org.visual.model.debugger.node.SVNode;
 
 
 public class ComponentHighLighter extends Group {

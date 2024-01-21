@@ -20,8 +20,6 @@ package org.visual.model.debugger.helper;
 import java.io.File;
 import java.net.URL;
 import java.util.*;
-
-
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import lombok.Getter;

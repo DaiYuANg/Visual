@@ -3,13 +3,12 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.List;
 import javafx.collections.ObservableSet;
 import org.eclipse.emf.ecore.EObject;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.List;
 
 /**
  * Provides actions related to selections in the graph editor.

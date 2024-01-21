@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.debugger.core.VisualModelDebugger;
+import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
 import org.visual.model.ui.theme.OsThemeDetector;
 
 @Slf4j
@@ -21,6 +21,7 @@ public class VisualModelUI extends Application {
 
     private final Stage rootStage = VisualModelAppContext.INSTANCE.get(Stage.class);
 
+    //    private final String theme = new PrimerLight().getUserAgentStylesheet();
     private final String theme;
 
     {
@@ -40,7 +41,8 @@ public class VisualModelUI extends Application {
     @Override
     public void start(Stage stage) {
         rootStage.setScene(rootScene);
-        VisualModelDebugger.show(rootScene);
+//        VisualModelDebugger.show(rootScene);
         rootStage.show();
+        FXComponentInspectorHandler.handleAll();
     }
 }

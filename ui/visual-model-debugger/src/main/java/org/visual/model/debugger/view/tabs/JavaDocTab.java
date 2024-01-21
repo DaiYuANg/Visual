@@ -20,10 +20,10 @@ package org.visual.model.debugger.view.tabs;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Tab;
 import lombok.extern.slf4j.Slf4j;
+import org.kordamp.ikonli.devicons.Devicons;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.simpleicons.SimpleIcons;
-import org.visual.model.debugger.core.DebuggerContext;
 import org.visual.model.debugger.api.ContextMenuContainer;
+import org.visual.model.debugger.core.DebuggerContext;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
@@ -50,7 +50,7 @@ public class JavaDocTab extends Tab implements ContextMenuContainer {
         this.webView = new ProgressWebView();
         webView.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         setContent(webView);
-        setGraphic(new FontIcon(SimpleIcons.JAVA));
+        setGraphic(new FontIcon(Devicons.JAVA));
         setClosable(false);
         selectedProperty().addListener((arg0, arg1, newValue) -> {
             if (newValue) {

@@ -18,8 +18,7 @@
 package org.visual.model.debugger.model.attach;
 
 
-import lombok.SneakyThrows;
-import lombok.val;
+import static org.visual.model.debugger.model.attach.AttachHandlerFactory.doBasicJdkSearch;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,8 +27,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.visual.model.debugger.model.attach.AttachHandlerFactory.doBasicJdkSearch;
+import lombok.SneakyThrows;
+import lombok.val;
 
 
 public class LinuxAttachHandler extends AttachHandlerBase {

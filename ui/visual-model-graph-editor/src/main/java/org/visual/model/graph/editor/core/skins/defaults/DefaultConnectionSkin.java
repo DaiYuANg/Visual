@@ -3,14 +3,13 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults;
 
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.graph.editor.api.GJointSkin;
 import org.visual.model.graph.editor.api.GraphEditor;
 import org.visual.model.graph.editor.core.connections.RectangularConnections;
 import org.visual.model.graph.editor.core.skins.defaults.connection.*;
 import org.visual.model.graph.editor.model.GConnection;
-
-import java.util.List;
 
 /**
  * The default connection skin.

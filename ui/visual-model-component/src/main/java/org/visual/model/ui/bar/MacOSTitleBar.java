@@ -1,12 +1,8 @@
 package org.visual.model.ui.bar;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-
 public class MacOSTitleBar extends CommonTitleBar {
 
     private final Button closeButton = new Button("close");

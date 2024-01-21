@@ -19,7 +19,6 @@ package org.visual.model.debugger.view.tabs;
 
 
 import java.util.*;
-
 import javafx.collections.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
@@ -27,10 +26,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import org.visual.model.debugger.api.ContextMenuContainer;
-import org.visual.model.debugger.view.DisplayUtils;
-import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.controller.SVAnimation;
 import org.visual.model.debugger.controller.StageID;
+import org.visual.model.debugger.view.DisplayUtils;
+import org.visual.model.debugger.view.ScenicViewGui;
 
 
 public class AnimationsTab extends Tab implements ContextMenuContainer {

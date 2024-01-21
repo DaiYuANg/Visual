@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.core.connections;
 
+import java.util.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -20,8 +21,6 @@ import org.visual.model.graph.editor.core.skins.defaults.utils.ConnectionCommand
 import org.visual.model.graph.editor.core.utils.EventUtils;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.*;
 
 /**
  * Responsible for what happens when connectors are dragged in the graph editor.

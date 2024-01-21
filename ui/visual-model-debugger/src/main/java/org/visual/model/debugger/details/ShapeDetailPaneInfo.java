@@ -22,8 +22,8 @@ import javafx.scene.shape.Shape;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
+import org.visual.model.debugger.controller.StageID;
 
 
 /**

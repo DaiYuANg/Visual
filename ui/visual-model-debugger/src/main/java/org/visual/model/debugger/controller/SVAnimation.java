@@ -19,12 +19,9 @@ package org.visual.model.debugger.controller;
 
 import java.io.Serial;
 import java.io.Serializable;
-
 import javafx.animation.Animation;
 import lombok.Getter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 @ToString

@@ -1,6 +1,10 @@
 package org.visual.model.ui.layout;
 
 import com.google.common.collect.HashBasedTable;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.IntStream;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.DoublePropertyBase;
@@ -18,11 +22,6 @@ import javafx.scene.shape.PathElement;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Slf4j
 public class GirdBackground extends Pane {

@@ -8,6 +8,9 @@ import java.lang.reflect.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import lombok.val;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author spleaner
@@ -89,7 +92,8 @@ public final class Foundation {
         return myFoundationLibrary.objc_msgSend(id, selector, args[0], Arrays.copyOfRange(args, 1, args.length));
     }
 
-    public static ID invoke(final String cls, final String selector, Object... args) {
+    @Contract("_, _, _ -> new")
+    public static @NotNull ID invoke(final String cls, final String selector, Object... args) {
         return invoke(getObjcClass(cls), createSelector(selector), args);
     }
 
@@ -222,11 +226,11 @@ public final class Foundation {
         return nsUUID(uuid.toString());
     }
 
-    public static ID nsUUID(String uuid) {
+    public static @NotNull ID nsUUID(String uuid) {
         return invoke(invoke(invoke("NSUUID", "alloc"), "initWithUUIDString:", nsString(uuid)), "autorelease");
     }
 
-    public static String toStringViaUTF8(ID cfString) {
+    public static @Nullable String toStringViaUTF8(ID cfString) {
         if (ID.NIL.equals(cfString)) return null;
 
         int lengthInChars = myFoundationLibrary.CFStringGetLength(cfString);
@@ -517,61 +521,4 @@ public final class Foundation {
         }
     }
 
-    public static class NSAutoreleasePool {
-        private final ID myDelegate;
-
-        public NSAutoreleasePool() {
-            myDelegate = invoke(invoke("NSAutoreleasePool", "alloc"), "init");
-        }
-
-        public void drain() {
-            invoke(myDelegate, "drain");
-        }
-    }
-
-    public static class CGFloat implements NativeMapped {
-        private final double value;
-
-        @SuppressWarnings("UnusedDeclaration")
-        public CGFloat() {
-            this(0);
-        }
-
-        public CGFloat(double d) {
-            value = d;
-        }
-
-        @Override
-        public Object fromNative(Object o, FromNativeContext fromNativeContext) {
-            switch (Native.LONG_SIZE) {
-                case 4:
-                    return new CGFloat((Float) o);
-                case 8:
-                    return new CGFloat((Double) o);
-            }
-            throw new IllegalStateException();
-        }
-
-        @Override
-        public Object toNative() {
-            switch (Native.LONG_SIZE) {
-                case 4:
-                    return (float) value;
-                case 8:
-                    return value;
-            }
-            throw new IllegalStateException();
-        }
-
-        @Override
-        public Class<?> nativeType() {
-            switch (Native.LONG_SIZE) {
-                case 4:
-                    return Float.class;
-                case 8:
-                    return Double.class;
-            }
-            throw new IllegalStateException();
-        }
-    }
 }

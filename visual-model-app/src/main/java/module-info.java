@@ -17,7 +17,7 @@ module org.visual.model.app {
     requires org.visual.model.shared;
     requires dev.dirs;
     requires org.visual.model.i18n;
-    requires org.visual.model.database;
+//    requires org.visual.model.database;
     requires io.avaje.inject;
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.anntation;
@@ -40,9 +40,6 @@ module org.visual.model.app {
             javafx.graphics,
             javafx.fxml;
     exports org.visual.model.app.controller to
-            javafx.fxml,
-            javafx.graphics;
-    exports org.visual.model.app.core to
             javafx.fxml,
             javafx.graphics;
 

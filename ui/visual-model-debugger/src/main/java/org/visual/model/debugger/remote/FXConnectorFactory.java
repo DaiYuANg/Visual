@@ -17,9 +17,8 @@
  */
 package org.visual.model.debugger.remote;
 
-import lombok.NoArgsConstructor;
-
 import java.rmi.RemoteException;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class FXConnectorFactory {

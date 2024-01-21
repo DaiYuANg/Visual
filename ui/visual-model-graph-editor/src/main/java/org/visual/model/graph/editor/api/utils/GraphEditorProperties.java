@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.api.utils;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -13,10 +16,6 @@ import javafx.event.Event;
 import lombok.Setter;
 import org.visual.model.graph.editor.api.EditorElement;
 import org.visual.model.graph.editor.api.impl.GraphEventManagerImpl;
-
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Objects;
 
 
 /**

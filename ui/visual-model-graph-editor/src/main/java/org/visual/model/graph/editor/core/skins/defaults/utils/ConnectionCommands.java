@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.utils;
 
+import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -11,8 +12,6 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.visual.model.graph.editor.core.connections.ConnectionEventManager;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.List;
 
 
 /**

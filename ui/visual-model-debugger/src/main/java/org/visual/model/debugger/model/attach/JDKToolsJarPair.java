@@ -17,10 +17,9 @@
  */
 package org.visual.model.debugger.model.attach;
 
+import java.io.File;
 import lombok.Getter;
 import org.visual.model.debugger.api.AttachHandler;
-
-import java.io.File;
 
 /**
  *

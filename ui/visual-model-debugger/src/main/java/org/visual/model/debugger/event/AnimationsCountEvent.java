@@ -17,12 +17,11 @@
  */
 package org.visual.model.debugger.event;
 
+import java.io.Serial;
+import java.util.*;
 import lombok.Getter;
 import org.visual.model.debugger.controller.SVAnimation;
 import org.visual.model.debugger.controller.StageID;
-
-import java.io.Serial;
-import java.util.*;
 
 
 

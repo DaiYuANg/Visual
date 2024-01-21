@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import javafx.animation.Animation;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
@@ -172,7 +171,7 @@ public class ConnectorUtils {
     }
 
     public static Map<String, Object> deserializeMap(final String value) {
-        if (value.length() == 0)
+        if (value.isEmpty())
             return Collections.emptyMap();
         int pos = 0;
         final Map<String, Object> map = new HashMap<>();

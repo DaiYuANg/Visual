@@ -21,7 +21,6 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.logging.*;
-
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -54,21 +53,22 @@ public class DisplayUtils {
     }
 
     public static Image getIcon(final @NotNull SVNode svNode) {
-        if (svNode.getIcon() != null)
-            return svNode.getIcon();
-        Image image = loadedImages.get(svNode.getNodeClass());
-        if (image == null) {
-            final URL resource = DisplayUtils.getNodeIcon(svNode.getNodeClass());
-            String url;
-            if (resource != null) {
-                url = resource.toString();
-            } else {
-                url = CUSTOM_NODE_IMAGE;
-            }
-            image = new Image(url);
-            loadedImages.put(svNode.getNodeClass(), image);
-        }
-        return image;
+//        if (svNode.getIcon() != null)
+//            return svNode.getIcon();
+//        Image image = loadedImages.get(svNode.getNodeClass());
+//        if (image == null) {
+//            final URL resource = DisplayUtils.getNodeIcon(svNode.getNodeClass());
+//            String url;
+//            if (resource != null) {
+//                url = resource.toString();
+//            } else {
+//                url = CUSTOM_NODE_IMAGE;
+//            }
+//            image = new Image(url);
+//            loadedImages.put(svNode.getNodeClass(), image);
+//        }
+//        return image;
+        return null;
     }
 
     public static void showWebView(final boolean show) {

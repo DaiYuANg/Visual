@@ -18,19 +18,18 @@
 package org.visual.model.debugger.remote;
 
 
-import lombok.extern.slf4j.Slf4j;
-import org.visual.model.debugger.event.FXConnectorEvent;
-import org.visual.model.debugger.api.FXConnectorEventDispatcher;
-import org.visual.model.debugger.controller.Configuration;
-import org.visual.model.debugger.controller.StageID;
-import org.visual.model.debugger.details.DetailPaneType;
-import org.visual.model.debugger.node.SVNode;
-
 import java.io.Serial;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.visual.model.debugger.api.FXConnectorEventDispatcher;
+import org.visual.model.debugger.controller.Configuration;
+import org.visual.model.debugger.controller.StageID;
+import org.visual.model.debugger.details.DetailPaneType;
+import org.visual.model.debugger.event.FXConnectorEvent;
+import org.visual.model.debugger.node.SVNode;
 @Slf4j
 
 class RemoteApplicationImpl extends UnicastRemoteObject implements RemoteApplication {

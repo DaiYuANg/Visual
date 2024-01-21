@@ -3,6 +3,10 @@
  */
 package org.visual.model.graph.editor.core.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.BiFunction;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -22,11 +26,6 @@ import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.api.utils.RemoveContext;
 import org.visual.model.graph.editor.core.ModelEditingManager;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.function.BiFunction;
 
 
 /**

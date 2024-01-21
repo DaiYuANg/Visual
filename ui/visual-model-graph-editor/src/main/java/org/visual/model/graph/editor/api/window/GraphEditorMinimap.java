@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.api.window;
 
+import java.util.function.Predicate;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -11,8 +12,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
-
-import java.util.function.Predicate;
 
 
 /**

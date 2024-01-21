@@ -15,14 +15,13 @@
 package org.visual.model.ui.theme;
 
 import com.sun.jna.platform.win32.*;
+import java.util.Objects;
+import java.util.Set;
+import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Objects;
-import java.util.Set;
-import java.util.function.Consumer;
 
 /**
  * Determines the dark/light theme by the windows registry values through JNA.

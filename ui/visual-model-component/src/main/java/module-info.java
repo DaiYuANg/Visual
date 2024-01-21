@@ -11,14 +11,17 @@ module org.visual.model.ui {
     requires transitive org.kordamp.ikonli.fontawesome5;
     requires transitive org.kordamp.ikonli.fluentui;
     requires transitive org.kordamp.ikonli.simpleicons;
+    requires transitive org.kordamp.ikonli.devicons;
+    requires transitive org.kordamp.ikonli.materialdesign2;
     requires org.visual.model.shared;
     requires org.apache.commons.lang3;
     requires org.visual.model.anntation;
     requires transitive atlantafx.base;
     requires static com.sun.jna;
-    requires static org.visual.model.jfa;
+    requires org.visual.model.jfa;
     requires static com.sun.jna.platform;
     requires transitive org.controlsfx.controls;
+    requires eu.iamgio.animated;
 
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.window;

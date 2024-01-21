@@ -18,10 +18,9 @@
 package org.visual.model.debugger.event;
 
 
+import java.io.Serial;
 import lombok.Getter;
 import org.visual.model.debugger.controller.StageID;
-
-import java.io.Serial;
 
 @Getter
 public class SceneDetailsEvent extends NodeCountEvent {

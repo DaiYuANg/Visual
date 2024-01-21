@@ -17,6 +17,8 @@ public enum Platform {
 
     public static final Platform platform = currentPlatform();
 
+    public static final int cpuCore = Runtime.getRuntime().availableProcessors();
+
     private static Platform currentPlatform() {
         if (SystemUtils.IS_OS_MAC) return Platform.MAC;
 

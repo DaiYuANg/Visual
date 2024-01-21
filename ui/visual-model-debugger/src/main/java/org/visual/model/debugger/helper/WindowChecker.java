@@ -17,6 +17,9 @@
  */
 package org.visual.model.debugger.helper;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import javafx.stage.Window;
 import lombok.Setter;
@@ -24,10 +27,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.StageController;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class WindowChecker extends WorkerThread {
@@ -42,7 +41,7 @@ public abstract class WindowChecker extends WorkerThread {
     }
 
     public interface WindowFilter {
-        public boolean accept(Window window);
+        boolean accept(Window window);
     }
 
     @SneakyThrows

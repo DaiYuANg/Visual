@@ -17,11 +17,10 @@
  */
 package org.visual.model.debugger.details;
 
-import lombok.Getter;
-import lombok.ToString;
-
 import java.io.Serial;
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString

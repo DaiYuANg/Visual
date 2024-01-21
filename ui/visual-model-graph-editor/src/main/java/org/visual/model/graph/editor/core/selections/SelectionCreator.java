@@ -3,6 +3,10 @@
  */
 package org.visual.model.graph.editor.core.selections;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.WeakEventHandler;
@@ -19,11 +23,6 @@ import org.visual.model.graph.editor.api.utils.GraphInputGesture;
 import org.visual.model.graph.editor.core.utils.EventUtils;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 
 /**

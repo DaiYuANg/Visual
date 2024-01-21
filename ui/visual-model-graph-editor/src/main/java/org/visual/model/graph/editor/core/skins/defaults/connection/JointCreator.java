@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
@@ -19,10 +22,6 @@ import org.visual.model.graph.editor.core.connections.RectangularConnections;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GraphFactory;
-
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
 
 /**
  * Responsible for creating joints when a click + drag gesture occurs on a connection.
@@ -119,25 +118,25 @@ public class JointCreator {
             oldJointPositions = GeometryUtils.getJointPositions(connection);
 
             final int index = getNewJointLocation(event, root);
-			if (index > -1) {
+      if (index > -1) {
 
-				final int oldJointCount = connection.getJoints().size();
+        final int oldJointCount = connection.getJoints().size();
 
-				addTemporaryJoints(index, newJointX, newJointY);
+        addTemporaryJoints(index, newJointX, newJointY);
 
-				if (index == oldJointCount) {
-					final GJoint newSelectedJoint1 = connection.getJoints().get(index);
-					temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint1);
-				} else {
-					final GJoint newSelectedJoint2 = connection.getJoints().get(index + 1);
-					temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint2);
-				}
+        if (index == oldJointCount) {
+          final GJoint newSelectedJoint1 = connection.getJoints().get(index);
+          temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint1);
+        } else {
+          final GJoint newSelectedJoint2 = connection.getJoints().get(index + 1);
+          temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint2);
+        }
 
-				temporarySelectedJointSkin.getRoot().fireEvent(event);
-				if(graphEditor != null) {
-					graphEditor.getSelectionManager().select(temporarySelectedJointSkin.getItem());
-				}
-			}
+        temporarySelectedJointSkin.getRoot().fireEvent(event);
+        if(graphEditor != null) {
+          graphEditor.getSelectionManager().select(temporarySelectedJointSkin.getItem());
+        }
+      }
 
             event.consume();
         });
@@ -208,7 +207,7 @@ public class JointCreator {
         final double adjacentJointY;
 
         if (index == -1 || connection.getJoints().isEmpty()) {
-        	return -1;
+          return -1;
         }
         else if (index < connection.getJoints().size()) {
             adjacentJointX = connection.getJoints().get(index).getX();

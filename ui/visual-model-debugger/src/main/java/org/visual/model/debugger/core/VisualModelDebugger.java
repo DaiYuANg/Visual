@@ -20,7 +20,6 @@ package org.visual.model.debugger.core;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -33,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.controller.AppControllerImpl;
 import org.visual.model.debugger.controller.StageControllerImpl;
+import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
 import org.visual.model.debugger.model.attach.AttachHandlerFactory;
 import org.visual.model.debugger.model.update.LocalUpdateStrategy;
 import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
@@ -123,5 +123,6 @@ public class VisualModelDebugger extends Application {
         log.info("Creating server");
         strategy.setFXConnector(FXConnectorFactory.getConnector());
         log.info("Server done");
+        FXComponentInspectorHandler.handleAll();
     }
 }

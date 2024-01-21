@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core;
 
+import java.util.Collection;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
 import javafx.scene.layout.Region;
@@ -17,10 +20,6 @@ import org.visual.model.graph.editor.core.skins.GraphEditorSkinManager;
 import org.visual.model.graph.editor.core.view.ConnectionLayouter;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.Collection;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 
 /**

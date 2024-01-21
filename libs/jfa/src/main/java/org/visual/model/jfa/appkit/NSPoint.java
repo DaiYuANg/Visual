@@ -2,11 +2,11 @@
 package org.visual.model.jfa.appkit;
 
 import com.sun.jna.Structure;
-import org.visual.model.jfa.foundation.Foundation;
+import org.visual.model.jfa.foundation.CGFloat;
 
 @Structure.FieldOrder({"x", "y"})
 @SuppressWarnings("unused")
 public class NSPoint extends Structure implements Structure.ByValue {
-    public Foundation.CGFloat x;
-    public Foundation.CGFloat y;
+    public CGFloat x;
+    public CGFloat y;
 }

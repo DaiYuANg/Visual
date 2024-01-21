@@ -18,9 +18,8 @@
 package org.visual.model.debugger.remote;
 
 
-import org.visual.model.debugger.api.AppController;
-
 import java.util.List;
+import org.visual.model.debugger.api.AppController;
 
 
 public interface FXConnector {

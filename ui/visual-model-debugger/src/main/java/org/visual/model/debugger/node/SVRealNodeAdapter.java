@@ -20,7 +20,6 @@ package org.visual.model.debugger.node;
 import java.io.Serial;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Control;

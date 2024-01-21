@@ -1,8 +1,11 @@
-package org.visual.model.ui.widget;
+package org.visual.model.ui.window;
+
+import java.util.Objects;
 
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -10,21 +13,17 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.visual.model.ui.constant.ResizeDirection;
 
-import java.util.Objects;
-
 @Slf4j
 public class BorderLessStage extends Stage {
-    private boolean isDraggable = false;
     private boolean isDragging = false;
-    private boolean allowDragging = true;
-    private double dragMarginTop = 0.0;
+    private double dragMarginTop = 10.0;
     private double dragMarginRight = 0.0;
     private double dragMarginBottom = 0.0;
     private double dragMarginLeft = 0.0;
 
     private boolean isFullscreenable = false;
     private boolean isFullscreen = false;
-    private boolean allowFullscreen = true;
+    private final boolean allowFullscreen = true;
     private double fullscreenMarginTop = 0.0;
     private double fullscreenMarginRight = 0.0;
     private double fullscreenMarginBottom = 0.0;
@@ -61,73 +60,76 @@ public class BorderLessStage extends Stage {
         });
     }
 
-
-    public BorderLessStage makeDraggable(
-            double marginTop,
-            double marginRight,
-            double marginBottom,
-            double marginLeft
+    private void makeDraggable(
     ) {
-        dragMarginTop = marginTop;
-        dragMarginRight = marginRight;
-        dragMarginBottom = marginBottom;
-        dragMarginLeft = marginLeft;
-
-        if (isDraggable) {
-            return this;
-        }
-
-        isDraggable = true;
-
+        dragMarginTop = 10.0;
+        dragMarginRight = 10.0;
+        dragMarginBottom = 10.0;
+        dragMarginLeft = 10.0;
         double[] dragStartOffsetX = {0.0};
         double[] dragStartOffsetY = {0.0};
-        getScene().addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
-            boolean isWithinBounds = detectDraggingBounds(event);
-
-            if (isDraggable && allowDragging && isWithinBounds) {
-                getScene().setCursor(Cursor.OPEN_HAND);
-            } else {
-                if (getScene().getCursor() == Cursor.OPEN_HAND) {
-                    getScene().setCursor(Cursor.DEFAULT);
-                }
-            }
-        });
-
         getScene().addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+            if (Boolean.FALSE.equals(event.isShiftDown())) return;
             dragStartOffsetX[0] = this.getX() - event.getScreenX();
             dragStartOffsetY[0] = this.getY() - event.getScreenY();
+            getScene().setCursor(Cursor.MOVE);
         });
-
         getScene().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-            boolean isWithinBounds = detectDraggingBounds(event);
-
-            if (isDraggable && allowDragging && isWithinBounds) {
-                isDragging = true;
-                getScene().setCursor(Cursor.CLOSED_HAND);
-            }
-
-            if (isDragging) {
-                setX(event.getScreenX() + dragStartOffsetX[0]);
-                setY(event.getScreenY() + dragStartOffsetY[0]);
-            }
+            if (Boolean.FALSE.equals(event.isShiftDown())) return;
+            setX(event.getScreenX() + dragStartOffsetX[0]);
+            setY(event.getScreenY() + dragStartOffsetY[0]);
+            setOpacity(0.5);
+            isDragging = true;
+            event.consume();
         });
-
         getScene().addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
+            log.info("is dragging:{}", isDragging);
             if (isDragging) {
                 isDragging = false;
                 getScene().setCursor(Cursor.DEFAULT);
+                setOpacity(1.0);
             }
         });
-
-        return this;
-    }
-
-    private void makeDraggable() {
-        makeDraggable(10.0, 10.0, 10.0, 10.0);
+//        getScene().addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
+//            boolean isWithinBounds = detectDraggingBounds(event);
+//
+//            if (isWithinBounds) {
+//                getScene().setCursor(Cursor.OPEN_HAND);
+//            } else {
+//                if (getScene().getCursor() == Cursor.OPEN_HAND) {
+//                    getScene().setCursor(Cursor.DEFAULT);
+//                }
+//            }
+//        });
+//        getScene().addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+//            dragStartOffsetX[0] = this.getX() - event.getScreenX();
+//            dragStartOffsetY[0] = this.getY() - event.getScreenY();
+//        });
+//        getScene().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+//            boolean isWithinBounds = detectDraggingBounds(event);
+//
+//            if (isWithinBounds) {
+//                isDragging = true;
+//                getScene().setCursor(Cursor.CLOSED_HAND);
+//            }
+//
+//            if (isDragging) {
+//                setX(event.getScreenX() + dragStartOffsetX[0]);
+//                setY(event.getScreenY() + dragStartOffsetY[0]);
+//            }
+//        });
+//        getScene().addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
+//            if (isDragging) {
+//                isDragging = false;
+//                getScene().setCursor(Cursor.DEFAULT);
+//            }
+//        });
     }
 
     private boolean detectDraggingBounds(@NotNull MouseEvent event) {
-        return event.getSceneY() <= dragMarginTop
+        val lessThenTop = event.getSceneY() <= dragMarginTop;
+        log.info("mouse:{}", event.getSceneY());
+        return lessThenTop
                 || getScene().getHeight() - event.getSceneY() <= dragMarginBottom
                 || event.getSceneX() <= dragMarginLeft
                 || getScene().getWidth() - event.getSceneX() <= dragMarginRight;
@@ -153,7 +155,7 @@ public class BorderLessStage extends Stage {
                 if (isFullscreenable && allowFullscreen && isDoubleClick && detectFullscreenBounds(event)) {
                     if (isFullscreen) {
                         isFullscreen = false;
-                        allowDragging = true;
+//                        allowDragging = true;
                         allowResizing = true;
 
                         this.setX(stageXBeforeFullscreen);
@@ -162,7 +164,7 @@ public class BorderLessStage extends Stage {
                         this.setHeight(stageHeightBeforeFullscreen);
                     } else {
                         isFullscreen = true;
-                        allowDragging = false;
+//                        allowDragging = false;
                         allowResizing = false;
                         stageWidthBeforeFullscreen = this.getWidth();
                         stageHeightBeforeFullscreen = this.getHeight();
@@ -281,7 +283,7 @@ public class BorderLessStage extends Stage {
                         }
                     } else {
                         isResizing = true;
-                        isDraggable = false;
+//                        isDraggable = false;
                         isFullscreenable = false;
 
                         resizeStartFromScreenX[0] = event.getScreenX();
@@ -331,7 +333,7 @@ public class BorderLessStage extends Stage {
         getScene().addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
             if (isResizing) {
                 isResizing = false;
-                isDraggable = true;
+//                isDraggable = true;
                 isFullscreenable = true;
             }
         });
@@ -393,6 +395,4 @@ public class BorderLessStage extends Stage {
             return this.getMinHeight();
         } else return Math.min(height, screen.getVisualBounds().getHeight());
     }
-
 }
-

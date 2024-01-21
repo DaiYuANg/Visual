@@ -17,19 +17,16 @@
  */
 package org.visual.model.debugger.utils;
 
-import lombok.SneakyThrows;
-
 import java.io.File;
 import java.net.*;
+import lombok.SneakyThrows;
 
 public class Utils {
 
     public static boolean checkPath(final String path) {
-        if (path != null && !path.equals("")) {
+        if (path != null && !path.isEmpty()) {
             File file = new File(path);
-            if (file.exists()) {
-                return true;
-            }
+            return file.exists();
         }
         return false;
     }

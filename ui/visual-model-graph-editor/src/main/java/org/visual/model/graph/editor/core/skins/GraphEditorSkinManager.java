@@ -1,6 +1,11 @@
 package org.visual.model.graph.editor.core.skins;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import javafx.util.Callback;
 import org.visual.model.graph.editor.api.*;
 import org.visual.model.graph.editor.core.skins.defaults.*;
@@ -10,12 +15,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 
 /**

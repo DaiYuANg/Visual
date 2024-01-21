@@ -3,6 +3,9 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import javafx.css.PseudoClass;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
@@ -10,18 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.visual.model.graph.editor.api.GConnectorSkin;
 import org.visual.model.graph.editor.api.GNodeSkin;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connectors.DefaultConnectorTypes;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * The default node skin. Uses a {@link ResizableBox}.

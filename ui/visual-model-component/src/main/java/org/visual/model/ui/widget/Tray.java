@@ -1,15 +1,13 @@
 package org.visual.model.ui.widget;
 
-import javafx.application.Platform;
-import javafx.stage.Stage;
-import lombok.SneakyThrows;
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import lombok.SneakyThrows;
+import org.jetbrains.annotations.NotNull;
 
 public class Tray {
     private final SystemTray tray = SystemTray.getSystemTray();

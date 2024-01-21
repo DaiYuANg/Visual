@@ -1,5 +1,6 @@
 package org.visual.model.ui.window;
 
+import java.util.Optional;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
@@ -10,8 +11,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-import java.util.Optional;
 
 public class PanningWindow extends Region {
     private final DoubleProperty contentX = new SimpleDoubleProperty(0.0);

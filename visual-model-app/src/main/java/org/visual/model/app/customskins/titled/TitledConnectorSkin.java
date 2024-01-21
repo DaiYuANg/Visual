@@ -16,7 +16,7 @@ import org.visual.model.graph.editor.model.GConnector;
  */
 public class TitledConnectorSkin extends GConnectorSkin {
 
-    private static final String STYLE_CLASS = "titled-connector"; // $NON-NLS-1$
+    private static final String STYLE_CLASS = "titled-connector";
     private static final String STYLE_CLASS_FORBIDDEN_GRAPHIC = "titled-connector-forbidden-graphic"; // $NON-NLS-1$
 
     private static final double SIZE = 15;
@@ -64,7 +64,7 @@ public class TitledConnectorSkin extends GConnectorSkin {
     }
 
     @Override
-    public void applyStyle(final GConnectorStyle style) {
+    public void applyStyle(final @NotNull GConnectorStyle style) {
 
         switch (style) {
             case DEFAULT -> {
@@ -87,11 +87,7 @@ public class TitledConnectorSkin extends GConnectorSkin {
 
     @Override
     protected void selectionChanged(boolean isSelected) {
-        if (isSelected) {
-            root.pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, true);
-        } else {
-            root.pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, false);
-        }
+        root.pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, isSelected);
     }
 
     /**

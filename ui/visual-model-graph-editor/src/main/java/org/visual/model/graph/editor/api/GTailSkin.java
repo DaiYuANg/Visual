@@ -3,10 +3,9 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.List;
 import javafx.geometry.Point2D;
 import org.visual.model.graph.editor.model.GConnector;
-
-import java.util.List;
 
 /**
  * The tail-skin class for a {@link GConnector}. Responsible for visualizing the tails that extend temporarily from

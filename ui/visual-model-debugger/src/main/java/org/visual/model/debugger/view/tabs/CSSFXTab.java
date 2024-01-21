@@ -19,7 +19,6 @@ package org.visual.model.debugger.view.tabs;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -29,18 +28,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.SVGPath;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.simpleicons.SimpleIcons;
+import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.event.EvCSSFXEvent;
 import org.visual.model.debugger.event.FXConnectorEvent;
 import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.cssfx.CSSFXTabContentController;
 import org.visual.model.debugger.view.cssfx.MonitoredCSS;
-import org.visual.model.debugger.controller.StageID;
 
 @Slf4j
 public class CSSFXTab extends Tab {

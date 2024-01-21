@@ -6,10 +6,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.model.app.command.OpenCommand;
 import org.visual.model.app.handle.GlobalExceptionHandler;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "VisualModel", mixinStandardHelpOptions = true, helpCommand = true)
+@CommandLine.Command(name = "VisualModel", mixinStandardHelpOptions = true, helpCommand = true,
+        subcommands = OpenCommand.class
+)
 @RequiredArgsConstructor
 @Slf4j
 public class VisualModelApplication implements Runnable {

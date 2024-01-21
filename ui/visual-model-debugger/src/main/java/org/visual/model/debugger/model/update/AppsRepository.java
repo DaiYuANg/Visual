@@ -20,7 +20,6 @@ package org.visual.model.debugger.model.update;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-
 import javafx.application.Platform;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;

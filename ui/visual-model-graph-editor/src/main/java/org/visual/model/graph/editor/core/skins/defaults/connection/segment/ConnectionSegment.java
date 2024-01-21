@@ -3,15 +3,14 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection.segment;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.PathElement;
 import javafx.scene.shape.VLineTo;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**

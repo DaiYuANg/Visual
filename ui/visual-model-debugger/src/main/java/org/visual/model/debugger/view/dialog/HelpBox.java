@@ -18,17 +18,14 @@
 package org.visual.model.debugger.view.dialog;
 
 import java.util.logging.Level;
-
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.api.StageController;
+import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.control.ProgressWebView;
 
 

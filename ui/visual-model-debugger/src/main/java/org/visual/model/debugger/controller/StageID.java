@@ -17,13 +17,12 @@
  */
 package org.visual.model.debugger.controller;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serial;
-import java.io.Serializable;
 
 @Getter
 @EqualsAndHashCode

@@ -17,10 +17,9 @@
  */
 package org.visual.model.debugger.utils;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.*;
 import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PropertiesUtils {
@@ -50,11 +49,8 @@ public class PropertiesUtils {
         try {
             final File propertiesFile = new File(SCENIC_VIEW_PROPERTIES_FILE);
             if (propertiesFile.exists()) {
-                final FileInputStream in = new FileInputStream(propertiesFile);
-                try {
+                try (FileInputStream in = new FileInputStream(propertiesFile)) {
                     _properties.load(in);
-                } finally {
-                    in.close();
                 }
             }
         } catch (final Exception e) {
@@ -66,11 +62,8 @@ public class PropertiesUtils {
     public static void saveProperties() {
         try {
             final File propertiesFile = new File(SCENIC_VIEW_PROPERTIES_FILE);
-            final FileOutputStream out = new FileOutputStream(propertiesFile);
-            try {
+            try (FileOutputStream out = new FileOutputStream(propertiesFile)) {
                 properties.store(out, "ScenicView properties");
-            } finally {
-                out.close();
             }
         } catch (final Exception e) {
             log.error(e.getMessage(),e, "Error while saving preferences");

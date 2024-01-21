@@ -17,9 +17,6 @@
  */
 package org.visual.model.debugger.module.impl.log;
 
-import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.PrintStream;
 import java.time.Clock;
 import java.util.ArrayList;
@@ -29,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.logging.Level;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 public class CSSFXLogger {
     private static final Clock clock = Clock.systemDefaultZone();
@@ -69,19 +68,19 @@ public class CSSFXLogger {
 
     @FunctionalInterface
     public static interface Logger {
-        public void log(LogLevel level, String message, Object ... args);
-        public default void info(String message, Object ... args) {log(LogLevel.INFO, message, args);};
-        public default void debug(String message, Object ... args) {log(LogLevel.DEBUG, message, args);};
-        public default void warn(String message, Object ... args) {log(LogLevel.WARN, message, args);};
-        public default void error(String message, Object ... args) {log(LogLevel.ERROR, message, args);};
+        void log(LogLevel level, String message, Object ... args);
+        default void info(String message, Object ... args) {log(LogLevel.INFO, message, args);};
+        default void debug(String message, Object ... args) {log(LogLevel.DEBUG, message, args);};
+        default void warn(String message, Object ... args) {log(LogLevel.WARN, message, args);};
+        default void error(String message, Object ... args) {log(LogLevel.ERROR, message, args);};
     }
 
     @FunctionalInterface
     public static interface LoggerFactory {
-        public default Logger getLogger(Class<?> loggerClass) {
+        default Logger getLogger(Class<?> loggerClass) {
             return getLogger(loggerClass.getName());
         }
-        public Logger getLogger(String loggerName);
+        Logger getLogger(String loggerName);
     }
 
     private static final Logger CONSOLE_LOGGER = new Logger() {
@@ -106,7 +105,7 @@ public class CSSFXLogger {
         };
     };
 
-    private final static LoggerFactory JUL_LOGGER_FACTORY = new LoggerFactory() {
+    private static final LoggerFactory JUL_LOGGER_FACTORY = new LoggerFactory() {
         final Map<LogLevel, Level> levelMapping = new HashMap<>() {{
             put(LogLevel.NONE, Level.OFF);
             put(LogLevel.ERROR, Level.SEVERE);
@@ -132,10 +131,10 @@ public class CSSFXLogger {
         }
     };
 
-    private final static LoggerFactory CONSOLE_LOGGER_FACTORY = (s) -> CONSOLE_LOGGER;
+    private static final LoggerFactory CONSOLE_LOGGER_FACTORY = (s) -> CONSOLE_LOGGER;
 
-    private final static Logger NOOP_LOGGER = (level, message, args) -> {};
-    private final static LoggerFactory NOOP_LOGGER_FACTORY = (s) -> NOOP_LOGGER;
+    private static final Logger NOOP_LOGGER = (level, message, args) -> {};
+    private static final LoggerFactory NOOP_LOGGER_FACTORY = (s) -> NOOP_LOGGER;
 
     @Setter
     private static LoggerFactory loggerFactory = null;

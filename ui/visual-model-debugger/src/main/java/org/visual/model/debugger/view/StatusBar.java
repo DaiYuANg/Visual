@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@ package org.visual.model.debugger.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -30,9 +32,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.core.DebuggerContext;
+import org.visual.model.i18n.core.I18n;
+import org.visual.model.i18n.core.I18nKeys;
 
-class StatusBar extends HBox {
+@Slf4j
+@Singleton
+public class StatusBar extends HBox {
     private final Label windowTypeLabel;
     private final Label stageBoundsText;
     private final Label sceneSizeText;
@@ -42,10 +50,12 @@ class StatusBar extends HBox {
     private final List<Node> standardNodes = new ArrayList<>();
     private Timeline clearTimeout;
 
-    StatusBar() {
+    {
         setId("main-statusbar");
         setSpacing(4);
+    }
 
+    public StatusBar(@NotNull I18n i18n) {
         Tooltip tooltip = new Tooltip("Windows bounds in the screen");
         windowTypeLabel = createLabel("Stage:", tooltip);
         stageBoundsText = createValueLabel(tooltip);
@@ -59,7 +69,8 @@ class StatusBar extends HBox {
         getChildren().addAll(windowTypeLabel, stageBoundsText, spacer);
 
         tooltip = new Tooltip("Scene dimensions in pixels");
-        Label label = createLabel("Scene:", tooltip);
+//        I18n i18n = DebuggerContext.INSTANCE.get(I18n.class);
+        Label label = createLabel(i18n.get(I18nKeys.SCENE), tooltip);
         spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         spacer.setPrefSize(14, 12);
@@ -135,7 +146,7 @@ class StatusBar extends HBox {
 
     public void setStatusText(final String text, final long timeout) {
         setStatusText(text);
-        
+
         clearTimeout = new Timeline(new KeyFrame(Duration.millis(timeout), event -> clearStatusText()));
         clearTimeout.play();
     }

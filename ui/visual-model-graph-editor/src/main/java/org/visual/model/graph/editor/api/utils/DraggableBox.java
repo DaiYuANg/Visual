@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.EditorElement;
 
 /**
@@ -270,7 +271,7 @@ public class DraggableBox extends StackPane
      * @param pEvent
      *            a {@link MouseEvent}
      */
-    protected void handleMousePressed(final MouseEvent pEvent)
+    protected void handleMousePressed(final @NotNull MouseEvent pEvent)
     {
         if (pEvent.getButton() != MouseButton.PRIMARY || !isEditable())
         {
@@ -287,7 +288,7 @@ public class DraggableBox extends StackPane
      *
      * @param pEvent {@link MouseEvent}
      */
-    protected void handleMouseDragged(final MouseEvent pEvent)
+    protected void handleMouseDragged(final @NotNull MouseEvent pEvent)
     {
         if (pEvent.getButton() != MouseButton.PRIMARY || !isEditable() || !activateGesture(GraphInputGesture.MOVE, pEvent))
         {

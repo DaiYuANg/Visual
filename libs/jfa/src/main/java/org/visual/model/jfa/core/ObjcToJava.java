@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.jfa.annotation.Protocol;
 import org.visual.model.jfa.appkit.NSObject;
+import org.visual.model.jfa.foundation.CGFloat;
 import org.visual.model.jfa.foundation.Foundation;
 import org.visual.model.jfa.foundation.ID;
 import org.visual.model.jfa.foundation.VarArgs;
@@ -117,7 +118,7 @@ public class ObjcToJava implements InvocationHandler {
     }
 
     public static Object toFoundationArgument(Object arg) {
-        if (arg instanceof Structure || arg instanceof Foundation.CGFloat) {
+        if (arg instanceof Structure || arg instanceof CGFloat) {
             return arg;
         }
 

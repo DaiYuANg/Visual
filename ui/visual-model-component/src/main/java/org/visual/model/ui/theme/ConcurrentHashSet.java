@@ -14,13 +14,12 @@
 
 package org.visual.model.ui.theme;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.jetbrains.annotations.NotNull;
 
 public class ConcurrentHashSet<E> implements Set<E> {
 

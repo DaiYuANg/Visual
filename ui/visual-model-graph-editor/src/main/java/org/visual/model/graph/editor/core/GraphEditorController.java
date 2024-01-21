@@ -1,5 +1,8 @@
 package org.visual.model.graph.editor.core;
 
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.function.Consumer;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -16,8 +19,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.visual.model.graph.editor.api.*;
 import org.visual.model.graph.editor.api.utils.GraphEditorProperties;
 import org.visual.model.graph.editor.core.connections.ConnectionEventManager;
@@ -31,10 +32,6 @@ import org.visual.model.graph.editor.core.view.ConnectionLayouter;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.core.view.impl.DefaultConnectionLayouter;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.function.Consumer;
 
 
 /**

@@ -21,7 +21,6 @@ package org.visual.model.debugger.view.tabs.details;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Consumer;
-
 import javafx.beans.value.WritableValue;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -152,7 +151,7 @@ public class GDetailPane extends TitledPane {
         for (int i = 0; i < nodes.size(); i++) {
 
             final Label label = (Label) nodes.get(i++);
-            boolean valid = text == null || text.equals("") || label.getText().toLowerCase().indexOf(text.toLowerCase()) != -1;
+            boolean valid = text == null || text.isEmpty() || label.getText().toLowerCase().indexOf(text.toLowerCase()) != -1;
             final Group g = (Group) nodes.get(i);
             final Node value = g.getChildren().get(0);
 
@@ -310,7 +309,7 @@ public class GDetailPane extends TitledPane {
     }
 
     public interface RemotePropertySetter {
-        public void set(Detail detail, String value);
+        void set(Detail detail, String value);
     }
 
     @Override

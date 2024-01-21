@@ -18,10 +18,8 @@
 package org.visual.model.debugger.view.control;
 
 import javafx.beans.binding.*;
-import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import lombok.Getter;
 import org.visual.model.debugger.view.DisplayUtils;

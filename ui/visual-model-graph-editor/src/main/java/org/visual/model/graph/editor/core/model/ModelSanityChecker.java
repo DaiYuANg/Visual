@@ -6,14 +6,8 @@ package org.visual.model.graph.editor.core.model;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.visual.model.graph.editor.core.DefaultGraphEditor;
 import org.visual.model.graph.editor.model.GConnection;
-import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GModel;
-import org.visual.model.graph.editor.model.GNode;
-
 
 /**
  * Provides a static validation method to check a {@link GModel} instance for

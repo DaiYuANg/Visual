@@ -22,7 +22,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,16 +29,16 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
+import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.controller.*;
-import org.visual.model.debugger.api.FXConnectorEventDispatcher;
+import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.helper.FXUtils;
 import org.visual.model.debugger.module.api.CSSFXEvent;
 import org.visual.model.debugger.module.api.URIToPathConverters;
 import org.visual.model.debugger.module.impl.CSSFXMonitor;
 import org.visual.model.debugger.module.impl.log.CSSFXLogger;
 import org.visual.model.debugger.node.SVNode;
-import org.visual.model.debugger.details.DetailPaneType;
 
 @Slf4j
 public class RuntimeAttach {

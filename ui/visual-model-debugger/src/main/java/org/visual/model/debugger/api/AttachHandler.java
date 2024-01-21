@@ -17,10 +17,9 @@
  */
 package org.visual.model.debugger.api;
 
-import org.visual.model.debugger.model.attach.JDKToolsJarPair;
-
 import java.io.File;
 import java.util.List;
+import org.visual.model.debugger.model.attach.JDKToolsJarPair;
 
 /**
  *

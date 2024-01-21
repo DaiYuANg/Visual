@@ -2,17 +2,11 @@ package org.visual.model.ui.control;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import lombok.*;
-import lombok.experimental.Accessors;
 import org.kordamp.ikonli.fluentui.FluentUiRegularAL;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.simpleicons.SimpleIcons;
 import org.visual.model.annotation.FxProperty;
-
-import java.beans.BeanProperty;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

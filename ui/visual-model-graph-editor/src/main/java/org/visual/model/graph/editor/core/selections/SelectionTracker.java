@@ -1,5 +1,7 @@
 package org.visual.model.graph.editor.core.selections;
 
+import java.util.HashSet;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
@@ -10,9 +12,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Provides observable lists of selected nodes and joints for convenience.

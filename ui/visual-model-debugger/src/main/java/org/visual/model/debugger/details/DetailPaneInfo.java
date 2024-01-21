@@ -21,15 +21,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import lombok.val;
+import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.controller.PropertyTracker;
 import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.event.DetailsEvent;
 import org.visual.model.debugger.event.FXConnectorEvent;
-import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 
 
 abstract class DetailPaneInfo {

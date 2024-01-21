@@ -18,7 +18,6 @@
 package org.visual.model.debugger.view.cssfx;
 
 import java.util.function.Predicate;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;

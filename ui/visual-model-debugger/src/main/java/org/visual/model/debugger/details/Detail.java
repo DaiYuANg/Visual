@@ -22,7 +22,6 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.beans.value.WritableValue;
@@ -30,10 +29,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.layout.Region;
 import lombok.Getter;
 import lombok.Setter;
+import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.event.DetailsEvent;
 import org.visual.model.debugger.event.FXConnectorEvent;
-import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 
 
 public class Detail implements Serializable {
@@ -93,14 +92,14 @@ public class Detail implements Serializable {
     private EditionType editionType = EditionType.NONE;
     transient WritableValue<String> serializer;
 
-    private transient final FXConnectorEventDispatcher dispatcher;
+    private final transient FXConnectorEventDispatcher dispatcher;
     @Getter
     private final DetailPaneType detailType;
     @Getter
     private final int detailID;
     private final StageID stageID;
-    private transient final List<Detail> details;
-    private static transient final DecimalFormat f = new DecimalFormat("0.0#");
+    private final transient List<Detail> details;
+    private static final transient DecimalFormat f = new DecimalFormat("0.0#");
     @Setter
     @Getter
     private String detailName;

@@ -17,13 +17,12 @@
  */
 package org.visual.model.debugger.event;
 
+import java.io.Serial;
+import java.util.List;
 import lombok.Getter;
 import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.details.Detail;
 import org.visual.model.debugger.details.DetailPaneType;
-
-import java.io.Serial;
-import java.util.List;
 
 
 @Getter

@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import java.util.*;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
@@ -20,8 +21,6 @@ import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.utils.EventUtils;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
-
-import java.util.*;
 
 /**
  * Monitors joint positions and cleans up / removes unnecessary joints.

@@ -3,13 +3,12 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.List;
+import java.util.Map;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Line;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.model.GConnection;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * The skin class for a {@link GConnection}. Responsible for visualizing connections in the graph editor.

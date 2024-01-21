@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.function.Consumer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.BooleanPropertyBase;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -10,8 +11,6 @@ import javafx.scene.Node;
 import lombok.val;
 import org.eclipse.emf.ecore.EObject;
 import org.visual.model.graph.editor.api.utils.DraggableBox;
-
-import java.util.function.Consumer;
 
 
 /**

@@ -4,10 +4,9 @@
 package org.visual.model.graph.editor.core.view;
 
 
+import java.util.Collection;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GModel;
-
-import java.util.Collection;
 
 
 /**

@@ -29,7 +29,7 @@ class FormatterPlugin : Plugin<Project> {
                 importOrder()
 //                palantirJavaFormat()
                 indentWithSpaces(2)
-                removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
+                removeUnusedImports()
                 formatAnnotations()
                     .addTypeAnnotation("Empty")
                     .addTypeAnnotation("NonEmpty")

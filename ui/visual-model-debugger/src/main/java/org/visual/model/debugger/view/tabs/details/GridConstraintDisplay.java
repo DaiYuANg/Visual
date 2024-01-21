@@ -17,14 +17,13 @@
  */
 package org.visual.model.debugger.view.tabs.details;
 
+import java.util.Arrays;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import lombok.val;
-
-import java.util.Arrays;
 
 class GridConstraintDisplay extends GridPane {
     protected Node[] labels = {new Label("index"), new Label("min"), new Label("pref"), new Label("max"), new Label("percent"), new Label("grow"), new Label("alignment"), new Label("fill")};

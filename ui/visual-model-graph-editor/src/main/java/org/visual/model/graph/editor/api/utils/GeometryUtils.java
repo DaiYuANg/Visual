@@ -3,6 +3,8 @@
  */
 package org.visual.model.graph.editor.api.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -15,9 +17,6 @@ import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Utility class containing helper methods relating to geometry, positions, etc.

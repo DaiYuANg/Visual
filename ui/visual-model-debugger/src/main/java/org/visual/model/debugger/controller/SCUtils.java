@@ -18,7 +18,6 @@
 package org.visual.model.debugger.controller;
 
 import java.util.*;
-
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.layout.Pane;

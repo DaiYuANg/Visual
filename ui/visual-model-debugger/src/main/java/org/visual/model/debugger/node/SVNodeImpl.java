@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,13 @@ package org.visual.model.debugger.node;
 
 import java.io.Serial;
 import java.io.Serializable;
-
-import javafx.scene.image.Image;
+import org.kordamp.ikonli.Ikon;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 abstract class SVNodeImpl implements SVNode, Serializable {
 
     /**
-     * 
+     *
      */
     @Serial
     private static final long serialVersionUID = 1L;
@@ -44,35 +44,43 @@ abstract class SVNodeImpl implements SVNode, Serializable {
         this.nodeClassName = nodeClassName;
     }
 
-    @Override public final void setInvalidForFilter(final boolean invalid) {
+    @Override
+    public final void setInvalidForFilter(final boolean invalid) {
         this.invalidForFilter = invalid;
     }
 
-    @Override public final boolean isInvalidForFilter() {
+    @Override
+    public final boolean isInvalidForFilter() {
         return invalidForFilter;
     }
 
-    @Override public final void setShowId(final boolean showID) {
+    @Override
+    public final void setShowId(final boolean showID) {
         this.showID = showID;
     }
 
-    @Override public boolean isExpanded() {
+    @Override
+    public boolean isExpanded() {
         return this.expanded;
     }
 
-    @Override public final void setExpanded(final boolean expanded) {
+    @Override
+    public final void setExpanded(final boolean expanded) {
         this.expanded = expanded;
     }
 
-    @Override public Image getIcon() {
-        return null;
+    @Override
+    public Ikon getIcon() {
+        return FontAwesomeSolid.BOX;
     }
 
-    @Override public final String getNodeClass() {
+    @Override
+    public final String getNodeClass() {
         return nodeClass;
     }
 
-    @Override public final String getNodeClassName() {
+    @Override
+    public final String getNodeClassName() {
         return nodeClassName;
     }
 

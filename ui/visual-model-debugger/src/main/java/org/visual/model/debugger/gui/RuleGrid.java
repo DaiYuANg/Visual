@@ -18,7 +18,6 @@
 package org.visual.model.debugger.gui;
 
 import java.util.*;
-
 import javafx.scene.shape.*;
 
 /**

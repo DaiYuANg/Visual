@@ -17,12 +17,12 @@
  */
 package org.visual.model.debugger.details;
 
+import static org.visual.model.debugger.controller.ConnectorUtils.getBranchCount;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
-
-import static org.visual.model.debugger.controller.ConnectorUtils.getBranchCount;
+import org.visual.model.debugger.controller.StageID;
 
 
 /**

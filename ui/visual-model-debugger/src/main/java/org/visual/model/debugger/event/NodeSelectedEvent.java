@@ -18,11 +18,10 @@
 package org.visual.model.debugger.event;
 
 
-import lombok.Getter;
-import org.visual.model.debugger.node.SVNode;
-import org.visual.model.debugger.controller.StageID;
-
 import java.io.Serial;
+import lombok.Getter;
+import org.visual.model.debugger.controller.StageID;
+import org.visual.model.debugger.node.SVNode;
 
 @Getter
 public class NodeSelectedEvent extends FXConnectorEvent {

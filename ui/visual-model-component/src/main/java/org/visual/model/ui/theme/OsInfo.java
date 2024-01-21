@@ -1,5 +1,8 @@
 package org.visual.model.ui.theme;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -7,10 +10,6 @@ import org.slf4j.LoggerFactory;
 import oshi.PlatformEnum;
 import oshi.SystemInfo;
 import oshi.software.os.OperatingSystem;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class OsInfo {
 
@@ -69,8 +68,7 @@ public class OsInfo {
         return query(cmd).toLowerCase().contains(subResult);
     }
 
-    @NotNull
-    private static String query(@NotNull String cmd) {
+    @NotNull private static String query(@NotNull String cmd) {
         try {
             Process process = Runtime.getRuntime().exec(cmd);
             StringBuilder stringBuilder = new StringBuilder();

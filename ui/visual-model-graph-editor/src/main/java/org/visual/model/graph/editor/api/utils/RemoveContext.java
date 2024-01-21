@@ -1,9 +1,8 @@
 package org.visual.model.graph.editor.api.utils;
 
-import org.eclipse.emf.ecore.EObject;
-
 import java.util.Collection;
 import java.util.HashSet;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

@@ -18,7 +18,6 @@
 package org.visual.model.debugger.module.api;
 
 import java.nio.file.Path;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import lombok.Getter;

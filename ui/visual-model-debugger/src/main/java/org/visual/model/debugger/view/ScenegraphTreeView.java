@@ -17,10 +17,10 @@
  */
 package org.visual.model.debugger.view;
 
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.TreeItem.TreeModificationEvent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -29,19 +29,19 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.visual.model.debugger.api.AppController;
+import org.visual.model.debugger.api.StageController;
+import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.debugger.listener.StageCollapsingListener;
 import org.visual.model.debugger.node.NodeType;
 import org.visual.model.debugger.node.SVDummyNode;
 import org.visual.model.debugger.node.SVNode;
+import org.visual.model.debugger.view.tabs.DetailsTab;
 import org.visual.model.debugger.view.tabs.EventLogTab;
 import org.visual.model.debugger.view.tabs.JavaDocTab;
 import org.visual.model.debugger.view.tabs.ThreeDOMTab;
-import org.visual.model.debugger.api.AppController;
-import org.visual.model.debugger.controller.ConnectorUtils;
-import org.visual.model.debugger.api.StageController;
-import org.visual.model.debugger.view.tabs.DetailsTab;
-
-import java.util.*;
 
 @Slf4j
 public class ScenegraphTreeView extends TreeView<SVNode> {
@@ -122,15 +122,15 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
 
     public void showContextMenu(final MouseEvent ev) {
         if (getSelectionModel().getSelectedItem() != null && selectedCM == null) {
-            final TreeItem<SVNode> node = getSelectionModel().getSelectedItem();
-            final int hash = node.getValue().hashCode();
-            final String nodeClass = node.getValue().getNodeClass();
-            final boolean last = node.getChildren().isEmpty();
-            final boolean collapsed = forcedCollapsedItems.contains(hash);
-            final boolean expanded = forcedExpandedItems.contains(hash);
-            final boolean collapsedClass = forcedCollapsedNodeClassItems.contains(nodeClass);
-            final boolean expandedClass = forcedExpandedNodeClassItems.contains(nodeClass);
-            final Menu forcedExpand = new Menu("Forced Expand");
+            val node = getSelectionModel().getSelectedItem();
+            val hash = node.getValue().hashCode();
+            val nodeClass = node.getValue().getNodeClass();
+            val last = node.getChildren().isEmpty();
+            val collapsed = forcedCollapsedItems.contains(hash);
+            val expanded = forcedExpandedItems.contains(hash);
+            val collapsedClass = forcedCollapsedNodeClassItems.contains(nodeClass);
+            val expandedClass = forcedExpandedNodeClassItems.contains(nodeClass);
+            val forcedExpand = new Menu("Forced Expand");
             forcedExpand.setDisable(collapsed || collapsedClass);
             final Menu forcedCollapse = new Menu("Forced Collapse");
             forcedCollapse.setDisable(expanded || expandedClass);
@@ -251,7 +251,7 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
          */
         if (app == null) {
             val dummy = new SVDummyNode("VM - " + controller.getAppController(), "Java", controller.getAppController().getID(), NodeType.VM);
-            app = new TreeItem<>(dummy, new ImageView(DisplayUtils.getIcon(dummy)));
+            app = new TreeItem<>(dummy, new FontIcon(FontAwesomeSolid.FILE));
             app.setExpanded(false);
             this.apps.getChildren().add(app);
         }
@@ -581,10 +581,11 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
             expand |= filter.expandAllNodes();
         }
         node.setShowId(showNodesIdInTree);
+        val icon = new FontIcon(node.getIcon());
         final ImageView graphic = new ImageView(DisplayUtils.getIcon(node));
         graphic.setFitHeight(16);
         graphic.setFitWidth(16);
-        final TreeItem<SVNode> treeItem = new TreeItem<>(node, graphic);
+        final TreeItem<SVNode> treeItem = new TreeItem<>(node, icon);
         if (node.equals(scenicView.getSelectedNode())) {
             previouslySelectedItem = treeItem;
         }

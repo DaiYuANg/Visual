@@ -1,11 +1,10 @@
 package org.visual.model.graph.editor.core.skins.defaults.tail;
 
-import javafx.geometry.Point2D;
-import javafx.geometry.Side;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javafx.geometry.Point2D;
+import javafx.geometry.Side;
 
 /**
  * Creates a rectangular connection path based on what sides of the nodes the connection starts and ends at.

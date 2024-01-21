@@ -1,5 +1,9 @@
 package org.visual.model.ui.bar;
 
+import static org.visual.model.shared.Platform.platform;
+import static org.visual.model.ui.util.ScreenUtil.primaryScreen;
+
+import java.util.function.Supplier;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
@@ -10,11 +14,6 @@ import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.annotation.FxProperty;
 import org.visual.model.shared.Platform;
-
-import java.util.function.Supplier;
-
-import static org.visual.model.shared.Platform.platform;
-import static org.visual.model.ui.util.ScreenUtil.primaryScreen;
 
 public class CommonTitleBar extends HBox {
 

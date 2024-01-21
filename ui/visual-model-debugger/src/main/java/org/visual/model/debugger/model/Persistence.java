@@ -18,7 +18,6 @@
  package org.visual.model.debugger.model;
 
 import java.util.*;
-
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
@@ -70,7 +69,7 @@ public class Persistence {
     }
 
     public static void saveProperties() {
-        for (final String propertyName : persistentComponents.keySet()) {
+        persistentComponents.keySet().forEach(propertyName -> {
             final Object component = persistentComponents.get(propertyName);
             if (component instanceof CheckMenuItem) {
                 properties.put(propertyName, Boolean.toString(((CheckMenuItem) component).isSelected()));
@@ -94,7 +93,7 @@ public class Persistence {
                     properties.put(propertyName, Double.toString(((Stage) component).getHeight()));
                 }
             }
-        }
+        });
         PropertiesUtils.saveProperties();
     }
 

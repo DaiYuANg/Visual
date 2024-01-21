@@ -3,12 +3,14 @@
  */
 package org.visual.model.graph.editor.core.selections;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lombok.val;
 import org.eclipse.emf.ecore.EObject;
-import org.visual.model.graph.editor.api.GJointSkin;
 import org.visual.model.graph.editor.api.GNodeSkin;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.api.SkinLookup;
@@ -17,10 +19,6 @@ import org.visual.model.graph.editor.api.utils.GraphEditorProperties;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.GJoint;
 import org.visual.model.graph.editor.model.GNode;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * Handles how a selection of multiple objects is dragged.

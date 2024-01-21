@@ -15,18 +15,18 @@
 package org.visual.model.ui.theme;
 
 import com.sun.jna.Callback;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.visual.model.jfa.foundation.Foundation;
 import org.visual.model.jfa.foundation.ID;
-
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
+import org.visual.model.jfa.foundation.NSAutoreleasePool;
 
 /**
  * Determines the dark/light theme on a MacOS System through the <i>Apple Foundation framework</i>.
@@ -53,7 +53,7 @@ class MacOSThemeDetector extends OsThemeDetector {
     }
 
     private void initObserver() {
-        final Foundation.NSAutoreleasePool pool = new Foundation.NSAutoreleasePool();
+        final NSAutoreleasePool pool = new NSAutoreleasePool();
         try {
             final ID delegateClass = Foundation.allocateObjcClassPair(Foundation.getObjcClass("NSObject"), "NSColorChangesObserver");
             if (!ID.NIL.equals(delegateClass)) {
@@ -79,7 +79,7 @@ class MacOSThemeDetector extends OsThemeDetector {
     @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean isDark() {
-        final Foundation.NSAutoreleasePool pool = new Foundation.NSAutoreleasePool();
+        final NSAutoreleasePool pool = new NSAutoreleasePool();
         try {
             final ID userDefaults = Foundation.invoke("NSUserDefaults", "standardUserDefaults");
             final String appleInterfaceStyle = Foundation.toStringViaUTF8(Foundation.invoke(userDefaults, "objectForKey:", Foundation.nsString("AppleInterfaceStyle")));
@@ -118,4 +118,3 @@ class MacOSThemeDetector extends OsThemeDetector {
         }
     }
 }
-

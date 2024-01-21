@@ -24,8 +24,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
+import org.visual.model.debugger.controller.StageID;
 
 
 /**

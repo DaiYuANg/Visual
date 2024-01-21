@@ -62,9 +62,9 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import lombok.val;
+import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.utils.PropertiesUtils;
-import org.visual.model.debugger.controller.ConnectorUtils;
 
 /**
  * Main class for 3D display TODO: 2D to 3D Miss: a snapshot parameter to only capture container and not descendants
@@ -426,7 +426,7 @@ public class ThreeDOM implements ITile3DListener {
         group.visibleProperty().bind(checkBoxAxes.selectedProperty());
     }
 
-    static public ThreeDOM getInstance() {
+    public static ThreeDOM getInstance() {
         return new ThreeDOM();
     }
 

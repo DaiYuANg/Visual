@@ -20,13 +20,9 @@ package org.visual.model.debugger.view;
 import java.util.*;
 import java.util.function.Consumer;
 
-import io.avaje.inject.Component;
-import jakarta.inject.Singleton;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.ConditionalFeature;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -59,13 +55,13 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.debugger.api.*;
 import org.visual.model.debugger.controller.*;
+import org.visual.model.debugger.core.DebuggerContext;
 import org.visual.model.debugger.event.*;
 import org.visual.model.debugger.model.Persistence;
 import org.visual.model.debugger.model.update.AppsRepository;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.view.control.FilterTextField;
 import org.visual.model.debugger.view.dialog.AboutBox;
-import org.visual.model.debugger.view.dialog.HelpBox;
 import org.visual.model.debugger.view.tabs.*;
 
 /**
@@ -73,15 +69,13 @@ import org.visual.model.debugger.view.tabs.*;
  */
 @Slf4j
 public class ScenicViewGui {
-
-    private static final String HELP_URL = "http://fxexperience.com/scenic-view/help";
     public static final String STYLESHEETS = Objects.requireNonNull(ScenicViewGui.class.getResource("scenicview.css")).toExternalForm();
     public static final Image APP_ICON = DisplayUtils.getUIImage("mglass.png");
 
     public static final String VERSION = "11.0.2";
 
     // We can't use close() because we are not in FXThread
-    private final Thread shutdownHook = new Thread(this::saveProperties);
+//    private final Thread shutdownHook = new Thread(this::saveProperties);
 
     // Scenic View UI
     private final Stage scenicViewStage;
@@ -117,7 +111,7 @@ public class ScenicViewGui {
     private GridPane searchBar;
 
     // status bar area
-    private StatusBar statusBar;
+    private final StatusBar statusBar = DebuggerContext.INSTANCE.get(StatusBar.class);
 
     private VBox bottomVBox;
 
@@ -187,8 +181,8 @@ public class ScenicViewGui {
 
     public ScenicViewGui(final UpdateStrategy updateStrategy, final Stage scenicViewStage) {
         this.scenicViewStage = scenicViewStage;
-        Persistence.loadProperties();
-        Runtime.getRuntime().addShutdownHook(shutdownHook);
+//        Persistence.loadProperties();
+//        Runtime.getRuntime().addShutdownHook(shutdownHook);
         buildUI();
 //        checkNewVersion(false);
 
@@ -248,7 +242,7 @@ public class ScenicViewGui {
         treeView.setMaxHeight(Double.MAX_VALUE);
 
         // right side
-        detailsTab = new DetailsTab(this, (Consumer<String>) ScenicViewGui.this::loadAPI);
+        detailsTab = new DetailsTab(this, ScenicViewGui.this::loadAPI);
 
         animationsTab = new AnimationsTab(this);
 
@@ -275,25 +269,25 @@ public class ScenicViewGui {
         // CSSFX
         cssfxTab = new CSSFXTab(this);
 
-        tabPane.getTabs().addAll(detailsTab, eventsTab, /*animationsTab,*/ javadocTab, cssfxTab,threeDOMTab);
+        tabPane.getTabs().addAll(detailsTab, eventsTab, /*animationsTab,*/ javadocTab, cssfxTab, threeDOMTab);
         // /3Dom
 
-        Persistence.loadProperty("splitPaneDividerPosition", splitPane, 0.3);
+//        Persistence.loadProperty("splitPaneDividerPosition", splitPane, 0.3);
 
         // putting it all together
         splitPane.getItems().addAll(treeViewStackPane, tabPane);
 
         rootBorderPane.setCenter(splitPane);
 
-        // status bar
-        statusBar = new StatusBar();
+//         status bar
+//        statusBar = ;
 
         bottomVBox = new VBox(searchBar, statusBar);
 
         rootBorderPane.setBottom(bottomVBox);
 
-        Persistence.loadProperty("stageWidth", scenicViewStage, 800);
-        Persistence.loadProperty("stageHeight", scenicViewStage, 800);
+//        Persistence.loadProperty("stageWidth", scenicViewStage, 800);
+//        Persistence.loadProperty("stageHeight", scenicViewStage, 800);
     }
 
     private void buildFiltersBox() {
@@ -468,7 +462,7 @@ public class ScenicViewGui {
         final MenuItem exitItem = new MenuItem("E_xit Scenic View");
         exitItem.setAccelerator(KeyCombination.keyCombination("CTRL+Q"));
         exitItem.setOnAction(event -> {
-            Runtime.getRuntime().removeShutdownHook(shutdownHook);
+//            Runtime.getRuntime().removeShutdownHook(shutdownHook);
             close();
             // TODO Why closing the Stage does not dispatch
             // WINDOW_CLOSE_REQUEST??
@@ -639,8 +633,8 @@ public class ScenicViewGui {
 
         final Menu aboutMenu = new Menu("Help");
 
-        final MenuItem help = new MenuItem("Help Contents");
-        help.setOnAction(event -> HelpBox.make("Help Contents", HELP_URL, scenicViewStage));
+//        final MenuItem help = new MenuItem("Help Contents");
+//        help.setOnAction(event -> HelpBox.make("Help Contents", HELP_URL, scenicViewStage));
 
 //        final MenuItem newVersion = new MenuItem("Check For New Version");
 //        newVersion.setOnAction(new EventHandler<ActionEvent>() {
@@ -652,7 +646,7 @@ public class ScenicViewGui {
         final MenuItem about = new MenuItem("About");
         about.setOnAction(event -> AboutBox.make("About", scenicViewStage));
 
-        aboutMenu.getItems().addAll(help/*, newVersion*/, about);
+        aboutMenu.getItems().addAll(/*, newVersion*/about);
 
         menuBar.getMenus().addAll(fileMenu, displayOptionsMenu, scenegraphMenu, aboutMenu);
 
@@ -817,13 +811,13 @@ public class ScenicViewGui {
     StageController getStageController(final StageID id) {
         for (int i = 0; i < appRepository.getApps().size(); i++) {
             final List<StageController> stages = appRepository.getApps().get(i).getStages();
-            for (int j = 0; j < stages.size(); j++) {
-                if (stages.get(j).getID().equals(id)) {
-                    return stages.get(j);
+            for (StageController stage : stages) {
+                if (stage.getID().equals(id)) {
+                    return stage;
                 }
             }
         }
-        return appRepository.getApps().get(0).getStages().get(0);
+        return appRepository.getApps().getFirst().getStages().getFirst();
         // return null;
     }
 
@@ -867,7 +861,7 @@ public class ScenicViewGui {
                                             final Boolean value) {
         final CheckMenuItem menuItem = new CheckMenuItem(text);
         if (property != null) {
-            Persistence.loadProperty(property, menuItem, value);
+//            Persistence.loadProperty(property, menuItem, value);
         } else if (value != null) {
             menuItem.setSelected(value);
         }
@@ -897,10 +891,7 @@ public class ScenicViewGui {
     }
 
     private void closeApps() {
-        for (final Iterator<AppController> iterator = appRepository.getApps().iterator(); iterator.hasNext(); ) {
-            final AppController stage = iterator.next();
-            stage.close();
-        }
+        appRepository.getApps().forEach(AppController::close);
     }
 
     public void close() {
@@ -910,7 +901,7 @@ public class ScenicViewGui {
     }
 
     private void saveProperties() {
-        Persistence.saveProperties();
+//        Persistence.saveProperties();
     }
 
     public void setStatusText(final String text) {
@@ -962,7 +953,7 @@ public class ScenicViewGui {
             ((StageControllerImpl) scenicview.activeStage).placeStage(stage);
 
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
-            Runtime.getRuntime().removeShutdownHook(scenicview.shutdownHook);
+//            Runtime.getRuntime().removeShutdownHook(scenicview.shutdownHook);
             scenicview.close();
         });
         stage.show();
@@ -1094,12 +1085,14 @@ public class ScenicViewGui {
     private int indexOfNode(final SVNode node, final boolean add) {
         for (int i = 0; i < eventQueue.size(); i++) {
             final FXConnectorEvent ev = eventQueue.get(i);
-            if ((add && ev.getType() == FXConnectorEvent.SVEventType.NODE_REMOVED) || (!add && ev.getType() == FXConnectorEvent.SVEventType.NODE_ADDED)) {
-                final NodeAddRemoveEvent ev2 = (NodeAddRemoveEvent) ev;
-                if (ev2.getNode().equals(node)) {
-                    return i;
-                }
+            if ((!add || ev.getType() != FXConnectorEvent.SVEventType.NODE_REMOVED) && (add || ev.getType() != FXConnectorEvent.SVEventType.NODE_ADDED)) {
+                continue;
             }
+            final NodeAddRemoveEvent ev2 = (NodeAddRemoveEvent) ev;
+            if (!ev2.getNode().equals(node)) {
+                continue;
+            }
+            return i;
         }
         return -1;
     }

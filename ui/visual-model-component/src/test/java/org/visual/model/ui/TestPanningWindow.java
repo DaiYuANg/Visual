@@ -1,11 +1,8 @@
 package org.visual.model.ui;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Test;
 //import org.visual.model.ui.window.PanningWindow;
 
 public class TestPanningWindow extends Application {

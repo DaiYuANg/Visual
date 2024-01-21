@@ -18,14 +18,13 @@
 package org.visual.model.debugger.remote;
 
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.controller.Configuration;
 import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.node.SVNode;
-
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 
 
 interface RemoteApplication extends Remote {

@@ -27,7 +27,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.ZoomEvent;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
 
 public class ZoomSupport {

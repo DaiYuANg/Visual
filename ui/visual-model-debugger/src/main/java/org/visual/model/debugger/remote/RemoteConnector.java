@@ -18,10 +18,9 @@
 package org.visual.model.debugger.remote;
 
 
-import org.visual.model.debugger.event.FXConnectorEvent;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import org.visual.model.debugger.event.FXConnectorEvent;
 
 
 interface RemoteConnector extends Remote {

@@ -3,6 +3,8 @@
  */
 package org.visual.model.graph.editor.api.window;
 
+import java.util.*;
+import java.util.function.Predicate;
 import javafx.beans.InvalidationListener;
 import javafx.beans.WeakInvalidationListener;
 import javafx.beans.property.ObjectProperty;
@@ -14,9 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.*;
-import java.util.function.Predicate;
 
 
 /**

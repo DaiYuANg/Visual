@@ -17,6 +17,11 @@
  */
 package org.visual.model.debugger.view.tabs;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.IntStream;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -38,21 +43,14 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.visual.model.debugger.api.ContextMenuContainer;
 import org.visual.model.debugger.event.EvLogEvent;
 import org.visual.model.debugger.node.SVNode;
-import org.visual.model.debugger.api.ContextMenuContainer;
 import org.visual.model.debugger.view.DisplayUtils;
+import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.control.FilterTextField;
 import org.visual.model.debugger.view.dialog.InfoBox;
-import org.visual.model.debugger.view.ScenicViewGui;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.IntStream;
 
 
 public class EventLogTab extends Tab implements ContextMenuContainer {
@@ -389,7 +387,7 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
 
         @Override
         public String toString() {
-            return "Event [source=" + source + ", eventType=" + eventType + ((eventValue != null && !eventValue.equals("")) ? (", eventValue=" + eventValue) : "") + ", moment=" + moment + "]";
+            return "Event [source=" + source + ", eventType=" + eventType + ((eventValue != null && !eventValue.isEmpty()) ? (", eventValue=" + eventValue) : "") + ", moment=" + moment + "]";
         }
 
         public StackTraceElement[] getStackTrace() {

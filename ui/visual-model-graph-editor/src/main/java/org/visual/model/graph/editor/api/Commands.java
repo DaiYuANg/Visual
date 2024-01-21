@@ -3,6 +3,10 @@
  */
 package org.visual.model.graph.editor.api;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Region;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +20,6 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Provides utility methods for editing a {@link GModel} via EMF commands.

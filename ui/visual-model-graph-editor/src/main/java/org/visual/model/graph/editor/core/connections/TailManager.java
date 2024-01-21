@@ -1,5 +1,6 @@
 package org.visual.model.graph.editor.core.connections;
 
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import org.visual.model.graph.editor.api.GTailSkin;
@@ -7,8 +8,6 @@ import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.GConnector;
-
-import java.util.List;
 
 /**
  * Responsible for creating, drawing, and removing tails.

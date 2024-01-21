@@ -23,8 +23,8 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.text.TextAlignment;
-import org.visual.model.debugger.controller.StageID;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
+import org.visual.model.debugger.controller.StageID;
 
 
 /**

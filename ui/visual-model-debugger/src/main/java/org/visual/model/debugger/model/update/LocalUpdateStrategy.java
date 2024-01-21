@@ -17,11 +17,10 @@
  */
 package org.visual.model.debugger.model.update;
 
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.api.UpdateStrategy;
-
-import java.util.List;
 
 
 /**

@@ -3,14 +3,13 @@
  */
 package org.visual.model.graph.editor.core.selections;
 
+import java.util.List;
 import javafx.collections.ObservableSet;
 import org.eclipse.emf.ecore.EObject;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.core.view.GraphEditorView;
 import org.visual.model.graph.editor.model.*;
-
-import java.util.List;
 
 
 /**
