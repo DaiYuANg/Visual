@@ -1,11 +1,9 @@
 package org.visual.model.ui.window;
 
 import java.util.Objects;
-
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;

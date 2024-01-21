@@ -1,7 +1,7 @@
 module org.visual.model.debugger {
-    requires javafx.fxml;
-    requires javafx.controls;
-    requires javafx.graphics;
+    requires transitive javafx.fxml;
+    requires transitive javafx.controls;
+    requires transitive javafx.graphics;
     requires transitive java.instrument;
     requires java.rmi;
     requires java.logging;

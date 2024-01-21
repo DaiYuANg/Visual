@@ -5,7 +5,7 @@ import com.zaxxer.hikari.HikariConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.visual.model.database.DatabaseArgument;
+import org.visual.model.database.core.DatabaseArgument;
 
 @Mapper
 public interface HikariMapper {

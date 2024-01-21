@@ -1,12 +1,11 @@
 package org.visual.model.debugger.inspector;
 
+import java.util.List;
+import java.util.Optional;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.Optional;
 
 class FXComponentInspector extends AbstractComponentInspector<Node> {
 

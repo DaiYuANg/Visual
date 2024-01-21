@@ -7,6 +7,7 @@ module org.visual.model.app {
     requires jakarta.inject;
     requires javafx.fxml;
     requires javafx.controls;
+    requires javafx.web;
     requires org.visual.model.ui;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
@@ -17,7 +18,7 @@ module org.visual.model.app {
     requires org.visual.model.shared;
     requires dev.dirs;
     requires org.visual.model.i18n;
-//    requires org.visual.model.database;
+    requires org.visual.model.database;
     requires io.avaje.inject;
     requires org.kordamp.ikonli.fluentui;
     requires org.visual.model.anntation;

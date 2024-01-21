@@ -18,8 +18,6 @@
 package org.visual.model.debugger.view;
 
 import java.util.*;
-import java.util.function.Consumer;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -57,7 +55,6 @@ import org.visual.model.debugger.api.*;
 import org.visual.model.debugger.controller.*;
 import org.visual.model.debugger.core.DebuggerContext;
 import org.visual.model.debugger.event.*;
-import org.visual.model.debugger.model.Persistence;
 import org.visual.model.debugger.model.update.AppsRepository;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.view.control.FilterTextField;

@@ -4,7 +4,7 @@ package org.visual.model.database.api;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.visual.model.database.DatabaseTableColumn;
+import org.visual.model.database.core.DatabaseTableColumn;
 
 public interface VMDatabase {
     Set<DatabaseTableColumn> listTableColumns(String tableName);

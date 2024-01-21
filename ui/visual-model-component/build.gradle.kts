@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.javafx)
   `java-library`
+  id("io.miret.etienne.sass") version ("1.5.0")
 }
 
 group = "org.visual.model.ui"
@@ -38,4 +39,19 @@ dependencies {
   api(libs.devicons)
   api("eu.iamgio:animated:1.3.0")
   api("org.webjars.npm:fontsource__jetbrains-mono:4.5.11")
+}
+
+tasks.compileSass {
+  sourceDir = project.layout.projectDirectory.file("src/main/sass").asFile
+  sourceMap = none
+}
+
+tasks.build{
+  dependsOn(tasks.compileSass)
+}
+
+tasks.compileJava { dependsOn(tasks.compileSass) }
+
+tasks.jar {
+  dependsOn(tasks.compileSass)
 }

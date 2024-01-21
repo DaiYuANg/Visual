@@ -26,7 +26,7 @@ dependencies {
   annotationProcessor(libs.avajeInjectGenerator)
   implementation(libs.gestaltConfig)
   implementation(libs.pcollections)
-    implementation(projects.visualModelI18n)
+  implementation(projects.visualModelI18n)
 }
 
 tasks.jar {

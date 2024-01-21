@@ -14,7 +14,6 @@ module org.visual.model.database {
     requires org.mapstruct;
     requires org.jetbrains.annotations;
     requires org.antlr.antlr4.runtime;
-    //    requires antlr.runtime;
 
-    exports org.visual.model.database;
+    exports org.visual.model.database.core;
 }

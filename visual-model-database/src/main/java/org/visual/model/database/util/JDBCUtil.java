@@ -8,8 +8,8 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.database.DatabaseResultKey;
-import org.visual.model.database.DatabaseTableColumn;
+import org.visual.model.database.core.DatabaseResultKey;
+import org.visual.model.database.core.DatabaseTableColumn;
 
 @UtilityClass
 public class JDBCUtil {

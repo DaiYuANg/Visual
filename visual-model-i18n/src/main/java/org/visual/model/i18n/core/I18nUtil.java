@@ -1,7 +1,6 @@
 package org.visual.model.i18n.core;
 
 import java.util.Locale;
-
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;

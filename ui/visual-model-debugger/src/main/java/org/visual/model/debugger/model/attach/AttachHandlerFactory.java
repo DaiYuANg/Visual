@@ -18,21 +18,16 @@
 package org.visual.model.debugger.model.attach;
 
 
-import static org.visual.model.debugger.core.VisualModelDebugger.JDK_PATH_KEY;
 import static org.visual.model.shared.Platform.platform;
 
+import com.sun.tools.attach.VirtualMachine;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
-
-import com.sun.tools.attach.VirtualMachine;
-import com.sun.tools.attach.VirtualMachineDescriptor;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

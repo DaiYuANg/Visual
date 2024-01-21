@@ -3,7 +3,6 @@ package org.visual.model.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import javafx.scene.web.WebView;
-import org.visual.model.debugger.view.StatusBar;
 import org.visual.model.i18n.core.I18n;
 import org.visual.model.i18n.core.I18nUtil;
 

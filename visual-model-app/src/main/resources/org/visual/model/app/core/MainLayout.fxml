@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.visual.model.graph.editor.core.view.GraphEditorContainer?>
-<?import org.visual.model.ui.widget.FpsWidget?>
+<?import org.visual.model.ui.widget.DebugWidget?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.model.app.controller.MainLayoutController"
             prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
-    <FpsWidget viewOrder="-Infinity"/>
+    <DebugWidget/>
     <padding>
         <Insets/>
     </padding>

@@ -1,6 +1,7 @@
 module org.visual.model.ui {
-    requires javafx.graphics;
-    requires javafx.controls;
+    requires transitive javafx.graphics;
+    requires transitive javafx.controls;
+    requires transitive javafx.fxml;
     requires static lombok;
     requires org.slf4j;
     requires com.google.common;

@@ -3,7 +3,6 @@ package org.visual.model.i18n.core;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
-
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

@@ -1,9 +1,9 @@
 module org.visual.model.graph.editor {
     requires org.slf4j;
     requires static lombok;
-    requires javafx.graphics;
-    requires javafx.controls;
-    requires javafx.base;
+    requires transitive javafx.graphics;
+    requires transitive javafx.controls;
+    requires transitive javafx.base;
     requires org.eclipse.emf.ecore;
     requires org.eclipse.emf.common;
     requires org.eclipse.emf.edit;

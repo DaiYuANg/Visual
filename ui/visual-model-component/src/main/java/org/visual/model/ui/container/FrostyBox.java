@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.ui.container.FrostyEffect;
 
 /**
  * This single-child node contains takes a {@link FrostyEffect} and blurs the content beneath.

@@ -4,13 +4,9 @@ package org.visual.model.app.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.inject.Primary;
-
 import java.nio.file.Path;
-
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.ui.window.BorderLessStage;
 import org.visual.model.ui.widget.Tray;
 
 @Factory

@@ -17,11 +17,9 @@
  */
 package org.visual.model.debugger.view;
 
+import jakarta.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -34,7 +32,6 @@ import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.core.DebuggerContext;
 import org.visual.model.i18n.core.I18n;
 import org.visual.model.i18n.core.I18nKeys;
 

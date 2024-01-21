@@ -1,7 +1,4 @@
-plugins {
-  antlr
-  `java-library`
-}
+plugins { antlr }
 
 group = "org.visual.model.database"
 

@@ -20,11 +20,14 @@ package org.visual.model.debugger.core;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -52,14 +55,9 @@ public class VisualModelDebugger extends Application {
         show(target.getRoot());
     }
 
-    public static void show(final Parent target) {
-        if (target == null) {
-            return;
-        }
+    public static void show(@NonNull final Parent target) {
+        val stage = new Stage();
 
-        final Stage stage = new Stage();
-
-        // workaround for RT-10714
         stage.setWidth(1024);
         stage.setHeight(768);
         stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);

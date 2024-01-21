@@ -3,7 +3,6 @@ package org.visual.model.ui.widget;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 public class FpsWidget extends Label {
     private final long[] frameTimes = new long[100];
@@ -29,8 +28,6 @@ public class FpsWidget extends Label {
     };
 
     public FpsWidget() {
-        setLayoutX(0.0);
-        setLayoutY(0.0);
         setTextFill(Color.WHITE);
         toFront();
         frameRateMeter.start();
