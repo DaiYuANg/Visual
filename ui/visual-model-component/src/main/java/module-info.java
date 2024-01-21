@@ -23,6 +23,7 @@ module org.visual.model.ui {
     requires static com.sun.jna.platform;
     requires transitive org.controlsfx.controls;
     requires eu.iamgio.animated;
+    requires kotlin.stdlib;
 
     exports org.visual.model.ui.bar;
     exports org.visual.model.ui.window;

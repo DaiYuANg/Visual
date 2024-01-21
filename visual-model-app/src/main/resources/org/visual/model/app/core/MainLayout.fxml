@@ -5,11 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import org.visual.model.graph.editor.core.view.GraphEditorContainer?>
 <?import org.visual.model.ui.widget.DebugWidget?>
+<?import org.visual.model.ui.widget.TestLabel?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.model.app.controller.MainLayoutController"
             prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
     <DebugWidget/>
+    <TestLabel/>
     <padding>
         <Insets/>
     </padding>

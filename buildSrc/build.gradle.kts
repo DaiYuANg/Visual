@@ -1,11 +1,11 @@
-plugins{
+plugins {
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
     `embedded-kotlin`
     `version-catalog`
 }
 
-repositories{
+repositories {
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -13,7 +13,12 @@ repositories{
 }
 
 
-dependencies{
+dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(libs.spotlessPlugin)
+    implementation(libs.kotlinGradlePlugin)
+    implementation(libs.kotlinGradleLombokPlugin)
+    implementation(libs.kotlinGradleSerializationPlugin)
+    implementation(libs.kotlinGradleNoArgPlugin)
+    implementation(libs.kotlinGradleAllOpenPlugin)
 }

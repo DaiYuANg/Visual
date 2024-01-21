@@ -76,7 +76,7 @@ dependencies {
 }
 
 jlink {
-    addExtraDependencies("javafx")
+    addExtraDependencies("javafx", "kotlin")
     options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
     enableCds()
     launcher {
@@ -101,7 +101,8 @@ jlink {
             "java.corba",
             "org.jetbrains.annotations",
             "java.xml.crypto",
-            "jdk.javadoc"
+            "jdk.javadoc",
+            "kotlin"
         )
     }
 }
