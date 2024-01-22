@@ -64,14 +64,12 @@ dependencies {
     implementation(projects.visualModelShared)
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
-    implementation(projects.ui.visualModelDebugger)
+    implementation(projects.visualModelDebugger)
     implementation(projects.visualModelAnnotation)
     implementation(projects.ui.visualModelGraphEditor)
     implementation(libs.picocli)
     annotationProcessor(libs.picocliCodegen)
-    implementation(libs.jacksonCore)
-    implementation(libs.jacksonDatabind)
-    implementation(libs.jacksonAnnotations)
+
     implementation(libs.pcollections)
     implementation(libs.avajeValidaor)
     implementation("org.apache.groovy:groovy-all:5.0.0-alpha-5") {

@@ -68,7 +68,6 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
         this.scenicView = scenicView;
         setId("main-treeview");
         setShowRoot(false);
-
         getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             if (!blockSelection) {
                 setSelectedNode(newValue != null && !(newValue.getValue() instanceof SVDummyNode) ? newValue : null);
