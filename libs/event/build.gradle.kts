@@ -3,4 +3,5 @@ version = "unspecified"
 
 dependencies {
     implementation(libs.fastutil)
+    implementation(libs.guava)
 }

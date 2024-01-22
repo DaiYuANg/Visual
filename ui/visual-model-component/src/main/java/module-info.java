@@ -16,7 +16,6 @@ module org.visual.model.ui {
     requires transitive org.kordamp.ikonli.materialdesign2;
     requires org.visual.model.shared;
     requires org.apache.commons.lang3;
-    requires org.visual.model.anntation;
     requires transitive atlantafx.base;
     requires static com.sun.jna;
     requires org.visual.model.jfa;
@@ -27,7 +26,7 @@ module org.visual.model.ui {
     requires org.apache.commons.pool2;
     requires it.unimi.dsi.fastutil;
 
-    exports org.visual.model.component.bar;
+    exports org.visual.model.component.title;
     exports org.visual.model.component.window;
     exports org.visual.model.component.layout;
     exports org.visual.model.component.widget;
@@ -36,10 +35,12 @@ module org.visual.model.ui {
     exports org.visual.model.component.theme;
 
     opens org.visual.model.component.theme to com.sun.jna;
-    opens org.visual.model.component.bar to javafx.graphics, javafx.fxml;
+    opens org.visual.model.component.title to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.window to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.layout to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.widget to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.control to javafx.graphics, javafx.fxml;
     exports org.visual.model.component.base;
+    exports org.visual.model.component;
+    opens org.visual.model.component to javafx.fxml, javafx.graphics;
 }

@@ -21,7 +21,6 @@ module org.visual.model.app {
     requires org.visual.model.database;
     requires io.avaje.inject;
     requires org.kordamp.ikonli.fluentui;
-    requires org.visual.model.anntation;
     requires org.visual.model.debugger;
     requires info.picocli;
     requires org.visual.model.graph.editor;

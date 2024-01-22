@@ -37,7 +37,7 @@ dependencies {
     implementation(libs.gestaltConfig)
     implementation(libs.pcollections)
     implementation(projects.visualModelI18n)
-    implementation("org.fxmisc.flowless:flowless:0.7.2")
+    implementation(projects.libs.event)
 }
 
 tasks.jar {

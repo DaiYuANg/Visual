@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface EventPublisher {
 
-    <E extends AbstractEvent> void addListener(EventListener<E> listener);
+    <E extends AbstractEvent> void addListener(ListenerArgument<E> argument);
 
-    <E extends AbstractEvent> void addListener(Collection<EventListener<E>> listener);
+    <E extends AbstractEvent> void addListener(Collection<ListenerArgument<E>> listenerArguments);
 
     <E extends AbstractEvent> void asyncPublish(E event);
 

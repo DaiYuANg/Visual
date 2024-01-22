@@ -1,10 +1,11 @@
-package org.visual.model.component.bar;
+package org.visual.model.component.title;
 
 import static org.visual.model.shared.Platform.platform;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import org.visual.model.component.CommonTitleBar;
 
 
 public class SystemTitleBar extends HBox {

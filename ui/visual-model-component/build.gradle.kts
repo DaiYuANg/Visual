@@ -31,17 +31,16 @@ dependencies {
   api(libs.fontawesome5)
   api(libs.ikonliJavafx)
   api(libs.fluentuiIcon)
-  api(projects.visualModelAnnotation)
   api(libs.simpleicon)
   api(libs.controlfx)
   api(libs.materialIcons)
-  annotationProcessor(projects.visualModelCodegen)
   api(projects.libs.jfa)
   api(libs.atlantafx)
   api(libs.devicons)
   api(libs.apacheCommonPool)
   api("eu.iamgio:animated:1.3.0")
   api("org.webjars.npm:fontsource__jetbrains-mono:4.5.11")
+  api("org.fxmisc.flowless:flowless:0.7.2")
 }
 
 tasks.compileSass {

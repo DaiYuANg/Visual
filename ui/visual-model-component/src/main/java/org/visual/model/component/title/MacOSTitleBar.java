@@ -1,8 +1,10 @@
-package org.visual.model.component.bar;
+package org.visual.model.component.title;
 
 
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
+import org.visual.model.component.CommonTitleBar;
+
 public class MacOSTitleBar extends CommonTitleBar {
 
     private final Button closeButton = new Button("close");
@@ -16,11 +18,11 @@ public class MacOSTitleBar extends CommonTitleBar {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                 restoreSizeOrMax();
             } else {
-                maximizeWindow();
+                maximize();
             }
         });
 
-        minimizeButton.setOnAction(event -> minimizeWindow());
+        minimizeButton.setOnAction(event -> maximize());
         getChildren().addAll(closeButton, sizeableButton, minimizeButton);
     }
 }

@@ -65,7 +65,6 @@ dependencies {
     testImplementation(libs.avajeInjectTest)
     testImplementation(libs.javafxUnitTest)
     implementation(projects.visualModelDebugger)
-    implementation(projects.visualModelAnnotation)
     implementation(projects.ui.visualModelGraphEditor)
     implementation(libs.picocli)
     annotationProcessor(libs.picocliCodegen)

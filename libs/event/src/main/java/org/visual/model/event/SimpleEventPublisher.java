@@ -1,12 +1,8 @@
 package org.visual.model.event;
 
 import java.util.Collection;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
+import com.google.common.collect.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -14,36 +10,38 @@ import org.jetbrains.annotations.NotNull;
 @Slf4j
 public class SimpleEventPublisher implements EventPublisher {
 
-    private final Supplier<ConcurrentHashMap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>>> listenerConcurrentHashMap =
-            ConcurrentHashMap::new;
+    private final SetMultimap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>> listeners;
 
-    private ConcurrentHashMap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>> lazyGet() {
-        return listenerConcurrentHashMap.get();
+    {
+        listeners = Multimaps.synchronizedSetMultimap(HashMultimap.create());
     }
 
     @Override
-    public <E extends AbstractEvent> void addListener(EventListener<E> listener) {
-        lazyGet().put(listener.type(), listener);
+    public <E extends AbstractEvent> void addListener(@NotNull ListenerArgument<E> argument) {
+        listeners.put(argument.getEvent(), argument.getListener());
     }
 
     @Override
-    public <E extends AbstractEvent> void addListener(@NotNull Collection<EventListener<E>> listener) {
-        val listeners = listener.stream()
-                .collect(Collectors.toUnmodifiableMap(EventListener::type, Function.identity()));
-        lazyGet().putAll(listeners);
+    public <E extends AbstractEvent> void addListener(@NotNull Collection<ListenerArgument<E>> listenerArguments) {
+        listenerArguments.forEach(this::addListener);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public <E extends AbstractEvent> void asyncPublish(@NotNull E event) {
-        Optional.ofNullable(lazyGet().get(event.getClass())).ifPresent(listener -> {
-            val l = (EventListener<E>) listener;
-            l.listen(event);
+        val eventListeners = listeners.get(event.getClass());
+        if (eventListeners.isEmpty()) return;
+        eventListeners.forEach(listener -> {
+            val thread = Thread.ofVirtual().name(this.getClass().getName(), 0);
+            thread.start(() -> ((EventListener<E>) listener).onAction(event));
         });
     }
 
     @Override
-    public <E extends AbstractEvent> void publish(E event) {
-
+    @SuppressWarnings("unchecked")
+    public <E extends AbstractEvent> void publish(@NotNull E event) {
+        val eventListeners = listeners.get(event.getClass());
+        if (eventListeners.isEmpty()) return;
+        eventListeners.forEach(listener -> ((EventListener<E>) listener).onAction(event));
     }
 }
