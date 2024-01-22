@@ -2,6 +2,7 @@ import com.palantir.gradle.gitversion.VersionDetails
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
+import org.jetbrains.dokka.gradle.DokkaPlugin
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -13,7 +14,7 @@ plugins {
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
     alias(libs.plugins.plantuml)
-//    alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka)
     alias(libs.plugins.jmh)
     alias(libs.plugins.jreleaser)
     alias(libs.plugins.dependencycheck)
@@ -41,7 +42,7 @@ subprojects {
             apply<JavaLibraryPlugin>()
             apply<PlantUmlPlugin>()
             apply<FormatterPlugin>()
-//            apply<DokkaPlugin>()
+            apply<DokkaPlugin>()
         }
 
         dependencies {
@@ -50,9 +51,9 @@ subprojects {
             implementation(rootProject.libs.slf4jJdkPlatform)
             implementation(rootProject.libs.logback)
             implementation(rootProject.libs.guava)
-            annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-            implementation("org.mapstruct:mapstruct:1.5.5.Final")
-            annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+            annotationProcessor(rootProject.libs.lombokMapstructBinding)
+            implementation(rootProject.libs.mapstruct)
+            annotationProcessor(rootProject.libs.mapstructProcessor)
             testImplementation(rootProject.libs.junitBom)
             testImplementation(platform(rootProject.libs.junitBom))
             testImplementation(rootProject.libs.junitJuiter)

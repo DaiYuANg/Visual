@@ -41,19 +41,18 @@ class GraphTreeView(
     private val forcedCollapsedNodeClassItems: List<String> = ArrayList()
     private val forcedExpandedNodeClassItems: List<String> = ArrayList()
 
-    private val contextMenu by lazy {
-        ContextMenu()
-            .apply {
-                val node = selectionModel.selectedItem
-                val hash = node.value.hashCode()
-                val nodeClass = node.value.nodeClass
-                val last = node.children.isEmpty()
-                val collapsed: Boolean = forcedCollapsedItems.contains(hash)
-                val expanded: Boolean = forcedExpandedItems.contains(hash)
-                val collapsedClass: Boolean = forcedCollapsedNodeClassItems.contains(nodeClass)
-                val expandedClass: Boolean = forcedExpandedNodeClassItems.contains(nodeClass)
-            }
-    }
+    private val contextMenu = ContextMenu()
+        .apply {
+            val node = selectionModel.selectedItem
+            val hash = node.value.hashCode()
+            val nodeClass = node.value.nodeClass
+            val last = node.children.isEmpty()
+            val collapsed: Boolean = forcedCollapsedItems.contains(hash)
+            val expanded: Boolean = forcedExpandedItems.contains(hash)
+            val collapsedClass: Boolean = forcedCollapsedNodeClassItems.contains(nodeClass)
+            val expandedClass: Boolean = forcedExpandedNodeClassItems.contains(nodeClass)
+        }
+
 
     init {
         id = "main-tree-view"
@@ -66,7 +65,7 @@ class GraphTreeView(
             }
         }
 
-        onMouseReleased = EventHandler<MouseEvent> { ev: MouseEvent ->
+        onMouseReleased = EventHandler { ev: MouseEvent ->
             if (ev.isSecondaryButtonDown) {
 //                showContextMenu(ev)
             }

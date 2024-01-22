@@ -1,4 +1,4 @@
-package org.visual.model.shared.event;
+package org.visual.model.event;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -6,12 +6,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 
+@Slf4j
 public class SimpleEventPublisher implements EventPublisher {
 
-    private final Supplier<ConcurrentHashMap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>>> listenerConcurrentHashMap = ConcurrentHashMap::new;
+    private final Supplier<ConcurrentHashMap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>>> listenerConcurrentHashMap =
+            ConcurrentHashMap::new;
 
     private ConcurrentHashMap<Class<? extends AbstractEvent>, EventListener<? extends AbstractEvent>> lazyGet() {
         return listenerConcurrentHashMap.get();

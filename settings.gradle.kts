@@ -54,3 +54,5 @@ include("visual-model-annotation")
 include("ui:visual-model-graph-editor")
 include("libs:jfa")
 include("visual-model-serialization")
+include("libs:event")
+findProject(":libs:event")?.name = "event"

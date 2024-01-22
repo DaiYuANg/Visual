@@ -69,7 +69,6 @@ dependencies {
     implementation(projects.ui.visualModelGraphEditor)
     implementation(libs.picocli)
     annotationProcessor(libs.picocliCodegen)
-
     implementation(libs.pcollections)
     implementation(libs.avajeValidaor)
     implementation("org.apache.groovy:groovy-all:5.0.0-alpha-5") {

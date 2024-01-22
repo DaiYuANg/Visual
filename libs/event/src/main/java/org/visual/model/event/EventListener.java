@@ -1,4 +1,4 @@
-package org.visual.model.shared.event;
+package org.visual.model.event;
 
 public interface EventListener<E extends AbstractEvent> {
 
