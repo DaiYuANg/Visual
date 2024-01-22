@@ -2,7 +2,6 @@ import com.palantir.gradle.gitversion.VersionDetails
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
-import org.jetbrains.dokka.gradle.DokkaPlugin
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -14,7 +13,7 @@ plugins {
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
     alias(libs.plugins.plantuml)
-    alias(libs.plugins.dokka)
+//    alias(libs.plugins.dokka)
     alias(libs.plugins.jmh)
     alias(libs.plugins.jreleaser)
     alias(libs.plugins.dependencycheck)
@@ -42,7 +41,7 @@ subprojects {
             apply<JavaLibraryPlugin>()
             apply<PlantUmlPlugin>()
             apply<FormatterPlugin>()
-            apply<DokkaPlugin>()
+//            apply<DokkaPlugin>()
         }
 
         dependencies {
