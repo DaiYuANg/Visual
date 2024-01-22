@@ -25,19 +25,19 @@ module org.visual.model.ui {
     requires eu.iamgio.animated;
     requires kotlin.stdlib;
 
-    exports org.visual.model.ui.bar;
-    exports org.visual.model.ui.window;
-    exports org.visual.model.ui.layout;
-    exports org.visual.model.ui.widget;
-    exports org.visual.model.ui.control;
-    exports org.visual.model.ui.util;
-    exports org.visual.model.ui.theme;
+    exports org.visual.model.component.bar;
+    exports org.visual.model.component.window;
+    exports org.visual.model.component.layout;
+    exports org.visual.model.component.widget;
+    exports org.visual.model.component.control;
+    exports org.visual.model.component.util;
+    exports org.visual.model.component.theme;
 
-    opens org.visual.model.ui.theme to com.sun.jna;
-    opens org.visual.model.ui.bar to javafx.graphics, javafx.fxml;
-    opens org.visual.model.ui.window to javafx.graphics, javafx.fxml;
-    opens org.visual.model.ui.layout to javafx.graphics, javafx.fxml;
-    opens org.visual.model.ui.widget to javafx.graphics, javafx.fxml;
-    opens org.visual.model.ui.control to javafx.graphics, javafx.fxml;
-    exports org.visual.model.ui.base;
+    opens org.visual.model.component.theme to com.sun.jna;
+    opens org.visual.model.component.bar to javafx.graphics, javafx.fxml;
+    opens org.visual.model.component.window to javafx.graphics, javafx.fxml;
+    opens org.visual.model.component.layout to javafx.graphics, javafx.fxml;
+    opens org.visual.model.component.widget to javafx.graphics, javafx.fxml;
+    opens org.visual.model.component.control to javafx.graphics, javafx.fxml;
+    exports org.visual.model.component.base;
 }

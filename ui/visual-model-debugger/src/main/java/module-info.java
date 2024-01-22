@@ -19,6 +19,7 @@ module org.visual.model.debugger {
     requires java.management;
     requires org.apache.commons.lang3;
     requires org.visual.model.i18n;
+    requires java.prefs;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;
     opens org.visual.model.debugger.view.threedom to javafx.fxml;

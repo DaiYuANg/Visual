@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?language groovy?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.visual.model.graph.editor.core.view.GraphEditorContainer?>
-<?import org.visual.model.ui.widget.DebugWidget?>
-<?import org.visual.model.ui.widget.TestLabel?>
+<?import org.visual.model.component.widget.TestLabel?>
+<?import org.visual.model.component.widget.FpsWidget?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.model.app.controller.MainLayoutController"
             prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0" styleClass="root-window">
-    <DebugWidget/>
+    <FpsWidget/>
     <TestLabel/>
     <padding>
         <Insets/>
@@ -83,4 +83,5 @@
     </VBox>
     <ToggleButton fx:id="minimapButton" onAction="#toggleMinimap" focusTraversable="false" AnchorPane.rightAnchor="10"
                   AnchorPane.topAnchor="4"/>
+    <fx:script source="MainLayoutScript.groovy"/>
 </AnchorPane>

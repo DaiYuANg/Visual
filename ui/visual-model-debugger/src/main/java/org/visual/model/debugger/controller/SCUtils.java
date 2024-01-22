@@ -23,7 +23,7 @@ import javafx.scene.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import lombok.val;
-import org.visual.model.ui.util.NodeUtil;
+import org.visual.model.component.util.NodeUtil;
 
 class SCUtils {
 

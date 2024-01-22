@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.javafx)
     application
     java
+    groovy
     id("org.beryx.jlink") version "3.0.1"
     id("org.graalvm.buildtools.native") version "0.9.28"
 }
@@ -72,6 +73,10 @@ dependencies {
     implementation(libs.jacksonAnnotations)
     implementation(libs.pcollections)
     implementation(libs.avajeValidaor)
+    implementation("org.apache.groovy:groovy-all:5.0.0-alpha-5") {
+        exclude("org.apache.groovy", "groovy-groovydoc")
+    }
+    //    implementation("it.unimi.dsi:fastutil-core:8.5.12")
     annotationProcessor(libs.avajeValidaorCodegen)
 }
 
@@ -129,6 +134,8 @@ graalvmNative {
     binaries.all { buildArgs.add("--verbose") }
 }
 
-tasks.jar { manifest.attributes["JavaFx-Version"] = libs.versions.javafxVersion.get() }
+tasks.jar {
+    manifest.attributes["JavaFx-Version"] = libs.versions.javafxVersion.get()
+}
 
-//java { modularity.inferModulePath = true }
+// java { modularity.inferModulePath = true }

@@ -6,7 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.layout.StackPane?>
-<?import org.visual.model.ui.bar.CommonTitleBar?>
+<?import org.visual.model.component.bar.CommonTitleBar?>
 <HBox xmlns="http://javafx.com/javafx"
                 xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 0"
                 fx:controller="org.visual.model.app.controller.TitleBarController"

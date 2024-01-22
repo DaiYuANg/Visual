@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package org.visual.model.debugger.model;
+package org.visual.model.debugger.model;
 
 import java.util.*;
+
+import io.avaje.inject.PreDestroy;
+import jakarta.inject.Singleton;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
 
+import java.util.prefs.Preferences;
 
+
+@Singleton
+@Slf4j
 public class Persistence {
 
     private static Properties properties;
+
+    private final Preferences preferences = Preferences.userNodeForPackage(VisualModelDebugger.class);
+
     private static final Map<String, Object> persistentComponents = new HashMap<>();
 
     public static void loadProperties() {
@@ -87,9 +100,9 @@ public class Persistence {
             // }
             // }
             else if (component instanceof Stage) {
-                if (propertyName.toLowerCase().contains("width")) {
+                if (propertyName.toLowerCase().contains("width"))
                     properties.put(propertyName, Double.toString(((Stage) component).getWidth()));
-                } else {
+                else {
                     properties.put(propertyName, Double.toString(((Stage) component).getHeight()));
                 }
             }
@@ -97,4 +110,11 @@ public class Persistence {
         PropertiesUtils.saveProperties();
     }
 
+
+    @SneakyThrows
+    @PreDestroy
+    void preDestroy() {
+        log.atInfo().log("save user preferences:{}", Arrays.toString(preferences.keys()));
+        preferences.flush();
+    }
 }

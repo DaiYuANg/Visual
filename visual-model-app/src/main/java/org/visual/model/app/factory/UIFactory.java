@@ -7,7 +7,7 @@ import io.avaje.inject.Primary;
 import java.nio.file.Path;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.ui.widget.Tray;
+import org.visual.model.component.widget.Tray;
 
 @Factory
 @Slf4j

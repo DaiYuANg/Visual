@@ -33,13 +33,13 @@ module org.visual.model.app {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     requires io.avaje.validation.contraints;
+    requires it.unimi.dsi.fastutil;
+    requires org.apache.groovy;
 
     opens org.visual.model.app.controller to
             javafx.fxml;
 
-    exports org.visual.model.app.core to
-            javafx.graphics,
-            javafx.fxml;
+    exports org.visual.model.app.core;
     exports org.visual.model.app.controller to
             javafx.fxml,
             javafx.graphics;

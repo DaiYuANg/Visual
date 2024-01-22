@@ -2,6 +2,7 @@ import com.palantir.gradle.gitversion.VersionDetails
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
+import org.jetbrains.dokka.gradle.DokkaPlugin
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -13,7 +14,10 @@ plugins {
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
     alias(libs.plugins.plantuml)
-    id("me.champeau.jmh") version "0.7.1"
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.jmh)
+    alias(libs.plugins.jreleaser)
+    alias(libs.plugins.dependencycheck)
 }
 
 allprojects {
@@ -38,6 +42,7 @@ subprojects {
             apply<JavaLibraryPlugin>()
             apply<PlantUmlPlugin>()
             apply<FormatterPlugin>()
+            apply<DokkaPlugin>()
         }
 
         dependencies {
@@ -94,7 +99,8 @@ subprojects {
 
 
         classDiagrams {
-            val glob = "org.${project.name.replace("-", ".")}.**"
+            val glob = "${project.group}.**"
+            println(glob)
             val internal = "internal_class_diagram"
             val full = "full_class_diagram"
             @Suppress("UNCHECKED_CAST")

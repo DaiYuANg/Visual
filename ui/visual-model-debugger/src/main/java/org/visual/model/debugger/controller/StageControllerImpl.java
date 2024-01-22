@@ -69,7 +69,7 @@ import org.visual.model.debugger.node.NodeType;
 import org.visual.model.debugger.node.SVDummyNode;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.node.SVNodeFactory;
-import org.visual.model.ui.util.NodeUtil;
+import org.visual.model.component.util.NodeUtil;
 
 @Slf4j
 public class StageControllerImpl implements StageController {

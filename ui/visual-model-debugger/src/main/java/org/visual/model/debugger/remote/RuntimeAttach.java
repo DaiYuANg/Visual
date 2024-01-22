@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.controller.*;
@@ -128,7 +129,7 @@ public class RuntimeAttach {
                 }
 
                 @Override
-                public StageID[] getStageIDs() throws RemoteException {
+                public StageID @NotNull [] getStageIDs() throws RemoteException {
                     finded.clear();
 
                     ObservableList<Window> windows = Window.getWindows();

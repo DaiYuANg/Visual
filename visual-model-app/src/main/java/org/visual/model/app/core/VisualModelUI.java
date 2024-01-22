@@ -12,7 +12,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
-import org.visual.model.ui.theme.OsThemeDetector;
+import org.visual.model.component.theme.OsThemeDetector;
 
 @Slf4j
 public class VisualModelUI extends Application {

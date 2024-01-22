@@ -26,7 +26,6 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ import org.visual.model.debugger.model.update.LocalUpdateStrategy;
 import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.model.debugger.remote.FXConnectorFactory;
 import org.visual.model.debugger.view.ScenicViewGui;
-import org.visual.model.ui.util.ScreenUtil;
+import org.visual.model.component.util.ScreenUtil;
 
 /**
  * This is the entry point for all different versions of Scenic View.
@@ -77,7 +76,7 @@ public class VisualModelDebugger extends Application {
 
 
     /**************************************************************************
-     *
+     * <p>
      * runtime discovery start point
      * (Also refer to RuntimeAttach class)
      *

@@ -1,9 +1,9 @@
 /* (C)2024*/
 package org.visual.model.app.controller;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import jakarta.inject.Singleton;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -236,8 +236,9 @@ public class MainLayoutController implements Initializable {
 
     @FXML
     public void deleteSelection() {
+
         final List<EObject> selection =
-                new ArrayList<>(graphEditor.getSelectionManager().getSelectedItems());
+                new ObjectArrayList<>(graphEditor.getSelectionManager().getSelectedItems());
         graphEditor.delete(selection);
     }
 
