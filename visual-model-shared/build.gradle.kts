@@ -1,3 +1,5 @@
+plugins { `kotlin-project` }
+
 group = "org.visual.model.shared"
 
 dependencies {

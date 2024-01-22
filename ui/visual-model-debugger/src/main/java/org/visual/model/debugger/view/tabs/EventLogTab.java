@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -35,19 +34,18 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import lombok.val;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.api.ContextMenuContainer;
 import org.visual.model.debugger.event.EvLogEvent;
 import org.visual.model.debugger.node.SVNode;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.debugger.view.control.FilterTextField;
 import org.visual.model.debugger.view.dialog.InfoBox;
@@ -61,19 +59,19 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
 
     private final ScenicViewGui scenicView;
 
-    private TableView<ScenicViewEvent> table = new TableView<>();
-    private ChoiceBox<String> showStack = new ChoiceBox<>();
-    private CheckMenuItem activateTrace = new CheckMenuItem("Enable Event Tracing");
-    private ObservableList<ScenicViewEvent> events = FXCollections.observableArrayList();
-    private ObservableList<ScenicViewEvent> filteredEvents = FXCollections.observableArrayList();
-    private SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
+    private final TableView<ScenicViewEvent> table = new TableView<>();
+    private final ChoiceBox<String> showStack = new ChoiceBox<>();
+    private final CheckMenuItem activateTrace = new CheckMenuItem("Enable Event Tracing");
+    private final ObservableList<ScenicViewEvent> events = FXCollections.observableArrayList();
+    private final ObservableList<ScenicViewEvent> filteredEvents = FXCollections.observableArrayList();
+    private final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
     private FilterTextField idFilterField;
-    private Label selectedNodeLabel = new Label("Enable event tracing in the Events menu");
+    private final Label selectedNodeLabel = new Label("Enable event tracing in the Events menu");
     private SVNode selectedNode;
 
     private Menu menu;
 
-    private static final Image MORE_INFO = DisplayUtils.getUIImage("info.png");
+//    private static final Image MORE_INFO = DisplayUtils.getUIImage("info.png");
 
     public EventLogTab(final ScenicViewGui view) {
         super(TAB_NAME);
@@ -91,7 +89,8 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
 
         table.setEditable(false);
         table.getStyleClass().add("trace-text-area");
-        final DoubleBinding size = vbox.widthProperty().subtract(MORE_INFO.getWidth() + 7).divide(4);
+//        final DoubleBinding size = vbox.widthProperty().subtract(MORE_INFO.getWidth() + 7).divide(4);
+        val size = vbox.widthProperty();
         final TableColumn<ScenicViewEvent, String> sourceCol = new TableColumn<>("source");
         sourceCol.setCellValueFactory(new PropertyValueFactory<>("source"));
         sourceCol.prefWidthProperty().bind(size);
@@ -119,7 +118,7 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
                         setText("");
                         setGraphic(null);
                     } else {
-                        setGraphic(new ImageView(MORE_INFO));
+                        setGraphic(new FontIcon(FontAwesomeSolid.INFO));
                     }
                 }
             };
@@ -136,7 +135,7 @@ public class EventLogTab extends Tab implements ContextMenuContainer {
             });
             return cell;
         });
-        moreInfoCol.setPrefWidth(MORE_INFO.getWidth() + 12);
+        moreInfoCol.setPrefWidth(12);
         moreInfoCol.setResizable(false);
 
         table.getColumns().addAll(sourceCol, eventTypeCol, eventValueCol, momentCol, moreInfoCol);

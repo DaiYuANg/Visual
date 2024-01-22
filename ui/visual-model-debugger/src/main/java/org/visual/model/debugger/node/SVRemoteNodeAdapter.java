@@ -28,8 +28,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TitledPane;
-import org.visual.model.debugger.controller.ConnectorUtils;
 import org.visual.model.component.util.NodeUtil;
+import org.visual.model.debugger.controller.ConnectorUtils;
 
 
 class SVRemoteNodeAdapter extends SVNodeImpl implements Serializable {

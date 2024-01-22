@@ -20,10 +20,13 @@ module org.visual.model.debugger {
     requires org.apache.commons.lang3;
     requires org.visual.model.i18n;
     requires java.prefs;
+    requires it.unimi.dsi.fastutil;
+    requires kotlin.stdlib;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;
     opens org.visual.model.debugger.view.threedom to javafx.fxml;
     opens org.visual.model.debugger.remote to java.instrument, java.rmi;
+    opens org.visual.model.debugger.component to javafx.fxml;
 
     exports org.visual.model.debugger.controller;
     exports org.visual.model.debugger.api;
@@ -31,8 +34,9 @@ module org.visual.model.debugger {
     exports org.visual.model.debugger.node;
     exports org.visual.model.debugger.configuration;
     exports org.visual.model.debugger.model.update;
-    exports org.visual.model.debugger.core;
     exports org.visual.model.debugger.inspector;
+    exports org.visual.model.debugger.core;
+    exports org.visual.model.debugger.component;
 
     provides io.avaje.inject.spi.Module with org.visual.model.debugger.DebuggerModule;
 }

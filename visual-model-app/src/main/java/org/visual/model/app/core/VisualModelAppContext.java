@@ -3,9 +3,7 @@ package org.visual.model.app.core;
 
 import io.avaje.inject.BeanScope;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-
 import java.nio.charset.StandardCharsets;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import lombok.Getter;

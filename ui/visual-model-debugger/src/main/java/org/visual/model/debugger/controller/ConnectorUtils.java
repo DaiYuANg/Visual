@@ -39,9 +39,9 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
+import org.visual.model.component.util.NodeUtil;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.node.SVNode;
-import org.visual.model.component.util.NodeUtil;
 
 @Slf4j
 public class ConnectorUtils {

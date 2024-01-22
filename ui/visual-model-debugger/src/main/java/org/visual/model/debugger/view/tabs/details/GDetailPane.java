@@ -21,6 +21,7 @@ package org.visual.model.debugger.view.tabs.details;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import javafx.beans.value.WritableValue;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -32,9 +33,10 @@ import javafx.scene.shape.*;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.details.Detail;
 import org.visual.model.debugger.details.DetailPaneType;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 
 
@@ -46,9 +48,6 @@ public class GDetailPane extends TitledPane {
 
     public static float FADE = .50f;
     public static DecimalFormat f = new DecimalFormat("0.0#");
-
-    private static final Image EDIT_IMAGE = DisplayUtils.getUIImage("editclear.png");
-    private static final Image LOCK_IMAGE = DisplayUtils.getUIImage("lock.png");
 
     static final String DETAIL_LABEL_STYLE = "detail-label";
 
@@ -151,12 +150,12 @@ public class GDetailPane extends TitledPane {
         for (int i = 0; i < nodes.size(); i++) {
 
             final Label label = (Label) nodes.get(i++);
-            boolean valid = text == null || text.isEmpty() || label.getText().toLowerCase().indexOf(text.toLowerCase()) != -1;
+            boolean valid = text == null || text.isEmpty() || label.getText().toLowerCase().contains(text.toLowerCase());
             final Group g = (Group) nodes.get(i);
-            final Node value = g.getChildren().get(0);
+            final Node value = g.getChildren().getFirst();
 
             if (!valid && value instanceof Label) {
-                valid |= ((Label) value).getText().toLowerCase().indexOf(text.toLowerCase()) != -1;
+                valid = ((Label) value).getText().toLowerCase().contains(text.toLowerCase());
             }
 
             if (valid && label.isVisible()) {
@@ -216,8 +215,8 @@ public class GDetailPane extends TitledPane {
             Node value = null;
             final boolean isEditingSupported = Detail.isEditionSupported(d.getEditionType());
             final boolean isPropertyBound = d.getEditionType() == Detail.EditionType.NONE_BOUND;
-            final Node graphic = isEditingSupported ? new ImageView(GDetailPane.EDIT_IMAGE) :
-                    isPropertyBound ? new ImageView(GDetailPane.LOCK_IMAGE) :
+            final Node graphic = isEditingSupported ? new FontIcon(FontAwesomeSolid.LOCK_OPEN) :
+                    isPropertyBound ? new FontIcon(FontAwesomeSolid.LOCK) :
                             null;
 
             switch (d.getValueType()) {
@@ -281,13 +280,7 @@ public class GDetailPane extends TitledPane {
     }
 
     public void updateDetail(final Detail detail) {
-        GDetail pane = null;
-        for (GDetail gDetail : details) {
-            if (gDetail.detail.equals(detail)) {
-                pane = gDetail;
-                break;
-            }
-        }
+        GDetail pane = details.stream().filter(gDetail -> gDetail.detail.equals(detail)).findFirst().orElse(null);
         if (pane != null) {
             doUpdateDetail(pane, detail);
             pane.updated();
@@ -297,7 +290,7 @@ public class GDetailPane extends TitledPane {
         }
     }
 
-    private void doUpdateDetail(final GDetail detail, final Detail d) {
+    private void doUpdateDetail(final @NotNull GDetail detail, final Detail d) {
         detail.setDetail(d);
         detail.setIsDefault(d.isDefault());
         detail.setReason(d.getReason());
@@ -317,11 +310,8 @@ public class GDetailPane extends TitledPane {
         if (details.isEmpty()) {
             return "";
         }
-        final StringBuilder sb = new StringBuilder();
-        sb.append(type).append('\n');
-        for (int i = 0; i < details.size(); i++) {
-            sb.append(details.get(i)).append('\n');
-        }
-        return sb.toString();
+        return details.stream()
+                .map(detail -> String.valueOf(detail) + '\n')
+                .collect(Collectors.joining("", String.valueOf(type) + '\n', ""));
     }
 }

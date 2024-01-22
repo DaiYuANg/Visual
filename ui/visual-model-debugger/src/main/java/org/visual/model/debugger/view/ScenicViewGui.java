@@ -17,7 +17,10 @@
  */
 package org.visual.model.debugger.view;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+
 import java.util.*;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,7 +40,6 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -51,6 +53,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.visual.model.debugger.api.*;
 import org.visual.model.debugger.controller.*;
 import org.visual.model.debugger.core.DebuggerContext;
@@ -66,9 +69,9 @@ import org.visual.model.debugger.view.tabs.*;
  */
 @Slf4j
 public class ScenicViewGui {
-    public static final String STYLESHEETS = Objects.requireNonNull(ScenicViewGui.class.getResource("scenicview.css")).toExternalForm();
-    public static final Image APP_ICON = DisplayUtils.getUIImage("mglass.png");
-
+    public static final String STYLESHEETS = Objects
+            .requireNonNull(ScenicViewGui.class.getResource("scenicview.css"))
+            .toExternalForm();
     public static final String VERSION = "11.0.2";
 
     // We can't use close() because we are not in FXThread
@@ -77,7 +80,7 @@ public class ScenicViewGui {
     // Scenic View UI
     private final Stage scenicViewStage;
     private BorderPane rootBorderPane;
-    private SplitPane splitPane;
+    private final SplitPane splitPane = DebuggerContext.INSTANCE.get(SplitPane.class);
 
     // menu bar area
     private MenuBar menuBar;
@@ -114,7 +117,7 @@ public class ScenicViewGui {
 
 
     public final Configuration configuration = new Configuration();
-    private final List<FXConnectorEvent> eventQueue = new LinkedList<>();
+    private final List<FXConnectorEvent> eventQueue = new ObjectArrayList<>();
 
     private UpdateStrategy updateStrategy;
     private long lastMousePosition;
@@ -149,7 +152,7 @@ public class ScenicViewGui {
                 if (appRepository.getApps().get(i).getID() != appEvent.getStageID().getAppID()) {
                     continue;
                 }
-                final List<StageController> stages = appRepository.getApps().get(i).getStages();
+                val stages = appRepository.getApps().get(i).getStages();
                 for (StageController stage : stages) {
                     if (stage.getID().getStageID() == appEvent.getStageID().getStageID()) {
                         return true;
@@ -211,9 +214,9 @@ public class ScenicViewGui {
         buildMenuBar();
 
         // main splitpane
-        splitPane = new SplitPane();
+//        splitPane = new SplitPane();
         splitPane.setId("main-splitpane");
-
+        splitPane.setDividerPositions(0.1, 0.9);
 
         // treeview
         treeView = new ScenegraphTreeView(activeNodeFilters, this);
@@ -266,7 +269,7 @@ public class ScenicViewGui {
         // CSSFX
         cssfxTab = new CSSFXTab(this);
 
-        tabPane.getTabs().addAll(detailsTab, eventsTab, /*animationsTab,*/ javadocTab, cssfxTab, threeDOMTab);
+        tabPane.getTabs().addAll(detailsTab, eventsTab, animationsTab, javadocTab, cssfxTab, threeDOMTab);
         // /3Dom
 
 //        Persistence.loadProperty("splitPaneDividerPosition", splitPane, 0.3);
@@ -479,14 +482,14 @@ public class ScenicViewGui {
         // showBoundsCheckbox.setTooltip(new
         // Tooltip("Display a yellow highlight for boundsInParent and green outline for layoutBounds."));
         configuration.setShowBounds(showBoundsCheckbox.isSelected());
-        showBoundsCheckbox.selectedProperty().addListener((ChangeListener<Boolean>) (o, oldValue, newValue) -> {
+        showBoundsCheckbox.selectedProperty().addListener((o, oldValue, newValue) -> {
             configuration.setShowBounds(newValue);
             configurationUpdated();
         });
 
         final CheckMenuItem collapseControls = buildCheckMenuItem("Collapse controls In Tree", "Controls will be collapsed", "Controls will be expanded",
                 "collapseControls", Boolean.TRUE);
-        collapseControls.selectedProperty().addListener((ChangeListener<Boolean>) (o, oldValue, newValue) -> {
+        collapseControls.selectedProperty().addListener((o, oldValue, newValue) -> {
             configuration.setCollapseControls(newValue);
             configurationUpdated();
         });
@@ -494,7 +497,7 @@ public class ScenicViewGui {
 
         final CheckMenuItem collapseContentControls = buildCheckMenuItem("Collapse container controls In Tree", "Container controls will be collapsed",
                 "Container controls will be expanded", "collapseContainerControls", Boolean.FALSE);
-        collapseContentControls.selectedProperty().addListener((ChangeListener<Boolean>) (o, oldValue, newValue) -> {
+        collapseContentControls.selectedProperty().addListener((o, oldValue, newValue) -> {
             configuration.setCollapseContentControls(newValue);
             configurationUpdated();
         });
@@ -505,7 +508,7 @@ public class ScenicViewGui {
                 "Do not show baseline overlay", "showBaseline", Boolean.FALSE);
         showBaselineCheckbox.setId("show-baseline-overlay");
         configuration.setShowBaseline(showBaselineCheckbox.isSelected());
-        showBaselineCheckbox.selectedProperty().addListener((ChangeListener<Boolean>) (o, oldValue, newValue) -> {
+        showBaselineCheckbox.selectedProperty().addListener((o, oldValue, newValue) -> {
             configuration.setShowBaseline(newValue);
             configurationUpdated();
         });
@@ -664,10 +667,11 @@ public class ScenicViewGui {
     }
 
     protected void selectOnClick(final boolean newValue) {
-        if (configuration.isComponentSelectOnClick() != newValue) {
-            configuration.setComponentSelectOnClick(newValue);
-            configurationUpdated();
+        if (configuration.isComponentSelectOnClick() == newValue) {
+            return;
         }
+        configuration.setComponentSelectOnClick(newValue);
+        configurationUpdated();
     }
 
 //    private void checkNewVersion(final boolean forced) {
@@ -744,18 +748,10 @@ public class ScenicViewGui {
 
     public void updateAnimations() {
         animationsTab.clear();
-        for (int i = 0; i < appRepository.getApps().size(); i++) {
-            /**
-             * Only first stage
-             */
-            final List<StageController> stages = appRepository.getApps().get(i).getStages();
-            for (int j = 0; j < stages.size(); j++) {
-                if (stages.get(j).isOpened()) {
-                    stages.get(j).updateAnimations();
-                    break;
-                }
-            }
-        }
+        /**
+         * Only first stage
+         */
+        appRepository.getApps().stream().map(AppController::getStages).forEach(stages -> stages.stream().filter(StageController::isOpened).findFirst().ifPresent(StageController::updateAnimations));
     }
 
     public void pauseAnimation(final StageID id, final int animationID) {
@@ -854,7 +850,10 @@ public class ScenicViewGui {
         activeStage.setSelectedNode(value);
     }
 
-    public CheckMenuItem buildCheckMenuItem(final String text, final String toolTipSelected, final String toolTipNotSelected, final String property,
+    public CheckMenuItem buildCheckMenuItem(final String text,
+                                            final String toolTipSelected,
+                                            final String toolTipNotSelected,
+                                            final String property,
                                             final Boolean value) {
         final CheckMenuItem menuItem = new CheckMenuItem(text);
         if (property != null) {
@@ -945,7 +944,6 @@ public class ScenicViewGui {
         final Scene scene = new Scene(scenicview.rootBorderPane);
         scene.getStylesheets().addAll(STYLESHEETS);
         stage.setScene(scene);
-        stage.getIcons().add(APP_ICON);
         if (scenicview.activeStage instanceof StageControllerImpl)
             ((StageControllerImpl) scenicview.activeStage).placeStage(stage);
 

@@ -1,7 +1,7 @@
 package org.visual.model.component.bar;
 
-import static org.visual.model.shared.Platform.platform;
 import static org.visual.model.component.util.ScreenUtil.primaryScreen;
+import static org.visual.model.shared.Platform.platform;
 
 import java.util.function.Supplier;
 import javafx.beans.property.SimpleDoubleProperty;

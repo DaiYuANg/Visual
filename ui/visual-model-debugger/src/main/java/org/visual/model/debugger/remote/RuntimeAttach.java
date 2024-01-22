@@ -51,7 +51,7 @@ public class RuntimeAttach {
         init(agentArgs, instrumentation);
     }
 
-    private static void init(final String agentArgs, final Instrumentation instrumentation) {
+    private static void init(final @NotNull String agentArgs, final Instrumentation instrumentation) {
         /**
          * Do it first to see first trace, this should be change if any other
          * boolean argument is included in the future

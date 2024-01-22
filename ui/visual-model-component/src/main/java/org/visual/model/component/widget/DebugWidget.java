@@ -1,6 +1,7 @@
 package org.visual.model.component.widget;
 
 import javafx.scene.layout.StackPane;
+import lombok.val;
 
 public class DebugWidget extends StackPane {
 
@@ -8,7 +9,7 @@ public class DebugWidget extends StackPane {
         setLayoutX(10.0);
         setLayoutY(10.0);
         setPrefSize(50, 50);
-        FpsWidget fpsWidget = new FpsWidget();
+        val fpsWidget = new FpsWidget();
         getChildren().add(fpsWidget);
         toFront();
     }

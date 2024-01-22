@@ -1,11 +1,20 @@
 plugins {
   alias(libs.plugins.javafx)
-  java
+  `java-library`
+  application
+  `kotlin-project`
 }
 
-group = "org.visual.model.ui.inspector"
+group = "org.visual.model.ui.debugger"
+
+val mainClassPath = "org.visual.model.debugger.VisualModelDebugger"
 
 version = "unspecified"
+
+application {
+  mainClass.set(mainClassPath)
+  mainModule.set(group.toString())
+}
 
 javafx {
   version = libs.versions.javafxVersion.get()

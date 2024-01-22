@@ -53,6 +53,7 @@ import javafx.stage.Window;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.model.component.util.NodeUtil;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.api.StageController;
@@ -69,7 +70,6 @@ import org.visual.model.debugger.node.NodeType;
 import org.visual.model.debugger.node.SVDummyNode;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.node.SVNodeFactory;
-import org.visual.model.component.util.NodeUtil;
 
 @Slf4j
 public class StageControllerImpl implements StageController {

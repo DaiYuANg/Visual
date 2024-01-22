@@ -17,6 +17,9 @@
  */
 package org.visual.model.debugger.core;
 
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
+
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.component.theme.OsThemeDetector;
+import org.visual.model.component.util.ScreenUtil;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.controller.AppControllerImpl;
 import org.visual.model.debugger.controller.StageControllerImpl;
@@ -40,7 +45,6 @@ import org.visual.model.debugger.model.update.LocalUpdateStrategy;
 import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.model.debugger.remote.FXConnectorFactory;
 import org.visual.model.debugger.view.ScenicViewGui;
-import org.visual.model.component.util.ScreenUtil;
 
 /**
  * This is the entry point for all different versions of Scenic View.
@@ -52,6 +56,14 @@ public class VisualModelDebugger extends Application {
 
     public static void show(final @NotNull Scene target) {
         show(target.getRoot());
+    }
+
+    @Override
+    public void init() {
+        val theme = OsThemeDetector.getDetector().isDark()
+                ? new PrimerDark().getUserAgentStylesheet()
+                : new PrimerLight().getUserAgentStylesheet();
+        Application.setUserAgentStylesheet(theme);
     }
 
     public static void show(@NonNull final Parent target) {
@@ -105,21 +117,23 @@ public class VisualModelDebugger extends Application {
 //        System.setProperty(FXConnector.SCENIC_VIEW_VM, "true");
 
         val strategy = new RemoteVMsUpdateStrategy();
-
+        val parent = DebuggerContext.INSTANCE.load("DebuggerLayout");
+        val scene = new Scene(parent);
         // workaround for RT-10714
         val size = ScreenUtil.percentOfScreen(0.7);
         stage.setWidth(size.getLeft());
         stage.setHeight(size.getRight());
         stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
-        log.info("Platform running");
-        log.info("Launching ScenicView v" + ScenicViewGui.VERSION);
-        ScenicViewGui view = new ScenicViewGui(strategy, stage);
-        ScenicViewGui.show(view, stage);
-        log.info("Startup done");
-
-        log.info("Creating server");
+        stage.setScene(scene);
+//        log.info("Platform running");
+//        log.info("Launching ScenicView v" + ScenicViewGui.VERSION);
+//        ScenicViewGui view = new ScenicViewGui(strategy, stage);
+//        ScenicViewGui.show(view, stage);
+//        log.info("Startup done");
+//        log.info("Creating server");
         strategy.setFXConnector(FXConnectorFactory.getConnector());
         log.info("Server done");
+        stage.show();
         FXComponentInspectorHandler.handleAll();
     }
 }

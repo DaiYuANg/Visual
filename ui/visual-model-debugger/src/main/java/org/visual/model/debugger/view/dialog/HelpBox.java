@@ -19,7 +19,6 @@ package org.visual.model.debugger.view.dialog;
 
 import java.util.logging.Level;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.val;
@@ -34,7 +33,7 @@ public class HelpBox {
     private static final int SCENE_WIDTH = 1024;
     private static final int SCENE_HEIGHT = 768;
 
-    static final Image HELP_ICON = DisplayUtils.getUIImage("help.png");
+//    static final Image HELP_ICON = DisplayUtils.getUIImage("help.png");
 
     final Stage stage;
 
@@ -52,7 +51,7 @@ public class HelpBox {
         stage = new Stage();
         stage.setTitle(title);
         stage.setScene(scene);
-        stage.getIcons().add(HELP_ICON);
+//        stage.getIcons().add(HELP_ICON);
         stage.setOnCloseRequest(arg0 -> DisplayUtils.showWebView(false));
         stage.show();
     }

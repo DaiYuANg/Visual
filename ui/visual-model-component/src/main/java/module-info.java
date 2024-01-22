@@ -24,6 +24,8 @@ module org.visual.model.ui {
     requires transitive org.controlsfx.controls;
     requires eu.iamgio.animated;
     requires kotlin.stdlib;
+    requires org.apache.commons.pool2;
+    requires it.unimi.dsi.fastutil;
 
     exports org.visual.model.component.bar;
     exports org.visual.model.component.window;

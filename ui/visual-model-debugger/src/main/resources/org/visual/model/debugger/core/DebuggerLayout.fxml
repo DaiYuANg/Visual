@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.visual.model.debugger.component.GlobalMenuBar?>
+<?import org.visual.model.component.control.FluentUiRegularALButton?>
+<?import org.visual.model.component.control.FluentUiRegularMZButton?>
+<?import org.visual.model.component.control.FontAwesomeSolidButton?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.visual.model.debugger.controller.DebuggerLayoutController"
+            prefHeight="400.0" prefWidth="600.0">
+    <GlobalMenuBar/>
+    <FluentUiRegularALButton icon="F_STOP_16"/>
+    <FluentUiRegularMZButton icon="MAGIC_WAND_16"/>
+    <FontAwesomeSolidButton initIcon="ADDRESS_BOOK"/>
+</AnchorPane>

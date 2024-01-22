@@ -33,7 +33,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.visual.model.debugger.view.ScenicViewGui;
 
 public class SubmitExceptionDialog {
     private static final int SCENE_WIDTH = 500;
@@ -107,19 +106,17 @@ public class SubmitExceptionDialog {
 
         this.panel.getChildren().addAll(label,dontAskAgainCheckBox,buttonsBox);
 
-        Platform.runLater(new Runnable() {
-            @Override public void run() {
-                scene = new Scene(panel, SCENE_WIDTH, SCENE_HEIGHT);
+        Platform.runLater(() -> {
+            scene = new Scene(panel, SCENE_WIDTH, SCENE_HEIGHT);
 
-                stage = new Stage(StageStyle.UTILITY);
-                stage.setTitle("Exception");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.getIcons().add(ScenicViewGui.APP_ICON);
-                stage.setResizable(false);
+            stage = new Stage(StageStyle.UTILITY);
+            stage.setTitle("Exception");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+//                stage.getIcons().add(ScenicViewGui.APP_ICON);
+            stage.setResizable(false);
 
-                stage.showAndWait();
-            }
+            stage.showAndWait();
         });
         
     }

@@ -17,13 +17,10 @@
  */
 package org.visual.model.debugger.view.tabs;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
@@ -33,6 +30,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeRegular;
@@ -47,11 +45,12 @@ import org.visual.model.debugger.view.tabs.details.GDetailPane;
 /**
  *
  */
+@Slf4j
 public class DetailsTab extends Tab implements ContextMenuContainer {
 
     public static final String TAB_NAME = "Details";
 
-    List<GDetailPane> gDetailPanes = new ArrayList<>();
+    List<GDetailPane> gDetailPanes = new ObjectArrayList<>();
 
     public static boolean showDefaultProperties = true;
 
@@ -153,14 +152,11 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
             // --- show default properties
             final CheckMenuItem showDefaultProperties = scenicView.buildCheckMenuItem("Show Default Properties", "Show default properties",
                     "Hide default properties", "showDefaultProperties", Boolean.TRUE);
-            showDefaultProperties.selectedProperty().addListener(new InvalidationListener() {
-                @Override
-                public void invalidated(final Observable arg0) {
-                    setShowDefaultProperties(showDefaultProperties.isSelected());
-                    val selected = scenicView.getSelectedNode();
-                    scenicView.configurationUpdated();
-                    scenicView.setSelectedNode(scenicView.activeStage, selected);
-                }
+            showDefaultProperties.selectedProperty().addListener(arg0 -> {
+                setShowDefaultProperties(showDefaultProperties.isSelected());
+                val selected = scenicView.getSelectedNode();
+                scenicView.configurationUpdated();
+                scenicView.setSelectedNode(scenicView.activeStage, selected);
             });
             setShowDefaultProperties(showDefaultProperties.isSelected());
             menu.getItems().addAll(showDefaultProperties);
@@ -181,13 +177,7 @@ public class DetailsTab extends Tab implements ContextMenuContainer {
     }
 
     private void updateDump() {
-        boolean anyVisible = false;
-        for (final Iterator<GDetailPane> iterator = gDetailPanes.iterator(); iterator.hasNext(); ) {
-            if (iterator.next().isVisible()) {
-                anyVisible = true;
-                break;
-            }
-        }
+        boolean anyVisible = gDetailPanes.stream().anyMatch(Node::isVisible);
         dumpDetails.setDisable(!anyVisible);
     }
 }

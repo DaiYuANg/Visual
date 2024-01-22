@@ -3,7 +3,10 @@ package org.visual.model.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import jakarta.inject.Named;
+
 import java.util.List;
+import java.util.prefs.Preferences;
+
 import lombok.SneakyThrows;
 import lombok.val;
 import org.github.gestalt.config.Gestalt;
@@ -13,6 +16,7 @@ import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.shared.pojo.JavaFxProperty;
 
 @Factory
@@ -39,5 +43,10 @@ public class ConfigFactory {
     @Bean
     JavaFxProperty debuggerConfiguration(@NotNull @Named("VisualModelDebuggerGestalt") Gestalt gestalt) {
         return gestalt.getConfig("javafx", JavaFxProperty.class);
+    }
+
+    @Bean
+    Preferences preferences() {
+        return Preferences.userNodeForPackage(VisualModelDebugger.class);
     }
 }

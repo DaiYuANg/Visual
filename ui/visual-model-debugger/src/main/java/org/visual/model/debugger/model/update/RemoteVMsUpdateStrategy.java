@@ -101,9 +101,9 @@ public class RemoteVMsUpdateStrategy extends WorkerThread implements UpdateStrat
         /**
          * Then check remove apps
          */
-        for (int i = 0; i < previous.size(); i++)
-            if (isAppOnArray(previous.get(i), actualApps) == -1) {
-                repository.appRemoved(previous.get(i));
+        for (AppController appController : previous)
+            if (isAppOnArray(appController, actualApps) == -1) {
+                repository.appRemoved(appController);
                 modifications = true;
             }
 

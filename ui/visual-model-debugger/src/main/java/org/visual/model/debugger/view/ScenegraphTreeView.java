@@ -21,7 +21,6 @@ import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
@@ -582,9 +581,6 @@ public class ScenegraphTreeView extends TreeView<SVNode> {
         }
         node.setShowId(showNodesIdInTree);
         val icon = new FontIcon(node.getIcon());
-        final ImageView graphic = new ImageView(DisplayUtils.getIcon(node));
-        graphic.setFitHeight(16);
-        graphic.setFitWidth(16);
         final TreeItem<SVNode> treeItem = new TreeItem<>(node, icon);
         if (node.equals(scenicView.getSelectedNode())) {
             previouslySelectedItem = treeItem;

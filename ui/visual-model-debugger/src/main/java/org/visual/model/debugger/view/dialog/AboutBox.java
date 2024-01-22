@@ -23,14 +23,12 @@ import javafx.event.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 
 public class AboutBox {
@@ -55,10 +53,10 @@ public class AboutBox {
         });
         VBox.setMargin(footer, new Insets((double) SPACER_Y / 2, LEFT_AND_RIGHT_MARGIN, (double) SPACER_Y / 2, LEFT_AND_RIGHT_MARGIN));
 
-        ImageView header = new ImageView(DisplayUtils.getUIImage("about-header.png"));
-        header.setId("AboutHeader");
+//        ImageView header = new ImageView(DisplayUtils.getUIImage("about-header.png"));
+//        header.setId("AboutHeader");
 
-        VBox.setMargin(header, new Insets(42.0D, LEFT_AND_RIGHT_MARGIN, 0.0D, LEFT_AND_RIGHT_MARGIN));
+//        VBox.setMargin(header, new Insets(42.0D, LEFT_AND_RIGHT_MARGIN, 0.0D, LEFT_AND_RIGHT_MARGIN));
 
         TextArea textArea = new TextArea();
         textArea.setFocusTraversable(false);
@@ -70,7 +68,7 @@ public class AboutBox {
         VBox.setMargin(textArea, new Insets(SPACER_Y, LEFT_AND_RIGHT_MARGIN, 0.0D, LEFT_AND_RIGHT_MARGIN));
         VBox.setVgrow(textArea, Priority.ALWAYS);
         panel.setAlignment(Pos.TOP_CENTER);
-        panel.getChildren().addAll(header, textArea, footer);
+        panel.getChildren().addAll(textArea, footer);
 
         Scene scene = new Scene(panel, SCENE_WIDTH, SCENE_HEIGHT);
 
@@ -78,7 +76,7 @@ public class AboutBox {
         this.stage.setTitle(title);
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.setScene(scene);
-        this.stage.getIcons().add(ScenicViewGui.APP_ICON);
+//        this.stage.getIcons().add(ScenicViewGui.APP_ICON);
         this.stage.setResizable(false);
         this.stage.setX(x);
         this.stage.setY(y);

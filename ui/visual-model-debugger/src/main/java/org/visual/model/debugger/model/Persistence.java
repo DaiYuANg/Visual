@@ -17,10 +17,10 @@
  */
 package org.visual.model.debugger.model;
 
-import java.util.*;
-
 import io.avaje.inject.PreDestroy;
-import jakarta.inject.Singleton;
+
+import java.util.*;
+import java.util.prefs.Preferences;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -29,10 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.core.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
 
-import java.util.prefs.Preferences;
 
-
-@Singleton
 @Slf4j
 public class Persistence {
 

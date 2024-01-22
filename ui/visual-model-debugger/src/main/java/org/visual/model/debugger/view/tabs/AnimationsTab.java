@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,20 +25,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.api.ContextMenuContainer;
 import org.visual.model.debugger.controller.SVAnimation;
 import org.visual.model.debugger.controller.StageID;
-import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 
 
 public class AnimationsTab extends Tab implements ContextMenuContainer {
-    
+
     public static final String TAB_NAME = "Animations";
 
     private final Map<Integer, List<SVAnimation>> appsAnimations = new HashMap<>();
-
-    private static final Image PAUSE = DisplayUtils.getUIImage("pause.png");
 
     private final ScenicViewGui scenicView;
     private final VBox vbox;
@@ -51,7 +50,7 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
         this.vbox = new VBox();
 
         setContent(vbox);
-        setGraphic(new ImageView(DisplayUtils.getUIImage("cinema.png")));
+        setGraphic(new FontIcon(FontAwesomeSolid.CIRCLE_NOTCH));
         setClosable(false);
         selectedProperty().addListener((o, oldValue, newValue) -> scenicView.updateAnimations());
     }
@@ -60,7 +59,8 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
         appsAnimations.clear();
     }
 
-    @Override public Menu getMenu() {
+    @Override
+    public Menu getMenu() {
         if (menu == null) {
             menu = new Menu("Animations");
             final CheckMenuItem animationsEnabled = scenicView.buildCheckMenuItem("Animations enabled", "Animations will run on the application",
@@ -74,13 +74,13 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
         return menu;
     }
 
-    @SuppressWarnings("unchecked") 
+    @SuppressWarnings("unchecked")
     public void update(final StageID stageID, final List<SVAnimation> animations) {
         appsAnimations.put(stageID.getAppID(), animations);
 
         vbox.getChildren().clear();
 
-        for (final Iterator<Integer> iterator = appsAnimations.keySet().iterator(); iterator.hasNext();) {
+        for (final Iterator<Integer> iterator = appsAnimations.keySet().iterator(); iterator.hasNext(); ) {
             final Integer app = iterator.next();
             final TitledPane pane = new TitledPane();
             pane.setPrefHeight(vbox.getHeight() / appsAnimations.size());
@@ -116,7 +116,7 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
                     @Override
                     public void updateItem(final Integer item, final boolean empty) {
                         if (item != null) {
-                            setGraphic(new ImageView(PAUSE));
+                            setGraphic(new FontIcon(FontAwesomeSolid.PAUSE));
                             setId(Integer.toString(item));
                             setAlignment(Pos.CENTER);
                         }
@@ -126,7 +126,7 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
                 cell.setAlignment(Pos.CENTER);
                 return cell;
             });
-            pauseCol.setPrefWidth(PAUSE.getWidth() + 7);
+            pauseCol.setPrefWidth(7);
             pauseCol.setResizable(false);
 
             table.getColumns().addAll(sourceCol, rateCol, cycleCountCol, currentTimeCol, pauseCol);
