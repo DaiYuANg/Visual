@@ -43,7 +43,7 @@ picocli = "4.7.5"
 dependencycheck = "9.0.7"
 jmh = "0.7.2"
 jreleaser = "1.10.0"
-mapstruct="1.6.0.Beta1"
+mapstruct = "1.6.0.Beta1"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
@@ -136,6 +136,9 @@ kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lomb
 kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-mapstruct={group="org.mapstruct",name="mapstruct",version.ref="mapstruct"}
-mapstructProcessor={group="org.mapstruct",name="mapstruct-processor",version.ref="mapstruct"}
-lombokMapstructBinding={group="org.projectlombok",name="lombok-mapstruct-binding",version="0.2.0"}
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
+jetbrainsMono = { group = "org.webjars.npm", name = "fontsource__jetbrains-mono", version = "4.5.11" }
+animated = {group="eu.iamgio",name="animated",version="1.3.0"}
+flowless = {group="org.fxmisc.flowless",name="flowless",version="0.7.2"}

@@ -6,7 +6,6 @@ import org.kordamp.ikonli.javafx.FontIcon
 import java.util.Optional.ofNullable
 
 class CacheFontIcon {
-
     private val internal = Object2ObjectArrayMap<Ikon, FontIcon>()
 
     fun create(icon: Ikon) {

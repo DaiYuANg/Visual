@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GraphEditor;
 import org.visual.model.graph.editor.model.GModel;
 
@@ -199,7 +200,7 @@ public class GraphEditorPersistence {
      * @param file the {@link File} to be loaded
      * @param graphEditor the {@link GraphEditor} in which the loaded model will be set
      */
-    private void loadModel(final File file, final GraphEditor graphEditor) {
+    private void loadModel(final @NotNull File file, final GraphEditor graphEditor) {
 
         final URI fileUri = URI.createFileURI(file.getAbsolutePath());
 

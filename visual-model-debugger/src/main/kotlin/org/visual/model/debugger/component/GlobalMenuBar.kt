@@ -8,6 +8,7 @@ import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
 import javafx.scene.input.KeyCombination
+import javafx.stage.WindowEvent
 import org.kordamp.ikonli.javafx.FontIcon
 
 class GlobalMenuBar
@@ -72,6 +73,9 @@ class GlobalMenuBar
         init {
             isUseSystemMenuBar = true
             id = "global-menubar"
+            addEventHandler(WindowEvent.WINDOW_SHOWN) {
+                prefWidthProperty().bind(scene.widthProperty());
+            }
             menus.addAll(fileMenu, aboutMenu)
         }
     }

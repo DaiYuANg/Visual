@@ -3,11 +3,10 @@ package org.visual.model.component.control
 import javafx.beans.property.ObjectProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.control.Button
-import org.kordamp.ikonli.fluentui.FluentUiRegularAL
 import org.kordamp.ikonli.fluentui.FluentUiRegularMZ
 import org.kordamp.ikonli.javafx.FontIcon
 
-class FluentUiRegularMZButton :Button(){
+class FluentUiRegularMZButton : Button() {
     private val iconProperty: ObjectProperty<FluentUiRegularMZ> by lazy { SimpleObjectProperty() }
 
     var icon: FluentUiRegularMZ?

@@ -25,6 +25,9 @@ module org.visual.model.ui {
     requires kotlin.stdlib;
     requires org.apache.commons.pool2;
     requires it.unimi.dsi.fastutil;
+    requires com.github.kwhat.jnativehook;
+    requires javafx.media;
+    requires javafx.swing;
 
     exports org.visual.model.component.title;
     exports org.visual.model.component.window;
