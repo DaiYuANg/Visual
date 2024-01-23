@@ -20,33 +20,16 @@ import java.util.prefs.Preferences;
 @Factory
 public class UIFactory {
     @Bean
+    SplitPane splitPane() {
+        return new SplitPane();
+    }
+    @Bean
     WebView webView() {
         return new WebView();
     }
 
-//    @Bean
-//    StatusBar statusBar() {
-//        return new StatusBar();
-//    }
-
     @Bean
     I18n i18n() {
         return I18nUtil.getDefaultLocale();
-    }
-
-    @Bean
-    SplitPane splitPane(Preferences preferences) {
-        val sp = new SplitPane();
-        sp.getDividers().addListener((ListChangeListener<SplitPane.Divider>) change ->
-                sp.getDividers().getFirst().positionProperty()
-                        .addListener((observableValue, number, t1) -> {
-                            preferences.putDouble(PreferencesKey.SPLIT_DIVIER.getValue(), number.doubleValue());
-                            try {
-                                preferences.flush();
-                            } catch (BackingStoreException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }));
-        return sp;
     }
 }

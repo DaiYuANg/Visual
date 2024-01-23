@@ -21,6 +21,10 @@ public enum DebuggerContext {
             .shutdownHook(true)
             .build();
 
+    DebuggerContext(){
+        System.err.println(beanScope.all());
+    }
+
     public <T> @NotNull T get(Class<T> clazz) {
         return beanScope.get(clazz);
     }

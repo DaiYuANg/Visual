@@ -5,3 +5,8 @@ body {
   font: 100% $font-stack;
   color: $primary-color;
 }
+
+@font-face {
+  --fx-font-family: "Jetbrains Mono";
+  src: url("/fonts/ttf/JetbrainsMono-Regular.ttf")
+}

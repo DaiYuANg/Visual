@@ -2,6 +2,7 @@ package org.visual.model.component.stage;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.CornerRadii;
+import org.visual.model.component.theme.Theme;
 
 public class IconifyButton extends WindowControlButton {
     public IconifyButton(VStage stage, VStageInitParams initParams) {

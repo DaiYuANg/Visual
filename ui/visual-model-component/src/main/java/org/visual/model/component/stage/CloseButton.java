@@ -1,9 +1,9 @@
 package org.visual.model.component.stage;
 
-import io.vproxy.vfx.theme.Theme;
 import javafx.scene.image.Image;
 import javafx.scene.layout.CornerRadii;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.component.theme.Theme;
 
 public class CloseButton extends WindowControlButton {
     private CornerRadii cornerRadii;

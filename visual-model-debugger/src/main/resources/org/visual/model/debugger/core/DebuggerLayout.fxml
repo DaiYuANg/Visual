@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
 <?import org.visual.model.debugger.component.GlobalMenuBar?>
 <?import org.visual.model.component.control.FluentUiRegularALButton?>
 <?import org.visual.model.component.control.FluentUiRegularMZButton?>

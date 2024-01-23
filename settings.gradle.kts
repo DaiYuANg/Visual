@@ -53,3 +53,5 @@ include("ui:visual-model-graph-editor")
 include("libs:jfa")
 include("visual-model-serialization")
 include("libs:event")
+include("libs:fonts")
+findProject(":libs:fonts")?.name = "fonts"
