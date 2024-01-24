@@ -3,7 +3,7 @@ plugins {
     application
     java
     groovy
-    id("org.beryx.jlink") version "3.0.1"
+    alias(libs.plugins.jlink)
     id("org.graalvm.buildtools.native") version "0.9.28"
     `kotlin-project`
 }

@@ -7,4 +7,6 @@ dependencies {
   api(libs.jgrapht)
   api(libs.fastutil)
   api(libs.directories)
+  api(libs.jacksonCore)
+  api(libs.oshi)
 }

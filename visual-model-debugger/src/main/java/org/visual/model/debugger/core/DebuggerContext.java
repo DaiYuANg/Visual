@@ -1,16 +1,13 @@
 package org.visual.model.debugger.core;
 
 import io.avaje.inject.BeanScope;
+import java.nio.charset.StandardCharsets;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-
-import java.net.URI;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 @Getter
 public enum DebuggerContext {

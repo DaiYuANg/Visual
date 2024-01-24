@@ -56,6 +56,7 @@ extraJavaModule = { id = "org.gradlex.extra-java-module-info", version = "1.7" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.10" }
 dependencycheck = { id = "org.owasp.dependencycheck", version.ref = "dependencycheck" }
 jmh = { id = "me.champeau.jmh", version.ref = "jmh" }
+jlink = { id = "org.beryx.jlink", version = "3.0.1" }
 
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "apacheCommonIO" }
@@ -139,5 +140,5 @@ kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-all
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
-animated = {group="eu.iamgio",name="animated",version="1.3.0"}
-flowless = {group="org.fxmisc.flowless",name="flowless",version="0.7.2"}
+animated = { group = "eu.iamgio", name = "animated", version = "1.3.0" }
+flowless = { group = "org.fxmisc.flowless", name = "flowless", version = "0.7.2" }

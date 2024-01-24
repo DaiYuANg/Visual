@@ -4,9 +4,9 @@ import javafx.scene.control.Label
 import javafx.scene.paint.Color
 
 class TestLabel : Label() {
-    init {
-        text = "test"
-        textFill = Color.WHITE
-        toFront()
-    }
+  init {
+    text = "test"
+    textFill = Color.WHITE
+    toFront()
+  }
 }

@@ -51,17 +51,14 @@ tasks.compileSass {
   sourceMap = none
 }
 
-tasks.build { dependsOn(tasks.compileSass) }
-
-tasks.compileJava { dependsOn(tasks.compileSass) }
-
 tasks.test {
   tasks.compileSass.get().outputDir = project.file("build/resources/test")
   dependsOn(tasks.compileSass)
+  dependsOn(tasks.processTestResources)
 }
 
 tasks.jar {
+  dependsOn(tasks.processTestResources)
   dependsOn(tasks.compileSass)
-
   from(tasks.compileSass.get().outputDir) { into("/") }
 }

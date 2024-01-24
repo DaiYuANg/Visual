@@ -3,9 +3,9 @@ package org.visual.model.component.animation;
 import java.util.*;
 import javafx.animation.AnimationTimer;
 import lombok.Getter;
+import org.visual.model.component.algebradata.AlgebraData;
 import org.visual.model.component.graph.Graph;
 import org.visual.model.component.graph.GraphPath;
-import org.visual.model.component.util.algebradata.AlgebraData;
 
 public class AnimationGraph<T extends AlgebraData<T>> {
     private final Graph<AnimationNode<T>> graph;

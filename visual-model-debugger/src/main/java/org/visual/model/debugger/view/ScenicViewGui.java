@@ -18,9 +18,7 @@
 package org.visual.model.debugger.view;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-
 import java.util.*;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

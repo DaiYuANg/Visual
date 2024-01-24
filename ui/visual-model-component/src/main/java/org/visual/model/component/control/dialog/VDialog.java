@@ -9,13 +9,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.visual.model.component.button.FusionButton;
+import lombok.Getter;
+import org.visual.model.component.container.FusionPane;
+import org.visual.model.component.container.VStage;
+import org.visual.model.component.control.button.FusionButton;
 import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontUsages;
 import org.visual.model.component.layout.HPadding;
 import org.visual.model.component.layout.VPadding;
-import org.visual.model.component.pane.FusionPane;
-import org.visual.model.component.stage.VStage;
 import org.visual.model.component.theme.Theme;
 import org.visual.model.component.util.FXUtils;
 
@@ -23,6 +24,7 @@ public class VDialog<T> {
     private static final int BUTTON_HEIGHT = 45;
     private static final int BUTTON_PANE_HEIGHT = BUTTON_HEIGHT + FusionPane.PADDING_V * 2;
 
+    @Getter
     private final VStage stage = new VStage();
     private final Label messageLabel = new Label();
     private final Group content = new Group(messageLabel);
@@ -119,7 +121,4 @@ public class VDialog<T> {
         return Optional.ofNullable(returnValue);
     }
 
-    public VStage getStage() {
-        return stage;
-    }
 }

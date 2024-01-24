@@ -19,12 +19,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Used for detecting the dark theme on a Linux (GNOME/GTK) system.
@@ -32,9 +32,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author Daniel Gyorffy
  */
+@Slf4j
 class GnomeThemeDetector extends OsThemeDetector {
 
-    private static final Logger logger = LoggerFactory.getLogger(GnomeThemeDetector.class);
 
     private static final String MONITORING_CMD = "gsettings monitor org.gnome.desktop.interface";
     private static final String[] GET_CMD = new String[]{
@@ -42,7 +42,7 @@ class GnomeThemeDetector extends OsThemeDetector {
             "gsettings get org.gnome.desktop.interface color-scheme"
     };
 
-    private final Set<Consumer<Boolean>> listeners = new ConcurrentHashSet<>();
+    private final Set<Consumer<Boolean>> listeners = new CopyOnWriteArraySet<>();
     private final Pattern darkThemeNamePattern = Pattern.compile(".*dark.*", Pattern.CASE_INSENSITIVE);
 
     private volatile DetectorThread detectorThread;
@@ -61,7 +61,7 @@ class GnomeThemeDetector extends OsThemeDetector {
                 }
             }
         } catch (IOException e) {
-            logger.error("Couldn't detect Linux OS theme", e);
+            log.error("Couldn't detect Linux OS theme", e);
         }
         return false;
     }
@@ -127,28 +127,28 @@ class GnomeThemeDetector extends OsThemeDetector {
                         String[] keyValue = readLine.split("\\s");
                         String value = keyValue[1];
                         boolean currentDetection = detector.isDarkTheme(value);
-                        logger.debug("Theme changed detection, dark: {}", currentDetection);
+                        log.debug("Theme changed detection, dark: {}", currentDetection);
                         if (currentDetection != lastValue) {
                             lastValue = currentDetection;
                             for (Consumer<Boolean> listener : detector.listeners) {
                                 try {
                                     listener.accept(currentDetection);
                                 } catch (RuntimeException e) {
-                                    logger.error("Caught exception during listener notifying ", e);
+                                    log.error("Caught exception during listener notifying ", e);
                                 }
                             }
                         }
                     }
-                    logger.debug("ThemeDetectorThread has been interrupted!");
+                    log.debug("ThemeDetectorThread has been interrupted!");
                     if (monitoringProcess.isAlive()) {
                         monitoringProcess.destroy();
-                        logger.debug("Monitoring process has been destroyed!");
+                        log.debug("Monitoring process has been destroyed!");
                     }
                 }
             } catch (IOException e) {
-                logger.error("Couldn't start monitoring process ", e);
+                log.error("Couldn't start monitoring process ", e);
             } catch (ArrayIndexOutOfBoundsException e) {
-                logger.error("Couldn't parse command line output", e);
+                log.error("Couldn't parse command line output", e);
             }
         }
     }

@@ -19,11 +19,9 @@ package org.visual.model.debugger.core;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
-
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;

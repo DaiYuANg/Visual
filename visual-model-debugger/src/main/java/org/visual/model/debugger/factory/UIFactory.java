@@ -2,20 +2,10 @@ package org.visual.model.debugger.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.scene.DepthTest;
 import javafx.scene.control.SplitPane;
 import javafx.scene.web.WebView;
-import lombok.val;
-import org.visual.model.debugger.constant.PreferencesKey;
-import org.visual.model.debugger.model.Persistence;
 import org.visual.model.i18n.core.I18n;
 import org.visual.model.i18n.core.I18nUtil;
-
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 
 @Factory
 public class UIFactory {

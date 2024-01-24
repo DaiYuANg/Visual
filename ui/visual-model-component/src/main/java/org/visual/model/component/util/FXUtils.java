@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -24,7 +23,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.experimental.UtilityClass;
-import org.visual.model.component.alert.SimpleAlert;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
+import org.visual.model.component.control.dialog.SimpleAlert;
 import org.visual.model.component.manager.internal_i18n.InternalI18n;
 
 @UtilityClass
@@ -107,45 +109,6 @@ public class FXUtils {
         }
     }
 
-    public static void iconifyWindow(Window window) {
-        try {
-            ((Stage) window).setIconified(true);
-        } catch (Throwable ignore) {
-        }
-    }
-
-    public static void toBackWindow(Window window) {
-        try {
-            ((Stage) window).toBack();
-        } catch (Throwable ignore) {
-        }
-    }
-
-    public static void toFrontWindow(Window window) {
-        try {
-            ((Stage) window).toFront();
-        } catch (Throwable ignore) {
-        }
-    }
-
-    public static float[] toHSB(Color color) {
-        float[] ff = new float[3];
-        java.awt.Color.RGBtoHSB((int) (color.getRed() * 255), (int) (color.getGreen() * 255), (int) (color.getBlue() * 255), ff);
-        return ff;
-    }
-
-    public static Color fromHSB(float[] hsb, double alpha) {
-        var rgb = java.awt.Color.HSBtoRGB(hsb[0], hsb[1], hsb[2]);
-        var r = (rgb >> 16) & 0xff;
-        var g = (rgb >> 8) & 0xff;
-        var b = rgb & 0xff;
-        return new Color(r / 255d, g / 255d, b / 255d, alpha);
-    }
-
-    public static Color fromHSB(float h, float s, float b, double alpha) {
-        return fromHSB(new float[]{h, s, b}, alpha);
-    }
-
     public static Screen getScreenOf(Window window) {
         if (window == null) return null;
         var screenOb = Screen.getScreensForRectangle(window.getX(), window.getY(), window.getWidth(), window.getHeight());
@@ -153,7 +116,7 @@ public class FXUtils {
         if (screenOb.isEmpty()) {
             screen = Screen.getPrimary();
         } else {
-            screen = screenOb.get(0);
+            screen = screenOb.getFirst();
         }
         if (screen == null) {
             SimpleAlert.showAndWait(Alert.AlertType.WARNING, InternalI18n.get().cannotFindAnyDisplay());
@@ -162,7 +125,7 @@ public class FXUtils {
         return screen;
     }
 
-    public static BufferedImage convertToBufferedImage(java.awt.Image awtImage) {
+    public static @NotNull BufferedImage convertToBufferedImage(java.awt.Image awtImage) {
         if (awtImage instanceof BufferedImage) return (BufferedImage) awtImage;
         BufferedImage bImage = new BufferedImage(awtImage.getWidth(null), awtImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics2D bGr = bImage.createGraphics();
@@ -171,7 +134,8 @@ public class FXUtils {
         return bImage;
     }
 
-    public static List<ChangeListener<? super Number>> observeWidthHeight(Region observed, Region modified) {
+    @Contract("_, _ -> new")
+    public static @NotNull @Unmodifiable List<ChangeListener<? super Number>> observeWidthHeight(Region observed, Region modified) {
         return observeWidthHeight(observed, modified, 0, 0);
     }
 

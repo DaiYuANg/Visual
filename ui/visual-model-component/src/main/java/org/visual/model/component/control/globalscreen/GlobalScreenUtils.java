@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import javafx.application.Platform;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.model.component.alert.StackTraceAlert;
+import org.visual.model.component.control.dialog.StackTraceAlert;
 import org.visual.model.component.manager.internal_i18n.InternalI18n;
 
 @Slf4j

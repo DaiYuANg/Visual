@@ -5,8 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.stage.Window;
 import lombok.experimental.UtilityClass;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 
 @UtilityClass
@@ -26,6 +29,7 @@ public class NodeUtil {
         return FXCollections.emptyObservableList();
     }
 
+
     public static Optional<ObservableList<Node>> getChildrenOptional(Node node) {
         return Optional.ofNullable(node)
                 .map(n -> (n instanceof Parent) ? (Parent) n : (n instanceof SubScene) ? ((SubScene) n).getRoot() : null)
@@ -33,15 +37,74 @@ public class NodeUtil {
                 .filter(children -> !children.isEmpty());
     }
 
-    public static Optional<Parent> parentOf(Node n) {
+    /**
+     * Retrieves the parent of the given node
+     *
+     * @param n the node for which the parent is to be found
+     * @return the found parent or null
+     */
+    public static Parent parentOf(Node n) {
+        if (n == null) {
+            return null;
+        }
+        val p = n.getParent();
+        if (p != null) {
+            return parentOf(p);
+        }
+        if (n instanceof Parent) {
+            return (Parent) n;
+        }
+
+        return null;
+    }
+
+    public static Optional<Parent> parentOfOptional(Node n) {
         return Optional.ofNullable(n)
                 .map(Node::getParent)
                 .flatMap(NodeUtil::parentOfRecursive)
                 .map(Parent.class::cast);
     }
 
+    /**
+     * Retrieves the root window containing the given node
+     *
+     * @param n the node to look window for
+     * @return the window the node belongs to, or null if it cannot be found
+     */
+    public static Window windowOf(Node n) {
+        if (n == null) {
+            return null;
+        }
+
+        val p = n.getParent();
+        if (p != null) {
+            return windowOf(p);
+        }
+
+        if (n instanceof Parent container) {
+            val windows = Window.getWindows();
+            return windows.stream().filter(w -> w.getScene() != null)
+                    .filter(w -> container == w.getScene().getRoot()).findFirst().orElse(null);
+        }
+
+        return null;
+    }
+
     private static Optional<Parent> parentOfRecursive(@NotNull Node node) {
         return Optional.ofNullable(node.getParent())
                 .flatMap(NodeUtil::parentOfRecursive);
+    }
+
+    /**
+     * Retrieves the root window containing the given scene
+     *
+     * @param s the scene to look window for
+     * @return the window the scene belongs to, or null if it cannot be found
+     */
+    public static Window windowOf(Scene s) {
+        return Optional.ofNullable(s).map(scene -> {
+            val windows = Window.getWindows();
+            return windows.stream().filter(w -> s == w.getScene()).findFirst().orElse(null);
+        }).orElse(null);
     }
 }

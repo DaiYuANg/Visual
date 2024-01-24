@@ -14,62 +14,63 @@
 
 package org.visual.model.component.theme;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.visual.model.shared.Platform;
 
 /**
  * For detecting the theme (dark/light) used by the Operating System.
  *
  * @author Daniel Gyorffy
  */
+@Slf4j
 public abstract class OsThemeDetector {
 
-    private static final Logger logger = LoggerFactory.getLogger(OsThemeDetector.class);
 
     private static volatile OsThemeDetector osThemeDetector;
-
-    OsThemeDetector() {
-    }
 
     @NotNull public static OsThemeDetector getDetector() {
         OsThemeDetector instance = osThemeDetector;
 
-        if (instance == null) {
+        if (Objects.isNull(instance)) {
             synchronized (OsThemeDetector.class) {
                 instance = osThemeDetector;
 
-                if (instance == null) {
-                    osThemeDetector = instance = createDetector();
+                if (Objects.nonNull(instance)) {
+                    return instance;
                 }
+                osThemeDetector = instance = createDetector();
             }
         }
 
         return instance;
     }
 
-    private static OsThemeDetector createDetector() {
-        if (OsInfo.isWindows10OrLater()) {
+    @Contract(" -> new")
+    private static @NotNull OsThemeDetector createDetector() {
+        if (Platform.isWindows10OrLater()) {
             logDetection("Windows 10", WindowsThemeDetector.class);
             return new WindowsThemeDetector();
-        } else if (OsInfo.isGnome()) {
+        } else if (Platform.isGnome()) {
             logDetection("Gnome", GnomeThemeDetector.class);
             return new GnomeThemeDetector();
-        } else if (OsInfo.isMacOsMojaveOrLater()) {
+        } else if (Platform.isMacOsMojaveOrLater()) {
             logDetection("MacOS", MacOSThemeDetector.class);
             return new MacOSThemeDetector();
         } else {
-            logger.debug("Theme detection is not supported on the system: {} {}", OsInfo.getFamily(), OsInfo.getVersion());
-            logger.debug("Creating empty detector...");
+            log.warn("Theme detection is not supported on the system: {} {}", Platform.family, Platform.version);
+            log.warn("Creating empty detector...");
             return new EmptyDetector();
         }
     }
 
-    private static void logDetection(String desktop, Class<? extends OsThemeDetector> detectorClass) {
-        logger.debug("Supported Desktop detected: {}", desktop);
-        logger.debug("Creating {}...", detectorClass.getName());
+    private static void logDetection(String desktop, @NotNull Class<? extends OsThemeDetector> detectorClass) {
+        log.atDebug().log("Supported Desktop detected: {}", desktop);
+        log.atDebug().log("Creating {}...", detectorClass.getName());
     }
 
     /**
@@ -93,7 +94,7 @@ public abstract class OsThemeDetector {
     public abstract void removeListener(@Nullable Consumer<Boolean> darkThemeListener);
 
     public static boolean isSupported() {
-        return OsInfo.isWindows10OrLater() || OsInfo.isMacOsMojaveOrLater() || OsInfo.isGnome();
+        return Platform.isWindows10OrLater() || Platform.isMacOsMojaveOrLater() || Platform.isGnome();
     }
 
     private static final class EmptyDetector extends OsThemeDetector {

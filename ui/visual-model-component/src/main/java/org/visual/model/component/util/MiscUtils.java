@@ -42,10 +42,7 @@ public class MiscUtils {
     }
 
     public static boolean almostIn(Color color, Set<Color> colors, double delta) {
-        for (var c : colors) {
-            if (almostEquals(color, c, delta)) return true;
-        }
-        return false;
+        return colors.stream().anyMatch(c -> almostEquals(color, c, delta));
     }
 
     public static int subtractGE0(int a, int b) {
@@ -57,11 +54,7 @@ public class MiscUtils {
     }
 
     public static long subtractGE0(long a, long b) {
-        if (a < b) {
-            return 0;
-        } else {
-            return a - b;
-        }
+        return a < b ? 0 : a - b;
     }
 
     public static String returnNullIfBlank(String s) {
@@ -72,28 +65,33 @@ public class MiscUtils {
 
     public static Level javaLoggingLevelValueOf(String logLevel) {
         switch (logLevel) {
-            case "ALL":
+            case "ALL" -> {
                 return Level.ALL;
-            case "FINEST":
+            }
+            case "FINEST" -> {
                 return Level.FINEST;
-            case "FINER":
+            }
+            case "FINER" -> {
                 return Level.FINER;
-            case "DEBUG":
-            case "FINE":
+            }
+            case "DEBUG", "FINE" -> {
                 return Level.FINE;
-            case "CONFIG":
+            }
+            case "CONFIG" -> {
                 return Level.CONFIG;
-            case "INFO":
+            }
+            case "INFO" -> {
                 return Level.INFO;
-            case "WARN":
-            case "WARNING":
+            }
+            case "WARN", "WARNING" -> {
                 return Level.WARNING;
-            case "ERROR":
-            case "FATAL":
-            case "SEVERE":
+            }
+            case "ERROR", "FATAL", "SEVERE" -> {
                 return Level.SEVERE;
-            case "OFF":
+            }
+            case "OFF" -> {
                 return Level.OFF;
+            }
         }
         System.out.println(YYYYMMddHHiissDateTimeFormatter.format(ZonedDateTime.now()) + " SEVERE invalid logLevel: " + logLevel + ", returning ALL instead");
         return Level.ALL;

@@ -6,12 +6,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import lombok.Getter;
 import lombok.Setter;
+import org.visual.model.component.algebradata.DoubleData;
 import org.visual.model.component.animation.AnimationGraph;
 import org.visual.model.component.animation.AnimationGraphBuilder;
 import org.visual.model.component.animation.AnimationNode;
 import org.visual.model.component.control.drag.DragHandler;
 import org.visual.model.component.util.FXUtils;
-import org.visual.model.component.util.algebradata.DoubleData;
 
 public class VScrollPane implements NodeWithVScrollPane {
     public static final int SCROLL_WIDTH = 4;

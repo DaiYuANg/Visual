@@ -3,10 +3,8 @@ package org.visual.model.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import jakarta.inject.Named;
-
 import java.util.List;
 import java.util.prefs.Preferences;
-
 import lombok.SneakyThrows;
 import lombok.val;
 import org.github.gestalt.config.Gestalt;

@@ -3,6 +3,7 @@ package org.visual.model.component.loading;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontUsages;
 import org.visual.model.component.layout.VPadding;
@@ -13,6 +14,7 @@ public class LoadingPane extends Pane {
         FontManager.get().setFont(FontUsages.loading, this);
         setTextFill(Theme.current().normalTextColor());
     }};
+    @Getter
     private final VProgressBar progressBar = new VProgressBar();
 
     public LoadingPane(String defaultText) {
@@ -29,7 +31,4 @@ public class LoadingPane extends Pane {
         progressBar.setLength(length);
     }
 
-    public VProgressBar getProgressBar() {
-        return progressBar;
-    }
 }

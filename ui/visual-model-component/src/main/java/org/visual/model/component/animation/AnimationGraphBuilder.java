@@ -1,9 +1,9 @@
 package org.visual.model.component.animation;
 
 
+import org.visual.model.component.algebradata.AlgebraData;
+import org.visual.model.component.api.DoubleDoubleFunction;
 import org.visual.model.component.graph.GraphBuilder;
-import org.visual.model.component.util.algebradata.AlgebraData;
-import org.visual.model.component.util.algebradata.DoubleDoubleFunction;
 
 public class AnimationGraphBuilder<T extends AlgebraData<T>> {
 

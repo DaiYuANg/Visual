@@ -3,7 +3,7 @@ package org.visual.model.component.title;
 
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
-import org.visual.model.component.CommonTitleBar;
+import org.visual.model.component.display.CommonTitleBar;
 
 public class MacOSTitleBar extends CommonTitleBar {
 

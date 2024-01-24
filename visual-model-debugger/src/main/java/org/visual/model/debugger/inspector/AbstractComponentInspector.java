@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractComponentInspector<T> {
 
@@ -17,13 +18,13 @@ public abstract class AbstractComponentInspector<T> {
     return inspectDetails(component).stream().map(this::createComponentDetailsPanel).collect(Collectors.toList());
   }
 
-  private List<ComponentDetails<T>> inspectDetails(T component) {
+  private @NotNull List<ComponentDetails<T>> inspectDetails(T component) {
     List<ComponentDetails<T>> hierarchy = buildHierarchyRecursive(component);
     buildCascade(hierarchy);
     return hierarchy;
   }
 
-  private List<ComponentDetails<T>> buildHierarchyRecursive(T component) {
+  private @NotNull List<ComponentDetails<T>> buildHierarchyRecursive(T component) {
     if (component == null) {
       return Collections.emptyList();
     }
@@ -33,7 +34,7 @@ public abstract class AbstractComponentInspector<T> {
     return hierarchy;
   }
 
-  private ComponentDetails<T> createComponentDetails(T component) {
+  private @NotNull ComponentDetails<T> createComponentDetails(T component) {
     ComponentDetails<T> details = new ComponentDetails<>();
     details.setFieldNameComponent(createFieldNameComponent(component).orElse(null));
     details.setClassComponent(createClassComponent(component));

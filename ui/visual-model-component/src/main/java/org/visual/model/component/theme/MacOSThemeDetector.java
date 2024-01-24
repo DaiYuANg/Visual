@@ -16,10 +16,12 @@ package org.visual.model.component.theme;
 
 import com.sun.jna.Callback;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -37,7 +39,7 @@ class MacOSThemeDetector extends OsThemeDetector {
 
     private static final Logger logger = LoggerFactory.getLogger(MacOSThemeDetector.class);
 
-    private final Set<Consumer<Boolean>> listeners = new ConcurrentHashSet<>();
+    private final Set<Consumer<Boolean>> listeners = new CopyOnWriteArraySet<>();
     private final Pattern themeNamePattern = Pattern.compile(".*dark.*", Pattern.CASE_INSENSITIVE);
     private final ExecutorService callbackExecutor = Executors.newSingleThreadExecutor(DetectorThread::new);
 
@@ -79,7 +81,7 @@ class MacOSThemeDetector extends OsThemeDetector {
     @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean isDark() {
-        final NSAutoreleasePool pool = new NSAutoreleasePool();
+        val pool = new NSAutoreleasePool();
         try {
             final ID userDefaults = Foundation.invoke("NSUserDefaults", "standardUserDefaults");
             final String appleInterfaceStyle = Foundation.toStringViaUTF8(Foundation.invoke(userDefaults, "objectForKey:", Foundation.nsString("AppleInterfaceStyle")));

@@ -4,11 +4,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.visual.model.component.algebradata.ColorData;
 import org.visual.model.component.animation.AnimationGraph;
 import org.visual.model.component.animation.AnimationGraphBuilder;
 import org.visual.model.component.animation.AnimationNode;
 import org.visual.model.component.control.click.ClickEventHandler;
-import org.visual.model.component.util.algebradata.ColorData;
 
 public class ClickableCircle extends Circle {
     private EventHandler<?> handler;

@@ -1,13 +1,14 @@
 package org.visual.model.component.theme.impl;
 
 
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontSettings;
 import org.visual.model.component.font.FontUsage;
 import org.visual.model.component.theme.ThemeFontProvider;
 
 public class DarkThemeFontProvider extends ThemeFontProvider {
-    protected void defaultFont(FontSettings settings) {
+    protected void defaultFont(@NotNull FontSettings settings) {
         settings.setFamily(FontManager.FONT_NAME_NotoSansSCRegular);
     }
 

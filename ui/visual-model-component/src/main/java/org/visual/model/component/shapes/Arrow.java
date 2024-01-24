@@ -26,6 +26,7 @@ public class Arrow extends Group {
         rect.setFill(paint);
     }
 
+
     public void setScale(double ratio) {
         rect.setWidth(img.getWidth() * ratio);
         rect.setHeight(img.getHeight() * ratio);

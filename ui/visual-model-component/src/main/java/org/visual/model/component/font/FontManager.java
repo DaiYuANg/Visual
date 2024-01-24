@@ -1,6 +1,8 @@
 package org.visual.model.component.font;
 
 import java.util.function.Function;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.text.Font;
@@ -11,20 +13,21 @@ import org.visual.model.component.theme.Theme;
 public class FontManager {
     private static final FontManager instance = new FontManager();
 
+    private final ObjectProperty<Font> font = new SimpleObjectProperty<>();
+
     private FontProvider provider;
 
+    public FontManager() {
+        font.set(Font.loadFont(this.getClass().getResourceAsStream("/fonts/ttf/JetBrainsMono-Regular.ttf"), 1));
+    }
 
-//    private FontManager() {
-//        var font = Font.loadFont(getClass().getResourceAsStream("/io/vproxy/vfx/res/font/SmileySans-Oblique.otf"), 1);
-//        if (font == null) {
-//        }
-//        font = Font.loadFont(getClass().getResourceAsStream("/io/vproxy/vfx/res/font/NotoSansSC-Regular.otf"), 1);
-//        if (font == null) {
-//        }
-//        font = Font.loadFont(getClass().getResourceAsStream("/io/vproxy/vfx/res/font/JetBrainsMono-Regular.ttf"), 1);
-//        if (font == null) {
-//        }
-//    }
+    public void setFont(Font newFont) {
+        font.set(newFont);
+    }
+
+    public Font getFont() {
+        return font.get();
+    }
 
     public static final String FONT_NAME_Default = Font.getDefault().getFamily();
     public static final String FONT_NAME_NotoSansSCRegular = "Noto Sans SC Regular";

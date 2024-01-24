@@ -4,6 +4,8 @@ module org.visual.model.shared {
     requires com.google.common;
     requires it.unimi.dsi.fastutil;
     requires org.jgrapht.core;
+    requires com.github.oshi;
+    requires com.fasterxml.jackson.core;
     requires static lombok;
     requires org.jetbrains.annotations;
 

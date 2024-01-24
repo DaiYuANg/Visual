@@ -21,7 +21,10 @@ import java.lang.instrument.Instrumentation;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,11 +33,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.component.util.NodeUtil;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
 import org.visual.model.debugger.api.StageController;
 import org.visual.model.debugger.controller.*;
 import org.visual.model.debugger.details.DetailPaneType;
-import org.visual.model.debugger.helper.FXUtils;
 import org.visual.model.debugger.module.api.CSSFXEvent;
 import org.visual.model.debugger.module.api.URIToPathConverters;
 import org.visual.model.debugger.module.impl.CSSFXMonitor;
@@ -100,27 +103,23 @@ public class RuntimeAttach {
                         /**
                          * Move from finded to controllers
                          */
-                        for (int i = 0; i < finded.size(); i++) {
-                            if (finded.get(i).getID().equals(id)) {
-                                controller.add(finded.get(i));
-                                break;
-                            }
-                        }
+                        finded.stream()
+                                .filter(stageController -> stageController.getID().equals(id))
+                                .findFirst().ifPresent(controller::add);
                         getSC(id).setEventDispatcher(dispatcher);
 
-                        if (getSC(id) instanceof StageControllerImpl) {
+                        if (getSC(id) instanceof StageControllerImpl sci) {
                             // Now there is a dispatcher, we can notify existing monitored CSS
-                            StageControllerImpl sci = (StageControllerImpl) getSC(id);
 
                             Consumer<CSSFXEvent<?>> sciEventListener = sci.getCSSFXEventListener();
                             cssMonitor.allKnownStylesheets().stream().filter(t -> {
-                                Parent p = FXUtils.parentOf(t.getParent());
+                                Parent p = NodeUtil.parentOf(t.getParent());
                                 if (p == null && t.getScene() != null) {
                                     p = t.getScene().getRoot();
                                 }
 
                                 final int stageRootID = sci.getID().getStageID();
-                                final int hashCode = p.hashCode();
+                                final int hashCode = Objects.requireNonNull(p).hashCode();
                                 // TODO weakness: stages/window are identified with root of scene (that can change)
                                 return (stageRootID == hashCode);
                             }).forEach(ms -> sciEventListener.accept(CSSFXEvent.newEvent(CSSFXEvent.EventType.STYLESHEET_MONITORED, ms)));
@@ -162,14 +161,11 @@ public class RuntimeAttach {
                          */
                         if (id == null) {
                             cssMonitor.stop();
-                            for (int i = 0; i < controller.size(); i++) {
-                                controller.get(i).close();
-                            }
+                            IntStream.range(0, controller.size()).forEach(i -> controller.get(i).close());
                             controller.clear();
                         } else {
                             final StageController c = getSC(id, true);
-                            if (c instanceof StageControllerImpl) {
-                                StageControllerImpl sci = (StageControllerImpl) c;
+                            if (c instanceof StageControllerImpl sci) {
                                 cssMonitor.removeEventListener(sci.getCSSFXEventListener());
                             }
                             if (c != null) {
@@ -225,11 +221,7 @@ public class RuntimeAttach {
                 private StageController getSC(final StageID id, final boolean remove) {
                     for (int i = 0; i < controller.size(); i++) {
                         if (controller.get(i).getID().equals(id)) {
-                            if (remove) {
-                                return controller.remove(i);
-                            } else {
-                                return controller.get(i);
-                            }
+                            return remove ? controller.remove(i) : controller.get(i);
                         }
                     }
                     return null;

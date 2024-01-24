@@ -3,8 +3,10 @@ package org.visual.model.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import java.lang.management.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Factory
+@Slf4j
 public class JvmFactory {
 
     @Bean
@@ -35,5 +37,10 @@ public class JvmFactory {
     @Bean
     ThreadMXBean threadMXBean() {
         return ManagementFactory.getThreadMXBean();
+    }
+
+    @Bean
+    PlatformLoggingMXBean platformLoggingMXBean() {
+        return ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class);
     }
 }

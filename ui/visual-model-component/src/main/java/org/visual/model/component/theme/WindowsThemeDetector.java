@@ -15,13 +15,14 @@
 package org.visual.model.component.theme;
 
 import com.sun.jna.platform.win32.*;
-import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Consumer;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Determines the dark/light theme by the windows registry values through JNA.
@@ -30,18 +31,14 @@ import org.slf4j.LoggerFactory;
  * @author Daniel Gyorffy
  * @author airsquared
  */
+@Slf4j
 class WindowsThemeDetector extends OsThemeDetector {
-
-    private static final Logger logger = LoggerFactory.getLogger(WindowsThemeDetector.class);
 
     private static final String REGISTRY_PATH = "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";
     private static final String REGISTRY_VALUE = "AppsUseLightTheme";
 
-    private final Set<Consumer<Boolean>> listeners = new ConcurrentHashSet<>();
+    private final Set<Consumer<Boolean>> listeners = new CopyOnWriteArraySet<>();
     private volatile DetectorThread detectorThread;
-
-    WindowsThemeDetector() {
-    }
 
     @Override
     public boolean isDark() {
@@ -51,12 +48,11 @@ class WindowsThemeDetector extends OsThemeDetector {
 
     @SuppressWarnings("DuplicatedCode")
     @Override
-    public synchronized void registerListener(@NotNull Consumer<Boolean> darkThemeListener) {
-        Objects.requireNonNull(darkThemeListener);
-        final boolean listenerAdded = listeners.add(darkThemeListener);
-        final boolean singleListener = listenerAdded && listeners.size() == 1;
-        final DetectorThread currentDetectorThread = detectorThread;
-        final boolean threadInterrupted = currentDetectorThread != null && currentDetectorThread.isInterrupted();
+    public synchronized void registerListener(@NonNull Consumer<Boolean> darkThemeListener) {
+        val listenerAdded = listeners.add(darkThemeListener);
+        val singleListener = listenerAdded && listeners.size() == 1;
+        val currentDetectorThread = detectorThread;
+        val threadInterrupted = currentDetectorThread != null && currentDetectorThread.isInterrupted();
 
         if (singleListener || threadInterrupted) {
             final DetectorThread newDetectorThread = new DetectorThread(this);
@@ -83,7 +79,7 @@ class WindowsThemeDetector extends OsThemeDetector {
 
         private boolean lastValue;
 
-        DetectorThread(WindowsThemeDetector themeDetector) {
+        DetectorThread(@NotNull WindowsThemeDetector themeDetector) {
             this.themeDetector = themeDetector;
             this.lastValue = themeDetector.isDark();
             this.setName("Windows 10 Theme Detector Thread");
@@ -93,7 +89,7 @@ class WindowsThemeDetector extends OsThemeDetector {
 
         @Override
         public void run() {
-            WinReg.HKEYByReference hkey = new WinReg.HKEYByReference();
+            val hkey = new WinReg.HKEYByReference();
             int err = Advapi32.INSTANCE.RegOpenKeyEx(WinReg.HKEY_CURRENT_USER, REGISTRY_PATH, 0, WinNT.KEY_READ, hkey);
             if (err != W32Errors.ERROR_SUCCESS) {
                 throw new Win32Exception(err);
@@ -108,14 +104,8 @@ class WindowsThemeDetector extends OsThemeDetector {
                 boolean currentDetection = themeDetector.isDark();
                 if (currentDetection != this.lastValue) {
                     lastValue = currentDetection;
-                    logger.debug("Theme change detected: dark: {}", currentDetection);
-                    for (Consumer<Boolean> listener : themeDetector.listeners) {
-                        try {
-                            listener.accept(currentDetection);
-                        } catch (RuntimeException e) {
-                            logger.error("Caught exception during listener notifying ", e);
-                        }
-                    }
+                    log.debug("Theme change detected: dark: {}", currentDetection);
+                    themeDetector.listeners.forEach(listener -> listener.accept(currentDetection));
                 }
             }
             Advapi32Util.registryCloseKey(hkey.getValue());

@@ -32,18 +32,26 @@ module org.visual.model.ui {
     exports org.visual.model.component.title;
     exports org.visual.model.component.window;
     exports org.visual.model.component.layout;
-    exports org.visual.model.component.widget;
     exports org.visual.model.component.control;
+    exports org.visual.model.component.control.click;
+    exports org.visual.model.component.control.button;
+    exports org.visual.model.component.control.dialog;
+    exports org.visual.model.component.control.drag;
+    exports org.visual.model.component.control.scroll;
+    exports org.visual.model.component.control.globalscreen;
     exports org.visual.model.component.util;
     exports org.visual.model.component.theme;
+    exports org.visual.model.component.container;
+    exports org.visual.model.component.widget;
+    exports org.visual.model.component.animation;
+    exports org.visual.model.component.api;
+    exports org.visual.model.component.display;
+    exports org.visual.model.component.wrapper;
 
     opens org.visual.model.component.theme to com.sun.jna;
     opens org.visual.model.component.title to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.window to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.layout to javafx.graphics, javafx.fxml;
-    opens org.visual.model.component.widget to javafx.graphics, javafx.fxml;
     opens org.visual.model.component.control to javafx.graphics, javafx.fxml;
-    exports org.visual.model.component.base;
-    exports org.visual.model.component;
-    opens org.visual.model.component to javafx.fxml, javafx.graphics;
+    opens org.visual.model.component.container to javafx.fxml, javafx.graphics;
 }

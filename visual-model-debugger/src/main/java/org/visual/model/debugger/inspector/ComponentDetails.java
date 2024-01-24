@@ -1,14 +1,27 @@
 package org.visual.model.debugger.inspector;
 
 import java.util.Optional;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode
 public class ComponentDetails<T> {
 
+    @Setter
     private T fieldNameComponent = null;
+    @Getter
+    @Setter
     private T classComponent;
+    @Setter
+    @Getter
     private T stylesComponent;
 
+    @Getter
     private int locationX;
+    @Getter
     private int locationY;
 
 
@@ -17,35 +30,7 @@ public class ComponentDetails<T> {
         this.locationY = y;
     }
 
-    public int getLocationX() {
-        return locationX;
-    }
-
-    public int getLocationY() {
-        return locationY;
-    }
-
-    public void setFieldNameComponent(T fieldNameComponent) {
-        this.fieldNameComponent = fieldNameComponent;
-    }
-
     public Optional<T> getFieldNameComponent() {
         return Optional.ofNullable(fieldNameComponent);
-    }
-
-    public void setClassComponent(T classComponent) {
-        this.classComponent = classComponent;
-    }
-
-    public T getClassComponent() {
-        return classComponent;
-    }
-
-    public T getStylesComponent() {
-        return stylesComponent;
-    }
-
-    public void setStylesComponent(T stylesComponent) {
-        this.stylesComponent = stylesComponent;
     }
 }

@@ -18,7 +18,6 @@
 package org.visual.model.debugger.model;
 
 import io.avaje.inject.PreDestroy;
-
 import java.util.*;
 import java.util.prefs.Preferences;
 import javafx.scene.control.*;

@@ -2,10 +2,12 @@ package org.visual.model.component.shapes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
-import org.visual.model.component.entity.Point;
+import org.jetbrains.annotations.NotNull;
+import org.visual.model.component.pojo.Point;
 
 public class BrokenLine {
     private final List<VLine> lines = new ArrayList<>();
@@ -15,7 +17,7 @@ public class BrokenLine {
         this(width, makePoints(points));
     }
 
-    private static List<Point> makePoints(double[] points) {
+    private static @NotNull List<Point> makePoints(double @NotNull [] points) {
         if (points.length % 2 != 0) {
             throw new IllegalArgumentException("points length must be an even number");
         }
@@ -32,21 +34,19 @@ public class BrokenLine {
         return ret;
     }
 
-    public BrokenLine(double width, List<Point> points) {
+    public BrokenLine(double width, @NotNull List<Point> points) {
         if (points.size() < 2) {
             throw new IllegalArgumentException("too few points to make a line");
         }
-        for (int i = 1; i < points.size(); i++) {
+        IntStream.range(1, points.size()).forEach(i -> {
             var current = points.get(i);
             var previous = points.get(i - 1);
-
             var line = new VLine(width);
             lines.add(line);
             group.getChildren().add(line);
-
             line.setStart(previous.x, previous.y);
             line.setEnd(current.x, current.y);
-        }
+        });
     }
 
     public void setStartStyle(EndpointStyle style) {
@@ -58,9 +58,7 @@ public class BrokenLine {
     }
 
     public void setStroke(Color color) {
-        for (var l : lines) {
-            l.setStroke(color);
-        }
+        lines.forEach(l -> l.setStroke(color));
     }
 
     public Node getNode() {

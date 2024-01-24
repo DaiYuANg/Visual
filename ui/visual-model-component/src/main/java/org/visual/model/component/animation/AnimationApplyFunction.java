@@ -1,6 +1,6 @@
 package org.visual.model.component.animation;
 
-import org.visual.model.component.util.algebradata.AlgebraData;
+import org.visual.model.component.algebradata.AlgebraData;
 
 @FunctionalInterface
 public interface AnimationApplyFunction<T extends AlgebraData<T>> {

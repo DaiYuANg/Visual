@@ -5,7 +5,7 @@ import static org.visual.model.shared.Platform.platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import org.visual.model.component.CommonTitleBar;
+import org.visual.model.component.display.CommonTitleBar;
 
 
 public class SystemTitleBar extends HBox {

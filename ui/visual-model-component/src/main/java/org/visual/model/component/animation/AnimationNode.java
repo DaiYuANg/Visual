@@ -1,8 +1,8 @@
 package org.visual.model.component.animation;
 
 
+import org.visual.model.component.algebradata.AlgebraData;
 import org.visual.model.component.graph.GraphNode;
-import org.visual.model.component.util.algebradata.AlgebraData;
 
 public class AnimationNode<T extends AlgebraData<T>> extends GraphNode<AnimationNode<T>> {
     public final String name;

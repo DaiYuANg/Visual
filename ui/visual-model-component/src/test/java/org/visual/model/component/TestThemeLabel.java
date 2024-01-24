@@ -13,15 +13,16 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.visual.model.component.wrapper.ThemeLabel;
+import org.visual.model.component.display.ThemeLabel;
 
 @Slf4j
+@ExtendWith(ApplicationExtension.class)
 public class TestThemeLabel extends ApplicationTest {
 
-    private final Supplier<ThemeLabel> themeLabel = ()->{
-        return new ThemeLabel("test");
-    };
+    private final Supplier<ThemeLabel> themeLabel = ()-> new ThemeLabel("test");
 
     @Override
     public void start(@NotNull Stage stage) {

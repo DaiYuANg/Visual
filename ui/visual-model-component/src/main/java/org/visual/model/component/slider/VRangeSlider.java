@@ -9,17 +9,17 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
+import org.visual.model.component.algebradata.DoubleData;
 import org.visual.model.component.animation.AnimationGraph;
 import org.visual.model.component.animation.AnimationGraphBuilder;
 import org.visual.model.component.animation.AnimationNode;
 import org.visual.model.component.control.drag.DragHandler;
+import org.visual.model.component.display.ThemeLabel;
 import org.visual.model.component.shapes.ClickableCircle;
 import org.visual.model.component.shapes.VLine;
 import org.visual.model.component.theme.Theme;
 import org.visual.model.component.util.FXUtils;
 import org.visual.model.component.util.MiscUtils;
-import org.visual.model.component.util.algebradata.DoubleData;
-import org.visual.model.component.wrapper.ThemeLabel;
 
 public class VRangeSlider extends Pane {
     private static final double lineRadius = 1;

@@ -5,10 +5,12 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.component.control.drag.DragHandler;
-import org.visual.model.component.entity.Point;
 import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontUsages;
+import org.visual.model.component.pojo.Point;
 import org.visual.model.component.util.FXUtils;
 
 public class MovablePoint extends Group {
@@ -36,8 +38,9 @@ public class MovablePoint extends Group {
                 setLayoutY(y);
             }
 
+            @Contract(" -> new")
             @Override
-            protected double[] get() {
+            protected double @NotNull [] get() {
                 return new double[]{getLayoutX(), getLayoutY()};
             }
         };
@@ -56,7 +59,7 @@ public class MovablePoint extends Group {
         return point;
     }
 
-    public void from(Point point) {
+    public void from(@NotNull Point point) {
         setX(point.x);
         setY(point.y);
     }

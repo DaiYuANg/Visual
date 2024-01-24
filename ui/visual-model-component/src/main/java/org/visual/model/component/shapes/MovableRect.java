@@ -6,9 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import org.visual.model.component.control.drag.DragHandler;
-import org.visual.model.component.entity.Rect;
 import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontUsages;
+import org.visual.model.component.pojo.Rect;
 
 public class MovableRect extends Group {
     private final Rectangle rect;

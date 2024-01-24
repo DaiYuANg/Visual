@@ -2,7 +2,7 @@ package org.visual.model.component.control.dialog;
 
 import java.util.function.Supplier;
 import lombok.Getter;
-import org.visual.model.component.button.FusionButton;
+import org.visual.model.component.control.button.FusionButton;
 
 public class VDialogButton<T> {
     public final String name;
