@@ -24,6 +24,8 @@ module org.visual.model.debugger {
     requires kotlin.stdlib;
     requires org.slf4j.jdk.platform.logging;
     requires org.fxmisc.flowless;
+    requires io.github.classgraph;
+    requires net.bytebuddy;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;
     opens org.visual.model.debugger.view.threedom to javafx.fxml;

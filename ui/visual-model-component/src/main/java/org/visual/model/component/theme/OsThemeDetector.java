@@ -30,7 +30,6 @@ import org.visual.model.shared.Platform;
 @Slf4j
 public abstract class OsThemeDetector {
 
-
     private static volatile OsThemeDetector osThemeDetector;
 
     @NotNull public static OsThemeDetector getDetector() {

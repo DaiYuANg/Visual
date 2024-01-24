@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.kordamp.ikonli.devicons.Devicons;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.model.debugger.api.ContextMenuContainer;
-import org.visual.model.debugger.core.DebuggerContext;
+import org.visual.model.debugger.context.DebuggerContext;
 import org.visual.model.debugger.node.SVNode;
 import org.visual.model.debugger.view.DisplayUtils;
 import org.visual.model.debugger.view.ScenicViewGui;

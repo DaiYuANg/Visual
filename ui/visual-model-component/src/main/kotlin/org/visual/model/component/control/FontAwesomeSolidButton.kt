@@ -6,7 +6,9 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.control.Button
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid
 import org.kordamp.ikonli.javafx.FontIcon
+import org.visual.model.component.annotation.FxComponent
 
+@FxComponent
 class FontAwesomeSolidButton
 @JvmOverloads
 constructor(

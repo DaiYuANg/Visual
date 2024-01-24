@@ -2,7 +2,9 @@ package org.visual.model.component.shape
 
 import javafx.scene.shape.Polygon
 import javafx.scene.transform.Scale
+import org.visual.model.component.annotation.FxComponent
 
+@FxComponent
 class Arrow {
 
   private val arrow by lazy { createArrow() }

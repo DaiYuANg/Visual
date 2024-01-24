@@ -22,6 +22,7 @@ import static org.visual.model.shared.Platform.platform;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serial;
@@ -35,6 +36,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.api.FXConnectorEventDispatcher;
@@ -74,9 +76,7 @@ class RemoteConnectorImpl extends UnicastRemoteObject implements RemoteConnector
             javafx.application.Platform.runLater(() -> {
                 synchronized (previous) {
                     if (!previous.isEmpty()) {
-                        for (int i = 0; i < previous.size(); i++) {
-                            dispatcher.dispatchEvent(previous.get(i));
-                        }
+                        previous.forEach(fxConnectorEvent -> dispatcher.dispatchEvent(fxConnectorEvent));
                         previous.clear();
                     }
                 }

@@ -1,3 +1,5 @@
+import CommonPluginExtension.Companion.convertToCamelCase
+
 plugins {
     alias(libs.plugins.javafx)
     application
@@ -7,6 +9,7 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.9.28"
     `kotlin-project`
 }
+apply<CommonPlugin>()
 
 val commonJvmArgs =
     listOf(
@@ -87,7 +90,7 @@ jlink {
     enableCds()
     launcher {
         noConsole = true
-        name = "visual-model"
+        name = convertToCamelCase(project.name)
         jvmArgs = commonJvmArgs
     }
     imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))

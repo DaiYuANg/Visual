@@ -88,6 +88,10 @@ subprojects {
     }
     tasks.test {
         useJUnitPlatform()
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+        forkEvery = 100
+        reports.html.required = false
+        reports.junitXml.required = false
     }
     java {
         sourceCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())

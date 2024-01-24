@@ -29,7 +29,6 @@ module org.visual.model.ui {
     requires javafx.media;
     requires javafx.swing;
     requires org.visual.model.component.annotation;
-    requires com.google.auto.service;
 
     exports org.visual.model.component.title;
     exports org.visual.model.component.window;

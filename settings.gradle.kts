@@ -8,7 +8,7 @@ pluginManagement {
     }
 
     plugins {
-    id("com.gradle.enterprise") version "3.13.4"
+        id("com.gradle.enterprise") version "3.13.4"
 //    id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
 //    id("org.javamodularity.moduleplugin") version modulepluginVersion
 //    id("org.openjfx.javafxplugin") version javafxPluginVersion
@@ -22,7 +22,7 @@ pluginManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 plugins {
-  id("com.gradle.enterprise")
+    id("com.gradle.enterprise")
 //  id("org.danilopianini.gradle-pre-commit-git-hooks")
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
@@ -35,10 +35,10 @@ buildCache {
 }
 
 gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-  }
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
 }
 
 rootProject.name = "visual-model"
@@ -55,6 +55,3 @@ include("visual-model-serialization")
 include("libs:event")
 include("libs:fonts")
 include("ui:visual-model-component-annotation")
-findProject(":ui:visual-model-component-annotation")?.name = "visual-model-component-annotation"
-include("ui:visual-model-component-preview")
-findProject(":ui:visual-model-component-preview")?.name = "visual-model-component-preview"

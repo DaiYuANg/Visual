@@ -22,3 +22,7 @@ tasks.compileJava {
             listOf("--patch-module", "$group=${sourceSets["main"].output.asPath}")
         })
 }
+
+kotlin{
+    jvmToolchain(21)
+}

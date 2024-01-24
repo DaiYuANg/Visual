@@ -45,9 +45,6 @@ public class AttachHandlerFactory {
     private static Properties properties;
     private static AttachHandler attachHandler;
 
-    private AttachHandlerFactory() {
-        // no-op
-    }
 
     public static void initAttachAPI(final Stage stage) {
         val vms = VirtualMachine.list();

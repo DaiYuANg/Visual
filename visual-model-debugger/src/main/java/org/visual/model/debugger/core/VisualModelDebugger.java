@@ -35,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.model.component.theme.OsThemeDetector;
 import org.visual.model.component.util.ScreenUtil;
 import org.visual.model.debugger.api.AppController;
+import org.visual.model.debugger.context.DebuggerContext;
 import org.visual.model.debugger.controller.AppControllerImpl;
 import org.visual.model.debugger.controller.StageControllerImpl;
 import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
