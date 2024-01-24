@@ -3,7 +3,7 @@ plugins {
   `java-library`
   id("io.miret.etienne.sass") version ("1.5.0")
   `kotlin-project`
-  //    kotlin("jvm")
+  kotlin("kapt")
 }
 
 group = "org.visual.model.ui"
@@ -43,6 +43,10 @@ dependencies {
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
   api("com.github.kwhat:jnativehook:2.2.2")
+  implementation(projects.ui.visualModelComponentAnnotation)
+  implementation(libs.autoService)
+  annotationProcessor(libs.autoService)
+  kapt(libs.autoService)
 }
 
 tasks.compileSass {
@@ -62,3 +66,5 @@ tasks.jar {
   dependsOn(tasks.compileSass)
   from(tasks.compileSass.get().outputDir) { into("/") }
 }
+
+kapt { keepJavacAnnotationProcessors = true }

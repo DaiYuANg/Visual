@@ -22,6 +22,7 @@ module org.visual.model.debugger {
     requires java.prefs;
     requires it.unimi.dsi.fastutil;
     requires kotlin.stdlib;
+    requires org.slf4j.jdk.platform.logging;
     requires org.fxmisc.flowless;
 
     opens org.visual.model.debugger.view.cssfx to javafx.fxml;

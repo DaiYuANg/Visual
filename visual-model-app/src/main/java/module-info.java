@@ -34,6 +34,7 @@ module org.visual.model.app {
     requires io.avaje.validation.contraints;
     requires it.unimi.dsi.fastutil;
     requires org.apache.groovy;
+    requires org.slf4j.jdk.platform.logging;
 
     opens org.visual.model.app.controller to
             javafx.fxml;

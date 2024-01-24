@@ -54,4 +54,7 @@ include("libs:jfa")
 include("visual-model-serialization")
 include("libs:event")
 include("libs:fonts")
-findProject(":libs:fonts")?.name = "fonts"
+include("ui:visual-model-component-annotation")
+findProject(":ui:visual-model-component-annotation")?.name = "visual-model-component-annotation"
+include("ui:visual-model-component-preview")
+findProject(":ui:visual-model-component-preview")?.name = "visual-model-component-preview"
