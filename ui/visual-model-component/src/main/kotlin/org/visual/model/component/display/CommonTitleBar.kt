@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox
 import javafx.stage.Stage
 import org.visual.model.component.title.TitleBar
 import org.visual.model.component.util.ScreenUtil
-import org.visual.model.shared.Platform
+import org.visual.model.shared.OS
 
 abstract class CommonTitleBar : HBox(), TitleBar {
   private val xOffset = SimpleDoubleProperty(0.0)
@@ -44,7 +44,7 @@ abstract class CommonTitleBar : HBox(), TitleBar {
   }
 
   override fun close() {
-    if (Platform.platform == Platform.MAC) {
+    if (OS.OS == OS.MAC) {
       stage.get().isIconified = true
       return
     }

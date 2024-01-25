@@ -17,6 +17,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.model.component.control.dialog.StackTraceAlert;
 import org.visual.model.component.manager.internal_i18n.InternalI18n;
+import org.visual.model.shared.OS;
 
 @Slf4j
 public class GlobalScreenUtils {
@@ -31,9 +32,9 @@ public class GlobalScreenUtils {
     public static void releaseJNativeHookNativeToLibraryPath(InputStream inputStream,
                                                              Function<Stream<File>, Optional<File>> selectFunc) throws IOException {
         String suffix;
-        if (org.visual.model.shared.Platform.platform == org.visual.model.shared.Platform.WINDOWS) {
+        if (OS.OS == OS.WINDOWS) {
             suffix = ".dll";
-        } else if (org.visual.model.shared.Platform.platform == org.visual.model.shared.Platform.MAC) {
+        } else if (OS.OS == OS.MAC) {
             suffix = ".dylib";
         } else {
             suffix = ".so";

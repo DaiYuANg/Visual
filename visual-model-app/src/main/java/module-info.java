@@ -43,6 +43,7 @@ module org.visual.model.app {
     exports org.visual.model.app.controller to
             javafx.fxml,
             javafx.graphics;
+    exports org.visual.model.app;
 
     provides io.avaje.inject.spi.Module with
             org.visual.model.app.AppModule;

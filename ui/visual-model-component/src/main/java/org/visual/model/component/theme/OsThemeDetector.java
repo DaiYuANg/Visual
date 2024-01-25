@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.visual.model.shared.Platform;
+import org.visual.model.shared.OS;
 
 /**
  * For detecting the theme (dark/light) used by the Operating System.
@@ -51,17 +51,17 @@ public abstract class OsThemeDetector {
 
     @Contract(" -> new")
     private static @NotNull OsThemeDetector createDetector() {
-        if (Platform.isWindows10OrLater()) {
+        if (OS.isWindows10OrLater()) {
             logDetection("Windows 10", WindowsThemeDetector.class);
             return new WindowsThemeDetector();
-        } else if (Platform.isGnome()) {
+        } else if (OS.isGnome()) {
             logDetection("Gnome", GnomeThemeDetector.class);
             return new GnomeThemeDetector();
-        } else if (Platform.isMacOsMojaveOrLater()) {
+        } else if (OS.isMacOsMojaveOrLater()) {
             logDetection("MacOS", MacOSThemeDetector.class);
             return new MacOSThemeDetector();
         } else {
-            log.warn("Theme detection is not supported on the system: {} {}", Platform.family, Platform.version);
+            log.warn("Theme detection is not supported on the system: {} {}", OS.family, OS.version);
             log.warn("Creating empty detector...");
             return new EmptyDetector();
         }
@@ -93,7 +93,7 @@ public abstract class OsThemeDetector {
     public abstract void removeListener(@Nullable Consumer<Boolean> darkThemeListener);
 
     public static boolean isSupported() {
-        return Platform.isWindows10OrLater() || Platform.isMacOsMojaveOrLater() || Platform.isGnome();
+        return OS.isWindows10OrLater() || OS.isMacOsMojaveOrLater() || OS.isGnome();
     }
 
     private static final class EmptyDetector extends OsThemeDetector {

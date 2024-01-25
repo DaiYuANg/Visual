@@ -17,7 +17,7 @@
  */
 package org.visual.model.debugger.remote;
 
-import static org.visual.model.shared.Platform.platform;
+import static org.visual.model.shared.OS.OS;
 
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
@@ -45,7 +45,6 @@ import org.visual.model.debugger.controller.*;
 import org.visual.model.debugger.details.DetailPaneType;
 import org.visual.model.debugger.event.FXConnectorEvent;
 import org.visual.model.debugger.node.SVNode;
-import org.visual.model.shared.Platform;
 
 @Slf4j
 class RemoteConnectorImpl extends UnicastRemoteObject implements RemoteConnector, FXConnector {
@@ -317,7 +316,7 @@ class RemoteConnectorImpl extends UnicastRemoteObject implements RemoteConnector
         /**
          * MAC Seems to be slower using attach API
          */
-        final long timeout = platform == Platform.MAC ? 30000 : 10000;
+        final long timeout = OS == OS.MAC ? 30000 : 10000;
         while (count.get() != 0 && System.currentTimeMillis() - initial < timeout) {
             try {
                 Thread.sleep(50);

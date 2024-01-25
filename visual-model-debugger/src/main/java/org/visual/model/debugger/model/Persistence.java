@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.core.VisualModelDebugger;
+import org.visual.model.debugger.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
 
 

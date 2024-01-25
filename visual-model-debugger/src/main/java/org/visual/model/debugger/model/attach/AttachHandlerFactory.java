@@ -18,7 +18,7 @@
 package org.visual.model.debugger.model.attach;
 
 
-import static org.visual.model.shared.Platform.platform;
+import static org.visual.model.shared.OS.OS;
 
 import com.sun.tools.attach.VirtualMachine;
 import java.io.File;
@@ -157,7 +157,7 @@ public class AttachHandlerFactory {
         if (attachHandler != null) {
             return attachHandler;
         }
-        switch (platform) {
+        switch (OS) {
             case WINDOWS -> attachHandler = new WindowsAttachHandler();
             case MAC -> attachHandler = new MacAttachHandler();
             case LINUX -> attachHandler = new LinuxAttachHandler();

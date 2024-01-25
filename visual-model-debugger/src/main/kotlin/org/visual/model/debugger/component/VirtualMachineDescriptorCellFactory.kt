@@ -1,6 +1,7 @@
 package org.visual.model.debugger.component
 
 import com.sun.tools.attach.VirtualMachineDescriptor
+import javafx.beans.value.ChangeListener
 import javafx.geometry.Pos
 import javafx.scene.control.Label
 import javafx.scene.control.ListCell
@@ -25,17 +26,21 @@ class VirtualMachineDescriptorCellFactory :
             override fun updateItem(virtualMachineDescriptor: VirtualMachineDescriptor?, empty: Boolean) {
                 super.updateItem(virtualMachineDescriptor, empty)
                 createCell(empty, virtualMachineDescriptor)
+                widthProperty().addListener { _, _, n ->
+                    run {
+                        if (graphic != null) {
+                            graphic.prefWidth(n.toDouble())
+                        }
+                    }
+                }
             }
         }
     }
 
     private fun ListCell<VirtualMachineDescriptor>.createCell(
         empty: Boolean,
-        virtualMachineDescriptor: VirtualMachineDescriptor?
+        virtualMachineDescriptor: VirtualMachineDescriptor?,
     ) {
-//        setOnMouseClicked {
-//            System.err.println(item)
-//        }
         if (!empty && virtualMachineDescriptor != null) {
             graphic = buildItem(virtualMachineDescriptor.displayName(), virtualMachineDescriptor.id())
             tooltip = Tooltip(virtualMachineDescriptor.displayName()).apply {
@@ -45,6 +50,7 @@ class VirtualMachineDescriptorCellFactory :
     }
 
     private fun buildItem(labelText: String, id: String): VBox {
+
         val text =
             if (labelText.length > maxTextLength) labelText.substring(0, maxTextLength - 1) + "..." else labelText
         val root = VBox()

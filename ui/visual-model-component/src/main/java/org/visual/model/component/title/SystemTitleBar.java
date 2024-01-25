@@ -1,6 +1,6 @@
 package org.visual.model.component.title;
 
-import static org.visual.model.shared.Platform.platform;
+import static org.visual.model.shared.OS.OS;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -10,7 +10,7 @@ import org.visual.model.component.display.CommonTitleBar;
 
 public class SystemTitleBar extends HBox {
     {
-        CommonTitleBar titleBar = switch (platform) {
+        CommonTitleBar titleBar = switch (OS) {
             case MAC -> new MacOSTitleBar();
             case LINUX -> new LinuxTitleBar();
             case WINDOWS -> new WindowsTitleBar();

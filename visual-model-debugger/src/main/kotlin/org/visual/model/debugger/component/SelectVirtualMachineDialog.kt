@@ -22,15 +22,15 @@ class SelectVirtualMachineDialog(
     }
 
     init {
-        initModality(Modality.WINDOW_MODAL)
+//        initModality(Modality.WINDOW_MODAL)
         dialogPane.padding = Insets(0.0, 0.0, 0.0, 0.0)
+        isResizable = true
         ScreenUtil.percentOfScreen(0.4).let {
             dialogPane.prefWidth = it.left
             dialogPane.prefHeight = it.right
         }
-        setOnShown {
-            val vms = VirtualMachine.list().toList()
-            virtualMachineList.items.addAll(vms)
+        setOnShowing {
+            virtualMachineList.items.addAll(VirtualMachine.list())
             dialogPane.content = virtualMachineList
         }
     }

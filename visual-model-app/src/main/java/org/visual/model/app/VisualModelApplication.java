@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.visual.model.app.core;
+package org.visual.model.app;
 
 import javafx.application.Application;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.app.command.OpenCommand;
+import org.visual.model.app.core.VisualModelUI;
 import org.visual.model.app.handle.GlobalExceptionHandler;
 import picocli.CommandLine;
 

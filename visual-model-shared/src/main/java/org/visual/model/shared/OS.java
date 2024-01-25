@@ -1,6 +1,5 @@
 package org.visual.model.shared;
 
-import com.fasterxml.jackson.core.Version;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.ToString;
@@ -16,7 +15,7 @@ import java.io.InputStreamReader;
 
 @Getter
 @ToString
-public enum Platform {
+public enum OS {
     MAC,
 
     WINDOWS,
@@ -25,7 +24,7 @@ public enum Platform {
 
     UNKNOWN;
 
-    public static final Platform platform = currentPlatform();
+    public static final OS OS = currentPlatform();
 
     public static final int cpuCore = Runtime.getRuntime().availableProcessors();
 
@@ -35,14 +34,14 @@ public enum Platform {
 
     public static final String family = sysInfo.getOperatingSystem().getFamily();
 
-    private static Platform currentPlatform() {
-        if (SystemUtils.IS_OS_MAC) return Platform.MAC;
+    private static OS currentPlatform() {
+        if (SystemUtils.IS_OS_MAC) return MAC;
 
-        if (SystemUtils.IS_OS_LINUX) return Platform.LINUX;
+        if (SystemUtils.IS_OS_LINUX) return LINUX;
 
-        if (SystemUtils.IS_OS_WINDOWS) return Platform.WINDOWS;
+        if (SystemUtils.IS_OS_WINDOWS) return WINDOWS;
 
-        return Platform.UNKNOWN;
+        return UNKNOWN;
     }
 
     public static boolean isWindows10OrLater() {

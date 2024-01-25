@@ -17,9 +17,10 @@ val commonJvmArgs =
         "-XX:+ZGenerational",
         "-XX:+UseCompressedClassPointers",
         "-verbose:gc",
+        "-XX:+UseLargePages",
         "-XX:+UseStringDeduplication",
         "-XX:+OptimizeStringConcat",
-        "-XX:+PrintGCDetails",
+        "-Xlog:gc*",
         "-XX:+UseCompressedOops",
         "-Xnoclassgc",
         "-XX:MaxInlineLevel=32",
@@ -32,7 +33,7 @@ val commonJvmArgs =
 
 group = "org.visual.model.app"
 
-val mainClassPath = "${group}.core.VisualModelApplication"
+val mainClassPath = "${group}.VisualModelApplication"
 
 val mainModule = group
 

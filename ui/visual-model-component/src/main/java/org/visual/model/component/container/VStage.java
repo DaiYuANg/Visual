@@ -25,7 +25,7 @@ import org.visual.model.component.font.FontManager;
 import org.visual.model.component.font.FontUsages;
 import org.visual.model.component.theme.Theme;
 import org.visual.model.component.util.FXUtils;
-import org.visual.model.shared.Platform;
+import org.visual.model.shared.OS;
 
 public class VStage {
     public static final int TITLE_BAR_HEIGHT = 28;
@@ -264,7 +264,7 @@ public class VStage {
     }
 
     private boolean supportsIconify() {
-        if (Platform.platform == Platform.MAC) {
+        if (OS.OS == OS.MAC) {
             return true;
         }
         var pattern = Pattern.compile("^(\\d+)(.*)$");
@@ -304,7 +304,7 @@ public class VStage {
         this.maximized = maximized;
         maxResetButton.updateImage();
 
-        if (Platform.platform == Platform.MAC) {
+        if (OS.OS == OS.MAC) {
             if (maximized) {
                 stageOriginalX = stage.getX();
                 stageOriginalY = stage.getY();

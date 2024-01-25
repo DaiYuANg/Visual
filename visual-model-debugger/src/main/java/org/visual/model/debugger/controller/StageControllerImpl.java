@@ -289,8 +289,6 @@ public class StageControllerImpl implements StageController {
         details = new AllDetails(model2gui, getID());
         setTarget(target);
         update();
-
-
     }
 
     @Override

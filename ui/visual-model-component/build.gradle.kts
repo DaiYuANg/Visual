@@ -42,6 +42,7 @@ dependencies {
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
   api("com.github.kwhat:jnativehook:2.2.2")
+  implementation("org.fxmisc.richtext:richtextfx:0.11.2")
   implementation(projects.ui.visualModelComponentAnnotation)
 }
 

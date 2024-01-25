@@ -8,6 +8,7 @@ module org.visual.model.shared {
     requires com.fasterxml.jackson.core;
     requires static lombok;
     requires org.jetbrains.annotations;
+    requires org.mapstruct;
 
     exports org.visual.model.shared;
     exports org.visual.model.shared.pojo;

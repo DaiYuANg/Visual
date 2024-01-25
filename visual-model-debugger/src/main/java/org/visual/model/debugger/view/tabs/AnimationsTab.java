@@ -80,15 +80,12 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
 
         vbox.getChildren().clear();
 
-        for (final Iterator<Integer> iterator = appsAnimations.keySet().iterator(); iterator.hasNext(); ) {
-            final Integer app = iterator.next();
+        appsAnimations.keySet().forEach(app -> {
             final TitledPane pane = new TitledPane();
             pane.setPrefHeight(vbox.getHeight() / appsAnimations.size());
             pane.setText("Animations for VM - " + app);
-
             final List<SVAnimation> animationsApp = appsAnimations.get(app);
             vbox.getChildren().add(pane);
-
             final VBox box = new VBox();
             box.prefWidthProperty().bind(pane.widthProperty());
             final ObservableList<SVAnimation> animationsItems = FXCollections.observableArrayList();
@@ -97,20 +94,19 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
             table.setEditable(false);
             table.getStyleClass().add("animations-table-view");
             final TableColumn<SVAnimation, String> sourceCol = new TableColumn<>("Animation ID");
-            sourceCol.setCellValueFactory(new PropertyValueFactory<SVAnimation, String>("toString"));
+            sourceCol.setCellValueFactory(new PropertyValueFactory<>("toString"));
             sourceCol.prefWidthProperty().bind(vbox.widthProperty().multiply(0.40));
             final TableColumn<SVAnimation, String> rateCol = new TableColumn<>("Rate");
-            rateCol.setCellValueFactory(new PropertyValueFactory<SVAnimation, String>("rate"));
+            rateCol.setCellValueFactory(new PropertyValueFactory<>("rate"));
             rateCol.prefWidthProperty().bind(vbox.widthProperty().multiply(0.1));
             final TableColumn<SVAnimation, String> cycleCountCol = new TableColumn<>("Cycle count");
             cycleCountCol.prefWidthProperty().bind(vbox.widthProperty().multiply(0.2));
-
-            cycleCountCol.setCellValueFactory(new PropertyValueFactory<SVAnimation, String>("cycleCount"));
+            cycleCountCol.setCellValueFactory(new PropertyValueFactory<>("cycleCount"));
             final TableColumn<SVAnimation, String> currentTimeCol = new TableColumn<>("Current time");
-            currentTimeCol.setCellValueFactory(new PropertyValueFactory<SVAnimation, String>("currentTime"));
+            currentTimeCol.setCellValueFactory(new PropertyValueFactory<>("currentTime"));
             currentTimeCol.prefWidthProperty().bind(vbox.widthProperty().multiply(0.20));
             final TableColumn<SVAnimation, Integer> pauseCol = new TableColumn<>("");
-            pauseCol.setCellValueFactory(new PropertyValueFactory<SVAnimation, Integer>("id"));
+            pauseCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             pauseCol.setCellFactory(arg0 -> {
                 final TableCell<SVAnimation, Integer> cell = new TableCell<>() {
                     @Override
@@ -128,7 +124,6 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
             });
             pauseCol.setPrefWidth(7);
             pauseCol.setResizable(false);
-
             table.getColumns().addAll(sourceCol, rateCol, cycleCountCol, currentTimeCol, pauseCol);
             table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             table.setItems(animationsItems);
@@ -137,7 +132,7 @@ public class AnimationsTab extends Tab implements ContextMenuContainer {
             VBox.setMargin(table, new Insets(5, 5, 5, 5));
             VBox.setVgrow(table, Priority.ALWAYS);
             pane.setContent(box);
-        }
+        });
 
     }
 

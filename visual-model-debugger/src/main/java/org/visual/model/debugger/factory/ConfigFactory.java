@@ -14,7 +14,7 @@ import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.core.VisualModelDebugger;
+import org.visual.model.debugger.VisualModelDebugger;
 import org.visual.model.shared.pojo.JavaFxProperty;
 
 @Factory

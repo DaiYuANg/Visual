@@ -15,13 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.visual.model.debugger.core;
+package org.visual.model.debugger;
 
-import atlantafx.base.theme.PrimerDark;
-import atlantafx.base.theme.PrimerLight;
-import java.lang.instrument.Instrumentation;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -32,8 +27,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.component.theme.OsThemeDetector;
-import org.visual.model.component.util.ScreenUtil;
 import org.visual.model.debugger.api.AppController;
 import org.visual.model.debugger.context.DebuggerContext;
 import org.visual.model.debugger.controller.AppControllerImpl;
@@ -45,6 +38,10 @@ import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.model.debugger.remote.FXConnectorFactory;
 import org.visual.model.debugger.view.ScenicViewGui;
 
+import java.lang.instrument.Instrumentation;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This is the entry point for all different versions of Scenic View.
  */
@@ -53,16 +50,12 @@ public class VisualModelDebugger extends Application {
 
     public static final String JDK_PATH_KEY = "jdkPath";
 
+    private final Stage rootStage = DebuggerContext.INSTANCE.get(Stage.class);
+
+    private final Scene rootScene= new Scene(DebuggerContext.INSTANCE.load("DebuggerLayout"));
+
     public static void show(final @NotNull Scene target) {
         show(target.getRoot());
-    }
-
-    @Override
-    public void init() {
-        val theme = OsThemeDetector.getDetector().isDark()
-                ? new PrimerDark().getUserAgentStylesheet()
-                : new PrimerLight().getUserAgentStylesheet();
-        Application.setUserAgentStylesheet(theme);
     }
 
     public static void show(@NonNull final Parent target) {
@@ -112,27 +105,30 @@ public class VisualModelDebugger extends Application {
     public void start(final Stage stage) throws Exception {
         // This mode is only available when we are in the commercial Scenic View,
         // so we must start up the license checker and validate
-        AttachHandlerFactory.initAttachAPI(stage);
+        AttachHandlerFactory.initAttachAPI(rootStage);
 //        System.setProperty(FXConnector.SCENIC_VIEW_VM, "true");
-
+        rootStage.setOnCloseRequest(e -> {
+            Platform.exit();
+            Runtime.getRuntime().exit(0);
+        });
         val strategy = new RemoteVMsUpdateStrategy();
-        val parent = DebuggerContext.INSTANCE.load("DebuggerLayout");
-        val scene = new Scene(parent);
-        // workaround for RT-10714
-        val size = ScreenUtil.percentOfScreen(0.7);
-        stage.setWidth(size.getLeft());
-        stage.setHeight(size.getRight());
-        stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
-        stage.setScene(scene);
+        strategy.setFXConnector(FXConnectorFactory.getConnector());
+//        val parent = DebuggerContext.INSTANCE.load("DebuggerLayout");
+//        val scene = new Scene(parent);
+//        // workaround for RT-10714
+//        val size = ScreenUtil.percentOfScreen(0.7);
+//        rootStage.setWidth(size.getLeft());
+//        rootStage.setHeight(size.getRight());
+//        rootStage.setTitle("Visual Model Debugger" + ScenicViewGui.VERSION);
+        rootStage.setScene(rootScene);
 //        log.info("Platform running");
 //        log.info("Launching ScenicView v" + ScenicViewGui.VERSION);
 //        ScenicViewGui view = new ScenicViewGui(strategy, stage);
 //        ScenicViewGui.show(view, stage);
 //        log.info("Startup done");
 //        log.info("Creating server");
-        strategy.setFXConnector(FXConnectorFactory.getConnector());
         log.info("Server done");
-        stage.show();
+        rootStage.show();
         FXComponentInspectorHandler.handleAll();
     }
 }

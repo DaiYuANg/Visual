@@ -27,7 +27,7 @@ import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.api.StageController;
-import org.visual.model.debugger.core.VisualModelDebugger;
+import org.visual.model.debugger.VisualModelDebugger;
 import org.visual.model.debugger.utils.PropertiesUtils;
 import org.visual.model.debugger.view.ScenicViewGui;
 

@@ -12,7 +12,7 @@ apply<CommonPlugin>()
 
 group = "org.visual.model.debugger"
 
-val mainClassPath = "org.visual.model.debugger.core.VisualModelDebugger"
+val mainClassPath = "org.visual.model.debugger.VisualModelDebugger"
 
 version = "unspecified"
 
@@ -24,7 +24,7 @@ val commonJvmArgs =
         "-verbose:gc",
         "-XX:+UseStringDeduplication",
         "-XX:+OptimizeStringConcat",
-        "-XX:+PrintGCDetails",
+        "-Xlog:gc*",
         "-XX:+UseCompressedOops",
         "-Xnoclassgc",
         "-XX:MaxInlineLevel=32",
@@ -104,11 +104,3 @@ jlink {
         )
     }
 }
-
-//fun convertToCamelCase(input: String): String {
-//    val words = input.split("-")
-//    val camelCaseWords = words.mapIndexed { _, word ->
-//        word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-//    }
-//    return camelCaseWords.joinToString("")
-//}

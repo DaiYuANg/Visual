@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.visual.model.debugger.component.GlobalMenuBar?>
+<?import org.visual.model.component.control.FluentUiRegularALButton?>
+<?import org.visual.model.component.control.FluentUiRegularMZButton?>
+<?import org.visual.model.component.control.FontAwesomeSolidButton?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      VBox.vgrow="ALWAYS"
+      prefHeight="-Infinity"
+      fx:controller="org.visual.model.debugger.controller.DebuggerLayoutController">
+    <GlobalMenuBar/>
+    <HBox>
+        <TabPane HBox.hgrow="ALWAYS">
+            <Tab closable="false" text="Overview">
+                <fx:include source="Overview.fxml"/>
+            </Tab>
+            <Tab closable="false" text="Component">
+                <fx:include VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" source="Preview.fxml"/>
+            </Tab>
+            <Tab closable="false" text="Monitor">
+                <fx:include source="Monitor.fxml"/>
+            </Tab>
+            <Tab closable="false" text="Sample">
+                <fx:include source="Sampler.fxml"/>
+            </Tab>
+            <Tab closable="false" text="Threads">
+                <fx:include source="Threads.fxml"/>
+            </Tab>
+        </TabPane>
+    </HBox>
+</VBox>
