@@ -11,6 +11,8 @@ import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An extension of {@link PanningWindow} that adds an auto-scrolling mechanism.
@@ -72,7 +74,7 @@ public class AutoScrollingWindow extends PanningWindow
      *
      * @param event the mouse-dragged event object
      */
-    private void handleMouseDragged(final MouseEvent event)
+    private void handleMouseDragged(final @NotNull MouseEvent event)
     {
         if (event.isPrimaryButtonDown() && event.getTarget() instanceof Node && !isScrollBar(event))
         {
@@ -122,9 +124,8 @@ public class AutoScrollingWindow extends PanningWindow
         double jumpX = 0;
         double jumpY = 0;
 
-        final double baseAmount = baseJumpAmount;
-        final double additionalAmount = jumpsTaken * jumpAmountIncreasePerJump;
-        final double distance = Math.min(baseAmount + additionalAmount, maxJumpAmount);
+        val additionalAmount = jumpsTaken * jumpAmountIncreasePerJump;
+        val distance = Math.min(baseJumpAmount + additionalAmount, maxJumpAmount);
 
         if (cursorX <= insetToBeginScroll)
         {
