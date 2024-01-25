@@ -6,13 +6,13 @@ import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.inject.PostConstruct;
 import javafx.application.Application;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.SplitPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import lombok.val;
 import org.visual.model.component.theme.OsThemeDetector;
 import org.visual.model.component.util.ScreenUtil;
-import org.visual.model.debugger.component.SelectVirtualMachineDialog;
 import org.visual.model.debugger.view.ScenicViewGui;
 import org.visual.model.i18n.core.I18n;
 import org.visual.model.i18n.core.I18nUtil;
@@ -21,7 +21,7 @@ import org.visual.model.i18n.core.I18nUtil;
 public class UIFactory {
 
     @PostConstruct
-    void initUI(){
+    void initUI() {
         val theme = OsThemeDetector.getDetector().isDark()
                 ? new PrimerDark().getUserAgentStylesheet()
                 : new PrimerLight().getUserAgentStylesheet();
@@ -54,7 +54,7 @@ public class UIFactory {
     }
 
     @Bean
-    SelectVirtualMachineDialog selectVirtualMachineDialog() {
-        return new SelectVirtualMachineDialog();
+    ContextMenu contextMenu() {
+        return new ContextMenu();
     }
 }

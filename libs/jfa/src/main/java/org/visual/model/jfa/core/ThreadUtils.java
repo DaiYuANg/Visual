@@ -1,12 +1,13 @@
 /* (C)2024*/
 package org.visual.model.jfa.core;
 
+import lombok.experimental.UtilityClass;
 import org.visual.model.jfa.foundation.Foundation;
 import org.visual.model.jfa.foundation.ID;
 
 @SuppressWarnings("unused")
+@UtilityClass
 public final class ThreadUtils {
-    private ThreadUtils() {}
 
     public static void dispatch_sync(Runnable runnable) {
         dispatch(runnable, true);

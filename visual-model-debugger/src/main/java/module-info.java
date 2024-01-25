@@ -17,6 +17,7 @@ module org.visual.model.debugger {
     requires io.avaje.inject;
     requires org.github.gestalt.core;
     requires java.management;
+    requires java.management.rmi;
     requires org.apache.commons.lang3;
     requires org.visual.model.i18n;
     requires java.prefs;

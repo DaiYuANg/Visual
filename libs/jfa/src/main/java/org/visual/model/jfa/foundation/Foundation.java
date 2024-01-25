@@ -3,10 +3,12 @@ package org.visual.model.jfa.foundation;
 
 import com.sun.jna.*;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.io.File;
 import java.lang.reflect.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
 import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -26,23 +28,14 @@ public final class Foundation {
     private static long ourCurrentRunnableCount = 0;
 
     static {
-        FoundationLibrary foundationLibrary = null;
-        Function objcMsgSend = null;
-        try {
-            foundationLibrary = Native.load(
-                    "Foundation", FoundationLibrary.class, Collections.singletonMap("jna.encoding", "UTF8"));
-            NativeLibrary nativeLibrary =
-                    ((Library.Handler) Proxy.getInvocationHandler(foundationLibrary)).getNativeLibrary();
-            objcMsgSend = nativeLibrary.getFunction("objc_msgSend");
-        } catch (RuntimeException e) {
-            // Foundation not available
-        }
-
+        FoundationLibrary foundationLibrary = Native.load(
+                "Foundation", FoundationLibrary.class, Collections.singletonMap("jna.encoding", "UTF8"));
+        NativeLibrary nativeLibrary =
+                ((Library.Handler) Proxy.getInvocationHandler(foundationLibrary)).getNativeLibrary();
+        Function objcMsgSend = nativeLibrary.getFunction("objc_msgSend");
         myFoundationLibrary = foundationLibrary;
         myObjcMsgSend = objcMsgSend;
     }
-
-    private Foundation() {}
 
     public static boolean isAvailable() {
         return myFoundationLibrary != null && myObjcMsgSend != null;
@@ -213,7 +206,7 @@ public final class Foundation {
         return result.booleanValue();
     }
 
-    public static boolean isPackageAtPath(final File file) {
+    public static boolean isPackageAtPath(final @NotNull File file) {
         if (!file.isDirectory()) return false;
         return isPackageAtPath(file.getPath());
     }
@@ -222,7 +215,7 @@ public final class Foundation {
         return s == null ? ID.NIL : NSString.create(s);
     }
 
-    public static ID nsUUID(UUID uuid) {
+    public static @NotNull ID nsUUID(@NotNull UUID uuid) {
         return nsUUID(uuid.toString());
     }
 
@@ -366,7 +359,7 @@ public final class Foundation {
         }
     }
 
-    public static ID fillArray(final Object[] a) {
+    public static @NotNull ID fillArray(final Object @NotNull [] a) {
         final ID result = invoke("NSMutableArray", "array");
         for (Object s : a) {
             invoke(result, "addObject:", convertType(s));

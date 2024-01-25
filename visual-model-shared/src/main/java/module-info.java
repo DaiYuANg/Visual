@@ -12,4 +12,5 @@ module org.visual.model.shared {
 
     exports org.visual.model.shared;
     exports org.visual.model.shared.pojo;
+    exports org.visual.model.shared.util;
 }

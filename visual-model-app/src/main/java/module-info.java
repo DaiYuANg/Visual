@@ -35,6 +35,7 @@ module org.visual.model.app {
     requires it.unimi.dsi.fastutil;
     requires org.apache.groovy;
     requires org.slf4j.jdk.platform.logging;
+    requires kotlin.stdlib;
 
     opens org.visual.model.app.controller to
             javafx.fxml;
@@ -44,7 +45,8 @@ module org.visual.model.app {
             javafx.fxml,
             javafx.graphics;
     exports org.visual.model.app;
-
+    exports org.visual.model.app.component to javafx.fxml;
+    opens org.visual.model.app.component to javafx.fxml;
     provides io.avaje.inject.spi.Module with
             org.visual.model.app.AppModule;
 }

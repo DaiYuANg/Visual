@@ -25,6 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.management.remote.JMXConnectorFactory;
+import javax.management.remote.JMXServiceURL;
+
 @Slf4j
 class RMIUtils {
 
@@ -36,19 +39,19 @@ class RMIUtils {
     private RMIUtils() {
     }
 
-    private static final RemoteConnector findScenicView(final String serverAdress, final int serverPort) throws Exception {
+    private static RemoteConnector findScenicView(final String serverAdress, final int serverPort) throws Exception {
         final Registry registry = LocateRegistry.getRegistry(serverAdress, serverPort);
         // look up the remote object
         return (RemoteConnector) (registry.lookup(REMOTE_CONNECTOR));
     }
 
-    private static final RemoteApplication findApplication(final String serverAdress, final int serverPort) throws Exception {
+    private static RemoteApplication findApplication(final String serverAdress, final int serverPort) throws Exception {
         final Registry registry = LocateRegistry.getRegistry(serverAdress, serverPort);
         // look up the remote object
         return (RemoteApplication) (registry.lookup(REMOTE_AGENT));
     }
 
-    public static final void bindScenicView(final RemoteConnector view, final int port) throws AccessException, RemoteException {
+    public static void bindScenicView(final RemoteConnector view, final int port) throws AccessException, RemoteException {
         // create the registry and bind the name and object.
         final Registry registry = LocateRegistry.createRegistry(port);
         registry.rebind(REMOTE_CONNECTOR, view);

@@ -29,7 +29,7 @@ public final class Selector {
             return methodName;
         }
 
-        Stream<String> parameterNames = Arrays.stream(namedTypes).skip(1).map(NamedType::getName);
+        Stream<String> parameterNames = Arrays.stream(namedTypes).skip(1).map(NamedType::name);
 
         return getSelector(methodName, parameterNames);
     }

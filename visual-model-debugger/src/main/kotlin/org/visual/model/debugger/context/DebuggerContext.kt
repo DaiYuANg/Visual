@@ -20,27 +20,6 @@ data object DebuggerContext {
         return beanScope.get(clazz)
     }
 
-//    todo why is null when first access
-    private val _virtualMachine = SimpleObjectProperty<VirtualMachine>()
-
-    var virtualMachine: VirtualMachine?
-        get() = this._virtualMachine.get()
-        set(value) = this._virtualMachine.set(value)
-
-    fun addVirtualMachineList(listener: ChangeListener<in VirtualMachine>) {
-        _virtualMachine.addListener(listener)
-    }
-
-    init {
-        addVirtualMachineList { observableValue, t, t2 ->
-            run {
-                System.err.println(t)
-                System.err.println(t2)
-                System.err.println(observableValue)
-            }
-        }
-    }
-
     @SneakyThrows
     fun load(prefix: String): Parent {
         val loader = FXMLLoader(VisualModelDebugger::class.java.getResource("$prefix.fxml"))
@@ -51,13 +30,5 @@ data object DebuggerContext {
         }
         loader.charset = StandardCharsets.UTF_8
         return loader.load()
-    }
-
-    fun isAttached(): Boolean {
-        return this._virtualMachine.isNotNull.get()
-    }
-
-    fun isNotAttached(): Boolean {
-        return this._virtualMachine.isNull.get()
     }
 }

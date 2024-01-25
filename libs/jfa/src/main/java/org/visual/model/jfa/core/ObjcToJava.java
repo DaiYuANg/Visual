@@ -7,6 +7,7 @@ import com.sun.jna.NativeMapped;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.ByReference;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -14,7 +15,11 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import lombok.val;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.visual.model.jfa.annotation.Protocol;
 import org.visual.model.jfa.appkit.NSObject;
 import org.visual.model.jfa.foundation.CGFloat;
@@ -38,7 +43,7 @@ public class ObjcToJava implements InvocationHandler {
         return invokeStatic(clazz, "alloc");
     }
 
-    public static <T extends NSObject> T invokeStatic(Class<T> clazz, String selector, Object... args) {
+    public static <T extends NSObject> T invokeStatic(@NotNull Class<T> clazz, String selector, Object... args) {
         if (clazz.isAnnotationPresent(Protocol.class)) {
             throw new IllegalArgumentException("Cannot allocate protocols.");
         }
@@ -48,7 +53,7 @@ public class ObjcToJava implements InvocationHandler {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T map(ID result, Class<T> javaType) {
+    public static <T> @Nullable T map(ID result, Class<T> javaType) {
         if (NSObject.class.isAssignableFrom(javaType)) {
             return mapNSObject(result, javaType);
         }
@@ -89,9 +94,10 @@ public class ObjcToJava implements InvocationHandler {
         throw new IllegalArgumentException(javaType.getSimpleName() + " is not supported.");
     }
 
-    private static <T> T mapNSObject(ID id, Class<T> clazz) {
+    @Contract("_, _ -> !null")
+    private static <T> T mapNSObject(ID id, @NotNull Class<T> clazz) {
         return clazz.cast(
-                Proxy.newProxyInstance(ObjcToJava.class.getClassLoader(), new Class[] {clazz}, new ObjcToJava(id)));
+                Proxy.newProxyInstance(ObjcToJava.class.getClassLoader(), new Class[]{clazz}, new ObjcToJava(id)));
     }
 
     public static Optional<Class<?>> getJavaClass(ID id) {
@@ -99,16 +105,18 @@ public class ObjcToJava implements InvocationHandler {
     }
 
     public static Optional<Class<?>> getJavaClass(ID id, Package containingPackage) {
-        if (id != null && !ID.NIL.equals(id) && containingPackage != null) {
-            try {
-                Pointer classForCoderSelector = Foundation.createSelector("classForCoder");
-                if (respondsToSelector(id, classForCoderSelector)) {
-                    ID classNameId = Foundation.invoke(id, classForCoderSelector);
-                    String className = Foundation.stringFromClass(classNameId);
-                    return Optional.of(Class.forName(containingPackage.getName() + "." + className));
-                }
-            } catch (ClassNotFoundException | RuntimeException ignored) {
+        if (id == null || ID.NIL.equals(id) || containingPackage == null) {
+            return Optional.empty();
+        }
+        try {
+            Pointer classForCoderSelector = Foundation.createSelector("classForCoder");
+            if (respondsToSelector(id, classForCoderSelector)) {
+                ID classNameId = Foundation.invoke(id, classForCoderSelector);
+                String className = Foundation.stringFromClass(classNameId);
+                return Optional.of(Class.forName(containingPackage.getName() + "." + className));
             }
+        } catch (ClassNotFoundException | RuntimeException ignored) {
+
         }
         return Optional.empty();
     }
@@ -157,7 +165,7 @@ public class ObjcToJava implements InvocationHandler {
         return ((ObjcToJava) Proxy.getInvocationHandler(arg)).getId();
     }
 
-    private static boolean isFoundationProxy(Object arg) {
+    private static boolean isFoundationProxy(@NotNull Object arg) {
         return Proxy.isProxyClass(arg.getClass()) && Proxy.getInvocationHandler(arg) instanceof ObjcToJava;
     }
 
@@ -183,17 +191,14 @@ public class ObjcToJava implements InvocationHandler {
         }
     }
 
-    private Object invokeNative(Method method, Object[] args) {
-        Object[] foundationArguments = getFoundationArguments(args);
-        String selector = Selector.stringForMethod(method);
+    private @Nullable Object invokeNative(Method method, Object[] args) {
+        val foundationArguments = getFoundationArguments(args);
+        val selector = Selector.stringForMethod(method);
 
         ID result = Foundation.invoke(id, selector, foundationArguments);
-        if (!isPrimitiveType(method.getReturnType()) && Foundation.isNil(result)
-                || void.class == method.getReturnType()) {
-            return null;
-        }
+        return !isPrimitiveType(method.getReturnType()) && Foundation.isNil(result)
+                || void.class == method.getReturnType() ? null : wrapReturnValue(method, result);
 
-        return wrapReturnValue(method, result);
     }
 
     private boolean isPrimitiveType(Class<?> returnType) {
@@ -205,37 +210,38 @@ public class ObjcToJava implements InvocationHandler {
     }
 
     private Object wrapReturnValue(Method method, ID result) {
-        Class<?> returnType = getReturnType(method, result);
+        val returnType = getReturnType(method, result);
         return map(result, returnType);
     }
 
-    private Class<?> getReturnType(Method method, ID result) {
+    private Class<?> getReturnType(@NotNull Method method, ID result) {
         Class<?> returnType = method.getReturnType();
 
-        if (NSObject.class.isAssignableFrom(returnType)) {
-            Optional<Class<?>> javaClass = getJavaClass(result);
-            if (javaClass.isPresent()) {
-                return javaClass.get();
-            }
+        if (!NSObject.class.isAssignableFrom(returnType)) {
+            return returnType;
+        }
+        Optional<Class<?>> javaClass = getJavaClass(result);
+        if (javaClass.isPresent()) {
+            return javaClass.get();
         }
 
         return returnType;
     }
 
-    private Object[] getFoundationArguments(Object[] args) {
+    @Contract("null -> new")
+    private Object @NotNull [] getFoundationArguments(Object[] args) {
         return args == null
                 ? new Object[0]
                 : Arrays.stream(args)
-                        .flatMap(this::flattenVarArgs)
-                        .map(ObjcToJava::toFoundationArgument)
-                        .toArray();
+                .flatMap(this::flattenVarArgs)
+                .map(ObjcToJava::toFoundationArgument)
+                .toArray();
     }
 
     private Stream<Object> flattenVarArgs(Object value) {
         if (value instanceof VarArgs) {
             return Stream.concat(((VarArgs<?>) value).getArgs().stream(), Stream.of((Object) null));
         }
-
         return Stream.of(value);
     }
 }

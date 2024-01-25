@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.model.app.command.OpenCommand;
+import org.visual.model.app.context.ApplicationContext;
 import org.visual.model.app.core.VisualModelUI;
 import org.visual.model.app.handle.GlobalExceptionHandler;
 import picocli.CommandLine;
@@ -19,10 +20,6 @@ import picocli.CommandLine;
 public class VisualModelApplication implements Runnable {
 
     private final String[] args;
-
-    static {
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-    }
 
     @Override
     public void run() {

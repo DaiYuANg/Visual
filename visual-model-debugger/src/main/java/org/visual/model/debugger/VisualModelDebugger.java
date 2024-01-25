@@ -32,6 +32,7 @@ import org.visual.model.debugger.context.DebuggerContext;
 import org.visual.model.debugger.controller.AppControllerImpl;
 import org.visual.model.debugger.controller.StageControllerImpl;
 import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
+import org.visual.model.debugger.listener.ExceptionListener;
 import org.visual.model.debugger.model.attach.AttachHandlerFactory;
 import org.visual.model.debugger.model.update.LocalUpdateStrategy;
 import org.visual.model.debugger.model.update.RemoteVMsUpdateStrategy;
@@ -52,7 +53,9 @@ public class VisualModelDebugger extends Application {
 
     private final Stage rootStage = DebuggerContext.INSTANCE.get(Stage.class);
 
-    private final Scene rootScene= new Scene(DebuggerContext.INSTANCE.load("DebuggerLayout"));
+    private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load("Layout"));
+
+    private final ExceptionListener exceptionListener = DebuggerContext.INSTANCE.get(ExceptionListener.class);
 
     public static void show(final @NotNull Scene target) {
         show(target.getRoot());
@@ -90,6 +93,11 @@ public class VisualModelDebugger extends Application {
         // so that we don't block the loading of the actual application.
         log.info("premain execute");
         Platform.runLater(() -> new VisualModelDebugger().start());
+    }
+
+    @Override
+    public void init() {
+        Thread.setDefaultUncaughtExceptionHandler(exceptionListener);
     }
 
     @SneakyThrows

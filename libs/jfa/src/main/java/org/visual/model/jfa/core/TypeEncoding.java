@@ -13,7 +13,7 @@ public class TypeEncoding {
 
     public static String encode(NamedType... namedTypes) {
         return Arrays.stream(namedTypes)
-                .map(NamedType::getType)
+                .map(NamedType::type)
                 .map(TypeEncoding::toType)
                 .collect(Collectors.joining());
     }

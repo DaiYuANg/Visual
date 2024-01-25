@@ -22,6 +22,6 @@ public final class FoundationCallbackRegistry {
     }
 
     public static void unregister(@NotNull FoundationCallback callback) {
-        REFERENCE_MAP.remove(callback.getTarget());
+        REFERENCE_MAP.remove(callback.target());
     }
 }

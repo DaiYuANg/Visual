@@ -9,9 +9,10 @@ import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
 import javafx.scene.input.KeyCombination
 import javafx.stage.WindowEvent
+import org.visual.model.component.display.SystemMenuBar
 
 class GlobalMenuBar @JvmOverloads constructor(var exitHandle: EventHandler<ActionEvent>? = null) :
-    MenuBar() {
+    SystemMenuBar() {
   private val exitItem by lazy {
     MenuItem("Exit").apply {
       accelerator = KeyCombination.keyCombination("CTRL+Q")
@@ -63,7 +64,6 @@ class GlobalMenuBar @JvmOverloads constructor(var exitHandle: EventHandler<Actio
   private val aboutMenu: Menu by lazy { Menu("Help").apply { items.add(aboutItem) } }
 
   init {
-    isUseSystemMenuBar = true
     id = "global-menubar"
     addEventHandler(WindowEvent.WINDOW_SHOWN) { prefWidthProperty().bind(scene.widthProperty()) }
     menus.addAll(fileMenu, aboutMenu)
