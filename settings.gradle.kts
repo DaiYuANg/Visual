@@ -42,7 +42,7 @@ gradleEnterprise {
 }
 
 rootProject.name = "visual-model"
-include("app:visual-model-app")
+include("app:visual-model-designer")
 include("module:visual-model-database")
 include("ui:visual-model-component")
 include("module:visual-model-shared")
@@ -59,3 +59,6 @@ include("serialize:visual-model-serialize-plantuml")
 include("serialize:visual-model-serialize-api")
 include("module:visual-model-server")
 include("website")
+include("app:visual-model-database")
+include("ui:visual-model-text-editor")
+findProject(":ui:visual-model-text-editor")?.name = "visual-model-text-editor"
