@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.api.utils;
 
+import java.util.Arrays;
 import javafx.event.Event;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -547,13 +548,10 @@ public class DraggableBox extends StackPane
      */
     private double align(final double position, final double[] alignmentValues)
     {
-        for (final double alignmentValue : alignmentValues)
-        {
-            if (Math.abs(alignmentValue - position) <= alignmentThreshold)
-            {
-                return alignmentValue;
-            }
-        }
-        return position;
+        return Arrays
+                .stream(alignmentValues)
+                .filter(alignmentValue -> Math.abs(alignmentValue - position) <= alignmentThreshold)
+                .findFirst()
+                .orElse(position);
     }
 }

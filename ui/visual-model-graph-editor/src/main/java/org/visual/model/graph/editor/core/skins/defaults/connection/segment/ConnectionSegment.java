@@ -10,6 +10,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.PathElement;
 import javafx.scene.shape.VLineTo;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 
 
@@ -32,8 +34,33 @@ public abstract class ConnectionSegment
 
     private static final int EDGE_OFFSET = 5;
 
+    /**
+     * -- GETTER --
+     *  Returns the
+     *  this connection segment is
+     *  made of.
+     *
+     * @return the path elements this segment is made of
+     */
+    @Getter
     private final List<PathElement> pathElements = new ArrayList<>();
+    /**
+     * -- GETTER --
+     *  Returns the start
+     *  of this connection segment.
+     *
+     * @return the start point of this connection segment
+     */
+    @Getter
     private final Point2D start;
+    /**
+     * -- GETTER --
+     *  Returns the end
+     *  of this connection segment.
+     *
+     * @return the end point of this connection segment
+     */
+    @Getter
     private final Point2D end;
     private final double[] intersections;
 
@@ -47,7 +74,7 @@ public abstract class ConnectionSegment
      * @param intersections
      *            the intersection-points of this segment with other connections
      */
-    public ConnectionSegment(final Point2D start, final Point2D end, final double[] intersections)
+    public ConnectionSegment(final @NotNull Point2D start, final @NotNull Point2D end, final double[] intersections)
     {
         this.start = start;
         this.end = end;
@@ -87,37 +114,6 @@ public abstract class ConnectionSegment
         {
             drawStraight();
         }
-    }
-
-    /**
-     * Returns the {@link PathElement path elements} this connection segment is
-     * made of.
-     *
-     * @return the path elements this segment is made of
-     */
-    public List<PathElement> getPathElements()
-    {
-        return pathElements;
-    }
-
-    /**
-     * Returns the start {@link Point2D point} of this connection segment.
-     *
-     * @return the start point of this connection segment
-     */
-    public Point2D getStart()
-    {
-        return start;
-    }
-
-    /**
-     * Returns the end {@link Point2D point} of this connection segment.
-     *
-     * @return the end point of this connection segment
-     */
-    public Point2D getEnd()
-    {
-        return end;
     }
 
     /**

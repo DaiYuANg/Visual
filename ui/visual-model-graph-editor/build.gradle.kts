@@ -1,4 +1,7 @@
-plugins { alias(libs.plugins.javafx) }
+plugins {
+  alias(libs.plugins.javafx)
+  `kotlin-project`
+}
 
 group = "org.visual.model.graph-editor"
 
@@ -19,6 +22,7 @@ javafx {
 dependencies {
   implementation(projects.ui.visualModelComponent)
   implementation(libs.pcollections)
+  implementation(projects.module.visualModelShared)
   api("org.eclipse.emf:org.eclipse.emf.ecore:2.35.0")
   api("org.eclipse.emf:org.eclipse.emf.common:2.29.0")
   api("org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.36.0")

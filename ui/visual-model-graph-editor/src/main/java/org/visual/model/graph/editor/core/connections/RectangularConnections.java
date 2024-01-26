@@ -3,7 +3,9 @@
  */
 package org.visual.model.graph.editor.core.connections;
 
-import javafx.geometry.Side;
+import java.util.Objects;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.core.connectors.DefaultConnectorTypes;
 import org.visual.model.graph.editor.model.GConnection;
 
@@ -36,7 +38,7 @@ public final class RectangularConnections
      *            an index in the list of the connection's points
      * @return {@code true} if the segment beginning at this index is horizontal
      */
-    public static boolean isSegmentHorizontal(final GConnection connection, final int i)
+    public static boolean isSegmentHorizontal(final @NotNull GConnection connection, final int i)
     {
         final String sourceType = connection.getSource().getType();
         final boolean sourceIsLeft = DefaultConnectorTypes.isLeft(sourceType);
@@ -53,13 +55,13 @@ public final class RectangularConnections
      *            a {@link GConnection} that should be rectangular
      * @return {@code true} if the joint count is correct
      */
-    public static boolean checkJointCount(final GConnection connection)
+    public static boolean checkJointCount(final @NotNull GConnection connection)
     {
-        final Side sourceSide = DefaultConnectorTypes.getSide(connection.getSource().getType());
-        final Side targetSide = DefaultConnectorTypes.getSide(connection.getTarget().getType());
+        val sourceSide = DefaultConnectorTypes.getSide(connection.getSource().getType());
+        val targetSide = DefaultConnectorTypes.getSide(connection.getTarget().getType());
 
-        final boolean bothHorizontal = sourceSide.isHorizontal() && targetSide.isHorizontal();
-        final boolean bothVertical = sourceSide.isVertical() && targetSide.isVertical();
+        val bothHorizontal = Objects.requireNonNull(sourceSide).isHorizontal() && Objects.requireNonNull(targetSide).isHorizontal();
+        val bothVertical = sourceSide.isVertical() && Objects.requireNonNull(targetSide).isVertical();
 
         if (bothHorizontal || bothVertical)
         {

@@ -1,8 +1,7 @@
 package org.visual.model.event;
 
-import java.util.Collection;
-
 import com.google.common.collect.*;
+import java.util.Collection;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;

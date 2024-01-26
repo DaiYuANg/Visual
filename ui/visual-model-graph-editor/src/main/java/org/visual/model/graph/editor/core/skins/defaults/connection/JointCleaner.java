@@ -10,9 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import lombok.val;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.Commands;
 import org.visual.model.graph.editor.api.GJointSkin;
 import org.visual.model.graph.editor.api.GraphEditor;
@@ -55,7 +57,7 @@ public class JointCleaner {
      *
      * @param pJointSkins the connection's joint skins
      */
-    public void addCleaningHandlers(final List<GJointSkin> pJointSkins)
+    public void addCleaningHandlers(final @NotNull List<GJointSkin> pJointSkins)
     {
         EventUtils.removeEventHandlers(mCleaningHandlers, MouseEvent.MOUSE_RELEASED);
 
@@ -75,7 +77,7 @@ public class JointCleaner {
                 final List<Point2D> jointPositions = GeometryUtils.getJointPositions(pJointSkins);
                 final BitSet jointsToCleanUp = findJointsToCleanUp(jointPositions);
 
-                if (!jointsToCleanUp.isEmpty())
+                if (Boolean.FALSE.equals(jointsToCleanUp.isEmpty()))
                 {
                     final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(mConnection);
                     final CompoundCommand command = new CompoundCommand();
@@ -106,10 +108,10 @@ public class JointCleaner {
      * @param jointPositions a list of {@link Point2D} instances containing the x and y values of the joints
      * @return a set of integers specifying the indices of the joints to be removed
      */
-    public static BitSet findJointsToCleanUp(final List<Point2D> jointPositions)
+    public static @NotNull BitSet findJointsToCleanUp(final @NotNull List<Point2D> jointPositions)
     {
-        final BitSet jointsToCleanUp = new BitSet(jointPositions.size());
-        final List<Point2D> remainingJointPositions = new ArrayList<>(jointPositions);
+        val jointsToCleanUp = new BitSet(jointPositions.size());
+        val remainingJointPositions = new ArrayList<>(jointPositions);
 
         Point2D removed = removeJointPair(remainingJointPositions);
 
@@ -143,7 +145,7 @@ public class JointCleaner {
      * @param jointPositions a list of {@link Point2D} instances containing the x and y values of the joints
      * @return the position of the removed joints, or {@code null} if nothing was found to remove
      */
-    private static Point2D removeJointPair(final List<Point2D> jointPositions) {
+    private static Point2D removeJointPair(final @NotNull List<Point2D> jointPositions) {
 
         int foundIndex = -1;
         Point2D foundPosition = null;

@@ -5,14 +5,17 @@ package org.visual.model.graph.editor.core.skins.defaults;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.IntStream;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Polyline;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import kotlin.NotImplementedError;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GTailSkin;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connectors.DefaultConnectorTypes;
@@ -27,10 +30,8 @@ import org.visual.model.graph.editor.model.GConnector;
  * information.
  * </p>
  */
+@Slf4j
 public class DefaultTailSkin extends GTailSkin {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultTailSkin.class);
-
     private static final double ENDPOINT_SIZE = 25;
 
     private static final String STYLE_CLASS = "default-tail";
@@ -89,7 +90,7 @@ public class DefaultTailSkin extends GTailSkin {
 
     @Override
     public void draw(final Point2D start, final Point2D end, final List<Point2D> jointPositions,
-            final GConnector target, final boolean valid) {
+                     final GConnector target, final boolean valid) {
         draw(start, end, target, valid);
     }
 
@@ -98,13 +99,11 @@ public class DefaultTailSkin extends GTailSkin {
 
         final List<Point2D> jointPositions = new ArrayList<>();
 
-        for (int i = 2; i < line.getPoints().size() - 2; i = i + 2) {
-
+        IntStream.iterate(2, i -> i < line.getPoints().size() - 2, i -> i + 2).forEach(i -> {
             final double x = GeometryUtils.moveOnPixel(line.getPoints().get(i));
             final double y = GeometryUtils.moveOnPixel(line.getPoints().get(i + 1));
-
             jointPositions.add(new Point2D(x, y));
-        }
+        });
 
         return jointPositions;
     }
@@ -114,7 +113,7 @@ public class DefaultTailSkin extends GTailSkin {
      *
      * @param position the new cursor position
      */
-    protected void layoutEndpoint(final Point2D position) {
+    protected void layoutEndpoint(final @NotNull Point2D position) {
         endpoint.setLayoutX(GeometryUtils.moveOnPixel(position.getX() - ENDPOINT_SIZE / 2));
         endpoint.setLayoutY(GeometryUtils.moveOnPixel(position.getY() - ENDPOINT_SIZE / 2));
     }
@@ -122,27 +121,26 @@ public class DefaultTailSkin extends GTailSkin {
     /**
      * Checks that the connector has the correct values to use this skin.
      */
-    private void performChecks()
-    {
-        if (!DefaultConnectorTypes.isValid(getItem().getType()))
-        {
-            LOGGER.error("Connector type '{}' not recognized, setting to 'left-input'.", getItem().getType());
-            getItem().setType(DefaultConnectorTypes.LEFT_INPUT);
+    private void performChecks() {
+        if (DefaultConnectorTypes.isValid(getItem().getType())) {
+            return;
         }
+        log.error("Connector type '{}' not recognized, setting to 'left-input'.", getItem().getType());
+        getItem().setType(DefaultConnectorTypes.LEFT_INPUT);
     }
 
     /**
      * Draws the tail simply from the start position to the end.
      *
      * @param start the start position of the tail
-     * @param end the end position of the tail
+     * @param end   the end position of the tail
      */
     private void drawStupid(final Point2D start, final Point2D end) {
 
         clearPoints();
         addPoint(start);
 
-        if (DefaultConnectorTypes.getSide(getItem().getType()).isVertical()) {
+        if (Objects.requireNonNull(DefaultConnectorTypes.getSide(getItem().getType())).isVertical()) {
             addPoint((start.getX() + end.getX()) / 2, start.getY());
             addPoint((start.getX() + end.getX()) / 2, end.getY());
         } else {
@@ -156,11 +154,11 @@ public class DefaultTailSkin extends GTailSkin {
     /**
      * Draws the tail based additionally on the sides of the nodes it starts and ends at.
      *
-     * @param start the start position of the tail
-     * @param end the end position of the tail
+     * @param start  the start position of the tail
+     * @param end    the end position of the tail
      * @param target the connector the tail is attaching to
      */
-    private void drawSmart(final Point2D start, final Point2D end, final GConnector target) {
+    private void drawSmart(final Point2D start, final Point2D end, final @NotNull GConnector target) {
 
         clearPoints();
         addPoint(start);
@@ -168,8 +166,9 @@ public class DefaultTailSkin extends GTailSkin {
         final Side startSide = DefaultConnectorTypes.getSide(getItem().getType());
         final Side endSide = DefaultConnectorTypes.getSide(target.getType());
 
-        final List<Point2D> points = RectangularPathCreator.createPath(start, end, startSide, endSide);
-        points.stream().forEachOrdered(point -> addPoint(point));
+        final List<Point2D> points = RectangularPathCreator
+                .createPath(start, end, Objects.requireNonNull(startSide), endSide);
+        points.forEach(this::addPoint);
 
         addPoint(end);
     }
@@ -186,7 +185,7 @@ public class DefaultTailSkin extends GTailSkin {
      *
      * @param point the x & y coordinates of the point
      */
-    private void addPoint(final Point2D point) {
+    private void addPoint(final @NotNull Point2D point) {
         addPoint(point.getX(), point.getY());
     }
 
@@ -203,6 +202,6 @@ public class DefaultTailSkin extends GTailSkin {
     @Override
     protected void selectionChanged(boolean isSelected) {
         // Not implemented
+        throw new NotImplementedError();
     }
-
 }

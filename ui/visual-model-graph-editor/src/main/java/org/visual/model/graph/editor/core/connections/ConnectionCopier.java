@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.visual.model.graph.editor.model.GConnection;
 import org.visual.model.graph.editor.model.GConnector;
@@ -43,7 +45,8 @@ public final class ConnectionCopier
      *            pairs
      * @return the list of created connections
      */
-    public static List<GConnection> copyConnections(final Map<GNode, GNode> copies)
+    @Contract("_ -> new")
+    public static @NotNull List<GConnection> copyConnections(final @NotNull Map<GNode, GNode> copies)
     {
         final Map<GConnection, GConnection> copiedConnections = new HashMap<>();
 
@@ -105,7 +108,7 @@ public final class ConnectionCopier
      * @return the {@link GNode} on the other side of the connection, or
      *         {@code null} if none exists
      */
-    private static @Nullable GNode getOpposingNode(final GConnector connector, final GConnection connection)
+    private static @Nullable GNode getOpposingNode(final GConnector connector, final @NotNull GConnection connection)
     {
         GConnector opposingConnector;
         if (connection.getSource().equals(connector))
@@ -117,7 +120,7 @@ public final class ConnectionCopier
             opposingConnector = connection.getSource();
         }
 
-        if (opposingConnector != null && opposingConnector.getParent() instanceof GNode)
+        if (opposingConnector != null && opposingConnector.getParent() != null)
         {
             return opposingConnector.getParent();
         }

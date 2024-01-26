@@ -3,12 +3,17 @@
  */
 package org.visual.model.graph.editor.api.utils;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GConnectorSkin;
 import org.visual.model.graph.editor.api.GJointSkin;
 import org.visual.model.graph.editor.api.GNodeSkin;
@@ -32,9 +37,8 @@ public class GeometryUtils {
      * Only works for connectors that are attached to nodes.
      * <p>
      *
-     * @param connector the {@link GConnector} whose position is desired
+     * @param connector  the {@link GConnector} whose position is desired
      * @param skinLookup the {@link SkinLookup} instance for this graph editor
-     *
      * @return the x and y coordinates of the connector, or {@code null} if the connector isn't attached to a node
      */
     public static Point2D getConnectorPosition(final GConnector connector, final SkinLookup skinLookup) {
@@ -64,12 +68,10 @@ public class GeometryUtils {
      * Gets the position of the cursor relative to some node.
      *
      * @param event a {@link MouseEvent} storing the cursor position
-     * @param node some {@link Node}
-     *
+     * @param node  some {@link Node}
      * @return the position of the cursor relative to the node origin
      */
-    public static Point2D getCursorPosition(final MouseEvent event, final Node node)
-    {
+    public static @NotNull Point2D getCursorPosition(final @NotNull MouseEvent event, final @NotNull Node node) {
         final double sceneX = event.getSceneX();
         final double sceneY = event.getSceneY();
 
@@ -81,10 +83,9 @@ public class GeometryUtils {
      * Gets the layout x and y values from all joints in a list of joint skins.
      *
      * @param jointSkins a list of joint skin instances
-     *
      * @return a {@link List} of {@link Point2D} objects containing joint x and y values
      */
-    public static List<Point2D> getJointPositions(final List<GJointSkin> jointSkins) {
+    public static @NotNull List<Point2D> getJointPositions(final @NotNull List<GJointSkin> jointSkins) {
 
         final List<Point2D> jointPositions = new ArrayList<>(jointSkins.size());
 
@@ -107,20 +108,15 @@ public class GeometryUtils {
      * is not necessarily updated.
      * <p>
      *
-     * @param connection
-     *            the {@link GConnection} for which the positions are desired
-     * @param skinLookup
-     *            the {@link SkinLookup} instance for this graph editor
-     * @param pTarget
-     *            the array where to write the points to
+     * @param connection the {@link GConnection} for which the positions are desired
+     * @param skinLookup the {@link SkinLookup} instance for this graph editor
+     * @param pTarget    the array where to write the points to
      */
-    public static void fillJointPositions(final GConnection connection, final SkinLookup skinLookup, final Point2D[] pTarget)
-    {
-        for (int i = 0; i < connection.getJoints().size(); i++)
-        {
-            final GJoint joint = connection.getJoints().get(i);
+    public static void fillJointPositions(final @NotNull GConnection connection, final SkinLookup skinLookup, final Point2D[] pTarget) {
+        IntStream.range(0, connection.getJoints().size()).forEach(i -> {
+            val joint = connection.getJoints().get(i);
             pTarget[i + 1] = getJointPosition(joint, skinLookup);
-        }
+        });
     }
 
     /**
@@ -132,22 +128,16 @@ public class GeometryUtils {
      * is not necessarily updated.
      * <p>
      *
-     * @param connection
-     *            the {@link GConnection} for which the positions are desired
-     * @param skinLookup
-     *            the {@link SkinLookup} instance for this graph editor
-     *
+     * @param connection the {@link GConnection} for which the positions are desired
+     * @param skinLookup the {@link SkinLookup} instance for this graph editor
      * @return a {@link List} of {@link Point2D} objects containing joint x and
-     *         y values
+     * y values
      */
-    public static List<Point2D> getJointPositions(final GConnection connection, final SkinLookup skinLookup)
-    {
-        final List<Point2D> jointPositions = new ArrayList<>(connection.getJoints().size());
-        for (final GJoint joint : connection.getJoints())
-        {
-            jointPositions.add(getJointPosition(joint, skinLookup));
-        }
-        return jointPositions;
+    public static @NotNull List<Point2D> getJointPositions(final @NotNull GConnection connection, final SkinLookup skinLookup) {
+        return connection.getJoints()
+                .stream()
+                .map(joint -> getJointPosition(joint, skinLookup))
+                .collect(Collectors.toCollection(() -> new ObjectArrayList<>(connection.getJoints().size())));
     }
 
     /**
@@ -159,14 +149,11 @@ public class GeometryUtils {
      * is not necessarily updated.
      * <p>
      *
-     * @param joint
-     *            the {@link GJoint} for which the position is desired
-     * @param skinLookup
-     *            the {@link SkinLookup} instance for this graph editor
+     * @param joint      the {@link GJoint} for which the position is desired
+     * @param skinLookup the {@link SkinLookup} instance for this graph editor
      * @return {@link Point2D} object containing joint x and y values
      */
-    public static Point2D getJointPosition(final GJoint joint, final SkinLookup skinLookup)
-    {
+    public static @NotNull Point2D getJointPosition(final GJoint joint, final @NotNull SkinLookup skinLookup) {
         final GJointSkin jointSkin = skinLookup.lookupJoint(joint);
         final Region region = jointSkin.getRoot();
 
@@ -180,18 +167,13 @@ public class GeometryUtils {
      * Gets the x and y values from all joints within a connection.
      *
      * @param connection a {@link GConnection} instance
-     *
      * @return a {@link List} of {@link Point2D} objects containing joint x and y values
      */
-    public static List<Point2D> getJointPositions(final GConnection connection) {
+    public static @NotNull List<Point2D> getJointPositions(final @NotNull GConnection connection) {
 
-        final List<Point2D> jointPositions = new ArrayList<>(connection.getJoints().size());
-
-        for (final GJoint joint : connection.getJoints()) {
-            jointPositions.add(new Point2D(joint.getX(), joint.getY()));
-        }
-
-        return jointPositions;
+        return connection.getJoints().stream()
+                .map(joint -> new Point2D(joint.getX(), joint.getY()))
+                .collect(Collectors.toCollection(() -> new ObjectArrayList<>(connection.getJoints().size())));
     }
 
     /**
@@ -202,7 +184,6 @@ public class GeometryUtils {
      * </p>
      *
      * @param position the position to move on-pixel
-     *
      * @return the position rounded to the nearest integer
      */
     public static double moveOnPixel(final double position) {
@@ -218,7 +199,6 @@ public class GeometryUtils {
      * </p>
      *
      * @param position the position to move off-pixel
-     *
      * @return the position moved to the nearest value halfway between two integers
      */
     public static double moveOffPixel(final double position) {
@@ -232,10 +212,9 @@ public class GeometryUtils {
      * Also returns true if the given position is equal to either of the values.
      * </p>
      *
-     * @param firstValue an x or y position value
+     * @param firstValue  an x or y position value
      * @param secondValue another x or y position value
-     * @param position the cursor's position value
-     *
+     * @param position    the cursor's position value
      * @return {@code true} if the cursor position is between the two points
      */
     public static boolean checkInRange(final double firstValue, final double secondValue, final double position) {
@@ -256,36 +235,28 @@ public class GeometryUtils {
      * @param d end of line segment CD
      * @return {@code true} if AB and CD intersect, {@code false} otherwise
      */
-    public static boolean checkIntersection(final Point2D a, final Point2D b, final Point2D c, final Point2D d) {
+    public static boolean checkIntersection(final @NotNull Point2D a, final Point2D b, final Point2D c, final Point2D d) {
 
         if (!(c.getX() > a.getX() && c.getX() < b.getX()) && !(c.getX() > b.getX() && c.getX() < a.getX())) {
             return false;
         }
 
-        if (!(a.getY() > c.getY() && a.getY() < d.getY()) && !(a.getY() > d.getY() && a.getY() < c.getY())) {
-            return false;
-        }
-
-        return true;
+        return a.getY() > c.getY() && a.getY() < d.getY() || a.getY() > d.getY() && a.getY() < c.getY();
     }
 
     /**
      * Rounds some value to the nearest multiple of the grid spacing.
      *
-     * @param pProperties
-     *            {@link GraphEditorProperties} or {@code null}
-     * @param pValue
-     *            a double value
+     * @param pProperties {@link GraphEditorProperties} or {@code null}
+     * @param pValue      a double value
      * @return the input value rounded to the nearest multiple of the grid
-     *         spacing
+     * spacing
      */
-    public static double roundToGridSpacing(final GraphEditorProperties pProperties, final double pValue)
-    {
-        if (pProperties == null || !pProperties.isSnapToGridOn())
-        {
+    public static double roundToGridSpacing(final GraphEditorProperties pProperties, final double pValue) {
+        if (pProperties == null || !pProperties.isSnapToGridOn()) {
             return pValue;
         }
-        final double spacing = pProperties.getGridSpacing();
+        val spacing = pProperties.getGridSpacing();
         return spacing * Math.round(pValue / spacing);
     }
 }

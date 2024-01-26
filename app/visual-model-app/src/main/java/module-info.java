@@ -1,3 +1,4 @@
+@SuppressWarnings({ "requires-automatic"})
 module org.visual.model.app {
     requires javafx.graphics;
     requires static lombok;
@@ -8,7 +9,7 @@ module org.visual.model.app {
     requires javafx.fxml;
     requires javafx.controls;
     requires javafx.web;
-    requires org.visual.model.ui;
+    requires org.visual.model.component;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;

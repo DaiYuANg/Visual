@@ -4,6 +4,7 @@
 package org.visual.model.graph.editor.model.impl;
 
 import java.util.Collection;
+import lombok.ToString;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -35,6 +36,7 @@ import org.visual.model.graph.editor.model.GraphPackage;
  *
  * @generated
  */
+@ToString
 public class GConnectionImpl extends MinimalEObjectImpl.Container implements GConnection {
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -192,14 +194,18 @@ public class GConnectionImpl extends MinimalEObjectImpl.Container implements GCo
      */
     @Override
     public GConnector getSource() {
-        if (source != null && source.eIsProxy()) {
-            InternalEObject oldSource = (InternalEObject) source;
-            source = (GConnector) eResolveProxy(oldSource);
-            if (source != oldSource) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
-            }
+        if (source == null || !source.eIsProxy()) {
+            return source;
         }
+        InternalEObject oldSource = (InternalEObject) source;
+        source = (GConnector) eResolveProxy(oldSource);
+        if (source == oldSource) {
+            return source;
+        }
+        if (Boolean.FALSE.equals(eNotificationRequired())) {
+            return source;
+        }
+        eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
         return source;
     }
 
@@ -308,9 +314,8 @@ public class GConnectionImpl extends MinimalEObjectImpl.Container implements GCo
      */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__JOINTS:
-                return ((InternalEList<?>) getJoints()).basicRemove(otherEnd, msgs);
+        if (featureID == GraphPackage.GCONNECTION__JOINTS) {
+            return ((InternalEList<?>) getJoints()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -323,21 +328,20 @@ public class GConnectionImpl extends MinimalEObjectImpl.Container implements GCo
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__ID:
-                return getId();
-            case GraphPackage.GCONNECTION__TYPE:
-                return getType();
-            case GraphPackage.GCONNECTION__SOURCE:
-                if (resolve) return getSource();
-                return basicGetSource();
-            case GraphPackage.GCONNECTION__TARGET:
-                if (resolve) return getTarget();
-                return basicGetTarget();
-            case GraphPackage.GCONNECTION__JOINTS:
-                return getJoints();
-        }
-        return super.eGet(featureID, resolve, coreType);
+        return switch (featureID) {
+            case GraphPackage.GCONNECTION__ID -> getId();
+            case GraphPackage.GCONNECTION__TYPE -> getType();
+            case GraphPackage.GCONNECTION__SOURCE -> {
+                if (resolve) yield getSource();
+                yield basicGetSource();
+            }
+            case GraphPackage.GCONNECTION__TARGET -> {
+                if (resolve) yield getTarget();
+                yield basicGetTarget();
+            }
+            case GraphPackage.GCONNECTION__JOINTS -> getJoints();
+            default -> super.eGet(featureID, resolve, coreType);
+        };
     }
 
     /**
@@ -393,11 +397,11 @@ public class GConnectionImpl extends MinimalEObjectImpl.Container implements GCo
                 return;
             }
             case GraphPackage.GCONNECTION__SOURCE -> {
-                setSource((GConnector) null);
+                setSource(null);
                 return;
             }
             case GraphPackage.GCONNECTION__TARGET -> {
-                setTarget((GConnector) null);
+                setTarget(null);
                 return;
             }
             case GraphPackage.GCONNECTION__JOINTS -> {
@@ -416,38 +420,13 @@ public class GConnectionImpl extends MinimalEObjectImpl.Container implements GCo
      */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__ID:
-                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-            case GraphPackage.GCONNECTION__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-            case GraphPackage.GCONNECTION__SOURCE:
-                return source != null;
-            case GraphPackage.GCONNECTION__TARGET:
-                return target != null;
-            case GraphPackage.GCONNECTION__JOINTS:
-                return joints != null && !joints.isEmpty();
-        }
-        return super.eIsSet(featureID);
+        return switch (featureID) {
+            case GraphPackage.GCONNECTION__ID -> ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case GraphPackage.GCONNECTION__TYPE -> TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+            case GraphPackage.GCONNECTION__SOURCE -> source != null;
+            case GraphPackage.GCONNECTION__TARGET -> target != null;
+            case GraphPackage.GCONNECTION__JOINTS -> joints != null && !joints.isEmpty();
+            default -> super.eIsSet(featureID);
+        };
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuilder result = new StringBuilder(super.toString());
-        result.append(" (id: ");
-        result.append(id);
-        result.append(", type: ");
-        result.append(type);
-        result.append(')');
-        return result.toString();
-    }
-
-} //GConnectionImpl
+}

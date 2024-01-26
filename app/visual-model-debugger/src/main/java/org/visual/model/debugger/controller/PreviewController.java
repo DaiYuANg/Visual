@@ -1,20 +1,13 @@
 package org.visual.model.debugger.controller;
 
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
-import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 @Slf4j
 @Singleton

@@ -30,9 +30,9 @@ public class ConfigFactory {
                 .setFailOnErrors(false)
                 .build();
         String defaultConfig = "visual.model.properties";
-        val mapSource = MapConfigSourceBuilder.builder()
-                .setCustomConfig(ManifestReader.loadManifestStrings())
-                .build();
+//        val mapSource = MapConfigSourceBuilder.builder()
+//                .setCustomConfig(ManifestReader.loadManifestStrings())
+//                .build();
         val classPathSource = ClassPathConfigSourceBuilder.builder()
                 .setResource(defaultConfig)
                 .build();
@@ -40,7 +40,7 @@ public class ConfigFactory {
                 .setFailOnErrors(false)
                 .build();
         val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
-        builder.addSources(List.of(classPathSource, environmentSource, systemSource, mapSource));
+        builder.addSources(List.of(classPathSource, environmentSource, systemSource));
         return builder.build();
     }
 }

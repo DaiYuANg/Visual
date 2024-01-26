@@ -2,12 +2,13 @@ package org.visual.model.debugger.controller;
 
 import com.sun.tools.attach.VirtualMachine;
 import jakarta.inject.Singleton;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -15,12 +16,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.component.VirtualMachineDescriptorListView;
 import org.visual.model.debugger.context.VirtualMachineContext;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Singleton
 @Slf4j

@@ -93,7 +93,7 @@ public class GraphEventManagerImpl implements GraphEventManager
         {
             return false;
         }
-        return pExisting == null || !isVisible(pExisting);
+        return !isVisible(pExisting);
     }
 
     private static boolean isVisible(final Object pNode)

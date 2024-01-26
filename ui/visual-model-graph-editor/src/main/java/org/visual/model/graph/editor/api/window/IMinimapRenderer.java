@@ -47,7 +47,7 @@ public interface IMinimapRenderer<N extends Node>
         /**
          * style class
          */
-        public static final String STYLE_CLASS_NODE = "minimap-node"; //$NON-NLS-1$
+        public static final String STYLE_CLASS_NODE = "minimap-node";
 
         @Override
         public Rectangle createMinimapNode(final GNode pNode)

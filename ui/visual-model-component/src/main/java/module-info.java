@@ -1,4 +1,5 @@
-module org.visual.model.ui {
+@SuppressWarnings({ "requires-automatic"})
+module org.visual.model.component {
     requires transitive javafx.graphics;
     requires transitive javafx.controls;
     requires transitive javafx.fxml;
@@ -49,6 +50,7 @@ module org.visual.model.ui {
     exports org.visual.model.component.api;
     exports org.visual.model.component.display;
     exports org.visual.model.component.wrapper;
+    exports org.visual.model.component.shape.arrow;
 
     opens org.visual.model.component.theme to com.sun.jna;
     opens org.visual.model.component.title to javafx.graphics, javafx.fxml;

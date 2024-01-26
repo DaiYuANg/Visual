@@ -424,7 +424,7 @@ public class Commands
 
         if (editingDomain == null)
         {
-            log.error("No editing domain found for this model. Maybe it hasn't been set inside a graph editor?"); //$NON-NLS-1$
+            log.error("No editing domain found for this model. Maybe it hasn't been set inside a graph editor?");
         }
 
         return editingDomain;

@@ -10,6 +10,8 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.scene.Node;
 import lombok.val;
 import org.eclipse.emf.ecore.EObject;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.utils.DraggableBox;
 
 
@@ -33,9 +35,10 @@ public abstract class GSkin<T extends EObject> {
             return GSkin.this;
         }
 
+        @Contract(pure = true)
         @Override
-        public String getName() {
-            return "selected"; //$NON-NLS-1$
+        public @NotNull String getName() {
+            return "selected";
         }
 
     };

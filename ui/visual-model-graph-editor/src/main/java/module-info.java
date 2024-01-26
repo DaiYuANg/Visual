@@ -1,3 +1,4 @@
+@SuppressWarnings({ "requires-automatic"})
 module org.visual.model.graph.editor {
     requires org.slf4j;
     requires static lombok;
@@ -9,6 +10,11 @@ module org.visual.model.graph.editor {
     requires org.eclipse.emf.edit;
     requires org.jetbrains.annotations;
     requires org.eclipse.emf.ecore.xmi;
+    requires kotlin.stdlib;
+    requires it.unimi.dsi.fastutil;
+    requires org.jgrapht.core;
+    requires org.visual.model.shared;
+    requires org.visual.model.component;
 
     exports org.visual.model.graph.editor.model;
     exports org.visual.model.graph.editor.core;
@@ -20,4 +26,5 @@ module org.visual.model.graph.editor {
     exports org.visual.model.graph.editor.core.skins.defaults;
     exports org.visual.model.graph.editor.api.utils;
     exports org.visual.model.graph.editor.api.window;
+    exports org.visual.model.graph.editor.core.skins.defaults.connection.segment;
 }

@@ -21,11 +21,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.visual.model.jfa.foundation.Foundation;
 import org.visual.model.jfa.foundation.ID;
 import org.visual.model.jfa.foundation.NSAutoreleasePool;
@@ -35,9 +34,9 @@ import org.visual.model.jfa.foundation.NSAutoreleasePool;
  *
  * @author Daniel Gyorffy
  */
+@Slf4j
 class MacOSThemeDetector extends OsThemeDetector {
 
-    private static final Logger logger = LoggerFactory.getLogger(MacOSThemeDetector.class);
 
     private final Set<Consumer<Boolean>> listeners = new CopyOnWriteArraySet<>();
     private final Pattern themeNamePattern = Pattern.compile(".*dark.*", Pattern.CASE_INSENSITIVE);
@@ -60,7 +59,7 @@ class MacOSThemeDetector extends OsThemeDetector {
             final ID delegateClass = Foundation.allocateObjcClassPair(Foundation.getObjcClass("NSObject"), "NSColorChangesObserver");
             if (!ID.NIL.equals(delegateClass)) {
                 if (!Foundation.addMethod(delegateClass, Foundation.createSelector("handleAppleThemeChanged:"), themeChangedCallback, "v@")) {
-                    logger.error("Observer method cannot be added");
+                    log.error("Observer method cannot be added");
                 }
                 Foundation.registerObjcClassPair(delegateClass);
             }
@@ -87,7 +86,7 @@ class MacOSThemeDetector extends OsThemeDetector {
             final String appleInterfaceStyle = Foundation.toStringViaUTF8(Foundation.invoke(userDefaults, "objectForKey:", Foundation.nsString("AppleInterfaceStyle")));
             return isDarkTheme(appleInterfaceStyle);
         } catch (RuntimeException e) {
-            logger.error("Couldn't execute theme name query with the Os", e);
+            log.error("Couldn't execute theme name query with the Os", e);
         } finally {
             pool.drain();
         }

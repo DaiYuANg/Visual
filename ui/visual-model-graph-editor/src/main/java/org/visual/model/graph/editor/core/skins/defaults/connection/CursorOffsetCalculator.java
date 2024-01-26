@@ -4,6 +4,7 @@
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.*;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
@@ -61,15 +62,10 @@ public class CursorOffsetCalculator {
         minOffsetX = offsetBound + 1;
         minOffsetY = offsetBound + 1;
 
-        currentX = ((MoveTo) path.getElements().get(0)).getX();
-        currentY = ((MoveTo) path.getElements().get(0)).getY();
+        currentX = ((MoveTo) path.getElements().getFirst()).getX();
+        currentY = ((MoveTo) path.getElements().getFirst()).getY();
 
-        for (int i = 1; i < path.getElements().size(); i++) {
-
-            final PathElement pathElement = path.getElements().get(i);
-
-            calculateOffset(pathElement, cursorSceneX, cursorSceneY, offsetBound);
-        }
+        IntStream.range(1, path.getElements().size()).mapToObj(i -> path.getElements().get(i)).forEach(pathElement -> calculateOffset(pathElement, cursorSceneX, cursorSceneY, offsetBound));
 
         if (minOffsetX > offsetBound && minOffsetY > offsetBound) {
             return null;

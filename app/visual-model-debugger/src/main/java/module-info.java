@@ -1,3 +1,4 @@
+@SuppressWarnings({ "requires-automatic"})
 module org.visual.model.debugger {
     requires transitive javafx.fxml;
     requires transitive javafx.controls;
@@ -13,7 +14,7 @@ module org.visual.model.debugger {
     requires javafx.web;
     requires javafx.swing;
     requires org.visual.model.shared;
-    requires org.visual.model.ui;
+    requires org.visual.model.component;
     requires io.avaje.inject;
     requires org.github.gestalt.core;
     requires java.management;

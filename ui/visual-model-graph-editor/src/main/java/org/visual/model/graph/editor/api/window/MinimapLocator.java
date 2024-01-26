@@ -19,7 +19,7 @@ import org.visual.model.graph.editor.api.utils.GraphEditorProperties;
 class MinimapLocator extends DraggableBox
 {
 
-    private static final String STYLE_CLASS_LOCATOR = "minimap-locator"; //$NON-NLS-1$
+    private static final String STYLE_CLASS_LOCATOR = "minimap-locator";
 
     /**
      * Creates a new {@link MinimapLocator}.

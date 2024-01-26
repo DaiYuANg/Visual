@@ -5,6 +5,7 @@ package org.visual.model.graph.editor.core.skins.defaults;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import javafx.css.PseudoClass;
 import javafx.geometry.Point2D;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GConnectorSkin;
 import org.visual.model.graph.editor.api.GNodeSkin;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
@@ -127,7 +129,7 @@ public class DefaultNodeSkin extends GNodeSkin {
     }
 
     @Override
-    public Point2D getConnectorPosition(final GConnectorSkin connectorSkin) {
+    public Point2D getConnectorPosition(final @NotNull GConnectorSkin connectorSkin) {
 
         final Node connectorRoot = connectorSkin.getRoot();
 
@@ -135,13 +137,13 @@ public class DefaultNodeSkin extends GNodeSkin {
 
         // The following logic is required because the connectors are offset slightly from the node edges.
         final double x, y;
-        if (side.equals(Side.LEFT)) {
+        if (Objects.equals(side, Side.LEFT)) {
             x = 0;
             y = connectorRoot.getLayoutY() + connectorSkin.getHeight() / 2;
-        } else if (side.equals(Side.RIGHT)) {
+        } else if (Objects.equals(side, Side.RIGHT)) {
             x = getRoot().getWidth();
             y = connectorRoot.getLayoutY() + connectorSkin.getHeight() / 2;
-        } else if (side.equals(Side.TOP)) {
+        } else if (Objects.equals(side, Side.TOP)) {
             x = connectorRoot.getLayoutX() + connectorSkin.getWidth() / 2;
             y = 0;
         } else {
@@ -180,7 +182,7 @@ public class DefaultNodeSkin extends GNodeSkin {
      * @param vertical       {@code true} to lay out vertically, {@code false} to lay out horizontally
      * @param offset         the offset in the other dimension that the skins are layed out in
      */
-    private void layoutConnectors(final List<GConnectorSkin> connectorSkins, final boolean vertical, final double offset) {
+    private void layoutConnectors(final @NotNull List<GConnectorSkin> connectorSkins, final boolean vertical, final double offset) {
 
         final int count = connectorSkins.size();
 
@@ -260,10 +262,10 @@ public class DefaultNodeSkin extends GNodeSkin {
      */
     private void removeAllConnectors() {
 
-        topConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
-        rightConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
-        bottomConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
-        leftConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
+        topConnectorSkins.forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
+        rightConnectorSkins.forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
+        bottomConnectorSkins.forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
+        leftConnectorSkins.forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
     }
 
     /**
@@ -273,7 +275,7 @@ public class DefaultNodeSkin extends GNodeSkin {
      * @param connector the connector to be positioned
      * @return an x-offset of a few pixels
      */
-    private double getMinorOffsetX(final GConnector connector) {
+    private double getMinorOffsetX(final @NotNull GConnector connector) {
 
         final String type = connector.getType();
 
@@ -291,7 +293,7 @@ public class DefaultNodeSkin extends GNodeSkin {
      * @param connector the connector to be positioned
      * @return a y-offset of a few pixels
      */
-    private double getMinorOffsetY(final GConnector connector) {
+    private double getMinorOffsetY(final @NotNull GConnector connector) {
 
         final String type = connector.getType();
 
@@ -307,9 +309,10 @@ public class DefaultNodeSkin extends GNodeSkin {
      *
      * @param event a mouse-dragged event on the node
      */
-    private void filterMouseDragged(final MouseEvent event) {
-        if (event.isPrimaryButtonDown() && !isSelected()) {
-            event.consume();
+    private void filterMouseDragged(final @NotNull MouseEvent event) {
+        if (Boolean.FALSE.equals(event.isPrimaryButtonDown()) || isSelected()) {
+            return;
         }
+        event.consume();
     }
 }

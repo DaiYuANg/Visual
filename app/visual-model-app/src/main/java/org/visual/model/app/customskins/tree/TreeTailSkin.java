@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import org.visual.model.component.shape.arrow.Arrow;
+import org.visual.model.component.util.ArrowUtils;
 import org.visual.model.graph.editor.api.GTailSkin;
-import org.visual.model.graph.editor.api.utils.Arrow;
 import org.visual.model.graph.editor.model.GConnector;
 
 /**

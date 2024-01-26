@@ -2,8 +2,7 @@ package org.visual.model.graph.editor.core.view.impl;
 
 import java.util.*;
 import javafx.geometry.Point2D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.visual.model.graph.editor.api.GConnectionSkin;
 import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.api.VirtualSkin;
@@ -15,9 +14,9 @@ import org.visual.model.graph.editor.model.GModel;
 /**
  * Default implementation of {@link ConnectionLayouter}
  */
+@Slf4j
 public class DefaultConnectionLayouter implements ConnectionLayouter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultConnectionLayouter.class);
 
     private final Set<GConnection> mDirty = new HashSet<>();
     private boolean mRedrawAll = false;
@@ -83,7 +82,7 @@ public class DefaultConnectionLayouter implements ConnectionLayouter {
             }
 
         } catch (Exception e) {
-            LOGGER.debug("Could not redraw Connections: ", e); //$NON-NLS-1$
+            log.debug("Could not redraw Connections: ", e);
         }
     }
 

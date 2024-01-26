@@ -5,7 +5,10 @@ package org.visual.model.graph.editor.core.skins.defaults.connection;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.IntStream;
 import javafx.geometry.Point2D;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GConnectionSkin;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
 import org.visual.model.graph.editor.core.connections.RectangularConnections;
@@ -32,7 +35,7 @@ public class IntersectionFinder
     public static double[][] find(final GConnectionSkin pSkin, final Map<GConnectionSkin, Point2D[]> allPoints,
                                   final boolean behind)
     {
-        final Point2D[] points = allPoints.get(pSkin);
+        val points = allPoints.get(pSkin);
         if (points == null)
         {
             return null;
@@ -72,14 +75,13 @@ public class IntersectionFinder
         return intersections;
     }
 
-    private static void reverse(final double[] array)
+    private static void reverse(final double @NotNull [] array)
     {
-        for (int i = 0; i < array.length / 2; i++)
-        {
+        IntStream.range(0, array.length / 2).forEach(i -> {
             double temp = array[i];
             array[i] = array[array.length - i - 1];
             array[array.length - i - 1] = temp;
-        }
+        });
     }
 
     /**
@@ -182,7 +184,7 @@ public class IntersectionFinder
      *            filter out those in front
      * @return a stream of connections with some filtered out
      */
-    private static boolean filterConnection(final GConnectionSkin connection, final boolean behind, final GConnectionSkin otherConnection)
+    private static boolean filterConnection(final @NotNull GConnectionSkin connection, final boolean behind, final GConnectionSkin otherConnection)
     {
         if (connection.equals(otherConnection))
         {

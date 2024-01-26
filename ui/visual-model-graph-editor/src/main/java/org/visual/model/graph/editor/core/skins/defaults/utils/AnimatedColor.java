@@ -2,15 +2,30 @@ package org.visual.model.graph.editor.core.skins.defaults.utils;
 
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import lombok.Getter;
 
 /**
  * A set of values describing a color animation.
  */
 public class AnimatedColor {
 
+    /**
+     * -- GETTER --
+     *  Gets the CSS property string of the animation.
+     *
+     * @return the CSS property string of the animation
+     */
+    @Getter
     private final String property;
     private final Color first;
     private final Color second;
+    /**
+     * -- GETTER --
+     *  Gets the interval of the animation.
+     *
+     * @return the interval of the animation
+     */
+    @Getter
     private final Duration interval;
 
     /**
@@ -26,15 +41,6 @@ public class AnimatedColor {
         this.first = first;
         this.second = second;
         this.interval = interval;
-    }
-
-    /**
-     * Gets the CSS property string of the animation.
-     * 
-     * @return the CSS property string of the animation
-     */
-    public String getProperty() {
-        return property;
     }
 
     /**
@@ -55,12 +61,4 @@ public class AnimatedColor {
         return second;
     }
 
-    /**
-     * Gets the interval of the animation.
-     * 
-     * @return the interval of the animation
-     */
-    public Duration getInterval() {
-        return interval;
-    }
 }

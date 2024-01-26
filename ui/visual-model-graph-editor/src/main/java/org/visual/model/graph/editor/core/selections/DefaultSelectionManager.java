@@ -3,8 +3,10 @@
  */
 package org.visual.model.graph.editor.core.selections;
 
+import java.util.Arrays;
 import java.util.List;
 import javafx.collections.ObservableSet;
+import lombok.val;
 import org.eclipse.emf.ecore.EObject;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.api.SkinLookup;
@@ -43,7 +45,7 @@ public class DefaultSelectionManager implements SelectionManager {
      * @param view       the {@link GraphEditorView} instance in use
      */
     public DefaultSelectionManager(final SkinLookup skinLookup, final GraphEditorView view) {
-        final SelectionDragManager selectionDragManager = new SelectionDragManager(skinLookup, view, this);
+        val selectionDragManager = new SelectionDragManager(skinLookup, view, this);
         selectionCreator = new SelectionCreator(skinLookup, view, this, selectionDragManager);
         selectionTracker = new SelectionTracker(skinLookup);
     }
@@ -129,24 +131,24 @@ public class DefaultSelectionManager implements SelectionManager {
 
     @Override
     public void clearSelection() {
-        if (!getSelectedItems().isEmpty()) {
-            // copy to prevent ConcurrentModificationException
-            // (removal triggers update notification which in turn could modify the selection)
-            final EObject[] selectedItems = getSelectedItems().toArray(new EObject[0]);
-            for (final EObject remove : selectedItems) {
-                getSelectedItems().remove(remove);
-            }
+        if (getSelectedItems().isEmpty()) {
+            return;
         }
+        // copy to prevent ConcurrentModificationException
+        // (removal triggers update notification which in turn could modify the selection)
+        final EObject[] selectedItems = getSelectedItems().toArray(new EObject[0]);
+        Arrays.stream(selectedItems).forEach(remove -> getSelectedItems().remove(remove));
     }
 
     @Override
     public void selectAll() {
-        if (model != null) {
-            getSelectedItems().addAll(model.getNodes());
-            model.getConnections().forEach(connection -> {
-                getSelectedItems().add(connection);
-                connection.getJoints().forEach(joint -> getSelectedItems().add(joint));
-            });
+        if (model == null) {
+            return;
         }
+        getSelectedItems().addAll(model.getNodes());
+        model.getConnections().forEach(connection -> {
+            getSelectedItems().add(connection);
+            connection.getJoints().forEach(joint -> getSelectedItems().add(joint));
+        });
     }
 }

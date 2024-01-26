@@ -1,5 +1,8 @@
 package org.visual.model.shared;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.ToString;
@@ -8,10 +11,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.jetbrains.annotations.NotNull;
 import oshi.SystemInfo;
 import oshi.software.os.OperatingSystem;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 @Getter
 @ToString
@@ -69,8 +68,7 @@ public enum OS {
         return query(cmd).toLowerCase().contains(subResult);
     }
 
-    @NotNull
-    private static String query(@NotNull String cmd) throws IOException {
+    @NotNull private static String query(@NotNull String cmd) throws IOException {
         val process = new ProcessBuilder().command(cmd).start();
         val stringBuilder = new StringBuilder();
         try (val reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {

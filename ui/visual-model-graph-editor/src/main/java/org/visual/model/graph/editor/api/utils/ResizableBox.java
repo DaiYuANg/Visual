@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.EditorElement;
 
 /**
@@ -58,7 +59,7 @@ public class ResizableBox extends DraggableBox
     }
 
     @Override
-    protected void handleMousePressed(final MouseEvent event)
+    protected void handleMousePressed(final @NotNull MouseEvent event)
     {
         super.handleMousePressed(event);
 
@@ -76,7 +77,7 @@ public class ResizableBox extends DraggableBox
     }
 
     @Override
-    protected void handleMouseDragged(final MouseEvent pEvent)
+    protected void handleMouseDragged(final @NotNull MouseEvent pEvent)
     {
         if (lastMouseRegion == null || !(getParent() instanceof Region) || !pEvent.isPrimaryButtonDown() || !isEditable())
         {

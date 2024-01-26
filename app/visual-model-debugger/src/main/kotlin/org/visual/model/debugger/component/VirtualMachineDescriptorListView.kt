@@ -5,7 +5,7 @@ import javafx.scene.control.ListView
 
 class VirtualMachineDescriptorListView : ListView<VirtualMachineDescriptor>() {
 
-    init {
-        cellFactory = VirtualMachineDescriptorCellFactory()
-    }
+  init {
+    cellFactory = VirtualMachineDescriptorCellFactory()
+  }
 }

@@ -8,7 +8,10 @@ import java.io.File;
 import java.lang.reflect.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
  * see <a href="http://developer.apple.com/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Documentation</a>
  */
 @SuppressWarnings("unused")
+@UtilityClass
 public final class Foundation {
     private static final FoundationLibrary myFoundationLibrary;
     private static final Function myObjcMsgSend;
@@ -173,12 +177,12 @@ public final class Foundation {
         return myFoundationLibrary.class_isMetaClass(cls);
     }
 
-    public static String stringFromSelector(Pointer selector) {
+    public static @Nullable String stringFromSelector(Pointer selector) {
         ID id = myFoundationLibrary.NSStringFromSelector(selector);
         return ID.NIL.equals(id) ? null : toStringViaUTF8(id);
     }
 
-    public static String stringFromClass(ID aClass) {
+    public static @Nullable String stringFromClass(ID aClass) {
         ID id = myFoundationLibrary.NSStringFromClass(aClass);
         return ID.NIL.equals(id) ? null : toStringViaUTF8(id);
     }
@@ -282,7 +286,7 @@ public final class Foundation {
         }
     }
 
-    public static ID autorelease(ID id) {
+    public static @NotNull ID autorelease(ID id) {
         return invoke(id, "autorelease");
     }
 
@@ -309,7 +313,7 @@ public final class Foundation {
                 "performSelectorOnMainThread:withObject:waitUntilDone:",
                 createSelector("run:"),
                 keyObject,
-                Boolean.valueOf(waitUntilDone));
+                waitUntilDone);
         invoke(runnableObject, "release");
     }
 
@@ -374,17 +378,18 @@ public final class Foundation {
         return invoke("NSDictionary", "dictionaryWithObjects:forKeys:", nsData, nsKeys);
     }
 
-    public static PointerType createPointerReference() {
+    public static @NotNull PointerType createPointerReference() {
         PointerType reference = new PointerByReference(new Memory(Native.POINTER_SIZE));
         reference.getPointer().clear(Native.POINTER_SIZE);
         return reference;
     }
 
-    public static ID castPointerToNSError(PointerType pointerType) {
+    @Contract("_ -> new")
+    public static @NotNull ID castPointerToNSError(@NotNull PointerType pointerType) {
         return new ID(pointerType.getPointer().getLong(0));
     }
 
-    public static Object[] convertTypes(Object[] v) {
+    public static Object @NotNull [] convertTypes(Object @NotNull [] v) {
         final Object[] result = new Object[v.length + 1];
         for (int i = 0; i < v.length; i++) {
             result[i] = convertType(v[i]);
@@ -411,7 +416,7 @@ public final class Foundation {
         private static final Pointer initWithBytesLengthEncodingSel = createSelector("initWithBytes:length:encoding:");
         private static final long nsEncodingUTF16LE = convertCFEncodingToNS(FoundationLibrary.kCFStringEncodingUTF16LE);
 
-        public static ID create(String s) {
+        public static @NotNull ID create(@NotNull String s) {
             // Use a byte[] rather than letting jna do the String -> char* marshalling itself.
             // Turns out about 10% quicker for long strings.
             if (s.isEmpty()) {
@@ -447,7 +452,7 @@ public final class Foundation {
             myDelegate = delegate;
         }
 
-        public static Map<String, String> toStringMap(ID delegate) {
+        public static @NotNull Map<String, String> toStringMap(ID delegate) {
             Map<String, String> result = new HashMap<>();
             if (isNil(delegate)) {
                 return result;
@@ -465,7 +470,7 @@ public final class Foundation {
             return result;
         }
 
-        public static ID toStringDictionary(Map<String, String> map) {
+        public static @NotNull ID toStringDictionary(@NotNull Map<String, String> map) {
             ID dict = invoke("NSMutableDictionary", "dictionaryWithCapacity:", map.size());
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 invoke(dict, "setObject:forKey:", nsString(entry.getValue()), nsString(entry.getKey()));
@@ -506,11 +511,7 @@ public final class Foundation {
         }
 
         public List<ID> getList() {
-            List<ID> result = new ArrayList<>();
-            for (int i = 0; i < count(); i++) {
-                result.add(at(i));
-            }
-            return result;
+            return IntStream.range(0, count()).mapToObj(this::at).collect(Collectors.toList());
         }
     }
 

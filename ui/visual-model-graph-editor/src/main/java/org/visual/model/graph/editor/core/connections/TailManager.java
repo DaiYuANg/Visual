@@ -3,6 +3,8 @@ package org.visual.model.graph.editor.core.connections;
 import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GTailSkin;
 import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.api.utils.GeometryUtils;
@@ -42,17 +44,18 @@ public class TailManager {
     public void create(final GConnector connector, final MouseEvent event) {
 
         // Check if tailSkin already created, because this method may be called multiple times.
-        if (tailSkin == null) {
-
-            tailSkin = skinLookup.lookupTail(connector);
-
-            sourcePosition = GeometryUtils.getConnectorPosition(connector, skinLookup);
-            final Point2D cursorPosition = getScaledPosition(GeometryUtils.getCursorPosition(event, view));
-
-            tailSkin.draw(sourcePosition, cursorPosition);
-
-            view.add(tailSkin);
+        if (tailSkin != null) {
+            return;
         }
+
+        tailSkin = skinLookup.lookupTail(connector);
+
+        sourcePosition = GeometryUtils.getConnectorPosition(connector, skinLookup);
+        final Point2D cursorPosition = getScaledPosition(GeometryUtils.getCursorPosition(event, view));
+
+        tailSkin.draw(sourcePosition, cursorPosition);
+
+        view.add(tailSkin);
     }
 
     /**
@@ -84,15 +87,16 @@ public class TailManager {
      */
     public void updatePosition(final MouseEvent event) {
 
-        if (tailSkin != null && sourcePosition != null) {
+        if (tailSkin == null || sourcePosition == null) {
+            return;
+        }
 
-            final Point2D cursorPosition = getScaledPosition(GeometryUtils.getCursorPosition(event, view));
+        final Point2D cursorPosition = getScaledPosition(GeometryUtils.getCursorPosition(event, view));
 
-            if (jointPositions != null) {
-                tailSkin.draw(sourcePosition, cursorPosition, jointPositions);
-            } else {
-                tailSkin.draw(sourcePosition, cursorPosition);
-            }
+        if (jointPositions != null) {
+            tailSkin.draw(sourcePosition, cursorPosition, jointPositions);
+        } else {
+            tailSkin.draw(sourcePosition, cursorPosition);
         }
     }
 
@@ -104,17 +108,17 @@ public class TailManager {
      * @param valid {@code true} if the connection is valid, {@code false} if invalid
      */
     public void snapPosition(final GConnector source, final GConnector target, final boolean valid) {
+        if (tailSkin == null) {
+            return;
+        }
 
-        if (tailSkin != null) {
+        final Point2D sourcePosition = GeometryUtils.getConnectorPosition(source, skinLookup);
+        final Point2D targetPosition = GeometryUtils.getConnectorPosition(target, skinLookup);
 
-            final Point2D sourcePosition = GeometryUtils.getConnectorPosition(source, skinLookup);
-            final Point2D targetPosition = GeometryUtils.getConnectorPosition(target, skinLookup);
-
-            if (jointPositions != null) {
-                tailSkin.draw(sourcePosition, targetPosition, jointPositions, target, valid);
-            } else {
-                tailSkin.draw(sourcePosition, targetPosition, target, valid);
-            }
+        if (jointPositions != null) {
+            tailSkin.draw(sourcePosition, targetPosition, jointPositions, target, valid);
+        } else {
+            tailSkin.draw(sourcePosition, targetPosition, target, valid);
         }
     }
 
@@ -130,10 +134,11 @@ public class TailManager {
 
         jointPositions = null;
 
-        if (tailSkin != null) {
-            view.remove(tailSkin);
-            tailSkin = null;
+        if (tailSkin == null) {
+            return;
         }
+        view.remove(tailSkin);
+        tailSkin = null;
     }
 
     /**
@@ -143,9 +148,9 @@ public class TailManager {
      *
      * @return the corrected cursor position
      */
-    private Point2D getScaledPosition(final Point2D cursorPosition) {
+    private @NotNull Point2D getScaledPosition(final @NotNull Point2D cursorPosition) {
 
-        final double scale = view.getLocalToSceneTransform().getMxx();
+        val scale = view.getLocalToSceneTransform().getMxx();
         return new Point2D(cursorPosition.getX() / scale, cursorPosition.getY() / scale);
     }
 }

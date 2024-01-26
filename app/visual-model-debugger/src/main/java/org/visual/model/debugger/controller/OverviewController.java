@@ -1,28 +1,18 @@
 package org.visual.model.debugger.controller;
 
 import com.sun.tools.attach.VirtualMachine;
-import io.avaje.inject.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.jetbrains.annotations.Debug;
 import org.jetbrains.annotations.NotNull;
-import org.visual.model.debugger.context.DebuggerContext;
 import org.visual.model.debugger.context.VirtualMachineContext;
-
-import java.net.URL;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 @Singleton
 @Slf4j

@@ -1,10 +1,13 @@
 package org.visual.model.graph.editor.core.skins.defaults.tail;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Creates a rectangular connection path based on what sides of the nodes the connection starts and ends at.
@@ -27,7 +30,7 @@ public class RectangularPathCreator {
      * @return a list of points specifying the path
      */
     public static List<Point2D> createPath(final Point2D startPosition, final Point2D endPosition,
-                                           final Side startSide, final Side endSide) {
+                                           final @NotNull Side startSide, final Side endSide) {
 
         if (startSide.equals(Side.LEFT) && endSide.equals(Side.LEFT)) {
             return connectLeftToLeft(startPosition, endPosition);
@@ -100,9 +103,9 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectLeftToLeft(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectLeftToLeft(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        final List<Point2D> path = new ObjectArrayList<>();
 
         final double minX = Math.min(start.getX(), end.getX());
         addPoint(path, minX - MINIMUM_EXTENSION, start.getY());
@@ -118,16 +121,16 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectLeftToRight(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectLeftToRight(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        final List<Point2D> path = new ObjectArrayList<>();
 
         if (start.getX() >= end.getX() + 2 * MINIMUM_EXTENSION) {
-            final double averageX = (start.getX() + end.getX()) / 2;
+            val averageX = (start.getX() + end.getX()) / 2;
             addPoint(path, averageX, start.getY());
             addPoint(path, averageX, end.getY());
         } else {
-            final double averageY = (start.getY() + end.getY()) / 2;
+            val averageY = (start.getY() + end.getY()) / 2;
             addPoint(path, start.getX() - MINIMUM_EXTENSION, start.getY());
             addPoint(path, start.getX() - MINIMUM_EXTENSION, averageY);
             addPoint(path, end.getX() + MINIMUM_EXTENSION, averageY);
@@ -144,9 +147,9 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectLeftToTop(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectLeftToTop(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        final List<Point2D> path = new ObjectArrayList<>();
 
         if (start.getX() > end.getX() + MINIMUM_EXTENSION) {
             if (start.getY() < end.getY() - MINIMUM_EXTENSION) {
@@ -180,9 +183,9 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectLeftToBottom(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectLeftToBottom(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        final List<Point2D> path = new ObjectArrayList<>();
 
         if (start.getX() > end.getX() + MINIMUM_EXTENSION) {
             if (start.getY() > end.getY() + MINIMUM_EXTENSION) {
@@ -216,11 +219,11 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectRightToRight(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectRightToRight(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        val path = new ObjectArrayList<Point2D>();
 
-        final double maxX = Math.max(start.getX(), end.getX());
+        val maxX = Math.max(start.getX(), end.getX());
         addPoint(path, maxX + MINIMUM_EXTENSION, start.getY());
         addPoint(path, maxX + MINIMUM_EXTENSION, end.getY());
 
@@ -234,9 +237,9 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectRightToTop(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectRightToTop(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        val path = new ObjectArrayList<Point2D>();
 
         if (start.getX() < end.getX() - MINIMUM_EXTENSION) {
             if (start.getY() < end.getY() - MINIMUM_EXTENSION) {
@@ -270,9 +273,9 @@ public class RectangularPathCreator {
      * @param end   the end position
      * @return a list of points connecting the start and end
      */
-    private static List<Point2D> connectRightToBottom(final Point2D start, final Point2D end) {
+    private static @NotNull List<Point2D> connectRightToBottom(final @NotNull Point2D start, final @NotNull Point2D end) {
 
-        final List<Point2D> path = new ArrayList<>();
+        val path = new ObjectArrayList<Point2D>();
 
         if (start.getX() < end.getX() - MINIMUM_EXTENSION) {
             if (start.getY() > end.getY() + MINIMUM_EXTENSION) {

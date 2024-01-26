@@ -98,11 +98,11 @@ public class PanningWindow extends Region {
 
         scrollX.setOrientation(Orientation.HORIZONTAL);
         scrollX.valueProperty().bindBidirectional(contentX);
-        scrollX.getStyleClass().add("graph-editor-scroll-bar"); //$NON-NLS-1$
+        scrollX.getStyleClass().add("graph-editor-scroll-bar");
 
         scrollY.valueProperty().bindBidirectional(contentY);
         scrollY.setOrientation(Orientation.VERTICAL);
-        scrollY.getStyleClass().add("graph-editor-scroll-bar"); //$NON-NLS-1$
+        scrollY.getStyleClass().add("graph-editor-scroll-bar");
     }
 
     /**

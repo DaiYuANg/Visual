@@ -9,8 +9,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import kotlin.NotImplementedError;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GConnectorSkin;
 import org.visual.model.graph.editor.api.GConnectorStyle;
 import org.visual.model.graph.editor.core.connectors.DefaultConnectorTypes;
@@ -26,9 +27,9 @@ import org.visual.model.graph.editor.model.GConnector;
  * connector does not have one of these types, it will be set to <b>left-input</b>.
  * </p>
  */
+@Slf4j
 public class DefaultConnectorSkin extends GConnectorSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultConnectorSkin.class);
 
     private static final String STYLE_CLASS_BASE = "default-connector";
 
@@ -88,7 +89,7 @@ public class DefaultConnectorSkin extends GConnectorSkin {
     }
 
     @Override
-    public void applyStyle(final GConnectorStyle style) {
+    public void applyStyle(final @NotNull GConnectorStyle style) {
 
         switch (style) {
             case DEFAULT -> {
@@ -118,14 +119,11 @@ public class DefaultConnectorSkin extends GConnectorSkin {
     public static void drawTriangleConnector(final String type, final Polygon polygon) {
 
         switch (type) {
-            case DefaultConnectorTypes.TOP_INPUT -> drawVertical(false, polygon);
-            case DefaultConnectorTypes.TOP_OUTPUT -> drawVertical(true, polygon);
-            case DefaultConnectorTypes.RIGHT_INPUT -> drawHorizontal(false, polygon);
-            case DefaultConnectorTypes.RIGHT_OUTPUT -> drawHorizontal(true, polygon);
-            case DefaultConnectorTypes.BOTTOM_INPUT -> drawVertical(true, polygon);
-            case DefaultConnectorTypes.BOTTOM_OUTPUT -> drawVertical(false, polygon);
-            case DefaultConnectorTypes.LEFT_INPUT -> drawHorizontal(true, polygon);
-            case DefaultConnectorTypes.LEFT_OUTPUT -> drawHorizontal(false, polygon);
+            case DefaultConnectorTypes.TOP_INPUT, DefaultConnectorTypes.BOTTOM_OUTPUT -> drawVertical(false, polygon);
+            case DefaultConnectorTypes.TOP_OUTPUT, DefaultConnectorTypes.BOTTOM_INPUT -> drawVertical(true, polygon);
+            case DefaultConnectorTypes.RIGHT_INPUT, DefaultConnectorTypes.LEFT_OUTPUT -> drawHorizontal(false, polygon);
+            case DefaultConnectorTypes.RIGHT_OUTPUT, DefaultConnectorTypes.LEFT_INPUT -> drawHorizontal(true, polygon);
+            default -> throw new IllegalStateException("Unexpected value: " + type);
         }
     }
 
@@ -164,7 +162,7 @@ public class DefaultConnectorSkin extends GConnectorSkin {
      */
     private void performChecks() {
         if (!DefaultConnectorTypes.isValid(getItem().getType())) {
-            LOGGER.error("Connector type '{}' not recognized, setting to 'left-input'.", getItem().getType());
+            log.error("Connector type '{}' not recognized, setting to 'left-input'.", getItem().getType());
             getItem().setType(DefaultConnectorTypes.LEFT_INPUT);
         }
     }
@@ -172,5 +170,6 @@ public class DefaultConnectorSkin extends GConnectorSkin {
     @Override
     protected void selectionChanged(boolean isSelected) {
         // Not implemented
+        throw new NotImplementedError();
     }
 }

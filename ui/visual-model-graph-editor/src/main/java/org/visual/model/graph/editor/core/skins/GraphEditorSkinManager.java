@@ -1,12 +1,12 @@
 package org.visual.model.graph.editor.core.skins;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javafx.util.Callback;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.*;
 import org.visual.model.graph.editor.core.skins.defaults.*;
 import org.visual.model.graph.editor.core.view.ConnectionLayouter;
@@ -87,31 +87,23 @@ public class GraphEditorSkinManager implements SkinManager {
     @Override
     public void clear() {
         if (!mNodeSkins.isEmpty()) {
-            final GNode[] nodes = mNodeSkins.keySet().toArray(new GNode[0]);
-            for (final GNode n : nodes) {
-                removeNode(n);
-            }
+            val nodes = mNodeSkins.keySet().toArray(new GNode[0]);
+            Arrays.stream(nodes).forEach(this::removeNode);
         }
 
         if (!mConnectorSkins.isEmpty()) {
-            final GConnector[] connectors = mConnectorSkins.keySet().toArray(new GConnector[0]);
-            for (final GConnector c : connectors) {
-                removeConnector(c);
-            }
+            val connectors = mConnectorSkins.keySet().toArray(new GConnector[0]);
+            Arrays.stream(connectors).forEach(this::removeConnector);
         }
 
         if (!mConnectionSkins.isEmpty()) {
-            final GConnection[] connections = mConnectionSkins.keySet().toArray(new GConnection[0]);
-            for (final GConnection c : connections) {
-                removeConnection(c);
-            }
+            val connections = mConnectionSkins.keySet().toArray(new GConnection[0]);
+            Arrays.stream(connections).forEach(this::removeConnection);
         }
 
         if (!mJointSkins.isEmpty()) {
-            final GJoint[] joints = mJointSkins.keySet().toArray(new GJoint[0]);
-            for (final GJoint c : joints) {
-                removeJoint(c);
-            }
+            val joints = mJointSkins.keySet().toArray(new GJoint[0]);
+            Arrays.stream(joints).forEach(this::removeJoint);
         }
 
         if (!mTailSkins.isEmpty()) {
@@ -128,30 +120,30 @@ public class GraphEditorSkinManager implements SkinManager {
 
     @Override
     public void removeNode(final GNode pNodeToRemove) {
-        if (pNodeToRemove != null) {
-            final GNodeSkin removedSkin = mNodeSkins.remove(pNodeToRemove);
-            if (removedSkin != null) {
-                mView.remove(removedSkin);
-                removedSkin.dispose();
-            }
-
-            for (int i = 0; i < pNodeToRemove.getConnectors().size(); i++) {
-                removeConnector(pNodeToRemove.getConnectors().get(i));
-            }
+        if (pNodeToRemove == null) {
+            return;
         }
+        final GNodeSkin removedSkin = mNodeSkins.remove(pNodeToRemove);
+        if (removedSkin != null) {
+            mView.remove(removedSkin);
+            removedSkin.dispose();
+        }
+
+        pNodeToRemove.getConnectors().forEach(this::removeConnector);
     }
 
     @Override
     public void removeConnector(final GConnector pConnectorToRemove) {
-        if (pConnectorToRemove != null) {
-            final GConnectorSkin removedSkin = mConnectorSkins.remove(pConnectorToRemove);
-            if (removedSkin != null) {
-                removedSkin.dispose();
-            }
-            final GTailSkin removedTailSkin = mTailSkins.remove(pConnectorToRemove);
-            if (removedTailSkin != null) {
-                removedTailSkin.dispose();
-            }
+        if (Objects.isNull(pConnectorToRemove)) {
+            return;
+        }
+        val removedSkin = mConnectorSkins.remove(pConnectorToRemove);
+        if (removedSkin != null) {
+            removedSkin.dispose();
+        }
+        val removedTailSkin = mTailSkins.remove(pConnectorToRemove);
+        if (removedTailSkin != null) {
+            removedTailSkin.dispose();
         }
     }
 
@@ -243,7 +235,7 @@ public class GraphEditorSkinManager implements SkinManager {
         return mTailSkins.computeIfAbsent(pConnector, this::createTailSkin);
     }
 
-    private GConnectorSkin createConnectorSkin(final GConnector pConnector) {
+    private @NotNull GConnectorSkin createConnectorSkin(final GConnector pConnector) {
         GConnectorSkin skin = mConnectorSkinFactory == null ? null : mConnectorSkinFactory.call(pConnector);
         if (skin == null) {
             skin = new DefaultConnectorSkin(pConnector);
@@ -252,7 +244,7 @@ public class GraphEditorSkinManager implements SkinManager {
         return skin;
     }
 
-    private GTailSkin createTailSkin(final GConnector pConnector) {
+    private @NotNull GTailSkin createTailSkin(final GConnector pConnector) {
         GTailSkin skin = mTailSkinFactory == null ? null : mTailSkinFactory.call(pConnector);
         if (skin == null) {
             skin = new DefaultTailSkin(pConnector);
@@ -261,7 +253,7 @@ public class GraphEditorSkinManager implements SkinManager {
         return skin;
     }
 
-    private GConnectionSkin createConnectionSkin(final GConnection pConnection) {
+    private @NotNull GConnectionSkin createConnectionSkin(final GConnection pConnection) {
         GConnectionSkin skin = mConnectionSkinFactory == null ? null : mConnectionSkinFactory.call(pConnection);
         if (skin == null) {
             skin = new DefaultConnectionSkin(pConnection);
@@ -273,7 +265,7 @@ public class GraphEditorSkinManager implements SkinManager {
         return skin;
     }
 
-    private GJointSkin createJointSkin(final GJoint pJoint) {
+    private @NotNull GJointSkin createJointSkin(final GJoint pJoint) {
         GJointSkin skin = mJointSkinFactory == null ? null : mJointSkinFactory.call(pJoint);
         if (skin == null) {
             skin = new DefaultJointSkin(pJoint);
@@ -288,7 +280,7 @@ public class GraphEditorSkinManager implements SkinManager {
         return skin;
     }
 
-    private GNodeSkin createNodeSkin(final GNode pNode) {
+    private @NotNull GNodeSkin createNodeSkin(final GNode pNode) {
         GNodeSkin skin = mNodeSkinFactory == null ? null : mNodeSkinFactory.call(pNode);
         if (skin == null) {
             skin = new DefaultNodeSkin(pNode);
@@ -310,10 +302,10 @@ public class GraphEditorSkinManager implements SkinManager {
         }
         if (pMovedSkin instanceof GNodeSkin gns) {
             // redraw all connections attached to each connector of the GNode:
-            for (final GConnector connector : gns.getItem().getConnectors()) {
-                layouter.redraw(connector.getConnections());
-            }
-        } else if (pMovedSkin instanceof GJointSkin gjs) {
+            gns.getItem().getConnectors().stream().map(GConnector::getConnections).forEach(layouter::redraw);
+            return;
+        }
+        if (pMovedSkin instanceof GJointSkin gjs) {
             // redraw the GConnection of the GJoint:
             layouter.redraw(gjs.getItem().getConnection());
         }

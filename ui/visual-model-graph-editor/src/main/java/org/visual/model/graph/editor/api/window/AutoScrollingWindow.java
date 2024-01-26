@@ -13,6 +13,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * An extension of {@link PanningWindow} that adds an auto-scrolling mechanism.
@@ -76,22 +77,24 @@ public class AutoScrollingWindow extends PanningWindow
      */
     private void handleMouseDragged(final @NotNull MouseEvent event)
     {
-        if (event.isPrimaryButtonDown() && event.getTarget() instanceof Node && !isScrollBar(event))
-        {
-            jumpDistance = getDistanceToJump(event.getX(), event.getY());
+        if (Boolean.FALSE.equals(event.isPrimaryButtonDown()) ||
+                Boolean.FALSE.equals(event.getTarget() instanceof Node) ||
+                isScrollBar(event)) {
+            return;
+        }
+        jumpDistance = getDistanceToJump(event.getX(), event.getY());
 
-            if (jumpDistance == null)
-            {
-                jumpsTaken = 0;
-            }
-            else if (!isScrolling && isAutoScrollingEnabled())
-            {
-                startScrolling();
-            }
+        if (jumpDistance == null)
+        {
+            jumpsTaken = 0;
+        }
+        else if (!isScrolling && isAutoScrollingEnabled())
+        {
+            startScrolling();
         }
     }
 
-    private boolean isScrollBar(final MouseEvent pEvent)
+    private boolean isScrollBar(final @NotNull MouseEvent pEvent)
     {
         if (pEvent.getTarget() instanceof Node node)
         {
@@ -119,7 +122,7 @@ public class AutoScrollingWindow extends PanningWindow
      * @param cursorY the cursor-y position in this {@link PanningWindow}
      * @return the distance to jump, or null if no jump should occur
      */
-    private Point2D getDistanceToJump(final double cursorX, final double cursorY)
+    private @Nullable Point2D getDistanceToJump(final double cursorX, final double cursorY)
     {
         double jumpX = 0;
         double jumpY = 0;
@@ -189,13 +192,13 @@ public class AutoScrollingWindow extends PanningWindow
         isScrolling = true;
         jumpsTaken = 0;
 
-        final KeyFrame frame = new KeyFrame(JUMP_PERIOD, event ->
+        val frame = new KeyFrame(JUMP_PERIOD, event ->
         {
-            if (isScrolling && jumpDistance != null)
-            {
-                panBy(jumpDistance.getX(), jumpDistance.getY());
-                jumpsTaken++;
+            if (!isScrolling || jumpDistance == null) {
+                return;
             }
+            panBy(jumpDistance.getX(), jumpDistance.getY());
+            jumpsTaken++;
         });
 
         timeline = new Timeline();

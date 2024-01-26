@@ -4,6 +4,9 @@
 package org.visual.model.graph.editor.core.connectors;
 
 import javafx.geometry.Side;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -97,7 +100,7 @@ public final class DefaultConnectorTypes
      *            a non-null connector type
      * @return the {@link Side} the connector type is on
      */
-    public static Side getSide(final String type)
+    public static @Nullable Side getSide(final String type)
     {
         if (isTop(type))
         {
@@ -130,7 +133,8 @@ public final class DefaultConnectorTypes
      * @return {@code true} if the connector will be positioned at the top of a
      *         node
      */
-    public static boolean isTop(final String type)
+    @Contract(pure = true)
+    public static boolean isTop(final @NotNull String type)
     {
         return type.contains(TOP_SIDE);
     }
@@ -144,7 +148,8 @@ public final class DefaultConnectorTypes
      * @return {@code true} if the connector will be positioned on the right
      *         side of a node
      */
-    public static boolean isRight(final String type)
+    @Contract(pure = true)
+    public static boolean isRight(final @NotNull String type)
     {
         return type.contains(RIGHT_SIDE);
     }
@@ -158,7 +163,8 @@ public final class DefaultConnectorTypes
      * @return {@code true} if the connector will be positioned at the bottom of
      *         a node
      */
-    public static boolean isBottom(final String type)
+    @Contract(pure = true)
+    public static boolean isBottom(final @NotNull String type)
     {
         return type.contains(BOTTOM_SIDE);
     }
@@ -172,7 +178,8 @@ public final class DefaultConnectorTypes
      * @return {@code true} if the connector will be positioned on the left side
      *         of a node
      */
-    public static boolean isLeft(final String type)
+    @Contract(pure = true)
+    public static boolean isLeft(final @NotNull String type)
     {
         return type.contains(LEFT_SIDE);
     }
@@ -184,7 +191,8 @@ public final class DefaultConnectorTypes
      *            a connector's type string
      * @return {@code true} if the connector is any kind of input
      */
-    public static boolean isInput(final String type)
+    @Contract(pure = true)
+    public static boolean isInput(final @NotNull String type)
     {
         return type.contains(INPUT);
     }
@@ -196,7 +204,8 @@ public final class DefaultConnectorTypes
      *            a connector's type string
      * @return {@code true} if the connector is any kind of output
      */
-    public static boolean isOutput(final String type)
+    @Contract(pure = true)
+    public static boolean isOutput(final @NotNull String type)
     {
         return type.contains(OUTPUT);
     }

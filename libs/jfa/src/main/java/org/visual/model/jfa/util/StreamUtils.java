@@ -1,11 +1,9 @@
 /* (C)2024*/
 package org.visual.model.jfa.util;
 
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.jetbrains.annotations.NotNull;
 
 public final class StreamUtils {
     private StreamUtils() {

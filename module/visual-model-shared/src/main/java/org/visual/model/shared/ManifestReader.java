@@ -4,28 +4,47 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
-import lombok.experimental.UtilityClass;
-import lombok.val;
 
-@UtilityClass
+import lombok.val;
+import org.visual.model.shared.mapper.ManifestMapper;
+import org.visual.model.shared.pojo.BaseManifest;
+
+@SuppressWarnings({"missing-explicit-ctor"})
 public class ManifestReader {
 
-    public Map<Object, Object> loadManifest() throws IOException {
+    private static final Supplier<ManifestReader> INSTANCE = ManifestReader::new;
+
+    public static ManifestReader INSTANCE() {
+        return INSTANCE.get();
+    }
+
+    private static final String MANIFEST_PATH = "META-INF/MANIFEST.MF";
+
+    private final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+
+    public Manifest readManifest() throws IOException {
         val classLoader = ManifestReader.class.getClassLoader();
-        val jarUrl = Optional.ofNullable(classLoader.getResource("META-INF/MANIFEST.MF")).orElseThrow();
+        val jarUrl = Optional.ofNullable(classLoader.getResource(MANIFEST_PATH)).orElseThrow();
         try (InputStream is = jarUrl.openStream()) {
-            val manifest = new Manifest(is);
-            val attributes = manifest.getMainAttributes();
-            return attributes.entrySet().stream()
-                    .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+            return new Manifest(is);
         }
     }
 
+    public Map<Object, Object> readToMap() throws IOException {
+        return readManifest().getMainAttributes().entrySet().stream()
+                    .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
     public Map<String, String> loadManifestStrings() throws IOException {
-        return loadManifest().entrySet().stream()
+        return readToMap().entrySet().stream()
                 .map(objectObjectEntry -> Map.entry(objectObjectEntry.getKey().toString(), objectObjectEntry.getValue().toString()))
                 .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    public BaseManifest loadManifestObject() throws IOException {
+        return ManifestMapper.INSTANCE.mapToManifest(loadManifestStrings());
     }
 }

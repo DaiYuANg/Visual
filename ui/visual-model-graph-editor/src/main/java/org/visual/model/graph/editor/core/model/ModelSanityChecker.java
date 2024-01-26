@@ -39,7 +39,7 @@ public final class ModelSanityChecker {
      * @param model the {@link GModel} to be validated
      * @return {@code true} if the model width and height parameters are valid
      */
-    private static boolean validateSizes(final GModel model) {
+    private static boolean validateSizes(final @NotNull GModel model) {
         if (model.getContentWidth() < 0 || model.getContentHeight() < 0) {
             log.error("Model contains negative width / height values.");
             return false;

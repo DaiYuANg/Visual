@@ -5,7 +5,6 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.CheckMenuItem
 import javafx.scene.control.Menu
-import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
 import javafx.scene.input.KeyCombination
 import javafx.stage.WindowEvent

@@ -3,6 +3,7 @@
  */
 package org.visual.model.graph.editor.core.skins.defaults.connection;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.Map;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lombok.Setter;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GJointSkin;
 import org.visual.model.graph.editor.api.GNodeSkin;
 import org.visual.model.graph.editor.api.SkinLookup;
@@ -54,29 +57,24 @@ public class JointAlignmentManager {
      *
      * @param jointSkins all joint skin instances belonging to a connection
      */
-    public void addAlignmentHandlers(final List<GJointSkin> jointSkins) {
+    public void addAlignmentHandlers(final @NotNull List<GJointSkin> jointSkins) {
 
         final Map<GJointSkin, EventHandler<MouseEvent>> oldAlignmentHandlers = new HashMap<>(alignmentHandlers);
         alignmentHandlers.clear();
 
-        for (final GJointSkin jointSkin : jointSkins) {
-
+        jointSkins.forEach(jointSkin -> {
             final EventHandler<MouseEvent> oldHandler = oldAlignmentHandlers.get(jointSkin);
-
             final DraggableBox root = jointSkin.getRoot();
-
             if (oldHandler != null) {
                 root.removeEventHandler(MouseEvent.MOUSE_PRESSED, oldHandler);
             }
-
             final EventHandler<MouseEvent> newHandler = event -> {
                 addHorizontalAlignmentTargets(jointSkin, jointSkins);
                 addVerticalAlignmentTargets(jointSkin, jointSkins);
             };
-
             root.addEventHandler(MouseEvent.MOUSE_PRESSED, newHandler);
             alignmentHandlers.put(jointSkin, newHandler);
-        }
+        });
     }
 
     /**
@@ -85,12 +83,12 @@ public class JointAlignmentManager {
      * @param jointSkin  the current joint skin
      * @param jointSkins all joint skin instances belonging to a connection
      */
-    private void addHorizontalAlignmentTargets(final GJointSkin jointSkin, final List<GJointSkin> jointSkins) {
+    private void addHorizontalAlignmentTargets(final GJointSkin jointSkin, final @NotNull List<GJointSkin> jointSkins) {
 
         final int index = jointSkins.indexOf(jointSkin);
         final int count = jointSkins.size();
 
-        final List<GJointSkin> alignmentValuesX = new ArrayList<>();
+        final List<GJointSkin> alignmentValuesX = new ObjectArrayList<>();
 
         // First check for existence of previous vertical segment that will not move when this joint is dragged.
         if (isPreviousVerticalSegmentStationary(index, jointSkins)) {
@@ -111,7 +109,7 @@ public class JointAlignmentManager {
         }
 
         if (!alignmentValuesX.isEmpty()) {
-            final double[] alignmentValues = new double[alignmentValuesX.size()];
+            val alignmentValues = new double[alignmentValuesX.size()];
             for (int i = 0; i < alignmentValuesX.size(); i++) {
                 alignmentValues[i] = alignmentValuesX.get(i).getRoot().getLayoutX();
             }
@@ -127,7 +125,7 @@ public class JointAlignmentManager {
      * @param jointSkin  the current joint skin
      * @param jointSkins all joint skin instances belonging to a connection
      */
-    private void addVerticalAlignmentTargets(final GJointSkin jointSkin, final List<GJointSkin> jointSkins) {
+    private void addVerticalAlignmentTargets(final GJointSkin jointSkin, final @NotNull List<GJointSkin> jointSkins) {
         final int index = jointSkins.indexOf(jointSkin);
         final int count = jointSkins.size();
 
@@ -187,7 +185,7 @@ public class JointAlignmentManager {
      * @param jointSkins   the list of joint skins for the joint's connection
      * @return {@code true} if the next vertical segment of the connection will remain stationary
      */
-    private boolean isNextVerticalSegmentStationary(final int index, final List<GJointSkin> jointSkins) {
+    private boolean isNextVerticalSegmentStationary(final int index, final @NotNull List<GJointSkin> jointSkins) {
 
         final int count = jointSkins.size();
         final boolean lastSegmentHorizontal = RectangularConnections.isSegmentHorizontal(connection, count);
@@ -224,7 +222,7 @@ public class JointAlignmentManager {
      * @param jointSkins the list of joint skins for the joint's connection
      * @return {@code true} if the next horizontal segment of the connection will remain stationary
      */
-    private boolean isNextHorizontalSegmentStationary(final int index, final List<GJointSkin> jointSkins) {
+    private boolean isNextHorizontalSegmentStationary(final int index, final @NotNull List<GJointSkin> jointSkins) {
 
         final int count = jointSkins.size();
         final boolean lastSegmentHorizontal = RectangularConnections.isSegmentHorizontal(connection, count);
@@ -268,7 +266,7 @@ public class JointAlignmentManager {
     private boolean isJointPairStationary(final int index, final boolean horizontal, final boolean next,
                                           final List<GJointSkin> jointSkins) {
 
-        final boolean segmentHorizontal = RectangularConnections.isSegmentHorizontal(connection, index + 1);
+        val segmentHorizontal = RectangularConnections.isSegmentHorizontal(connection, index + 1);
 
         final int jump;
         if (segmentHorizontal == (horizontal == next)) {

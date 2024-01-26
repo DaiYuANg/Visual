@@ -3,13 +3,12 @@ package org.visual.model.debugger.controller;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import javafx.fxml.Initializable;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
+import javafx.fxml.Initializable;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 @Slf4j
 @Singleton

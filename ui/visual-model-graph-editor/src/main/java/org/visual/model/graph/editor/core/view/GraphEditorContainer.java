@@ -58,7 +58,6 @@ public class GraphEditorContainer extends AutoScrollingWindow {
      * -- GETTER --
      * Returns the
      *
-     * @return the graph editor minimap
      */
     @Getter
     private final GraphEditorMinimap minimap = new GraphEditorMinimap();

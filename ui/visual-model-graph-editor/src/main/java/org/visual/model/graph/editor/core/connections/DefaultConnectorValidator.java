@@ -19,11 +19,7 @@ public class DefaultConnectorValidator implements GConnectorValidator {
 
         if (source == null || target == null) {
             return false;
-        } else if (source.equals(target)) {
-            return false;
-        }
-
-        return true;
+        } else return !source.equals(target);
     }
 
     @Override

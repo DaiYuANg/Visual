@@ -1,7 +1,7 @@
 package org.visual.model.graph.editor.api.utils;
 
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import java.util.Collection;
-import java.util.HashSet;
 import org.eclipse.emf.ecore.EObject;
 
 
@@ -12,42 +12,36 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @since 15.02.2019
  */
-public final class RemoveContext
-{
+public final class RemoveContext {
 
-    private final Collection<EObject> objectsToDelete = new HashSet<>();
+    private final Collection<EObject> objectsToDelete = new ObjectArraySet<>();
 
     /**
      * Constructor
      *
      * @since 15.02.2019
      */
-    public RemoveContext()
-    {
+    public RemoveContext() {
         // Auto-generated constructor stub
     }
 
     /**
-     * @param pToCheck
-     *            {@link EObject} to check
+     * @param pToCheck {@link EObject} to check
      * @return {@code true} if no other involved party has created a delete
-     *         command for the given object otherwise {@code false}
+     * command for the given object otherwise {@code false}
      * @since 15.02.2019
      */
-    public boolean canRemove(final EObject pToCheck)
-    {
+    public boolean canRemove(final EObject pToCheck) {
         return objectsToDelete.add(pToCheck);
     }
 
     /**
-     * @param pToCheck
-     *            {@link EObject} to check
+     * @param pToCheck {@link EObject} to check
      * @return {@code true} any involved party has created a delete command for
-     *         the given object otherwise {@code false}
+     * the given object otherwise {@code false}
      * @since 15.02.2019
      */
-    public boolean contains(final EObject pToCheck)
-    {
+    public boolean contains(final EObject pToCheck) {
         return objectsToDelete.contains(pToCheck);
     }
 }

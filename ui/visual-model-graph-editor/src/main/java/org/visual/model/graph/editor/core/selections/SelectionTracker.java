@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
 import org.eclipse.emf.ecore.EObject;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GSkin;
 import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.model.GConnection;
@@ -34,7 +35,7 @@ public class SelectionTracker
         selectedElements.addListener(this::selectedElementsChanged);
     }
 
-    private void selectedElementsChanged(final SetChangeListener.Change<? extends EObject> change)
+    private void selectedElementsChanged(final SetChangeListener.@NotNull Change<? extends EObject> change)
     {
         if (change.wasRemoved())
         {

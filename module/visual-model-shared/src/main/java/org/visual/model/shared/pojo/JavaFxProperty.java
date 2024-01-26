@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 public class JavaFxProperty {
-    private int Version;
-    private String RuntimeVersion;
-    private int RuntimeBuild;
+    private String version;
+    private String runtimeVersion;
+    private int runtimeBuild;
 }

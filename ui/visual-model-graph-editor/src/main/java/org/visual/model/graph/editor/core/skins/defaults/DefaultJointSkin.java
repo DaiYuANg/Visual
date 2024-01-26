@@ -47,10 +47,10 @@ public class DefaultJointSkin extends GJointSkin
     protected void selectionChanged(boolean isSelected)
     {
         getRoot().pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, isSelected);
-        if (isSelected)
-        {
-            getRoot().toFront();
+        if (!isSelected) {
+            return;
         }
+        getRoot().toFront();
     }
 
     @Override

@@ -10,8 +10,11 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.*;
 import org.visual.model.graph.editor.api.utils.GraphEditorProperties;
 import org.visual.model.graph.editor.api.utils.RemoveContext;
@@ -25,8 +28,8 @@ import org.visual.model.graph.editor.model.*;
 /**
  * Default implementation of the {@link GraphEditor}.
  */
-public class DefaultGraphEditor implements GraphEditor
-{
+@Slf4j
+public class DefaultGraphEditor implements GraphEditor {
 
     private final GraphEditorProperties mProperties;
     private final GraphEditorView mView;
@@ -34,18 +37,16 @@ public class DefaultGraphEditor implements GraphEditor
     private final GraphEditorSkinManager mSkinManager;
     private final GraphEditorController<DefaultGraphEditor> mController;
 
-    private final ObjectProperty<GModel> mModelProperty = new ObjectPropertyBase<GModel>()
-    {
+    private final ObjectProperty<GModel> mModelProperty = new ObjectPropertyBase<>() {
 
         @Override
-        public Object getBean()
-        {
+        public Object getBean() {
             return DefaultGraphEditor.this;
         }
 
+        @Contract(pure = true)
         @Override
-        public String getName()
-        {
+        public @NotNull String getName() {
             return "model";
         }
 
@@ -54,16 +55,14 @@ public class DefaultGraphEditor implements GraphEditor
     /**
      * Creates a new default implementation of the {@link GraphEditor}.
      */
-    public DefaultGraphEditor()
-    {
+    public DefaultGraphEditor() {
         this(null);
     }
 
     /**
      * Creates a new default implementation of the {@link GraphEditor}.
      */
-    public DefaultGraphEditor(final GraphEditorProperties pProperties)
-    {
+    public DefaultGraphEditor(final GraphEditorProperties pProperties) {
         mProperties = pProperties == null ? new GraphEditorProperties() : pProperties;
         mView = new GraphEditorView(mProperties);
         mSkinManager = new GraphEditorSkinManager(this, mView);
@@ -75,116 +74,97 @@ public class DefaultGraphEditor implements GraphEditor
     }
 
     @Override
-    public void setNodeSkinFactory(final Callback<GNode, GNodeSkin> pSkinFactory)
-    {
+    public void setNodeSkinFactory(final Callback<GNode, GNodeSkin> pSkinFactory) {
         mSkinManager.setNodeSkinFactory(pSkinFactory);
     }
 
     @Override
-    public void setConnectorSkinFactory(final Callback<GConnector, GConnectorSkin> pConnectorSkinFactory)
-    {
+    public void setConnectorSkinFactory(final Callback<GConnector, GConnectorSkin> pConnectorSkinFactory) {
         mSkinManager.setConnectorSkinFactory(pConnectorSkinFactory);
     }
 
     @Override
-    public void setConnectionSkinFactory(final Callback<GConnection, GConnectionSkin> pConnectionSkinFactory)
-    {
+    public void setConnectionSkinFactory(final Callback<GConnection, GConnectionSkin> pConnectionSkinFactory) {
         mSkinManager.setConnectionSkinFactory(pConnectionSkinFactory);
     }
 
     @Override
-    public void setJointSkinFactory(final Callback<GJoint, GJointSkin> pJointSkinFactory)
-    {
+    public void setJointSkinFactory(final Callback<GJoint, GJointSkin> pJointSkinFactory) {
         mSkinManager.setJointSkinFactory(pJointSkinFactory);
     }
 
     @Override
-    public void setTailSkinFactory(final Callback<GConnector, GTailSkin> pTailSkinFactory)
-    {
+    public void setTailSkinFactory(final Callback<GConnector, GTailSkin> pTailSkinFactory) {
         mSkinManager.setTailSkinFactory(pTailSkinFactory);
     }
 
     @Override
-    public void setConnectorValidator(final GConnectorValidator pValidator)
-    {
+    public void setConnectorValidator(final GConnectorValidator pValidator) {
         mController.setConnectorValidator(pValidator);
     }
 
     @Override
-    public void setModel(final GModel pModel)
-    {
+    public void setModel(final GModel pModel) {
         mModelProperty.set(pModel);
     }
 
     @Override
-    public GModel getModel()
-    {
+    public GModel getModel() {
         return mModelProperty.get();
     }
 
     @Override
-    public void reload()
-    {
+    public void reload() {
         mController.process();
     }
 
     @Override
-    public ObjectProperty<GModel> modelProperty()
-    {
+    public ObjectProperty<GModel> modelProperty() {
         return mModelProperty;
     }
 
     @Override
-    public Region getView()
-    {
+    public Region getView() {
         return mView;
     }
 
     @Override
-    public GraphEditorProperties getProperties()
-    {
+    public GraphEditorProperties getProperties() {
         return mProperties;
     }
 
     @Override
-    public SkinLookup getSkinLookup()
-    {
+    public SkinLookup getSkinLookup() {
         return mSkinManager;
     }
 
     @Override
-    public SelectionManager getSelectionManager()
-    {
+    public SelectionManager getSelectionManager() {
         return mController.getSelectionManager();
     }
 
     @Override
-    public void setOnConnectionCreated(final Function<GConnection, Command> pConsumer)
-    {
+    public void setOnConnectionCreated(final Function<GConnection, Command> pConsumer) {
         mConnectionEventManager.setOnConnectionCreated(pConsumer);
     }
 
     @Override
-    public void setOnConnectionRemoved(final BiFunction<RemoveContext, GConnection, Command> pOnConnectionRemoved)
-    {
+    public void setOnConnectionRemoved(final BiFunction<RemoveContext, GConnection, Command> pOnConnectionRemoved) {
         mConnectionEventManager.setOnConnectionRemoved(pOnConnectionRemoved);
         getModelEditingManager().setOnConnectionRemoved(pOnConnectionRemoved);
     }
 
     @Override
-    public void setOnNodeRemoved(final BiFunction<RemoveContext, GNode, Command> pOnNodeRemoved)
-    {
+    public void setOnNodeRemoved(final BiFunction<RemoveContext, GNode, Command> pOnNodeRemoved) {
         getModelEditingManager().setOnNodeRemoved(pOnNodeRemoved);
     }
 
     @Override
-    public void delete(Collection<EObject> pItems)
-    {
+    public void delete(Collection<EObject> pItems) {
         getModelEditingManager().remove(pItems);
     }
 
-    private ModelEditingManager getModelEditingManager()
-    {
+    private ModelEditingManager getModelEditingManager() {
         return mController.getModelEditingManager();
     }
 }

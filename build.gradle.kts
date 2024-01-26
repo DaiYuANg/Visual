@@ -1,3 +1,4 @@
+import com.coditory.gradle.manifest.ManifestPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
@@ -20,6 +21,7 @@ plugins {
     alias(libs.plugins.jreleaser)
     alias(libs.plugins.dependencycheck)
     id("de.undercouch.download") version "5.5.0"
+    id("com.coditory.manifest") version "0.2.6"
 }
 
 allprojects {
@@ -34,6 +36,7 @@ val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
 val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 val details = versionDetails()
+val javaCompileArg = listOf("-Xlint:all", "-Xmaxwarns", "-g")
 subprojects {
     apply<BasePlugin>()
     if (project.name != "website") {
@@ -45,6 +48,7 @@ subprojects {
             apply<FormatterPlugin>()
             apply<DokkaPlugin>()
             apply<JReleaserPlugin>()
+            apply<ManifestPlugin>()
         }
 
         dependencies {
@@ -62,6 +66,7 @@ subprojects {
             testImplementation(rootProject.libs.junitApi)
             testImplementation(rootProject.libs.junitEngine)
             testImplementation(rootProject.libs.junitPlatformSuite)
+            testImplementation(rootProject.libs.junitPerf)
             testImplementation(platform(rootProject.libs.testcontainersBom))
             testImplementation(rootProject.libs.testcontainers)
             testImplementation(rootProject.libs.testcontainersJunit)
@@ -76,19 +81,32 @@ subprojects {
             }
 //            options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
             options.encoding = StandardCharsets.UTF_8.name()
-            options.compilerArgs.add("-g")
+            options.compilerArgs.addAll(javaCompileArg)
             options.isFork = true
             options.isDebug = true
-//            options.compilerArgs.add("-Xlint:all")
             options.isIncremental = true
         }
 
         tasks.jar {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
-            manifest.attributes["Version"] = version
-            manifest.attributes["Git-Hash"] = details.gitHashFull
+//            manifest.attributes["Version"] = version
+//            manifest.attributes["Git-Hash"] = details.gitHashFull
+//            manifest.attributes["Last-Tag"] = details.lastTag
+//            manifest.attributes["Branch"] = details.branchName
         }
+        manifest {
+            buildAttributes = true
+            implementationAttributes = true
+            scmAttributes = true
+            attributes = mapOf(
+                "Version" to version,
+                "Git-Hash" to details.gitHashFull,
+                "Last-Tag" to details.lastTag,
+                "Branch" to details.branchName
+            )
+        }
+
         tasks.test {
             useJUnitPlatform()
             maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
@@ -96,6 +114,7 @@ subprojects {
             reports.html.required = false
             reports.junitXml.required = false
         }
+
         java {
             sourceCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
             targetCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
@@ -103,7 +122,6 @@ subprojects {
 
         classDiagrams {
             val glob = "${project.group}.**"
-            println(glob)
             val internal = "internal_class_diagram"
             val full = "full_class_diagram"
             @Suppress("UNCHECKED_CAST")

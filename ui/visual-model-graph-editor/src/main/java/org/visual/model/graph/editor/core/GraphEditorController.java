@@ -327,7 +327,7 @@ public class GraphEditorController<E extends GraphEditor>
                 }
                 catch (Exception e)
                 {
-                    log.error("Could not process update notification '{}': ", n, e); //$NON-NLS-1$
+                    log.error("Could not process update notification '{}': ", n, e);
                 }
             }
 

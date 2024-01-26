@@ -2,7 +2,6 @@
 package org.visual.model.jfa.cleanup;
 
 import java.lang.ref.Cleaner;
-
 import lombok.NoArgsConstructor;
 import org.visual.model.jfa.appkit.NSObject;
 import org.visual.model.jfa.core.FoundationCallback;

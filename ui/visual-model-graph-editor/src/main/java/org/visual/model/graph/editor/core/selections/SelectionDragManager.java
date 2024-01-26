@@ -10,7 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lombok.val;
-import org.eclipse.emf.ecore.EObject;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.GNodeSkin;
 import org.visual.model.graph.editor.api.SelectionManager;
 import org.visual.model.graph.editor.api.SkinLookup;
@@ -94,22 +94,21 @@ public class SelectionDragManager {
 
         // store the currently selected elements of interest
         // (the ones we want to move alongside the master):
-        for (final EObject selected : selectionManager.getSelectedItems()) {
-
+        selectionManager.getSelectedItems().forEach(selected -> {
             if (selected instanceof GNode n) {
-
                 final GNodeSkin skin = skinLookup.lookupNode(n);
                 if (skin != null) {
                     currentSelectedElements.add(skin.getRoot());
                 }
-            } else if (selected instanceof GJoint j) {
-
+                return;
+            }
+            if (selected instanceof GJoint j) {
                 val skin = skinLookup.lookupJoint(j);
                 if (skin != null) {
                     currentSelectedElements.add(skin.getRoot());
                 }
             }
-        }
+        });
 
         // shortcut: if no element is selected or
         // if only the master element is selected we do not need to attach any listeners
@@ -154,10 +153,11 @@ public class SelectionDragManager {
 
         IntStream.range(0, currentSelectedElements.size()).forEach(i -> {
             final DraggableBox node = currentSelectedElements.get(i);
-            if (node != master) {
-                elementLayoutXOffsets[i] = node.getLayoutX() - master.getLayoutX();
-                elementLayoutYOffsets[i] = node.getLayoutY() - master.getLayoutY();
+            if (node == master) {
+                return;
             }
+            elementLayoutXOffsets[i] = node.getLayoutX() - master.getLayoutX();
+            elementLayoutYOffsets[i] = node.getLayoutY() - master.getLayoutY();
         });
     }
 
@@ -171,15 +171,13 @@ public class SelectionDragManager {
      *
      * @param master the master {@link DraggableBox} that all selected objects should keep a fixed position relative to
      */
-    private void setEditorBoundsForDrag(final DraggableBox master) {
+    private void setEditorBoundsForDrag(final @NotNull DraggableBox master) {
 
         final GraphEditorProperties propertiesForDrag = new GraphEditorProperties(view.getEditorProperties());
 
         final BoundOffsets maxOffsets = new BoundOffsets();
 
-        for (final DraggableBox node : currentSelectedElements) {
-            addOffsets(master, node, maxOffsets);
-        }
+        currentSelectedElements.forEach(node -> addOffsets(master, node, maxOffsets));
 
         propertiesForDrag.setNorthBoundValue(propertiesForDrag.getNorthBoundValue() + maxOffsets.northOffset);
         propertiesForDrag.setSouthBoundValue(propertiesForDrag.getSouthBoundValue() + maxOffsets.southOffset);
@@ -197,7 +195,7 @@ public class SelectionDragManager {
      * @param slave      the slave {@link DraggableBox} that is also selected and whose position is bound to the master
      * @param maxOffsets the {@link BoundOffsets} instance storing the current max offsets in all 4 directions
      */
-    private void addOffsets(final DraggableBox master, final DraggableBox slave, final BoundOffsets maxOffsets) {
+    private void addOffsets(final @NotNull DraggableBox master, final DraggableBox slave, final BoundOffsets maxOffsets) {
 
         final double masterX = master.getLayoutX();
         final double masterWidth = master.getWidth();
@@ -229,7 +227,7 @@ public class SelectionDragManager {
      *
      * @param the master {@link DraggableBox} that was just dragged
      */
-    private void restoreEditorProperties(final DraggableBox master) {
+    private void restoreEditorProperties(final @NotNull DraggableBox master) {
         master.setEditorProperties(view.getEditorProperties());
     }
 
@@ -238,12 +236,12 @@ public class SelectionDragManager {
      *
      * @param the master {@link DraggableBox} that is about to be dragged
      */
-    private void addPositionListeners(final DraggableBox master) {
+    private void addPositionListeners(final @NotNull DraggableBox master) {
 
         master.layoutXProperty().addListener(layoutXListener);
         master.layoutYProperty().addListener(layoutYListener);
 
-        removeOnReleased = new EventHandler<MouseEvent>() {
+        removeOnReleased = new EventHandler<>() {
 
             @Override
             public void handle(MouseEvent event) {
@@ -259,15 +257,16 @@ public class SelectionDragManager {
      *
      * @param master the master {@link DraggableBox} that was just dragged
      */
-    private void removePositionListeners(final DraggableBox master) {
+    private void removePositionListeners(final @NotNull DraggableBox master) {
 
         master.layoutXProperty().removeListener(layoutXListener);
         master.layoutYProperty().removeListener(layoutYListener);
 
-        if (removeOnReleased != null) {
-            master.removeEventHandler(MouseEvent.MOUSE_RELEASED, removeOnReleased);
-            removeOnReleased = null;
+        if (removeOnReleased == null) {
+            return;
         }
+        master.removeEventHandler(MouseEvent.MOUSE_RELEASED, removeOnReleased);
+        removeOnReleased = null;
     }
 
     /**

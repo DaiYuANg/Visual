@@ -14,8 +14,6 @@ import org.visual.model.app.constant.FXMLViews;
 import org.visual.model.app.context.ApplicationContext;
 import org.visual.model.app.handle.GlobalExceptionHandler;
 import org.visual.model.component.theme.OsThemeDetector;
-import org.visual.model.debugger.VisualModelDebugger;
-import org.visual.model.debugger.inspector.FXComponentInspectorHandler;
 
 @Slf4j
 public class VisualModelUI extends Application {
@@ -39,7 +37,7 @@ public class VisualModelUI extends Application {
     public void init() {
         Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
         Application.setUserAgentStylesheet(theme);
-        rootScene.getStylesheets().addAll("/help.css", "/theme.css");
+//        rootScene.getStylesheets().addAll("/help.css", "/theme.css");
         rootScene.setFill(Color.TRANSPARENT);
     }
 

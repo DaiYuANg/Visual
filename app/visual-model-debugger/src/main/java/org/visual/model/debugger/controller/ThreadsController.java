@@ -1,10 +1,9 @@
 package org.visual.model.debugger.controller;
 
 import jakarta.inject.Singleton;
-import javafx.fxml.Initializable;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 @Singleton
 public class ThreadsController implements Initializable {

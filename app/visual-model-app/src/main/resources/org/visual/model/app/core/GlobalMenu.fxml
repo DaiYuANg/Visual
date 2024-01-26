@@ -11,6 +11,6 @@
     </Menu>
     <Menu text="Debug">
         <MenuItem text="Open Debugger" onAction="#openDebugger"/>
-        <MenuItem text="Enable Inspector" onAction="#enableInspector"/>
+        <MenuItem text="Enable Inspector" fx:id="enableInspectorMenu" onAction="#enableInspector"/>
     </Menu>
 </GlobalSystemMenu>

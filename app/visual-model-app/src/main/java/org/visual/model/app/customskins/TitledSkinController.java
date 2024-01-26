@@ -153,6 +153,6 @@ public class TitledSkinController extends DefaultSkinController {
             return Integer.toString(max.getAsInt() + 1);
         }
         // ELSE:
-        return "1"; //$NON-NLS-1$
+        return "1";
     }
 }

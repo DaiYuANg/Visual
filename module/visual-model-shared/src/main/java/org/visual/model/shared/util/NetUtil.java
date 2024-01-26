@@ -1,9 +1,8 @@
 package org.visual.model.shared.util;
 
-import lombok.experimental.UtilityClass;
-
 import java.io.IOException;
 import java.net.ServerSocket;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class NetUtil {

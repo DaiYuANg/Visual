@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory.Descriptor.Registry;
+import org.jetbrains.annotations.NotNull;
 import org.visual.model.graph.editor.api.Commands;
 import org.visual.model.graph.editor.api.SkinLookup;
 import org.visual.model.graph.editor.api.utils.RemoveContext;
@@ -55,7 +56,7 @@ public class DefaultModelEditingManager implements ModelEditingManager {
     }
 
     @Override
-    public void initialize(final GModel pModel) {
+    public void initialize(final @NotNull GModel pModel) {
         // Only initialize the editing domain if the model object has actually changed.
         if (!pModel.equals(model)) {
             initializeEditingDomain(model, pModel);
@@ -127,7 +128,7 @@ public class DefaultModelEditingManager implements ModelEditingManager {
         }
     }
 
-    private void remove(final RemoveContext pRemoveContext, final CompoundCommand pCommand, final GConnection pToDelete) {
+    private void remove(final RemoveContext pRemoveContext, final @NotNull CompoundCommand pCommand, final @NotNull GConnection pToDelete) {
         final GConnector source = pToDelete.getSource();
         final GConnector target = pToDelete.getTarget();
 

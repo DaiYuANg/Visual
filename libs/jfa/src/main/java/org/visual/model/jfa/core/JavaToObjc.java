@@ -2,7 +2,6 @@
 package org.visual.model.jfa.core;
 
 import com.sun.jna.Callback;
-
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,7 +9,6 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-
 import lombok.NoArgsConstructor;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;

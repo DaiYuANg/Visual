@@ -1,3 +1,4 @@
+@SuppressWarnings({ "requires-automatic"})
 module org.visual.model.event {
     requires org.slf4j;
     requires static lombok;

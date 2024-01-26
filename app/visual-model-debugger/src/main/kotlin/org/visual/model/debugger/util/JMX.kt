@@ -2,8 +2,8 @@
 
 package org.visual.model.debugger.util
 
-import org.visual.model.shared.util.NetUtil.randomPort
 import java.util.*
+import org.visual.model.shared.util.NetUtil.randomPort
 
 private const val JMX_PORT_PROPERTY = "com.sun.management.jmxremote.port"
 private const val JMX_AUTHENTICATE_PROPERTY = "com.sun.management.jmxremote.authenticate"
@@ -15,9 +15,9 @@ fun jmxPropertiesBuilder(
     auth: Boolean = false,
     ssl: Boolean = false
 ): Properties {
-    return Properties().apply {
-        put(JMX_PORT_PROPERTY, port)
-        put(JMX_AUTHENTICATE_PROPERTY, auth)
-        put(JMX_SSL_PROPERTY, ssl)
-    }
+  return Properties().apply {
+    put(JMX_PORT_PROPERTY, port)
+    put(JMX_AUTHENTICATE_PROPERTY, auth)
+    put(JMX_SSL_PROPERTY, ssl)
+  }
 }

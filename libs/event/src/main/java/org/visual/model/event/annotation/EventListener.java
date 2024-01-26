@@ -1,8 +1,7 @@
 package org.visual.model.event.annotation;
 
-import org.visual.model.event.AbstractEvent;
-
 import java.lang.annotation.*;
+import org.visual.model.event.AbstractEvent;
 
 @Documented
 @Target({ElementType.METHOD, ElementType.TYPE})
