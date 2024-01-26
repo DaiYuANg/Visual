@@ -22,6 +22,7 @@ plugins {
     alias(libs.plugins.dependencycheck)
     id("de.undercouch.download") version "5.5.0"
     id("com.coditory.manifest") version "0.2.6"
+    id("co.uzzu.dotenv.gradle") version "4.0.0"
 }
 
 allprojects {
@@ -32,11 +33,16 @@ allprojects {
         google()
     }
 }
+println(env.MODE.isPresent)
 val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
 val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 val details = versionDetails()
-val javaCompileArg = listOf("-Xlint:all", "-Xmaxwarns", "-g")
+var javaCompileArg: List<String> = if (env.MODE.value == "debug") {
+    listOf()
+} else {
+    listOf("-g:none", "-02")
+}
 subprojects {
     apply<BasePlugin>()
     if (project.name != "website") {
@@ -145,6 +151,7 @@ subprojects {
                         as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
             )
         }
+
     }
 }
 

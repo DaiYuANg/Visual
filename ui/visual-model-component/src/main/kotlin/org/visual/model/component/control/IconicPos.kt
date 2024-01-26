@@ -1,6 +1,6 @@
 package org.visual.model.component.control
 
-enum class IconicTextFieldPos {
+enum class IconicPos {
 
   LEFT,
   RIGHT

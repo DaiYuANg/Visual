@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
-
 import lombok.val;
 import org.visual.model.shared.mapper.ManifestMapper;
 import org.visual.model.shared.pojo.BaseManifest;

@@ -7,9 +7,12 @@ plugins {
   application
   `kotlin-project`
   alias(libs.plugins.jlink)
+  id("io.avaje.inject") version "0.3"
 }
 
 apply<CommonPlugin>()
+
+apply<FatJarPlugin>()
 
 group = "org.visual.model.debugger"
 

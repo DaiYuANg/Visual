@@ -100,3 +100,4 @@ cwallet.sso.lck
 *.db
 .kotlin
 ./scenicView.properties
+.env

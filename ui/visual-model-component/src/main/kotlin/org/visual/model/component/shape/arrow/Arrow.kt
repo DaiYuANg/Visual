@@ -6,7 +6,7 @@ import javafx.scene.shape.Line
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
-import org.visual.model.component.util.GeometryUtils
+import org.visual.model.component.util.moveOffPixel
 
 /**
  * An arrow shape.
@@ -118,10 +118,10 @@ class Arrow : Group() {
     val headX = endX - head.length / 2 * sin(angle)
     val headY = endY - head.length / 2 * cos(angle)
 
-    line.startX = GeometryUtils.moveOffPixel(startX)
-    line.startY = GeometryUtils.moveOffPixel(startY)
-    line.endX = GeometryUtils.moveOffPixel(headX)
-    line.endY = GeometryUtils.moveOffPixel(headY)
+    line.startX = moveOffPixel(startX)
+    line.startY = moveOffPixel(startY)
+    line.endX = moveOffPixel(headX)
+    line.endY = moveOffPixel(headY)
 
     head.setCenter(headX, headY)
     head.setAngle(Math.toDegrees(-angle))

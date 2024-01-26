@@ -1,4 +1,4 @@
-@SuppressWarnings({ "requires-automatic"})
+@SuppressWarnings({"requires-automatic"})
 module org.visual.model.component {
     requires transitive javafx.graphics;
     requires transitive javafx.controls;
@@ -30,7 +30,6 @@ module org.visual.model.component {
     requires javafx.media;
     requires javafx.swing;
     requires org.visual.model.component.annotation;
-    requires org.fxmisc.richtext;
 
     exports org.visual.model.component.title;
     exports org.visual.model.component.window;
@@ -51,6 +50,7 @@ module org.visual.model.component {
     exports org.visual.model.component.display;
     exports org.visual.model.component.wrapper;
     exports org.visual.model.component.shape.arrow;
+    exports org.visual.model.component.container.draggable;
 
     opens org.visual.model.component.theme to com.sun.jna;
     opens org.visual.model.component.title to javafx.graphics, javafx.fxml;

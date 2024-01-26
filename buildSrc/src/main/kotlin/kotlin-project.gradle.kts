@@ -2,12 +2,15 @@ import org.gradle.kotlin.dsl.`java-base`
 import org.gradle.kotlin.dsl.kotlin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-plugins{
+plugins {
     kotlin("jvm")
     `java-library`
+    kotlin("plugin.lombok")
+    kotlin("plugin.noarg")
+    kotlin("plugin.allopen")
 }
 
-java{
+java {
     modularity.inferModulePath.set(true)
 }
 val compileKotlin: KotlinCompile by tasks
@@ -23,6 +26,6 @@ tasks.compileJava {
         })
 }
 
-kotlin{
+kotlin {
     jvmToolchain(21)
 }

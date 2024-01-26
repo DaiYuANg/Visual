@@ -13,5 +13,4 @@ public class RootFactory {
         val factory = Thread.ofVirtual().name("preview", 0).factory();
         return Executors.newThreadPerTaskExecutor(factory);
     }
-
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.visual.model.component.control.NotCloseableTab?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.model.debugger.controller.SceneTabController"
+>
+    <TabPane HBox.hgrow="ALWAYS">
+        <NotCloseableTab text="Detail">
+            <fx:include source="NodeDetail.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="Event">
+            <fx:include source="NodeEvent.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="CSS">
+            <fx:include source="FXCss.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="Animations">
+            <fx:include source="Animations.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="JavaDoc">
+            <fx:include source="NodeJavaDoc.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="3D">
+            <fx:include source="ThreeDScene.fxml"/>
+        </NotCloseableTab>
+    </TabPane>
+</HBox>

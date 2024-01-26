@@ -1,6 +1,8 @@
 /* (C)2024*/
 package org.visual.model.app;
 
+import static java.lang.System.exit;
+
 import javafx.application.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -29,6 +31,6 @@ public class VisualModelApplication implements Runnable {
         log.atInfo().log("CommandLine Start");
         val commandLine = new VisualModelApplication(args);
         val exitCode = new CommandLine(commandLine).execute(args);
-        System.exit(exitCode);
+        exit(exitCode);
     }
 }

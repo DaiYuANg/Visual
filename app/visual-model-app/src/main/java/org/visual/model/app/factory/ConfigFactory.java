@@ -14,7 +14,6 @@ import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
 import org.github.gestalt.config.toml.TomlLoader;
-import org.visual.model.shared.ManifestReader;
 
 @Factory
 public class ConfigFactory {

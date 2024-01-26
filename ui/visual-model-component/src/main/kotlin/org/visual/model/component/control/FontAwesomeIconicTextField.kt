@@ -11,14 +11,14 @@ import org.visual.model.component.annotation.FxComponent
 class FontAwesomeIconicTextField : CustomTextField() {
 
   private val _icon by lazy { SimpleObjectProperty<FontAwesomeSolid>() }
-  private val _iconPos by lazy { SimpleObjectProperty(IconicTextFieldPos.LEFT) }
+  private val _iconPos by lazy { SimpleObjectProperty(IconicPos.LEFT) }
 
   var icon: FontAwesomeSolid?
     get() = _icon.get()
     set(value) = _icon.set(value)
 
   @Suppress("unused")
-  var iconPos: IconicTextFieldPos?
+  var iconPos: IconicPos?
     get() = _iconPos.get()
     set(value) = _iconPos.set(value)
 
@@ -32,13 +32,13 @@ class FontAwesomeIconicTextField : CustomTextField() {
     _iconPos.addListener(listener)
   }
 
-  private fun setupIcon(icon: FontAwesomeSolid?, iconPos: IconicTextFieldPos?) {
+  private fun setupIcon(icon: FontAwesomeSolid?, iconPos: IconicPos?) {
     val fontIcon = FontIcon(icon)
     right = null
     left = null
     when (iconPos) {
-      IconicTextFieldPos.LEFT -> left = fontIcon
-      IconicTextFieldPos.RIGHT -> right = fontIcon
+      IconicPos.LEFT -> left = fontIcon
+      IconicPos.RIGHT -> right = fontIcon
       else -> {
         throw UnsupportedOperationException()
       }

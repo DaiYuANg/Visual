@@ -21,4 +21,5 @@ dependencies {
     implementation(libs.kotlinGradleSerializationPlugin)
     implementation(libs.kotlinGradleNoArgPlugin)
     implementation(libs.kotlinGradleAllOpenPlugin)
+    implementation("io.github.goooler.shadow:shadow-gradle-plugin:8.1.3")
 }

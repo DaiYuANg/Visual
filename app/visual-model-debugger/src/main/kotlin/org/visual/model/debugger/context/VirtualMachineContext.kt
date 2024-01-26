@@ -16,7 +16,7 @@ import org.visual.model.shared.util.NetUtil.randomPort
 
 data object VirtualMachineContext {
 
-  val virtualMachines: ObservableList<VirtualMachineDescriptor> by lazy {
+  private val virtualMachines: ObservableList<VirtualMachineDescriptor> by lazy {
     FXCollections.synchronizedObservableList(
         FXCollections.observableArrayList(VirtualMachine.list()))
   }
@@ -66,6 +66,10 @@ data object VirtualMachineContext {
       val attributeName = attribute.name
       val attributeValue: Any = mbeanConn.getAttribute(objectName, attributeName)
       println("$attributeName: $attributeValue")
+    }
+    val mBeanNames: Set<ObjectName> = mbeanConn.queryNames(ObjectName("*:*"), null)
+    for (mBeanName in mBeanNames) {
+      System.err.println("MBean Name: $mBeanName")
     }
   }
 

@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.visual.model.component.control.NotCloseableTab?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.model.debugger.controller.TabsController"
 >
-    <TabPane HBox.hgrow="ALWAYS">
-        <Tab closable="false" text="Overview">
+    <TabPane HBox.hgrow="ALWAYS" fx:id="tabPane">
+        <NotCloseableTab text="Overview" fx:id="overviewTab">
             <fx:include source="Overview.fxml"/>
-        </Tab>
-        <Tab closable="false" text="Component">
+        </NotCloseableTab>
+        <NotCloseableTab text="Component">
             <fx:include VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" source="Preview.fxml"/>
-        </Tab>
-        <Tab closable="false" text="Monitor">
+        </NotCloseableTab>
+        <NotCloseableTab text="Monitor">
             <fx:include source="Monitor.fxml"/>
-        </Tab>
-        <Tab closable="false" text="Sample">
+        </NotCloseableTab>
+        <NotCloseableTab text="Sample">
             <fx:include source="Sampler.fxml"/>
-        </Tab>
-        <Tab closable="false" text="Threads">
+        </NotCloseableTab>
+        <NotCloseableTab text="Threads">
             <fx:include source="Threads.fxml"/>
-        </Tab>
+        </NotCloseableTab>
+        <NotCloseableTab text="Classes">
+            <fx:include source="Classes.fxml"/>
+        </NotCloseableTab>
+        <NotCloseableTab text="Scene">
+            <fx:include source="Scene.fxml"/>
+        </NotCloseableTab>
     </TabPane>
 </HBox>

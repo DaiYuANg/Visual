@@ -7,23 +7,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.component.SystemPropertiesListView;
 import org.visual.model.debugger.context.VirtualMachineContext;
 
 @Singleton
 @Slf4j
 public class OverviewController implements Initializable {
 
-
     @FXML
-    AnchorPane overviewRoot;
+    VBox overviewRoot;
 
     @Inject
     Stage rootStage;
+
+    @FXML
+    SystemPropertiesListView systemPropertiesListView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -32,8 +35,10 @@ public class OverviewController implements Initializable {
                 .addVirtualMachineList((observable, oldValue, newValue) -> readJvm(newValue));
     }
 
-    @SneakyThrows
     private void readJvm(@NotNull VirtualMachine jvm) {
-        System.err.println(VirtualMachineContext.INSTANCE.getVirtualMachineProperties());
+        val values = System.getProperties().entrySet();
+        systemPropertiesListView.getItems().addAll(values);
+        ;
+//        System.err.println(VirtualMachineContext.INSTANCE.getVirtualMachineProperties());
     }
 }

@@ -8,9 +8,12 @@ plugins {
   alias(libs.plugins.jlink)
   id("org.graalvm.buildtools.native") version "0.9.28"
   `kotlin-project`
+  id("io.avaje.inject") version "0.3"
 }
 
 apply<CommonPlugin>()
+
+apply<FatJarPlugin>()
 
 val commonJvmArgs =
     listOf(
@@ -136,3 +139,4 @@ graalvmNative {
 }
 
 tasks.jar { manifest.attributes["JavaFx-Version"] = libs.versions.javafxVersion.get() }
+

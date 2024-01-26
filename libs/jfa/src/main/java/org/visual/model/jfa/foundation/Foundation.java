@@ -3,14 +3,12 @@ package org.visual.model.jfa.foundation;
 
 import com.sun.jna.*;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.io.File;
 import java.lang.reflect.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.Contract;

@@ -2,6 +2,8 @@
 <!--<?language groovy?>-->
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.*?>
+<?import org.visual.model.component.container.draggable.DraggableBox?>
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.model.app.controller.MainLayoutController"

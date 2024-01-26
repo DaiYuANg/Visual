@@ -10,8 +10,8 @@
       fx:controller="org.visual.model.debugger.controller.LayoutController">
     <GlobalMenuBar/>
     <fx:include source="Toolbar.fxml"/>
-    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.8">
-        <fx:include source="VirtualMachineList.fxml"/>
+    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.8" fx:id="splitPane">
+        <fx:include source="VirtualMachineList.fxml" fx:id="firstSplit"/>
         <fx:include source="Tabs.fxml"/>
     </SplitPane>
 </VBox>
