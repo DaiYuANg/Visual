@@ -6,6 +6,7 @@ import jakarta.inject.Singleton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 import javafx.beans.value.ChangeListener;
@@ -16,7 +17,9 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.debugger.constant.PreferencesKey;
 import org.visual.model.debugger.context.LayoutContext;
+import org.visual.model.shared.PreferencesWrapper;
 
 @Slf4j
 @Singleton
@@ -24,24 +27,29 @@ public class LayoutController implements Initializable {
 
     @FXML
     VBox firstSplit;
+
     @FXML
     SplitPane splitPane;
+
     @Inject
-    Preferences preferences;
+    PreferencesWrapper preferences;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        splitPane.getDividers().getFirst().positionProperty().addListener((observable, oldValue, newValue) -> {
+            preferences.put(PreferencesKey.SPLIT_DIVIDER.getValue(), newValue.toString());
+            log.info("listener:{}", newValue);
+            preferences.flush();
+        });
         LayoutContext.INSTANCE.addCollapseListener((observableValue, aBoolean, t1) -> {
             firstSplit.setVisible(!t1);
             if (t1) {
-                splitPane.setDividerPosition(0, 0);
-                splitPane.setDividerPosition(1, 1);
+                splitPane.getItems().removeFirst();
             } else {
-                splitPane.setDividerPosition(0, 0.2);
-                splitPane.setDividerPosition(1, 0.8);
+                splitPane.getItems().addFirst(firstSplit);
+                splitPane.setDividerPositions(0.2, 0.8);
             }
         });
-
     }
 
     private void onSelect(@NotNull VirtualMachineDescriptor vm) {

@@ -10,6 +10,8 @@ module org.visual.model.shared {
     requires static lombok;
     requires org.jetbrains.annotations;
     requires org.mapstruct;
+    requires java.prefs;
+    requires kotlin.stdlib;
 
     exports org.visual.model.shared;
     exports org.visual.model.shared.pojo;

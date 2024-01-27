@@ -15,6 +15,7 @@ import org.github.gestalt.config.loader.PropertyLoader;
 import org.github.gestalt.config.source.*;
 import org.jetbrains.annotations.NotNull;
 import org.visual.model.debugger.VisualModelDebugger;
+import org.visual.model.shared.PreferencesWrapper;
 import org.visual.model.shared.pojo.JavaFxProperty;
 
 @Factory
@@ -44,7 +45,7 @@ public class ConfigFactory {
     }
 
     @Bean
-    Preferences preferences() {
-        return Preferences.userNodeForPackage(VisualModelDebugger.class);
+    PreferencesWrapper preferences() {
+        return new PreferencesWrapper(Preferences.userNodeForPackage(VisualModelDebugger.class));
     }
 }

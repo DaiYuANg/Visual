@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.javafx)
+    `kotlin-project`
 }
 
 group = "org.visual.model.text.editor"
@@ -7,6 +8,8 @@ version = "unspecified"
 
 dependencies {
     api(projects.ui.visualModelComponent)
+    api(projects.module.visualModelShared)
+    implementation(projects.ui.visualModelComponentAnnotation)
 }
 
 javafx {

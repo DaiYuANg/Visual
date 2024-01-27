@@ -18,4 +18,8 @@ module org.visual.model.database {
     requires javafx.media;
     requires info.picocli;
     requires kotlin.stdlib;
+
+    exports org.visual.model.database;
+
+    provides io.avaje.inject.spi.Module with org.visual.model.database.DatabaseModule;
 }

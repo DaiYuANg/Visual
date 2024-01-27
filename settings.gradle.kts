@@ -61,4 +61,3 @@ include("module:visual-model-server")
 include("website")
 include("app:visual-model-database")
 include("ui:visual-model-text-editor")
-findProject(":ui:visual-model-text-editor")?.name = "visual-model-text-editor"

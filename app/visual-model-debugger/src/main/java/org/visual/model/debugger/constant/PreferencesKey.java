@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum PreferencesKey {
 
-    SPLIT_DIVIER("split.divier");
+    SPLIT_DIVIDER("split.divider");
 
     private final String value;
 }
