@@ -12,7 +12,6 @@ repositories {
     google()
 }
 
-
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(libs.spotlessPlugin)
@@ -21,5 +20,8 @@ dependencies {
     implementation(libs.kotlinGradleSerializationPlugin)
     implementation(libs.kotlinGradleNoArgPlugin)
     implementation(libs.kotlinGradleAllOpenPlugin)
-    implementation("io.github.goooler.shadow:shadow-gradle-plugin:8.1.3")
+    implementation(libs.javaFxPlugin)
+    implementation(libs.fatJarPlugin)
+    implementation(libs.jlinkPlugin)
+    implementation(libs.avajeInjectPlugin)
 }

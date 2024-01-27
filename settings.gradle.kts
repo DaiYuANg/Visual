@@ -42,23 +42,27 @@ gradleEnterprise {
 }
 
 rootProject.name = "visual-model"
-include("app:visual-model-designer")
+include("executable:visual-model-designer")
+include("executable:visual-model-database")
+include("executable:visual-model-debugger")
+
 include("module:visual-model-database")
-include("ui:visual-model-component")
 include("module:visual-model-shared")
 include("module:visual-model-git")
 include("module:visual-model-i18n")
-include("app:visual-model-debugger")
-include("ui:visual-model-graph-editor")
+include("module:visual-model-server")
+
 include("libs:jfa")
 include("serialize:visual-model-serialize-json")
 include("libs:event")
 include("libs:fonts")
+
 include("ui:visual-model-component-annotation")
+include("ui:visual-model-component")
+include("ui:visual-model-text-editor")
+include("ui:visual-model-graph-editor")
+
 include("serialize:visual-model-serialize-plantuml")
 include("serialize:visual-model-serialize-api")
-include("module:visual-model-server")
 include("website")
-include("app:visual-model-database")
-include("ui:visual-model-text-editor")
 

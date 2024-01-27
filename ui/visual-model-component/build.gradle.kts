@@ -1,5 +1,5 @@
 plugins {
-  alias(libs.plugins.javafx)
+  //  alias(libs.plugins.javafx)
   `java-library`
   id("io.miret.etienne.sass") version ("1.5.0")
   `kotlin-project`
@@ -9,17 +9,17 @@ group = "org.visual.model.component"
 
 version = "unspecified"
 
-javafx {
-  version = libs.versions.javafxVersion.get()
-  modules(
-      "javafx.controls",
-      "javafx.fxml",
-      "javafx.graphics",
-      "javafx.swing",
-      "javafx.media",
-  )
-  configurations = arrayOf("implementation", "testImplementation")
-}
+// javafx {
+//  version = libs.versions.javafxVersion.get()
+//  modules(
+//      "javafx.controls",
+//      "javafx.fxml",
+//      "javafx.graphics",
+//      "javafx.swing",
+//      "javafx.media",
+//  )
+//  configurations = arrayOf("implementation", "testImplementation")
+// }
 
 tasks.jar { manifest { "JavaFxVersion" to libs.versions.javafxVersion.get() } }
 
@@ -39,6 +39,7 @@ dependencies {
   api(libs.apacheCommonPool)
   api(libs.animated)
   api(libs.flowless)
+  api(projects.module.visualModelI18n)
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
   api("com.github.kwhat:jnativehook:2.2.2")

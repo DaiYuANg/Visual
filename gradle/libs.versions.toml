@@ -115,7 +115,6 @@ jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version.ref = "jgrapht
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
 hikariCP = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikariCP" }
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
-javaFxPlugin = { group = "org.openjfx", name = "javafx-plugin", version.ref = "javafx" }
 pcollections = { group = "org.pcollections", name = "pcollections", version.ref = "pcollections" }
 avajeConfig = { group = "io.avaje", name = "avaje-config", version.ref = "avajeConfig" }
 jacksonCore = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
@@ -145,3 +144,7 @@ animated = { group = "eu.iamgio", name = "animated", version = "1.3.0" }
 flowless = { group = "org.fxmisc.flowless", name = "flowless", version = "0.7.2" }
 autoService = {group="com.google.auto.service",name="auto-service",version.ref="autoService"}
 junitPerf={group="com.github.noconnor",name="junitperf-junit5",version="1.35.0"}
+javaFxPlugin={group="org.openjfx.javafxplugin",name="org.openjfx.javafxplugin.gradle.plugin",version.ref="javafx"}
+fatJarPlugin={group="io.github.goooler.shadow",name="shadow-gradle-plugin",version="8.1.3"}
+jlinkPlugin={group="org.beryx",name="badass-jlink-plugin",version="3.0.1"}
+avajeInjectPlugin={group="io.avaje.inject",name="inject-gradle-plugin",version="0.3"}

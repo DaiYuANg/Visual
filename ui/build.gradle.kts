@@ -1,0 +1,3 @@
+subprojects{
+    apply<FxProjectPlugin>()
+}

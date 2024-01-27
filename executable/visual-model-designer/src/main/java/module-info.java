@@ -8,7 +8,7 @@ module org.visual.model.designer {
     requires jakarta.inject;
     requires javafx.fxml;
     requires javafx.controls;
-    requires javafx.web;
+//    requires javafx.web;
     requires org.visual.model.component;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
@@ -34,7 +34,6 @@ module org.visual.model.designer {
     requires com.fasterxml.jackson.annotation;
     requires io.avaje.validation.contraints;
     requires it.unimi.dsi.fastutil;
-    requires org.apache.groovy;
     requires org.slf4j.jdk.platform.logging;
     requires kotlin.stdlib;
 

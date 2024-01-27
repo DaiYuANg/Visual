@@ -29,7 +29,6 @@ class FormatterPlugin : Plugin<Project> {
             java {
                 target("**/*.java")
                 importOrder()
-//                palantirJavaFormat()
                 indentWithSpaces(identWidth)
                 removeUnusedImports()
                 formatAnnotations()
@@ -37,7 +36,6 @@ class FormatterPlugin : Plugin<Project> {
                     .addTypeAnnotation("NonEmpty")
                     .removeTypeAnnotation("Localized")
                 cleanthat()
-//                licenseHeader("/* (C)\$YEAR*/")
             }
 
             kotlinGradle {
@@ -47,7 +45,7 @@ class FormatterPlugin : Plugin<Project> {
             }
             kotlin {
                 ktfmt()
-//                ktlint()
+                ktlint()
                 indentWithSpaces(identWidth)
             }
         }
