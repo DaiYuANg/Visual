@@ -38,16 +38,16 @@ module org.visual.model.designer {
     requires org.slf4j.jdk.platform.logging;
     requires kotlin.stdlib;
 
-    opens org.visual.model.app.controller to
+    opens org.visual.model.designer.controller to
             javafx.fxml;
 
-    exports org.visual.model.app.core;
-    exports org.visual.model.app.controller to
+    exports org.visual.model.designer.core;
+    exports org.visual.model.designer.controller to
             javafx.fxml,
             javafx.graphics;
-    exports org.visual.model.app;
-    exports org.visual.model.app.component to javafx.fxml;
-    opens org.visual.model.app.component to javafx.fxml;
+    exports org.visual.model.designer;
+    exports org.visual.model.designer.component to javafx.fxml;
+    opens org.visual.model.designer.component to javafx.fxml;
     provides io.avaje.inject.spi.Module with
-            org.visual.model.app.AppModule;
+            org.visual.model.designer.DesignerModule;
 }

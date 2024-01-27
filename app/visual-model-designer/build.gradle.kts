@@ -138,4 +138,3 @@ graalvmNative {
 }
 
 tasks.jar { manifest.attributes["JavaFx-Version"] = libs.versions.javafxVersion.get() }
-

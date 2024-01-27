@@ -17,9 +17,11 @@ data object DebuggerContext {
 
   @SneakyThrows
   fun load(prefix: String): Parent {
-    val loader = FXMLLoader(VisualModelDebugger::class.java.getResource("$prefix.fxml"))
-    loader.controllerFactory = Callback { aClass: Class<*> -> beanScope.get(aClass) }
-    loader.charset = StandardCharsets.UTF_8
+    val loader =
+        FXMLLoader(VisualModelDebugger::class.java.getResource("$prefix.fxml")).apply {
+          controllerFactory = Callback { aClass: Class<*> -> beanScope.get(aClass) }
+          charset = StandardCharsets.UTF_8
+        }
     return loader.load()
   }
 }

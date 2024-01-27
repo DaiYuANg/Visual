@@ -15,20 +15,22 @@ class FormatterPlugin : Plugin<Project> {
         SpotlessPlugin::class.java
     )
 
+    private val identWidth = 2
+
     override fun apply(project: Project) {
         pluginList.forEach { project.plugins.apply(it) }
 
         project.extensions.configure(SpotlessExtension::class.java) {
             format("misc") {
                 target("*.md", ".gitignore", "**/*.java")
-                indentWithSpaces(2)
+                indentWithSpaces(identWidth)
                 endWithNewline()
             }
             java {
                 target("**/*.java")
                 importOrder()
 //                palantirJavaFormat()
-                indentWithSpaces(2)
+                indentWithSpaces(identWidth)
                 removeUnusedImports()
                 formatAnnotations()
                     .addTypeAnnotation("Empty")
@@ -40,13 +42,13 @@ class FormatterPlugin : Plugin<Project> {
 
             kotlinGradle {
                 target("**/*.gradle.kts") // default target for kotlinGradle
-                ktfmt() // or ktfmt() or prettier()
-                indentWithSpaces(2)
+                ktfmt()
+                indentWithSpaces(identWidth)
             }
             kotlin {
                 ktfmt()
 //                ktlint()
-                indentWithSpaces(2)
+                indentWithSpaces(identWidth)
             }
         }
 

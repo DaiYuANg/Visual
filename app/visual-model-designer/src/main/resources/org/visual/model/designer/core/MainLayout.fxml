@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?language groovy?>-->
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.*?>
+<?import org.visual.model.component.container.draggable.DraggableBox?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.model.designer.controller.MainLayoutController"
+      prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 0" styleClass="root-window">
+    <fx:include source="GlobalMenu.fxml"/>
+    <fx:include source="ToolBar.fxml"/>
+    <BorderPane VBox.vgrow="ALWAYS">
+        <center>
+            <SplitPane dividerPositions="0.2,0.8">
+                <fx:include source="FileTreeView.fxml"/>
+                <fx:include source="Editor.fxml"/>
+            </SplitPane>
+        </center>
+        <border/>
+        <bottom>
+            <fx:include source="StatusBar.fxml"/>
+        </bottom>
+    </BorderPane>
+</VBox>

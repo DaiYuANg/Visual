@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.control.TreeView?>
+<TreeView
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.visual.model.designer.controller.FileTreeViewController"
+>
+    <TreeItem value="test">
+    </TreeItem>
+</TreeView>

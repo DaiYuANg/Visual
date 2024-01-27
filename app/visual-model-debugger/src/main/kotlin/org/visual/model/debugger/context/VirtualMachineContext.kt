@@ -18,7 +18,9 @@ data object VirtualMachineContext {
 
   private val virtualMachines: ObservableList<VirtualMachineDescriptor> by lazy {
     FXCollections.synchronizedObservableList(
-        FXCollections.observableArrayList(VirtualMachine.list()))
+        FXCollections.observableArrayList(VirtualMachine.list().stream().filter {
+          it.id() != null && it.displayName() != null
+        }.toList()))
   }
 
   val virtualMachineDescriptor by lazy { SimpleObjectProperty<VirtualMachineDescriptor>() }

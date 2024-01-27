@@ -27,5 +27,5 @@ dependencies {
   api("org.eclipse.emf:org.eclipse.emf.common:2.29.0")
   api("org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.36.0")
   api("org.eclipse.emf:org.eclipse.emf.edit:2.20.0")
-    implementation(projects.ui.visualModelComponentAnnotation)
+  implementation(projects.ui.visualModelComponentAnnotation)
 }

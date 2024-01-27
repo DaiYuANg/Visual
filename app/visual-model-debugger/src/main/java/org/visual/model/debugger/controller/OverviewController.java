@@ -7,17 +7,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.model.component.control.FontAwesomeIconicTextField;
 import org.visual.model.debugger.component.SystemPropertiesListView;
 import org.visual.model.debugger.context.VirtualMachineContext;
 
 @Singleton
 @Slf4j
 public class OverviewController implements Initializable {
+
+    @FXML
+    FontAwesomeIconicTextField searchInput;
 
     @FXML
     VBox overviewRoot;
@@ -40,5 +45,9 @@ public class OverviewController implements Initializable {
         systemPropertiesListView.getItems().addAll(values);
         ;
 //        System.err.println(VirtualMachineContext.INSTANCE.getVirtualMachineProperties());
+    }
+
+    public void filterSystemProperties(KeyEvent keyEvent) {
+
     }
 }

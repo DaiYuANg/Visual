@@ -3,14 +3,8 @@ package org.visual.model.debugger.controller;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;

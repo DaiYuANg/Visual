@@ -6,6 +6,8 @@ import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jreleaser.gradle.plugin.JReleaserPlugin
 import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
 
 plugins {
     `java-library`
@@ -33,7 +35,7 @@ allprojects {
         google()
     }
 }
-println(env.MODE.isPresent)
+
 val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
 val versionDetails: groovy.lang.Closure<VersionDetails> by extra
@@ -154,4 +156,3 @@ subprojects {
 
     }
 }
-

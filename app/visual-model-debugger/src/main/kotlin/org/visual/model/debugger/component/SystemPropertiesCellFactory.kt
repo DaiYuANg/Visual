@@ -11,7 +11,7 @@ class SystemPropertiesCellFactory :
     return object : ListCell<Map.Entry<Any, Any>>() {
       override fun updateItem(p0: Map.Entry<Any, Any>?, p1: Boolean) {
         super.updateItem(p0, p1)
-        text = "${p0?.key},${p0?.value}"
+        text = "${p0?.key}=${p0?.value}"
       }
     }
   }
