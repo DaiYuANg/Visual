@@ -8,10 +8,8 @@ subprojects{
     apply<AvajeInjectPlugin>()
     apply<JlinkProject>()
     dependencies {
-        implementation(rootProject.projects.ui.visualModelComponentAnnotation)
-        implementation(rootProject.projects.ui.visualModelComponent)
         implementation(rootProject.libs.avajeInject)
-        implementation(rootProject.libs.avajeInjectGenerator)
+        annotationProcessor(rootProject.libs.avajeInjectGenerator)
         implementation(rootProject.libs.gestaltConfig)
         implementation(rootProject.libs.gestaltToml)
         testImplementation(rootProject.libs.avajeInjectTest)

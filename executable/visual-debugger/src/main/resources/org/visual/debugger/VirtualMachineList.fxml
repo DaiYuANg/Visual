@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import org.visual.debugger.component.VirtualMachineDescriptorListView?>
+<?import org.visual.component.control.FontAwesomeIconicTextField?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.debugger.controller.VirtualMachineListController"
+      prefHeight="-Infinity"
+      VBox.vgrow="ALWAYS"
+>
+    <FontAwesomeIconicTextField icon="SEARCH" iconPos="RIGHT" fx:id="searchInput" onKeyTyped="#filterVirtualMachines"/>
+    <HBox fx:id="root" VBox.vgrow="ALWAYS">
+        <VirtualMachineDescriptorListView
+                onMouseClicked="#setCurrentVirtualMachineContext"
+                fx:id="list"
+                HBox.hgrow="ALWAYS"
+                VBox.vgrow="ALWAYS"
+        >
+        </VirtualMachineDescriptorListView>
+    </HBox>
+</VBox>

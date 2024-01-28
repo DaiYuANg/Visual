@@ -41,28 +41,28 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = "visual-model"
-include("executable:visual-model-designer")
-include("executable:visual-model-database")
-include("executable:visual-model-debugger")
+rootProject.name = "Visual"
+include("executable:visual-designer")
+include("executable:visual-database")
+include("executable:visual-debugger")
 
-include("module:visual-model-database")
-include("module:visual-model-shared")
-include("module:visual-model-git")
-include("module:visual-model-i18n")
-include("module:visual-model-server")
+include("module:visual-jdbc")
+include("module:visual-shared")
+include("module:visual-git")
+include("module:visual-server")
 
 include("libs:jfa")
-include("serialize:visual-model-serialize-json")
+include("serialize:visual-serialize-json")
 include("libs:event")
 include("libs:fonts")
 
-include("ui:visual-model-component-annotation")
-include("ui:visual-model-component")
-include("ui:visual-model-text-editor")
-include("ui:visual-model-graph-editor")
+include("ui:visual-component-annotation")
+include("ui:visual-component")
+include("ui:visual-text-editor")
+include("ui:visual-graph-editor")
+include("ui:visual-i18n")
 
-include("serialize:visual-model-serialize-plantuml")
-include("serialize:visual-model-serialize-api")
+include("serialize:visual-serialize-plantuml")
+include("serialize:visual-serialize-api")
 include("website")
 

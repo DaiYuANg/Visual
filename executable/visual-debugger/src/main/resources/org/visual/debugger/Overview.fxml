@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import java.lang.String?>
+<?import org.visual.debugger.component.SystemPropertiesListView?>
+<?import org.visual.component.control.FontAwesomeIconicTextField?>
+<VBox fx:id="overviewRoot" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.debugger.controller.OverviewController"
+      prefHeight="-Infinity">
+    <HBox prefHeight="400">
+        <Label text="JvmOverview"/>
+        <Label text="JvmOverview"/>
+        <Label text="JvmOverview"/>
+        <Label text="JvmOverview"/>
+        <Label text="JvmOverview"/>
+        <Separator/>
+    </HBox>
+    <VBox>
+        <FontAwesomeIconicTextField icon="SEARCH" iconPos="RIGHT" fx:id="searchInput" onKeyTyped="#filterSystemProperties"/>
+        <SystemPropertiesListView fx:id="systemPropertiesListView"/>
+    </VBox>
+</VBox>

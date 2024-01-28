@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-    title: 'Visual Model',
-    tagline: 'Design Model',
+    title: 'Visual',
+    tagline: 'Visual Everything',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here

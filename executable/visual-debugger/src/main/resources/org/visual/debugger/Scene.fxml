@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.debugger.controller.SceneController"
+      prefHeight="-Infinity"
+>
+    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.8">
+        <fx:include source="SceneNodeTree.fxml"/>
+        <fx:include source="SceneTab.fxml"/>
+    </SplitPane>
+</VBox>

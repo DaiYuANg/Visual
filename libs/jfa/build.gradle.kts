@@ -1,4 +1,4 @@
-group = "org.visual.model.jfa"
+group = "org.visual.jfa"
 
 version = "unspecified"
 

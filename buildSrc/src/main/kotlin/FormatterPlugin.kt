@@ -45,7 +45,6 @@ class FormatterPlugin : Plugin<Project> {
             }
             kotlin {
                 ktfmt()
-                ktlint()
                 indentWithSpaces(identWidth)
             }
         }

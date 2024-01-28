@@ -1,4 +1,4 @@
-group = "org.visual.model.fonts"
+group = "org.visual.fonts"
 
 version = "unspecified"
 
