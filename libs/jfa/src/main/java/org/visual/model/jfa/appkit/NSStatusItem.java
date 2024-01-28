@@ -5,13 +5,13 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSStatusItem extends NSObject {
-    static NSStatusItem alloc() {
-        return ObjcToJava.alloc(NSStatusItem.class);
-    }
+  static NSStatusItem alloc() {
+    return ObjcToJava.alloc(NSStatusItem.class);
+  }
 
-    NSMenu menu();
+  NSMenu menu();
 
-    void setMenu(NSMenu menu);
+  void setMenu(NSMenu menu);
 
-    NSStatusBarButton button();
+  NSStatusBarButton button();
 }

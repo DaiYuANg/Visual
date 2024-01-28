@@ -21,31 +21,41 @@ import org.visual.shared.pojo.JavaFxProperty;
 @Factory
 public class ConfigFactory {
 
-    @SneakyThrows
-    @Bean
-    @Named("VisualModelDebuggerGestalt")
-    Gestalt gestalt() {
-        val configLoaders = List.of(new EnvironmentVarsLoader(), new PropertyLoader(), new MapConfigLoader());
-        val environmentSource = EnvironmentConfigSourceBuilder.builder().setPrefix("VISUAL_MODEL")
-                .setFailOnErrors(false).build();
-        val classPathSource = ClassPathConfigSourceBuilder.builder().setResource("visual.model.debugger.properties").build();
-        val javafxClassPathSource = ClassPathConfigSourceBuilder.builder().setResource("javafx.properties").build();
-        val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build();
-        val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
-        builder.addSources(List.of(classPathSource, environmentSource, systemSource, javafxClassPathSource));
-        val gestalt = builder.build();
-        gestalt.loadConfigs();
-        return gestalt;
-    }
+  @SneakyThrows
+  @Bean
+  @Named("VisualModelDebuggerGestalt")
+  Gestalt gestalt() {
+    val configLoaders =
+        List.of(new EnvironmentVarsLoader(), new PropertyLoader(), new MapConfigLoader());
+    val environmentSource =
+        EnvironmentConfigSourceBuilder.builder()
+            .setPrefix("VISUAL_MODEL")
+            .setFailOnErrors(false)
+            .build();
+    val classPathSource =
+        ClassPathConfigSourceBuilder.builder()
+            .setResource("visual.model.debugger.properties")
+            .build();
+    val javafxClassPathSource =
+        ClassPathConfigSourceBuilder.builder().setResource("javafx.properties").build();
+    val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build();
+    val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
+    builder.addSources(
+        List.of(classPathSource, environmentSource, systemSource, javafxClassPathSource));
+    val gestalt = builder.build();
+    gestalt.loadConfigs();
+    return gestalt;
+  }
 
-    @SneakyThrows
-    @Bean
-    JavaFxProperty debuggerConfiguration(@NotNull @Named("VisualModelDebuggerGestalt") Gestalt gestalt) {
-        return gestalt.getConfig("javafx", JavaFxProperty.class);
-    }
+  @SneakyThrows
+  @Bean
+  JavaFxProperty debuggerConfiguration(
+      @NotNull @Named("VisualModelDebuggerGestalt") Gestalt gestalt) {
+    return gestalt.getConfig("javafx", JavaFxProperty.class);
+  }
 
-    @Bean
-    PreferencesWrapper preferences() {
-        return new PreferencesWrapper(Preferences.userNodeForPackage(VisualModelDebugger.class));
-    }
+  @Bean
+  PreferencesWrapper preferences() {
+    return new PreferencesWrapper(Preferences.userNodeForPackage(VisualModelDebugger.class));
+  }
 }

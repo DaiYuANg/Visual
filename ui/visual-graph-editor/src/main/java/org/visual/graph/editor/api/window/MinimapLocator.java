@@ -3,49 +3,41 @@
  */
 package org.visual.graph.editor.api.window;
 
-
 import org.visual.graph.editor.api.utils.DraggableBox;
 import org.visual.graph.editor.api.utils.GraphEditorProperties;
 
 /**
- * The minimap-representation of the currently-visible region of the graph
- * editor.
+ * The minimap-representation of the currently-visible region of the graph editor.
  *
- * <p>
- * This looks like a rectangle in the minimap. It's position 'locates' the
- * currently-visible region relative to the entire content.
- * </p>
+ * <p>This looks like a rectangle in the minimap. It's position 'locates' the currently-visible
+ * region relative to the entire content.
  */
-class MinimapLocator extends DraggableBox
-{
+class MinimapLocator extends DraggableBox {
 
-    private static final String STYLE_CLASS_LOCATOR = "minimap-locator";
+  private static final String STYLE_CLASS_LOCATOR = "minimap-locator";
 
-    /**
-     * Creates a new {@link MinimapLocator}.
-     *
-     * @param minimapPadding
-     *            the padding value used by the minimap
-     */
-    public MinimapLocator(final double minimapPadding)
-    {
-        super(null);
-        getStyleClass().add(STYLE_CLASS_LOCATOR);
+  /**
+   * Creates a new {@link MinimapLocator}.
+   *
+   * @param minimapPadding the padding value used by the minimap
+   */
+  public MinimapLocator(final double minimapPadding) {
+    super(null);
+    getStyleClass().add(STYLE_CLASS_LOCATOR);
 
-        final GraphEditorProperties locatorProperties = new GraphEditorProperties();
+    final GraphEditorProperties locatorProperties = new GraphEditorProperties();
 
-        locatorProperties.setNorthBoundValue(minimapPadding);
-        locatorProperties.setSouthBoundValue(minimapPadding);
-        locatorProperties.setEastBoundValue(minimapPadding);
-        locatorProperties.setWestBoundValue(minimapPadding);
+    locatorProperties.setNorthBoundValue(minimapPadding);
+    locatorProperties.setSouthBoundValue(minimapPadding);
+    locatorProperties.setEastBoundValue(minimapPadding);
+    locatorProperties.setWestBoundValue(minimapPadding);
 
-        setEditorProperties(locatorProperties);
-    }
+    setEditorProperties(locatorProperties);
+  }
 
-    @Override
-    protected boolean isEditable()
-    {
-        // we want the minimap to be movable at all times because it is not really editing
-        return true;
-    }
+  @Override
+  protected boolean isEditable() {
+    // we want the minimap to be movable at all times because it is not really editing
+    return true;
+  }
 }

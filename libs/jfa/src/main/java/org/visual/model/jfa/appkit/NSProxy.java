@@ -6,11 +6,11 @@ import org.visual.model.jfa.foundation.ID;
 
 @SuppressWarnings("unused")
 public interface NSProxy extends NSObject {
-    static NSProxy alloc() {
-        return ObjcToJava.alloc(NSProxy.class);
-    }
+  static NSProxy alloc() {
+    return ObjcToJava.alloc(NSProxy.class);
+  }
 
-    void forwardInvocation(NSInvocation invocation);
+  void forwardInvocation(NSInvocation invocation);
 
-    NSMethodSignature methodSignatureForSelector(ID sel);
+  NSMethodSignature methodSignatureForSelector(ID sel);
 }

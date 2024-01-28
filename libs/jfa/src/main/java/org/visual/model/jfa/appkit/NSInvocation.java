@@ -8,25 +8,25 @@ import org.visual.model.jfa.foundation.ID;
 
 @SuppressWarnings("unused")
 public interface NSInvocation extends NSObject {
-    static NSInvocation alloc() {
-        return ObjcToJava.alloc(NSInvocation.class);
-    }
+  static NSInvocation alloc() {
+    return ObjcToJava.alloc(NSInvocation.class);
+  }
 
-    ID selector();
+  ID selector();
 
-    NSObject target();
+  NSObject target();
 
-    void setTarget(NSObject target);
+  void setTarget(NSObject target);
 
-    void invoke();
+  void invoke();
 
-    void invokeWithTarget(NSObject target);
+  void invokeWithTarget(NSObject target);
 
-    void setReturnValue(ByReference retLoc);
+  void setReturnValue(ByReference retLoc);
 
-    void getArgument(ByReference argumentLocation, @NamedArg("atIndex") int idx);
+  void getArgument(ByReference argumentLocation, @NamedArg("atIndex") int idx);
 
-    NSMethodSignature methodSignature();
+  NSMethodSignature methodSignature();
 
-    void setArgument(ByReference arg, @NamedArg("atIndex") int idx);
+  void setArgument(ByReference arg, @NamedArg("atIndex") int idx);
 }

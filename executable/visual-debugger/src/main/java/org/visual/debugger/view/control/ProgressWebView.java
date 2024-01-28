@@ -33,73 +33,92 @@ import javafx.util.Duration;
 
 public class ProgressWebView extends StackPane {
 
-    WebView webView = new WebView();
-    String loadedPage;
+  WebView webView = new WebView();
+  String loadedPage;
 
-    public ProgressWebView() {
-        final ProgressIndicator progressIndicator = new ProgressIndicator();
-        progressIndicator.setMaxSize(300, 300);
-        webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<>() {
-            Animation anim;
+  public ProgressWebView() {
+    final ProgressIndicator progressIndicator = new ProgressIndicator();
+    progressIndicator.setMaxSize(300, 300);
+    webView
+        .getEngine()
+        .getLoadWorker()
+        .stateProperty()
+        .addListener(
+            new ChangeListener<>() {
+              Animation anim;
 
-            @Override
-            public void changed(final ObservableValue<? extends State> arg0, final State old, final State newValue) {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends State> arg0,
+                  final State old,
+                  final State newValue) {
                 if (newValue == State.READY) {
-                    anim = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-                        if (webView.getEngine().getLoadWorker().getProgress() == -1) {
-                            doLoad(loadedPage);
-                        }
-                    }));
-                    anim.play();
+                  anim =
+                      new Timeline(
+                          new KeyFrame(
+                              Duration.seconds(2),
+                              event -> {
+                                if (webView.getEngine().getLoadWorker().getProgress() == -1) {
+                                  doLoad(loadedPage);
+                                }
+                              }));
+                  anim.play();
                 } else if (anim != null) {
-                    anim.stop();
-                    anim = null;
+                  anim.stop();
+                  anim = null;
                 }
-            }
-        });
-        webView.getEngine().getLoadWorker().progressProperty().addListener(new ChangeListener<Number>() {
-            private final double DURATION = 500;
-            private final FadeTransition fadeIn = new FadeTransition(Duration.millis(DURATION));
-            private final FadeTransition fadeOut = new FadeTransition(Duration.millis(DURATION));
-            private final ParallelTransition fader = new ParallelTransition(fadeIn, fadeOut);
+              }
+            });
+    webView
+        .getEngine()
+        .getLoadWorker()
+        .progressProperty()
+        .addListener(
+            new ChangeListener<Number>() {
+              private final double DURATION = 500;
+              private final FadeTransition fadeIn = new FadeTransition(Duration.millis(DURATION));
+              private final FadeTransition fadeOut = new FadeTransition(Duration.millis(DURATION));
+              private final ParallelTransition fader = new ParallelTransition(fadeIn, fadeOut);
 
-            {
+              {
                 fadeOut.setFromValue(1.0);
                 fadeOut.setToValue(0.0);
 
                 fadeIn.setFromValue(0.0);
                 fadeIn.setToValue(1.0);
-            }
+              }
 
-            @Override
-            public void changed(final ObservableValue<? extends Number> arg0, final Number arg1, final Number progress) {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends Number> arg0,
+                  final Number arg1,
+                  final Number progress) {
                 final double progressValue = progress.doubleValue();
 
                 if (progressValue == 0) {
-                    getChildren().setAll(progressIndicator);
-                    doFade(webView, progressIndicator);
+                  getChildren().setAll(progressIndicator);
+                  doFade(webView, progressIndicator);
                 } else if (progressValue == 1.0) {
-                    getChildren().setAll(webView);
-                    doFade(progressIndicator, webView);
+                  getChildren().setAll(webView);
+                  doFade(progressIndicator, webView);
                 }
                 progressIndicator.setProgress(progressValue);
-            }
+              }
 
-            private void doFade(final Node n1, final Node n2) {
+              private void doFade(final Node n1, final Node n2) {
                 fader.stop();
                 fadeOut.setNode(n1);
                 fadeIn.setNode(n2);
                 fader.play();
-            }
-        });
+              }
+            });
+  }
 
+  public void doLoad(final String page) {
+    String location = webView.getEngine().getLocation();
+    if (location == null || !location.equals(page)) {
+      loadedPage = page;
+      webView.getEngine().load(page);
     }
-
-    public void doLoad(final String page) {
-        String location = webView.getEngine().getLocation();
-        if (location == null || !location.equals(page)) {
-            loadedPage = page;
-            webView.getEngine().load(page);
-        }
-    }
+  }
 }

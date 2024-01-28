@@ -29,13 +29,13 @@ class FormatterPlugin : Plugin<Project> {
             java {
                 target("**/*.java")
                 importOrder()
+                googleJavaFormat()
                 indentWithSpaces(identWidth)
                 removeUnusedImports()
                 formatAnnotations()
                     .addTypeAnnotation("Empty")
                     .addTypeAnnotation("NonEmpty")
                     .removeTypeAnnotation("Localized")
-                cleanthat()
             }
 
             kotlinGradle {

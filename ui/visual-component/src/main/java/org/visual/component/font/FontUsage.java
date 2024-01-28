@@ -1,4 +1,3 @@
 package org.visual.component.font;
 
-public interface FontUsage {
-}
+public interface FontUsage {}

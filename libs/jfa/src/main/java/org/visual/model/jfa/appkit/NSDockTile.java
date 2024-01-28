@@ -3,9 +3,9 @@ package org.visual.model.jfa.appkit;
 
 @SuppressWarnings("unused")
 public interface NSDockTile extends NSObject {
-    String badgeLabel();
+  String badgeLabel();
 
-    void setBadgeLabel(String value);
+  void setBadgeLabel(String value);
 
-    boolean showsApplicationBadge();
+  boolean showsApplicationBadge();
 }

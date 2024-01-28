@@ -8,11 +8,11 @@ import org.visual.shared.pojo.BaseManifest;
 
 @Mapper
 public interface ManifestMapper {
-    ManifestMapper INSTANCE = Mappers.getMapper(ManifestMapper.class);
+  ManifestMapper INSTANCE = Mappers.getMapper(ManifestMapper.class);
 
-    @Mapping(target = "version", source = "Version")
-    @Mapping(target = "lastTag", source = "Last-Tag")
-    @Mapping(target = "gitHash", source = "Git-Hash")
-    @Mapping(target = "branch", source = "Branch")
-    BaseManifest mapToManifest(Map<String, String> mapManifest);
+  @Mapping(target = "version", source = "Version")
+  @Mapping(target = "lastTag", source = "Last-Tag")
+  @Mapping(target = "gitHash", source = "Git-Hash")
+  @Mapping(target = "branch", source = "Branch")
+  BaseManifest mapToManifest(Map<String, String> mapManifest);
 }

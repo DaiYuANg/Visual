@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ComponentController implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {}
 }

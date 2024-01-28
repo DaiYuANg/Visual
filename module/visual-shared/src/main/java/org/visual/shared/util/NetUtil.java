@@ -7,11 +7,11 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class NetUtil {
 
-    public static int randomPort() {
-        try (ServerSocket serverSocket = new ServerSocket(0)) {
-            return serverSocket.getLocalPort();
-        } catch (IOException e) {
-            return -1;
-        }
+  public static int randomPort() {
+    try (ServerSocket serverSocket = new ServerSocket(0)) {
+      return serverSocket.getLocalPort();
+    } catch (IOException e) {
+      return -1;
     }
+  }
 }

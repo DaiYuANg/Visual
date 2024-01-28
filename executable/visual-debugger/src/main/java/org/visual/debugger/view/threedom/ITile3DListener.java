@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2014 Jonathan Giles, Ander Ruiz, Amy Fowler, Arnaud Nouard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,9 @@ package org.visual.debugger.view.threedom;
 import javafx.scene.input.MouseEvent;
 
 public interface ITile3DListener {
-    public void onMouseMovedOnTile(String l);
-    public void onMouseClickedOnTile(Tile3D tile);
-    public void onMouseRightClickedOnTile(MouseEvent evt);
+  public void onMouseMovedOnTile(String l);
+
+  public void onMouseClickedOnTile(Tile3D tile);
+
+  public void onMouseRightClickedOnTile(MouseEvent evt);
 }

@@ -31,55 +31,55 @@ import org.visual.debugger.api.StageController;
 @Slf4j
 public abstract class WindowChecker extends WorkerThread {
 
-    @Setter
-    private long maxWaitTime = -1;
-    private final WindowFilter filter;
+  @Setter private long maxWaitTime = -1;
+  private final WindowFilter filter;
 
-    public WindowChecker(final WindowFilter filter, final String name) {
-        super(StageController.FX_CONNECTOR_BASE_ID + "SubWindowChecker." + name, 1000);
-        this.filter = filter;
+  public WindowChecker(final WindowFilter filter, final String name) {
+    super(StageController.FX_CONNECTOR_BASE_ID + "SubWindowChecker." + name, 1000);
+    this.filter = filter;
+  }
+
+  public interface WindowFilter {
+    boolean accept(Window window);
+  }
+
+  @SneakyThrows
+  @Override
+  public void run() {
+    // Keep iterating until we have a any windows.
+    // If we past the maximum wait time, we'll exit
+    long currentWait = -1;
+    List<Window> windows = getValidWindows(filter);
+    while (running) {
+      onWindowsFound(windows);
+      // Logger.print("No JavaFX window found - sleeping for " + sleepTime / 1000 + "
+      // seconds");
+      sleep(sleepTime);
+      if (maxWaitTime != -1) {
+        currentWait += sleepTime;
+      }
+
+      if (currentWait > maxWaitTime) {
+        finish();
+      }
+
+      windows = getValidWindows(filter);
+    }
+  }
+
+  protected abstract void onWindowsFound(List<Window> windows);
+
+  public static @NotNull List<Window> getValidWindows(final WindowFilter filter) {
+    ObservableList<Window> windows = Window.getWindows();
+    if (windows.isEmpty()) {
+      return Collections.emptyList();
     }
 
-    public interface WindowFilter {
-        boolean accept(Window window);
-    }
+    return windows.stream().filter(filter::accept).collect(Collectors.toList());
+  }
 
-    @SneakyThrows
-    @Override
-    public void run() {
-        // Keep iterating until we have a any windows.
-        // If we past the maximum wait time, we'll exit
-        long currentWait = -1;
-        List<Window> windows = getValidWindows(filter);
-        while (running) {
-            onWindowsFound(windows);
-            // Logger.print("No JavaFX window found - sleeping for " + sleepTime / 1000 + " seconds");
-            sleep(sleepTime);
-            if (maxWaitTime != -1) {
-                currentWait += sleepTime;
-            }
-
-            if (currentWait > maxWaitTime) {
-                finish();
-            }
-
-            windows = getValidWindows(filter);
-        }
-    }
-
-    protected abstract void onWindowsFound(List<Window> windows);
-
-    public static @NotNull List<Window> getValidWindows(final WindowFilter filter) {
-        ObservableList<Window> windows = Window.getWindows();
-        if (windows.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        return windows.stream().filter(filter::accept).collect(Collectors.toList());
-    }
-
-    @Override
-    protected void work() {
-        // TODO Auto-generated method stub
-    }
+  @Override
+  protected void work() {
+    // TODO Auto-generated method stub
+  }
 }

@@ -12,19 +12,15 @@ import org.visual.shared.OS;
 @Slf4j
 public class RootFactory {
 
-    @Bean
-    Executor executor() {
-        return new ThreadPoolExecutor(
-                OS.cpuCore,
-                OS.cpuCore + 1,
-                1,
-                TimeUnit.MINUTES,
-                new ArrayBlockingQueue<>(200),
-                new ThreadFactoryBuilder()
-                        .setDaemon(true)
-                        .setNameFormat("visual-model-%s")
-                        .build(),
-                new ThreadPoolExecutor.CallerRunsPolicy()
-        );
-    }
+  @Bean
+  Executor executor() {
+    return new ThreadPoolExecutor(
+        OS.cpuCore,
+        OS.cpuCore + 1,
+        1,
+        TimeUnit.MINUTES,
+        new ArrayBlockingQueue<>(200),
+        new ThreadFactoryBuilder().setDaemon(true).setNameFormat("visual-model-%s").build(),
+        new ThreadPoolExecutor.CallerRunsPolicy());
+  }
 }

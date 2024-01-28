@@ -11,8 +11,8 @@ import lombok.experimental.Accessors;
 @Getter
 @ToString
 public class DatabaseTableColumn {
-    private final String columnName;
-    private final String typeName;
-    private final Integer columnSize;
-    private final Integer nullable;
+  private final String columnName;
+  private final String typeName;
+  private final Integer columnSize;
+  private final Integer nullable;
 }

@@ -7,20 +7,20 @@ import org.visual.model.jfa.foundation.ID;
 
 @SuppressWarnings({"unused", "EmptyMethod"})
 public interface NSObject {
-    static NSObject alloc() {
-        return ObjcToJava.alloc(NSObject.class);
-    }
+  static NSObject alloc() {
+    return ObjcToJava.alloc(NSObject.class);
+  }
 
-    String description();
+  String description();
 
-    String className();
+  String className();
 
-    void dealloc();
+  void dealloc();
 
-    NSMethodSignature methodSignatureForSelector(ID selector);
+  NSMethodSignature methodSignatureForSelector(ID selector);
 
-    boolean respondsToSelector(ID aSelector);
+  boolean respondsToSelector(ID aSelector);
 
-    void performSelectorOnMainThread(
-            ID aSelector, @NamedArg("withObject") ID arg, @NamedArg("waitUntilDone") boolean wait);
+  void performSelectorOnMainThread(
+      ID aSelector, @NamedArg("withObject") ID arg, @NamedArg("waitUntilDone") boolean wait);
 }

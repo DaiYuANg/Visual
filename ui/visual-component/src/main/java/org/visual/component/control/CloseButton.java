@@ -8,38 +8,38 @@ import org.visual.component.container.VStageInitParams;
 import org.visual.component.theme.Theme;
 
 public class CloseButton extends WindowControlButton {
-    private CornerRadii cornerRadii;
+  private CornerRadii cornerRadii;
 
-    public CloseButton(VStage stage, VStageInitParams initParams) {
-        super(stage, initParams);
-    }
+  public CloseButton(VStage stage, VStageInitParams initParams) {
+    super(stage, initParams);
+  }
 
-    @Override
-    protected void init(@NotNull VStageInitParams initParams) {
-        if (initParams.iconifyButton || initParams.maximizeAndResetButton) {
-            cornerRadii = CornerRadii.EMPTY;
-        } else {
-            cornerRadii = new CornerRadii(0, 0, 0, 4, false);
-        }
+  @Override
+  protected void init(@NotNull VStageInitParams initParams) {
+    if (initParams.iconifyButton || initParams.maximizeAndResetButton) {
+      cornerRadii = CornerRadii.EMPTY;
+    } else {
+      cornerRadii = new CornerRadii(0, 0, 0, 4, false);
     }
+  }
 
-    @Override
-    protected void onMouseClicked() {
-        stage.close();
-    }
+  @Override
+  protected void onMouseClicked() {
+    stage.close();
+  }
 
-    @Override
-    protected CornerRadii getCornerRadii() {
-        return cornerRadii;
-    }
+  @Override
+  protected CornerRadii getCornerRadii() {
+    return cornerRadii;
+  }
 
-    @Override
-    protected Image getNormalImage() {
-        return Theme.current().windowCloseButtonNormalImage();
-    }
+  @Override
+  protected Image getNormalImage() {
+    return Theme.current().windowCloseButtonNormalImage();
+  }
 
-    @Override
-    protected Image getHoverImage() {
-        return Theme.current().windowCloseButtonHoverImage();
-    }
+  @Override
+  protected Image getHoverImage() {
+    return Theme.current().windowCloseButtonHoverImage();
+  }
 }

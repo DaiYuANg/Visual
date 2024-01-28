@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @Singleton
 @Slf4j
 public class ToolBarController implements Initializable {
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 }

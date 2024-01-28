@@ -7,7 +7,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public enum DIContainer {
-
-    INSTANCE;
-    private final BeanScope beanScope = BeanScope.builder().build();
+  INSTANCE;
+  private final BeanScope beanScope = BeanScope.builder().build();
 }

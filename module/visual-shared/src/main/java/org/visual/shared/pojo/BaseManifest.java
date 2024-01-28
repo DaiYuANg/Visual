@@ -6,11 +6,11 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class BaseManifest {
-    private String version;
+  private String version;
 
-    private String gitHash;
+  private String gitHash;
 
-    private String lastTag;
+  private String lastTag;
 
-    private String branch;
+  private String branch;
 }

@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.api;
 
-
 import org.visual.debugger.controller.Configuration;
 import org.visual.debugger.controller.StageID;
 import org.visual.debugger.details.DetailPaneType;
@@ -25,32 +24,31 @@ import org.visual.debugger.node.SVNode;
 
 public interface StageController {
 
-    static final String FX_CONNECTOR_BASE_ID = "FXConnector.";
+  static final String FX_CONNECTOR_BASE_ID = "FXConnector.";
 
-    StageID getID();
+  StageID getID();
 
-    void update();
+  void update();
 
-    void configurationUpdated(Configuration configuration);
+  void configurationUpdated(Configuration configuration);
 
-    void close();
+  void close();
 
-    void setEventDispatcher(FXConnectorEventDispatcher stageModelListener);
+  void setEventDispatcher(FXConnectorEventDispatcher stageModelListener);
 
-    boolean isOpened();
+  boolean isOpened();
 
-    void setSelectedNode(SVNode value);
-    
-    void removeSelectedNode();
+  void setSelectedNode(SVNode value);
 
-    AppController getAppController();
+  void removeSelectedNode();
 
-    void setDetail(DetailPaneType detailType, int detailID, String value);
+  AppController getAppController();
 
-    void animationsEnabled(boolean enabled);
+  void setDetail(DetailPaneType detailType, int detailID, String value);
 
-    void updateAnimations();
+  void animationsEnabled(boolean enabled);
 
-    void pauseAnimation(int animationID);
+  void updateAnimations();
 
+  void pauseAnimation(int animationID);
 }

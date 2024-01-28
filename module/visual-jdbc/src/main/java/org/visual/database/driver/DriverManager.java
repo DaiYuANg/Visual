@@ -7,9 +7,9 @@ import org.eclipse.aether.supplier.SessionBuilderSupplier;
 
 public class DriverManager {
 
-    DriverManager() {
-        val repo = new RepositorySystemSupplier().get();
-        new SessionBuilderSupplier(repo).get();
-        val a = Driver.MYSQL.getArtifact();
-    }
+  DriverManager() {
+    val repo = new RepositorySystemSupplier().get();
+    new SessionBuilderSupplier(repo).get();
+    val a = Driver.MYSQL.getArtifact();
+  }
 }

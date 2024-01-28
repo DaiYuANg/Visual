@@ -1,4 +1,3 @@
 package org.visual.database.connection
 
-class SSHWithSSL {
-}
+class SSHWithSSL {}

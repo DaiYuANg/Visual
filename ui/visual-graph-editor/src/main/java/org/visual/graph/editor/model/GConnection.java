@@ -1,24 +1,23 @@
-/**
- */
+/** */
 package org.visual.graph.editor.model;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>GConnection</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
+ * <p>The following features are supported:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getId <em>Id</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getSource <em>Source</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getTarget <em>Target</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getJoints <em>Joints</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getId <em>Id</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getSource <em>Source</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getTarget <em>Target</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GConnection#getJoints <em>Joints</em>}
  * </ul>
  *
  * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection()
@@ -30,6 +29,7 @@ public interface GConnection extends EObject {
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection_Id()
@@ -39,9 +39,11 @@ public interface GConnection extends EObject {
   String getId();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getId <em>Id</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Id</em>' attribute.
    * @see #getId()
    * @generated
@@ -52,6 +54,7 @@ public interface GConnection extends EObject {
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Type</em>' attribute.
    * @see #setType(String)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection_Type()
@@ -61,9 +64,11 @@ public interface GConnection extends EObject {
   String getType();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getType
+   * <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Type</em>' attribute.
    * @see #getType()
    * @generated
@@ -74,6 +79,7 @@ public interface GConnection extends EObject {
    * Returns the value of the '<em><b>Source</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Source</em>' reference.
    * @see #setSource(GConnector)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection_Source()
@@ -83,9 +89,11 @@ public interface GConnection extends EObject {
   GConnector getSource();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getSource <em>Source</em>}' reference.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getSource
+   * <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Source</em>' reference.
    * @see #getSource()
    * @generated
@@ -96,6 +104,7 @@ public interface GConnection extends EObject {
    * Returns the value of the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Target</em>' reference.
    * @see #setTarget(GConnector)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection_Target()
@@ -105,9 +114,11 @@ public interface GConnection extends EObject {
   GConnector getTarget();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getTarget <em>Target</em>}' reference.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GConnection#getTarget
+   * <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Target</em>' reference.
    * @see #getTarget()
    * @generated
@@ -115,11 +126,13 @@ public interface GConnection extends EObject {
   void setTarget(GConnector value);
 
   /**
-   * Returns the value of the '<em><b>Joints</b></em>' containment reference list.
-   * The list contents are of type {@link io.github.eckig.grapheditor.model.GJoint}.
-   * It is bidirectional and its opposite is '{@link io.github.eckig.grapheditor.model.GJoint#getConnection <em>Connection</em>}'.
+   * Returns the value of the '<em><b>Joints</b></em>' containment reference list. The list contents
+   * are of type {@link io.github.eckig.grapheditor.model.GJoint}. It is bidirectional and its
+   * opposite is '{@link io.github.eckig.grapheditor.model.GJoint#getConnection
+   * <em>Connection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Joints</em>' containment reference list.
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGConnection_Joints()
    * @see io.github.eckig.grapheditor.model.GJoint#getConnection
@@ -127,5 +140,4 @@ public interface GConnection extends EObject {
    * @generated
    */
   EList<GJoint> getJoints();
-
 } // GConnection

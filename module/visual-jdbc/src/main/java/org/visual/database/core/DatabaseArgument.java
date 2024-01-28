@@ -11,9 +11,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Getter
 public class DatabaseArgument {
-    private final String jdbcUrl;
+  private final String jdbcUrl;
 
-    private final String username;
+  private final String username;
 
-    private final String password;
+  private final String password;
 }

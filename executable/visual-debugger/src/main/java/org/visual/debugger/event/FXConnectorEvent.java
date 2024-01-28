@@ -29,31 +29,28 @@ import org.visual.debugger.controller.StageID;
 @RequiredArgsConstructor
 public class FXConnectorEvent implements Serializable {
 
-    public enum SVEventType {
-        EVENT_LOG,
-        MOUSE_POSITION,
-        WINDOW_DETAILS,
-        NODE_SELECTED,
-        NODE_ADDED,
-        NODE_REMOVED,
-        NODE_COUNT,
-        SCENE_DETAILS,
-        ROOT_UPDATED,
-        DETAILS,
-        DETAIL_UPDATED,
-        ANIMATIONS_UPDATED,
-        SHORTCUT,
-        CSS_ADDED,
-        CSS_REMOVED,
-        CSS_REPLACED
-    }
+  public enum SVEventType {
+    EVENT_LOG,
+    MOUSE_POSITION,
+    WINDOW_DETAILS,
+    NODE_SELECTED,
+    NODE_ADDED,
+    NODE_REMOVED,
+    NODE_COUNT,
+    SCENE_DETAILS,
+    ROOT_UPDATED,
+    DETAILS,
+    DETAIL_UPDATED,
+    ANIMATIONS_UPDATED,
+    SHORTCUT,
+    CSS_ADDED,
+    CSS_REMOVED,
+    CSS_REPLACED
+  }
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    private final SVEventType type;
-    private final StageID stageID;
+  private final SVEventType type;
+  private final StageID stageID;
 }

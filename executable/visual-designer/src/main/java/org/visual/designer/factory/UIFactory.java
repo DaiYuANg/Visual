@@ -13,19 +13,19 @@ import org.visual.component.window.Tray;
 @Slf4j
 public class UIFactory {
 
-    private final Stage rootStage = new Stage();
+  private final Stage rootStage = new Stage();
 
-    @Bean
-    @Primary
-    Stage rootStage() {
-        rootStage.centerOnScreen();
-//        rootStage.initStyle(StageStyle.TRANSPARENT);
-        rootStage.setResizable(true);
-        return rootStage;
-    }
+  @Bean
+  @Primary
+  Stage rootStage() {
+    rootStage.centerOnScreen();
+    //        rootStage.initStyle(StageStyle.TRANSPARENT);
+    rootStage.setResizable(true);
+    return rootStage;
+  }
 
-    @Bean
-    Tray tray(Stage rootStage) {
-        return new Tray(Path.of(""), rootStage);
-    }
+  @Bean
+  Tray tray(Stage rootStage) {
+    return new Tray(Path.of(""), rootStage);
+  }
 }

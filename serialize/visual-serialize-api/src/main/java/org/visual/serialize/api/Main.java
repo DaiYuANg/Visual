@@ -1,5 +1,3 @@
 package org.visual.serialize.api;
 
-public class Main {
-
-}
+public class Main {}

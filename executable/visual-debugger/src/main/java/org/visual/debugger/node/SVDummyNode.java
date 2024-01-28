@@ -34,145 +34,141 @@ import org.kordamp.ikonli.Ikon;
 @Slf4j
 public class SVDummyNode extends SVNodeImpl implements SVNode, Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    @Getter
-    private String name;
-    private final List<SVNode> childrens = new ArrayList<>();
-    @Setter
-    private transient Image icon;
-    private int nodeID;
-    private byte[] imageInByte;
-    private NodeType nodeType;
+  @Getter private String name;
+  private final List<SVNode> childrens = new ArrayList<>();
+  @Setter private transient Image icon;
+  private int nodeID;
+  private byte[] imageInByte;
+  private NodeType nodeType;
 
-    public SVDummyNode() {
-        super();
+  public SVDummyNode() {
+    super();
+  }
+
+  public SVDummyNode(
+      final String name, final String nodeClass, final int nodeID, final NodeType nodeType) {
+    super(nodeClass, null);
+    this.name = name;
+    this.nodeID = nodeID;
+    this.nodeType = nodeType;
+  }
+
+  @Override
+  public String getId() {
+    return name;
+  }
+
+  @Override
+  public String getExtendedId() {
+    return name;
+  }
+
+  @Override
+  public SVNode getParent() {
+    return null;
+  }
+
+  @Override
+  public List<SVNode> getChildren() {
+    return childrens;
+  }
+
+  @Override
+  public boolean equals(final SVNode node) {
+    /** Only equal to another dummyNode */
+    if (node instanceof SVDummyNode) {
+      return nodeID == node.getNodeId() && nodeType == ((SVDummyNode) node).nodeType;
     }
+    return false;
+  }
 
-    public SVDummyNode(final String name, final String nodeClass, final int nodeID, final NodeType nodeType) {
-        super(nodeClass, null);
-        this.name = name;
-        this.nodeID = nodeID;
-        this.nodeType = nodeType;
+  @Override
+  @Deprecated
+  public Node getImpl() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public int getNodeId() {
+    return nodeID;
+  }
+
+  @Override
+  public boolean isVisible() {
+    return true;
+  }
+
+  @Override
+  public boolean isMouseTransparent() {
+    return false;
+  }
+
+  @Override
+  public boolean isFocused() {
+    return false;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  @Override
+  public boolean isRealNode() {
+    return false;
+  }
+
+  @Override
+  public boolean isExpanded() {
+    return true;
+  }
+
+  @Override
+  public Ikon getIcon() {
+    return NodeIconMapping.findNodeIcon(this.name);
+    //        if (icon == null && imageInByte != null) {
+    //            try {
+    //                final BufferedImage image = ImageIO.read(new
+    // ByteArrayInputStream(imageInByte));
+    //                icon = convertToFxImage(image);
+    //                imageInByte = null;
+    //            } catch (final Exception e) {
+    //                log.error(e.getLocalizedMessage(), e);
+    //            }
+    //        }
+    //        return icon;
+  }
+
+  public void setRemote(final boolean remote) {
+    if (remote && icon != null) {
+      try {
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(convertToAwtImage(icon), "png", baos);
+        baos.flush();
+        imageInByte = baos.toByteArray();
+        baos.close();
+      } catch (final Exception e) {
+        log.error(e.getLocalizedMessage(), e);
+      }
     }
+  }
 
-    @Override
-    public String getId() {
-        return name;
-    }
+  private static javafx.scene.image.Image convertToFxImage(
+      final java.awt.image.BufferedImage awtImage) {
+    return SwingFXUtils.toFXImage(awtImage, null);
+  }
 
-    @Override
-    public String getExtendedId() {
-        return name;
-    }
+  private static java.awt.image.BufferedImage convertToAwtImage(
+      final javafx.scene.image.Image fxImage) {
+    return SwingFXUtils.fromFXImage(fxImage, null);
+  }
 
-    @Override
-    public SVNode getParent() {
-        return null;
-    }
-
-    @Override
-    public List<SVNode> getChildren() {
-        return childrens;
-    }
-
-    @Override
-    public boolean equals(final SVNode node) {
-        /**
-         * Only equal to another dummyNode
-         */
-        if (node instanceof SVDummyNode) {
-            return nodeID == node.getNodeId() && nodeType == ((SVDummyNode) node).nodeType;
-        }
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public Node getImpl() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getNodeId() {
-        return nodeID;
-    }
-
-    @Override
-    public boolean isVisible() {
-        return true;
-    }
-
-    @Override
-    public boolean isMouseTransparent() {
-        return false;
-    }
-
-    @Override
-    public boolean isFocused() {
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
-    public boolean isRealNode() {
-        return false;
-    }
-
-    @Override
-    public boolean isExpanded() {
-        return true;
-    }
-
-    @Override
-    public Ikon getIcon() {
-        return NodeIconMapping.findNodeIcon(this.name);
-//        if (icon == null && imageInByte != null) {
-//            try {
-//                final BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageInByte));
-//                icon = convertToFxImage(image);
-//                imageInByte = null;
-//            } catch (final Exception e) {
-//                log.error(e.getLocalizedMessage(), e);
-//            }
-//        }
-//        return icon;
-    }
-
-    public void setRemote(final boolean remote) {
-        if (remote && icon != null) {
-            try {
-                final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(convertToAwtImage(icon), "png", baos);
-                baos.flush();
-                imageInByte = baos.toByteArray();
-                baos.close();
-            } catch (final Exception e) {
-                log.error(e.getLocalizedMessage(), e);
-            }
-        }
-    }
-
-    private static javafx.scene.image.Image convertToFxImage(final java.awt.image.BufferedImage awtImage) {
-        return SwingFXUtils.toFXImage(awtImage, null);
-    }
-
-    private static java.awt.image.BufferedImage convertToAwtImage(final javafx.scene.image.Image fxImage) {
-        return SwingFXUtils.fromFXImage(fxImage, null);
-    }
-
-    @Override
-    public NodeType getNodeType() {
-        return nodeType;
-    }
-
+  @Override
+  public NodeType getNodeType() {
+    return nodeType;
+  }
 }

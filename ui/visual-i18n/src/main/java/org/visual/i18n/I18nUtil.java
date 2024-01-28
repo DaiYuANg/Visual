@@ -10,15 +10,15 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings({"missing-explicit-ctor"})
 public class I18nUtil {
 
-    public static final String baseName = "language";
+  public static final String baseName = "language";
 
-    @Contract(" -> new")
-    public static @NotNull I18n getDefaultLocale() {
-        return new I18n(Locale.getDefault());
-    }
+  @Contract(" -> new")
+  public static @NotNull I18n getDefaultLocale() {
+    return new I18n(Locale.getDefault());
+  }
 
-    @Contract("_ -> new")
-    public static @NotNull I18n get(@NonNull Locale locale) {
-        return new I18n(locale);
-    }
+  @Contract("_ -> new")
+  public static @NotNull I18n get(@NonNull Locale locale) {
+    return new I18n(locale);
+  }
 }

@@ -30,62 +30,58 @@ import org.visual.debugger.controller.StageControllerImpl;
 
 public class SubWindowChecker extends WindowChecker {
 
-    StageControllerImpl model;
+  StageControllerImpl model;
 
-    public SubWindowChecker(final @NotNull StageControllerImpl model) {
-        super(window -> window instanceof PopupWindow, model.getID().toString());
-        this.model = model;
+  public SubWindowChecker(final @NotNull StageControllerImpl model) {
+    super(window -> window instanceof PopupWindow, model.getID().toString());
+    this.model = model;
+  }
+
+  Map<PopupWindow, Map> previousTree = new HashMap<>();
+  List<PopupWindow> windows = new ArrayList<>();
+  final Map<PopupWindow, Map> tree = new HashMap<>();
+
+  @Override
+  protected void onWindowsFound(final @NotNull List<Window> tempPopups) {
+    tree.clear();
+    windows.clear();
+
+    for (final Window popupWindow : tempPopups) {
+      final Map<PopupWindow, Map> pos = valid((PopupWindow) popupWindow, tree);
+      if (pos != null) {
+        pos.put((PopupWindow) popupWindow, new HashMap<PopupWindow, Map>());
+        windows.add((PopupWindow) popupWindow);
+      }
     }
+    if (!tree.equals(previousTree)) {
+      previousTree.clear();
+      previousTree.putAll(tree);
+      final List<PopupWindow> actualWindows = new ArrayList<>(windows);
+      Platform.runLater(
+          new Runnable() {
 
-    Map<PopupWindow, Map> previousTree = new HashMap<>();
-    List<PopupWindow> windows = new ArrayList<>();
-    final Map<PopupWindow, Map> tree = new HashMap<>();
-
-    @Override
-    protected void onWindowsFound(final @NotNull List<Window> tempPopups) {
-        tree.clear();
-        windows.clear();
-
-        for (final Window popupWindow : tempPopups) {
-            final Map<PopupWindow, Map> pos = valid((PopupWindow) popupWindow, tree);
-            if (pos != null) {
-                pos.put((PopupWindow) popupWindow, new HashMap<PopupWindow, Map>());
-                windows.add((PopupWindow) popupWindow);
+            @Override
+            public void run() {
+              // No need for synchronization here
+              model.popupWindows.clear();
+              model.popupWindows.addAll(actualWindows);
+              model.update();
             }
-        }
-        if (!tree.equals(previousTree)) {
-            previousTree.clear();
-            previousTree.putAll(tree);
-            final List<PopupWindow> actualWindows = new ArrayList<>(windows);
-            Platform.runLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    // No need for synchronization here
-                    model.popupWindows.clear();
-                    model.popupWindows.addAll(actualWindows);
-                    model.update();
-
-                }
-            });
-
-        }
-
+          });
     }
+  }
 
-    @SuppressWarnings("unchecked")
-    Map<PopupWindow, Map> valid(final @NotNull PopupWindow window, final Map<PopupWindow, Map> tree) {
-        if (window.getOwnerWindow() == model.targetWindow)
-            return tree;
-        for (final PopupWindow type : tree.keySet()) {
-            if (type == window.getOwnerWindow()) {
-                return tree.get(type);
-            } else {
-                val lower = valid(window, tree.get(type));
-                if (lower != null)
-                    return lower;
-            }
-        }
-        return null;
+  @SuppressWarnings("unchecked")
+  Map<PopupWindow, Map> valid(final @NotNull PopupWindow window, final Map<PopupWindow, Map> tree) {
+    if (window.getOwnerWindow() == model.targetWindow) return tree;
+    for (final PopupWindow type : tree.keySet()) {
+      if (type == window.getOwnerWindow()) {
+        return tree.get(type);
+      } else {
+        val lower = valid(window, tree.get(type));
+        if (lower != null) return lower;
+      }
     }
+    return null;
+  }
 }

@@ -1,5 +1,5 @@
 plugins {
-//  alias(libs.plugins.javafx)
+  //  alias(libs.plugins.javafx)
   `kotlin-project`
 }
 
@@ -13,7 +13,7 @@ dependencies {
   implementation(projects.ui.visualComponent)
 }
 
-//javafx {
+// javafx {
 //  version = libs.versions.javafxVersion.get()
 //  modules(
 //      "javafx.controls",
@@ -23,4 +23,4 @@ dependencies {
 //      "javafx.media",
 //  )
 //  configurations = arrayOf("implementation", "testImplementation")
-//}
+// }

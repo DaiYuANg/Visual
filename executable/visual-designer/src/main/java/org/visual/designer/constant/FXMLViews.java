@@ -6,8 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum FXMLViews {
+  MAIN_LAYOUT("MainLayout");
 
-    MAIN_LAYOUT("MainLayout");
-
-    private final String view;
+  private final String view;
 }

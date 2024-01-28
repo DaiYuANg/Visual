@@ -5,17 +5,17 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSImage extends NSObject {
-    static NSImage alloc() {
-        return ObjcToJava.alloc(NSImage.class);
-    }
+  static NSImage alloc() {
+    return ObjcToJava.alloc(NSImage.class);
+  }
 
-    NSImage initByReferencingFile(String fileName);
+  NSImage initByReferencingFile(String fileName);
 
-    NSImage initWithContentsOfFile(String fileName);
+  NSImage initWithContentsOfFile(String fileName);
 
-    NSImage initByReferencingURL(NSURL url);
+  NSImage initByReferencingURL(NSURL url);
 
-    NSImage initWithContentsOfURL(NSURL url);
+  NSImage initWithContentsOfURL(NSURL url);
 
-    NSImage initWithData(NSData data);
+  NSImage initWithData(NSData data);
 }

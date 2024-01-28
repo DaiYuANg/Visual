@@ -14,15 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ClassesController implements Initializable {
 
+  @FXML TreeView<String> fileView;
 
-    @FXML
-    TreeView<String> fileView;
+  @FXML TextArea codeArea;
 
-    @FXML
-    TextArea codeArea;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        SplitPane.setResizableWithParent(fileView, true);
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    SplitPane.setResizableWithParent(fileView, true);
+  }
 }

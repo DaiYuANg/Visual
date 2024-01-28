@@ -5,7 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnection {
 
-    {
-        new HikariDataSource();
-    }
+  {
+    new HikariDataSource();
+  }
 }

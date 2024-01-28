@@ -30,84 +30,81 @@ import org.visual.shared.OS;
 @Slf4j
 public abstract class OsThemeDetector {
 
-    private static volatile OsThemeDetector osThemeDetector;
+  private static volatile OsThemeDetector osThemeDetector;
 
-    @NotNull public static OsThemeDetector getDetector() {
-        OsThemeDetector instance = osThemeDetector;
+  @NotNull public static OsThemeDetector getDetector() {
+    OsThemeDetector instance = osThemeDetector;
 
-        if (Objects.isNull(instance)) {
-            synchronized (OsThemeDetector.class) {
-                instance = osThemeDetector;
+    if (Objects.isNull(instance)) {
+      synchronized (OsThemeDetector.class) {
+        instance = osThemeDetector;
 
-                if (Objects.nonNull(instance)) {
-                    return instance;
-                }
-                osThemeDetector = instance = createDetector();
-            }
+        if (Objects.nonNull(instance)) {
+          return instance;
         }
-
-        return instance;
+        osThemeDetector = instance = createDetector();
+      }
     }
 
-    @Contract(" -> new")
-    private static @NotNull OsThemeDetector createDetector() {
-        if (OS.isWindows10OrLater()) {
-            logDetection("Windows 10", WindowsThemeDetector.class);
-            return new WindowsThemeDetector();
-        } else if (OS.isGnome()) {
-            logDetection("Gnome", GnomeThemeDetector.class);
-            return new GnomeThemeDetector();
-        } else if (OS.isMacOsMojaveOrLater()) {
-            logDetection("MacOS", MacOSThemeDetector.class);
-            return new MacOSThemeDetector();
-        } else {
-            log.warn("Theme detection is not supported on the system: {} {}", OS.family, OS.version);
-            log.warn("Creating empty detector...");
-            return new EmptyDetector();
-        }
+    return instance;
+  }
+
+  @Contract(" -> new")
+  private static @NotNull OsThemeDetector createDetector() {
+    if (OS.isWindows10OrLater()) {
+      logDetection("Windows 10", WindowsThemeDetector.class);
+      return new WindowsThemeDetector();
+    } else if (OS.isGnome()) {
+      logDetection("Gnome", GnomeThemeDetector.class);
+      return new GnomeThemeDetector();
+    } else if (OS.isMacOsMojaveOrLater()) {
+      logDetection("MacOS", MacOSThemeDetector.class);
+      return new MacOSThemeDetector();
+    } else {
+      log.warn("Theme detection is not supported on the system: {} {}", OS.family, OS.version);
+      log.warn("Creating empty detector...");
+      return new EmptyDetector();
+    }
+  }
+
+  private static void logDetection(
+      String desktop, @NotNull Class<? extends OsThemeDetector> detectorClass) {
+    log.atDebug().log("Supported Desktop detected: {}", desktop);
+    log.atDebug().log("Creating {}...", detectorClass.getName());
+  }
+
+  /**
+   * Returns that the os using a dark or a light theme.
+   *
+   * @return {@code true} if the os uses dark theme; {@code false} otherwise.
+   */
+  public abstract boolean isDark();
+
+  /**
+   * Registers a {@link Consumer} that will listen to a theme-change.
+   *
+   * @param darkThemeListener the {@link Consumer} that accepts a {@link Boolean} that represents
+   *     that the os using a dark theme or not
+   */
+  public abstract void registerListener(@NotNull Consumer<Boolean> darkThemeListener);
+
+  /** Removes the listener. */
+  public abstract void removeListener(@Nullable Consumer<Boolean> darkThemeListener);
+
+  public static boolean isSupported() {
+    return OS.isWindows10OrLater() || OS.isMacOsMojaveOrLater() || OS.isGnome();
+  }
+
+  private static final class EmptyDetector extends OsThemeDetector {
+    @Override
+    public boolean isDark() {
+      return false;
     }
 
-    private static void logDetection(String desktop, @NotNull Class<? extends OsThemeDetector> detectorClass) {
-        log.atDebug().log("Supported Desktop detected: {}", desktop);
-        log.atDebug().log("Creating {}...", detectorClass.getName());
-    }
+    @Override
+    public void registerListener(@NotNull Consumer<Boolean> darkThemeListener) {}
 
-    /**
-     * Returns that the os using a dark or a light theme.
-     *
-     * @return {@code true} if the os uses dark theme; {@code false} otherwise.
-     */
-    public abstract boolean isDark();
-
-    /**
-     * Registers a {@link Consumer} that will listen to a theme-change.
-     *
-     * @param darkThemeListener the {@link Consumer} that accepts a {@link Boolean} that represents
-     *                          that the os using a dark theme or not
-     */
-    public abstract void registerListener(@NotNull Consumer<Boolean> darkThemeListener);
-
-    /**
-     * Removes the listener.
-     */
-    public abstract void removeListener(@Nullable Consumer<Boolean> darkThemeListener);
-
-    public static boolean isSupported() {
-        return OS.isWindows10OrLater() || OS.isMacOsMojaveOrLater() || OS.isGnome();
-    }
-
-    private static final class EmptyDetector extends OsThemeDetector {
-        @Override
-        public boolean isDark() {
-            return false;
-        }
-
-        @Override
-        public void registerListener(@NotNull Consumer<Boolean> darkThemeListener) {
-        }
-
-        @Override
-        public void removeListener(@Nullable Consumer<Boolean> darkThemeListener) {
-        }
-    }
+    @Override
+    public void removeListener(@Nullable Consumer<Boolean> darkThemeListener) {}
+  }
 }

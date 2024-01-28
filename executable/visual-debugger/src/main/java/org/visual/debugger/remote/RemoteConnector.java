@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,16 +17,13 @@
  */
 package org.visual.debugger.remote;
 
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.visual.debugger.event.FXConnectorEvent;
 
-
 interface RemoteConnector extends Remote {
 
-    public void dispatchEvent(FXConnectorEvent event) throws RemoteException;
+  public void dispatchEvent(FXConnectorEvent event) throws RemoteException;
 
-    public void onAgentStarted(int port) throws RemoteException;
-
+  public void onAgentStarted(int port) throws RemoteException;
 }

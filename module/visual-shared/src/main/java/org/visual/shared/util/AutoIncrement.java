@@ -6,9 +6,9 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class AutoIncrement {
 
-    private static final AtomicLong counter = new AtomicLong(0);
+  private static final AtomicLong counter = new AtomicLong(0);
 
-    public static synchronized long next() {
-        return counter.getAndIncrement();
-    }
+  public static synchronized long next() {
+    return counter.getAndIncrement();
+  }
 }

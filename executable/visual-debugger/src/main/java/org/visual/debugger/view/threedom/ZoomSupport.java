@@ -31,39 +31,48 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZoomSupport {
 
-    public EventHandler<KeyEvent> keyboardEventHandler;
-    public EventHandler<ScrollEvent> mouseEventHandler;
-    private Number anchorX, anchorY;
-    private Number anchor;
-    private double dragAnchor;
-    private MouseEvent lastMouseEvent;
-    private final Node target;
+  public EventHandler<KeyEvent> keyboardEventHandler;
+  public EventHandler<ScrollEvent> mouseEventHandler;
+  private Number anchorX, anchorY;
+  private Number anchor;
+  private double dragAnchor;
+  private MouseEvent lastMouseEvent;
+  private final Node target;
 
-    public ZoomSupport(@NotNull Node target, final KeyCode modifier, final MouseButton mouseButton, final Orientation orientation, final Property<Number> property, final Property<Number> propertyX, final double factor) {
-        this.target = target;
-        mouseEventHandler = (ScrollEvent t) -> {
-            if (t.getEventType() == ScrollEvent.SCROLL) {
-                double deltaY = t.getDeltaY();
-                Number value = property.getValue();
-                property.setValue(value.doubleValue() - (deltaY * factor));
-                // x
-                deltaY = t.getDeltaX();
-                value = propertyX.getValue();
-                propertyX.setValue(value.doubleValue() - (deltaY * factor));
-                t.consume();
-            }
+  public ZoomSupport(
+      @NotNull Node target,
+      final KeyCode modifier,
+      final MouseButton mouseButton,
+      final Orientation orientation,
+      final Property<Number> property,
+      final Property<Number> propertyX,
+      final double factor) {
+    this.target = target;
+    mouseEventHandler =
+        (ScrollEvent t) -> {
+          if (t.getEventType() == ScrollEvent.SCROLL) {
+            double deltaY = t.getDeltaY();
+            Number value = property.getValue();
+            property.setValue(value.doubleValue() - (deltaY * factor));
+            // x
+            deltaY = t.getDeltaX();
+            value = propertyX.getValue();
+            propertyX.setValue(value.doubleValue() - (deltaY * factor));
+            t.consume();
+          }
         };
-        EventHandler<ZoomEvent> zoomEventHandler = (ZoomEvent z) -> {
-            if (z.getEventType() == ZoomEvent.ZOOM) {
-                var deltaY = z.getTotalZoomFactor();
-                deltaY -= 1;  // Make zoom out negative
-                Number value = property.getValue();
-                property.setValue(value.doubleValue() + deltaY * 0.7);
-                z.consume();
-            }
+    EventHandler<ZoomEvent> zoomEventHandler =
+        (ZoomEvent z) -> {
+          if (z.getEventType() == ZoomEvent.ZOOM) {
+            var deltaY = z.getTotalZoomFactor();
+            deltaY -= 1; // Make zoom out negative
+            Number value = property.getValue();
+            property.setValue(value.doubleValue() + deltaY * 0.7);
+            z.consume();
+          }
         };
 
-        target.addEventHandler(ScrollEvent.ANY, mouseEventHandler);
-        target.addEventHandler(ZoomEvent.ANY, zoomEventHandler);
-    }
+    target.addEventHandler(ScrollEvent.ANY, mouseEventHandler);
+    target.addEventHandler(ZoomEvent.ANY, zoomEventHandler);
+  }
 }

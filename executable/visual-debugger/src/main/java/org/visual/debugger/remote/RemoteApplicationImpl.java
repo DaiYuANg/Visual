@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.remote;
 
-
 import java.io.Serial;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -28,161 +27,181 @@ import org.visual.debugger.api.FXConnectorEventDispatcher;
 import org.visual.debugger.controller.Configuration;
 import org.visual.debugger.controller.StageID;
 import org.visual.debugger.details.DetailPaneType;
-import org.visual.debugger.node.SVNode;
 import org.visual.debugger.event.FXConnectorEvent;
+import org.visual.debugger.node.SVNode;
 
 @Slf4j
-
 class RemoteApplicationImpl extends UnicastRemoteObject implements RemoteApplication {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-    RemoteApplication application;
-    private RemoteConnector scenicView;
-    private final int port;
-    RemoteDispatcher dispatcher;
+  @Serial private static final long serialVersionUID = 1L;
+  RemoteApplication application;
+  private RemoteConnector scenicView;
+  private final int port;
+  RemoteDispatcher dispatcher;
 
-    RemoteApplicationImpl(final RemoteApplication application, final int port, final int serverPort) throws RemoteException {
-        this.application = application;
-        this.port = port;
-        try {
-            RMIUtils.bindApplication(this, port);
-        } catch (final Exception e) {
-            throw new RemoteException("Error starting agent", e);
-        }
+  RemoteApplicationImpl(final RemoteApplication application, final int port, final int serverPort)
+      throws RemoteException {
+    this.application = application;
+    this.port = port;
+    try {
+      RMIUtils.bindApplication(this, port);
+    } catch (final Exception e) {
+      throw new RemoteException("Error starting agent", e);
+    }
 
-        RMIUtils.findScenicView(serverPort, scenicView -> {
-            this.scenicView = scenicView;
-            
-            dispatcher = new RemoteDispatcher();
-            dispatcher.start();
+    RMIUtils.findScenicView(
+        serverPort,
+        scenicView -> {
+          this.scenicView = scenicView;
 
-            log.info("RemoteConnector found:" + scenicView);
+          dispatcher = new RemoteDispatcher();
+          dispatcher.start();
 
-            try {
-                scenicView.onAgentStarted(port);
-            } catch (final RemoteException e) {
-                log.error(e.getMessage(),e);
-            }
-            
-            try {
-                Thread.sleep(3000);
-            } catch (final InterruptedException e) {
-                log.error(e.getMessage(),e);
-            }
+          log.info("RemoteConnector found:" + scenicView);
+
+          try {
+            scenicView.onAgentStarted(port);
+          } catch (final RemoteException e) {
+            log.error(e.getMessage(), e);
+          }
+
+          try {
+            Thread.sleep(3000);
+          } catch (final InterruptedException e) {
+            log.error(e.getMessage(), e);
+          }
         });
-    }
+  }
 
-    @Override public void close() {
-        try {
-            RMIUtils.unbindApplication(port);
-            UnicastRemoteObject.unexportObject(this, true);
-            if (dispatcher != null) {
-                dispatcher.running = false;
-            }
-        } catch (final RemoteException e) {
-            log.error(e.getMessage(),e);
-        }
+  @Override
+  public void close() {
+    try {
+      RMIUtils.unbindApplication(port);
+      UnicastRemoteObject.unexportObject(this, true);
+      if (dispatcher != null) {
+        dispatcher.running = false;
+      }
+    } catch (final RemoteException e) {
+      log.error(e.getMessage(), e);
     }
+  }
 
-    @Override public void configurationUpdated(final StageID id, final Configuration configuration) throws RemoteException {
-        application.configurationUpdated(id, configuration);
-    }
+  @Override
+  public void configurationUpdated(final StageID id, final Configuration configuration)
+      throws RemoteException {
+    application.configurationUpdated(id, configuration);
+  }
 
-    @Override public void update(final StageID id) throws RemoteException {
-        application.update(id);
-    }
+  @Override
+  public void update(final StageID id) throws RemoteException {
+    application.update(id);
+  }
 
-    @Override public void setEventDispatcher(final StageID id, final FXConnectorEventDispatcher dispatcher) throws RemoteException {
-       log.info("Remote application setEventDispatcher!!!");
-        application.setEventDispatcher(id, appEvent -> {
-            if (scenicView != null) {
-                RemoteApplicationImpl.this.dispatcher.addEvent(appEvent);
-            } else {
-                log.info("Cannot dispatch event:" + appEvent);
-            }
+  @Override
+  public void setEventDispatcher(final StageID id, final FXConnectorEventDispatcher dispatcher)
+      throws RemoteException {
+    log.info("Remote application setEventDispatcher!!!");
+    application.setEventDispatcher(
+        id,
+        appEvent -> {
+          if (scenicView != null) {
+            RemoteApplicationImpl.this.dispatcher.addEvent(appEvent);
+          } else {
+            log.info("Cannot dispatch event:" + appEvent);
+          }
         });
+  }
+
+  @Override
+  public StageID[] getStageIDs() throws RemoteException {
+    return application.getStageIDs();
+  }
+
+  @Override
+  public void close(final StageID id) throws RemoteException {
+    application.close(id);
+  }
+
+  @Override
+  public void setSelectedNode(final StageID id, final SVNode value) throws RemoteException {
+    application.setSelectedNode(id, value);
+  }
+
+  @Override
+  public void removeSelectedNode(final StageID id) throws RemoteException {
+    application.removeSelectedNode(id);
+  }
+
+  @Override
+  public void setDetail(
+      final StageID id, final DetailPaneType detailType, final int detailID, final String value)
+      throws RemoteException {
+    application.setDetail(id, detailType, detailID, value);
+  }
+
+  @Override
+  public void animationsEnabled(final StageID id, final boolean enabled) throws RemoteException {
+    application.animationsEnabled(id, enabled);
+  }
+
+  @Override
+  public void updateAnimations(final StageID id) throws RemoteException {
+    application.updateAnimations(id);
+  }
+
+  @Override
+  public void pauseAnimation(final StageID id, final int animationID) throws RemoteException {
+    application.pauseAnimation(id, animationID);
+  }
+
+  // This is what pushes the events to Scenic View
+  class RemoteDispatcher extends Thread {
+    boolean running = true;
+    final List<FXConnectorEvent> events = new LinkedList<>();
+
+    {
+      // we don't want to keep the application running needlessly
+      setDaemon(true);
     }
 
-    @Override public StageID[] getStageIDs() throws RemoteException {
-        return application.getStageIDs();
-    }
-
-    @Override public void close(final StageID id) throws RemoteException {
-        application.close(id);
-    }
-
-    @Override public void setSelectedNode(final StageID id, final SVNode value) throws RemoteException {
-        application.setSelectedNode(id, value);
-    }
-    
-    @Override public void removeSelectedNode(final StageID id) throws RemoteException {
-        application.removeSelectedNode(id);
-    }
-
-    @Override public void setDetail(final StageID id, final DetailPaneType detailType, final int detailID, final String value) throws RemoteException {
-        application.setDetail(id, detailType, detailID, value);
-    }
-
-    @Override public void animationsEnabled(final StageID id, final boolean enabled) throws RemoteException {
-        application.animationsEnabled(id, enabled);
-    }
-
-    @Override public void updateAnimations(final StageID id) throws RemoteException {
-        application.updateAnimations(id);
-    }
-
-    @Override public void pauseAnimation(final StageID id, final int animationID) throws RemoteException {
-        application.pauseAnimation(id, animationID);
-    }
-
-    // This is what pushes the events to Scenic View
-    class RemoteDispatcher extends Thread {
-        boolean running = true;
-        final List<FXConnectorEvent> events = new LinkedList<>();
-        
-        {
-            // we don't want to keep the application running needlessly
-            setDaemon(true);
+    @Override
+    public void run() {
+      while (running) {
+        try {
+          Thread.sleep(60); // roughly synced with pulse
+        } catch (final InterruptedException e) {
+          log.error(e.getMessage(), e);
         }
 
-        @Override public void run() {
-            while (running) {
-                try {
-                    Thread.sleep(60); // roughly synced with pulse
-                } catch (final InterruptedException e) {
-                    log.error(e.getMessage(),e);
-                }
-
-                FXConnectorEvent event = null;
-                while (!events.isEmpty()) {
-                    try {
-                        synchronized (events) {
-                            event = events.removeFirst();
-                        }
-                        if (scenicView != null) {
-                            scenicView.dispatchEvent(event);
-                        }
-                    } catch (final RemoteException e) {
-                        log.error(e.getMessage(),e);
-                        try {
-                            close(event.getStageID());
-                            scenicView = null;
-                            // UnicastRemoteObject.unexportObject(application, true);
-                            RMIUtils.unbindApplication(port);
-                            running = false;
-                        } catch (final Exception e1) {
-                            log.error(e.getMessage(),e);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void addEvent(final FXConnectorEvent event) {
+        FXConnectorEvent event = null;
+        while (!events.isEmpty()) {
+          try {
             synchronized (events) {
-                events.add(event);
+              event = events.removeFirst();
             }
+            if (scenicView != null) {
+              scenicView.dispatchEvent(event);
+            }
+          } catch (final RemoteException e) {
+            log.error(e.getMessage(), e);
+            try {
+              close(event.getStageID());
+              scenicView = null;
+              // UnicastRemoteObject.unexportObject(application, true);
+              RMIUtils.unbindApplication(port);
+              running = false;
+            } catch (final Exception e1) {
+              log.error(e.getMessage(), e);
+            }
+          }
         }
+      }
     }
+
+    public void addEvent(final FXConnectorEvent event) {
+      synchronized (events) {
+        events.add(event);
+      }
+    }
+  }
 }

@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.event;
 
-
 import java.io.Serial;
 import lombok.Getter;
 import org.visual.debugger.controller.StageID;
@@ -25,21 +24,24 @@ import org.visual.debugger.controller.StageID;
 @Getter
 public class WindowDetailsEvent extends FXConnectorEvent {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final String windowType;
-    private final String bounds;
-    private final boolean focused;
-    private final boolean stylesRefreshable;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public WindowDetailsEvent(final StageID id, final String windowType, final String bounds, final boolean focused, final boolean stylesRefreshable) {
-        super(SVEventType.WINDOW_DETAILS, id);
-        this.windowType = windowType;
-        this.bounds = bounds;
-        this.focused = focused;
-        this.stylesRefreshable = stylesRefreshable;
-    }
+  private final String windowType;
+  private final String bounds;
+  private final boolean focused;
+  private final boolean stylesRefreshable;
+
+  public WindowDetailsEvent(
+      final StageID id,
+      final String windowType,
+      final String bounds,
+      final boolean focused,
+      final boolean stylesRefreshable) {
+    super(SVEventType.WINDOW_DETAILS, id);
+    this.windowType = windowType;
+    this.bounds = bounds;
+    this.focused = focused;
+    this.stylesRefreshable = stylesRefreshable;
+  }
 }

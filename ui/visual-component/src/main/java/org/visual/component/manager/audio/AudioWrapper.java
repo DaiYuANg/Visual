@@ -6,22 +6,19 @@ import lombok.Setter;
 import org.visual.component.util.FXUtils;
 
 public class AudioWrapper {
-    private final AudioClip clip;
-    @Getter
-    private int count = 0;
-    @Setter
-    @Getter
-    private boolean lastPlayed = false;
+  private final AudioClip clip;
+  @Getter private int count = 0;
+  @Setter @Getter private boolean lastPlayed = false;
 
-    public AudioWrapper(AudioClip clip) {
-        this.clip = clip;
-    }
+  public AudioWrapper(AudioClip clip) {
+    this.clip = clip;
+  }
 
-    public void play() {
-        FXUtils.runOnFX(() -> {
-            ++count;
-            clip.play();
+  public void play() {
+    FXUtils.runOnFX(
+        () -> {
+          ++count;
+          clip.play();
         });
-    }
-
+  }
 }

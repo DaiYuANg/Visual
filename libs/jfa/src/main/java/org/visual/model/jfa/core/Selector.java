@@ -12,48 +12,46 @@ import org.visual.model.jfa.annotation.NamedArg;
 import org.visual.model.jfa.foundation.Foundation;
 
 public final class Selector {
-    public static Pointer forMethod(Method method) {
-        return forString(Selector.stringForMethod(method));
+  public static Pointer forMethod(Method method) {
+    return forString(Selector.stringForMethod(method));
+  }
+
+  public static Pointer forString(String selector) {
+    return Foundation.createSelector(selector);
+  }
+
+  public static Pointer forNamedTypes(String methodName, NamedType... namedTypes) {
+    return Selector.forString(stringForNamedTypes(methodName, namedTypes));
+  }
+
+  public static String stringForNamedTypes(String methodName, NamedType... namedTypes) {
+    if (namedTypes.length == 0) {
+      return methodName;
     }
 
-    public static Pointer forString(String selector) {
-        return Foundation.createSelector(selector);
+    Stream<String> parameterNames = Arrays.stream(namedTypes).skip(1).map(NamedType::name);
+
+    return getSelector(methodName, parameterNames);
+  }
+
+  public static String stringForMethod(Method method) {
+    if (method.getParameterCount() == 0) {
+      return method.getName();
     }
 
-    public static Pointer forNamedTypes(String methodName, NamedType... namedTypes) {
-        return Selector.forString(stringForNamedTypes(methodName, namedTypes));
-    }
+    Stream<String> parameterNames =
+        Arrays.stream(method.getParameters()).skip(1).map(Selector::getParameterNames);
 
-    public static String stringForNamedTypes(String methodName, NamedType... namedTypes) {
-        if (namedTypes.length == 0) {
-            return methodName;
-        }
+    return getSelector(method.getName(), parameterNames);
+  }
 
-        Stream<String> parameterNames = Arrays.stream(namedTypes).skip(1).map(NamedType::name);
+  private static String getSelector(String methodName, Stream<String> parameterNames) {
+    String selectorComponent = parameterNames.map(p -> p + ":").collect(Collectors.joining());
 
-        return getSelector(methodName, parameterNames);
-    }
+    return methodName + ":" + selectorComponent;
+  }
 
-    public static String stringForMethod(Method method) {
-        if (method.getParameterCount() == 0) {
-            return method.getName();
-        }
-
-        Stream<String> parameterNames =
-                Arrays.stream(method.getParameters()).skip(1).map(Selector::getParameterNames);
-
-        return getSelector(method.getName(), parameterNames);
-    }
-
-    private static String getSelector(String methodName, Stream<String> parameterNames) {
-        String selectorComponent = parameterNames.map(p -> p + ":").collect(Collectors.joining());
-
-        return methodName + ":" + selectorComponent;
-    }
-
-    private static String getParameterNames(Parameter p) {
-        return Optional.ofNullable(p.getAnnotation(NamedArg.class))
-                .map(NamedArg::value)
-                .orElse("");
-    }
+  private static String getParameterNames(Parameter p) {
+    return Optional.ofNullable(p.getAnnotation(NamedArg.class)).map(NamedArg::value).orElse("");
+  }
 }

@@ -1,5 +1,3 @@
 package org.visual.git;
 
-public class Main {
-
-}
+public class Main {}

@@ -1,6 +1,5 @@
 package org.visual.debugger.inspector;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +12,10 @@ public abstract class AbstractComponentInspector<T> {
   protected static final int HORIZONTAL_SPACING = 25;
   protected static final int VERTICAL_SPACING = 25;
 
-
   public List<T> inspect(T component) {
-    return inspectDetails(component).stream().map(this::createComponentDetailsPanel).collect(Collectors.toList());
+    return inspectDetails(component).stream()
+        .map(this::createComponentDetailsPanel)
+        .collect(Collectors.toList());
   }
 
   private @NotNull List<ComponentDetails<T>> inspectDetails(T component) {
@@ -39,7 +39,7 @@ public abstract class AbstractComponentInspector<T> {
     details.setFieldNameComponent(createFieldNameComponent(component).orElse(null));
     details.setClassComponent(createClassComponent(component));
     details.setStylesComponent(createStylesComponent(component));
-    return  details;
+    return details;
   }
 
   protected abstract T getParent(T component);

@@ -5,6 +5,4 @@ data class JDBCConnection(
     val jdbcPassword: String,
     val database: String,
     val save: Boolean
-) {
-
-}
+) {}

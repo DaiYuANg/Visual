@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.model.attach;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -28,49 +27,49 @@ import java.util.List;
 import lombok.SneakyThrows;
 import lombok.val;
 
-
 public class LinuxAttachHandler extends AttachHandlerBase {
 
-    private static final String[] commonJdkPaths = {
-            "/usr/java",
-            "/usr/java/jdk",
-            "/usr/jdk",
-            "/usr/lib/java",
-            "/usr/lib/jdk",
-            "/usr/lib/jvm/java",
-            "/usr/lib/jvm/jdk",
-            "/usr/local/java",
-            "/usr/local/java/jdk",
-            "/opt/java",
-            "/opt/jdk"
-    };
+  private static final String[] commonJdkPaths = {
+    "/usr/java",
+    "/usr/java/jdk",
+    "/usr/jdk",
+    "/usr/lib/java",
+    "/usr/lib/jdk",
+    "/usr/lib/jvm/java",
+    "/usr/lib/jvm/jdk",
+    "/usr/local/java",
+    "/usr/local/java/jdk",
+    "/opt/java",
+    "/opt/jdk"
+  };
 
-    @Override
-    public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths) {
-        AttachHandlerFactory.doBasicJdkSearch(jdkPaths);
+  @Override
+  public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths) {
+    AttachHandlerFactory.doBasicJdkSearch(jdkPaths);
 
-        // go down linux special path
-        getToolsClassPathOnLinux(jdkPaths);
+    // go down linux special path
+    getToolsClassPathOnLinux(jdkPaths);
+  }
+
+  @SneakyThrows
+  private void getToolsClassPathOnLinux(List<JDKToolsJarPair> jdkPaths) {
+
+    Runtime r = Runtime.getRuntime();
+    val p = r.exec("which javac");
+    p.waitFor();
+
+    try (val br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+      if (br.ready()) {
+        // resolve symbolic links
+        File path = Paths.get(br.readLine().replaceAll("/bin/javac$", "")).toRealPath().toFile();
+        jdkPaths.add(new JDKToolsJarPair(path));
+      }
+
+      jdkPaths.addAll(
+          Arrays.stream(commonJdkPaths)
+              .filter(s -> Files.exists(Paths.get(s + "/lib/tools.jar")))
+              .map(s -> new JDKToolsJarPair(new File(s), new File(s + "/lib/tools.jar")))
+              .toList());
     }
-
-    @SneakyThrows
-    private void getToolsClassPathOnLinux(List<JDKToolsJarPair> jdkPaths) {
-
-        Runtime r = Runtime.getRuntime();
-        val p = r.exec("which javac");
-        p.waitFor();
-
-        try (val br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-            if (br.ready()) {
-                // resolve symbolic links
-                File path = Paths.get(br.readLine().replaceAll("/bin/javac$", "")).toRealPath().toFile();
-                jdkPaths.add(new JDKToolsJarPair(path));
-            }
-
-            jdkPaths.addAll(Arrays.stream(commonJdkPaths)
-                    .filter(s -> Files.exists(Paths.get(s + "/lib/tools.jar")))
-                    .map(s -> new JDKToolsJarPair(new File(s), new File(s + "/lib/tools.jar")))
-                    .toList());
-        }
-    }
+  }
 }

@@ -6,24 +6,24 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSString extends NSObject {
-    static NSString alloc() {
-        return ObjcToJava.alloc(NSString.class);
-    }
+  static NSString alloc() {
+    return ObjcToJava.alloc(NSString.class);
+  }
 
-    static NSString of(String value) {
-        return alloc().initWithString(value);
-    }
+  static NSString of(String value) {
+    return alloc().initWithString(value);
+  }
 
-    static String toString(NSString nsString) {
-        Pointer pointer = nsString.UTF8String();
-        return pointer.getString(0);
-    }
+  static String toString(NSString nsString) {
+    Pointer pointer = nsString.UTF8String();
+    return pointer.getString(0);
+  }
 
-    NSString init();
+  NSString init();
 
-    NSString initWithString(String value);
+  NSString initWithString(String value);
 
-    int length();
+  int length();
 
-    Pointer UTF8String();
+  Pointer UTF8String();
 }

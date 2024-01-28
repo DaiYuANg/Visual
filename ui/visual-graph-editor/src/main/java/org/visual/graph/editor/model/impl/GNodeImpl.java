@@ -1,5 +1,4 @@
-/**
- */
+/** */
 package org.visual.graph.editor.model.impl;
 
 import java.util.Collection;
@@ -17,20 +16,21 @@ import org.visual.graph.editor.model.GNode;
 import org.visual.graph.editor.model.GraphPackage;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>GNode</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
+ *
+ * <p>The following features are implemented:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getId <em>Id</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getX <em>X</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getY <em>Y</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getHeight <em>Height</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getId <em>Id</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getX <em>X</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getY <em>Y</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getWidth <em>Width</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getHeight <em>Height</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GNodeImpl#getConnectors <em>Connectors</em>}
  * </ul>
  *
  * @generated
@@ -40,6 +40,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getId()
    * @generated
    * @ordered
@@ -50,6 +51,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getId()
    * @generated
    * @ordered
@@ -60,6 +62,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -70,6 +73,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -80,6 +84,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getX() <em>X</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getX()
    * @generated
    * @ordered
@@ -90,6 +95,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getX() <em>X</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getX()
    * @generated
    * @ordered
@@ -100,6 +106,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getY() <em>Y</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getY()
    * @generated
    * @ordered
@@ -110,6 +117,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getY()
    * @generated
    * @ordered
@@ -120,6 +128,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getWidth()
    * @generated
    * @ordered
@@ -130,6 +139,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getWidth()
    * @generated
    * @ordered
@@ -140,6 +150,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getHeight()
    * @generated
    * @ordered
@@ -150,6 +161,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
    * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getHeight()
    * @generated
    * @ordered
@@ -157,9 +169,11 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   protected double height = HEIGHT_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference
+   * list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getConnectors()
    * @generated
    * @ordered
@@ -167,8 +181,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   protected EList<GConnector> connectors;
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   protected GNodeImpl() {
@@ -176,8 +192,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -186,8 +204,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -196,8 +216,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -209,8 +231,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -219,8 +243,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -228,12 +254,15 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
     String oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GNODE__TYPE, oldType, type));
+      eNotify(
+          new ENotificationImpl(this, Notification.SET, GraphPackage.GNODE__TYPE, oldType, type));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -242,8 +271,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -255,8 +286,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -265,8 +298,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -278,8 +313,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -288,8 +325,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -297,12 +336,16 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
     double oldWidth = width;
     width = newWidth;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GNODE__WIDTH, oldWidth, width));
+      eNotify(
+          new ENotificationImpl(
+              this, Notification.SET, GraphPackage.GNODE__WIDTH, oldWidth, width));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -311,8 +354,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -320,54 +365,72 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
     double oldHeight = height;
     height = newHeight;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GNODE__HEIGHT, oldHeight, height));
+      eNotify(
+          new ENotificationImpl(
+              this, Notification.SET, GraphPackage.GNODE__HEIGHT, oldHeight, height));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public EList<GConnector> getConnectors() {
     if (connectors == null) {
-      connectors = new EObjectContainmentWithInverseEList<GConnector>(GConnector.class, this, GraphPackage.GNODE__CONNECTORS, GraphPackage.GCONNECTOR__PARENT);
+      connectors =
+          new EObjectContainmentWithInverseEList<GConnector>(
+              GConnector.class,
+              this,
+              GraphPackage.GNODE__CONNECTORS,
+              GraphPackage.GCONNECTOR__PARENT);
     }
     return connectors;
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseAdd(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GraphPackage.GNODE__CONNECTORS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectors()).basicAdd(otherEnd, msgs);
+        return ((InternalEList<InternalEObject>) (InternalEList<?>) getConnectors())
+            .basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseRemove(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GraphPackage.GNODE__CONNECTORS:
-        return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getConnectors()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -392,8 +455,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -401,34 +466,36 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case GraphPackage.GNODE__ID:
-        setId((String)newValue);
+        setId((String) newValue);
         return;
       case GraphPackage.GNODE__TYPE:
-        setType((String)newValue);
+        setType((String) newValue);
         return;
       case GraphPackage.GNODE__X:
-        setX((Double)newValue);
+        setX((Double) newValue);
         return;
       case GraphPackage.GNODE__Y:
-        setY((Double)newValue);
+        setY((Double) newValue);
         return;
       case GraphPackage.GNODE__WIDTH:
-        setWidth((Double)newValue);
+        setWidth((Double) newValue);
         return;
       case GraphPackage.GNODE__HEIGHT:
-        setHeight((Double)newValue);
+        setHeight((Double) newValue);
         return;
       case GraphPackage.GNODE__CONNECTORS:
         getConnectors().clear();
-        getConnectors().addAll((Collection<? extends GConnector>)newValue);
+        getConnectors().addAll((Collection<? extends GConnector>) newValue);
         return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -460,8 +527,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -486,8 +555,10 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -510,5 +581,4 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
     result.append(')');
     return result.toString();
   }
-
-} //GNodeImpl
+} // GNodeImpl

@@ -14,23 +14,19 @@ import org.visual.debugger.inspector.FXComponentInspectorHandler;
 @Singleton
 public class GlobalMenuController implements Initializable {
 
-    @FXML
-    MenuItem enableInspectorMenu;
+  @FXML MenuItem enableInspectorMenu;
 
-    @Inject
-    Stage rootStage;
+  @Inject Stage rootStage;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 
-    }
+  public void openDebugger() {
+    VisualModelDebugger.show(rootStage.getScene());
+  }
 
-    public void openDebugger() {
-        VisualModelDebugger.show(rootStage.getScene());
-    }
-
-    public void enableInspector() {
-        enableInspectorMenu.setText("Disable Inspector");
-        FXComponentInspectorHandler.handleAll();
-    }
+  public void enableInspector() {
+    enableInspectorMenu.setText("Disable Inspector");
+    FXComponentInspectorHandler.handleAll();
+  }
 }

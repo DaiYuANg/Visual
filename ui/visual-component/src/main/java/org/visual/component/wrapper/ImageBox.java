@@ -3,13 +3,13 @@ package org.visual.component.wrapper;
 import javafx.scene.image.Image;
 
 public interface ImageBox {
-    int getWidth();
+  int getWidth();
 
-    int getHeight();
+  int getHeight();
 
-    int getRGB(int x, int y);
+  int getRGB(int x, int y);
 
-    CanvasBox createGraphics();
+  CanvasBox createGraphics();
 
-    Image toFXImage();
+  Image toFXImage();
 }

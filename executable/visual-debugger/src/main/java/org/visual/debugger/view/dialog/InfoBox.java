@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,63 +31,77 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import org.visual.debugger.api.StageController;
 
-
 public class InfoBox {
-    
-    private final TextArea textArea;
-    
-    public InfoBox(final String title, final String labelText, final String textAreaText) {
-        this(title, labelText, textAreaText, 700, 600);
+
+  private final TextArea textArea;
+
+  public InfoBox(final String title, final String labelText, final String textAreaText) {
+    this(title, labelText, textAreaText, 700, 600);
+  }
+
+  public InfoBox(
+      final String title,
+      final String labelText,
+      final String textAreaText,
+      final int width,
+      final int height) {
+    this(title, labelText, textAreaText, false, width, height);
+  }
+
+  public InfoBox(
+      final String title,
+      final String labelText,
+      final String textAreaText,
+      final boolean editable,
+      final int width,
+      final int height) {
+    this(null, title, labelText, textAreaText, editable, width, height);
+  }
+
+  public InfoBox(
+      final Window owner,
+      final String title,
+      final String labelText,
+      final String textAreaText,
+      final boolean editable,
+      final int width,
+      final int height) {
+    final VBox pane = new VBox(20);
+    pane.setId(StageController.FX_CONNECTOR_BASE_ID + "InfoBox");
+    final Scene scene = new Scene(pane, width, height);
+
+    final Stage stage = new Stage(StageStyle.UTILITY);
+    stage.setTitle(title);
+    stage.initModality(Modality.WINDOW_MODAL);
+    stage.initOwner(owner);
+    stage.setScene(scene);
+    //        stage.getIcons().add(ScenicViewGui.APP_ICON);
+
+    final Label label = new Label(labelText);
+    stage.setWidth(width);
+    stage.setHeight(height);
+    textArea = new TextArea();
+    if (textAreaText != null) {
+      textArea.setEditable(editable);
+      textArea.setText(textAreaText);
+      VBox.setMargin(textArea, new Insets(5, 5, 0, 5));
+      VBox.setVgrow(textArea, Priority.ALWAYS);
     }
-    
-    public InfoBox(final String title, final String labelText, 
-            final String textAreaText, final int width, final int height) {
-        this(title, labelText, textAreaText, false, width, height);
-    }
-    
-    public InfoBox(final String title, final String labelText, 
-            final String textAreaText, final boolean editable, final int width, final int height) {
-        this(null, title, labelText, textAreaText, editable, width, height);
-    }
+    final Button close = new Button("Close");
+    VBox.setMargin(label, new Insets(5, 5, 0, 5));
 
-    public InfoBox(final Window owner, final String title, final String labelText, 
-            final String textAreaText, final boolean editable, final int width, final int height) {
-        final VBox pane = new VBox(20);
-        pane.setId(StageController.FX_CONNECTOR_BASE_ID + "InfoBox");
-        final Scene scene = new Scene(pane, width, height); 
+    VBox.setMargin(close, new Insets(5, 5, 5, 5));
 
-        final Stage stage = new Stage(StageStyle.UTILITY);
-        stage.setTitle(title);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(owner);
-        stage.setScene(scene);
-//        stage.getIcons().add(ScenicViewGui.APP_ICON);
+    pane.setAlignment(Pos.CENTER);
 
-        final Label label = new Label(labelText);
-        stage.setWidth(width);
-        stage.setHeight(height);
-        textArea = new TextArea();
-        if (textAreaText != null) {
-            textArea.setEditable(editable);
-            textArea.setText(textAreaText);
-            VBox.setMargin(textArea, new Insets(5, 5, 0, 5));
-            VBox.setVgrow(textArea, Priority.ALWAYS);
-        }
-        final Button close = new Button("Close");
-        VBox.setMargin(label, new Insets(5, 5, 0, 5));
+    close.setDefaultButton(true);
+    close.setOnAction(arg0 -> stage.close());
+    pane.getChildren().addAll(label, textArea, close);
 
-        VBox.setMargin(close, new Insets(5, 5, 5, 5));
+    stage.show();
+  }
 
-        pane.setAlignment(Pos.CENTER);
-
-        close.setDefaultButton(true);
-        close.setOnAction(arg0 -> stage.close());
-        pane.getChildren().addAll(label, textArea, close);
-
-        stage.show();
-    }
-    
-    public String getText() {
-        return textArea.getText();
-    }
+  public String getText() {
+    return textArea.getText();
+  }
 }

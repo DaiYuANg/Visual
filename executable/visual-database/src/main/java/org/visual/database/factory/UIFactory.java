@@ -15,16 +15,17 @@ import org.visual.component.theme.OsThemeDetector;
 @Slf4j
 public class UIFactory {
 
-    @PostConstruct
-    void initUI() {
-        val theme = OsThemeDetector.getDetector().isDark()
-                ? new PrimerDark().getUserAgentStylesheet()
-                : new PrimerLight().getUserAgentStylesheet();
-        Application.setUserAgentStylesheet(theme);
-    }
+  @PostConstruct
+  void initUI() {
+    val theme =
+        OsThemeDetector.getDetector().isDark()
+            ? new PrimerDark().getUserAgentStylesheet()
+            : new PrimerLight().getUserAgentStylesheet();
+    Application.setUserAgentStylesheet(theme);
+  }
 
-    @Bean
-    VisualStage rootStage() {
-        return new VisualStage();
-    }
+  @Bean
+  VisualStage rootStage() {
+    return new VisualStage();
+  }
 }

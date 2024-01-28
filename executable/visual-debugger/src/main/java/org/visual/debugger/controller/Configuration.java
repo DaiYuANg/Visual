@@ -30,42 +30,37 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public final class Configuration implements Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    private boolean showBounds;
+  private boolean showBounds;
 
-    private boolean showBaseline;
+  private boolean showBaseline;
 
-    private boolean showRuler;
+  private boolean showRuler;
 
-    private int rulerSeparation;
+  private int rulerSeparation;
 
-    private String rulerColor = "000000";
+  private String rulerColor = "000000";
 
-    private boolean eventLogEnabled;
+  private boolean eventLogEnabled;
 
-    private boolean autoRefreshStyles;
+  private boolean autoRefreshStyles;
 
-    private boolean ignoreMouseTransparent;
+  private boolean ignoreMouseTransparent;
 
-    private boolean collapseControls;
+  private boolean collapseControls;
 
-    private boolean collapseContentControls;
+  private boolean collapseContentControls;
 
-    private boolean autoRefreshSceneGraph;
+  private boolean autoRefreshSceneGraph;
 
-    private boolean visibilityFilteringActive;
+  private boolean visibilityFilteringActive;
 
-    private boolean CSSPropertiesDetail;
+  private boolean CSSPropertiesDetail;
 
-    /**
-     * I'm not totally sure about this...
-     */
-    private boolean componentSelectOnClick;
+  /** I'm not totally sure about this... */
+  private boolean componentSelectOnClick;
 
-    private boolean registerShortcuts;
+  private boolean registerShortcuts;
 }

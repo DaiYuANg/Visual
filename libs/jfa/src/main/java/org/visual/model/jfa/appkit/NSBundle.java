@@ -6,25 +6,25 @@ import org.visual.model.jfa.foundation.Foundation;
 import org.visual.model.jfa.foundation.ID;
 
 public interface NSBundle extends NSObject {
-    static NSBundle mainBundle() {
-        return ObjcToJava.invokeStatic(NSBundle.class, "mainBundle");
-    }
+  static NSBundle mainBundle() {
+    return ObjcToJava.invokeStatic(NSBundle.class, "mainBundle");
+  }
 
-    static NSBundle bundleWithPath(String path) {
-        return ObjcToJava.invokeStatic(NSBundle.class, "bundleWithPath:", Foundation.nsString(path));
-    }
+  static NSBundle bundleWithPath(String path) {
+    return ObjcToJava.invokeStatic(NSBundle.class, "bundleWithPath:", Foundation.nsString(path));
+  }
 
-    NSString bundleIdentifier();
+  NSString bundleIdentifier();
 
-    NSBundle initWithURL(NSURL url);
+  NSBundle initWithURL(NSURL url);
 
-    NSBundle initWithPath(String url);
+  NSBundle initWithPath(String url);
 
-    NSURL bundleURL();
+  NSURL bundleURL();
 
-    String bundlePath();
+  String bundlePath();
 
-    ID classNamed(String className);
+  ID classNamed(String className);
 
-    boolean load();
+  boolean load();
 }

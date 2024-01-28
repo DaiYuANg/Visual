@@ -1,14 +1,10 @@
-import CommonPluginExtension.Companion.convertToCamelCase
-
 plugins {
-    application
-    java
+  application
+  java
 }
 
-plugins.getPlugin(FxProjectPlugin::class.java).modules(
-    "javafx.media",
-    "javafx.web"
-)
+plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.web")
+
 group = "org.visual.designer"
 
 val mainClassPath = "${group}.VisualModelDesigner"
@@ -16,26 +12,26 @@ val mainClassPath = "${group}.VisualModelDesigner"
 val mainModule = group
 
 application {
-    mainClass.set(mainClassPath)
-    mainModule.set(group.toString())
-    applicationDefaultJvmArgs = commonJvmArgs + listOf("-Dprism.verbose=true", "-Djavafx.debug=true")
+  mainClass.set(mainClassPath)
+  mainModule.set(group.toString())
+  applicationDefaultJvmArgs = commonJvmArgs + listOf("-Dprism.verbose=true", "-Djavafx.debug=true")
 }
 
 dependencies {
-    implementation(projects.ui.visualI18n)
-    implementation(projects.module.visualGit)
-    implementation(projects.module.visualShared)
-    implementation(projects.executable.visualDebugger)
-    implementation(projects.ui.visualComponent)
-    implementation(projects.ui.visualGraphEditor)
-    implementation(libs.picocli)
-    annotationProcessor(libs.picocliCodegen)
-    implementation(libs.pcollections)
-    implementation(libs.avajeValidaor)
-    annotationProcessor(libs.avajeValidaorCodegen)
+  implementation(projects.ui.visualI18n)
+  implementation(projects.module.visualGit)
+  implementation(projects.module.visualShared)
+  implementation(projects.executable.visualDebugger)
+  implementation(projects.ui.visualComponent)
+  implementation(projects.ui.visualGraphEditor)
+  implementation(libs.picocli)
+  annotationProcessor(libs.picocliCodegen)
+  implementation(libs.pcollections)
+  implementation(libs.avajeValidaor)
+  annotationProcessor(libs.avajeValidaorCodegen)
 }
 
-//jlink {
+// jlink {
 //    addExtraDependencies(
 //        "javafx",
 //        "kotlin",
@@ -49,7 +45,8 @@ dependencies {
 //        name = convertToCamelCase(project.name)
 //        jvmArgs = commonJvmArgs
 //    }
-//    imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))
+//
+// imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))
 //    jpackage { appVersion = version.toString() }
 //    customImage {
 //        jdkModules = listOf("java.desktop", "java.xml", "jdk.unsupported")
@@ -68,4 +65,4 @@ dependencies {
 //            "org.junit.platform.launcher"
 //        )
 //    }
-//}
+// }

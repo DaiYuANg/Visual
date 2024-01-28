@@ -17,71 +17,66 @@ import org.jetbrains.annotations.NotNull;
  */
 @Getter
 public abstract class ClickEventHandler implements EventHandler<MouseEvent> {
-    @Override
-    public void handle(@NotNull MouseEvent e) {
-        if (e.getEventType() == MouseEvent.MOUSE_ENTERED) {
-            eventOnMouseEntered();
-        } else if (e.getEventType() == MouseEvent.MOUSE_EXITED) {
-            eventOnMouseExited();
-        } else if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {
-            eventOnMousePressed(e);
-        } else if (e.getEventType() == MouseEvent.MOUSE_RELEASED) {
-            eventOnMouseReleased(e);
-        }
+  @Override
+  public void handle(@NotNull MouseEvent e) {
+    if (e.getEventType() == MouseEvent.MOUSE_ENTERED) {
+      eventOnMouseEntered();
+    } else if (e.getEventType() == MouseEvent.MOUSE_EXITED) {
+      eventOnMouseExited();
+    } else if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {
+      eventOnMousePressed(e);
+    } else if (e.getEventType() == MouseEvent.MOUSE_RELEASED) {
+      eventOnMouseReleased(e);
     }
+  }
 
-    protected boolean mouseEntered = false;
-    protected boolean mousePressed = false;
+  protected boolean mouseEntered = false;
+  protected boolean mousePressed = false;
 
-    private void eventOnMouseEntered() {
-        mouseEntered = true;
-        if (mousePressed) {
-            return;
-        }
-        onMouseEntered();
+  private void eventOnMouseEntered() {
+    mouseEntered = true;
+    if (mousePressed) {
+      return;
     }
+    onMouseEntered();
+  }
 
-    private void eventOnMouseExited() {
-        mouseEntered = false;
-        if (mousePressed) {
-            return;
-        }
-        onMouseExited();
+  private void eventOnMouseExited() {
+    mouseEntered = false;
+    if (mousePressed) {
+      return;
     }
+    onMouseExited();
+  }
 
-    private void eventOnMousePressed(MouseEvent e) {
-        if (e.getButton() != MouseButton.PRIMARY) {
-            return;
-        }
-        mousePressed = true;
-        onMousePressed();
+  private void eventOnMousePressed(MouseEvent e) {
+    if (e.getButton() != MouseButton.PRIMARY) {
+      return;
     }
+    mousePressed = true;
+    onMousePressed();
+  }
 
-    private void eventOnMouseReleased(MouseEvent e) {
-        if (e.getButton() != MouseButton.PRIMARY) {
-            return;
-        }
-        mousePressed = false;
-        onMouseReleased();
-        if (mouseEntered) {
-            onMouseClicked();
-        } else {
-            onMouseExited();
-        }
+  private void eventOnMouseReleased(MouseEvent e) {
+    if (e.getButton() != MouseButton.PRIMARY) {
+      return;
     }
+    mousePressed = false;
+    onMouseReleased();
+    if (mouseEntered) {
+      onMouseClicked();
+    } else {
+      onMouseExited();
+    }
+  }
 
-    protected void onMouseEntered() {
-    }
+  protected void onMouseEntered() {}
 
-    protected void onMouseExited() {
-    }
+  protected void onMouseExited() {}
 
-    protected void onMousePressed() {
-    }
+  protected void onMousePressed() {}
 
-    protected void onMouseReleased() {
-    }
+  protected void onMouseReleased() {}
 
-    protected void onMouseClicked() {
-    }
+  protected void onMouseClicked() {}
 }

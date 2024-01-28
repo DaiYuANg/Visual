@@ -41,143 +41,161 @@ import org.visual.debugger.details.DetailPaneType;
 import org.visual.debugger.view.ScenicViewGui;
 import org.visual.debugger.view.tabs.details.GDetailPane;
 
-
-/**
- *
- */
+/** */
 @Slf4j
 public class DetailsTab extends Tab implements ContextMenuContainer {
 
-    public static final String TAB_NAME = "Details";
+  public static final String TAB_NAME = "Details";
 
-    List<GDetailPane> gDetailPanes = new ObjectArrayList<>();
+  List<GDetailPane> gDetailPanes = new ObjectArrayList<>();
 
-    public static boolean showDefaultProperties = true;
+  public static boolean showDefaultProperties = true;
 
-    private final Consumer<String> loader;
-    private final ScenicViewGui scenicView;
+  private final Consumer<String> loader;
+  private final ScenicViewGui scenicView;
 
-    VBox vbox;
+  VBox vbox;
 
-    Menu menu;
+  Menu menu;
 
-    MenuItem dumpDetails;
+  MenuItem dumpDetails;
 
-    public DetailsTab(final ScenicViewGui view, final Consumer<String> loader) {
-        super(TAB_NAME);
-        this.scenicView = view;
-        this.loader = loader;
+  public DetailsTab(final ScenicViewGui view, final Consumer<String> loader) {
+    super(TAB_NAME);
+    this.scenicView = view;
+    this.loader = loader;
 
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setFitToWidth(true);
-        vbox = new VBox();
-        vbox.setFillWidth(true);
-        scrollPane.setContent(vbox);
-        getStyleClass().add("all-details-pane");
-        setGraphic(new FontIcon(FontAwesomeRegular.BOOKMARK));
-        setContent(scrollPane);
-        setClosable(false);
-    }
+    ScrollPane scrollPane = new ScrollPane();
+    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    scrollPane.setFitToWidth(true);
+    vbox = new VBox();
+    vbox.setFillWidth(true);
+    scrollPane.setContent(vbox);
+    getStyleClass().add("all-details-pane");
+    setGraphic(new FontIcon(FontAwesomeRegular.BOOKMARK));
+    setContent(scrollPane);
+    setClosable(false);
+  }
 
-    public void setShowDefaultProperties(final boolean show) {
-        showDefaultProperties = show;
-    }
+  public void setShowDefaultProperties(final boolean show) {
+    showDefaultProperties = show;
+  }
 
-    public void filterProperties(final String text) {
-        gDetailPanes.forEach(type -> {
-            type.filterProperties(text);
-            updatedDetailPane(type);
+  public void filterProperties(final String text) {
+    gDetailPanes.forEach(
+        type -> {
+          type.filterProperties(text);
+          updatedDetailPane(type);
         });
+  }
+
+  public void updateDetails(
+      final DetailPaneType type,
+      final String paneName,
+      final List<Detail> details,
+      final GDetailPane.RemotePropertySetter setter) {
+    final GDetailPane pane = getPane(type, paneName);
+    pane.updateDetails(details, setter);
+    updatedDetailPane(pane);
+  }
+
+  private void updatedDetailPane(final @NotNull GDetailPane pane) {
+    boolean detailVisible = false;
+    for (final Node gridChild : pane.gridpane.getChildren()) {
+      detailVisible = gridChild.isVisible();
+      if (detailVisible) break;
     }
+    pane.setExpanded(detailVisible);
+    pane.setManaged(detailVisible);
+    pane.setVisible(detailVisible);
+    updateDump();
+  }
 
-    public void updateDetails(final DetailPaneType type, final String paneName, final List<Detail> details, final GDetailPane.RemotePropertySetter setter) {
-        final GDetailPane pane = getPane(type, paneName);
-        pane.updateDetails(details, setter);
-        updatedDetailPane(pane);
+  public void updateDetail(final DetailPaneType type, final String paneName, final Detail detail) {
+    getPane(type, paneName).updateDetail(detail);
+  }
+
+  private GDetailPane getPane(final DetailPaneType type, final String paneName) {
+    GDetailPane pane = null;
+    boolean found = false;
+    for (GDetailPane gDetailPane : gDetailPanes) {
+      if (gDetailPane.type == type) {
+        found = true;
+        pane = gDetailPane;
+        break;
+      }
     }
-
-    private void updatedDetailPane(final @NotNull GDetailPane pane) {
-        boolean detailVisible = false;
-        for (final Node gridChild : pane.gridpane.getChildren()) {
-            detailVisible = gridChild.isVisible();
-            if (detailVisible)
-                break;
-        }
-        pane.setExpanded(detailVisible);
-        pane.setManaged(detailVisible);
-        pane.setVisible(detailVisible);
-        updateDump();
+    if (!found) {
+      pane = new GDetailPane(scenicView, type, paneName, loader);
+      gDetailPanes.add(pane);
+      vbox.getChildren().add(pane);
     }
+    return pane;
+  }
 
-    public void updateDetail(final DetailPaneType type, final String paneName, final Detail detail) {
-        getPane(type, paneName).updateDetail(detail);
-    }
+  @Override
+  public Menu getMenu() {
+    if (menu == null) {
+      menu = new Menu("Details");
 
-    private GDetailPane getPane(final DetailPaneType type, final String paneName) {
-        GDetailPane pane = null;
-        boolean found = false;
-        for (GDetailPane gDetailPane : gDetailPanes) {
-            if (gDetailPane.type == type) {
-                found = true;
-                pane = gDetailPane;
-                break;
-            }
-        }
-        if (!found) {
-            pane = new GDetailPane(scenicView, type, paneName, loader);
-            gDetailPanes.add(pane);
-            vbox.getChildren().add(pane);
-        }
-        return pane;
-    }
+      // --- copy to clipboard
+      dumpDetails = new MenuItem("Copy Details to Clipboard");
+      dumpDetails.setOnAction(
+          event -> {
+            val sb = gDetailPanes.stream().map(String::valueOf).collect(Collectors.joining());
+            val clipboard = Clipboard.getSystemClipboard();
+            val content = new ClipboardContent();
+            content.putString(sb);
+            clipboard.setContent(content);
+          });
+      updateDump();
+      menu.getItems().addAll(dumpDetails);
 
-    @Override
-    public Menu getMenu() {
-        if (menu == null) {
-            menu = new Menu("Details");
-
-            // --- copy to clipboard
-            dumpDetails = new MenuItem("Copy Details to Clipboard");
-            dumpDetails.setOnAction(event -> {
-                val sb = gDetailPanes.stream().map(String::valueOf).collect(Collectors.joining());
-                val clipboard = Clipboard.getSystemClipboard();
-                val content = new ClipboardContent();
-                content.putString(sb);
-                clipboard.setContent(content);
-            });
-            updateDump();
-            menu.getItems().addAll(dumpDetails);
-
-            // --- show default properties
-            final CheckMenuItem showDefaultProperties = scenicView.buildCheckMenuItem("Show Default Properties", "Show default properties",
-                    "Hide default properties", "showDefaultProperties", Boolean.TRUE);
-            showDefaultProperties.selectedProperty().addListener(arg0 -> {
+      // --- show default properties
+      final CheckMenuItem showDefaultProperties =
+          scenicView.buildCheckMenuItem(
+              "Show Default Properties",
+              "Show default properties",
+              "Hide default properties",
+              "showDefaultProperties",
+              Boolean.TRUE);
+      showDefaultProperties
+          .selectedProperty()
+          .addListener(
+              arg0 -> {
                 setShowDefaultProperties(showDefaultProperties.isSelected());
                 val selected = scenicView.getSelectedNode();
                 scenicView.configurationUpdated();
                 scenicView.setSelectedNode(scenicView.activeStage, selected);
-            });
-            setShowDefaultProperties(showDefaultProperties.isSelected());
-            menu.getItems().addAll(showDefaultProperties);
+              });
+      setShowDefaultProperties(showDefaultProperties.isSelected());
+      menu.getItems().addAll(showDefaultProperties);
 
-            // --- show css properties
-            final CheckMenuItem showCSSProperties = scenicView.buildCheckMenuItem("Show CSS Properties", "Show CSS properties", "Hide CSS properties",
-                    "showCSSProperties", Boolean.FALSE);
-            showCSSProperties.selectedProperty().addListener(arg0 -> {
+      // --- show css properties
+      final CheckMenuItem showCSSProperties =
+          scenicView.buildCheckMenuItem(
+              "Show CSS Properties",
+              "Show CSS properties",
+              "Hide CSS properties",
+              "showCSSProperties",
+              Boolean.FALSE);
+      showCSSProperties
+          .selectedProperty()
+          .addListener(
+              arg0 -> {
                 scenicView.configuration.setCSSPropertiesDetail(showCSSProperties.isSelected());
                 val selected = scenicView.getSelectedNode();
                 scenicView.configurationUpdated();
                 scenicView.setSelectedNode(scenicView.activeStage, selected);
-            });
-            scenicView.configuration.setCSSPropertiesDetail(showCSSProperties.isSelected());
-            menu.getItems().addAll(showCSSProperties);
-        }
-        return menu;
+              });
+      scenicView.configuration.setCSSPropertiesDetail(showCSSProperties.isSelected());
+      menu.getItems().addAll(showCSSProperties);
     }
+    return menu;
+  }
 
-    private void updateDump() {
-        boolean anyVisible = gDetailPanes.stream().anyMatch(Node::isVisible);
-        dumpDetails.setDisable(!anyVisible);
-    }
+  private void updateDump() {
+    boolean anyVisible = gDetailPanes.stream().anyMatch(Node::isVisible);
+    dumpDetails.setDisable(!anyVisible);
+  }
 }

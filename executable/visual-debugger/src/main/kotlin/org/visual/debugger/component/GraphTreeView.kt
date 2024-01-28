@@ -11,7 +11,7 @@ import org.visual.debugger.node.SVNode
 import org.visual.debugger.view.NodeFilter
 
 class GraphTreeView(
-  private val nodeFilter: MutableSet<NodeFilter>,
+    private val nodeFilter: MutableSet<NodeFilter>,
 ) : TreeView<SVNode>() {
   private val cellFactory by lazy {
     object : TreeCell<SVNode>() {

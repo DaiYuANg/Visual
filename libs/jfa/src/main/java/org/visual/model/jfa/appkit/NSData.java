@@ -7,15 +7,15 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSData extends NSObject {
-    static NSData alloc() {
-        return ObjcToJava.alloc(NSData.class);
-    }
+  static NSData alloc() {
+    return ObjcToJava.alloc(NSData.class);
+  }
 
-    NSData initWithBytes(Memory bytes, @NamedArg("length") int length);
+  NSData initWithBytes(Memory bytes, @NamedArg("length") int length);
 
-    NSData initWithData(NSData data);
+  NSData initWithData(NSData data);
 
-    String base64EncodedStringWithOptions(int options);
+  String base64EncodedStringWithOptions(int options);
 
-    int length();
+  int length();
 }

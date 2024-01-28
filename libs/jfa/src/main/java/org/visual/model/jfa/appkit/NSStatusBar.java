@@ -6,13 +6,13 @@ import org.visual.model.jfa.foundation.CGFloat;
 
 @SuppressWarnings("unused")
 public interface NSStatusBar extends NSObject {
-    CGFloat NSSquareStatusItemLength = new CGFloat(-2.0);
+  CGFloat NSSquareStatusItemLength = new CGFloat(-2.0);
 
-    static NSStatusBar systemStatusBar() {
-        return ObjcToJava.invokeStatic(NSStatusBar.class, "systemStatusBar");
-    }
+  static NSStatusBar systemStatusBar() {
+    return ObjcToJava.invokeStatic(NSStatusBar.class, "systemStatusBar");
+  }
 
-    NSStatusItem statusItemWithLength(CGFloat length);
+  NSStatusItem statusItemWithLength(CGFloat length);
 
-    void removeStatusItem(NSStatusItem item);
+  void removeStatusItem(NSStatusItem item);
 }

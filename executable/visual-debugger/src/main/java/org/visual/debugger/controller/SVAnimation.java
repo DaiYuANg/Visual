@@ -27,38 +27,28 @@ import org.jetbrains.annotations.NotNull;
 @ToString
 public final class SVAnimation implements Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    @Getter
-    private final int id;
-    @Getter
-    private final String toString;
-    @Getter
-    private final double rate;
-    @Getter
-    private final double currentRate;
-    @Getter
-    private final String status;
-    private final int cycleCount;
-    @Getter
-    private final String currentTime;
-    @Getter
-    private final String cycleDuration;
-    @Getter
-    private final String totalDuration;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public SVAnimation(final int id, final @NotNull Animation animation) {
-        this.id = id;
-        this.toString = animation.toString();
-        this.rate = animation.getRate();
-        this.currentRate = animation.getCurrentRate();
-        this.status = animation.getStatus().toString();
-        this.cycleCount = animation.getCycleCount();
-        this.cycleDuration = animation.getCycleDuration().toString();
-        this.currentTime = ((int) animation.getCurrentTime().toMillis()) + "ms";
-        this.totalDuration = ((int) animation.getTotalDuration().toMillis()) + "ms";
-    }
+  @Getter private final int id;
+  @Getter private final String toString;
+  @Getter private final double rate;
+  @Getter private final double currentRate;
+  @Getter private final String status;
+  private final int cycleCount;
+  @Getter private final String currentTime;
+  @Getter private final String cycleDuration;
+  @Getter private final String totalDuration;
+
+  public SVAnimation(final int id, final @NotNull Animation animation) {
+    this.id = id;
+    this.toString = animation.toString();
+    this.rate = animation.getRate();
+    this.currentRate = animation.getCurrentRate();
+    this.status = animation.getStatus().toString();
+    this.cycleCount = animation.getCycleCount();
+    this.cycleDuration = animation.getCycleDuration().toString();
+    this.currentTime = ((int) animation.getCurrentTime().toMillis()) + "ms";
+    this.totalDuration = ((int) animation.getTotalDuration().toMillis()) + "ms";
+  }
 }

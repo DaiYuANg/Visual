@@ -1,5 +1,5 @@
 plugins {
-//  alias(libs.plugins.javafx)
+  //  alias(libs.plugins.javafx)
   `kotlin-project`
 }
 
@@ -7,7 +7,7 @@ group = "org.visual.model.graph-editor"
 
 version = "unspecified"
 
-//javafx {
+// javafx {
 //  version = libs.versions.javafxVersion.get()
 //  modules(
 //      "javafx.controls",
@@ -17,7 +17,7 @@ version = "unspecified"
 //      "javafx.media",
 //  )
 //  configurations = arrayOf("implementation", "testImplementation")
-//}
+// }
 
 dependencies {
   implementation(projects.ui.visualComponent)

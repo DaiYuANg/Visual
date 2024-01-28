@@ -23,49 +23,51 @@ import org.visual.debugger.context.VirtualMachineContext;
 @Slf4j
 public class VirtualMachineListController implements Initializable {
 
-    @FXML
-    HBox root;
+  @FXML HBox root;
 
-    @FXML
-    VirtualMachineDescriptorListView list;
+  @FXML VirtualMachineDescriptorListView list;
 
-    @FXML
-    TextField searchInput;
+  @FXML TextField searchInput;
 
-    private final PauseTransition pause = new PauseTransition(Duration.millis(500));
+  private final PauseTransition pause = new PauseTransition(Duration.millis(500));
 
-    {
-        pause.setOnFinished(event -> {
-            list.getItems().clear();
-            val input = searchInput.getText();
-            if (StringUtils.isEmpty(input)) {
-                list.getItems().addAll(VirtualMachine.list());
-            }
-            val filtered = list.getItems().stream().filter(item -> {
-                val isNameContains = item.displayName().contains(input);
-                val isIdContains = item.id().contains(input);
-                return isNameContains || isIdContains;
-            }).toList();
-            list.getItems().addAll(filtered);
+  {
+    pause.setOnFinished(
+        event -> {
+          list.getItems().clear();
+          val input = searchInput.getText();
+          if (StringUtils.isEmpty(input)) {
+            list.getItems().addAll(VirtualMachine.list());
+          }
+          val filtered =
+              list.getItems().stream()
+                  .filter(
+                      item -> {
+                        val isNameContains = item.displayName().contains(input);
+                        val isIdContains = item.id().contains(input);
+                        return isNameContains || isIdContains;
+                      })
+                  .toList();
+          list.getItems().addAll(filtered);
         });
-    }
+  }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        SplitPane.setResizableWithParent(root, true);
-        list.getItems().addAll(VirtualMachine.list());
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    SplitPane.setResizableWithParent(root, true);
+    list.getItems().addAll(VirtualMachine.list());
+  }
 
-    @SneakyThrows
-    public void setCurrentVirtualMachineContext(MouseEvent e) {
-        log.info("event:{}", e);
-        val item = list.getSelectionModel().getSelectedItem();
-        val jvm = VirtualMachine.attach(item);
-        VirtualMachineContext.INSTANCE.setVirtualMachine(jvm);
-    }
+  @SneakyThrows
+  public void setCurrentVirtualMachineContext(MouseEvent e) {
+    log.info("event:{}", e);
+    val item = list.getSelectionModel().getSelectedItem();
+    val jvm = VirtualMachine.attach(item);
+    VirtualMachineContext.INSTANCE.setVirtualMachine(jvm);
+  }
 
-    public void filterVirtualMachines() {
-        pause.stop();
-        pause.playFromStart();
-    }
+  public void filterVirtualMachines() {
+    pause.stop();
+    pause.playFromStart();
+  }
 }

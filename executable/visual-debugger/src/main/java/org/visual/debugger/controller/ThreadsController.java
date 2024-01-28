@@ -7,8 +7,6 @@ import javafx.fxml.Initializable;
 
 @Singleton
 public class ThreadsController implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {}
 }

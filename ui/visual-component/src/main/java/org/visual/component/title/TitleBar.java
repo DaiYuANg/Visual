@@ -2,9 +2,9 @@ package org.visual.component.title;
 
 public interface TitleBar {
 
-    void close();
+  void close();
 
-    void minimize();
+  void minimize();
 
-    void maximize();
+  void maximize();
 }

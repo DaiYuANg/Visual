@@ -23,13 +23,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FXConnectorFactory {
 
-    static FXConnector connector;
+  static FXConnector connector;
 
-    public static synchronized FXConnector getConnector() throws RemoteException {
-        if (connector == null) {
-            connector = new RemoteConnectorImpl();
-        }
-        return connector;
+  public static synchronized FXConnector getConnector() throws RemoteException {
+    if (connector == null) {
+      connector = new RemoteConnectorImpl();
     }
-
+    return connector;
+  }
 }

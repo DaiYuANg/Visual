@@ -22,55 +22,57 @@ import org.visual.component.display.ThemeLabel;
 @ExtendWith(ApplicationExtension.class)
 public class TestThemeLabel extends ApplicationTest {
 
-    private final Supplier<ThemeLabel> themeLabel = ()-> new ThemeLabel("test");
+  private final Supplier<ThemeLabel> themeLabel = () -> new ThemeLabel("test");
 
-    @Override
-    public void start(@NotNull Stage stage) {
-        val pane = new StackPane(themeLabel.get());
-        val scene = new Scene(pane);
-        scene.setUserAgentStylesheet("/theme.css");
-        stage.setScene(scene);
-        stage.show();
+  @Override
+  public void start(@NotNull Stage stage) {
+    val pane = new StackPane(themeLabel.get());
+    val scene = new Scene(pane);
+    scene.setUserAgentStylesheet("/theme.css");
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  @Test
+  void testThemeLabel() {
+    scanResources();
+  }
+
+  @SneakyThrows
+  private static void scanResources() {
+    // 获取当前线程的ClassLoader
+    ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+    // 使用ClassLoader的getResources方法获取资源
+    Enumeration<URL> resources = classLoader.getResources("");
+
+    while (resources.hasMoreElements()) {
+      URL resource = resources.nextElement();
+      System.out.println("Resource: " + resource);
+
+      // 将URL转换为文件路径
+      String filePath = resource.getFile();
+      listFiles(new File(filePath));
     }
+  }
 
-    @Test
-    void testThemeLabel() {
-        scanResources();
-    }
+  private static void listFiles(File directory) {
+    // 列出目录下的所有文件和子目录
+    File[] files = directory.listFiles();
 
-    @SneakyThrows
-    private static void scanResources() {
-        // 获取当前线程的ClassLoader
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-        // 使用ClassLoader的getResources方法获取资源
-        Enumeration<URL> resources = classLoader.getResources("");
-
-        while (resources.hasMoreElements()) {
-            URL resource = resources.nextElement();
-            System.out.println("Resource: " + resource);
-
-            // 将URL转换为文件路径
-            String filePath = resource.getFile();
-            listFiles(new File(filePath));
-        }
-
-    }
-
-    private static void listFiles(File directory) {
-        // 列出目录下的所有文件和子目录
-        File[] files = directory.listFiles();
-
-        if (files != null) {
-            Arrays.stream(files).parallel().forEach(file -> {
+    if (files != null) {
+      Arrays.stream(files)
+          .parallel()
+          .forEach(
+              file -> {
                 if (file.isDirectory()) {
-                    // 如果是子目录，递归调用listFiles
-                    listFiles(file);
+                  // 如果是子目录，递归调用listFiles
+                  listFiles(file);
                 } else {
-                    // 如果是文件，打印文件路径
-                    log.info("File: " + file.getAbsolutePath());
+                  // 如果是文件，打印文件路径
+                  log.info("File: " + file.getAbsolutePath());
                 }
-            });
-        }
+              });
     }
+  }
 }

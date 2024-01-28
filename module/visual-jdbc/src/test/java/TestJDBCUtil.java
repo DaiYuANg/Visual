@@ -18,73 +18,75 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers(parallel = true)
 public class TestJDBCUtil {
 
-    @Container
-    MySQLContainer<?> mySQLContainer =
-            new MySQLContainer<>("mysql:latest").withDatabaseName("test_mysql").withInitScript("init-mysql.sql");
+  @Container
+  MySQLContainer<?> mySQLContainer =
+      new MySQLContainer<>("mysql:latest")
+          .withDatabaseName("test_mysql")
+          .withInitScript("init-mysql.sql");
 
-    @Container
-    PostgreSQLContainer<?> postgreSQLContainer =
-            new PostgreSQLContainer<>("postgres:latest").withDatabaseName("test_postgresql");
+  @Container
+  PostgreSQLContainer<?> postgreSQLContainer =
+      new PostgreSQLContainer<>("postgres:latest").withDatabaseName("test_postgresql");
 
-    HikariDataSource mysqlDs;
+  HikariDataSource mysqlDs;
 
-    HikariDataSource postgresqlDs;
+  HikariDataSource postgresqlDs;
 
-    @BeforeEach
-    void init() {
-        mySQLContainer.start();
-        val config = new HikariConfig();
-        config.setJdbcUrl(mySQLContainer.getJdbcUrl());
-        config.setUsername(mySQLContainer.getUsername());
-        config.setPassword(mySQLContainer.getPassword());
-        mysqlDs = new HikariDataSource(config);
-    }
+  @BeforeEach
+  void init() {
+    mySQLContainer.start();
+    val config = new HikariConfig();
+    config.setJdbcUrl(mySQLContainer.getJdbcUrl());
+    config.setUsername(mySQLContainer.getUsername());
+    config.setPassword(mySQLContainer.getPassword());
+    mysqlDs = new HikariDataSource(config);
+  }
 
-    @BeforeEach
-    void initPostgresSQL() {
-        postgreSQLContainer.start();
-        val config = new HikariConfig();
-        config.setJdbcUrl(postgreSQLContainer.getJdbcUrl());
-        config.setUsername(postgreSQLContainer.getUsername());
-        config.setPassword(postgreSQLContainer.getPassword());
-        postgresqlDs = new HikariDataSource(config);
-    }
+  @BeforeEach
+  void initPostgresSQL() {
+    postgreSQLContainer.start();
+    val config = new HikariConfig();
+    config.setJdbcUrl(postgreSQLContainer.getJdbcUrl());
+    config.setUsername(postgreSQLContainer.getUsername());
+    config.setPassword(postgreSQLContainer.getPassword());
+    postgresqlDs = new HikariDataSource(config);
+  }
 
-    @SneakyThrows
-    @Test
-    void testMysqlDatabase() {
-        val database = listDatabase(mysqlDs.getConnection());
-        log.info("mysql databases:{}", database);
-        Assertions.assertTrue(database.contains("test_mysql"));
-    }
+  @SneakyThrows
+  @Test
+  void testMysqlDatabase() {
+    val database = listDatabase(mysqlDs.getConnection());
+    log.info("mysql databases:{}", database);
+    Assertions.assertTrue(database.contains("test_mysql"));
+  }
 
-    @SneakyThrows
-    @Test
-    void testMysqlTables() {
-        val tables = listTables(mysqlDs.getConnection());
-        log.info("tables:{}", tables);
-    }
+  @SneakyThrows
+  @Test
+  void testMysqlTables() {
+    val tables = listTables(mysqlDs.getConnection());
+    log.info("tables:{}", tables);
+  }
 
-    @SneakyThrows
-    @Test
-    void testTableColumns() {
-        val columns = listColumns(mysqlDs.getConnection(), "test");
-        log.info("mysql columns:{}", columns);
-    }
+  @SneakyThrows
+  @Test
+  void testTableColumns() {
+    val columns = listColumns(mysqlDs.getConnection(), "test");
+    log.info("mysql columns:{}", columns);
+  }
 
-    @SneakyThrows
-    @Test
-    void testPostgresqlDatabase() {
-        val database = listDatabase(postgresqlDs.getConnection());
-        log.info("postgresql databases:{}", database);
-        Assertions.assertTrue(database.contains("test_postgresql"));
-    }
+  @SneakyThrows
+  @Test
+  void testPostgresqlDatabase() {
+    val database = listDatabase(postgresqlDs.getConnection());
+    log.info("postgresql databases:{}", database);
+    Assertions.assertTrue(database.contains("test_postgresql"));
+  }
 
-    @AfterEach
-    void clear() {
-        mysqlDs.close();
-        postgresqlDs.close();
-        postgreSQLContainer.close();
-        mySQLContainer.stop();
-    }
+  @AfterEach
+  void clear() {
+    mysqlDs.close();
+    postgresqlDs.close();
+    postgreSQLContainer.close();
+    mySQLContainer.stop();
+  }
 }

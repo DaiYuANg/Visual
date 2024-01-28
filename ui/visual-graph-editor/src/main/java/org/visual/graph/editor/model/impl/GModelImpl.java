@@ -1,5 +1,4 @@
-/**
- */
+/** */
 package org.visual.graph.editor.model.impl;
 
 import java.util.Collection;
@@ -12,24 +11,28 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.visual.graph.editor.model.GConnection;
 import org.visual.graph.editor.model.GModel;
 import org.visual.graph.editor.model.GNode;
-import org.visual.graph.editor.model.GConnection;
 import org.visual.graph.editor.model.GraphPackage;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>GModel</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
+ *
+ * <p>The following features are implemented:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getNodes <em>Nodes</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getConnections <em>Connections</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getContentWidth <em>Content Width</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getContentHeight <em>Content Height</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getNodes <em>Nodes</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getConnections
+ *       <em>Connections</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getContentWidth <em>Content
+ *       Width</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GModelImpl#getContentHeight <em>Content
+ *       Height</em>}
  * </ul>
  *
  * @generated
@@ -39,6 +42,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getNodes()
    * @generated
    * @ordered
@@ -46,9 +50,11 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   protected EList<GNode> nodes;
 
   /**
-   * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
+   * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference
+   * list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getConnections()
    * @generated
    * @ordered
@@ -59,6 +65,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -69,6 +76,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -79,6 +87,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The default value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getContentWidth()
    * @generated
    * @ordered
@@ -89,6 +98,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The cached value of the '{@link #getContentWidth() <em>Content Width</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getContentWidth()
    * @generated
    * @ordered
@@ -99,6 +109,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The default value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getContentHeight()
    * @generated
    * @ordered
@@ -109,6 +120,7 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
    * The cached value of the '{@link #getContentHeight() <em>Content Height</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getContentHeight()
    * @generated
    * @ordered
@@ -116,8 +128,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   protected double contentHeight = CONTENT_HEIGHT_EDEFAULT;
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   protected GModelImpl() {
@@ -125,8 +139,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -135,8 +151,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -148,21 +166,26 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public EList<GConnection> getConnections() {
     if (connections == null) {
-      connections = new EObjectContainmentEList<>(GConnection.class, this, GraphPackage.GMODEL__CONNECTIONS);
+      connections =
+          new EObjectContainmentEList<>(GConnection.class, this, GraphPackage.GMODEL__CONNECTIONS);
     }
     return connections;
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -171,8 +194,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -180,12 +205,15 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
     String oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__TYPE, oldType, type));
+      eNotify(
+          new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__TYPE, oldType, type));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -194,8 +222,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -203,12 +233,20 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
     double oldContentWidth = contentWidth;
     contentWidth = newContentWidth;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_WIDTH, oldContentWidth, contentWidth));
+      eNotify(
+          new ENotificationImpl(
+              this,
+              Notification.SET,
+              GraphPackage.GMODEL__CONTENT_WIDTH,
+              oldContentWidth,
+              contentWidth));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -217,8 +255,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -226,28 +266,39 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
     double oldContentHeight = contentHeight;
     contentHeight = newContentHeight;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_HEIGHT, oldContentHeight, contentHeight));
+      eNotify(
+          new ENotificationImpl(
+              this,
+              Notification.SET,
+              GraphPackage.GMODEL__CONTENT_HEIGHT,
+              oldContentHeight,
+              contentHeight));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseRemove(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GraphPackage.GMODEL__NODES:
-        return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getNodes()).basicRemove(otherEnd, msgs);
       case GraphPackage.GMODEL__CONNECTIONS:
-        return ((InternalEList<?>)getConnections()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -268,8 +319,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -278,28 +331,30 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
     switch (featureID) {
       case GraphPackage.GMODEL__NODES:
         getNodes().clear();
-        getNodes().addAll((Collection<? extends GNode>)newValue);
+        getNodes().addAll((Collection<? extends GNode>) newValue);
         return;
       case GraphPackage.GMODEL__CONNECTIONS:
         getConnections().clear();
-        getConnections().addAll((Collection<? extends GConnection>)newValue);
+        getConnections().addAll((Collection<? extends GConnection>) newValue);
         return;
       case GraphPackage.GMODEL__TYPE:
-        setType((String)newValue);
+        setType((String) newValue);
         return;
       case GraphPackage.GMODEL__CONTENT_WIDTH:
-        setContentWidth((Double)newValue);
+        setContentWidth((Double) newValue);
         return;
       case GraphPackage.GMODEL__CONTENT_HEIGHT:
-        setContentHeight((Double)newValue);
+        setContentHeight((Double) newValue);
         return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -325,8 +380,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -347,8 +404,10 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -365,5 +424,4 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
     result.append(')');
     return result.toString();
   }
-
-} //GModelImpl
+} // GModelImpl

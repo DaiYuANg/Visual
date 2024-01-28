@@ -27,6 +27,7 @@ dependencies {
   api(libs.animated)
   api(libs.flowless)
   api(projects.ui.visualI18n)
+  api(libs.apacheCommonIO)
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
   api("com.github.kwhat:jnativehook:2.2.2")

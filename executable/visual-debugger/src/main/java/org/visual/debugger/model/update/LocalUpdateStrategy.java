@@ -22,25 +22,20 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.api.AppController;
 import org.visual.debugger.api.UpdateStrategy;
 
-
-/**
- * This strategy will be used when we are showing only one stage
- */
+/** This strategy will be used when we are showing only one stage */
 public class LocalUpdateStrategy implements UpdateStrategy {
 
-    List<AppController> controller;
+  List<AppController> controller;
 
-    public LocalUpdateStrategy(final List<AppController> controller) {
-        this.controller = controller;
-    }
+  public LocalUpdateStrategy(final List<AppController> controller) {
+    this.controller = controller;
+  }
 
-    @Override
-    public void start(final @NotNull AppsRepository repository) {
-        controller.forEach(repository::appAdded);
-    }
+  @Override
+  public void start(final @NotNull AppsRepository repository) {
+    controller.forEach(repository::appAdded);
+  }
 
-    @Override
-    public void finish() {
-
-    }
+  @Override
+  public void finish() {}
 }

@@ -24,92 +24,91 @@ import javafx.scene.image.*;
 import javafx.scene.layout.Region;
 import lombok.Getter;
 
-
-/**
- *
- */
+/** */
 public class FilterTextField extends Region {
-    @Getter
-    private final TextField textField;
+  @Getter private final TextField textField;
 
-    private final Button clearButton;
-    private final double clearButtonWidth;
-    private final double clearButtonHeight;
+  private final Button clearButton;
+  private final double clearButtonWidth;
+  private final double clearButtonHeight;
 
-    public FilterTextField() {
-        this.textField = new TextField();
+  public FilterTextField() {
+    this.textField = new TextField();
 
-        this.clearButton = new Button();
-//        this.clearButton.imageProperty().bind(new ObjectBinding<>() {
-//            {
-//                super.bind(clearButton.hoverProperty());
-//            }
-//
-//            @Override
-//            protected Image computeValue() {
-////                if (clearButton.isHover()) {
-////                    return DisplayUtils.CLEAR_HOVER_IMAGE;
-////                } else {
-////                    return DisplayUtils.CLEAR_IMAGE;
-////                }
-//                return null;
-//            }
-//        });
-        this.clearButton.opacityProperty().bind(new DoubleBinding() {
-            {
+    this.clearButton = new Button();
+    //        this.clearButton.imageProperty().bind(new ObjectBinding<>() {
+    //            {
+    //                super.bind(clearButton.hoverProperty());
+    //            }
+    //
+    //            @Override
+    //            protected Image computeValue() {
+    ////                if (clearButton.isHover()) {
+    ////                    return DisplayUtils.CLEAR_HOVER_IMAGE;
+    ////                } else {
+    ////                    return DisplayUtils.CLEAR_IMAGE;
+    ////                }
+    //                return null;
+    //            }
+    //        });
+    this.clearButton
+        .opacityProperty()
+        .bind(
+            new DoubleBinding() {
+              {
                 super.bind(textField.textProperty());
-            }
+              }
 
-            @Override
-            protected double computeValue() {
+              @Override
+              protected double computeValue() {
                 if (textField.getText() == null || textField.getText().isEmpty()) {
-                    return 0;
+                  return 0;
                 } else {
-                    return 1;
+                  return 1;
                 }
-            }
-        });
+              }
+            });
 
-        this.clearButtonWidth = clearButton.getWidth();
-        this.clearButtonHeight = clearButton.getHeight();
+    this.clearButtonWidth = clearButton.getWidth();
+    this.clearButtonHeight = clearButton.getHeight();
 
-        getChildren().addAll(textField, clearButton);
+    getChildren().addAll(textField, clearButton);
+  }
+
+  public void setOnButtonClick(final Runnable onButtonClick) {
+    if (onButtonClick != null) {
+      this.clearButton.setOnMousePressed(t -> onButtonClick.run());
     }
+  }
 
-    public void setOnButtonClick(final Runnable onButtonClick) {
-        if (onButtonClick != null) {
-            this.clearButton.setOnMousePressed(t -> onButtonClick.run());
-        }
-    }
+  public void setText(final String text) {
+    this.textField.setText(text);
+  }
 
-    public void setText(final String text) {
-        this.textField.setText(text);
-    }
+  public String getText() {
+    return this.textField.getText();
+  }
 
-    public String getText() {
-        return this.textField.getText();
-    }
+  public void setPromptText(final String text) {
+    this.textField.setPromptText(text);
+  }
 
-    public void setPromptText(final String text) {
-        this.textField.setPromptText(text);
-    }
+  @Override
+  protected void layoutChildren() {
+    textField.resize(getWidth(), getHeight());
 
-    @Override
-    protected void layoutChildren() {
-        textField.resize(getWidth(), getHeight());
+    final double y = getHeight() / 2 - clearButtonHeight / 2;
+    clearButton.resizeRelocate(
+        getWidth() - clearButtonWidth - 5, y, clearButtonWidth, clearButtonHeight);
+  }
 
-        final double y = getHeight() / 2 - clearButtonHeight / 2;
-        clearButton.resizeRelocate(getWidth() - clearButtonWidth - 5, y, clearButtonWidth, clearButtonHeight);
-    }
+  @Override
+  protected double computePrefHeight(final double width) {
+    return textField.prefHeight(width);
+  }
 
-    @Override
-    protected double computePrefHeight(final double width) {
-        return textField.prefHeight(width);
-    }
-
-    @Override
-    protected double computePrefWidth(final double height) {
-        return textField.prefWidth(height);
-    }
-
+  @Override
+  protected double computePrefWidth(final double height) {
+    return textField.prefWidth(height);
+  }
 }

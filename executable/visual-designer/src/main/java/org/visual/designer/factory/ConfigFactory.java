@@ -18,28 +18,29 @@ import org.github.gestalt.config.toml.TomlLoader;
 @Factory
 public class ConfigFactory {
 
-    @SneakyThrows
-    @Bean
-    @Named("VisualModelAppGestalt")
-    Gestalt gestalt() {
-        val configLoaders =
-                List.of(new EnvironmentVarsLoader(), new TomlLoader(), new PropertyLoader(), new MapConfigLoader());
-        val environmentSource = EnvironmentConfigSourceBuilder.builder()
-                .setPrefix("VISUAL_MODEL")
-                .setFailOnErrors(false)
-                .build();
-        String defaultConfig = "visual.model.properties";
-//        val mapSource = MapConfigSourceBuilder.builder()
-//                .setCustomConfig(ManifestReader.loadManifestStrings())
-//                .build();
-        val classPathSource = ClassPathConfigSourceBuilder.builder()
-                .setResource(defaultConfig)
-                .build();
-        val systemSource = SystemPropertiesConfigSourceBuilder.builder()
-                .setFailOnErrors(false)
-                .build();
-        val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
-        builder.addSources(List.of(classPathSource, environmentSource, systemSource));
-        return builder.build();
-    }
+  @SneakyThrows
+  @Bean
+  @Named("VisualModelAppGestalt")
+  Gestalt gestalt() {
+    val configLoaders =
+        List.of(
+            new EnvironmentVarsLoader(),
+            new TomlLoader(),
+            new PropertyLoader(),
+            new MapConfigLoader());
+    val environmentSource =
+        EnvironmentConfigSourceBuilder.builder()
+            .setPrefix("VISUAL_MODEL")
+            .setFailOnErrors(false)
+            .build();
+    String defaultConfig = "visual.model.properties";
+    //        val mapSource = MapConfigSourceBuilder.builder()
+    //                .setCustomConfig(ManifestReader.loadManifestStrings())
+    //                .build();
+    val classPathSource = ClassPathConfigSourceBuilder.builder().setResource(defaultConfig).build();
+    val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build();
+    val builder = new GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders);
+    builder.addSources(List.of(classPathSource, environmentSource, systemSource));
+    return builder.build();
+  }
 }

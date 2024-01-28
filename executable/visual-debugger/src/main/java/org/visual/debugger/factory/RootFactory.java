@@ -8,9 +8,9 @@ import lombok.val;
 
 @Factory
 public class RootFactory {
-    @Bean
-    ExecutorService executor() {
-        val factory = Thread.ofVirtual().name("preview", 0).factory();
-        return Executors.newThreadPerTaskExecutor(factory);
-    }
+  @Bean
+  ExecutorService executor() {
+    val factory = Thread.ofVirtual().name("preview", 0).factory();
+    return Executors.newThreadPerTaskExecutor(factory);
+  }
 }

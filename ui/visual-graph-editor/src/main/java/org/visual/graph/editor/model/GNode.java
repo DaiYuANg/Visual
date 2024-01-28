@@ -1,26 +1,25 @@
-/**
- */
+/** */
 package org.visual.graph.editor.model;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>GNode</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
+ * <p>The following features are supported:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getId <em>Id</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getX <em>X</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getY <em>Y</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getWidth <em>Width</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getHeight <em>Height</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.GNode#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getId <em>Id</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getX <em>X</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getY <em>Y</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getWidth <em>Width</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getHeight <em>Height</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.GNode#getConnectors <em>Connectors</em>}
  * </ul>
  *
  * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode()
@@ -32,6 +31,7 @@ public interface GNode extends EObject {
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Id()
@@ -41,9 +41,11 @@ public interface GNode extends EObject {
   String getId();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getId <em>Id</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Id</em>' attribute.
    * @see #getId()
    * @generated
@@ -54,6 +56,7 @@ public interface GNode extends EObject {
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Type</em>' attribute.
    * @see #setType(String)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Type()
@@ -63,9 +66,11 @@ public interface GNode extends EObject {
   String getType();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getType <em>Type</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Type</em>' attribute.
    * @see #getType()
    * @generated
@@ -73,10 +78,10 @@ public interface GNode extends EObject {
   void setType(String value);
 
   /**
-   * Returns the value of the '<em><b>X</b></em>' attribute.
-   * The default value is <code>"0"</code>.
+   * Returns the value of the '<em><b>X</b></em>' attribute. The default value is <code>"0"</code> .
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>X</em>' attribute.
    * @see #setX(double)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_X()
@@ -86,9 +91,11 @@ public interface GNode extends EObject {
   double getX();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getX <em>X</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getX <em>X</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>X</em>' attribute.
    * @see #getX()
    * @generated
@@ -96,10 +103,10 @@ public interface GNode extends EObject {
   void setX(double value);
 
   /**
-   * Returns the value of the '<em><b>Y</b></em>' attribute.
-   * The default value is <code>"0"</code>.
+   * Returns the value of the '<em><b>Y</b></em>' attribute. The default value is <code>"0"</code> .
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Y</em>' attribute.
    * @see #setY(double)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Y()
@@ -109,9 +116,11 @@ public interface GNode extends EObject {
   double getY();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getY <em>Y</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getY <em>Y</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Y</em>' attribute.
    * @see #getY()
    * @generated
@@ -119,10 +128,11 @@ public interface GNode extends EObject {
   void setY(double value);
 
   /**
-   * Returns the value of the '<em><b>Width</b></em>' attribute.
-   * The default value is <code>"151"</code>.
+   * Returns the value of the '<em><b>Width</b></em>' attribute. The default value is <code>"151"
+   * </code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Width</em>' attribute.
    * @see #setWidth(double)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Width()
@@ -132,9 +142,11 @@ public interface GNode extends EObject {
   double getWidth();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getWidth <em>Width</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getWidth <em>Width</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Width</em>' attribute.
    * @see #getWidth()
    * @generated
@@ -142,10 +154,11 @@ public interface GNode extends EObject {
   void setWidth(double value);
 
   /**
-   * Returns the value of the '<em><b>Height</b></em>' attribute.
-   * The default value is <code>"101"</code>.
+   * Returns the value of the '<em><b>Height</b></em>' attribute. The default value is <code>"101"
+   * </code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Height</em>' attribute.
    * @see #setHeight(double)
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Height()
@@ -155,9 +168,11 @@ public interface GNode extends EObject {
   double getHeight();
 
   /**
-   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getHeight <em>Height</em>}' attribute.
+   * Sets the value of the '{@link io.github.eckig.grapheditor.model.GNode#getHeight
+   * <em>Height</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @param value the new value of the '<em>Height</em>' attribute.
    * @see #getHeight()
    * @generated
@@ -165,11 +180,13 @@ public interface GNode extends EObject {
   void setHeight(double value);
 
   /**
-   * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
-   * The list contents are of type {@link io.github.eckig.grapheditor.model.GConnector}.
-   * It is bidirectional and its opposite is '{@link io.github.eckig.grapheditor.model.GConnector#getParent <em>Parent</em>}'.
+   * Returns the value of the '<em><b>Connectors</b></em>' containment reference list. The list
+   * contents are of type {@link io.github.eckig.grapheditor.model.GConnector}. It is bidirectional
+   * and its opposite is '{@link io.github.eckig.grapheditor.model.GConnector#getParent
+   * <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @return the value of the '<em>Connectors</em>' containment reference list.
    * @see io.github.eckig.grapheditor.model.GraphPackage#getGNode_Connectors()
    * @see io.github.eckig.grapheditor.model.GConnector#getParent
@@ -177,5 +194,4 @@ public interface GNode extends EObject {
    * @generated
    */
   EList<GConnector> getConnectors();
-
 } // GNode

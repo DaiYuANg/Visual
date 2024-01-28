@@ -3,21 +3,12 @@
  */
 package org.visual.graph.editor.api;
 
-/**
- * A set of styles that can be applied to a particular connector.
- */
-public enum GConnectorStyle
-{
-    /**
-     * Default style
-     */
-    DEFAULT,
-    /**
-     * Drag over allowed
-     */
-    DRAG_OVER_ALLOWED,
-    /**
-     * Drag over forbidden
-     */
-    DRAG_OVER_FORBIDDEN;
+/** A set of styles that can be applied to a particular connector. */
+public enum GConnectorStyle {
+  /** Default style */
+  DEFAULT,
+  /** Drag over allowed */
+  DRAG_OVER_ALLOWED,
+  /** Drag over forbidden */
+  DRAG_OVER_FORBIDDEN;
 }

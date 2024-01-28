@@ -7,9 +7,9 @@ import java.util.Set;
 import org.visual.database.core.DatabaseTableColumn;
 
 public interface VMDatabase {
-    Set<DatabaseTableColumn> listTableColumns(String tableName);
+  Set<DatabaseTableColumn> listTableColumns(String tableName);
 
-    Set<String> listDatabase();
+  Set<String> listDatabase();
 
-    Map<String, List<String>> listIndexes(String tableName);
+  Map<String, List<String>> listIndexes(String tableName);
 }

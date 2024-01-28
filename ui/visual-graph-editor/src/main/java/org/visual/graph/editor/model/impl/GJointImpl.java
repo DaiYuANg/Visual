@@ -1,5 +1,4 @@
-/**
- */
+/** */
 package org.visual.graph.editor.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,18 +13,19 @@ import org.visual.graph.editor.model.GJoint;
 import org.visual.graph.editor.model.GraphPackage;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>GJoint</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
+ *
+ * <p>The following features are implemented:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getId <em>Id</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getConnection <em>Connection</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getX <em>X</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getY <em>Y</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getId <em>Id</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getConnection <em>Connection</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getX <em>X</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GJointImpl#getY <em>Y</em>}
  * </ul>
  *
  * @generated
@@ -35,6 +35,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getId()
    * @generated
    * @ordered
@@ -45,6 +46,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getId()
    * @generated
    * @ordered
@@ -55,6 +57,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -65,6 +68,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -75,6 +79,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The default value of the '{@link #getX() <em>X</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getX()
    * @generated
    * @ordered
@@ -85,6 +90,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The cached value of the '{@link #getX() <em>X</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getX()
    * @generated
    * @ordered
@@ -95,6 +101,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The default value of the '{@link #getY() <em>Y</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getY()
    * @generated
    * @ordered
@@ -105,6 +112,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
    * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @see #getY()
    * @generated
    * @ordered
@@ -112,8 +120,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   protected double y = Y_EDEFAULT;
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   protected GJointImpl() {
@@ -121,8 +131,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -131,8 +143,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -141,8 +155,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -154,8 +170,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -164,8 +182,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -173,55 +193,72 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
     String oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GJOINT__TYPE, oldType, type));
+      eNotify(
+          new ENotificationImpl(this, Notification.SET, GraphPackage.GJOINT__TYPE, oldType, type));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public GConnection getConnection() {
     if (eContainerFeatureID() != GraphPackage.GJOINT__CONNECTION) return null;
-    return (GConnection)eInternalContainer();
+    return (GConnection) eInternalContainer();
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   public NotificationChain basicSetConnection(GConnection newConnection, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject)newConnection, GraphPackage.GJOINT__CONNECTION, msgs);
+    msgs =
+        eBasicSetContainer((InternalEObject) newConnection, GraphPackage.GJOINT__CONNECTION, msgs);
     return msgs;
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public void setConnection(GConnection newConnection) {
-    if (newConnection != eInternalContainer() || (eContainerFeatureID() != GraphPackage.GJOINT__CONNECTION && newConnection != null)) {
+    if (newConnection != eInternalContainer()
+        || (eContainerFeatureID() != GraphPackage.GJOINT__CONNECTION && newConnection != null)) {
       if (EcoreUtil.isAncestor(this, newConnection))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newConnection != null)
-        msgs = ((InternalEObject)newConnection).eInverseAdd(this, GraphPackage.GCONNECTION__JOINTS, GConnection.class, msgs);
+        msgs =
+            ((InternalEObject) newConnection)
+                .eInverseAdd(this, GraphPackage.GCONNECTION__JOINTS, GConnection.class, msgs);
       msgs = basicSetConnection(newConnection, msgs);
       if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GJOINT__CONNECTION, newConnection, newConnection));
+    } else if (eNotificationRequired())
+      eNotify(
+          new ENotificationImpl(
+              this,
+              Notification.SET,
+              GraphPackage.GJOINT__CONNECTION,
+              newConnection,
+              newConnection));
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -230,8 +267,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -243,8 +282,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -253,8 +294,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -266,28 +309,33 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseAdd(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GraphPackage.GJOINT__CONNECTION:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetConnection((GConnection)otherEnd, msgs);
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetConnection((GConnection) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseRemove(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GraphPackage.GJOINT__CONNECTION:
         return basicSetConnection(null, msgs);
@@ -296,22 +344,27 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case GraphPackage.GJOINT__CONNECTION:
-        return eInternalContainer().eInverseRemove(this, GraphPackage.GCONNECTION__JOINTS, GConnection.class, msgs);
+        return eInternalContainer()
+            .eInverseRemove(this, GraphPackage.GCONNECTION__JOINTS, GConnection.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -332,35 +385,39 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case GraphPackage.GJOINT__ID:
-        setId((String)newValue);
+        setId((String) newValue);
         return;
       case GraphPackage.GJOINT__TYPE:
-        setType((String)newValue);
+        setType((String) newValue);
         return;
       case GraphPackage.GJOINT__CONNECTION:
-        setConnection((GConnection)newValue);
+        setConnection((GConnection) newValue);
         return;
       case GraphPackage.GJOINT__X:
-        setX((Double)newValue);
+        setX((Double) newValue);
         return;
       case GraphPackage.GJOINT__Y:
-        setY((Double)newValue);
+        setY((Double) newValue);
         return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -373,7 +430,7 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
         setType(TYPE_EDEFAULT);
         return;
       case GraphPackage.GJOINT__CONNECTION:
-        setConnection((GConnection)null);
+        setConnection((GConnection) null);
         return;
       case GraphPackage.GJOINT__X:
         setX(X_EDEFAULT);
@@ -386,8 +443,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -408,8 +467,10 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
   }
 
   /**
+   *
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -428,5 +489,4 @@ public class GJointImpl extends MinimalEObjectImpl.Container implements GJoint {
     result.append(')');
     return result.toString();
   }
-
-} //GJointImpl
+} // GJointImpl

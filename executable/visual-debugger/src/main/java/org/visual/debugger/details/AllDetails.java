@@ -22,50 +22,54 @@ import javafx.scene.Node;
 import org.visual.debugger.api.FXConnectorEventDispatcher;
 import org.visual.debugger.controller.StageID;
 
-
 public class AllDetails {
 
-    private Node target;
+  private Node target;
 
-    final DetailPaneInfo[] details;
+  final DetailPaneInfo[] details;
 
-    public AllDetails(final FXConnectorEventDispatcher dispatcher, final StageID stageID) {
-        details = new DetailPaneInfo[]{
-                new NodeDetailPaneInfo(dispatcher, stageID),
-                new ShapeDetailPaneInfo(dispatcher, stageID),
-                new ParentDetailPaneInfo(dispatcher, stageID),
-                new RegionDetailPaneInfo(dispatcher, stageID),
-                new GridPaneDetailPaneInfo(dispatcher, stageID),
-                new ControlDetailPaneInfo(dispatcher, stageID),
-                new TextDetailPaneInfo(dispatcher, stageID),
-                new LabeledDetailPaneInfo(dispatcher, stageID),
-                new FullPropertiesDetailPaneInfo(dispatcher, stageID)
+  public AllDetails(final FXConnectorEventDispatcher dispatcher, final StageID stageID) {
+    details =
+        new DetailPaneInfo[] {
+          new NodeDetailPaneInfo(dispatcher, stageID),
+          new ShapeDetailPaneInfo(dispatcher, stageID),
+          new ParentDetailPaneInfo(dispatcher, stageID),
+          new RegionDetailPaneInfo(dispatcher, stageID),
+          new GridPaneDetailPaneInfo(dispatcher, stageID),
+          new ControlDetailPaneInfo(dispatcher, stageID),
+          new TextDetailPaneInfo(dispatcher, stageID),
+          new LabeledDetailPaneInfo(dispatcher, stageID),
+          new FullPropertiesDetailPaneInfo(dispatcher, stageID)
         };
-    }
+  }
 
-    public void setTarget(final Node value) {
-        if (target == value)
-            return;
+  public void setTarget(final Node value) {
+    if (target == value) return;
 
-        target = value;
-        updatePanes();
-    }
+    target = value;
+    updatePanes();
+  }
 
-    public void setShowCSSProperties(final boolean show) {
-        Arrays.stream(details).forEach(detail -> detail.setShowCSSProperties(show));
-    }
+  public void setShowCSSProperties(final boolean show) {
+    Arrays.stream(details).forEach(detail -> detail.setShowCSSProperties(show));
+  }
 
-    private void updatePanes() {
-        Arrays.stream(details).forEach(detail -> {
-            if (detail.targetMatches(target)) {
+  private void updatePanes() {
+    Arrays.stream(details)
+        .forEach(
+            detail -> {
+              if (detail.targetMatches(target)) {
                 detail.setTarget(target);
-            } else {
+              } else {
                 detail.clear();
-            }
-        });
-    }
+              }
+            });
+  }
 
-    public void setDetail(final DetailPaneType detailType, final int detailID, final String value) {
-        Arrays.stream(details).filter(detail -> detail.getType() == detailType).findFirst().ifPresent(detail -> detail.setDetail(detailID, value));
-    }
+  public void setDetail(final DetailPaneType detailType, final int detailID, final String value) {
+    Arrays.stream(details)
+        .filter(detail -> detail.getType() == detailType)
+        .findFirst()
+        .ifPresent(detail -> detail.setDetail(detailID, value));
+  }
 }

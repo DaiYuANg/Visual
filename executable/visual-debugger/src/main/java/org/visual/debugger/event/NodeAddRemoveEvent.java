@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.event;
 
-
 import java.io.Serial;
 import lombok.Getter;
 import org.visual.debugger.controller.StageID;
@@ -26,16 +25,13 @@ import org.visual.debugger.node.SVNode;
 @Getter
 public class NodeAddRemoveEvent extends FXConnectorEvent {
 
-    /**
-     * 
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final SVNode node;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public NodeAddRemoveEvent(final SVEventType type, final StageID id, final SVNode node) {
-        super(type, id);
-        this.node = node;
-    }
+  private final SVNode node;
 
+  public NodeAddRemoveEvent(final SVEventType type, final StageID id, final SVNode node) {
+    super(type, id);
+    this.node = node;
+  }
 }

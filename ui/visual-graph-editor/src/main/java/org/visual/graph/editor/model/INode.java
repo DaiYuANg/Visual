@@ -1,11 +1,11 @@
 package org.visual.graph.editor.model;
 
 public interface INode {
-    long getId();
+  long getId();
 
-    INode setId(long id);
+  INode setId(long id);
 
-    double getX();
+  double getX();
 
-    double setX();
+  double setX();
 }

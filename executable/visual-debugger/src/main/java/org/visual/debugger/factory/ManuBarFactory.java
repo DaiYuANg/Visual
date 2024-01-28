@@ -7,8 +7,8 @@ import org.visual.debugger.component.GlobalMenuBar;
 @Factory
 public class ManuBarFactory {
 
-    @Bean
-    GlobalMenuBar globalMenuBar() {
-        return new GlobalMenuBar();
-    }
+  @Bean
+  GlobalMenuBar globalMenuBar() {
+    return new GlobalMenuBar();
+  }
 }

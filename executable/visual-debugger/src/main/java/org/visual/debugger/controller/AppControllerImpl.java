@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,48 +18,51 @@
 package org.visual.debugger.controller;
 
 import java.util.*;
-
 import org.visual.debugger.api.AppController;
 import org.visual.debugger.api.StageController;
 
 public class AppControllerImpl implements AppController {
 
-    private static final String LOCAL_ID = "Local";
+  private static final String LOCAL_ID = "Local";
 
-    private final String name;
-    private final List<StageController> stages = new ArrayList<>();
+  private final String name;
+  private final List<StageController> stages = new ArrayList<>();
 
-    private final int id;
+  private final int id;
 
-    public AppControllerImpl() {
-        this(0, LOCAL_ID);
+  public AppControllerImpl() {
+    this(0, LOCAL_ID);
+  }
+
+  public AppControllerImpl(final int id, final String name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  @Override
+  public List<StageController> getStages() {
+    return stages;
+  }
+
+  @Override
+  public void close() {
+    for (int i = 0; i < stages.size(); i++) {
+      stages.get(i).close();
     }
+  }
 
-    public AppControllerImpl(final int id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
+  @Override
+  public boolean isLocal() {
+    return LOCAL_ID.equals(name);
+  }
 
-    @Override public String toString() {
-        return name;
-    }
-
-    @Override public List<StageController> getStages() {
-        return stages;
-    }
-
-    @Override public void close() {
-        for (int i = 0; i < stages.size(); i++) {
-            stages.get(i).close();
-        }
-    }
-
-    @Override public boolean isLocal() {
-        return LOCAL_ID.equals(name);
-    }
-
-    @Override public int getID() {
-        return id;
-    }
-
+  @Override
+  public int getID() {
+    return id;
+  }
 }

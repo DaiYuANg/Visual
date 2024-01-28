@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2013 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2013 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,17 +21,14 @@ import java.io.File;
 import java.util.List;
 import org.visual.debugger.model.attach.JDKToolsJarPair;
 
-/**
- *
- */
+/** */
 public interface AttachHandler {
-    
-    public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths);
 
-    /**
-     * We are given a JDKToolsJarPair where it is assumed the jdkPath is known
-     * and the path to the tools.jar is unknown. We need to return the path
-     * to the tools.jar file.
-     */
-    public File resolveToolsJarPath(JDKToolsJarPair jdkPath);
+  public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths);
+
+  /**
+   * We are given a JDKToolsJarPair where it is assumed the jdkPath is known and the path to the
+   * tools.jar is unknown. We need to return the path to the tools.jar file.
+   */
+  public File resolveToolsJarPath(JDKToolsJarPair jdkPath);
 }

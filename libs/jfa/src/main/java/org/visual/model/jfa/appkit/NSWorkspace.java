@@ -5,9 +5,9 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSWorkspace extends NSObject {
-    static NSWorkspace sharedWorkspace() {
-        return ObjcToJava.invokeStatic(NSWorkspace.class, "sharedWorkspace");
-    }
+  static NSWorkspace sharedWorkspace() {
+    return ObjcToJava.invokeStatic(NSWorkspace.class, "sharedWorkspace");
+  }
 
-    void hideOtherApplications();
+  void hideOtherApplications();
 }

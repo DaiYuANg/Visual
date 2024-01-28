@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,114 +30,129 @@ import javafx.scene.control.TitledPane;
 import org.visual.component.util.NodeUtil;
 import org.visual.debugger.controller.ConnectorUtils;
 
-
 class SVRealNodeAdapter extends SVNodeImpl implements SVNode {
 
-    /**
-     * 
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final Node node;
-    private final boolean collapseControls;
-    private final boolean collapseContentControls;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public SVRealNodeAdapter(final Node node) {
-        this(node, true, true);
-    }
+  private final Node node;
+  private final boolean collapseControls;
+  private final boolean collapseContentControls;
 
-    public SVRealNodeAdapter(final Node node, final boolean collapseControls, final boolean collapseContentControls) {
-        super(ConnectorUtils.nodeClass(node), node.getClass().getName());
-        this.node = node;
-        this.collapseControls = collapseControls;
-        this.collapseContentControls = collapseContentControls;
-        boolean mustBeExpanded = !(node instanceof Control) || !collapseControls;
-        if (!mustBeExpanded && !collapseContentControls) {
-            mustBeExpanded = node instanceof TabPane || node instanceof SplitPane || node instanceof ScrollPane || node instanceof Accordion || node instanceof TitledPane;
-        }
-        setExpanded(mustBeExpanded);
-    }
+  public SVRealNodeAdapter(final Node node) {
+    this(node, true, true);
+  }
 
-    @Override public String getId() {
-        return node.getId();
+  public SVRealNodeAdapter(
+      final Node node, final boolean collapseControls, final boolean collapseContentControls) {
+    super(ConnectorUtils.nodeClass(node), node.getClass().getName());
+    this.node = node;
+    this.collapseControls = collapseControls;
+    this.collapseContentControls = collapseContentControls;
+    boolean mustBeExpanded = !(node instanceof Control) || !collapseControls;
+    if (!mustBeExpanded && !collapseContentControls) {
+      mustBeExpanded =
+          node instanceof TabPane
+              || node instanceof SplitPane
+              || node instanceof ScrollPane
+              || node instanceof Accordion
+              || node instanceof TitledPane;
     }
+    setExpanded(mustBeExpanded);
+  }
 
-    @Override public SVNode getParent() {
-        if (node.getParent() != null) {
-            /**
-             * This should be improved
-             */
-            return new SVRealNodeAdapter(node.getParent(), collapseControls, collapseContentControls);
-        }
-        return null;
-    }
+  @Override
+  public String getId() {
+    return node.getId();
+  }
 
-    @Override public List<SVNode> getChildren() {
-        return NodeUtil.getChildren(node)
-                .stream()
-                .map(childNode -> new SVRealNodeAdapter(childNode, collapseControls, collapseContentControls))
-                .collect(Collectors.toList());
+  @Override
+  public SVNode getParent() {
+    if (node.getParent() != null) {
+      /** This should be improved */
+      return new SVRealNodeAdapter(node.getParent(), collapseControls, collapseContentControls);
     }
+    return null;
+  }
 
-    /**
-     * This must be removed in the future
-     */
-    @Override public boolean equals(final Object node) {
-        if (node instanceof SVNode) {
-            return equals((SVNode) node);
-        } else {
-            return this.node == node;
-        }
-    }
+  @Override
+  public List<SVNode> getChildren() {
+    return NodeUtil.getChildren(node).stream()
+        .map(
+            childNode ->
+                new SVRealNodeAdapter(childNode, collapseControls, collapseContentControls))
+        .collect(Collectors.toList());
+  }
 
-    @Override public boolean equals(final SVNode node) {
-        if (node instanceof SVDummyNode) {
-            return false;
-        }
-        if (node instanceof SVRealNodeAdapter) {
-            return node.getImpl() == this.node;
-        } else {
-            return node != null && getNodeId() == node.getNodeId();
-        }
+  /** This must be removed in the future */
+  @Override
+  public boolean equals(final Object node) {
+    if (node instanceof SVNode) {
+      return equals((SVNode) node);
+    } else {
+      return this.node == node;
     }
+  }
 
-    @Override public Node getImpl() {
-        return node;
+  @Override
+  public boolean equals(final SVNode node) {
+    if (node instanceof SVDummyNode) {
+      return false;
     }
+    if (node instanceof SVRealNodeAdapter) {
+      return node.getImpl() == this.node;
+    } else {
+      return node != null && getNodeId() == node.getNodeId();
+    }
+  }
 
-    @Override public int getNodeId() {
-        return ConnectorUtils.getNodeUniqueID(node);
-    }
+  @Override
+  public Node getImpl() {
+    return node;
+  }
 
-    @Override public boolean isVisible() {
-        return ConnectorUtils.isNodeVisible(node);
-    }
+  @Override
+  public int getNodeId() {
+    return ConnectorUtils.getNodeUniqueID(node);
+  }
 
-    @Override public boolean isMouseTransparent() {
-        return ConnectorUtils.isMouseTransparent(node);
-    }
+  @Override
+  public boolean isVisible() {
+    return ConnectorUtils.isNodeVisible(node);
+  }
 
-    @Override public boolean isFocused() {
-        return node.isFocused();
-    }
+  @Override
+  public boolean isMouseTransparent() {
+    return ConnectorUtils.isMouseTransparent(node);
+  }
 
-    @Override public String toString() {
-        return ConnectorUtils.nodeDetail(this, showID);
-    }
+  @Override
+  public boolean isFocused() {
+    return node.isFocused();
+  }
 
-    @Override public String getExtendedId() {
-        return ConnectorUtils.nodeDetail(this, true);
-    }
+  @Override
+  public String toString() {
+    return ConnectorUtils.nodeDetail(this, showID);
+  }
 
-    @Override public boolean isRealNode() {
-        return true;
-    }
+  @Override
+  public String getExtendedId() {
+    return ConnectorUtils.nodeDetail(this, true);
+  }
 
-    @Override public int hashCode() {
-        return getNodeId();
-    }
+  @Override
+  public boolean isRealNode() {
+    return true;
+  }
 
-    @Override public NodeType getNodeType() {
-        return NodeType.REAL_NODE;
-    }
+  @Override
+  public int hashCode() {
+    return getNodeId();
+  }
+
+  @Override
+  public NodeType getNodeType() {
+    return NodeType.REAL_NODE;
+  }
 }

@@ -10,14 +10,14 @@ import picocli.CommandLine;
 @RequiredArgsConstructor
 public class VisualModelDatabase implements Runnable {
 
-    private final String[] args;
+  private final String[] args;
 
-    public static void main(String[] args) {
-        new CommandLine(new VisualModelDatabase(args)).execute(args);
-    }
+  public static void main(String[] args) {
+    new CommandLine(new VisualModelDatabase(args)).execute(args);
+  }
 
-    @Override
-    public void run() {
-        Application.launch(VisualDatabaseUI.class, args);
-    }
+  @Override
+  public void run() {
+    Application.launch(VisualDatabaseUI.class, args);
+  }
 }

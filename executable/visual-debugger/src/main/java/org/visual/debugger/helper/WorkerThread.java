@@ -17,36 +17,35 @@
  */
 package org.visual.debugger.helper;
 
-
 import lombok.SneakyThrows;
 
 public abstract class WorkerThread extends Thread {
 
-    protected boolean running = true;
-    protected final int sleepTime;
+  protected boolean running = true;
+  protected final int sleepTime;
 
-    public WorkerThread(final String name, final int sleepTime) {
-        super(name);
-        setDaemon(true);
-        this.sleepTime = sleepTime;
+  public WorkerThread(final String name, final int sleepTime) {
+    super(name);
+    setDaemon(true);
+    this.sleepTime = sleepTime;
+  }
+
+  public void finish() {
+    this.running = false;
+    interrupt();
+  }
+
+  @SneakyThrows
+  @Override
+  public void run() {
+    long sleepTime = 0;
+    while (running) {
+      Thread.sleep(sleepTime);
+      work();
+
+      sleepTime = this.sleepTime;
     }
+  }
 
-    public void finish() {
-        this.running = false;
-        interrupt();
-    }
-
-    @SneakyThrows
-    @Override
-    public void run() {
-        long sleepTime = 0;
-        while (running) {
-            Thread.sleep(sleepTime);
-            work();
-
-            sleepTime = this.sleepTime;
-        }
-    }
-
-    protected abstract void work();
+  protected abstract void work();
 }

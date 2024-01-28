@@ -20,7 +20,6 @@ package org.visual.debugger;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -44,89 +43,88 @@ import org.visual.debugger.remote.FXConnectorFactory;
 import org.visual.debugger.view.ScenicViewGui;
 import org.visual.shared.PreferencesWrapper;
 
-/**
- * This is the entry point for all different versions of Scenic View.
- */
+/** This is the entry point for all different versions of Scenic View. */
 @Slf4j
 public class VisualModelDebugger extends Application {
 
-    public static final String JDK_PATH_KEY = "jdkPath";
+  public static final String JDK_PATH_KEY = "jdkPath";
 
-    private final Stage rootStage = DebuggerContext.INSTANCE.get(Stage.class);
+  private final Stage rootStage = DebuggerContext.INSTANCE.get(Stage.class);
 
-    private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load("Layout"));
+  private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load("Layout"));
 
-    private final ExceptionListener exceptionListener = DebuggerContext.INSTANCE.get(ExceptionListener.class);
+  private final ExceptionListener exceptionListener =
+      DebuggerContext.INSTANCE.get(ExceptionListener.class);
 
-    private final PreferencesWrapper preferencesWrapper = DebuggerContext.INSTANCE.get(PreferencesWrapper.class);
+  private final PreferencesWrapper preferencesWrapper =
+      DebuggerContext.INSTANCE.get(PreferencesWrapper.class);
 
-    public static void show(final @NotNull Scene target) {
-        show(target.getRoot());
-    }
+  public static void show(final @NotNull Scene target) {
+    show(target.getRoot());
+  }
 
-    public static void show(@NonNull final Parent target) {
-        val stage = new Stage();
+  public static void show(@NonNull final Parent target) {
+    val stage = new Stage();
 
-        stage.setWidth(1024);
-        stage.setHeight(768);
-        stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
+    stage.setWidth(1024);
+    stage.setHeight(768);
+    stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
 
-        final List<AppController> controllers = new ArrayList<>();
-        final AppController aController = new AppControllerImpl();
-        final boolean sceneRoot = target.getScene().getRoot() == target;
-        final StageControllerImpl sController = new StageControllerImpl(target, aController, sceneRoot);
+    final List<AppController> controllers = new ArrayList<>();
+    final AppController aController = new AppControllerImpl();
+    final boolean sceneRoot = target.getScene().getRoot() == target;
+    final StageControllerImpl sController = new StageControllerImpl(target, aController, sceneRoot);
 
-        log.atInfo().log("aController ={} ", aController);
-        aController.getStages().add(sController);
-        controllers.add(aController);
+    log.atInfo().log("aController ={} ", aController);
+    aController.getStages().add(sController);
+    controllers.add(aController);
 
-        final LocalUpdateStrategy updateStrategy = new LocalUpdateStrategy(controllers);
-        ScenicViewGui.show(new ScenicViewGui(updateStrategy, stage), stage);
-    }
+    final LocalUpdateStrategy updateStrategy = new LocalUpdateStrategy(controllers);
+    ScenicViewGui.show(new ScenicViewGui(updateStrategy, stage), stage);
+  }
 
+  /**************************************************************************
+   * <p>
+   * runtime discovery start point
+   * (Also refer to RuntimeAttach class)
+   *
+   *************************************************************************/
+  public static void premain(final String agentArgs, final Instrumentation instrumentation) {
+    // we start up a new thread to take care of initialising Scenic View
+    // so that we don't block the loading of the actual application.
+    log.info("premain execute");
+    Platform.runLater(() -> new VisualModelDebugger().start());
+  }
 
-    /**************************************************************************
-     * <p>
-     * runtime discovery start point
-     * (Also refer to RuntimeAttach class)
-     *
-     *************************************************************************/
-    public static void premain(final String agentArgs, final Instrumentation instrumentation) {
-        // we start up a new thread to take care of initialising Scenic View
-        // so that we don't block the loading of the actual application.
-        log.info("premain execute");
-        Platform.runLater(() -> new VisualModelDebugger().start());
-    }
+  @Override
+  public void init() {
+    Thread.setDefaultUncaughtExceptionHandler(exceptionListener);
+  }
 
-    @Override
-    public void init() {
-        Thread.setDefaultUncaughtExceptionHandler(exceptionListener);
-    }
+  @SneakyThrows
+  private void start() {
+    new VisualModelDebugger().start(new Stage());
+  }
 
-    @SneakyThrows
-    private void start() {
-        new VisualModelDebugger().start(new Stage());
-    }
+  public static void main(final String @NotNull [] args) {
+    VisualModelDebugger.launch(args);
+  }
 
-    public static void main(final String @NotNull [] args) {
-        VisualModelDebugger.launch(args);
-    }
+  @Override
+  public void start(final Stage stage) throws Exception {
+    AttachHandlerFactory.initAttachAPI(rootStage);
+    val strategy = new RemoteVMsUpdateStrategy();
+    strategy.setFXConnector(FXConnectorFactory.getConnector());
+    rootStage.setScene(rootScene);
+    rootStage.show();
+    FXComponentInspectorHandler.handleAll();
+  }
 
-    @Override
-    public void start(final Stage stage) throws Exception {
-        AttachHandlerFactory.initAttachAPI(rootStage);
-        val strategy = new RemoteVMsUpdateStrategy();
-        strategy.setFXConnector(FXConnectorFactory.getConnector());
-        rootStage.setScene(rootScene);
-        rootStage.show();
-        FXComponentInspectorHandler.handleAll();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        preferencesWrapper.flush();
-        log.info("flush preferences");
-        Runtime.getRuntime().exit(0);
-    }
+  @Override
+  public void stop() throws Exception {
+    super.stop();
+    preferencesWrapper.flush();
+    log.info("flush preferences");
+    Runtime.getRuntime().exit(0);
+  }
 }

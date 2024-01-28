@@ -5,13 +5,13 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSWindow extends NSObject {
-    static NSWindow alloc() {
-        return ObjcToJava.alloc(NSWindow.class);
-    }
+  static NSWindow alloc() {
+    return ObjcToJava.alloc(NSWindow.class);
+  }
 
-    NSView contentView();
+  NSView contentView();
 
-    NSAppearance appearance();
+  NSAppearance appearance();
 
-    void setAppearance(NSAppearance appearance);
+  void setAppearance(NSAppearance appearance);
 }

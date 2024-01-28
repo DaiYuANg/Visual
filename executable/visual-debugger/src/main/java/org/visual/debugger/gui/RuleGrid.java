@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,35 +20,33 @@ package org.visual.debugger.gui;
 import java.util.*;
 import javafx.scene.shape.*;
 
-/**
- * 
- */
+/** */
 public class RuleGrid extends Path {
-    double width;
-    double height;
+  double width;
+  double height;
 
-    public RuleGrid(final double separation, final double width, final double height) {
-        this.width = width;
-        this.height = height;
-        updateSeparation(separation);
-    }
+  public RuleGrid(final double separation, final double width, final double height) {
+    this.width = width;
+    this.height = height;
+    updateSeparation(separation);
+  }
 
-    public void updateSeparation(final double separation) {
-        double x = separation;
-        double y = 0;
-        final List<PathElement> pElements = new ArrayList<>();
-        getElements().clear();
-        while (y < height) {
-            pElements.add(new MoveTo(0, y));
-            pElements.add(new LineTo(width, y));
-            y += separation;
-        }
-        while (x < width) {
-            pElements.add(new MoveTo(x, 0));
-            pElements.add(new LineTo(x, height));
-            x += separation;
-        }
-        getElements().addAll(pElements);
-        setOpacity(0.3);
+  public void updateSeparation(final double separation) {
+    double x = separation;
+    double y = 0;
+    final List<PathElement> pElements = new ArrayList<>();
+    getElements().clear();
+    while (y < height) {
+      pElements.add(new MoveTo(0, y));
+      pElements.add(new LineTo(width, y));
+      y += separation;
     }
+    while (x < width) {
+      pElements.add(new MoveTo(x, 0));
+      pElements.add(new LineTo(x, height));
+      x += separation;
+    }
+    getElements().addAll(pElements);
+    setOpacity(0.3);
+  }
 }

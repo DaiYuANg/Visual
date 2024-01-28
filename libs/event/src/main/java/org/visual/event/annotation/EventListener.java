@@ -7,5 +7,5 @@ import org.visual.event.AbstractEvent;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.SOURCE)
 public @interface EventListener {
-    Class<? extends AbstractEvent> value();
+  Class<? extends AbstractEvent> value();
 }

@@ -2,8 +2,8 @@
 
 package org.visual.debugger.util
 
-import org.visual.shared.util.NetUtil.randomPort
 import java.util.*
+import org.visual.shared.util.NetUtil.randomPort
 
 private const val JMX_PORT_PROPERTY = "com.sun.management.jmxremote.port"
 private const val JMX_AUTHENTICATE_PROPERTY = "com.sun.management.jmxremote.authenticate"

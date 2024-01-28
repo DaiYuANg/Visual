@@ -7,8 +7,8 @@ import org.jetbrains.annotations.NotNull;
 @Slf4j
 @Singleton
 public class ExceptionListener implements Thread.UncaughtExceptionHandler {
-    @Override
-    public void uncaughtException(@NotNull Thread t, Throwable e) {
-        log.error(t.getName(),e.getMessage(),e);
-    }
+  @Override
+  public void uncaughtException(@NotNull Thread t, Throwable e) {
+    log.error(t.getName(), e.getMessage(), e);
+  }
 }

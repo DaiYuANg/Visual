@@ -21,33 +21,26 @@ import org.visual.debugger.context.VirtualMachineContext;
 @Slf4j
 public class OverviewController implements Initializable {
 
-    @FXML
-    FontAwesomeIconicTextField searchInput;
+  @FXML FontAwesomeIconicTextField searchInput;
 
-    @FXML
-    VBox overviewRoot;
+  @FXML VBox overviewRoot;
 
-    @Inject
-    Stage rootStage;
+  @Inject Stage rootStage;
 
-    @FXML
-    SystemPropertiesListView systemPropertiesListView;
+  @FXML SystemPropertiesListView systemPropertiesListView;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        VirtualMachineContext
-                .INSTANCE
-                .addVirtualMachineList((observable, oldValue, newValue) -> readJvm(newValue));
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    VirtualMachineContext.INSTANCE.addVirtualMachineList(
+        (observable, oldValue, newValue) -> readJvm(newValue));
+  }
 
-    private void readJvm(@NotNull VirtualMachine jvm) {
-        val values = System.getProperties().entrySet();
-        systemPropertiesListView.getItems().addAll(values);
-        ;
-//        System.err.println(VirtualMachineContext.INSTANCE.getVirtualMachineProperties());
-    }
+  private void readJvm(@NotNull VirtualMachine jvm) {
+    val values = System.getProperties().entrySet();
+    systemPropertiesListView.getItems().addAll(values);
+    ;
+    //        System.err.println(VirtualMachineContext.INSTANCE.getVirtualMachineProperties());
+  }
 
-    public void filterSystemProperties(KeyEvent keyEvent) {
-
-    }
+  public void filterSystemProperties(KeyEvent keyEvent) {}
 }

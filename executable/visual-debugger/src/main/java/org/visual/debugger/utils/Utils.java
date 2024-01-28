@@ -23,25 +23,26 @@ import lombok.SneakyThrows;
 
 public class Utils {
 
-    public static boolean checkPath(final String path) {
-        if (path != null && !path.isEmpty()) {
-            File file = new File(path);
-            return file.exists();
-        }
-        return false;
+  public static boolean checkPath(final String path) {
+    if (path != null && !path.isEmpty()) {
+      File file = new File(path);
+      return file.exists();
     }
+    return false;
+  }
 
-    @SneakyThrows
-    public static URI toURI(final String uri) {
-        if (new File(uri).exists()) {
-            return encodePath(new File(uri).getAbsolutePath());
-        }
-        return new URI(uri);
+  @SneakyThrows
+  public static URI toURI(final String uri) {
+    if (new File(uri).exists()) {
+      return encodePath(new File(uri).getAbsolutePath());
     }
+    return new URI(uri);
+  }
 
-    @SneakyThrows
-    private static URI encodePath(final String path) {
-        @SuppressWarnings("deprecation") final URL url = new File(path).toURL();
-        return new URI(url.getProtocol(), url.getHost(), url.getPath(), null);
-    }
+  @SneakyThrows
+  private static URI encodePath(final String path) {
+    @SuppressWarnings("deprecation")
+    final URL url = new File(path).toURL();
+    return new URI(url.getProtocol(), url.getHost(), url.getPath(), null);
+  }
 }

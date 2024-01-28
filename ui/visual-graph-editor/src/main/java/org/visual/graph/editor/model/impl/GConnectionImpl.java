@@ -1,6 +1,4 @@
-/**
- *
- */
+/** */
 package org.visual.graph.editor.model.impl;
 
 import java.util.Collection;
@@ -20,413 +18,454 @@ import org.visual.graph.editor.model.GJoint;
 import org.visual.graph.editor.model.GraphPackage;
 
 /**
+ *
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>GConnection</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
+ *
+ * <p>The following features are implemented:
+ *
  * <ul>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getId <em>Id</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getType <em>Type</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getSource <em>Source</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getJoints <em>Joints</em>}</li>
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getId <em>Id</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getType <em>Type</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getSource <em>Source</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getTarget <em>Target</em>}
+ *   <li>{@link io.github.eckig.grapheditor.model.impl.GConnectionImpl#getJoints <em>Joints</em>}
  * </ul>
  *
  * @generated
  */
 @ToString
 public class GConnectionImpl extends MinimalEObjectImpl.Container implements GConnection {
-    /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getId()
-     */
-    protected static final String ID_EDEFAULT = null;
+  /**
+   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getId()
+   */
+  protected static final String ID_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getId()
-     */
-    protected String id = ID_EDEFAULT;
+  /**
+   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getId()
+   */
+  protected String id = ID_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getType()
-     */
-    protected static final String TYPE_EDEFAULT = null;
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getType()
+   */
+  protected static final String TYPE_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getType()
-     */
-    protected String type = TYPE_EDEFAULT;
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getType()
+   */
+  protected String type = TYPE_EDEFAULT;
 
-    /**
-     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getSource()
-     */
-    protected GConnector source;
+  /**
+   * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getSource()
+   */
+  protected GConnector source;
 
-    /**
-     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getTarget()
-     */
-    protected GConnector target;
+  /**
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getTarget()
+   */
+  protected GConnector target;
 
-    /**
-     * The cached value of the '{@link #getJoints() <em>Joints</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #getJoints()
-     */
-    protected EList<GJoint> joints;
+  /**
+   * The cached value of the '{@link #getJoints() <em>Joints</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   * @see #getJoints()
+   */
+  protected EList<GJoint> joints;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected GConnectionImpl() {
-        super();
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected GConnectionImpl() {
+    super();
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return GraphPackage.Literals.GCONNECTION;
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public String getId() {
+    return id;
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public void setId(String newId) {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(
+          new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTION__ID, oldId, id));
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public String getType() {
+    return type;
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public void setType(String newType) {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(
+          new ENotificationImpl(
+              this, Notification.SET, GraphPackage.GCONNECTION__TYPE, oldType, type));
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public GConnector getSource() {
+    if (source == null || !source.eIsProxy()) {
+      return source;
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return GraphPackage.Literals.GCONNECTION;
+    InternalEObject oldSource = (InternalEObject) source;
+    source = (GConnector) eResolveProxy(oldSource);
+    if (source == oldSource) {
+      return source;
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public String getId() {
-        return id;
+    if (Boolean.FALSE.equals(eNotificationRequired())) {
+      return source;
     }
+    eNotify(
+        new ENotificationImpl(
+            this, Notification.RESOLVE, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
+    return source;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setId(String newId) {
-        String oldId = id;
-        id = newId;
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public GConnector basicGetSource() {
+    return source;
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public void setSource(GConnector newSource) {
+    GConnector oldSource = source;
+    source = newSource;
+    if (eNotificationRequired())
+      eNotify(
+          new ENotificationImpl(
+              this, Notification.SET, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
+  }
+
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public GConnector getTarget() {
+    if (target != null && target.eIsProxy()) {
+      InternalEObject oldTarget = (InternalEObject) target;
+      target = (GConnector) eResolveProxy(oldTarget);
+      if (target != oldTarget) {
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTION__ID, oldId, id));
+          eNotify(
+              new ENotificationImpl(
+                  this, Notification.RESOLVE, GraphPackage.GCONNECTION__TARGET, oldTarget, target));
+      }
     }
+    return target;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public String getType() {
-        return type;
-    }
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public GConnector basicGetTarget() {
+    return target;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTION__TYPE, oldType, type));
-    }
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public void setTarget(GConnector newTarget) {
+    GConnector oldTarget = target;
+    target = newTarget;
+    if (eNotificationRequired())
+      eNotify(
+          new ENotificationImpl(
+              this, Notification.SET, GraphPackage.GCONNECTION__TARGET, oldTarget, target));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public GConnector getSource() {
-        if (source == null || !source.eIsProxy()) {
-            return source;
-        }
-        InternalEObject oldSource = (InternalEObject) source;
-        source = (GConnector) eResolveProxy(oldSource);
-        if (source == oldSource) {
-            return source;
-        }
-        if (Boolean.FALSE.equals(eNotificationRequired())) {
-            return source;
-        }
-        eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
-        return source;
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public EList<GJoint> getJoints() {
+    if (joints == null) {
+      joints =
+          new EObjectContainmentWithInverseEList<GJoint>(
+              GJoint.class,
+              this,
+              GraphPackage.GCONNECTION__JOINTS,
+              GraphPackage.GJOINT__CONNECTION);
     }
+    return joints;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public GConnector basicGetSource() {
-        return source;
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GraphPackage.GCONNECTION__JOINTS:
+        return ((InternalEList<InternalEObject>) (InternalEList<?>) getJoints())
+            .basicAdd(otherEnd, msgs);
     }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setSource(GConnector newSource) {
-        GConnector oldSource = source;
-        source = newSource;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTION__SOURCE, oldSource, source));
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(
+      InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    if (featureID == GraphPackage.GCONNECTION__JOINTS) {
+      return ((InternalEList<?>) getJoints()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public GConnector getTarget() {
-        if (target != null && target.eIsProxy()) {
-            InternalEObject oldTarget = (InternalEObject) target;
-            target = (GConnector) eResolveProxy(oldTarget);
-            if (target != oldTarget) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphPackage.GCONNECTION__TARGET, oldTarget, target));
-            }
-        }
-        return target;
-    }
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    return switch (featureID) {
+      case GraphPackage.GCONNECTION__ID -> getId();
+      case GraphPackage.GCONNECTION__TYPE -> getType();
+      case GraphPackage.GCONNECTION__SOURCE -> {
+        if (resolve) yield getSource();
+        yield basicGetSource();
+      }
+      case GraphPackage.GCONNECTION__TARGET -> {
+        if (resolve) yield getTarget();
+        yield basicGetTarget();
+      }
+      case GraphPackage.GCONNECTION__JOINTS -> getJoints();
+      default -> super.eGet(featureID, resolve, coreType);
+    };
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public GConnector basicGetTarget() {
-        return target;
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+      case GraphPackage.GCONNECTION__ID -> {
+        setId((String) newValue);
+        return;
+      }
+      case GraphPackage.GCONNECTION__TYPE -> {
+        setType((String) newValue);
+        return;
+      }
+      case GraphPackage.GCONNECTION__SOURCE -> {
+        setSource((GConnector) newValue);
+        return;
+      }
+      case GraphPackage.GCONNECTION__TARGET -> {
+        setTarget((GConnector) newValue);
+        return;
+      }
+      case GraphPackage.GCONNECTION__JOINTS -> {
+        getJoints().clear();
+        getJoints().addAll((Collection<? extends GJoint>) newValue);
+        return;
+      }
     }
+    super.eSet(featureID, newValue);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setTarget(GConnector newTarget) {
-        GConnector oldTarget = target;
-        target = newTarget;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTION__TARGET, oldTarget, target));
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+      case GraphPackage.GCONNECTION__ID -> {
+        setId(ID_EDEFAULT);
+        return;
+      }
+      case GraphPackage.GCONNECTION__TYPE -> {
+        setType(TYPE_EDEFAULT);
+        return;
+      }
+      case GraphPackage.GCONNECTION__SOURCE -> {
+        setSource(null);
+        return;
+      }
+      case GraphPackage.GCONNECTION__TARGET -> {
+        setTarget(null);
+        return;
+      }
+      case GraphPackage.GCONNECTION__JOINTS -> {
+        getJoints().clear();
+        return;
+      }
     }
+    super.eUnset(featureID);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EList<GJoint> getJoints() {
-        if (joints == null) {
-            joints = new EObjectContainmentWithInverseEList<GJoint>(GJoint.class, this, GraphPackage.GCONNECTION__JOINTS, GraphPackage.GJOINT__CONNECTION);
-        }
-        return joints;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__JOINTS:
-                return ((InternalEList<InternalEObject>) (InternalEList<?>) getJoints()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        if (featureID == GraphPackage.GCONNECTION__JOINTS) {
-            return ((InternalEList<?>) getJoints()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        return switch (featureID) {
-            case GraphPackage.GCONNECTION__ID -> getId();
-            case GraphPackage.GCONNECTION__TYPE -> getType();
-            case GraphPackage.GCONNECTION__SOURCE -> {
-                if (resolve) yield getSource();
-                yield basicGetSource();
-            }
-            case GraphPackage.GCONNECTION__TARGET -> {
-                if (resolve) yield getTarget();
-                yield basicGetTarget();
-            }
-            case GraphPackage.GCONNECTION__JOINTS -> getJoints();
-            default -> super.eGet(featureID, resolve, coreType);
-        };
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__ID -> {
-                setId((String) newValue);
-                return;
-            }
-            case GraphPackage.GCONNECTION__TYPE -> {
-                setType((String) newValue);
-                return;
-            }
-            case GraphPackage.GCONNECTION__SOURCE -> {
-                setSource((GConnector) newValue);
-                return;
-            }
-            case GraphPackage.GCONNECTION__TARGET -> {
-                setTarget((GConnector) newValue);
-                return;
-            }
-            case GraphPackage.GCONNECTION__JOINTS -> {
-                getJoints().clear();
-                getJoints().addAll((Collection<? extends GJoint>) newValue);
-                return;
-            }
-        }
-        super.eSet(featureID, newValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case GraphPackage.GCONNECTION__ID -> {
-                setId(ID_EDEFAULT);
-                return;
-            }
-            case GraphPackage.GCONNECTION__TYPE -> {
-                setType(TYPE_EDEFAULT);
-                return;
-            }
-            case GraphPackage.GCONNECTION__SOURCE -> {
-                setSource(null);
-                return;
-            }
-            case GraphPackage.GCONNECTION__TARGET -> {
-                setTarget(null);
-                return;
-            }
-            case GraphPackage.GCONNECTION__JOINTS -> {
-                getJoints().clear();
-                return;
-            }
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        return switch (featureID) {
-            case GraphPackage.GCONNECTION__ID -> ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-            case GraphPackage.GCONNECTION__TYPE -> TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-            case GraphPackage.GCONNECTION__SOURCE -> source != null;
-            case GraphPackage.GCONNECTION__TARGET -> target != null;
-            case GraphPackage.GCONNECTION__JOINTS -> joints != null && !joints.isEmpty();
-            default -> super.eIsSet(featureID);
-        };
-    }
+  /**
+   *
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    return switch (featureID) {
+      case GraphPackage.GCONNECTION__ID ->
+          ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case GraphPackage.GCONNECTION__TYPE ->
+          TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case GraphPackage.GCONNECTION__SOURCE -> source != null;
+      case GraphPackage.GCONNECTION__TARGET -> target != null;
+      case GraphPackage.GCONNECTION__JOINTS -> joints != null && !joints.isEmpty();
+      default -> super.eIsSet(featureID);
+    };
+  }
 }

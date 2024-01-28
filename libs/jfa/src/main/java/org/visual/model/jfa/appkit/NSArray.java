@@ -8,23 +8,23 @@ import org.visual.model.jfa.foundation.VarArgs;
 
 @SuppressWarnings("unused")
 public interface NSArray<T> extends NSObject {
-    @SuppressWarnings("unchecked")
-    static <A> NSArray<A> alloc() {
-        return ObjcToJava.alloc(NSArray.class);
-    }
+  @SuppressWarnings("unchecked")
+  static <A> NSArray<A> alloc() {
+    return ObjcToJava.alloc(NSArray.class);
+  }
 
-    @SuppressWarnings("unchecked")
-    static <A> NSArray<A> of(A... values) {
-        return NSArray.<A>alloc().initWithObjects(VarArgs.of(values));
-    }
+  @SuppressWarnings("unchecked")
+  static <A> NSArray<A> of(A... values) {
+    return NSArray.<A>alloc().initWithObjects(VarArgs.of(values));
+  }
 
-    static <A> NSArray<A> of(Collection<A> values) {
-        return NSArray.<A>alloc().initWithObjects(VarArgs.of(values));
-    }
+  static <A> NSArray<A> of(Collection<A> values) {
+    return NSArray.<A>alloc().initWithObjects(VarArgs.of(values));
+  }
 
-    NSArray<T> initWithObjects(VarArgs<T> values);
+  NSArray<T> initWithObjects(VarArgs<T> values);
 
-    int count();
+  int count();
 
-    ID objectAtIndex(int index);
+  ID objectAtIndex(int index);
 }

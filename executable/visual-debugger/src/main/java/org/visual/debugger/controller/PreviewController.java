@@ -12,13 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Singleton
 public class PreviewController implements Initializable {
-    public TreeView<String> componentTree;
-    public StackPane showComponent;
+  public TreeView<String> componentTree;
+  public StackPane showComponent;
 
-    private final TreeItem<String> componentTreeRoot = new TreeItem<>();
+  private final TreeItem<String> componentTreeRoot = new TreeItem<>();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        componentTree.setRoot(componentTreeRoot);
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    componentTree.setRoot(componentTreeRoot);
+  }
 }

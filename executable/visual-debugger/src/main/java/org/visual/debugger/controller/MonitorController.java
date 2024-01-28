@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 @Singleton
 public class MonitorController implements Initializable {
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {}
 }

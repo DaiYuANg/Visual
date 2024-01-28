@@ -17,296 +17,299 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.graph.editor.core.connections.RectangularConnections;
-import org.visual.graph.editor.model.GraphFactory;
 import org.visual.graph.editor.api.EditorElement;
 import org.visual.graph.editor.api.GJointSkin;
 import org.visual.graph.editor.api.GraphEditor;
 import org.visual.graph.editor.api.utils.GeometryUtils;
+import org.visual.graph.editor.core.connections.RectangularConnections;
 import org.visual.graph.editor.model.GConnection;
 import org.visual.graph.editor.model.GJoint;
+import org.visual.graph.editor.model.GraphFactory;
 
-/**
- * Responsible for creating joints when a click + drag gesture occurs on a connection.
- */
+/** Responsible for creating joints when a click + drag gesture occurs on a connection. */
 public class JointCreator {
 
-    private static final String STYLE_CLASS_HOVER_EFFECT = "default-connection-hover-effect";
-    private static final int HOVER_EFFECT_SIZE = 12;
+  private static final String STYLE_CLASS_HOVER_EFFECT = "default-connection-hover-effect";
+  private static final int HOVER_EFFECT_SIZE = 12;
 
-    private final GConnection connection;
-    private final CursorOffsetCalculator offsetCalculator;
+  private final GConnection connection;
+  private final CursorOffsetCalculator offsetCalculator;
 
-    /**
-     * -- SETTER --
-     * Sets the graph editor instance currently in use.
-     *
-     * @param graphEditor the {@link GraphEditor} instance currently in use
-     */
-    @Setter
-    private GraphEditor graphEditor;
+  /**
+   * -- SETTER -- Sets the graph editor instance currently in use.
+   *
+   * @param graphEditor the {@link GraphEditor} instance currently in use
+   */
+  @Setter private GraphEditor graphEditor;
 
-    /**
-     * -- GETTER --
-     * Returns the hover effect rectangle.
-     *
-     * @return the rectangle used to display hover effects over the connection
-     */
-    @Getter
-    private final Rectangle hoverEffect = new Rectangle(HOVER_EFFECT_SIZE, HOVER_EFFECT_SIZE);
+  /**
+   * -- GETTER -- Returns the hover effect rectangle.
+   *
+   * @return the rectangle used to display hover effects over the connection
+   */
+  @Getter private final Rectangle hoverEffect = new Rectangle(HOVER_EFFECT_SIZE, HOVER_EFFECT_SIZE);
 
-    private GJointSkin temporarySelectedJointSkin;
+  private GJointSkin temporarySelectedJointSkin;
 
-    private double newJointX;
-    private double newJointY;
+  private double newJointX;
+  private double newJointY;
 
-    private List<GJoint> temporaryJoints;
-    private List<Point2D> oldJointPositions;
+  private List<GJoint> temporaryJoints;
+  private List<Point2D> oldJointPositions;
 
-    /**
-     * Creates a new joint creator. One instance should exist for each default connection skin instance.
-     *
-     * @param connection       the connection the joint creator is creating joints in
-     * @param offsetCalculator used to determine where to put new joints based on the cursor position
-     */
-    public JointCreator(final GConnection connection, final CursorOffsetCalculator offsetCalculator) {
+  /**
+   * Creates a new joint creator. One instance should exist for each default connection skin
+   * instance.
+   *
+   * @param connection the connection the joint creator is creating joints in
+   * @param offsetCalculator used to determine where to put new joints based on the cursor position
+   */
+  public JointCreator(final GConnection connection, final CursorOffsetCalculator offsetCalculator) {
 
-        this.connection = connection;
-        this.offsetCalculator = offsetCalculator;
+    this.connection = connection;
+    this.offsetCalculator = offsetCalculator;
 
-        hoverEffect.getStyleClass().addAll(STYLE_CLASS_HOVER_EFFECT);
-        hoverEffect.setPickOnBounds(true);
-        hoverEffect.setVisible(false);
-    }
+    hoverEffect.getStyleClass().addAll(STYLE_CLASS_HOVER_EFFECT);
+    hoverEffect.setPickOnBounds(true);
+    hoverEffect.setVisible(false);
+  }
 
-    private boolean checkEditable() {
-        return graphEditor != null && !graphEditor.getProperties().isReadOnly(EditorElement.JOINT);
-    }
+  private boolean checkEditable() {
+    return graphEditor != null && !graphEditor.getProperties().isReadOnly(EditorElement.JOINT);
+  }
 
-    /**
-     * Adds a mechanism for creating joints by clicking on the connection.
-     *
-     * @param root the root JavaFX node of the connection skin
-     */
-    public void addJointCreationHandler(final @NotNull Group root) {
+  /**
+   * Adds a mechanism for creating joints by clicking on the connection.
+   *
+   * @param root the root JavaFX node of the connection skin
+   */
+  public void addJointCreationHandler(final @NotNull Group root) {
 
-        root.getChildren().add(hoverEffect);
+    root.getChildren().add(hoverEffect);
 
-        root.setOnMouseEntered(event -> updateHoverEffectPosition(event, root));
-        root.setOnMouseMoved(event -> updateHoverEffectPosition(event, root));
-        root.setOnMouseExited(event -> hoverEffect.setVisible(false));
+    root.setOnMouseEntered(event -> updateHoverEffectPosition(event, root));
+    root.setOnMouseMoved(event -> updateHoverEffectPosition(event, root));
+    root.setOnMouseExited(event -> hoverEffect.setVisible(false));
 
-        root.setOnMouseDragged(event -> {
+    root.setOnMouseDragged(
+        event -> {
+          if (!checkEditable()
+              || !event.getButton().equals(MouseButton.PRIMARY)
+              || temporarySelectedJointSkin == null) {
+            return;
+          }
 
-            if (!checkEditable() || !event.getButton().equals(MouseButton.PRIMARY) || temporarySelectedJointSkin == null) {
-                return;
+          temporarySelectedJointSkin.getRoot().fireEvent(event);
+          event.consume();
+        });
+
+    // This handler creates 2 temporary joints which can be dragged around.
+    root.setOnMousePressed(
+        event -> {
+          val sceneX = event.getSceneX();
+          val sceneY = event.getSceneY();
+
+          val offset = offsetCalculator.getOffset(sceneX, sceneY);
+
+          if (!checkEditable()
+              || !event.getButton().equals(MouseButton.PRIMARY)
+              || offset == null) {
+            return;
+          }
+
+          oldJointPositions = GeometryUtils.getJointPositions(connection);
+
+          val index = getNewJointLocation(event, root);
+          if (index > -1) {
+
+            final int oldJointCount = connection.getJoints().size();
+
+            addTemporaryJoints(index, newJointX, newJointY);
+
+            if (index == oldJointCount) {
+              final GJoint newSelectedJoint1 = connection.getJoints().get(index);
+              temporarySelectedJointSkin =
+                  graphEditor.getSkinLookup().lookupJoint(newSelectedJoint1);
+            } else {
+              final GJoint newSelectedJoint2 = connection.getJoints().get(index + 1);
+              temporarySelectedJointSkin =
+                  graphEditor.getSkinLookup().lookupJoint(newSelectedJoint2);
             }
 
             temporarySelectedJointSkin.getRoot().fireEvent(event);
-            event.consume();
+            if (graphEditor != null) {
+              graphEditor.getSelectionManager().select(temporarySelectedJointSkin.getItem());
+            }
+          }
+
+          event.consume();
         });
 
-        // This handler creates 2 temporary joints which can be dragged around.
-        root.setOnMousePressed(event -> {
-
-            val sceneX = event.getSceneX();
-            val sceneY = event.getSceneY();
-
-            val offset = offsetCalculator.getOffset(sceneX, sceneY);
-
-            if (!checkEditable() || !event.getButton().equals(MouseButton.PRIMARY) || offset == null) {
-                return;
-            }
-
-            oldJointPositions = GeometryUtils.getJointPositions(connection);
-
-            val index = getNewJointLocation(event, root);
-            if (index > -1) {
-
-                final int oldJointCount = connection.getJoints().size();
-
-                addTemporaryJoints(index, newJointX, newJointY);
-
-                if (index == oldJointCount) {
-                    final GJoint newSelectedJoint1 = connection.getJoints().get(index);
-                    temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint1);
-                } else {
-                    final GJoint newSelectedJoint2 = connection.getJoints().get(index + 1);
-                    temporarySelectedJointSkin = graphEditor.getSkinLookup().lookupJoint(newSelectedJoint2);
-                }
-
-                temporarySelectedJointSkin.getRoot().fireEvent(event);
-                if (graphEditor != null) {
-                    graphEditor.getSelectionManager().select(temporarySelectedJointSkin.getItem());
-                }
-            }
-
-            event.consume();
-        });
-
-        // This handler updates the model with the new joints *only* if the connection shape has actually changed.
-        root.setOnMouseReleased(event -> {
-
-            if (!checkEditable() || !event.getButton().equals(MouseButton.PRIMARY) || temporarySelectedJointSkin == null) {
-                return;
-            }
-
-            final List<Point2D> newJointPositions = getNewJointPositions();
-
-            // It is important to remove the temporary joints even if we add new joints, otherwise we mess up the
-            // undo/redo stack.
-            removeTemporaryJoints();
-
-            if (checkForNetChange(oldJointPositions, newJointPositions)) {
-                JointCommands.setNewJoints(newJointPositions, connection);
-            }
-        });
-    }
-
-    /**
-     * Updates the position of the joint creator effect based on the cursor position.
-     *
-     * @param event the mouse event containing information about the cursor position
-     * @param root  the root node of the connection
-     */
-    private void updateHoverEffectPosition(final @NotNull MouseEvent event, final Group root) {
-
-        final double sceneX = event.getSceneX();
-        final double sceneY = event.getSceneY();
-
-        final Point2D offset = offsetCalculator.getOffset(sceneX, sceneY);
-
-        // Do not show the joint-creator effect if the cursor is on/near a detour (too messy).
-        if (offset == null) {
-            hoverEffect.setVisible(false);
+    // This handler updates the model with the new joints *only* if the connection shape has
+    // actually changed.
+    root.setOnMouseReleased(
+        event -> {
+          if (!checkEditable()
+              || !event.getButton().equals(MouseButton.PRIMARY)
+              || temporarySelectedJointSkin == null) {
             return;
-        } else {
-            hoverEffect.setVisible(true);
-        }
+          }
 
-        final Point2D sceneCoordinatesOfParent = root.getParent().localToScene(0, 0);
+          final List<Point2D> newJointPositions = getNewJointPositions();
 
-        final double scaleFactor = root.getLocalToSceneTransform().getMxx();
+          // It is important to remove the temporary joints even if we add new joints,
+          // otherwise we
+          // mess up the
+          // undo/redo stack.
+          removeTemporaryJoints();
 
-        final double x = (sceneX - sceneCoordinatesOfParent.getX() + offset.getX()) / scaleFactor;
-        final double y = (sceneY - sceneCoordinatesOfParent.getY() + offset.getY()) / scaleFactor;
+          if (checkForNetChange(oldJointPositions, newJointPositions)) {
+            JointCommands.setNewJoints(newJointPositions, connection);
+          }
+        });
+  }
 
-        hoverEffect.setX(GeometryUtils.moveOnPixel(x - (double) HOVER_EFFECT_SIZE / 2));
-        hoverEffect.setY(GeometryUtils.moveOnPixel(y - (double) HOVER_EFFECT_SIZE / 2));
+  /**
+   * Updates the position of the joint creator effect based on the cursor position.
+   *
+   * @param event the mouse event containing information about the cursor position
+   * @param root the root node of the connection
+   */
+  private void updateHoverEffectPosition(final @NotNull MouseEvent event, final Group root) {
+
+    final double sceneX = event.getSceneX();
+    final double sceneY = event.getSceneY();
+
+    final Point2D offset = offsetCalculator.getOffset(sceneX, sceneY);
+
+    // Do not show the joint-creator effect if the cursor is on/near a detour (too messy).
+    if (offset == null) {
+      hoverEffect.setVisible(false);
+      return;
+    } else {
+      hoverEffect.setVisible(true);
     }
 
-    /**
-     * Gets the location of the new joint based on the cursor position.
-     *
-     * @param event the mouse event object containing cursor information
-     * @param root  the root node of the connection skin
-     * @return the index in the connection's joint list of where the new joint would go
-     */
-    private int getNewJointLocation(final @NotNull MouseEvent event, final Group root) {
+    final Point2D sceneCoordinatesOfParent = root.getParent().localToScene(0, 0);
 
-        final int index = offsetCalculator.getNearestSegment(event.getSceneX(), event.getSceneY());
+    final double scaleFactor = root.getLocalToSceneTransform().getMxx();
 
-        final double adjacentJointX;
-        final double adjacentJointY;
+    final double x = (sceneX - sceneCoordinatesOfParent.getX() + offset.getX()) / scaleFactor;
+    final double y = (sceneY - sceneCoordinatesOfParent.getY() + offset.getY()) / scaleFactor;
 
-        if (index == -1 || connection.getJoints().isEmpty()) {
-            return -1;
-        } else if (index < connection.getJoints().size()) {
-            adjacentJointX = connection.getJoints().get(index).getX();
-            adjacentJointY = connection.getJoints().get(index).getY();
-        } else {
-            adjacentJointX = connection.getJoints().get(index - 1).getX();
-            adjacentJointY = connection.getJoints().get(index - 1).getY();
-        }
+    hoverEffect.setX(GeometryUtils.moveOnPixel(x - (double) HOVER_EFFECT_SIZE / 2));
+    hoverEffect.setY(GeometryUtils.moveOnPixel(y - (double) HOVER_EFFECT_SIZE / 2));
+  }
 
-        final Point2D clickPositionInParent = root.localToParent(event.getX(), event.getY());
+  /**
+   * Gets the location of the new joint based on the cursor position.
+   *
+   * @param event the mouse event object containing cursor information
+   * @param root the root node of the connection skin
+   * @return the index in the connection's joint list of where the new joint would go
+   */
+  private int getNewJointLocation(final @NotNull MouseEvent event, final Group root) {
 
-        if (RectangularConnections.isSegmentHorizontal(connection, index)) {
-            newJointX = GeometryUtils.moveOnPixel(clickPositionInParent.getX());
-            newJointY = GeometryUtils.moveOnPixel(adjacentJointY);
-        } else {
-            newJointX = GeometryUtils.moveOnPixel(adjacentJointX);
-            newJointY = GeometryUtils.moveOnPixel(clickPositionInParent.getY());
-        }
+    final int index = offsetCalculator.getNearestSegment(event.getSceneX(), event.getSceneY());
 
-        return index;
+    final double adjacentJointX;
+    final double adjacentJointY;
+
+    if (index == -1 || connection.getJoints().isEmpty()) {
+      return -1;
+    } else if (index < connection.getJoints().size()) {
+      adjacentJointX = connection.getJoints().get(index).getX();
+      adjacentJointY = connection.getJoints().get(index).getY();
+    } else {
+      adjacentJointX = connection.getJoints().get(index - 1).getX();
+      adjacentJointY = connection.getJoints().get(index - 1).getY();
     }
 
-    /**
-     * Adds two new joints on top of each other to this connection.
-     *
-     * <p>
-     * <b> Note: </b><br>
-     * We add the joints directly to the model and not via EMF commands. This is because we don't want the "add joints"
-     * action to be added to the undo/redo stack *unless* the net result of the gesture is to create a new connection
-     * shape.
-     * </p>
-     *
-     * @param index the index in the connection's joint list where the new joints are to be added
-     * @param x     the x position for the new joints
-     * @param y     the y position for the new joints
-     */
-    private void addTemporaryJoints(final int index, final double x, final double y) {
+    final Point2D clickPositionInParent = root.localToParent(event.getX(), event.getY());
 
-        final GJoint firstNewJoint = GraphFactory.eINSTANCE.createGJoint();
-        final GJoint secondNewJoint = GraphFactory.eINSTANCE.createGJoint();
-
-        firstNewJoint.setX(x);
-        firstNewJoint.setY(y);
-
-        secondNewJoint.setX(x);
-        secondNewJoint.setY(y);
-
-        temporaryJoints = new ArrayList<>();
-
-        temporaryJoints.add(firstNewJoint);
-        temporaryJoints.add(secondNewJoint);
-
-        connection.getJoints().add(index, secondNewJoint);
-        connection.getJoints().add(index, firstNewJoint);
-
-        graphEditor.reload();
+    if (RectangularConnections.isSegmentHorizontal(connection, index)) {
+      newJointX = GeometryUtils.moveOnPixel(clickPositionInParent.getX());
+      newJointY = GeometryUtils.moveOnPixel(adjacentJointY);
+    } else {
+      newJointX = GeometryUtils.moveOnPixel(adjacentJointX);
+      newJointY = GeometryUtils.moveOnPixel(clickPositionInParent.getY());
     }
 
-    /**
-     * Removes the temporary joints that were created by the mouse-pressed gesture.
-     */
-    private void removeTemporaryJoints() {
+    return index;
+  }
 
-        temporaryJoints.forEach(joint -> connection.getJoints().remove(joint));
+  /**
+   * Adds two new joints on top of each other to this connection.
+   *
+   * <p><b> Note: </b><br>
+   * We add the joints directly to the model and not via EMF commands. This is because we don't want
+   * the "add joints" action to be added to the undo/redo stack *unless* the net result of the
+   * gesture is to create a new connection shape.
+   *
+   * @param index the index in the connection's joint list where the new joints are to be added
+   * @param x the x position for the new joints
+   * @param y the y position for the new joints
+   */
+  private void addTemporaryJoints(final int index, final double x, final double y) {
 
-        graphEditor.reload();
-    }
+    final GJoint firstNewJoint = GraphFactory.eINSTANCE.createGJoint();
+    final GJoint secondNewJoint = GraphFactory.eINSTANCE.createGJoint();
 
-    /**
-     * Gets the new joint positions of the temporary joints.
-     *
-     * @return the list of positions of the temporary joints
-     */
-    private @NotNull List<Point2D> getNewJointPositions() {
-        val skinLookup = graphEditor.getSkinLookup();
-        val allJointPositions = GeometryUtils.getJointPositions(connection, skinLookup);
+    firstNewJoint.setX(x);
+    firstNewJoint.setY(y);
 
-        val jointsToCleanUp = JointCleaner.findJointsToCleanUp(allJointPositions);
+    secondNewJoint.setX(x);
+    secondNewJoint.setY(y);
 
-        return IntStream.range(0, allJointPositions.size())
-                .filter(i -> !jointsToCleanUp.get(i))
-                .mapToObj(allJointPositions::get)
-                .collect(Collectors.toList());
-    }
+    temporaryJoints = new ArrayList<>();
 
-    /**
-     * Checks if the old and new positions lead to different connection shapes.
-     *
-     * <p>
-     * This check is important because we do not want to add an 'identity' operation to the undo/redo stack.
-     * </p>
-     *
-     * @param oldPositions the list of old joint positions
-     * @param newPositions the list of new joint positions
-     * @return {@code true} if the new joint positions lead to a different connection shape
-     */
-    private boolean checkForNetChange(final List<Point2D> oldPositions, final List<Point2D> newPositions) {
-        return !(new HashSet<>(oldPositions).containsAll(newPositions) && new HashSet<>(newPositions).containsAll(oldPositions));
-    }
+    temporaryJoints.add(firstNewJoint);
+    temporaryJoints.add(secondNewJoint);
+
+    connection.getJoints().add(index, secondNewJoint);
+    connection.getJoints().add(index, firstNewJoint);
+
+    graphEditor.reload();
+  }
+
+  /** Removes the temporary joints that were created by the mouse-pressed gesture. */
+  private void removeTemporaryJoints() {
+
+    temporaryJoints.forEach(joint -> connection.getJoints().remove(joint));
+
+    graphEditor.reload();
+  }
+
+  /**
+   * Gets the new joint positions of the temporary joints.
+   *
+   * @return the list of positions of the temporary joints
+   */
+  private @NotNull List<Point2D> getNewJointPositions() {
+    val skinLookup = graphEditor.getSkinLookup();
+    val allJointPositions = GeometryUtils.getJointPositions(connection, skinLookup);
+
+    val jointsToCleanUp = JointCleaner.findJointsToCleanUp(allJointPositions);
+
+    return IntStream.range(0, allJointPositions.size())
+        .filter(i -> !jointsToCleanUp.get(i))
+        .mapToObj(allJointPositions::get)
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Checks if the old and new positions lead to different connection shapes.
+   *
+   * <p>This check is important because we do not want to add an 'identity' operation to the
+   * undo/redo stack.
+   *
+   * @param oldPositions the list of old joint positions
+   * @param newPositions the list of new joint positions
+   * @return {@code true} if the new joint positions lead to a different connection shape
+   */
+  private boolean checkForNetChange(
+      final List<Point2D> oldPositions, final List<Point2D> newPositions) {
+    return !(new HashSet<>(oldPositions).containsAll(newPositions)
+        && new HashSet<>(newPositions).containsAll(oldPositions));
+  }
 }

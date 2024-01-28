@@ -31,69 +31,68 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.visual.debugger.view.ScenicViewGui;
 
-
 public class CSSFXTabContentController {
-    @SuppressWarnings("unused")
-    private ScenicViewGui gui;
+  @SuppressWarnings("unused")
+  private ScenicViewGui gui;
 
-    @FXML
-    TextField tfFilter;
-    @FXML
-    CheckBox cbNonMapped;
-    @FXML
-    TableView<MonitoredCSS> items;
-    @FXML
-    private TableColumn<MonitoredCSS, String> cssColumn;
-    @FXML
-    private TableColumn<MonitoredCSS, String> mappedByColumn;
+  @FXML TextField tfFilter;
+  @FXML CheckBox cbNonMapped;
+  @FXML TableView<MonitoredCSS> items;
+  @FXML private TableColumn<MonitoredCSS, String> cssColumn;
+  @FXML private TableColumn<MonitoredCSS, String> mappedByColumn;
 
-    private final ObjectProperty<ObservableList<MonitoredCSS>> monitoredCSS = new SimpleObjectProperty<>();
+  private final ObjectProperty<ObservableList<MonitoredCSS>> monitoredCSS =
+      new SimpleObjectProperty<>();
 
-    @FXML
-    public void initialize() {
-        tfFilter.setPromptText("CSS URIs or File (contains)");
+  @FXML
+  public void initialize() {
+    tfFilter.setPromptText("CSS URIs or File (contains)");
 
-        cssColumn.prefWidthProperty().bind(items.widthProperty().divide(2.0f));
-        mappedByColumn.prefWidthProperty().bind(items.widthProperty().divide(2.0f));
+    cssColumn.prefWidthProperty().bind(items.widthProperty().divide(2.0f));
+    mappedByColumn.prefWidthProperty().bind(items.widthProperty().divide(2.0f));
 
-        cssColumn.setCellValueFactory(cellData -> cellData.getValue().css());
-        mappedByColumn.setCellValueFactory(cellData -> cellData.getValue().mappedBy());
+    cssColumn.setCellValueFactory(cellData -> cellData.getValue().css());
+    mappedByColumn.setCellValueFactory(cellData -> cellData.getValue().mappedBy());
 
-        monitoredCSS.addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                items.setItems(FXCollections.emptyObservableList());
-            } else {
-                FilteredList<MonitoredCSS> filteredData = new FilteredList<>(newValue, p -> true);
+    monitoredCSS.addListener(
+        (observable, oldValue, newValue) -> {
+          if (newValue == null) {
+            items.setItems(FXCollections.emptyObservableList());
+          } else {
+            FilteredList<MonitoredCSS> filteredData = new FilteredList<>(newValue, p -> true);
 
-                final ChangeListener<Object> anyFilterChange = (observable1, oldValue1, newValue1) ->
-                        filteredData.setPredicate(t -> {
-                            boolean isEmpty = t.getMappedBy() == null || "".equals(t.getMappedBy());
-                            if (cbNonMapped.isSelected() && !isEmpty) {
-                                return false;
-                            }
+            final ChangeListener<Object> anyFilterChange =
+                (observable1, oldValue1, newValue1) ->
+                    filteredData.setPredicate(
+                        t -> {
+                          boolean isEmpty = t.getMappedBy() == null || "".equals(t.getMappedBy());
+                          if (cbNonMapped.isSelected() && !isEmpty) {
+                            return false;
+                          }
 
-                            String filter = tfFilter.getText();
-                            return t.getCSS().contains(filter) || (t.getMappedBy() != null && t.getMappedBy().contains(filter));
+                          String filter = tfFilter.getText();
+                          return t.getCSS().contains(filter)
+                              || (t.getMappedBy() != null && t.getMappedBy().contains(filter));
                         });
-                cbNonMapped.selectedProperty().addListener(anyFilterChange);
-                tfFilter.textProperty().addListener(anyFilterChange);
+            cbNonMapped.selectedProperty().addListener(anyFilterChange);
+            tfFilter.textProperty().addListener(anyFilterChange);
 
-                SortedList<MonitoredCSS> sortedData = new SortedList<>(filteredData);
-                sortedData.comparatorProperty().bind(items.comparatorProperty());
-                items.setItems(sortedData);
-            }
+            SortedList<MonitoredCSS> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(items.comparatorProperty());
+            items.setItems(sortedData);
+          }
         });
-    }
+  }
 
-    public void setScenicViewGui(ScenicViewGui gui) {
-        this.gui = gui;
-    }
+  public void setScenicViewGui(ScenicViewGui gui) {
+    this.gui = gui;
+  }
 
-    public void setMonitoredCSS(ObservableList<MonitoredCSS> stageCSS) {
-        monitoredCSS.set(stageCSS);
-    }
+  public void setMonitoredCSS(ObservableList<MonitoredCSS> stageCSS) {
+    monitoredCSS.set(stageCSS);
+  }
 
-    public ObservableList<MonitoredCSS> getMonitoredCSS() {
-        return monitoredCSS.get();
-    }
+  public ObservableList<MonitoredCSS> getMonitoredCSS() {
+    return monitoredCSS.get();
+  }
 }

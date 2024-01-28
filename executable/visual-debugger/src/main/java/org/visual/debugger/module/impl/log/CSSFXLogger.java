@@ -30,114 +30,140 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 public class CSSFXLogger {
-    private static final Clock clock = Clock.systemDefaultZone();
+  private static final Clock clock = Clock.systemDefaultZone();
 
-    public static boolean isInitialized() {
-        return loggerFactory != null;
+  public static boolean isInitialized() {
+    return loggerFactory != null;
+  }
+
+  public static void console() {
+    loggerFactory = CONSOLE_LOGGER_FACTORY;
+  }
+
+  public static void jul() {
+    loggerFactory = JUL_LOGGER_FACTORY;
+  }
+
+  public static void noop() {
+    loggerFactory = NOOP_LOGGER_FACTORY;
+  }
+
+  /*
+   * Always use one of the 2 following methods and never keep static references to a logger.
+   */
+  public static Logger logger(String loggerName) {
+    return loggerFactory.getLogger(loggerName);
+  }
+
+  public static Logger logger(Class<?> loggerClass) {
+    return loggerFactory.getLogger(loggerClass);
+  }
+
+  public static enum LogLevel {
+    NONE,
+    ERROR,
+    WARN,
+    INFO,
+    DEBUG
+  }
+
+  @FunctionalInterface
+  public static interface Logger {
+    void log(LogLevel level, String message, Object... args);
+
+    default void info(String message, Object... args) {
+      log(LogLevel.INFO, message, args);
+    }
+    ;
+
+    default void debug(String message, Object... args) {
+      log(LogLevel.DEBUG, message, args);
+    }
+    ;
+
+    default void warn(String message, Object... args) {
+      log(LogLevel.WARN, message, args);
+    }
+    ;
+
+    default void error(String message, Object... args) {
+      log(LogLevel.ERROR, message, args);
+    }
+    ;
+  }
+
+  @FunctionalInterface
+  public static interface LoggerFactory {
+    default Logger getLogger(Class<?> loggerClass) {
+      return getLogger(loggerClass.getName());
     }
 
-    public static void console() {
-        loggerFactory = CONSOLE_LOGGER_FACTORY;
-    }
+    Logger getLogger(String loggerName);
+  }
 
-    public static void jul() {
-        loggerFactory = JUL_LOGGER_FACTORY;
-    }
-
-    public static void noop() {
-        loggerFactory = NOOP_LOGGER_FACTORY;
-    }
-
-    /*
-     * Always use one of the 2 following methods and never keep static references to a logger.
-     */
-    public static Logger logger(String loggerName) {
-        return loggerFactory.getLogger(loggerName);
-    }
-    public static Logger logger(Class<?> loggerClass) {
-        return loggerFactory.getLogger(loggerClass);
-    }
-
-    public static enum LogLevel {
-        NONE,
-        ERROR,
-        WARN,
-        INFO,
-        DEBUG
-    }
-
-    @FunctionalInterface
-    public static interface Logger {
-        void log(LogLevel level, String message, Object ... args);
-        default void info(String message, Object ... args) {log(LogLevel.INFO, message, args);};
-        default void debug(String message, Object ... args) {log(LogLevel.DEBUG, message, args);};
-        default void warn(String message, Object ... args) {log(LogLevel.WARN, message, args);};
-        default void error(String message, Object ... args) {log(LogLevel.ERROR, message, args);};
-    }
-
-    @FunctionalInterface
-    public static interface LoggerFactory {
-        default Logger getLogger(Class<?> loggerClass) {
-            return getLogger(loggerClass.getName());
-        }
-        Logger getLogger(String loggerName);
-    }
-
-    private static final Logger CONSOLE_LOGGER = new Logger() {
-        private void printLastThrowableArgument(PrintStream output, Object ...args) {
-            if (args.length > 0 && Throwable.class.isAssignableFrom(args[args.length-1].getClass())) {
-                Throwable t = (Throwable) args[args.length-1];
-                t.printStackTrace(output);
-            }
+  private static final Logger CONSOLE_LOGGER =
+      new Logger() {
+        private void printLastThrowableArgument(PrintStream output, Object... args) {
+          if (args.length > 0
+              && Throwable.class.isAssignableFrom(args[args.length - 1].getClass())) {
+            Throwable t = (Throwable) args[args.length - 1];
+            t.printStackTrace(output);
+          }
         }
 
         @Override
-        public void log(LogLevel askedLevel, String message, Object ... args) {
-            if (askedLevel.ordinal() <= logLevel.ordinal()) {
-                List<Object> params = new ArrayList<Object>(args.length + 2);
-                params.add(clock.instant());
-                params.add(askedLevel);
-                params.addAll(Arrays.asList(args));
-                final PrintStream writer = (LogLevel.ERROR.equals(askedLevel))?System.err:System.out;
-                writer.printf("%s [%5s] " + message + "%n", params.toArray());
-                printLastThrowableArgument(writer, args);
-            }
-        };
-    };
+        public void log(LogLevel askedLevel, String message, Object... args) {
+          if (askedLevel.ordinal() <= logLevel.ordinal()) {
+            List<Object> params = new ArrayList<Object>(args.length + 2);
+            params.add(clock.instant());
+            params.add(askedLevel);
+            params.addAll(Arrays.asList(args));
+            final PrintStream writer =
+                (LogLevel.ERROR.equals(askedLevel)) ? System.err : System.out;
+            writer.printf("%s [%5s] " + message + "%n", params.toArray());
+            printLastThrowableArgument(writer, args);
+          }
+        }
+        ;
+      };
 
-    private static final LoggerFactory JUL_LOGGER_FACTORY = new LoggerFactory() {
-        final Map<LogLevel, Level> levelMapping = new HashMap<>() {{
-            put(LogLevel.NONE, Level.OFF);
-            put(LogLevel.ERROR, Level.SEVERE);
-            put(LogLevel.WARN, Level.WARNING);
-            put(LogLevel.INFO, Level.INFO);
-            put(LogLevel.DEBUG, Level.FINE);
-        }};
+  private static final LoggerFactory JUL_LOGGER_FACTORY =
+      new LoggerFactory() {
+        final Map<LogLevel, Level> levelMapping =
+            new HashMap<>() {
+              {
+                put(LogLevel.NONE, Level.OFF);
+                put(LogLevel.ERROR, Level.SEVERE);
+                put(LogLevel.WARN, Level.WARNING);
+                put(LogLevel.INFO, Level.INFO);
+                put(LogLevel.DEBUG, Level.FINE);
+              }
+            };
+
         @Override
         public @NotNull Logger getLogger(String loggerName) {
-            java.util.logging.Logger delegate = java.util.logging.Logger.getLogger(loggerName);
+          java.util.logging.Logger delegate = java.util.logging.Logger.getLogger(loggerName);
 
-            return (askedLevel, message, args) -> {
-                Level julLevel = levelMapping.get(askedLevel);
+          return (askedLevel, message, args) -> {
+            Level julLevel = levelMapping.get(askedLevel);
 
-                Supplier<String> log = () -> String.format(message, args);
-                if (args.length > 0 && Throwable.class.isAssignableFrom(args[args.length-1].getClass())) {
-                    Throwable t = (Throwable) args[args.length-1];
-                    delegate.log(julLevel, t, log);
-                } else {
-                    delegate.log(julLevel, log);
-                }
-            };
+            Supplier<String> log = () -> String.format(message, args);
+            if (args.length > 0
+                && Throwable.class.isAssignableFrom(args[args.length - 1].getClass())) {
+              Throwable t = (Throwable) args[args.length - 1];
+              delegate.log(julLevel, t, log);
+            } else {
+              delegate.log(julLevel, log);
+            }
+          };
         }
-    };
+      };
 
-    private static final LoggerFactory CONSOLE_LOGGER_FACTORY = (s) -> CONSOLE_LOGGER;
+  private static final LoggerFactory CONSOLE_LOGGER_FACTORY = (s) -> CONSOLE_LOGGER;
 
-    private static final Logger NOOP_LOGGER = (level, message, args) -> {};
-    private static final LoggerFactory NOOP_LOGGER_FACTORY = (s) -> NOOP_LOGGER;
+  private static final Logger NOOP_LOGGER = (level, message, args) -> {};
+  private static final LoggerFactory NOOP_LOGGER_FACTORY = (s) -> NOOP_LOGGER;
 
-    @Setter
-    private static LoggerFactory loggerFactory = null;
-    @Setter
-    private static LogLevel logLevel = LogLevel.INFO;
+  @Setter private static LoggerFactory loggerFactory = null;
+  @Setter private static LogLevel logLevel = LogLevel.INFO;
 }

@@ -17,8 +17,6 @@
  */
 package org.visual.debugger.model.update;
 
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,114 +29,114 @@ import org.visual.debugger.api.UpdateStrategy;
 import org.visual.debugger.helper.WorkerThread;
 import org.visual.debugger.remote.FXConnector;
 
-
 @Slf4j
 public class RemoteVMsUpdateStrategy extends WorkerThread implements UpdateStrategy {
 
-    private boolean first = true;
-    private FXConnector connector;
+  private boolean first = true;
+  private FXConnector connector;
 
-    AppsRepository repository;
-    List<AppController> previous = new ArrayList<>();
+  AppsRepository repository;
+  List<AppController> previous = new ArrayList<>();
 
-    public RemoteVMsUpdateStrategy() {
-        super(RemoteVMsUpdateStrategy.class.getName(), 500);
-    }
+  public RemoteVMsUpdateStrategy() {
+    super(RemoteVMsUpdateStrategy.class.getName(), 500);
+  }
 
-    private List<AppController> getActiveApps() {
-        if (first) {
-            /**
-             * Wait for the server to startup
-             */
-            first = false;
-            while (connector == null) {
-                try {
-                    Thread.sleep(50);
-                } catch (final InterruptedException e) {
-                    log.error(e.getLocalizedMessage(),e);
-                }
-            }
+  private List<AppController> getActiveApps() {
+    if (first) {
+      /** Wait for the server to startup */
+      first = false;
+      while (connector == null) {
+        try {
+          Thread.sleep(50);
+        } catch (final InterruptedException e) {
+          log.error(e.getLocalizedMessage(), e);
         }
-
-        return connector.connect();
+      }
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        connector.close();
-        System.exit(0);
+    return connector.connect();
+  }
+
+  @Override
+  public void finish() {
+    super.finish();
+    connector.close();
+    System.exit(0);
+  }
+
+  public void setFXConnector(final FXConnector connector) {
+    this.connector = connector;
+  }
+
+  @Override
+  public void start(final AppsRepository repository) {
+    this.repository = repository;
+    start();
+  }
+
+  @Override
+  protected void work() {
+    boolean modifications = false;
+    final List<AppController> actualApps = getActiveApps();
+
+    final List<StageController> unused =
+        actualApps.stream()
+            .map(AppController::getStages)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
+
+    /** First check new apps */
+    for (AppController actualApp : actualApps) {
+      if (isAppOnArray(actualApp, previous) == -1) {
+        repository.appAdded(actualApp);
+        unused.removeAll(actualApp.getStages());
+        modifications = true;
+      }
     }
 
-    public void setFXConnector(final FXConnector connector) {
-        this.connector = connector;
-    }
+    /** Then check remove apps */
+    for (AppController appController : previous)
+      if (isAppOnArray(appController, actualApps) == -1) {
+        repository.appRemoved(appController);
+        modifications = true;
+      }
 
-    @Override
-    public void start(final AppsRepository repository) {
-        this.repository = repository;
-        start();
-    }
-
-    @Override
-    protected void work() {
-        boolean modifications = false;
-        final List<AppController> actualApps = getActiveApps();
-
-        final List<StageController> unused = actualApps.stream().map(AppController::getStages).flatMap(Collection::stream).collect(Collectors.toList());
-
-        /**
-         * First check new apps
-         */
-        for (AppController actualApp : actualApps) {
-            if (isAppOnArray(actualApp, previous) == -1) {
-                repository.appAdded(actualApp);
-                unused.removeAll(actualApp.getStages());
-                modifications = true;
-            }
+    /** Then check added/removed Stages */
+    for (AppController actualApp : actualApps) {
+      if (isAppOnArray(actualApp, previous) != -1) {
+        final List<StageController> stages = actualApp.getStages();
+        final List<StageController> previousStages =
+            previous.get(isAppOnArray(actualApp, previous)).getStages();
+        for (StageController stage : stages) {
+          if (!isStageOnArray(stage, previousStages)) {
+            repository.stageAdded(stage);
+            unused.remove(stage);
+            modifications = true;
+          }
         }
-
-        /**
-         * Then check remove apps
-         */
-        for (AppController appController : previous)
-            if (isAppOnArray(appController, actualApps) == -1) {
-                repository.appRemoved(appController);
-                modifications = true;
-            }
-
-        /**
-         * Then check added/removed Stages
-         */
-        for (AppController actualApp : actualApps) {
-            if (isAppOnArray(actualApp, previous) != -1) {
-                final List<StageController> stages = actualApp.getStages();
-                final List<StageController> previousStages = previous.get(isAppOnArray(actualApp, previous)).getStages();
-                for (StageController stage : stages) {
-                    if (!isStageOnArray(stage, previousStages)) {
-                        repository.stageAdded(stage);
-                        unused.remove(stage);
-                        modifications = true;
-                    }
-                }
-                for (StageController previousStage : previousStages) {
-                    if (!isStageOnArray(previousStage, stages)) {
-                        repository.stageRemoved(previousStage);
-                        modifications = true;
-                    }
-                }
-            }
+        for (StageController previousStage : previousStages) {
+          if (!isStageOnArray(previousStage, stages)) {
+            repository.stageRemoved(previousStage);
+            modifications = true;
+          }
         }
-        if (modifications) {
-            previous = actualApps;
-        }
+      }
     }
+    if (modifications) {
+      previous = actualApps;
+    }
+  }
 
-    boolean isStageOnArray(final StageController controller, final List<StageController> stages) {
-        return IntStream.range(0, stages.size()).anyMatch(i -> stages.get(i).getID().getStageID() == controller.getID().getStageID());
-    }
+  boolean isStageOnArray(final StageController controller, final List<StageController> stages) {
+    return IntStream.range(0, stages.size())
+        .anyMatch(i -> stages.get(i).getID().getStageID() == controller.getID().getStageID());
+  }
 
-    int isAppOnArray(final AppController controller, final List<AppController> apps) {
-        return IntStream.range(0, apps.size()).filter(i -> apps.get(i).getID() == controller.getID()).findFirst().orElse(-1);
-    }
+  int isAppOnArray(final AppController controller, final List<AppController> apps) {
+    return IntStream.range(0, apps.size())
+        .filter(i -> apps.get(i).getID() == controller.getID())
+        .findFirst()
+        .orElse(-1);
+  }
 }

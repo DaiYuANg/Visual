@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,41 +21,39 @@ import java.io.File;
 import lombok.Getter;
 import org.visual.debugger.api.AttachHandler;
 
-/**
- *
- */
+/** */
 public class JDKToolsJarPair {
-    
-    @Getter
-    private final File jdkPath;
-    
-    private File toolsPath;
-    
-    public JDKToolsJarPair(String jdkPath) {
-        if (jdkPath == null || jdkPath.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        this.jdkPath = new File(jdkPath);
-    }
-    
-    public JDKToolsJarPair(File jdkPath) {
-        this.jdkPath = jdkPath;
-    }
 
-    public JDKToolsJarPair(File jdkPath, File toolsPath) {
-        this.jdkPath = jdkPath;
-        this.toolsPath = toolsPath;
-    }
+  @Getter private final File jdkPath;
 
-    public File getToolsPath(AttachHandler attachHandler) {
-        if (toolsPath == null) {
-            // attempt to resolve path
-            toolsPath = attachHandler.resolveToolsJarPath(this);
-        }
-        return toolsPath;
+  private File toolsPath;
+
+  public JDKToolsJarPair(String jdkPath) {
+    if (jdkPath == null || jdkPath.isEmpty()) {
+      throw new IllegalArgumentException();
     }
-    
-    @Override public String toString() {
-        return getJdkPath().getAbsolutePath();
+    this.jdkPath = new File(jdkPath);
+  }
+
+  public JDKToolsJarPair(File jdkPath) {
+    this.jdkPath = jdkPath;
+  }
+
+  public JDKToolsJarPair(File jdkPath, File toolsPath) {
+    this.jdkPath = jdkPath;
+    this.toolsPath = toolsPath;
+  }
+
+  public File getToolsPath(AttachHandler attachHandler) {
+    if (toolsPath == null) {
+      // attempt to resolve path
+      toolsPath = attachHandler.resolveToolsJarPath(this);
     }
+    return toolsPath;
+  }
+
+  @Override
+  public String toString() {
+    return getJdkPath().getAbsolutePath();
+  }
 }

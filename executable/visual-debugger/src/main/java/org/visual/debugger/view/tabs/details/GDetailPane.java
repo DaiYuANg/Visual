@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.view.tabs.details;
 
-
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Consumer;
@@ -38,279 +37,296 @@ import org.visual.debugger.details.Detail;
 import org.visual.debugger.details.DetailPaneType;
 import org.visual.debugger.view.ScenicViewGui;
 
-
 @Slf4j
 public class GDetailPane extends TitledPane {
 
-    private static final int LABEL_COLUMN = 0;
-    private static final int VALUE_COLUMN = 1;
+  private static final int LABEL_COLUMN = 0;
+  private static final int VALUE_COLUMN = 1;
 
-    public static float FADE = .50f;
-    public static DecimalFormat f = new DecimalFormat("0.0#");
+  public static float FADE = .50f;
+  public static DecimalFormat f = new DecimalFormat("0.0#");
 
-    static final String DETAIL_LABEL_STYLE = "detail-label";
+  static final String DETAIL_LABEL_STYLE = "detail-label";
 
-    private final ScenicViewGui scenicView;
+  private final ScenicViewGui scenicView;
 
-    public DetailPaneType type;
-    public GridPane gridpane;
-    static GDetail activeDetail;
-    List<Node> paneNodes = new ArrayList<>();
-    List<GDetail> details = new ArrayList<>();
-    Consumer<String> loader;
+  public DetailPaneType type;
+  public GridPane gridpane;
+  static GDetail activeDetail;
+  List<Node> paneNodes = new ArrayList<>();
+  List<GDetail> details = new ArrayList<>();
+  Consumer<String> loader;
 
-    public GDetailPane(ScenicViewGui scenicView, final DetailPaneType type, final String name, final Consumer<String> loader) {
-        this.scenicView = scenicView;
-        this.type = type;
-        this.loader = loader;
-        setText(name);
-        getStyleClass().add("detail-pane");
-        setManaged(false);
-        setVisible(false);
-        setExpanded(false);
-        setMaxWidth(Double.MAX_VALUE);
-        setId("title-label");
-        setAlignment(Pos.CENTER_LEFT);
+  public GDetailPane(
+      ScenicViewGui scenicView,
+      final DetailPaneType type,
+      final String name,
+      final Consumer<String> loader) {
+    this.scenicView = scenicView;
+    this.type = type;
+    this.loader = loader;
+    setText(name);
+    getStyleClass().add("detail-pane");
+    setManaged(false);
+    setVisible(false);
+    setExpanded(false);
+    setMaxWidth(Double.MAX_VALUE);
+    setId("title-label");
+    setAlignment(Pos.CENTER_LEFT);
 
-        gridpane = new GridPane();
-        gridpane.getStyleClass().add("detail-grid");
-        gridpane.setOnMousePressed(event -> {
-            if (activeDetail != null)
-                activeDetail.recover();
+    gridpane = new GridPane();
+    gridpane.getStyleClass().add("detail-grid");
+    gridpane.setOnMousePressed(
+        event -> {
+          if (activeDetail != null) activeDetail.recover();
         });
-        gridpane.setHgap(4);
-        gridpane.setVgap(2);
-        gridpane.setSnapToPixel(true);
-        final ColumnConstraints colInfo = new ColumnConstraints(180);
-        gridpane.getColumnConstraints().addAll(colInfo, new ColumnConstraints());
-        setContent(gridpane);
+    gridpane.setHgap(4);
+    gridpane.setVgap(2);
+    gridpane.setSnapToPixel(true);
+    final ColumnConstraints colInfo = new ColumnConstraints(180);
+    gridpane.getColumnConstraints().addAll(colInfo, new ColumnConstraints());
+    setContent(gridpane);
+  }
 
+  protected GDetail addDetail(
+      final String propertyName,
+      final String labelText,
+      final Node labelGraphic,
+      final Node valueNode,
+      final int row) {
+    final Label label = new Label(labelText);
+    if (labelGraphic != null) {
+      label.setGraphic(labelGraphic);
+      label.setContentDisplay(ContentDisplay.LEFT);
     }
 
-    protected GDetail addDetail(final String propertyName, final String labelText, final Node labelGraphic, final Node valueNode, final int row) {
-        final Label label = new Label(labelText);
-        if (labelGraphic != null) {
-            label.setGraphic(labelGraphic);
-            label.setContentDisplay(ContentDisplay.LEFT);
+    final GDetail detail = new GDetail(scenicView, label, valueNode);
+    detail.setAPILoader(loader);
+    GridPane.setConstraints(detail.label, LABEL_COLUMN, row);
+    GridPane.setHalignment(detail.label, HPos.RIGHT);
+    GridPane.setValignment(detail.label, VPos.TOP);
+    detail.label.getStyleClass().add(DETAIL_LABEL_STYLE);
+
+    if (valueNode instanceof Label) {
+      final Group group = new Group(detail.valueLabel);
+      GridPane.setConstraints(group, VALUE_COLUMN, row);
+      GridPane.setHalignment(group, HPos.LEFT);
+      GridPane.setValignment(group, VPos.TOP);
+      detail.valueLabel.getStyleClass().add("detail-value");
+      addToPane(detail.label, group);
+    } else {
+      // icky, but fine for now
+      final Group group = new Group(detail.valueNode);
+      GridPane.setConstraints(group, VALUE_COLUMN, row);
+      GridPane.setHalignment(group, HPos.LEFT);
+      GridPane.setValignment(group, VPos.TOP);
+      addToPane(detail.label, group);
+    }
+
+    details.add(detail);
+    return detail;
+  }
+
+  protected void clearPane() {
+    gridpane.getChildren().clear();
+    paneNodes.clear();
+    details.clear();
+  }
+
+  protected void addToPane(final Node... nodes) {
+    gridpane.getChildren().addAll(nodes);
+    paneNodes.addAll(Arrays.asList(nodes));
+  }
+
+  private String currentFilter = null;
+
+  public void filterProperties(final String text) {
+    // if (currentFilter != null && currentFilter.equals(text)) {
+    // return;
+    // }
+    currentFilter = text;
+
+    /** Make this more clean */
+    gridpane.getChildren().clear();
+    final List<Node> nodes = paneNodes;
+    int row = 0;
+    for (int i = 0; i < nodes.size(); i++) {
+
+      final Label label = (Label) nodes.get(i++);
+      boolean valid =
+          text == null
+              || text.isEmpty()
+              || label.getText().toLowerCase().contains(text.toLowerCase());
+      final Group g = (Group) nodes.get(i);
+      final Node value = g.getChildren().getFirst();
+
+      if (!valid && value instanceof Label) {
+        valid = ((Label) value).getText().toLowerCase().contains(text.toLowerCase());
+      }
+
+      if (valid && label.isVisible()) {
+        GridPane.setConstraints(label, LABEL_COLUMN, row);
+        GridPane.setConstraints(g, VALUE_COLUMN, row);
+        gridpane.getChildren().addAll(label, g);
+        row++;
+      }
+    }
+  }
+
+  @Override
+  protected double computeMinWidth(final double height) {
+    return prefWidth(height);
+  }
+
+  @Override
+  protected double computeMinHeight(final double width) {
+    return prefHeight(width);
+  }
+
+  public void updateDetails(
+      final @NotNull List<Detail> details, final RemotePropertySetter setter) {
+    clearPane();
+    for (int i = 0; i < details.size(); i++) {
+      val d = details.get(i);
+      Node labelGraphic;
+      switch (d.getLabelType()) {
+        case LAYOUT_BOUNDS -> {
+          final Rectangle layoutBoundsIcon = new Rectangle(12, 12);
+          layoutBoundsIcon.setFill(null);
+          layoutBoundsIcon.setStroke(Color.GREEN);
+          layoutBoundsIcon.setOpacity(.8);
+          layoutBoundsIcon.getStrokeDashArray().addAll(3.0, 3.0);
+          layoutBoundsIcon.setStrokeWidth(1);
+          labelGraphic = layoutBoundsIcon;
         }
-
-        final GDetail detail = new GDetail(scenicView, label, valueNode);
-        detail.setAPILoader(loader);
-        GridPane.setConstraints(detail.label, LABEL_COLUMN, row);
-        GridPane.setHalignment(detail.label, HPos.RIGHT);
-        GridPane.setValignment(detail.label, VPos.TOP);
-        detail.label.getStyleClass().add(DETAIL_LABEL_STYLE);
-
-        if (valueNode instanceof Label) {
-            final Group group = new Group(detail.valueLabel);
-            GridPane.setConstraints(group, VALUE_COLUMN, row);
-            GridPane.setHalignment(group, HPos.LEFT);
-            GridPane.setValignment(group, VPos.TOP);
-            detail.valueLabel.getStyleClass().add("detail-value");
-            addToPane(detail.label, group);
-        } else {
-            // icky, but fine for now
-            final Group group = new Group(detail.valueNode);
-            GridPane.setConstraints(group, VALUE_COLUMN, row);
-            GridPane.setHalignment(group, HPos.LEFT);
-            GridPane.setValignment(group, VPos.TOP);
-            addToPane(detail.label, group);
+        case BOUNDS_PARENT -> {
+          final Rectangle boundsInParentIcon = new Rectangle(12, 12);
+          boundsInParentIcon.setFill(Color.YELLOW);
+          boundsInParentIcon.setOpacity(.5);
+          labelGraphic = boundsInParentIcon;
         }
+        case BASELINE -> {
+          final Group baselineIcon = new Group();
+          final Line line = new Line(0, 8, 14, 8);
+          line.setStroke(Color.RED);
+          line.setOpacity(.75);
+          line.setStrokeWidth(1);
+          baselineIcon.getChildren().addAll(new Rectangle(10, 10, Color.TRANSPARENT), line);
+          labelGraphic = baselineIcon;
+        }
+        default -> {
+          labelGraphic = null;
+        }
+      }
 
-        details.add(detail);
-        return detail;
-    }
+      Node value = null;
+      final boolean isEditingSupported = Detail.isEditionSupported(d.getEditionType());
+      final boolean isPropertyBound = d.getEditionType() == Detail.EditionType.NONE_BOUND;
+      final Node graphic =
+          isEditingSupported
+              ? new FontIcon(FontAwesomeSolid.LOCK_OPEN)
+              : isPropertyBound ? new FontIcon(FontAwesomeSolid.LOCK) : null;
 
-    protected void clearPane() {
-        gridpane.getChildren().clear();
-        paneNodes.clear();
-        details.clear();
-    }
+      switch (d.getValueType()) {
+        case NORMAL:
+          {
+            final Label valueLabel = new Label();
+            valueLabel.setGraphic(graphic);
+            value = valueLabel;
+            break;
+          }
+        case INSETS:
+          {
+            value = new InsetsDisplay();
+            break;
+          }
+        case CONSTRAINTS:
+          {
+            value = new ConstraintsDisplay();
+            break;
+          }
+        case GRID_CONSTRAINTS:
+          {
+            value = new GridConstraintDisplay();
+            break;
+          }
+        case COLOR:
+          {
+            final Label valueLabel = new Label();
+            Color c;
+            try {
+              c = Color.valueOf(d.getValue());
+            } catch (IllegalArgumentException e) {
+              log.atInfo().log("Error for color: {}", d.getValue());
+              c = Color.BLACK;
+            }
+            Rectangle rect = new Rectangle(10, 10, c);
+            HBox hbox = new HBox(5, graphic, rect);
+            hbox.setAlignment(Pos.CENTER_LEFT);
+            valueLabel.setGraphic(hbox);
+            valueLabel.setText(d.getValue());
+            value = valueLabel;
+            break;
+          }
+      }
 
-    protected void addToPane(final Node... nodes) {
-        gridpane.getChildren().addAll(nodes);
-        paneNodes.addAll(Arrays.asList(nodes));
-    }
-
-    private String currentFilter = null;
-
-    public void filterProperties(final String text) {
-        // if (currentFilter != null && currentFilter.equals(text)) {
-        // return;
-        // }
-        currentFilter = text;
-
-        /**
-         * Make this more clean
-         */
-        gridpane.getChildren().clear();
-        final List<Node> nodes = paneNodes;
-        int row = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-
-            final Label label = (Label) nodes.get(i++);
-            boolean valid = text == null || text.isEmpty() || label.getText().toLowerCase().contains(text.toLowerCase());
-            final Group g = (Group) nodes.get(i);
-            final Node value = g.getChildren().getFirst();
-
-            if (!valid && value instanceof Label) {
-                valid = ((Label) value).getText().toLowerCase().contains(text.toLowerCase());
+      final GDetail detail = addDetail(d.getProperty(), d.getLabel(), labelGraphic, value, i);
+      doUpdateDetail(detail, d);
+      detail.setSerializer(
+          new WritableValue<String>() {
+            @Override
+            public void setValue(final String value) {
+              try {
+                setter.set(d, value);
+              } catch (final Exception e) {
+                scenicView.setStatusText(Detail.STATUS_EXCEPTION + e.getMessage(), 10000);
+              }
             }
 
-            if (valid && label.isVisible()) {
-                GridPane.setConstraints(label, LABEL_COLUMN, row);
-                GridPane.setConstraints(g, VALUE_COLUMN, row);
-                gridpane.getChildren().addAll(label, g);
-                row++;
+            @Override
+            public String getValue() {
+              // TODO Auto-generated method stub
+              return null;
             }
-        }
+          });
     }
+    filterProperties(currentFilter);
+  }
 
-    @Override
-    protected double computeMinWidth(final double height) {
-        return prefWidth(height);
+  public void updateDetail(final Detail detail) {
+    GDetail pane =
+        details.stream().filter(gDetail -> gDetail.detail.equals(detail)).findFirst().orElse(null);
+    if (pane != null) {
+      doUpdateDetail(pane, detail);
+      pane.updated();
+      filterProperties(currentFilter);
+    } else {
+      log.atInfo().log("Pane not found for detail:{}", detail);
     }
+  }
 
-    @Override
-    protected double computeMinHeight(final double width) {
-        return prefHeight(width);
+  private void doUpdateDetail(final @NotNull GDetail detail, final Detail d) {
+    detail.setDetail(d);
+    detail.setIsDefault(d.isDefault());
+    detail.setReason(d.getReason());
+    detail.setValidItems(d.getValidItems());
+    detail.setMinMax(d.getMinValue(), d.getMaxValue());
+    detail.setEditionType(d.getEditionType());
+    detail.setRealValue(d.getRealValue());
+    detail.setValue(d.getValue());
+  }
+
+  public interface RemotePropertySetter {
+    void set(Detail detail, String value);
+  }
+
+  @Override
+  public String toString() {
+    if (details.isEmpty()) {
+      return "";
     }
-
-    public void updateDetails(final @NotNull List<Detail> details, final RemotePropertySetter setter) {
-        clearPane();
-        for (int i = 0; i < details.size(); i++) {
-            val d = details.get(i);
-            Node labelGraphic;
-            switch (d.getLabelType()) {
-                case LAYOUT_BOUNDS -> {
-                    final Rectangle layoutBoundsIcon = new Rectangle(12, 12);
-                    layoutBoundsIcon.setFill(null);
-                    layoutBoundsIcon.setStroke(Color.GREEN);
-                    layoutBoundsIcon.setOpacity(.8);
-                    layoutBoundsIcon.getStrokeDashArray().addAll(3.0, 3.0);
-                    layoutBoundsIcon.setStrokeWidth(1);
-                    labelGraphic = layoutBoundsIcon;
-                }
-                case BOUNDS_PARENT -> {
-                    final Rectangle boundsInParentIcon = new Rectangle(12, 12);
-                    boundsInParentIcon.setFill(Color.YELLOW);
-                    boundsInParentIcon.setOpacity(.5);
-                    labelGraphic = boundsInParentIcon;
-                }
-                case BASELINE -> {
-                    final Group baselineIcon = new Group();
-                    final Line line = new Line(0, 8, 14, 8);
-                    line.setStroke(Color.RED);
-                    line.setOpacity(.75);
-                    line.setStrokeWidth(1);
-                    baselineIcon.getChildren().addAll(new Rectangle(10, 10, Color.TRANSPARENT), line);
-                    labelGraphic = baselineIcon;
-                }
-                default -> {
-                    labelGraphic = null;
-                }
-            }
-
-            Node value = null;
-            final boolean isEditingSupported = Detail.isEditionSupported(d.getEditionType());
-            final boolean isPropertyBound = d.getEditionType() == Detail.EditionType.NONE_BOUND;
-            final Node graphic = isEditingSupported ? new FontIcon(FontAwesomeSolid.LOCK_OPEN) :
-                    isPropertyBound ? new FontIcon(FontAwesomeSolid.LOCK) :
-                            null;
-
-            switch (d.getValueType()) {
-                case NORMAL: {
-                    final Label valueLabel = new Label();
-                    valueLabel.setGraphic(graphic);
-                    value = valueLabel;
-                    break;
-                }
-                case INSETS: {
-                    value = new InsetsDisplay();
-                    break;
-                }
-                case CONSTRAINTS: {
-                    value = new ConstraintsDisplay();
-                    break;
-                }
-                case GRID_CONSTRAINTS: {
-                    value = new GridConstraintDisplay();
-                    break;
-                }
-                case COLOR: {
-                    final Label valueLabel = new Label();
-                    Color c;
-                    try {
-                        c = Color.valueOf(d.getValue());
-                    } catch (IllegalArgumentException e) {
-                        log.atInfo().log("Error for color: {}", d.getValue());
-                        c = Color.BLACK;
-                    }
-                    Rectangle rect = new Rectangle(10, 10, c);
-                    HBox hbox = new HBox(5, graphic, rect);
-                    hbox.setAlignment(Pos.CENTER_LEFT);
-                    valueLabel.setGraphic(hbox);
-                    valueLabel.setText(d.getValue());
-                    value = valueLabel;
-                    break;
-                }
-            }
-
-            final GDetail detail = addDetail(d.getProperty(), d.getLabel(), labelGraphic, value, i);
-            doUpdateDetail(detail, d);
-            detail.setSerializer(new WritableValue<String>() {
-                @Override
-                public void setValue(final String value) {
-                    try {
-                        setter.set(d, value);
-                    } catch (final Exception e) {
-                        scenicView.setStatusText(Detail.STATUS_EXCEPTION + e.getMessage(), 10000);
-                    }
-                }
-
-                @Override
-                public String getValue() {
-                    // TODO Auto-generated method stub
-                    return null;
-                }
-            });
-        }
-        filterProperties(currentFilter);
-    }
-
-    public void updateDetail(final Detail detail) {
-        GDetail pane = details.stream().filter(gDetail -> gDetail.detail.equals(detail)).findFirst().orElse(null);
-        if (pane != null) {
-            doUpdateDetail(pane, detail);
-            pane.updated();
-            filterProperties(currentFilter);
-        } else {
-            log.atInfo().log("Pane not found for detail:{}", detail);
-        }
-    }
-
-    private void doUpdateDetail(final @NotNull GDetail detail, final Detail d) {
-        detail.setDetail(d);
-        detail.setIsDefault(d.isDefault());
-        detail.setReason(d.getReason());
-        detail.setValidItems(d.getValidItems());
-        detail.setMinMax(d.getMinValue(), d.getMaxValue());
-        detail.setEditionType(d.getEditionType());
-        detail.setRealValue(d.getRealValue());
-        detail.setValue(d.getValue());
-    }
-
-    public interface RemotePropertySetter {
-        void set(Detail detail, String value);
-    }
-
-    @Override
-    public String toString() {
-        if (details.isEmpty()) {
-            return "";
-        }
-        return details.stream()
-                .map(detail -> String.valueOf(detail) + '\n')
-                .collect(Collectors.joining("", String.valueOf(type) + '\n', ""));
-    }
+    return details.stream()
+        .map(detail -> String.valueOf(detail) + '\n')
+        .collect(Collectors.joining("", String.valueOf(type) + '\n', ""));
+  }
 }

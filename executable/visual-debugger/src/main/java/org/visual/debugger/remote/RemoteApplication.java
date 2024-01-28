@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,41 +17,39 @@
  */
 package org.visual.debugger.remote;
 
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
 import org.visual.debugger.api.FXConnectorEventDispatcher;
 import org.visual.debugger.controller.Configuration;
 import org.visual.debugger.controller.StageID;
 import org.visual.debugger.details.DetailPaneType;
 import org.visual.debugger.node.SVNode;
 
-
 interface RemoteApplication extends Remote {
 
-    void configurationUpdated(final StageID id, Configuration configuration) throws RemoteException;
+  void configurationUpdated(final StageID id, Configuration configuration) throws RemoteException;
 
-    void update(final StageID id) throws RemoteException;
+  void update(final StageID id) throws RemoteException;
 
-    void setEventDispatcher(final StageID id, FXConnectorEventDispatcher dispatcher) throws RemoteException;
+  void setEventDispatcher(final StageID id, FXConnectorEventDispatcher dispatcher)
+      throws RemoteException;
 
-    StageID[] getStageIDs() throws RemoteException;
+  StageID[] getStageIDs() throws RemoteException;
 
-    void close(final StageID id) throws RemoteException;
+  void close(final StageID id) throws RemoteException;
 
-    void close() throws RemoteException;
+  void close() throws RemoteException;
 
-    void setSelectedNode(final StageID id, SVNode value) throws RemoteException;
-    
-    void removeSelectedNode(final StageID id) throws RemoteException;
+  void setSelectedNode(final StageID id, SVNode value) throws RemoteException;
 
-    void setDetail(StageID id, DetailPaneType detailType, int detailID, String value) throws RemoteException;
+  void removeSelectedNode(final StageID id) throws RemoteException;
 
-    void animationsEnabled(final StageID id, boolean enabled) throws RemoteException;
+  void setDetail(StageID id, DetailPaneType detailType, int detailID, String value)
+      throws RemoteException;
 
-    void updateAnimations(final StageID id) throws RemoteException;
+  void animationsEnabled(final StageID id, boolean enabled) throws RemoteException;
 
-    void pauseAnimation(StageID id, int animationID) throws RemoteException;
+  void updateAnimations(final StageID id) throws RemoteException;
 
+  void pauseAnimation(StageID id, int animationID) throws RemoteException;
 }

@@ -7,8 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 public class TitleBarController implements Initializable {
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 
-    public void close(ActionEvent actionEvent) {}
+  public void close(ActionEvent actionEvent) {}
 }

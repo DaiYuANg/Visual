@@ -29,61 +29,59 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.Nullable;
 
-/**
- *
- */
+/** */
 @Slf4j
 public class MacAttachHandler extends AttachHandlerBase {
-    private static final String[] PATHS_TO_TOOLS_JAR = new String[]{
-            "Contents/Home/lib/tools.jar",
-            "lib/tools.jar"
-    };
+  private static final String[] PATHS_TO_TOOLS_JAR =
+      new String[] {"Contents/Home/lib/tools.jar", "lib/tools.jar"};
 
-    @SneakyThrows
-    @Override
-    public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths) {
-        AttachHandlerFactory.doBasicJdkSearch(jdkPaths);
+  @SneakyThrows
+  @Override
+  public void getOrderedJDKPaths(List<JDKToolsJarPair> jdkPaths) {
+    AttachHandlerFactory.doBasicJdkSearch(jdkPaths);
 
-        // go down mac special path
-        getToolsClassPathOnMAC(jdkPaths);
-    }
+    // go down mac special path
+    getToolsClassPathOnMAC(jdkPaths);
+  }
 
-    @SneakyThrows
-    private void getToolsClassPathOnMAC(List<JDKToolsJarPair> jdkPaths) throws IOException {
-        Runtime runtime = Runtime.getRuntime();
-        val process = runtime.exec("/usr/libexec/java_home -V");
-        process.waitFor();
-        try (
-                val inputStream = Objects.requireNonNull(process).getErrorStream();
-                val reader = new InputStreamReader(inputStream);
-                val bufferedReader = new BufferedReader(reader)
-        ) {
-            if (bufferedReader.ready()) {
-                bufferedReader.readLine();
-            }
-            while (bufferedReader.ready()) {
-                String versionString = bufferedReader.readLine();
-                versionString = versionString.trim();
+  @SneakyThrows
+  private void getToolsClassPathOnMAC(List<JDKToolsJarPair> jdkPaths) throws IOException {
+    Runtime runtime = Runtime.getRuntime();
+    val process = runtime.exec("/usr/libexec/java_home -V");
+    process.waitFor();
+    try (val inputStream = Objects.requireNonNull(process).getErrorStream();
+        val reader = new InputStreamReader(inputStream);
+        val bufferedReader = new BufferedReader(reader)) {
+      if (bufferedReader.ready()) {
+        bufferedReader.readLine();
+      }
+      while (bufferedReader.ready()) {
+        String versionString = bufferedReader.readLine();
+        versionString = versionString.trim();
 
-                String path;
-                String[] splitted = versionString.split("\t");
+        String path;
+        String[] splitted = versionString.split("\t");
 
-                if (splitted.length != 3) {
-                    continue;
-                }
-                path = splitted[splitted.length - 1];
-
-                val jdkHome = new File(path);
-                val toolsFile = searchForToolsJar(jdkHome);
-                if (toolsFile == null || !toolsFile.exists()) {
-                    continue;
-                }
-                jdkPaths.add(new JDKToolsJarPair(jdkHome, toolsFile));
-            }
+        if (splitted.length != 3) {
+          continue;
         }
-    }
+        path = splitted[splitted.length - 1];
 
-    private @Nullable File searchForToolsJar(File jdkHome) {
-        return Arrays.stream(PATHS_TO_TOOLS_JAR).map(pathToToolsJar -> new File(jdkHome, pathToToolsJar)).filter(File::exists).findFirst().orElse(null);
+        val jdkHome = new File(path);
+        val toolsFile = searchForToolsJar(jdkHome);
+        if (toolsFile == null || !toolsFile.exists()) {
+          continue;
+        }
+        jdkPaths.add(new JDKToolsJarPair(jdkHome, toolsFile));
+      }
     }
+  }
+
+  private @Nullable File searchForToolsJar(File jdkHome) {
+    return Arrays.stream(PATHS_TO_TOOLS_JAR)
+        .map(pathToToolsJar -> new File(jdkHome, pathToToolsJar))
+        .filter(File::exists)
+        .findFirst()
+        .orElse(null);
+  }
 }

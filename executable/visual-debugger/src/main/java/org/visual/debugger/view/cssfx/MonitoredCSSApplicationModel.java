@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler, Matthieu Brouillard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,10 @@
 package org.visual.debugger.view.cssfx;
 
 public class MonitoredCSSApplicationModel {
-    
-    public MonitoredCSSApplicationModel() {
-    }
-    
-    public MonitoredCSSApplicationModel getCSSApplicationModel() {
-        return null;
-    }
+
+  public MonitoredCSSApplicationModel() {}
+
+  public MonitoredCSSApplicationModel getCSSApplicationModel() {
+    return null;
+  }
 }

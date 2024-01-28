@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.event;
 
-
 import java.io.Serial;
 import lombok.Getter;
 import org.visual.debugger.controller.StageID;
@@ -25,16 +24,13 @@ import org.visual.debugger.controller.StageID;
 @Getter
 public class SceneDetailsEvent extends NodeCountEvent {
 
-    /**
-     * 
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final String size;
-    
-    public SceneDetailsEvent(final StageID id, final int nodeCount, final String size) {
-        super(SVEventType.SCENE_DETAILS, id, nodeCount);
-        this.size = size;
-    }
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
+  private final String size;
+
+  public SceneDetailsEvent(final StageID id, final int nodeCount, final String size) {
+    super(SVEventType.SCENE_DETAILS, id, nodeCount);
+    this.size = size;
+  }
 }

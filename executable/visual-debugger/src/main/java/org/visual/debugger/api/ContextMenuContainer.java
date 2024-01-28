@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,5 @@ import javafx.scene.control.Menu;
 @FunctionalInterface
 public interface ContextMenuContainer {
 
-    public Menu getMenu();
-
+  public Menu getMenu();
 }

@@ -5,11 +5,11 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSUserDefaults extends NSObject {
-    String AppleInterfaceStyle = "AppleInterfaceStyle";
+  String AppleInterfaceStyle = "AppleInterfaceStyle";
 
-    static NSUserDefaults standardUserDefaults() {
-        return ObjcToJava.invokeStatic(NSUserDefaults.class, "standardUserDefaults");
-    }
+  static NSUserDefaults standardUserDefaults() {
+    return ObjcToJava.invokeStatic(NSUserDefaults.class, "standardUserDefaults");
+  }
 
-    String objectForKey(String key);
+  String objectForKey(String key);
 }

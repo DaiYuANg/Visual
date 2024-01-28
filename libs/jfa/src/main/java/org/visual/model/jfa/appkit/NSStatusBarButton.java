@@ -5,7 +5,7 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSStatusBarButton extends NSButton {
-    static NSStatusBarButton alloc() {
-        return ObjcToJava.alloc(NSStatusBarButton.class);
-    }
+  static NSStatusBarButton alloc() {
+    return ObjcToJava.alloc(NSStatusBarButton.class);
+  }
 }

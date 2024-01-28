@@ -7,53 +7,52 @@ import org.visual.component.container.VStageInitParams;
 import org.visual.component.control.button.AbstractFusionButton;
 
 public abstract class WindowControlButton extends AbstractFusionButton {
-    public static final int WIDTH = 64;
-    public static final int HEIGHT = VStage.TITLE_BAR_HEIGHT;
+  public static final int WIDTH = 64;
+  public static final int HEIGHT = VStage.TITLE_BAR_HEIGHT;
 
-    protected final VStage stage;
+  protected final VStage stage;
 
-    protected final ImageView imageView = new ImageView();
-    private final Image normalImage;
-    private final Image hoverImage;
+  protected final ImageView imageView = new ImageView();
+  private final Image normalImage;
+  private final Image hoverImage;
 
-    WindowControlButton(VStage stage, VStageInitParams initParams) {
-        super();
-        this.stage = stage;
+  WindowControlButton(VStage stage, VStageInitParams initParams) {
+    super();
+    this.stage = stage;
 
-        init(initParams);
+    init(initParams);
 
-        setPrefWidth(WIDTH);
-        setPrefHeight(HEIGHT);
+    setPrefWidth(WIDTH);
+    setPrefHeight(HEIGHT);
 
-        cornerRadii = getCornerRadii();
-        normalImage = getNormalImage();
-        hoverImage = getHoverImage();
+    cornerRadii = getCornerRadii();
+    normalImage = getNormalImage();
+    hoverImage = getHoverImage();
 
-        imageView.setFitWidth(12);
-        imageView.setFitHeight(12);
-        imageView.setLayoutX((WIDTH - 12) / 2d);
-        imageView.setLayoutY((HEIGHT - 12) / 2d);
-        imageView.setImage(normalImage);
+    imageView.setFitWidth(12);
+    imageView.setFitHeight(12);
+    imageView.setLayoutX((WIDTH - 12) / 2d);
+    imageView.setLayoutY((HEIGHT - 12) / 2d);
+    imageView.setImage(normalImage);
 
-        getChildren().add(imageView);
-    }
+    getChildren().add(imageView);
+  }
 
-    protected void init(VStageInitParams initParams) {
-    }
+  protected void init(VStageInitParams initParams) {}
 
-    @Override
-    protected void onMouseEntered() {
-        super.onMouseEntered();
-        imageView.setImage(hoverImage);
-    }
+  @Override
+  protected void onMouseEntered() {
+    super.onMouseEntered();
+    imageView.setImage(hoverImage);
+  }
 
-    @Override
-    protected void onMouseExited() {
-        super.onMouseExited();
-        imageView.setImage(normalImage);
-    }
+  @Override
+  protected void onMouseExited() {
+    super.onMouseExited();
+    imageView.setImage(normalImage);
+  }
 
-    protected abstract Image getNormalImage();
+  protected abstract Image getNormalImage();
 
-    protected abstract Image getHoverImage();
+  protected abstract Image getHoverImage();
 }

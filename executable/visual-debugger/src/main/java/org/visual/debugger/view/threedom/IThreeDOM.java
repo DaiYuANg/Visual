@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2014 Jonathan Giles, Ander Ruiz, Amy Fowler, Arnaud Nouard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import org.visual.debugger.node.SVNode;
 
 public interface IThreeDOM {
-    public void clickOnTile(SVNode node);
-    public void rightClickOnTile(MouseEvent evt);
+  public void clickOnTile(SVNode node);
+
+  public void rightClickOnTile(MouseEvent evt);
 }

@@ -10,43 +10,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JvmFactory {
 
-    @Bean
-    MemoryMXBean memoryMXBean() {
-        return ManagementFactory.getMemoryMXBean();
-    }
+  @Bean
+  MemoryMXBean memoryMXBean() {
+    return ManagementFactory.getMemoryMXBean();
+  }
 
-    @Bean
-    ClassLoadingMXBean classLoadingMXBean() {
-        return ManagementFactory.getClassLoadingMXBean();
-    }
+  @Bean
+  ClassLoadingMXBean classLoadingMXBean() {
+    return ManagementFactory.getClassLoadingMXBean();
+  }
 
-    @Bean
-    CompilationMXBean compilationMXBean() {
-        return ManagementFactory.getCompilationMXBean();
-    }
+  @Bean
+  CompilationMXBean compilationMXBean() {
+    return ManagementFactory.getCompilationMXBean();
+  }
 
-    @Bean
-    RuntimeMXBean runtimeMXBean() {
-        return ManagementFactory.getRuntimeMXBean();
-    }
+  @Bean
+  RuntimeMXBean runtimeMXBean() {
+    return ManagementFactory.getRuntimeMXBean();
+  }
 
-    @Bean
-    OperatingSystemMXBean operatingSystemMXBean() {
-        return ManagementFactory.getOperatingSystemMXBean();
-    }
+  @Bean
+  OperatingSystemMXBean operatingSystemMXBean() {
+    return ManagementFactory.getOperatingSystemMXBean();
+  }
 
-    @Bean
-    ThreadMXBean threadMXBean() {
-        return ManagementFactory.getThreadMXBean();
-    }
+  @Bean
+  ThreadMXBean threadMXBean() {
+    return ManagementFactory.getThreadMXBean();
+  }
 
-    @Bean
-    PlatformLoggingMXBean platformLoggingMXBean() {
-        return ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class);
-    }
+  @Bean
+  PlatformLoggingMXBean platformLoggingMXBean() {
+    return ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class);
+  }
 
-    @Bean
-    ClassGraph classGraph(){
-        return new ClassGraph().enableAllInfo();
-    }
+  @Bean
+  ClassGraph classGraph() {
+    return new ClassGraph().enableAllInfo();
+  }
 }

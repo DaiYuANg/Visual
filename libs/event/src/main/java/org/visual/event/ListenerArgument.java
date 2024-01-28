@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @Getter
 public class ListenerArgument<E extends AbstractEvent> {
 
-    private final Class<E> event;
+  private final Class<E> event;
 
-    private final EventListener<E> listener;
+  private final EventListener<E> listener;
 }

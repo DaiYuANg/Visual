@@ -15,106 +15,106 @@ import org.visual.component.control.click.ClickEventHandler;
 import org.visual.component.theme.Theme;
 
 public abstract class AbstractFusionPane extends Pane {
-    private final AnimationGraph<ColorData> animation;
-    private final AnimationNode<ColorData> normalNode = new AnimationNode<>("normal", new ColorData(
-        normalColor()
-    ));
-    private final AnimationNode<ColorData> hoverNode = new AnimationNode<>("hover", new ColorData(
-        hoverColor()
-    ));
-    private final AnimationNode<ColorData> downNode = new AnimationNode<>("down", new ColorData(
-        downColor()
-    ));
+  private final AnimationGraph<ColorData> animation;
+  private final AnimationNode<ColorData> normalNode =
+      new AnimationNode<>("normal", new ColorData(normalColor()));
+  private final AnimationNode<ColorData> hoverNode =
+      new AnimationNode<>("hover", new ColorData(hoverColor()));
+  private final AnimationNode<ColorData> downNode =
+      new AnimationNode<>("down", new ColorData(downColor()));
 
-    protected CornerRadii cornerRadii = CornerRadii.EMPTY;
-    protected final ClickEventHandler clickHandler;
+  protected CornerRadii cornerRadii = CornerRadii.EMPTY;
+  protected final ClickEventHandler clickHandler;
 
-    public AbstractFusionPane() {
-        Platform.runLater(() -> {
-            cornerRadii = getCornerRadii();
-            setBackground(new Background(new BackgroundFill(
-                normalNode.value.getColor(), cornerRadii, Insets.EMPTY
-            )));
+  public AbstractFusionPane() {
+    Platform.runLater(
+        () -> {
+          cornerRadii = getCornerRadii();
+          setBackground(
+              new Background(
+                  new BackgroundFill(normalNode.value.getColor(), cornerRadii, Insets.EMPTY)));
         });
 
-        animation = AnimationGraphBuilder
-            .simpleTwoNodeGraph(normalNode, hoverNode, 300)
+    animation =
+        AnimationGraphBuilder.simpleTwoNodeGraph(normalNode, hoverNode, 300)
             .addNode(downNode)
-            .setApply((from, to, data) -> setBackground(new Background(
-                new BackgroundFill(data.getColor(), cornerRadii, Insets.EMPTY)
-            )))
+            .setApply(
+                (from, to, data) ->
+                    setBackground(
+                        new Background(
+                            new BackgroundFill(data.getColor(), cornerRadii, Insets.EMPTY))))
             .build(normalNode);
 
-        clickHandler = new ClickEventHandler() {
-            @Override
-            protected void onMouseEntered() {
-                AbstractFusionPane.this.onMouseEntered();
-            }
+    clickHandler =
+        new ClickEventHandler() {
+          @Override
+          protected void onMouseEntered() {
+            AbstractFusionPane.this.onMouseEntered();
+          }
 
-            @Override
-            protected void onMouseExited() {
-                AbstractFusionPane.this.onMouseExited();
-            }
+          @Override
+          protected void onMouseExited() {
+            AbstractFusionPane.this.onMouseExited();
+          }
 
-            @Override
-            protected void onMousePressed() {
-                AbstractFusionPane.this.onMousePressed();
-            }
+          @Override
+          protected void onMousePressed() {
+            AbstractFusionPane.this.onMousePressed();
+          }
 
-            @Override
-            protected void onMouseReleased() {
-                AbstractFusionPane.this.onMouseReleased();
-            }
+          @Override
+          protected void onMouseReleased() {
+            AbstractFusionPane.this.onMouseReleased();
+          }
 
-            @Override
-            protected void onMouseClicked() {
-                AbstractFusionPane.this.onMouseClicked();
-            }
+          @Override
+          protected void onMouseClicked() {
+            AbstractFusionPane.this.onMouseClicked();
+          }
         };
-        setOnMouseEntered(clickHandler);
-        setOnMouseExited(clickHandler);
-        setOnMousePressed(clickHandler);
-        setOnMouseReleased(clickHandler);
-    }
+    setOnMouseEntered(clickHandler);
+    setOnMouseExited(clickHandler);
+    setOnMousePressed(clickHandler);
+    setOnMouseReleased(clickHandler);
+  }
 
-    protected void onMouseEntered() {
-        animation.play(hoverNode);
-    }
+  protected void onMouseEntered() {
+    animation.play(hoverNode);
+  }
 
-    protected void onMouseExited() {
-        animation.play(normalNode);
-    }
+  protected void onMouseExited() {
+    animation.play(normalNode);
+  }
 
-    protected void onMousePressed() {
-        animation.stopAndSetNode(downNode);
-    }
+  protected void onMousePressed() {
+    animation.stopAndSetNode(downNode);
+  }
 
-    protected void onMouseReleased() {
-        animation.stopAndSetNode(hoverNode);
-    }
+  protected void onMouseReleased() {
+    animation.stopAndSetNode(hoverNode);
+  }
 
-    protected void onMouseClicked() {
-    }
+  protected void onMouseClicked() {}
 
-    protected abstract CornerRadii getCornerRadii();
+  protected abstract CornerRadii getCornerRadii();
 
-    protected Color normalColor() {
-        return Theme.current().fusionPaneNormalBackgroundColor();
-    }
+  protected Color normalColor() {
+    return Theme.current().fusionPaneNormalBackgroundColor();
+  }
 
-    protected Color hoverColor() {
-        return Theme.current().fusionPaneHoverBackgroundColor();
-    }
+  protected Color hoverColor() {
+    return Theme.current().fusionPaneHoverBackgroundColor();
+  }
 
-    protected Color downColor() {
-        return hoverColor();
-    }
+  protected Color downColor() {
+    return hoverColor();
+  }
 
-    protected double normalContentOpacity() {
-        return 1;
-    }
+  protected double normalContentOpacity() {
+    return 1;
+  }
 
-    protected double hoverContentOpacity() {
-        return 1;
-    }
+  protected double hoverContentOpacity() {
+    return 1;
+  }
 }

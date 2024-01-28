@@ -7,10 +7,7 @@ group = "org.visual.database"
 
 version = "unspecified"
 
-plugins.getPlugin(FxProjectPlugin::class.java).modules(
-  "javafx.media",
-  "javafx.web"
-)
+plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.web")
 
 dependencies {
   implementation(projects.ui.visualGraphEditor)

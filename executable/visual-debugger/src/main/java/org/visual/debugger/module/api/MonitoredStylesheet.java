@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler, Matthieu Brouillard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,16 +26,18 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MonitoredStylesheet {
-    private Scene scene;
-    private Parent parent;
-    private String originalURI;
-    private Path source;
+  private Scene scene;
+  private Parent parent;
+  private String originalURI;
+  private Path source;
 
-    @Override
-    public String toString() {
-        if (source == null) {
-            return String.format("%s in [%s] is not mapped", originalURI, (parent==null)?scene:parent);
-        }
-        return String.format("%s in [%s] is mapped to %s", originalURI, (parent==null)?scene:parent, source);
+  @Override
+  public String toString() {
+    if (source == null) {
+      return String.format(
+          "%s in [%s] is not mapped", originalURI, (parent == null) ? scene : parent);
     }
+    return String.format(
+        "%s in [%s] is mapped to %s", originalURI, (parent == null) ? scene : parent, source);
+  }
 }

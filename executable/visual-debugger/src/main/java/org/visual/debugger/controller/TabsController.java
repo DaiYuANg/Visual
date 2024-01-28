@@ -12,13 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Singleton
 @Slf4j
 public class TabsController implements Initializable {
-    @FXML
-    TabPane tabPane;
-    @FXML
-    Tab overviewTab;
+  @FXML TabPane tabPane;
+  @FXML Tab overviewTab;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 }

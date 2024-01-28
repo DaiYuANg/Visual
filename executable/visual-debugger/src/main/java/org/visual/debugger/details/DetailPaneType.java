@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,5 +18,14 @@
 package org.visual.debugger.details;
 
 public enum DetailPaneType {
-    CONTROL, GRID_PANE, LABELED, NODE, PARENT, REGION, TEXT, FULL, STYLES, SHAPE
+  CONTROL,
+  GRID_PANE,
+  LABELED,
+  NODE,
+  PARENT,
+  REGION,
+  TEXT,
+  FULL,
+  STYLES,
+  SHAPE
 }

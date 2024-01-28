@@ -10,5 +10,5 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class VisualModelConfiguration {
 
-    private UIConfiguration uiConfiguration;
+  private UIConfiguration uiConfiguration;
 }

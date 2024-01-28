@@ -6,12 +6,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum I18nKeys {
+  CLICK("click"),
 
-    CLICK("click"),
+  OPEN("open"),
 
-    OPEN("open"),
+  SCENE("scene");
 
-    SCENE("scene");
-
-    private final String value;
+  private final String value;
 }

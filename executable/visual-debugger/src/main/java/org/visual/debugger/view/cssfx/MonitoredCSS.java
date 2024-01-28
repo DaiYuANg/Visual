@@ -1,5 +1,5 @@
 /*
- * Scenic View, 
+ * Scenic View,
  * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler, Matthieu Brouillard
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,26 +22,26 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class MonitoredCSS {
-    private final StringProperty css = new SimpleStringProperty();
-    private final StringProperty mappedBy = new SimpleStringProperty();
-    
-    public MonitoredCSS(String css) {
-        this.css.set(css);
-    }
-    
-    public ReadOnlyStringProperty css() {
-        return css;
-    }
-    
-    public StringProperty mappedBy() {
-        return mappedBy;
-    }
+  private final StringProperty css = new SimpleStringProperty();
+  private final StringProperty mappedBy = new SimpleStringProperty();
 
-    public String getCSS() {
-        return css().get();
-    }
+  public MonitoredCSS(String css) {
+    this.css.set(css);
+  }
 
-    public String getMappedBy() {
-        return mappedBy().get();
-    }
+  public ReadOnlyStringProperty css() {
+    return css;
+  }
+
+  public StringProperty mappedBy() {
+    return mappedBy;
+  }
+
+  public String getCSS() {
+    return css().get();
+  }
+
+  public String getMappedBy() {
+    return mappedBy().get();
+  }
 }

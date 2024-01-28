@@ -5,7 +5,7 @@ import org.visual.model.jfa.core.ObjcToJava;
 
 @SuppressWarnings("unused")
 public interface NSView extends NSObject {
-    static NSView alloc() {
-        return ObjcToJava.alloc(NSView.class);
-    }
+  static NSView alloc() {
+    return ObjcToJava.alloc(NSView.class);
+  }
 }

@@ -1,3 +1,1 @@
-subprojects{
-    apply<FxProjectPlugin>()
-}
+subprojects { apply<FxProjectPlugin>() }

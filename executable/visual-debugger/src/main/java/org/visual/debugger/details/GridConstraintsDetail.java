@@ -26,18 +26,16 @@ import lombok.ToString;
 @ToString
 public final class GridConstraintsDetail implements Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final String text;
-    private final int colIndex;
-    private final int rowIndex;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    GridConstraintsDetail(final String text, final int colIndex, final int rowIndex) {
-        this.text = text;
-        this.colIndex = colIndex;
-        this.rowIndex = rowIndex;
-    }
+  private final String text;
+  private final int colIndex;
+  private final int rowIndex;
+
+  GridConstraintsDetail(final String text, final int colIndex, final int rowIndex) {
+    this.text = text;
+    this.colIndex = colIndex;
+    this.rowIndex = rowIndex;
+  }
 }

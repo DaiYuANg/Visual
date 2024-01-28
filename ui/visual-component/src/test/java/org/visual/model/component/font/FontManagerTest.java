@@ -5,8 +5,8 @@ import org.visual.component.font.FontManager;
 
 class FontManagerTest {
 
-    @Test
-    void getFont() {
-        System.err.println(FontManager.get().getFont());
-    }
+  @Test
+  void getFont() {
+    System.err.println(FontManager.get().getFont());
+  }
 }

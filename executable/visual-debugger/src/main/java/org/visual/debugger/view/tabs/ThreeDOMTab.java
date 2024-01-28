@@ -29,124 +29,124 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.debugger.api.ContextMenuContainer;
 import org.visual.debugger.node.SVNode;
+import org.visual.debugger.view.ScenicViewGui;
 import org.visual.debugger.view.threedom.IThreeDOM;
 import org.visual.debugger.view.threedom.ThreeDOM;
 import org.visual.debugger.view.threedom.Tile3D;
-import org.visual.debugger.view.ScenicViewGui;
-
 
 public class ThreeDOMTab extends Tab implements ContextMenuContainer, IThreeDOM {
 
-    private final ScenicViewGui scenicView;
+  private final ScenicViewGui scenicView;
 
-    public static final String TAB_NAME = "ThreeDOM";
+  public static final String TAB_NAME = "ThreeDOM";
 
-    SVNode root2D;
-    ThreeDOM threeDOM;
-    SVNode selectedNode;
+  SVNode root2D;
+  ThreeDOM threeDOM;
+  SVNode selectedNode;
 
-    public ThreeDOMTab(final ScenicViewGui view) {
-        super(TAB_NAME);
-        this.scenicView = view;
+  public ThreeDOMTab(final ScenicViewGui view) {
+    super(TAB_NAME);
+    this.scenicView = view;
 
-        setGraphic(new FontIcon(FontAwesomeSolid.GLOBE));
-        setClosable(false);
-        selectedProperty().addListener((final ObservableValue<? extends Boolean> arg0, final Boolean arg1, final Boolean newValue) -> {
-            if (newValue) {
+    setGraphic(new FontIcon(FontAwesomeSolid.GLOBE));
+    setClosable(false);
+    selectedProperty()
+        .addListener(
+            (final ObservableValue<? extends Boolean> arg0,
+                final Boolean arg1,
+                final Boolean newValue) -> {
+              if (newValue) {
                 if (!Platform.isSupported(ConditionalFeature.SCENE3D)) {
-                    Label label = new Label("System can't support ConditionalFeature.SCENE3D");
-                    label.setStyle("-fx-text-fill: #ff0000; -fx-font-size: 18pt;");
-                    super.setContent(label);
+                  Label label = new Label("System can't support ConditionalFeature.SCENE3D");
+                  label.setStyle("-fx-text-fill: #ff0000; -fx-font-size: 18pt;");
+                  super.setContent(label);
                 } else {
-                    init();
+                  init();
                 }
-            }
-        });
-    }
+              }
+            });
+  }
 
-    @Override
-    public Menu getMenu() {
-        return null;
-    }
+  @Override
+  public Menu getMenu() {
+    return null;
+  }
 
-    void init() {
-        if (threeDOM == null) {
-            threeDOM = ThreeDOM.getInstance();
-            threeDOM.setHolder(this);
+  void init() {
+    if (threeDOM == null) {
+      threeDOM = ThreeDOM.getInstance();
+      threeDOM.setHolder(this);
 
-            Parent threeDOMPanel = null;
-            try {
-                if (root2D != null) {
-                    threeDOMPanel = threeDOM.createContent(root2D.getChildren().get(0));
-                }
-                super.setContent(threeDOMPanel);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            // First time: do not miss current selection
-            if (selectedNode != null) {
-                Platform.runLater(() -> {
-                    setSelectedNode(selectedNode);
-                });
-            }
+      Parent threeDOMPanel = null;
+      try {
+        if (root2D != null) {
+          threeDOMPanel = threeDOM.createContent(root2D.getChildren().get(0));
         }
+        super.setContent(threeDOMPanel);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+      // First time: do not miss current selection
+      if (selectedNode != null) {
+        Platform.runLater(
+            () -> {
+              setSelectedNode(selectedNode);
+            });
+      }
     }
+  }
 
-    /**
-     * A node has been selected in the SV treeview
-     *
-     * @param selected
-     */
-    public void setSelectedNode(final SVNode selected) {
-        selectedNode = selected;
-        if (threeDOM == null) {
-            return;
-        }
-        if (selectedNode == null) {
-            threeDOM.clearSelection();
-        }
-        Tile3D found = threeDOM.find(selectedNode);
-        if (found == null) {
-            return;
-        }
-        threeDOM.setSelectedTile(found);
+  /**
+   * A node has been selected in the SV treeview
+   *
+   * @param selected
+   */
+  public void setSelectedNode(final SVNode selected) {
+    selectedNode = selected;
+    if (threeDOM == null) {
+      return;
     }
+    if (selectedNode == null) {
+      threeDOM.clearSelection();
+    }
+    Tile3D found = threeDOM.find(selectedNode);
+    if (found == null) {
+      return;
+    }
+    threeDOM.setSelectedTile(found);
+  }
 
-    /**
-     * Recreate the 3D model from current 2D state
-     */
-    public void reload() {
-        if (threeDOM != null) {
-            threeDOM.reload(root2D.getChildren().getFirst());
-        }
+  /** Recreate the 3D model from current 2D state */
+  public void reload() {
+    if (threeDOM != null) {
+      threeDOM.reload(root2D.getChildren().getFirst());
     }
+  }
 
-    /**
-     * Root changed
-     */
-    public void placeNewRoot(SVNode newRoot) {
-        root2D = newRoot;
-        reload();
-    }
+  /** Root changed */
+  public void placeNewRoot(SVNode newRoot) {
+    root2D = newRoot;
+    reload();
+  }
 
-    public void removeNode(SVNode node) {
-        if (threeDOM != null) {
-            threeDOM.reload(root2D);
-        }
+  public void removeNode(SVNode node) {
+    if (threeDOM != null) {
+      threeDOM.reload(root2D);
     }
+  }
 
-    /**
-     * User clicked on a 3D box
-     *
-     * @param node
-     */
-    @Override
-    public void clickOnTile(SVNode node) {
-        scenicView.getTreeView().nodeSelected(node);        // Simulate classic click on tree
-    }
+  /**
+   * User clicked on a 3D box
+   *
+   * @param node
+   */
+  @Override
+  public void clickOnTile(SVNode node) {
+    scenicView.getTreeView().nodeSelected(node); // Simulate classic click on tree
+  }
 
-    @Override
-    public void rightClickOnTile(MouseEvent evt) {
-        scenicView.getTreeView().showContextMenu(evt);        // Simulate classic click on tree
-    }
+  @Override
+  public void rightClickOnTile(MouseEvent evt) {
+    scenicView.getTreeView().showContextMenu(evt); // Simulate classic click on tree
+  }
 }

@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,19 +23,16 @@ import lombok.Getter;
 import org.visual.debugger.controller.SVAnimation;
 import org.visual.debugger.controller.StageID;
 
-
 @Getter
 public class AnimationsCountEvent extends FXConnectorEvent {
 
-    /**
-     * 
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    List<SVAnimation> animations;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public AnimationsCountEvent(final StageID id, final List<SVAnimation> animations) {
-        super(SVEventType.ANIMATIONS_UPDATED, id);
-        this.animations = animations;
-    }
+  List<SVAnimation> animations;
+
+  public AnimationsCountEvent(final StageID id, final List<SVAnimation> animations) {
+    super(SVEventType.ANIMATIONS_UPDATED, id);
+    this.animations = animations;
+  }
 }

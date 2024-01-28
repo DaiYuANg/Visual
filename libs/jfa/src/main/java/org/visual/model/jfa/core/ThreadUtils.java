@@ -9,22 +9,22 @@ import org.visual.model.jfa.foundation.ID;
 @UtilityClass
 public final class ThreadUtils {
 
-    public static void dispatch_sync(Runnable runnable) {
-        dispatch(runnable, true);
-    }
+  public static void dispatch_sync(Runnable runnable) {
+    dispatch(runnable, true);
+  }
 
-    public static void dispatch_async(Runnable runnable) {
-        dispatch(runnable, false);
-    }
+  public static void dispatch_async(Runnable runnable) {
+    dispatch(runnable, false);
+  }
 
-    private static void dispatch(Runnable runnable, boolean waitUntilDone) {
-        ID objcObject = JavaToObjc.map(runnable, Runnable.class);
+  private static void dispatch(Runnable runnable, boolean waitUntilDone) {
+    ID objcObject = JavaToObjc.map(runnable, Runnable.class);
 
-        Foundation.invoke(
-                objcObject,
-                "performSelectorOnMainThread:withObject:waitUntilDone:",
-                Foundation.createSelector("run"),
-                ID.NIL,
-                waitUntilDone);
-    }
+    Foundation.invoke(
+        objcObject,
+        "performSelectorOnMainThread:withObject:waitUntilDone:",
+        Foundation.createSelector("run"),
+        ID.NIL,
+        waitUntilDone);
+  }
 }

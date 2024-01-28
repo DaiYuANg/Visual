@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.event;
 
-
 import lombok.Getter;
 import org.visual.debugger.controller.StageID;
 import org.visual.debugger.node.SVNode;
@@ -25,24 +24,23 @@ import org.visual.debugger.node.SVNode;
 @Getter
 public class EvLogEvent extends FXConnectorEvent {
 
-    public static final String PROPERTY_CHANGED = "PROPERTY_CHANGED";
-    public static final String OTHER_EVENTS = "OTHER_EVENTS";
-    public static final String NODE_REMOVED = "NODE_REMOVED";
-    public static final String NODE_ADDED = "NODE_ADDED";
+  public static final String PROPERTY_CHANGED = "PROPERTY_CHANGED";
+  public static final String OTHER_EVENTS = "OTHER_EVENTS";
+  public static final String NODE_REMOVED = "NODE_REMOVED";
+  public static final String NODE_ADDED = "NODE_ADDED";
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -4130339506376073468L;
-    private final SVNode source;
-    private final String eventType;
-    private final String eventValue;
+  /** */
+  private static final long serialVersionUID = -4130339506376073468L;
 
-    public EvLogEvent(final StageID id, final SVNode source, final String eventType, final String eventValue) {
-        super(SVEventType.EVENT_LOG, id);
-        this.source = source;
-        this.eventType = eventType;
-        this.eventValue = eventValue;
-    }
+  private final SVNode source;
+  private final String eventType;
+  private final String eventValue;
 
+  public EvLogEvent(
+      final StageID id, final SVNode source, final String eventType, final String eventValue) {
+    super(SVEventType.EVENT_LOG, id);
+    this.source = source;
+    this.eventType = eventType;
+    this.eventValue = eventValue;
+  }
 }

@@ -37,7 +37,6 @@ package org.visual.debugger.module.impl.monitoring;
  * #L%
  */
 
-
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -51,93 +50,109 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 public class PathsWatcher {
-    private WatchService watchService;
-    private final Map<String, Map<String, List<Runnable>>> filesActions = new HashMap<>();
-    private Thread watcherThread;
+  private WatchService watchService;
+  private final Map<String, Map<String, List<Runnable>>> filesActions = new HashMap<>();
+  private Thread watcherThread;
 
-    public PathsWatcher() {
-        try {
-            watchService = FileSystems.getDefault().newWatchService();
-        } catch (IOException e) {
-            log.atError().log("cannot create WatchService", e);
-        }
+  public PathsWatcher() {
+    try {
+      watchService = FileSystems.getDefault().newWatchService();
+    } catch (IOException e) {
+      log.atError().log("cannot create WatchService", e);
     }
+  }
 
-    public void monitor(Path directory, Path sourceFile, Runnable action) {
-        if (watchService != null) {
-            log.atInfo().log("registering action {} for monitoring {} in {}", System.identityHashCode(action), sourceFile, directory);
-            Map<String, List<Runnable>> fileAction = filesActions.computeIfAbsent(
-                    directory.toString(), (p) -> {
-                        try {
-                            directory.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        return new HashMap<>();
-                    });
+  public void monitor(Path directory, Path sourceFile, Runnable action) {
+    if (watchService != null) {
+      log.atInfo().log(
+          "registering action {} for monitoring {} in {}",
+          System.identityHashCode(action),
+          sourceFile,
+          directory);
+      Map<String, List<Runnable>> fileAction =
+          filesActions.computeIfAbsent(
+              directory.toString(),
+              (p) -> {
+                try {
+                  directory.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+                return new HashMap<>();
+              });
 
-            List<Runnable> actions = fileAction.computeIfAbsent(sourceFile.toString(), k -> new LinkedList<>());
-            actions.add(action);
+      List<Runnable> actions =
+          fileAction.computeIfAbsent(sourceFile.toString(), k -> new LinkedList<>());
+      actions.add(action);
 
-            log.atDebug().log("{} CSS modification actions registered for file {}", actions.size(), sourceFile);
-        } else {
-            log.atWarn().log("no WatchService active, CSS monitoring cannot occur");
-        }
+      log.atDebug().log(
+          "{} CSS modification actions registered for file {}", actions.size(), sourceFile);
+    } else {
+      log.atWarn().log("no WatchService active, CSS monitoring cannot occur");
     }
+  }
 
-    public void watch() {
-        watcherThread = new Thread(() -> {
-            log.atInfo().log("starting to monitor physical files");
-            while (true) {
+  public void watch() {
+    watcherThread =
+        new Thread(
+            () -> {
+              log.atInfo().log("starting to monitor physical files");
+              while (true) {
                 WatchKey key;
                 try {
-                    key = watchService.take();
+                  key = watchService.take();
                 } catch (InterruptedException ex) {
-                    return;
+                  return;
                 }
                 Path directory = ((Path) key.watchable()).toAbsolutePath().normalize();
 
-                key.pollEvents().forEach(event -> {
-                    WatchEvent.Kind<?> kind = event.kind();
-                    log.atDebug().log("{}' change detected in directory {}", kind, directory);
-                    if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
-                        // it is a modification
-                        @SuppressWarnings("unchecked")
-                        WatchEvent<Path> ev = (WatchEvent<Path>) event;
-                        Path modifiedFile = directory.resolve(ev.context()).toAbsolutePath().normalize();
+                key.pollEvents()
+                    .forEach(
+                        event -> {
+                          WatchEvent.Kind<?> kind = event.kind();
+                          log.atDebug().log("{}' change detected in directory {}", kind, directory);
+                          if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
+                            // it is a modification
+                            @SuppressWarnings("unchecked")
+                            WatchEvent<Path> ev = (WatchEvent<Path>) event;
+                            Path modifiedFile =
+                                directory.resolve(ev.context()).toAbsolutePath().normalize();
 
-                        if (filesActions.containsKey(directory.toString())) {
-                            log.atDebug().log("file: {} was modified", modifiedFile.getFileName());
-                            Map<String, List<Runnable>> filesAction = filesActions.get(directory.toString());
-                            if (filesAction.containsKey(modifiedFile.toString())) {
+                            if (filesActions.containsKey(directory.toString())) {
+                              log.atDebug().log(
+                                  "file: {} was modified", modifiedFile.getFileName());
+                              Map<String, List<Runnable>> filesAction =
+                                  filesActions.get(directory.toString());
+                              if (filesAction.containsKey(modifiedFile.toString())) {
                                 log.atDebug().log("file is monitored");
                                 List<Runnable> actions = filesAction.get(modifiedFile.toString());
-                                log.atDebug().log("{} CSS modification will be performed ", actions.size());
+                                log.atDebug().log(
+                                    "{} CSS modification will be performed ", actions.size());
 
                                 for (Runnable action : actions) {
-                                    action.run();
+                                  action.run();
                                 }
-                            } else {
+                              } else {
                                 log.atDebug().log("file is not monitored");
+                              }
                             }
-                        }
-                    }
-                });
+                          }
+                        });
 
                 boolean valid = key.reset();
                 if (!valid) {
-                    break;
+                  break;
                 }
-            }
-        }, "CSSFX-file-monitor");
-        watcherThread.setDaemon(true);
-        watcherThread.start();
-    }
+              }
+            },
+            "CSSFX-file-monitor");
+    watcherThread.setDaemon(true);
+    watcherThread.start();
+  }
 
-    public void stop() {
-        watcherThread.interrupt();
-    }
+  public void stop() {
+    watcherThread.interrupt();
+  }
 }

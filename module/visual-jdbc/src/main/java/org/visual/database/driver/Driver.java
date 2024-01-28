@@ -9,9 +9,9 @@ import org.eclipse.aether.artifact.DefaultArtifact;
 @RequiredArgsConstructor
 @Getter
 public enum Driver {
-    MYSQL(new DefaultArtifact("", "", "", "")),
+  MYSQL(new DefaultArtifact("", "", "", "")),
 
-    POSTGRESQL(new DefaultArtifact("", "", "", ""));
+  POSTGRESQL(new DefaultArtifact("", "", "", ""));
 
-    private final Artifact artifact;
+  private final Artifact artifact;
 }

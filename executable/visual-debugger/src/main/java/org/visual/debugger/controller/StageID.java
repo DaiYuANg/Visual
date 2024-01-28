@@ -29,13 +29,10 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public final class StageID implements Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final int appID;
-    private final int stageID;
-    @Setter
-    private String name;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
+
+  private final int appID;
+  private final int stageID;
+  @Setter private String name;
 }

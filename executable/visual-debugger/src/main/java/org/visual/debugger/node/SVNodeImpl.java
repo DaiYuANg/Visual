@@ -24,64 +24,59 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 abstract class SVNodeImpl implements SVNode, Serializable {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    boolean invalidForFilter;
-    boolean showID;
-    boolean expanded;
-    protected String nodeClass;
-    protected String nodeClassName;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    protected SVNodeImpl() {
+  boolean invalidForFilter;
+  boolean showID;
+  boolean expanded;
+  protected String nodeClass;
+  protected String nodeClassName;
 
-    }
+  protected SVNodeImpl() {}
 
-    protected SVNodeImpl(final String nodeClass, final String nodeClassName) {
-        this.nodeClass = nodeClass;
-        this.nodeClassName = nodeClassName;
-    }
+  protected SVNodeImpl(final String nodeClass, final String nodeClassName) {
+    this.nodeClass = nodeClass;
+    this.nodeClassName = nodeClassName;
+  }
 
-    @Override
-    public final void setInvalidForFilter(final boolean invalid) {
-        this.invalidForFilter = invalid;
-    }
+  @Override
+  public final void setInvalidForFilter(final boolean invalid) {
+    this.invalidForFilter = invalid;
+  }
 
-    @Override
-    public final boolean isInvalidForFilter() {
-        return invalidForFilter;
-    }
+  @Override
+  public final boolean isInvalidForFilter() {
+    return invalidForFilter;
+  }
 
-    @Override
-    public final void setShowId(final boolean showID) {
-        this.showID = showID;
-    }
+  @Override
+  public final void setShowId(final boolean showID) {
+    this.showID = showID;
+  }
 
-    @Override
-    public boolean isExpanded() {
-        return this.expanded;
-    }
+  @Override
+  public boolean isExpanded() {
+    return this.expanded;
+  }
 
-    @Override
-    public final void setExpanded(final boolean expanded) {
-        this.expanded = expanded;
-    }
+  @Override
+  public final void setExpanded(final boolean expanded) {
+    this.expanded = expanded;
+  }
 
-    @Override
-    public Ikon getIcon() {
-        return FontAwesomeSolid.BOX;
-    }
+  @Override
+  public Ikon getIcon() {
+    return FontAwesomeSolid.BOX;
+  }
 
-    @Override
-    public final String getNodeClass() {
-        return nodeClass;
-    }
+  @Override
+  public final String getNodeClass() {
+    return nodeClass;
+  }
 
-    @Override
-    public final String getNodeClassName() {
-        return nodeClassName;
-    }
-
+  @Override
+  public final String getNodeClassName() {
+    return nodeClassName;
+  }
 }

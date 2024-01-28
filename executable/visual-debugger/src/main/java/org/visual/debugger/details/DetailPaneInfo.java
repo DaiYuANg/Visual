@@ -30,116 +30,127 @@ import org.visual.debugger.controller.StageID;
 import org.visual.debugger.event.DetailsEvent;
 import org.visual.debugger.event.FXConnectorEvent;
 
-
 abstract class DetailPaneInfo {
 
-    private Object target;
-    static DecimalFormat f = new DecimalFormat("0.0#");
+  private Object target;
+  static DecimalFormat f = new DecimalFormat("0.0#");
 
-    PropertyTracker tracker = new PropertyTracker() {
+  PropertyTracker tracker =
+      new PropertyTracker() {
         @Override
-        protected void updateDetail(final String propertyName, @SuppressWarnings("rawtypes") final ObservableValue property) {
-            if (propertyName == null) return;
-            DetailPaneInfo.this.updateDetail(propertyName);
+        protected void updateDetail(
+            final String propertyName,
+            @SuppressWarnings("rawtypes") final ObservableValue property) {
+          if (propertyName == null) return;
+          DetailPaneInfo.this.updateDetail(propertyName);
         }
+      };
+  private final FXConnectorEventDispatcher dispatcher;
+  private final DetailPaneType type;
+  private int id;
+  private final StageID stageID;
+  protected final List<Detail> details = new ArrayList<>();
 
-    };
-    private final FXConnectorEventDispatcher dispatcher;
-    private final DetailPaneType type;
-    private int id;
-    private final StageID stageID;
-    protected final List<Detail> details = new ArrayList<>();
+  DetailPaneInfo(
+      final FXConnectorEventDispatcher dispatcher,
+      final StageID stageID,
+      final DetailPaneType type) {
+    this.dispatcher = dispatcher;
+    this.stageID = stageID;
+    this.type = type;
+    createDetails();
+  }
 
-    DetailPaneInfo(final FXConnectorEventDispatcher dispatcher, final StageID stageID, final DetailPaneType type) {
-        this.dispatcher = dispatcher;
-        this.stageID = stageID;
-        this.type = type;
-        createDetails();
+  abstract boolean targetMatches(Object target);
+
+  void setTarget(final Object value) {
+    if (doSetTarget(value)) {
+      updateAllDetails();
     }
+  }
 
-    abstract boolean targetMatches(Object target);
+  final void clear() {
+    doSetTarget(null);
+    final List<Detail> empty = Collections.emptyList();
+    dispatcher.dispatchEvent(
+        new DetailsEvent(
+            FXConnectorEvent.SVEventType.DETAILS, stageID, type, getPaneName(), empty));
+  }
 
-    void setTarget(final Object value) {
-        if (doSetTarget(value)) {
-            updateAllDetails();
-        }
+  protected final boolean doSetTarget(final Object value) {
+    if (target == value) return false;
+
+    val old = target;
+    if (old != null) {
+      tracker.clear();
     }
-
-    final void clear() {
-        doSetTarget(null);
-        final List<Detail> empty = Collections.emptyList();
-        dispatcher.dispatchEvent(new DetailsEvent(FXConnectorEvent.SVEventType.DETAILS, stageID, type, getPaneName(), empty));
+    target = value;
+    if (target != null) {
+      tracker.setTarget(target);
     }
+    return true;
+  }
 
-    protected final boolean doSetTarget(final Object value) {
-        if (target == value)
-            return false;
+  final Object getTarget() {
+    return target;
+  }
 
-        val old = target;
-        if (old != null) {
-            tracker.clear();
-        }
-        target = value;
-        if (target != null) {
-            tracker.setTarget(target);
-        }
-        return true;
-    }
+  void setShowCSSProperties(final boolean show) {}
 
-    final Object getTarget() {
-        return target;
-    }
+  protected String getPaneName() {
+    return getTargetClass().getSimpleName() + " Details";
+  }
 
-    void setShowCSSProperties(final boolean show) {
-    }
+  abstract Class<? extends Node> getTargetClass();
 
-    protected String getPaneName() {
-        return getTargetClass().getSimpleName() + " Details";
-    }
+  protected final Detail addDetail(final String property, final String label) {
+    return addDetail(property, label, Detail.ValueType.NORMAL);
+  }
 
-    abstract Class<? extends Node> getTargetClass();
+  protected final Detail addDetail(
+      final String property, final String label, final Detail.ValueType type) {
+    final Detail detail = new Detail(dispatcher, stageID, this.type, id++);
+    detail.setProperty(property);
+    detail.setLabel(label);
+    detail.setValueType(type);
+    detail.setDetailName(getPaneName());
+    details.add(detail);
+    return detail;
+  }
 
-    protected final Detail addDetail(final String property, final String label) {
-        return addDetail(property, label, Detail.ValueType.NORMAL);
-    }
+  protected final Detail addDetail(
+      final String property, final String label, final Detail.LabelType type) {
+    final Detail detail = new Detail(dispatcher, stageID, this.type, id++);
+    detail.setProperty(property);
+    detail.setLabel(label);
+    detail.setLabelType(type);
+    detail.setDetailName(getPaneName());
+    details.add(detail);
+    return detail;
+  }
 
-    protected final Detail addDetail(final String property, final String label, final Detail.ValueType type) {
-        final Detail detail = new Detail(dispatcher, stageID, this.type, id++);
-        detail.setProperty(property);
-        detail.setLabel(label);
-        detail.setValueType(type);
-        detail.setDetailName(getPaneName());
-        details.add(detail);
-        return detail;
-    }
+  final void sendAllDetails() {
+    dispatcher.dispatchEvent(
+        new DetailsEvent(
+            FXConnectorEvent.SVEventType.DETAILS, stageID, type, getPaneName(), details));
+  }
 
-    protected final Detail addDetail(final String property, final String label, final Detail.LabelType type) {
-        final Detail detail = new Detail(dispatcher, stageID, this.type, id++);
-        detail.setProperty(property);
-        detail.setLabel(label);
-        detail.setLabelType(type);
-        detail.setDetailName(getPaneName());
-        details.add(detail);
-        return detail;
-    }
+  protected void updateAllDetails() {
+    updateDetail("*");
+  }
 
-    final void sendAllDetails() {
-        dispatcher.dispatchEvent(new DetailsEvent(FXConnectorEvent.SVEventType.DETAILS, stageID, type, getPaneName(), details));
-    }
+  protected abstract void updateDetail(final String propertyName);
 
-    protected void updateAllDetails() {
-        updateDetail("*");
-    }
+  protected abstract void createDetails();
 
-    protected abstract void updateDetail(final String propertyName);
+  final DetailPaneType getType() {
+    return type;
+  }
 
-    protected abstract void createDetails();
-
-    final DetailPaneType getType() {
-        return type;
-    }
-
-    final void setDetail(final int detailID, final String value) {
-        details.stream().filter(d -> d.getDetailID() == detailID && d.serializer != null).findFirst().ifPresent(d -> d.serializer.setValue(value));
-    }
+  final void setDetail(final int detailID, final String value) {
+    details.stream()
+        .filter(d -> d.getDetailID() == detailID && d.serializer != null)
+        .findFirst()
+        .ifPresent(d -> d.serializer.setValue(value));
+  }
 }

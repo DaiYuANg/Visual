@@ -17,19 +17,16 @@
  */
 package org.visual.debugger.remote;
 
-
 import java.util.List;
-
 import org.visual.debugger.api.AppController;
-
 
 public interface FXConnector {
 
-    String VERSION = "1.0.0";
-//    public static final String SCENIC_VIEW_VM = "scenicview.vm";
+  String VERSION = "1.0.0";
 
-    List<AppController> connect();
+  //    public static final String SCENIC_VIEW_VM = "scenicview.vm";
 
-    void close();
+  List<AppController> connect();
 
+  void close();
 }

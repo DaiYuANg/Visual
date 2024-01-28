@@ -1,6 +1,6 @@
 /*
- * Scenic View, 
- * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler, Matthieu Brouillard 
+ * Scenic View,
+ * Copyright (C) 2012 Jonathan Giles, Ander Ruiz, Amy Fowler, Matthieu Brouillard
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,5 +18,12 @@
 package org.visual.debugger.node;
 
 public enum NodeType {
-    VMS_ROOT, VM, STAGE, SUBWINDOWS_ROOT, SUBWINDOW, REAL_NODE, REMOTE_NODE, SCENE
+  VMS_ROOT,
+  VM,
+  STAGE,
+  SUBWINDOWS_ROOT,
+  SUBWINDOW,
+  REAL_NODE,
+  REMOTE_NODE,
+  SCENE
 }

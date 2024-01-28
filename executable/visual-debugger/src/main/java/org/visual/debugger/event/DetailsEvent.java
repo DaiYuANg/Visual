@@ -24,29 +24,25 @@ import org.visual.debugger.controller.StageID;
 import org.visual.debugger.details.Detail;
 import org.visual.debugger.details.DetailPaneType;
 
-
 @Getter
 public class DetailsEvent extends FXConnectorEvent {
 
-    /**
-     *
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private final DetailPaneType paneType;
-    private final String paneName;
-    final List<Detail> details;
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 
-    public DetailsEvent(
-            final SVEventType type,
-            final StageID id,
-            final DetailPaneType dtype,
-            final String paneName,
-            final List<Detail> details
-    ) {
-        super(type, id);
-        this.paneType = dtype;
-        this.paneName = paneName;
-        this.details = details;
-    }
+  private final DetailPaneType paneType;
+  private final String paneName;
+  final List<Detail> details;
+
+  public DetailsEvent(
+      final SVEventType type,
+      final StageID id,
+      final DetailPaneType dtype,
+      final String paneName,
+      final List<Detail> details) {
+    super(type, id);
+    this.paneType = dtype;
+    this.paneName = paneName;
+    this.details = details;
+  }
 }

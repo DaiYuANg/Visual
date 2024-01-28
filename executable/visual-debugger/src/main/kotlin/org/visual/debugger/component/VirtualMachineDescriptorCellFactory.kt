@@ -25,15 +25,15 @@ class VirtualMachineDescriptorCellFactory :
   ): ListCell<VirtualMachineDescriptor> {
     return object : ListCell<VirtualMachineDescriptor>() {
       override fun updateItem(virtualMachineDescriptor: VirtualMachineDescriptor?, empty: Boolean) {
-//        super.updateItem(virtualMachineDescriptor, empty)
-          createCell(empty, virtualMachineDescriptor)
-          widthProperty().addListener { _, _, n ->
-            run {
-              if (graphic != null) {
-                graphic.prefWidth(n.toDouble())
-              }
+        //        super.updateItem(virtualMachineDescriptor, empty)
+        createCell(empty, virtualMachineDescriptor)
+        widthProperty().addListener { _, _, n ->
+          run {
+            if (graphic != null) {
+              graphic.prefWidth(n.toDouble())
             }
           }
+        }
       }
     }
   }
@@ -50,11 +50,12 @@ class VirtualMachineDescriptorCellFactory :
   }
 
   private fun buildItem(labelText: String, id: String): VBox {
-//    System.err.println(labelText)
-//    val text =
-//        if (labelText.length > maxTextLength) labelText.substring(0, maxTextLength - 1) + "..."
-//        else labelText
-//    System.err.println(text)
+    //    System.err.println(labelText)
+    //    val text =
+    //        if (labelText.length > maxTextLength) labelText.substring(0, maxTextLength - 1) +
+    // "..."
+    //        else labelText
+    //    System.err.println(text)
     val root = VBox()
     root.alignment = Pos.CENTER
     val box = HBox()

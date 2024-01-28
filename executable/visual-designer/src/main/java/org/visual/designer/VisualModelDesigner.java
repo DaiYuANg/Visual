@@ -12,25 +12,27 @@ import org.visual.designer.command.OpenCommand;
 import org.visual.designer.core.VisualModelUI;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "VisualModel", mixinStandardHelpOptions = true, helpCommand = true,
-        subcommands = OpenCommand.class
-)
+@CommandLine.Command(
+    name = "VisualModel",
+    mixinStandardHelpOptions = true,
+    helpCommand = true,
+    subcommands = OpenCommand.class)
 @RequiredArgsConstructor
 @Slf4j
 public class VisualModelDesigner implements Runnable {
 
-    private final String[] args;
+  private final String[] args;
 
-    @Override
-    public void run() {
-        Application.launch(VisualModelUI.class, args);
-    }
+  @Override
+  public void run() {
+    Application.launch(VisualModelUI.class, args);
+  }
 
-    @SneakyThrows
-    public static void main(String[] args) {
-        log.atInfo().log("CommandLine Start");
-        val commandLine = new VisualModelDesigner(args);
-        val exitCode = new CommandLine(commandLine).execute(args);
-        exit(exitCode);
-    }
+  @SneakyThrows
+  public static void main(String[] args) {
+    log.atInfo().log("CommandLine Start");
+    val commandLine = new VisualModelDesigner(args);
+    val exitCode = new CommandLine(commandLine).execute(args);
+    exit(exitCode);
+  }
 }

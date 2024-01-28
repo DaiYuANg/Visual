@@ -8,60 +8,51 @@ import javafx.geometry.Point2D;
 import org.visual.graph.editor.api.GJointSkin;
 import org.visual.graph.editor.model.GJoint;
 
-
 /**
  * The default joint skin.
  *
- * <p>
- * Pretty much just a {@link DraggableBox} with some hover and pressed effects.
- * </p>
+ * <p>Pretty much just a {@link DraggableBox} with some hover and pressed effects.
  */
-public class DefaultJointSkin extends GJointSkin
-{
+public class DefaultJointSkin extends GJointSkin {
 
-    private static final String STYLE_CLASS = "default-joint";
+  private static final String STYLE_CLASS = "default-joint";
 
-    private static final PseudoClass PSEUDO_CLASS_SELECTED = PseudoClass.getPseudoClass("selected");
+  private static final PseudoClass PSEUDO_CLASS_SELECTED = PseudoClass.getPseudoClass("selected");
 
-    private static final double SIZE = 12;
-    private static final Point2D SNAP_OFFSET = new Point2D(-5, -5);
+  private static final double SIZE = 12;
+  private static final Point2D SNAP_OFFSET = new Point2D(-5, -5);
 
-    /**
-     * Creates a new default join instance.
-     *
-     * @param joint
-     *            the {@link GJoint} the skin is being created for
-     */
-    public DefaultJointSkin(final GJoint joint)
-    {
-        super(joint);
+  /**
+   * Creates a new default join instance.
+   *
+   * @param joint the {@link GJoint} the skin is being created for
+   */
+  public DefaultJointSkin(final GJoint joint) {
+    super(joint);
 
-        getRoot().resize(SIZE, SIZE);
-        getRoot().getStyleClass().setAll(STYLE_CLASS);
+    getRoot().resize(SIZE, SIZE);
+    getRoot().getStyleClass().setAll(STYLE_CLASS);
 
-        getRoot().setPickOnBounds(false);
-        getRoot().setSnapToGridOffset(SNAP_OFFSET);
+    getRoot().setPickOnBounds(false);
+    getRoot().setSnapToGridOffset(SNAP_OFFSET);
+  }
+
+  @Override
+  protected void selectionChanged(boolean isSelected) {
+    getRoot().pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, isSelected);
+    if (!isSelected) {
+      return;
     }
+    getRoot().toFront();
+  }
 
-    @Override
-    protected void selectionChanged(boolean isSelected)
-    {
-        getRoot().pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, isSelected);
-        if (!isSelected) {
-            return;
-        }
-        getRoot().toFront();
-    }
+  @Override
+  public double getWidth() {
+    return SIZE;
+  }
 
-    @Override
-    public double getWidth()
-    {
-        return SIZE;
-    }
-
-    @Override
-    public double getHeight()
-    {
-        return SIZE;
-    }
+  @Override
+  public double getHeight() {
+    return SIZE;
+  }
 }

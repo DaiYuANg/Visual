@@ -6,39 +6,40 @@ import org.visual.model.jfa.foundation.ID;
 
 @SuppressWarnings("unused")
 public interface NSApplication extends NSObject {
-    static NSApplication sharedApplication() {
-        return ObjcToJava.invokeStatic(NSApplication.class, "sharedApplication");
-    }
+  static NSApplication sharedApplication() {
+    return ObjcToJava.invokeStatic(NSApplication.class, "sharedApplication");
+  }
 
-    Object isActive();
+  Object isActive();
 
-    NSMenu mainMenu();
+  NSMenu mainMenu();
 
-    void setMainMenu(NSMenu mainMenu);
+  void setMainMenu(NSMenu mainMenu);
 
-    void hide(ID sender);
+  void hide(ID sender);
 
-    void unhide(ID sender);
+  void unhide(ID sender);
 
-    NSApplicationDelegate delegate();
+  NSApplicationDelegate delegate();
 
-    void setDelegate(NSApplicationDelegate delegate);
+  void setDelegate(NSApplicationDelegate delegate);
 
-    NSWindow keyWindow();
+  NSWindow keyWindow();
 
-    NSWindow mainWindow();
+  NSWindow mainWindow();
 
-    NSAppearance appearance();
+  NSAppearance appearance();
 
-    void setAppearance(NSAppearance appearance);
+  void setAppearance(NSAppearance appearance);
 
-    void orderFrontColorPanel(ID sender);
+  void orderFrontColorPanel(ID sender);
 
-    void orderFrontCharacterPalette(ID sender);
+  void orderFrontCharacterPalette(ID sender);
 
-    void orderFrontStandardAboutPanel(ID sender);
+  void orderFrontStandardAboutPanel(ID sender);
 
-    void orderFrontStandardAboutPanelWithOptions(NSDictionary<NSAboutPanelOptionKey, NSObject> optionsDictionary);
+  void orderFrontStandardAboutPanelWithOptions(
+      NSDictionary<NSAboutPanelOptionKey, NSObject> optionsDictionary);
 
-    NSDockTile dockTile();
+  NSDockTile dockTile();
 }

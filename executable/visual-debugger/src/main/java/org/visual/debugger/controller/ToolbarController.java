@@ -13,15 +13,12 @@ import org.visual.debugger.context.LayoutContext;
 @Slf4j
 public class ToolbarController implements Initializable {
 
-    @FXML
-    FontAwesomeSolidButton collapseButton;
+  @FXML FontAwesomeSolidButton collapseButton;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 
-    }
-
-    public void toggleSplitPane() {
-        LayoutContext.INSTANCE.toggleCollapse();
-    }
+  public void toggleSplitPane() {
+    LayoutContext.INSTANCE.toggleCollapse();
+  }
 }

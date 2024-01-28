@@ -15,7 +15,7 @@ application {
   applicationDefaultJvmArgs = commonJvmArgs + listOf("-Dprism.verbose=true", "-Djavafx.debug=true")
 }
 
-//javafx {
+// javafx {
 //  version = libs.versions.javafxVersion.get()
 //  modules(
 //      "javafx.controls",
@@ -25,12 +25,12 @@ application {
 //      "javafx.media",
 //      "javafx.web")
 //  configurations = arrayOf("implementation", "testImplementation")
-//}
+// }
 
 dependencies {
   implementation("io.github.classgraph:classgraph:4.8.165")
   implementation(projects.ui.visualComponentAnnotation)
-    implementation(projects.ui.visualComponent)
+  implementation(projects.ui.visualComponent)
   implementation(projects.module.visualShared)
   implementation(libs.gestaltConfig)
   implementation(libs.pcollections)
@@ -45,7 +45,7 @@ tasks.jar {
   manifest { attributes("Premain-Class" to "org.visual.model.debugger.VisualModelDebugger") }
 }
 
-//jlink {
+// jlink {
 //  addExtraDependencies(
 //      "javafx",
 //      "kotlin",
@@ -75,4 +75,4 @@ tasks.jar {
 //        "jdk.javadoc",
 //        "org.junit.platform.launcher")
 //  }
-//}
+// }
