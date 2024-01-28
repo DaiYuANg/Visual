@@ -20,6 +20,7 @@ module org.visual.database {
     requires kotlin.stdlib;
 
     exports org.visual.database;
+    opens org.visual.database.controller to javafx.fxml;
 
     provides io.avaje.inject.spi.Module with org.visual.database.DatabaseModule;
 }

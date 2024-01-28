@@ -32,8 +32,6 @@ dependencies {
   implementation(projects.ui.visualComponentAnnotation)
     implementation(projects.ui.visualComponent)
   implementation(projects.module.visualShared)
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
   implementation(libs.gestaltConfig)
   implementation(libs.pcollections)
   implementation(projects.ui.visualI18n)

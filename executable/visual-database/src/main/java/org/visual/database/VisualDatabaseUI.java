@@ -6,15 +6,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.visual.component.display.VisualStage;
+import org.visual.database.constant.FXMLKey;
 import org.visual.database.context.VisualDatabaseContext;
 
 @RequiredArgsConstructor
 @Slf4j
 public class VisualDatabaseUI extends Application {
 
-    private final Stage rootStage = VisualDatabaseContext.INSTANCE.get(Stage.class);
+    private final VisualStage rootStage = VisualDatabaseContext.INSTANCE.get(VisualStage.class);
 
-    private final Parent layout = VisualDatabaseContext.INSTANCE.load("Layout");
+    private final Parent layout = VisualDatabaseContext.INSTANCE.load(FXMLKey.LAYOUT);
 
     private final Scene rootScene = new Scene(layout);
 
@@ -24,6 +26,6 @@ public class VisualDatabaseUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        rootStage.show();
+        rootStage.showAndFocus();
     }
 }

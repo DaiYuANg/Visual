@@ -20,6 +20,7 @@ package org.visual.debugger;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -41,6 +42,7 @@ import org.visual.debugger.model.update.LocalUpdateStrategy;
 import org.visual.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.debugger.remote.FXConnectorFactory;
 import org.visual.debugger.view.ScenicViewGui;
+import org.visual.shared.PreferencesWrapper;
 
 /**
  * This is the entry point for all different versions of Scenic View.
@@ -55,6 +57,8 @@ public class VisualModelDebugger extends Application {
     private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load("Layout"));
 
     private final ExceptionListener exceptionListener = DebuggerContext.INSTANCE.get(ExceptionListener.class);
+
+    private final PreferencesWrapper preferencesWrapper = DebuggerContext.INSTANCE.get(PreferencesWrapper.class);
 
     public static void show(final @NotNull Scene target) {
         show(target.getRoot());
@@ -110,32 +114,19 @@ public class VisualModelDebugger extends Application {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        // This mode is only available when we are in the commercial Scenic View,
-        // so we must start up the license checker and validate
         AttachHandlerFactory.initAttachAPI(rootStage);
-//        System.setProperty(FXConnector.SCENIC_VIEW_VM, "true");
-        rootStage.setOnCloseRequest(e -> {
-            Platform.exit();
-            Runtime.getRuntime().exit(0);
-        });
         val strategy = new RemoteVMsUpdateStrategy();
         strategy.setFXConnector(FXConnectorFactory.getConnector());
-//        val parent = DebuggerContext.INSTANCE.load("DebuggerLayout");
-//        val scene = new Scene(parent);
-//        // workaround for RT-10714
-//        val size = ScreenUtil.percentOfScreen(0.7);
-//        rootStage.setWidth(size.getLeft());
-//        rootStage.setHeight(size.getRight());
-//        rootStage.setTitle("Visual Model Debugger" + ScenicViewGui.VERSION);
         rootStage.setScene(rootScene);
-//        log.info("Platform running");
-//        log.info("Launching ScenicView v" + ScenicViewGui.VERSION);
-//        ScenicViewGui view = new ScenicViewGui(strategy, stage);
-//        ScenicViewGui.show(view, stage);
-//        log.info("Startup done");
-//        log.info("Creating server");
-        log.info("Server done");
         rootStage.show();
         FXComponentInspectorHandler.handleAll();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        preferencesWrapper.flush();
+        log.info("flush preferences");
+        Runtime.getRuntime().exit(0);
     }
 }

@@ -1,16 +1,30 @@
 package org.visual.database.factory;
 
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import javafx.stage.Stage;
+import io.avaje.inject.PostConstruct;
+import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.visual.component.display.VisualStage;
+import org.visual.component.theme.OsThemeDetector;
 
 @Factory
 @Slf4j
 public class UIFactory {
 
+    @PostConstruct
+    void initUI() {
+        val theme = OsThemeDetector.getDetector().isDark()
+                ? new PrimerDark().getUserAgentStylesheet()
+                : new PrimerLight().getUserAgentStylesheet();
+        Application.setUserAgentStylesheet(theme);
+    }
+
     @Bean
-    Stage rootStage() {
-        return new Stage();
+    VisualStage rootStage() {
+        return new VisualStage();
     }
 }

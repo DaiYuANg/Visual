@@ -18,10 +18,8 @@ dependencies {
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualShared)
   implementation(projects.ui.visualComponent)
-  implementation(libs.avajeInject)
   implementation(libs.avajeValidaor)
   implementation(libs.avajeValidaorCodegen)
   implementation(libs.picocli)
   annotationProcessor(libs.picocliCodegen)
-  annotationProcessor(libs.avajeInjectGenerator)
 }
