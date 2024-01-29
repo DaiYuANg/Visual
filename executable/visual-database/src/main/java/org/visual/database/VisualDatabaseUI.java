@@ -14,18 +14,24 @@ import org.visual.database.context.VisualDatabaseContext;
 @Slf4j
 public class VisualDatabaseUI extends Application {
 
-  private final VisualStage rootStage = VisualDatabaseContext.INSTANCE.get(VisualStage.class);
+    private final VisualStage rootStage = VisualDatabaseContext.INSTANCE.get(VisualStage.class);
 
-  private final Parent layout = VisualDatabaseContext.INSTANCE.load(FXMLKey.LAYOUT);
+    private final Parent layout = VisualDatabaseContext.INSTANCE.load(FXMLKey.LAYOUT);
 
-  private final Scene rootScene = new Scene(layout);
+    private final Scene rootScene = new Scene(layout);
 
-  {
-    rootStage.setScene(rootScene);
-  }
+    {
+        rootStage.setScene(rootScene);
+    }
 
-  @Override
-  public void start(Stage primaryStage) {
-    rootStage.showAndFocus();
-  }
+    @Override
+    public void start(Stage primaryStage) {
+        rootStage.showAndFocus();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        Runtime.getRuntime().exit(0);
+    }
 }

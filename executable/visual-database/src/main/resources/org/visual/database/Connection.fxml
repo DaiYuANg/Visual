@@ -16,7 +16,8 @@
                 <Insets top="5" right="5" bottom="5" left="5"/>
             </padding>
         </FontAwesomeSolidButton>
-        <FontAwesomeSolidButton icon="DATABASE" />
+        <FontAwesomeSolidButton icon="DATABASE"/>
+        <FontAwesomeSolidButton icon="VOLLEYBALL_BALL" onAction="#createServer"/>
     </ToolBar>
     <TreeView VBox.vgrow="ALWAYS">
         <TreeItem value="test"/>

@@ -1,17 +1,19 @@
 package org.visual.component.control
 
 import java.io.File
+import java.nio.file.FileSystems
+import java.nio.file.Path
+import java.nio.file.StandardWatchEventKinds
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
-import org.apache.commons.io.monitor.FileAlterationListener
-import org.apache.commons.io.monitor.FileAlterationMonitor
-import org.apache.commons.io.monitor.FileAlterationObserver
+import org.slf4j.LoggerFactory
 
 class FileTreeView : TreeView<File>() {
 
   private val _fileRoot = SimpleObjectProperty<File>()
-  private var fileMonitor: FileAlterationMonitor? = null
+
+  private val log = LoggerFactory.getLogger(FileTreeView::class.java)
 
   var fileRoot: File?
     get() = _fileRoot.get()
@@ -21,7 +23,12 @@ class FileTreeView : TreeView<File>() {
     }
 
   init {
-    _fileRoot.addListener { _, _, _ -> run { renderTree() } }
+    _fileRoot.addListener { _, _, _ ->
+      run {
+        listen()
+        renderTree()
+      }
+    }
   }
 
   private fun renderTree() {
@@ -42,57 +49,25 @@ class FileTreeView : TreeView<File>() {
     }
   }
 
-  private fun startFileMonitoring(rootDirectory: File?) {
-    rootDirectory?.let {
-      try {
-        fileMonitor?.stop()
-        val observer = FileAlterationObserver(rootDirectory)
-        observer.addListener(
-            object : FileAlterationListener {
-              override fun onFileCreate(file: File?) {
-                // Handle file creation event
-                println("File created: $file")
-                renderTree() // Refresh the tree view
-              }
-
-              override fun onDirectoryChange(p0: File?) {
-                println("File created: $p0")
-              }
-
-              override fun onDirectoryCreate(p0: File?) {
-                println("File created: $p0")
-              }
-
-              override fun onDirectoryDelete(p0: File?) {
-                println("File created: $p0")
-              }
-
-              override fun onFileChange(file: File?) {
-                // Handle file modification event
-                println("File modified: $file")
-                renderTree() // Refresh the tree view
-              }
-
-              override fun onFileDelete(file: File?) {
-                // Handle file deletion event
-                println("File deleted: $file")
-                renderTree() // Refresh the tree view
-              }
-
-              override fun onStart(p0: FileAlterationObserver?) {
-                TODO("Not yet implemented")
-              }
-
-              override fun onStop(p0: FileAlterationObserver?) {
-                TODO("Not yet implemented")
-              }
-            })
-
-        fileMonitor = FileAlterationMonitor(1000) // Check every 1 second
-        fileMonitor?.addObserver(observer)
-        fileMonitor?.start()
-      } catch (e: Exception) {
-        e.printStackTrace()
+  private fun listen() {
+    val path = _fileRoot.get().toPath()
+    val fileSystem = FileSystems.getDefault()
+    val watchService = fileSystem.newWatchService()
+    path.register(
+        watchService,
+        StandardWatchEventKinds.ENTRY_CREATE,
+        StandardWatchEventKinds.ENTRY_DELETE,
+        StandardWatchEventKinds.ENTRY_MODIFY)
+    Thread.ofVirtual().name(_fileRoot.get().absolutePath, 0).start {
+      while (true) {
+        val key = watchService.take()
+        key.pollEvents().forEach { event ->
+          log.info("e:{}", event.kind().type())
+          log.info("e:{}", event.kind().name())
+          val context = event.context() as? Path
+          context?.let { renderTree() }
+        }
+        key.reset()
       }
     }
   }
