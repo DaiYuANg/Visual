@@ -1,11 +1,14 @@
 plugins {
   `java-library`
   application
+  `kotlin-project`
 }
-
+apply<FxProjectPlugin>()
+apply<FatJarPlugin>()
+plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.web")
 group = "org.visual.debugger"
 
-val mainClassPath = "org.visual.debugger.VisualModelDebugger"
+val mainClassPath = "org.visual.debugger.VisualDebugger"
 
 version = "unspecified"
 
@@ -28,6 +31,7 @@ application {
 // }
 
 dependencies {
+  implementation(libs.picocli)
   implementation("io.github.classgraph:classgraph:4.8.165")
   implementation(projects.ui.visualComponentAnnotation)
   implementation(projects.ui.visualComponent)
@@ -38,7 +42,9 @@ dependencies {
   implementation(projects.libs.event)
   implementation("net.bytebuddy:byte-buddy:1.14.11")
   implementation(projects.ui.visualTextEditor)
+  implementation("com.google.inject:guice:7.0.0")
   implementation("tools.profiler:async-profiler:3.0")
+  annotationProcessor(libs.picocliCodegen)
 }
 
 tasks.jar {

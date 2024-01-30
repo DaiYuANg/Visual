@@ -1,7 +1,4 @@
-import io.avaje.inject.InjectModule;
-
 @SuppressWarnings({"requires-automatic"})
-@InjectModule(name = "Debugger", customScopeType = "debugger")
 module org.visual.debugger {
   requires transitive javafx.fxml;
   requires transitive javafx.controls;
@@ -14,11 +11,12 @@ module org.visual.debugger {
   requires java.desktop;
   requires static lombok;
   requires org.jetbrains.annotations;
+  requires info.picocli;
   requires javafx.web;
   requires javafx.swing;
   requires org.visual.shared;
   requires org.visual.component;
-  requires io.avaje.inject;
+  requires com.google.guice;
   requires org.github.gestalt.core;
   requires java.management;
   requires java.management.rmi;
@@ -31,18 +29,21 @@ module org.visual.debugger {
   requires org.fxmisc.flowless;
   requires io.github.classgraph;
   requires net.bytebuddy;
+  requires jakarta.inject;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;
   opens org.visual.debugger.view.threedom to
       javafx.fxml;
+  opens org.visual.debugger.view to com.google.guice;
   opens org.visual.debugger.remote to
       java.instrument,
       java.rmi;
   opens org.visual.debugger.component to
       javafx.fxml;
   opens org.visual.debugger.controller to
-      javafx.fxml;
+      javafx.fxml,com.google.guice;
+  opens org.visual.debugger.listener to com.google.guice;
 
   exports org.visual.debugger.controller;
   exports org.visual.debugger.api;
@@ -52,8 +53,8 @@ module org.visual.debugger {
   exports org.visual.debugger.model.update;
   exports org.visual.debugger.inspector;
   exports org.visual.debugger.component;
+  exports org.visual.debugger.module;
   exports org.visual.debugger;
+  exports org.visual.debugger.view;
 
-  provides io.avaje.inject.spi.Module with
-      org.visual.debugger.DebuggerModule;
 }

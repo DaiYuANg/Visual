@@ -1,8 +1,16 @@
+import io.avaje.inject.plugin.AvajeInjectPlugin
+
 plugins {
   application
   java
 }
 
+apply<KotlinProjectPlugin>()
+apply<CommonPlugin>()
+apply<FatJarPlugin>()
+apply<FxProjectPlugin>()
+apply<AvajeInjectPlugin>()
+apply<JlinkProject>()
 group = "org.visual.database"
 
 version = "unspecified"
@@ -36,4 +44,9 @@ dependencies {
   implementation(libs.jacksonCore)
   implementation(libs.jacksonDatabind)
   implementation(libs.jacksonAnnotations)
+  implementation(rootProject.libs.avajeInject)
+  annotationProcessor(rootProject.libs.avajeInjectGenerator)
+  implementation(rootProject.libs.gestaltConfig)
+  implementation(rootProject.libs.gestaltToml)
+  testImplementation(rootProject.libs.avajeInjectTest)
 }

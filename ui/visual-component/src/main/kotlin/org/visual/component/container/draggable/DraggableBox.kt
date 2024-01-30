@@ -7,7 +7,7 @@ import org.visual.component.util.getContainer
 import org.visual.component.util.mousePositionToPoint2D
 
 @FxComponent
-class DraggableBox : BaseDraggableBox() {
+open class DraggableBox : BaseDraggableBox() {
 
   init {
     addEventHandler(MouseEvent.MOUSE_PRESSED, this::onMousePressed)

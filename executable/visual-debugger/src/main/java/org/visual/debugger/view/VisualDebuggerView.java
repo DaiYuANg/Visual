@@ -15,11 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.visual.debugger;
+package org.visual.debugger.view;
 
-import java.lang.instrument.Instrumentation;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -40,12 +37,15 @@ import org.visual.debugger.model.attach.AttachHandlerFactory;
 import org.visual.debugger.model.update.LocalUpdateStrategy;
 import org.visual.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.debugger.remote.FXConnectorFactory;
-import org.visual.debugger.view.ScenicViewGui;
 import org.visual.shared.PreferencesWrapper;
+
+import java.lang.instrument.Instrumentation;
+import java.util.ArrayList;
+import java.util.List;
 
 /** This is the entry point for all different versions of Scenic View. */
 @Slf4j
-public class VisualModelDebugger extends Application {
+public class VisualDebuggerView extends Application {
 
   public static final String JDK_PATH_KEY = "jdkPath";
 
@@ -65,7 +65,6 @@ public class VisualModelDebugger extends Application {
 
   public static void show(@NonNull final Parent target) {
     val stage = new Stage();
-
     stage.setWidth(1024);
     stage.setHeight(768);
     stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
@@ -93,7 +92,7 @@ public class VisualModelDebugger extends Application {
     // we start up a new thread to take care of initialising Scenic View
     // so that we don't block the loading of the actual application.
     log.info("premain execute");
-    Platform.runLater(() -> new VisualModelDebugger().start());
+    Platform.runLater(() -> new VisualDebuggerView().start());
   }
 
   @Override
@@ -103,11 +102,12 @@ public class VisualModelDebugger extends Application {
 
   @SneakyThrows
   private void start() {
-    new VisualModelDebugger().start(new Stage());
+    System.err.println(exceptionListener);
+    new VisualDebuggerView().start(new Stage());
   }
 
   public static void main(final String @NotNull [] args) {
-    VisualModelDebugger.launch(args);
+    VisualDebuggerView.launch(args);
   }
 
   @Override

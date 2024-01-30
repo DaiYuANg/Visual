@@ -32,6 +32,7 @@ module org.visual.database {
   requires org.apache.maven.resolver.transport.jdk;
   requires org.apache.maven.resolver.supplier;
   requires org.apache.maven.resolver.connector.basic;
+  requires org.visual.debugger;
 
   exports org.visual.database;
   exports org.visual.database.data;

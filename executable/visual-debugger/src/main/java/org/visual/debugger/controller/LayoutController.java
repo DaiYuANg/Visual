@@ -1,7 +1,6 @@
 package org.visual.debugger.controller;
 
 import com.sun.tools.attach.VirtualMachineDescriptor;
-import io.avaje.inject.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.net.URL;
@@ -50,7 +49,6 @@ public class LayoutController implements Initializable {
 
   private void onSelect(@NotNull VirtualMachineDescriptor vm) {}
 
-  @PreDestroy
   void onShutdown() {
     log.info("on shutdown");
     preferences.put(

@@ -17,7 +17,6 @@
  */
 package org.visual.debugger.model;
 
-import io.avaje.inject.PreDestroy;
 import java.util.*;
 import java.util.prefs.Preferences;
 import javafx.scene.control.*;
@@ -25,7 +24,7 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.debugger.VisualModelDebugger;
+import org.visual.debugger.view.VisualDebuggerView;
 import org.visual.debugger.utils.PropertiesUtils;
 
 @Slf4j
@@ -33,7 +32,7 @@ public class Persistence {
 
   private static Properties properties;
 
-  private final Preferences preferences = Preferences.userNodeForPackage(VisualModelDebugger.class);
+  private final Preferences preferences = Preferences.userNodeForPackage(VisualDebuggerView.class);
 
   private static final Map<String, Object> persistentComponents = new HashMap<>();
 
@@ -113,7 +112,6 @@ public class Persistence {
   }
 
   @SneakyThrows
-  @PreDestroy
   void preDestroy() {
     log.atInfo().log("save user preferences:{}", Arrays.toString(preferences.keys()));
     preferences.flush();

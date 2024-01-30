@@ -25,7 +25,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.jetbrains.annotations.NotNull;
-import org.visual.debugger.VisualModelDebugger;
+import org.visual.debugger.view.VisualDebuggerView;
 import org.visual.debugger.api.StageController;
 import org.visual.debugger.utils.PropertiesUtils;
 import org.visual.debugger.view.ScenicViewGui;
@@ -100,7 +100,7 @@ public class AboutBox {
 
   private static @NotNull String getAboutText() {
     final Properties properties = PropertiesUtils.getProperties();
-    String toolsPath = properties.getProperty(VisualModelDebugger.JDK_PATH_KEY);
+    String toolsPath = properties.getProperty(VisualDebuggerView.JDK_PATH_KEY);
     toolsPath = toolsPath == null ? "Included in runtime classpath" : toolsPath;
 
     return "JavaFX Scenic View "

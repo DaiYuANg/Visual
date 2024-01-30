@@ -1,10 +1,17 @@
+import io.avaje.inject.plugin.AvajeInjectPlugin
+
 plugins {
   application
   java
 }
 
+apply<FxProjectPlugin>()
 plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.web")
-
+apply<KotlinProjectPlugin>()
+apply<CommonPlugin>()
+apply<FatJarPlugin>()
+apply<AvajeInjectPlugin>()
+apply<JlinkProject>()
 group = "org.visual.designer"
 
 val mainClassPath = "${group}.VisualModelDesigner"
@@ -29,6 +36,13 @@ dependencies {
   implementation(libs.pcollections)
   implementation(libs.avajeValidaor)
   annotationProcessor(libs.avajeValidaorCodegen)
+  implementation(rootProject.libs.avajeInject)
+  annotationProcessor(rootProject.libs.avajeInjectGenerator)
+  implementation(rootProject.libs.gestaltConfig)
+  implementation(rootProject.libs.gestaltToml)
+  testImplementation(rootProject.libs.avajeInjectTest)
+  implementation(rootProject.libs.picocli)
+  annotationProcessor(rootProject.libs.picocliCodegen)
 }
 
 // jlink {

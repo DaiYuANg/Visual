@@ -17,9 +17,8 @@
  */
 package org.visual.debugger.view;
 
-import jakarta.inject.Singleton;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -30,13 +29,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.i18n.I18n;
 import org.visual.i18n.I18nKeys;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Singleton
+@NoArgsConstructor(force = true)
 public class StatusBar extends HBox {
   private final Label windowTypeLabel;
   private final Label stageBoundsText;
@@ -51,8 +55,8 @@ public class StatusBar extends HBox {
     setId("main-statusbar");
     setSpacing(4);
   }
-
-  public StatusBar(@NotNull I18n i18n) {
+  @Inject
+  public StatusBar(  @NotNull I18n i18n) {
     Tooltip tooltip = new Tooltip("Windows bounds in the screen");
     windowTypeLabel = createLabel("Stage:", tooltip);
     stageBoundsText = createValueLabel(tooltip);
