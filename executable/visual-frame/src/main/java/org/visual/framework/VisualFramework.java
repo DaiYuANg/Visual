@@ -15,7 +15,6 @@ public abstract class VisualFramework extends Application implements Runnable {
 
     @Override
     public final void start(Stage stage) {
-
     }
 
 

@@ -26,7 +26,7 @@ public class UIFactory {
   }
 
   @Bean
-  @Named("DatabaseStage")
+//  @Named("DatabaseStage")
   VisualStage rootStage() {
     return new VisualStage();
   }

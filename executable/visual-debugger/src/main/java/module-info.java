@@ -1,7 +1,7 @@
 import io.avaje.inject.InjectModule;
 
 @SuppressWarnings({"requires-automatic"})
-@InjectModule()
+@InjectModule(name = "Debugger", customScopeType = "debugger")
 module org.visual.debugger {
   requires transitive javafx.fxml;
   requires transitive javafx.controls;
