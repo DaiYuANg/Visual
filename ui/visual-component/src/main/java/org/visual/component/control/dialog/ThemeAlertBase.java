@@ -8,14 +8,13 @@ import org.visual.component.container.VStageInitParams;
 import org.visual.component.control.button.FusionButton;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
-import org.visual.component.manager.internal_i18n.InternalI18n;
 
 public class ThemeAlertBase extends VStage {
   public static final int PADDING_H = 20;
 
   protected final VBox alertMessagePane = new VBox();
   protected final FusionButton okButton =
-      new FusionButton(InternalI18n.get().alertOkButton()) {
+      new FusionButton() {
         {
           setPrefWidth(120);
           setPrefHeight(45);

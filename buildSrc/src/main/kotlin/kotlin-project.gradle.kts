@@ -13,6 +13,10 @@ plugins {
 java {
     modularity.inferModulePath.set(true)
 }
+
+dependencies{
+    implementation ("io.github.oshai:kotlin-logging-jvm:5.1.0")
+}
 val compileKotlin: KotlinCompile by tasks
 val compileJava: JavaCompile by tasks
 
@@ -27,5 +31,5 @@ tasks.compileJava {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(rootLibs(project).versions.jdk.get().toInt())
 }

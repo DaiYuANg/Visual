@@ -8,34 +8,29 @@ import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.DoublePropertyBase;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import lombok.Getter;
 import lombok.Setter;
 import org.visual.component.animation.Callback;
-import org.visual.component.manager.internal_i18n.InternalI18n;
-import org.visual.component.manager.task.TaskManager;
 import org.visual.component.shapes.VLine;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class VProgressBar extends Group {
   private static final double radius = 1;
   private static final double width = radius * 2;
 
-  private double length;
-  private double progress;
+  @Getter private double length;
+  @Getter private double progress;
   private final VLine backgroundLine = new VLine(width);
   private final VLine progressLine = new VLine(width);
 
   public VProgressBar() {
     getChildren().addAll(backgroundLine, progressLine);
     backgroundLine.setStartX(radius);
-    backgroundLine.setStroke(Theme.current().progressBarBackgroundColor());
+    backgroundLine.setStroke(Color.ALICEBLUE);
 
     progressLine.setStartX(radius);
-    progressLine.setStroke(Theme.current().progressBarProgressColor());
-  }
-
-  public double getLength() {
-    return length;
+    progressLine.setStroke(Color.RED);
   }
 
   public void setLength(double length) {
@@ -64,10 +59,6 @@ public class VProgressBar extends Group {
 
   public DoubleProperty progressProperty() {
     return progressProperty;
-  }
-
-  public double getProgress() {
-    return progress;
   }
 
   public void setProgress(double progress) {
@@ -127,8 +118,8 @@ public class VProgressBar extends Group {
             currentCB.accept(item);
           }
         });
-    TaskManager.get()
-        .execute(
+    Thread.ofVirtual()
+        .start(
             () -> {
               final boolean ok;
               final Throwable loadingException;
@@ -170,7 +161,8 @@ public class VProgressBar extends Group {
       return false;
     }
     isDone = true;
-    FXUtils.runOnFX(() -> cb.failed(new LoadingFailure(InternalI18n.get().loadingCanceled())));
+    //    FXUtils.runOnFX(() -> cb.failed(new
+    // LoadingFailure(InternalI18n.get().loadingCanceled())));
     return true;
   }
 }

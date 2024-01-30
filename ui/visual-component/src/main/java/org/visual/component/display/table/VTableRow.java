@@ -2,6 +2,7 @@ package org.visual.component.display.table;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -12,22 +13,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
-import org.visual.component.theme.Theme;
+import lombok.Getter;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.util.FXUtils;
 
 public class VTableRow<S> implements RowInformer {
-  private static final Color COLOR_SELECTED =
-      Theme.current()
-          .tableCellSelectedBackgroundColor(); // = new Color(0, 0x96 / 255d, 0xc9 / 255d,
-  // 1);
-  private static final Color COLOR_1 =
-      Theme.current().tableCellBackgroundColor1(); // = new Color(0xf9 / 255d, 0xf9 / 255d, 0xf9 /
-  // 255d, 1);
-  private static final Color COLOR_2 =
-      Theme.current().tableCellBackgroundColor2(); // = new Color(0xff / 255d, 0xff / 255d, 0xff /
-  // 255d, 1);
+  private static final Color COLOR_SELECTED = new Color(0, 0x96 / 255d, 0xc9 / 255d, 1);
+  private static final Color COLOR_1 = new Color(0xf9 / 255d, 0xf9 / 255d, 0xf9 / 255d, 1);
+  private static final Color COLOR_2 = new Color(0xff / 255d, 0xff / 255d, 0xff / 255d, 1);
 
   private static final Background BG_SELECTED =
       new Background(new BackgroundFill(COLOR_SELECTED, CornerRadii.EMPTY, Insets.EMPTY));
@@ -40,9 +34,9 @@ public class VTableRow<S> implements RowInformer {
   final S item;
   final VTableSharedData<S> shared;
   final ObservableList<VTableCellPane<S>> nodes = FXCollections.observableArrayList();
-  private boolean selected = false;
+  @Getter private boolean selected = false;
 
-  VTableRow(S item, VTableSharedData<S> shared) {
+  VTableRow(S item, @NotNull VTableSharedData<S> shared) {
     this.rowId = ++shared.rowAdder;
     this.item = item;
     this.shared = shared;
@@ -74,26 +68,32 @@ public class VTableRow<S> implements RowInformer {
 
   public void add() {
     var columns = shared.tableView.getColumns();
-    for (int i = 0; i < columns.size(); ++i) {
-      var col = columns.get(i);
-      col.vbox.getChildren().add(nodes.get(i));
-    }
+    IntStream.range(0, columns.size())
+        .forEach(
+            i -> {
+              var col = columns.get(i);
+              col.vbox.getChildren().add(nodes.get(i));
+            });
   }
 
   public void add(int index) {
     var columns = shared.tableView.getColumns();
-    for (int i = 0; i < columns.size(); ++i) {
-      var col = columns.get(i);
-      col.vbox.getChildren().add(index, nodes.get(i));
-    }
+    IntStream.range(0, columns.size())
+        .forEach(
+            i -> {
+              var col = columns.get(i);
+              col.vbox.getChildren().add(index, nodes.get(i));
+            });
   }
 
   public void remove() {
     var columns = shared.tableView.getColumns();
-    for (int i = 0; i < columns.size(); ++i) {
-      var col = columns.get(i);
-      col.vbox.getChildren().remove(nodes.get(i));
-    }
+    IntStream.range(0, columns.size())
+        .forEach(
+            i -> {
+              var col = columns.get(i);
+              col.vbox.getChildren().remove(nodes.get(i));
+            });
   }
 
   public void removeCol(int index) {
@@ -101,7 +101,7 @@ public class VTableRow<S> implements RowInformer {
   }
 
   public void addCol(int index, VTableColumn<S, ?> col) {
-    var cell = new VTableCellPane<>(buildNode(col), this, shared);
+    val cell = new VTableCellPane<>(buildNode(col), this, shared);
     nodes.add(index, cell);
     if (item instanceof CellAware) {
       //noinspection unchecked,rawtypes
@@ -109,12 +109,9 @@ public class VTableRow<S> implements RowInformer {
     }
   }
 
-  public void setCols(List<VTableColumn<S, ?>> cols) {
+  public void setCols(@NotNull List<VTableColumn<S, ?>> cols) {
     nodes.clear();
-    for (var col : cols) {
-      var cell = buildCell(col);
-      nodes.add(cell);
-    }
+    cols.stream().map(this::buildCell).forEach(nodes::add);
   }
 
   public void updateRowNodeForColumn(VTableColumn<S, ?> col) {
@@ -127,7 +124,7 @@ public class VTableRow<S> implements RowInformer {
     col.vbox.getChildren().add(rowIndex, cell);
   }
 
-  private VTableCellPane<S> buildCell(VTableColumn<S, ?> col) {
+  private @NotNull VTableCellPane<S> buildCell(VTableColumn<S, ?> col) {
     var cell = new VTableCellPane<>(buildNode(col), this, shared);
     if (item instanceof CellAware) {
       //noinspection unchecked,rawtypes
@@ -137,17 +134,10 @@ public class VTableRow<S> implements RowInformer {
     return cell;
   }
 
-  private Node buildNode(VTableColumn<S, ?> col) {
-    var v = col.valueRetriever.apply(item);
+  private Node buildNode(@NotNull VTableColumn<S, ?> col) {
+    val v = col.valueRetriever.apply(item);
     if (col.nodeBuilder == null) {
-      if (v == null) return new Label();
-      else
-        return new Label(v.toString()) {
-          {
-            setTextFill(Theme.current().tableTextColor());
-            FontManager.get().setFont(FontUsages.tableCellText, this);
-          }
-        };
+      return v == null ? new Label() : new Label(v.toString());
     } else {
       //noinspection unchecked,rawtypes
       return (Node) ((Function) col.nodeBuilder).apply(v);
@@ -160,25 +150,25 @@ public class VTableRow<S> implements RowInformer {
   }
 
   private void informRowUpdate0() {
-    for (int i = 0; i < shared.tableView.getColumns().size(); ++i) {
-      var col = shared.tableView.getColumns().get(i);
-      var node = buildNode(col);
-      var pane = nodes.get(i);
-      pane.getChildren().clear();
-      if (node != null) {
-        pane.getChildren().add(node);
-      }
-    }
+    IntStream.range(0, shared.tableView.getColumns().size())
+        .forEach(
+            i -> {
+              val col = shared.tableView.getColumns().get(i);
+              val node = buildNode(col);
+              val pane = nodes.get(i);
+              pane.getChildren().clear();
+              if (node == null) {
+                return;
+              }
+              pane.getChildren().add(node);
+            });
   }
 
   public void updateColWidth(int i, double w) {
-    nodes.get(i).setPrefWidth(w);
-    nodes.get(i).setMinWidth(w);
-    nodes.get(i).setMaxWidth(w);
-  }
-
-  public boolean isSelected() {
-    return selected;
+    val node = nodes.get(i);
+    node.setPrefWidth(w);
+    node.setMinWidth(w);
+    node.setMaxWidth(w);
   }
 
   public void setSelected(boolean selected) {
@@ -194,14 +184,15 @@ public class VTableRow<S> implements RowInformer {
   }
 
   public void setBgColor(int rowNumber) {
-    for (var n : nodes) {
-      if (selected) {
-        n.setBackground(BG_SELECTED); // force selected color
-      } else if (rowNumber % 2 == 0) {
-        n.setBackground0(BG_1);
-      } else {
-        n.setBackground0(BG_2);
-      }
-    }
+    nodes.forEach(
+        n -> {
+          if (selected) {
+            n.setBackground(BG_SELECTED); // force selected color
+          } else if (rowNumber % 2 == 0) {
+            n.setBackground0(BG_1);
+          } else {
+            n.setBackground0(BG_2);
+          }
+        });
   }
 }

@@ -1,7 +1,7 @@
 package org.visual.component.display.table;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -13,12 +13,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import lombok.Getter;
 import org.visual.component.control.scroll.NodeWithVScrollPane;
 import org.visual.component.control.scroll.VScrollPane;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
-import org.visual.component.manager.internal_i18n.InternalI18n;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class VTableView<S> implements NodeWithVScrollPane {
@@ -35,10 +32,8 @@ public class VTableView<S> implements NodeWithVScrollPane {
   private final VScrollPane scrollPane = new VScrollPane();
   private final HBox dataPane = new HBox();
   private final Label emptyTableLabel =
-      new Label(InternalI18n.get().emptyTableLabel()) {
+      new Label() {
         {
-          FontManager.get().setFont(FontUsages.tableEmptyTableLabel, this);
-          setTextFill(Theme.current().tableTextColor());
           setAlignment(Pos.CENTER);
           setTextFill(Color.GRAY);
         }
@@ -46,7 +41,9 @@ public class VTableView<S> implements NodeWithVScrollPane {
 
   private final VTableSharedData<S> shared = new VTableSharedData<>(this);
 
+  @Getter
   private final ObservableList<VTableColumn<S, ?>> columns = FXCollections.observableArrayList();
+
   private final ArrayList<VTableColumn<S, ?>> lastColumns = new ArrayList<>();
   final ObservableList<VTableRow<S>> items = FXCollections.observableArrayList();
   private final VTableRowListDelegate<S> itemsDelegate = new VTableRowListDelegate<>(items, shared);
@@ -115,10 +112,6 @@ public class VTableView<S> implements NodeWithVScrollPane {
     return root;
   }
 
-  public ObservableList<VTableColumn<S, ?>> getColumns() {
-    return columns;
-  }
-
   public List<S> getItems() {
     return itemsDelegate;
   }
@@ -126,11 +119,13 @@ public class VTableView<S> implements NodeWithVScrollPane {
   public void setItems(List<S> items) {
     this.items.removeListener(itemsListener);
     this.items.clear();
-    for (var item : items) {
-      var row = new VTableRow<>(item, shared);
-      row.setCols(columns);
-      this.items.add(row);
-    }
+    items.stream()
+        .map(item -> new VTableRow<>(item, shared))
+        .forEach(
+            row -> {
+              row.setCols(columns);
+              this.items.add(row);
+            });
     this.items.addListener(itemsListener);
     sort();
     updateWidth();
@@ -148,29 +143,32 @@ public class VTableView<S> implements NodeWithVScrollPane {
           var added = c.getAddedSubList();
           var removed = c.getRemoved();
 
-          for (int i = removed.size() - 1; i >= 0; --i) {
-            var col = removed.get(i);
-            int index = lastColumns.indexOf(col);
-            lastColumns.remove(index);
-            assert index != -1;
-            for (var row : items) {
-              row.removeCol(index);
-            }
-            dataPane.getChildren().remove(index);
-            columnPane.getChildren().remove(index);
-            clearSort(col);
-            col.shared = null;
-          }
-          for (var col : added) {
-            var index = columns.indexOf(col);
-            lastColumns.add(index, col);
-            for (var row : items) {
-              row.addCol(index, col);
-            }
-            dataPane.getChildren().add(index, col.vbox);
-            columnPane.getChildren().add(index, col.columnNode);
-            col.shared = shared;
-          }
+          IntStream.iterate(removed.size() - 1, i -> i >= 0, i -> i - 1)
+              .mapToObj(removed::get)
+              .forEach(
+                  col -> {
+                    int index = lastColumns.indexOf(col);
+                    lastColumns.remove(index);
+                    assert index != -1;
+                    for (var row : items) {
+                      row.removeCol(index);
+                    }
+                    dataPane.getChildren().remove(index);
+                    columnPane.getChildren().remove(index);
+                    clearSort(col);
+                    col.shared = null;
+                  });
+          added.forEach(
+              col -> {
+                var index = columns.indexOf(col);
+                lastColumns.add(index, col);
+                for (var row : items) {
+                  row.addCol(index, col);
+                }
+                dataPane.getChildren().add(index, col.vbox);
+                columnPane.getChildren().add(index, col.columnNode);
+                col.shared = shared;
+              });
         }
         updateWidth();
       };
@@ -322,7 +320,7 @@ public class VTableView<S> implements NodeWithVScrollPane {
         return ret;
       }
       avg = remain / remainCnt;
-      if (exceedsMin0.size() == 0 && exceedsMax0.size() == 0) {
+      if (exceedsMin0.isEmpty() && exceedsMax0.isEmpty()) {
         for (var c : columns) {
           if (prefWCols.contains(c)) continue;
           if (exceedsMin.contains(c)) continue;
@@ -399,12 +397,12 @@ public class VTableView<S> implements NodeWithVScrollPane {
       return;
     }
     if (c.getSortPriority() == 0) {
-      int p = 0;
-      for (var col : columns) {
-        if (col.getSortPriority() > p) {
-          p = col.getSortPriority();
-        }
-      }
+      int p =
+          columns.stream()
+              .mapToInt(VTableColumn::getSortPriority)
+              .filter(col -> col >= 0)
+              .max()
+              .orElse(0);
       ++p;
       c.setSort(p, order);
     } else {
@@ -418,11 +416,10 @@ public class VTableView<S> implements NodeWithVScrollPane {
     if (c.getSortPriority() == 0) {
       return;
     }
-    for (var col : columns) {
-      if (col == c) continue;
-      if (col.getSortPriority() < c.getSortPriority()) continue;
-      col.decSortPriority();
-    }
+    columns.stream()
+        .filter(col -> col != c)
+        .filter(col -> col.getSortPriority() >= c.getSortPriority())
+        .forEach(VTableColumn::decSortPriority);
     c.resetSortPriority();
     sort();
   }
@@ -433,7 +430,7 @@ public class VTableView<S> implements NodeWithVScrollPane {
             .stream()
                 .filter(c -> c.getSortPriority() > 0 && c.comparator != null)
                 .sorted(Comparator.comparingInt(VTableColumn::getSortPriority))
-                .collect(Collectors.toList());
+                .toList();
     var tmp = new ArrayList<>(items);
     tmp.sort(
         (a, b) -> {

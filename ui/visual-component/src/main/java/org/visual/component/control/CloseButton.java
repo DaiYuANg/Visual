@@ -5,7 +5,6 @@ import javafx.scene.layout.CornerRadii;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.container.VStage;
 import org.visual.component.container.VStageInitParams;
-import org.visual.component.theme.Theme;
 
 public class CloseButton extends WindowControlButton {
   private CornerRadii cornerRadii;
@@ -35,11 +34,11 @@ public class CloseButton extends WindowControlButton {
 
   @Override
   protected Image getNormalImage() {
-    return Theme.current().windowCloseButtonNormalImage();
+    return null;
   }
 
   @Override
   protected Image getHoverImage() {
-    return Theme.current().windowCloseButtonHoverImage();
+    return null;
   }
 }

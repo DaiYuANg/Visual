@@ -10,14 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.container.FusionPane;
 import org.visual.component.container.VStage;
 import org.visual.component.control.button.FusionButton;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class VDialog<T> {
@@ -37,8 +35,6 @@ public class VDialog<T> {
     stage.getStage().centerOnScreen();
 
     messageLabel.setWrapText(true);
-    FontManager.get().setFont(FontUsages.dialogText, messageLabel);
-    messageLabel.setTextFill(Theme.current().normalTextColor());
 
     buttonPane.getContentPane().getChildren().add(buttonHBox);
     buttonPane.getNode().setPrefHeight(BUTTON_PANE_HEIGHT);
@@ -84,26 +80,27 @@ public class VDialog<T> {
     return messageLabel;
   }
 
-  public void setButtons(List<VDialogButton<T>> buttons) {
+  public void setButtons(@NotNull List<VDialogButton<T>> buttons) {
     buttonHBox.getChildren().clear();
     var ls = new ArrayList<Node>();
-    for (var btn : buttons) {
-      var name = btn.name;
-      var button = new FusionButton(name);
-      var textBounds = FXUtils.calculateTextBounds(button.getTextNode());
-      button.setPrefWidth(Math.max(textBounds.getWidth() + 40, 120));
-      button.setPrefHeight(BUTTON_HEIGHT);
-      ls.add(button);
-      button.setOnAction(
-          e -> {
-            if (btn.provider != null) {
-              returnValue = btn.provider.get();
-            }
-            onButtonClicked(btn);
-            stage.close();
-          });
-      btn.button = button;
-    }
+    buttons.forEach(
+        btn -> {
+          var name = btn.name;
+          var button = new FusionButton(name);
+          var textBounds = FXUtils.calculateTextBounds(button.getTextNode());
+          button.setPrefWidth(Math.max(textBounds.getWidth() + 40, 120));
+          button.setPrefHeight(BUTTON_HEIGHT);
+          ls.add(button);
+          button.setOnAction(
+              e -> {
+                if (btn.provider != null) {
+                  returnValue = btn.provider.get();
+                }
+                onButtonClicked(btn);
+                stage.close();
+              });
+          btn.button = button;
+        });
     buttonHBox.getChildren().addAll(ls);
   }
 

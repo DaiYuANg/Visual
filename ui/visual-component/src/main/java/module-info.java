@@ -26,11 +26,12 @@ module org.visual.component {
   requires kotlin.stdlib;
   requires org.apache.commons.pool2;
   requires it.unimi.dsi.fastutil;
-  requires com.github.kwhat.jnativehook;
   requires javafx.media;
   requires javafx.swing;
   requires org.visual.component.annotation;
   requires org.apache.commons.io;
+  requires io.github.oshai.kotlinlogging;
+  requires java.logging;
 
   exports org.visual.component.title;
   exports org.visual.component.window;
@@ -39,9 +40,7 @@ module org.visual.component {
   exports org.visual.component.control.click;
   exports org.visual.component.control.button;
   exports org.visual.component.control.dialog;
-  exports org.visual.component.control.drag;
   exports org.visual.component.control.scroll;
-  exports org.visual.component.control.globalscreen;
   exports org.visual.component.util;
   exports org.visual.component.theme;
   exports org.visual.component.container;
@@ -70,4 +69,6 @@ module org.visual.component {
   opens org.visual.component.container to
       javafx.fxml,
       javafx.graphics;
+
+  exports org.visual.component.handler;
 }

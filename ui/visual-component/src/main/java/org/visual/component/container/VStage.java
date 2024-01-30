@@ -1,5 +1,7 @@
 package org.visual.component.container;
 
+import static org.visual.component.util.FXUtils.getScreenOf;
+
 import java.util.regex.Pattern;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -12,6 +14,8 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
+import lombok.val;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.container.scene.VScene;
 import org.visual.component.container.scene.VSceneGroup;
@@ -20,10 +24,7 @@ import org.visual.component.container.scene.VSceneRole;
 import org.visual.component.control.CloseButton;
 import org.visual.component.control.IconifyButton;
 import org.visual.component.control.MaxResetButton;
-import org.visual.component.control.drag.DragHandler;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
-import org.visual.component.theme.Theme;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.util.FXUtils;
 import org.visual.shared.OS;
 
@@ -48,8 +49,6 @@ public class VStage {
   private final Label title =
       new Label() {
         {
-          FontManager.get().setFont(FontUsages.windowTitle, this);
-          setTextFill(Theme.current().normalTextColor());
           setMouseTransparent(true);
         }
       };
@@ -120,12 +119,11 @@ public class VStage {
             });
     rootContainer.setBackground(Background.EMPTY);
     useDefaultBorder();
-    setBackground(Theme.current().sceneBackgroundColor());
 
     var movingPane = new Pane();
     movingPane.setPrefHeight(TITLE_BAR_HEIGHT);
     var moveWindowHandler =
-        new DragHandler() {
+        new org.visual.component.handler.DragHandler() {
           @Override
           protected void set(double x, double y) {
             if (maximized) {
@@ -174,8 +172,9 @@ public class VStage {
             stage.setHeight(y);
           }
 
+          @Contract(" -> new")
           @Override
-          protected double[] get() {
+          protected double @NotNull [] get() {
             return new double[] {
               stage.getWidth(), stage.getHeight(),
             };
@@ -238,20 +237,14 @@ public class VStage {
     rootContainer.setBorder(
         new Border(
             new BorderStroke(
-                Theme.current().windowBorderColorLight(),
-                BorderStrokeStyle.SOLID,
-                new CornerRadii(8),
-                new BorderWidths(0.5))));
+                Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(8), new BorderWidths(0.5))));
   }
 
   public void useDarkBorder() {
     rootContainer.setBorder(
         new Border(
             new BorderStroke(
-                Theme.current().windowBorderColorDark(),
-                BorderStrokeStyle.SOLID,
-                new CornerRadii(8),
-                new BorderWidths(0.5))));
+                Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(8), new BorderWidths(0.5))));
   }
 
   private void updateTitlePosition() {
@@ -334,11 +327,11 @@ public class VStage {
         stageOriginalY = stage.getY();
         stageOriginalW = stage.getWidth();
         stageOriginalH = stage.getHeight();
-        var screen = FXUtils.getScreenOf(stage);
+        val screen = getScreenOf(stage);
         if (screen == null) {
           return;
         }
-        var bounds = screen.getBounds();
+        val bounds = screen.getBounds();
         stage.setX(bounds.getMinX());
         stage.setY(bounds.getMinY() + 24);
         stage.setWidth(bounds.getWidth());

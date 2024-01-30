@@ -3,7 +3,6 @@ package org.visual.component.util;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import java.util.function.Supplier;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -11,7 +10,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -23,11 +21,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.experimental.UtilityClass;
+import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
-import org.visual.component.control.dialog.SimpleAlert;
-import org.visual.component.manager.internal_i18n.InternalI18n;
 
 @UtilityClass
 public class FXUtils {
@@ -37,30 +34,6 @@ public class FXUtils {
     } else {
       Platform.runLater(r);
     }
-  }
-
-  public static <T> T runOnFXAndReturn(Supplier<T> f) {
-    boolean[] finished = new boolean[] {false};
-    Object[] obj = new Object[] {null};
-    Runnable r =
-        () -> {
-          obj[0] = f.get();
-          finished[0] = true;
-        };
-    if (Platform.isFxApplicationThread()) {
-      r.run();
-    } else {
-      Platform.runLater(r);
-    }
-    while (!finished[0]) {
-      try {
-        //noinspection BusyWait
-        Thread.sleep(1);
-      } catch (InterruptedException ignore) {
-      }
-    }
-    //noinspection unchecked
-    return (T) obj[0];
   }
 
   public static void runDelay(int millis, Runnable r) {
@@ -86,13 +59,14 @@ public class FXUtils {
     ptr[0].start();
   }
 
-  public static Rectangle2D calculateTextBounds(Label label) {
-    Text text = new Text(label.getText());
+  public static @NotNull Rectangle2D calculateTextBounds(@NotNull Label label) {
+    val text = new Text(label.getText());
     text.setFont(label.getFont());
     return calculateTextBounds(text);
   }
 
-  public static Rectangle2D calculateTextBounds(Text text) {
+  @Contract("_ -> new")
+  public static @NotNull Rectangle2D calculateTextBounds(@NotNull Text text) {
     double textWidth;
     double textHeight;
     {
@@ -116,17 +90,7 @@ public class FXUtils {
     var screenOb =
         Screen.getScreensForRectangle(
             window.getX(), window.getY(), window.getWidth(), window.getHeight());
-    Screen screen;
-    if (screenOb.isEmpty()) {
-      screen = Screen.getPrimary();
-    } else {
-      screen = screenOb.getFirst();
-    }
-    if (screen == null) {
-      SimpleAlert.showAndWait(Alert.AlertType.WARNING, InternalI18n.get().cannotFindAnyDisplay());
-      return null;
-    }
-    return screen;
+    return screenOb.isEmpty() ? Screen.getPrimary() : screenOb.getFirst();
   }
 
   public static @NotNull BufferedImage convertToBufferedImage(java.awt.Image awtImage) {
@@ -146,20 +110,22 @@ public class FXUtils {
     return observeWidthHeight(observed, modified, 0, 0);
   }
 
+  @Contract("_, _, _, _ -> new")
   @SuppressWarnings("DuplicatedCode")
-  public static List<ChangeListener<? super Number>> observeWidthHeight(
+  public static @NotNull @Unmodifiable List<ChangeListener<? super Number>> observeWidthHeight(
       Region observed, Region modified, double wDelta, double hDelta) {
     return List.of(
         observeWidth(observed, modified, wDelta), observeHeight(observed, modified, hDelta));
   }
 
-  public static ChangeListener<? super Number> observeWidth(Region observed, Region modified) {
+  public static @NotNull ChangeListener<? super Number> observeWidth(
+      Region observed, Region modified) {
     return observeWidth(observed, modified, 0);
   }
 
   @SuppressWarnings("DuplicatedCode")
-  public static ChangeListener<? super Number> observeWidth(
-      Region observed, Region modified, double wDelta) {
+  public static @NotNull ChangeListener<? super Number> observeWidth(
+      @NotNull Region observed, Region modified, double wDelta) {
     ChangeListener<? super Number> lsn =
         (ob, old, now) -> {
           if (now == null) return;
@@ -167,20 +133,21 @@ public class FXUtils {
           modified.setPrefWidth(w + wDelta);
         };
     observed.widthProperty().addListener(lsn);
-    var current = observed.getWidth();
+    val current = observed.getWidth();
     if (current > 0) {
       lsn.changed(null, null, current);
     }
     return lsn;
   }
 
-  public static ChangeListener<? super Number> observeHeight(Region observed, Region modified) {
+  public static @NotNull ChangeListener<? super Number> observeHeight(
+      Region observed, Region modified) {
     return observeHeight(observed, modified, 0);
   }
 
   @SuppressWarnings("DuplicatedCode")
-  public static ChangeListener<? super Number> observeHeight(
-      Region observed, Region modified, double hDelta) {
+  public static @NotNull ChangeListener<? super Number> observeHeight(
+      @NotNull Region observed, Region modified, double hDelta) {
     ChangeListener<? super Number> lsn =
         (ob, old, now) -> {
           if (now == null) return;
@@ -195,27 +162,30 @@ public class FXUtils {
     return lsn;
   }
 
-  public static List<ChangeListener<? super Number>> observeWidthHeightWithPreferred(
-      Region observed, Region modified) {
+  @Contract("_, _ -> new")
+  public static @NotNull @Unmodifiable List<ChangeListener<? super Number>>
+      observeWidthHeightWithPreferred(Region observed, Region modified) {
     return observeWidthHeightWithPreferred(observed, modified, 0, 0);
   }
 
+  @Contract("_, _, _, _ -> new")
   @SuppressWarnings("DuplicatedCode")
-  public static List<ChangeListener<? super Number>> observeWidthHeightWithPreferred(
-      Region observed, Region modified, double wDelta, double hDelta) {
+  public static @NotNull @Unmodifiable List<ChangeListener<? super Number>>
+      observeWidthHeightWithPreferred(
+          Region observed, Region modified, double wDelta, double hDelta) {
     return List.of(
         observeWidthWithPreferred(observed, modified, wDelta),
         observeHeightWithPreferred(observed, modified, hDelta));
   }
 
-  public static ChangeListener<? super Number> observeWidthWithPreferred(
+  public static @NotNull ChangeListener<? super Number> observeWidthWithPreferred(
       Region observed, Region modified) {
     return observeWidthWithPreferred(observed, modified, 0);
   }
 
   @SuppressWarnings("DuplicatedCode")
-  public static ChangeListener<? super Number> observeWidthWithPreferred(
-      Region observed, Region modified, double wDelta) {
+  public static @NotNull ChangeListener<? super Number> observeWidthWithPreferred(
+      @NotNull Region observed, Region modified, double wDelta) {
     ChangeListener<? super Number> lsn =
         (ob, old, now) -> {
           if (now == null) return;
@@ -234,13 +204,13 @@ public class FXUtils {
     return lsn;
   }
 
-  public static ChangeListener<? super Number> observeHeightWithPreferred(
+  public static @NotNull ChangeListener<? super Number> observeHeightWithPreferred(
       Region observed, Region modified) {
     return observeHeightWithPreferred(observed, modified, 0);
   }
 
   @SuppressWarnings("DuplicatedCode")
-  public static ChangeListener<? super Number> observeHeightWithPreferred(
+  public static @NotNull ChangeListener<? super Number> observeHeightWithPreferred(
       Region observed, Region modified, double hDelta) {
     ChangeListener<? super Number> lsn =
         (ob, old, now) -> {

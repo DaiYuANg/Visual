@@ -6,20 +6,22 @@ import javafx.beans.property.DoublePropertyBase;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+import lombok.Getter;
+import lombok.Setter;
 import org.visual.component.algebradata.DoubleData;
 import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
-import org.visual.component.control.drag.DragHandler;
-import org.visual.component.display.ThemeLabel;
+import org.visual.component.constant.DisplayFormat;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.shapes.ClickableCircle;
 import org.visual.component.shapes.VLine;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
-import org.visual.component.util.MiscUtils;
 
 public class VRangeSlider extends Pane {
   private static final double lineRadius = 1;
@@ -31,38 +33,34 @@ public class VRangeSlider extends Pane {
   private final Pane rotatePane = new Pane();
   private final Rotate rotate = new Rotate();
 
-  private double length;
+  @Getter private double length;
   private double rangeMin;
   private double rangeMax;
   private final VLine backgroundLine = new VLine(lineWidth);
   private final VLine rangeLine = new VLine(lineWidth);
 
   private final ClickableCircle buttonMin =
-      new ClickableCircle(
-          Theme.current().rangeSliderButtonNormalColor(),
-          Theme.current().rangeSliderButtonHoverColor(),
-          Theme.current().rangeSliderButtonDownColor()) {
+      new ClickableCircle(Color.ALICEBLUE, Color.ALICEBLUE, Color.ALICEBLUE) {
         {
-          setStroke(Theme.current().rangeSliderButtonBorderColor());
+          setStroke(Color.ALICEBLUE);
         }
       };
   private final ClickableCircle buttonMax =
-      new ClickableCircle(
-          Theme.current().rangeSliderButtonNormalColor(),
-          Theme.current().rangeSliderButtonHoverColor(),
-          Theme.current().rangeSliderButtonDownColor()) {
+      new ClickableCircle(Color.ALICEBLUE, Color.ALICEBLUE, Color.ALICEBLUE) {
         {
-          setStroke(Theme.current().rangeSliderButtonBorderColor());
+          setStroke(Color.ALICEBLUE);
         }
       };
 
-  private EventHandler<Event> minOnAction = null;
-  private EventHandler<Event> maxOnAction = null;
+  @Setter private EventHandler<Event> minOnAction = null;
+  @Setter private EventHandler<Event> maxOnAction = null;
 
-  private final ThemeLabel minButtonLabel = new ThemeLabel();
-  private final ThemeLabel maxButtonLabel = new ThemeLabel();
-  private DoubleFunction<String> minValueTransform = MiscUtils.roughFloatValueFormat::format;
-  private DoubleFunction<String> maxValueTransform = MiscUtils.roughFloatValueFormat::format;
+  private final Label minButtonLabel = new Label();
+  private final Label maxButtonLabel = new Label();
+  private DoubleFunction<String> minValueTransform =
+      DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
+  private DoubleFunction<String> maxValueTransform =
+      DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
   private final AnimationNode<DoubleData> labelInvisible =
       new AnimationNode<>("invisible", new DoubleData(0));
   private final AnimationNode<DoubleData> labelVisible =
@@ -104,9 +102,9 @@ public class VRangeSlider extends Pane {
 
     rotatePane.getChildren().addAll(backgroundLine, rangeLine);
     backgroundLine.setStartX(BUTTON_RADIUS + lineRadius);
-    backgroundLine.setStroke(Theme.current().progressBarBackgroundColor());
+    backgroundLine.setStroke(Color.ALICEBLUE);
 
-    rangeLine.setStroke(Theme.current().progressBarProgressColor());
+    rangeLine.setStroke(Color.RED);
 
     buttonMin.setRadius(BUTTON_RADIUS);
     buttonMax.setRadius(BUTTON_RADIUS);
@@ -131,20 +129,14 @@ public class VRangeSlider extends Pane {
             return new double[] {buttonMin.getLayoutX(), 0};
           }
 
-          @SuppressWarnings("SuspiciousNameCombination")
           @Override
           protected double calculateDeltaX(double deltaX, double deltaY) {
-            switch (sliderDirection) {
-              case LEFT_TO_RIGHT:
-                return deltaX;
-              case RIGHT_TO_LEFT:
-                return -deltaX;
-              case TOP_TO_BOTTOM:
-                return deltaY;
-              case BOTTOM_TO_TOP:
-                return -deltaY;
-            }
-            throw new IllegalStateException("should not reach here");
+            return switch (sliderDirection) {
+              case LEFT_TO_RIGHT -> deltaX;
+              case RIGHT_TO_LEFT -> -deltaX;
+              case TOP_TO_BOTTOM -> deltaY;
+              case BOTTOM_TO_TOP -> -deltaY;
+            };
           }
 
           @Override
@@ -187,17 +179,12 @@ public class VRangeSlider extends Pane {
           @SuppressWarnings("SuspiciousNameCombination")
           @Override
           protected double calculateDeltaX(double deltaX, double deltaY) {
-            switch (sliderDirection) {
-              case LEFT_TO_RIGHT:
-                return deltaX;
-              case RIGHT_TO_LEFT:
-                return -deltaX;
-              case TOP_TO_BOTTOM:
-                return deltaY;
-              case BOTTOM_TO_TOP:
-                return -deltaY;
-            }
-            throw new IllegalStateException("should not reach here");
+            return switch (sliderDirection) {
+              case LEFT_TO_RIGHT -> deltaX;
+              case RIGHT_TO_LEFT -> -deltaX;
+              case TOP_TO_BOTTOM -> deltaY;
+              case BOTTOM_TO_TOP -> -deltaY;
+            };
           }
 
           @Override
@@ -311,10 +298,6 @@ public class VRangeSlider extends Pane {
     updateLabels();
   }
 
-  public double getLength() {
-    return length;
-  }
-
   public void setLength(double length) {
     this.length = length;
     backgroundLine.setEndX(length - BUTTON_RADIUS - lineRadius);
@@ -341,14 +324,6 @@ public class VRangeSlider extends Pane {
     updateLabels();
   }
 
-  public void setMinOnAction(EventHandler<Event> minOnAction) {
-    this.minOnAction = minOnAction;
-  }
-
-  public void setMaxOnAction(EventHandler<Event> maxOnAction) {
-    this.maxOnAction = maxOnAction;
-  }
-
   private void updateRange() {
     var barLen = length - BUTTON_RADIUS * 2;
 
@@ -361,7 +336,7 @@ public class VRangeSlider extends Pane {
 
   public void setMinValueTransform(DoubleFunction<String> minValueTransform) {
     if (minValueTransform == null) {
-      minValueTransform = MiscUtils.roughFloatValueFormat::format;
+      minValueTransform = DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
     }
     this.minValueTransform = minValueTransform;
     updateLabels();
@@ -369,7 +344,7 @@ public class VRangeSlider extends Pane {
 
   public void setMaxValueTransform(DoubleFunction<String> maxValueTransform) {
     if (maxValueTransform == null) {
-      maxValueTransform = MiscUtils.roughFloatValueFormat::format;
+      maxValueTransform = DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
     }
     this.maxValueTransform = maxValueTransform;
     updateLabels();

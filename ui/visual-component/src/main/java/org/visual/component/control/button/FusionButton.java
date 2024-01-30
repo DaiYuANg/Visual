@@ -6,20 +6,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Window;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
-import org.visual.component.theme.Theme;
+import lombok.Getter;
+import lombok.Setter;
 import org.visual.component.util.FXUtils;
 
 public class FusionButton extends AbstractFusionButton {
-  private final Label text =
-      new Label() {
-        {
-          setTextFill(Theme.current().fusionButtonTextColor());
-          FontManager.get().setFont(FontUsages.fusionButtonText, this);
-        }
-      };
+  private final Label text = new Label() {};
   private EventHandler<?> actionHandler = null;
 
   private Window watchingWindow = null;
@@ -86,10 +80,7 @@ public class FusionButton extends AbstractFusionButton {
     borderLightPane.setBorder(
         new Border(
             new BorderStroke(
-                Theme.current().fusionButtonAnimatingBorderLightColor(),
-                BorderStrokeStyle.SOLID,
-                getCornerRadii(),
-                new BorderWidths(1.5))));
+                Color.WHEAT, BorderStrokeStyle.SOLID, getCornerRadii(), new BorderWidths(1.5))));
     borderLightPane.setBackground(Background.EMPTY);
     borderLightPane.setOpacity(0);
     getChildren().add(borderLightPane);
@@ -102,11 +93,9 @@ public class FusionButton extends AbstractFusionButton {
     if (v) {
       setCursor(Cursor.DEFAULT);
       setMouseTransparent(true);
-      text.setTextFill(Theme.current().fusionButtonDisabledTextColor());
     } else {
       setCursor(Cursor.HAND);
       setMouseTransparent(false);
-      text.setTextFill(Theme.current().fusionButtonTextColor());
       startAnimating();
     }
   }
@@ -150,10 +139,10 @@ public class FusionButton extends AbstractFusionButton {
 
   private Animation timer = null;
   private final Pane borderLightPane = new Pane();
-  private boolean disableAnimation = !Theme.current().enableFusionButtonAnimation();
+  @Getter private boolean disableAnimation = false;
   private boolean internalDisableAnimation = false;
   private boolean alreadyClicked = false;
-  private boolean onlyAnimateWhenNotClicked = false;
+  @Setter @Getter private boolean onlyAnimateWhenNotClicked = false;
 
   // return true if it's animating after calling this method
   public boolean startAnimating() {
@@ -221,10 +210,6 @@ public class FusionButton extends AbstractFusionButton {
     borderLightPane.setOpacity(0);
   }
 
-  public boolean isDisableAnimation() {
-    return disableAnimation;
-  }
-
   public boolean isDisableAnimation0() {
     return disableAnimation
         || internalDisableAnimation
@@ -239,14 +224,6 @@ public class FusionButton extends AbstractFusionButton {
     } else {
       startAnimating();
     }
-  }
-
-  public boolean isOnlyAnimateWhenNotClicked() {
-    return onlyAnimateWhenNotClicked;
-  }
-
-  public void setOnlyAnimateWhenNotClicked(boolean onlyAnimateWhenNotClicked) {
-    this.onlyAnimateWhenNotClicked = onlyAnimateWhenNotClicked;
   }
 
   private void setInternalDisableAnimation(boolean internalDisableAnimation) {

@@ -5,7 +5,6 @@ import javafx.scene.layout.CornerRadii;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.container.VStage;
 import org.visual.component.container.VStageInitParams;
-import org.visual.component.theme.Theme;
 
 public class MaxResetButton extends WindowControlButton {
   private final Image[] maxImg;
@@ -14,16 +13,8 @@ public class MaxResetButton extends WindowControlButton {
 
   public MaxResetButton(VStage stage, VStageInitParams initParams) {
     super(stage, initParams);
-    maxImg =
-        new Image[] {
-          Theme.current().windowMaximizeButtonNormalImage(),
-          Theme.current().windowMaximizeButtonHoverImage(),
-        };
-    rstImg =
-        new Image[] {
-          Theme.current().windowResetWindowSizeButtonNormalImage(),
-          Theme.current().windowResetWindowSizeButtonHoverImage(),
-        };
+    maxImg = new Image[] {};
+    rstImg = new Image[] {};
     updateImage();
   }
 
@@ -60,12 +51,12 @@ public class MaxResetButton extends WindowControlButton {
 
   @Override
   protected Image getNormalImage() {
-    return Theme.current().windowMaximizeButtonNormalImage();
+    return null;
   }
 
   @Override
   protected Image getHoverImage() {
-    return Theme.current().windowMaximizeButtonHoverImage();
+    return null;
   }
 
   private Image[] currentImageGroup() {

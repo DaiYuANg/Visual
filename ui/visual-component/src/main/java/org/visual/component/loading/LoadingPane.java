@@ -4,19 +4,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
 import org.visual.component.layout.VPadding;
-import org.visual.component.theme.Theme;
 
 public class LoadingPane extends Pane {
-  private final Label label =
-      new Label() {
-        {
-          FontManager.get().setFont(FontUsages.loading, this);
-          setTextFill(Theme.current().normalTextColor());
-        }
-      };
+  private final Label label = new Label() {};
   @Getter private final VProgressBar progressBar = new VProgressBar();
 
   public LoadingPane(String defaultText) {

@@ -5,20 +5,23 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+import lombok.Setter;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.algebradata.DoubleData;
 import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
-import org.visual.component.control.drag.DragHandler;
-import org.visual.component.display.ThemeLabel;
+import org.visual.component.constant.DisplayFormat;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.loading.VProgressBar;
 import org.visual.component.shapes.ClickableCircle;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
-import org.visual.component.util.MiscUtils;
 
 public class VSlider extends Pane {
   public static final int BUTTON_RADIUS = 15;
@@ -29,17 +32,14 @@ public class VSlider extends Pane {
   private final Rotate rotate = new Rotate();
   private final VProgressBar bar = new VProgressBar();
   private final ClickableCircle button =
-      new ClickableCircle(
-          Theme.current().sliderButtonNormalColor(),
-          Theme.current().sliderButtonHoverColor(),
-          Theme.current().sliderButtonDownColor()) {
+      new ClickableCircle(Color.ALICEBLUE, Color.ALICEBLUE, Color.ALICEBLUE) {
         {
-          setStroke(Theme.current().sliderButtonBorderColor());
+          setStroke(Color.ALICEBLUE);
         }
       };
-  private EventHandler<Event> onAction = null;
-  private final ThemeLabel buttonLabel = new ThemeLabel();
-  private DoubleFunction<String> valueTransform = MiscUtils.roughFloatValueFormat::format;
+  @Setter private EventHandler<Event> onAction = null;
+  private final Label buttonLabel = new Label();
+  private DoubleFunction<String> valueTransform = DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
   private final AnimationNode<DoubleData> labelInvisible =
       new AnimationNode<>("invisible", new DoubleData(0));
   private final AnimationNode<DoubleData> labelVisible =
@@ -98,29 +98,24 @@ public class VSlider extends Pane {
             setPercentage((x - BUTTON_RADIUS) / bar.getLength());
           }
 
+          @Contract(" -> new")
           @Override
-          protected double[] get() {
+          protected double @NotNull [] get() {
             return new double[] {button.getLayoutX(), 0};
           }
 
-          @SuppressWarnings("SuspiciousNameCombination")
           @Override
           protected double calculateDeltaX(double deltaX, double deltaY) {
-            switch (sliderDirection) {
-              case LEFT_TO_RIGHT:
-                return deltaX;
-              case RIGHT_TO_LEFT:
-                return -deltaX;
-              case TOP_TO_BOTTOM:
-                return deltaY;
-              case BOTTOM_TO_TOP:
-                return -deltaY;
-            }
-            throw new IllegalStateException("should not reach here");
+            return switch (sliderDirection) {
+              case LEFT_TO_RIGHT -> deltaX;
+              case RIGHT_TO_LEFT -> -deltaX;
+              case TOP_TO_BOTTOM -> deltaY;
+              case BOTTOM_TO_TOP -> -deltaY;
+            };
           }
 
           @Override
-          protected void consume(MouseEvent e) {
+          protected void consume(@NotNull MouseEvent e) {
             e.consume();
           }
         };
@@ -175,7 +170,7 @@ public class VSlider extends Pane {
 
   public void setValueTransform(DoubleFunction<String> valueTransform) {
     if (valueTransform == null) {
-      valueTransform = MiscUtils.roughFloatValueFormat::format;
+      valueTransform = DisplayFormat.DOUBLE_FORMAT.getFormat()::format;
     }
     this.valueTransform = valueTransform;
     updateLabel();
@@ -211,9 +206,5 @@ public class VSlider extends Pane {
 
   public void setPercentage(double p) {
     bar.setProgress(p);
-  }
-
-  public void setOnAction(EventHandler<Event> onAction) {
-    this.onAction = onAction;
   }
 }

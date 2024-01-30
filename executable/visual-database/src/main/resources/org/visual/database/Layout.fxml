@@ -7,20 +7,29 @@
 <?import javafx.scene.layout.*?>
 
 <?import org.visual.component.display.SystemMenuBar?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.visual.database.controller.LayoutController"
-      prefHeight="600.0" prefWidth="1000.0"
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.visual.database.controller.LayoutController"
+            prefHeight="600.0" prefWidth="1000.0"
 >
-    <SystemMenuBar>
-        <Menu>
-            <MenuItem text="File"/>
-        </Menu>
-    </SystemMenuBar>
-    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.7,0.1">
-        <fx:include source="Connection.fxml"/>
-        <fx:include source="Workspace.fxml"/>
-        <fx:include source="FileManager.fxml"/>
-    </SplitPane>
+    <top>
+        <SystemMenuBar>
+            <Menu>
+                <MenuItem text="File"/>
+            </Menu>
+        </SystemMenuBar>
+    </top>
+    <center>
+        <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.7,0.1">
+            <fx:include source="Connection.fxml"/>
+            <fx:include source="Workspace.fxml"/>
+            <fx:include source="FileManager.fxml"/>
+        </SplitPane>
+    </center>
+    <bottom>
+        <HBox>
+            <Label text="status"/>
+        </HBox>
+    </bottom>
 
-</VBox>
+</BorderPane>

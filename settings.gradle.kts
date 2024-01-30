@@ -60,7 +60,7 @@ include("ui:visual-component")
 include("ui:visual-text-editor")
 include("ui:visual-graph-editor")
 include("ui:visual-i18n")
-include("ui:visual-collaborative-server")
+include("ui:visual-collaborative")
 
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")

@@ -7,9 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.visual.component.control.drag.DragHandler;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.pojo.Point;
 import org.visual.component.util.FXUtils;
 
@@ -22,12 +20,7 @@ public class MovablePoint extends Group {
     var dot = new Circle(2);
     dot.setFill(Color.RED);
     dot.setStrokeWidth(0);
-    var label =
-        new Label(labelText) {
-          {
-            FontManager.get().setFont(FontUsages.movableShapeLabel, this);
-          }
-        };
+    var label = new Label(labelText) {};
     point.setCursor(Cursor.MOVE);
     label.setTextFill(Color.RED);
     var wh = FXUtils.calculateTextBounds(label);

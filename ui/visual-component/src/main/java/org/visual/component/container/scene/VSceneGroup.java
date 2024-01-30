@@ -4,14 +4,12 @@ import java.util.*;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.algebradata.XYZTData;
 import org.visual.component.animation.AnimationNode;
 import org.visual.component.animation.Callback;
-import org.visual.component.control.dialog.StackTraceAlert;
-import org.visual.component.manager.internal_i18n.InternalI18n;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class VSceneGroup {
@@ -103,9 +101,7 @@ public class VSceneGroup {
               setBackground(
                   new Background(
                       new BackgroundFill(
-                          initParams.gradientCover
-                              ? Theme.current().makeCoverGradientBackground()
-                              : Theme.current().coverBackgroundColor(),
+                          initParams.gradientCover ? Color.BLACK : Color.WHEAT,
                           CornerRadii.EMPTY,
                           Insets.EMPTY)));
             }
@@ -239,7 +235,7 @@ public class VSceneGroup {
     try {
       return scene.checkBeforeShowing();
     } catch (Exception e) {
-      StackTraceAlert.showAndWait(InternalI18n.get().sceneGroupPreCheckShowSceneFailed(), e);
+      //      StackTraceAlert.showAndWait();
       return false;
     }
   }
@@ -249,7 +245,8 @@ public class VSceneGroup {
     try {
       return scene.checkBeforeHiding();
     } catch (Exception e) {
-      StackTraceAlert.showAndWait(InternalI18n.get().sceneGroupPreCheckHideSceneFailed(), e);
+      //      StackTraceAlert.showAndWait(InternalI18n.get().sceneGroupPreCheckHideSceneFailed(),
+      // e);
       return false;
     }
   }

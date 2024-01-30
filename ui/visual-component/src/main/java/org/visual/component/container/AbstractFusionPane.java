@@ -12,7 +12,6 @@ import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
 import org.visual.component.control.click.ClickEventHandler;
-import org.visual.component.theme.Theme;
 
 public abstract class AbstractFusionPane extends Pane {
   private final AnimationGraph<ColorData> animation;
@@ -99,11 +98,11 @@ public abstract class AbstractFusionPane extends Pane {
   protected abstract CornerRadii getCornerRadii();
 
   protected Color normalColor() {
-    return Theme.current().fusionPaneNormalBackgroundColor();
+    return Color.CORAL;
   }
 
   protected Color hoverColor() {
-    return Theme.current().fusionPaneHoverBackgroundColor();
+    return Color.RED;
   }
 
   protected Color downColor() {

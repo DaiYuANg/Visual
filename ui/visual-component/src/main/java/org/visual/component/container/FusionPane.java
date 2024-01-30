@@ -11,7 +11,6 @@ import org.visual.component.animation.AnimationNode;
 import org.visual.component.animation.Callback;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class FusionPane {
@@ -110,20 +109,16 @@ public class FusionPane {
     }
 
     @Override
-    protected void onMouseClicked() {}
-
-    @Override
     protected CornerRadii getCornerRadii() {
       return new CornerRadii(8);
     }
 
     protected Color normalBorderColor() {
-      var c = Theme.current().fusionPaneBorderColor();
-      return new Color(c.getRed(), c.getGreen(), c.getBlue(), 0);
+      return Color.TRANSPARENT;
     }
 
     protected Color hoverBorderColor() {
-      return Theme.current().fusionPaneBorderColor();
+      return Color.TRANSPARENT;
     }
   }
 }

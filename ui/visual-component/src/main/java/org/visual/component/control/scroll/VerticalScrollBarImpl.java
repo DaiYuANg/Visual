@@ -1,12 +1,12 @@
 package org.visual.component.control.scroll;
 
+import javafx.scene.paint.Color;
 import org.visual.component.shapes.VLine;
-import org.visual.component.theme.Theme;
 
 public class VerticalScrollBarImpl extends VLine {
   public VerticalScrollBarImpl() {
     super(VScrollPane.SCROLL_WIDTH);
-    setStroke(Theme.current().scrollBarColor());
+    setStroke(Color.RED);
     setStart(0, VScrollPane.SCROLL_WIDTH / 2d);
   }
 

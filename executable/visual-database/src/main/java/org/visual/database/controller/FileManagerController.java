@@ -1,8 +1,8 @@
 package org.visual.database.controller;
 
 import jakarta.inject.Singleton;
-import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +17,6 @@ public class FileManagerController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    fileTreeView.setFileRoot(new File("."));
+    fileTreeView.setFileRoot(Paths.get(".").toFile());
   }
 }

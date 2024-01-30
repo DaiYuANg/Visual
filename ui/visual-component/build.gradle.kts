@@ -30,7 +30,6 @@ dependencies {
   api(libs.apacheCommonIO)
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
-  api("com.github.kwhat:jnativehook:2.2.2")
   api(projects.ui.visualComponentAnnotation)
 }
 

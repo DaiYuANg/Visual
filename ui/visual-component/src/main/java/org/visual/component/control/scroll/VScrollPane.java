@@ -6,11 +6,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.algebradata.DoubleData;
 import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
-import org.visual.component.control.drag.DragHandler;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.util.FXUtils;
 
 public class VScrollPane implements NodeWithVScrollPane {
@@ -88,8 +90,9 @@ public class VScrollPane implements NodeWithVScrollPane {
             setVpos(y);
           }
 
+          @Contract(" -> new")
           @Override
-          protected double[] get() {
+          protected double @NotNull [] get() {
             return new double[] {viewport.getHpos(), viewport.getVpos()};
           }
         };

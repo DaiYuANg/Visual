@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.CornerRadii;
 import org.visual.component.container.VStage;
 import org.visual.component.container.VStageInitParams;
-import org.visual.component.theme.Theme;
 
 public class IconifyButton extends WindowControlButton {
   public IconifyButton(VStage stage, VStageInitParams initParams) {
@@ -23,11 +22,11 @@ public class IconifyButton extends WindowControlButton {
 
   @Override
   protected Image getNormalImage() {
-    return Theme.current().windowIconifyButtonNormalImage();
+    return null;
   }
 
   @Override
   protected Image getHoverImage() {
-    return Theme.current().windowIconifyButtonHoverImage();
+    return null;
   }
 }

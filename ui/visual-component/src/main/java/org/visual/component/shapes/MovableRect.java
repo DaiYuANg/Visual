@@ -5,9 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import org.visual.component.control.drag.DragHandler;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
+import org.visual.component.handler.DragHandler;
 import org.visual.component.pojo.Rect;
 
 public class MovableRect extends Group {
@@ -41,12 +39,7 @@ public class MovableRect extends Group {
               pointRightBottom.setLayoutY(now.doubleValue() - 10);
             });
 
-    var label =
-        new Label(labelText) {
-          {
-            FontManager.get().setFont(FontUsages.movableShapeLabel, this);
-          }
-        };
+    var label = new Label(labelText) {};
     label.setTextFill(Color.RED);
     label.setLayoutX(0);
     rect.heightProperty()

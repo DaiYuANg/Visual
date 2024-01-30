@@ -11,21 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import org.visual.component.font.FontManager;
-import org.visual.component.font.FontUsages;
+import lombok.Getter;
 import org.visual.component.layout.HPadding;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class VTableColumn<S, T> {
-  private static final Color COLOR_TOP =
-      Theme.current().tableHeaderTopBackgroundColor(); // = new Color(0xef / 255d, 0xef / 255d, 0xef
-  // / 255d,
-  // 1);
-  private static final Color COLOR_BOT =
-      Theme.current().tableHeaderBottomBackgroundColor(); // = new Color(0xe1 / 255d, 0xe1 / 255d,
-  // 0xe1 / 255d,
-  // 1);
+  private static final Color COLOR_TOP = new Color(0xef / 255d, 0xef / 255d, 0xef, 1);
+  private static final Color COLOR_BOT = new Color(0xe1 / 255d, 0xe1 / 255d, 0xe1 / 255d, 1);
   static final Background BG =
       new Background(
           new BackgroundFill(
@@ -57,7 +49,9 @@ public class VTableColumn<S, T> {
   double prefWidth = 0;
   Pos alignment;
 
-  private int sortPriority = 0; // 0 means no sort
+  @Getter private int sortPriority = 0; // 0 means no sort
+
+  @Getter
   private VTableSortOrder sortOrder = VTableSortOrder.DESC; // the first time it will be set to ASC
 
   public VTableColumn(String name, Function<S, T> valueRetriever) {
@@ -66,7 +60,6 @@ public class VTableColumn<S, T> {
         new Label(name) {
           {
             setAlignment(Pos.CENTER);
-            setTextFill(Theme.current().tableHeaderTextColor());
             setPrefHeight(25);
           }
         },
@@ -81,7 +74,6 @@ public class VTableColumn<S, T> {
           {
             setPadding(new Insets(0, 4, 0, 4));
             setPrefWidth(sortWidth);
-            setTextFill(Theme.current().tableSortLabelColor());
           }
         };
     columnNode.getChildren().addAll(new HPadding(sortWidth), columnContentNode, sortLabel);
@@ -168,12 +160,7 @@ public class VTableColumn<S, T> {
     setNodeBuilder(
         t -> {
           var str = textBuilder.apply(t);
-          return new Label(str) {
-            {
-              setTextFill(Theme.current().tableTextColor());
-              FontManager.get().setFont(FontUsages.tableCellText, this);
-            }
-          };
+          return new Label(str);
         });
   }
 
@@ -188,14 +175,6 @@ public class VTableColumn<S, T> {
     if (alignment != null) {
       cell.setAlignment(alignment);
     }
-  }
-
-  public int getSortPriority() {
-    return sortPriority;
-  }
-
-  public VTableSortOrder getSortOrder() {
-    return sortOrder;
   }
 
   void setSort(int priority, VTableSortOrder order) {

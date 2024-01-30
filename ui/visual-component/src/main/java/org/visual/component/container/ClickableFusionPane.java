@@ -3,7 +3,6 @@ package org.visual.component.container;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
-import org.visual.component.theme.Theme;
 
 public class ClickableFusionPane extends FusionPane {
   private EventHandler<?> handler;
@@ -23,7 +22,7 @@ public class ClickableFusionPane extends FusionPane {
     return new FusionPaneImpl() {
       @Override
       protected Color downColor() {
-        return Theme.current().fusionButtonDownBackgroundColor();
+        return Color.ALICEBLUE;
       }
 
       @Override

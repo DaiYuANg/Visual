@@ -10,12 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.visual.component.algebradata.DoubleData;
 import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
-import org.visual.component.theme.Theme;
 import org.visual.component.util.FXUtils;
 
 public class FusionW extends StackPane {
@@ -26,7 +26,6 @@ public class FusionW extends StackPane {
   private final Label label =
       new Label() {
         {
-          setTextFill(Theme.current().normalTextColor());
         }
       };
 
@@ -118,8 +117,6 @@ public class FusionW extends StackPane {
 
   public void enableLabelBackground() {
     label.setBackground(
-        new Background(
-            new BackgroundFill(
-                Theme.current().fusionWrapperBackgroundColor(), new CornerRadii(4), Insets.EMPTY)));
+        new Background(new BackgroundFill(Color.ALICEBLUE, new CornerRadii(4), Insets.EMPTY)));
   }
 }

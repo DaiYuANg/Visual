@@ -6,12 +6,6 @@ plugins {
 group = "org.visual.model.database"
 
 dependencies {
-  implementation(libs.hikariCP)
-  implementation(libs.mavenResloverAPI)
-  implementation(libs.mavenResloverImpl)
-  implementation(libs.mavenResloverJDK21)
-  implementation(libs.mavenResloverSupplier)
-  implementation(libs.mavenResloverUtil)
   testImplementation(libs.testcontainersMysql)
   testImplementation(libs.testcontainersMssqlserver)
   testImplementation(libs.testcontainersPostgresql)

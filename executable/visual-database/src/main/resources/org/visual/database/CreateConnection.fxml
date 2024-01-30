@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<DialogPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.visual.database.controller.CreateConnectionController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<DialogPane headerText="Create Connection" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.visual.database.controller.CreateConnectionController">
     <content>
-        <SplitPane>
-            <HBox>
-                <TextField promptText="Connection Name"/>
-            </HBox>
-        </SplitPane>
+        <VBox prefHeight="-Infinity">
+            <SplitPane dividerPositions="0.2" prefHeight="360.0">
+                <VBox>
+                    <Label text="test"/>
+                </VBox>
+                <HBox>
+                    <TextField promptText="Connection Name"/>
+                </HBox>
+            </SplitPane>
+            <ButtonBar>
+                <buttons>
+                    <Button text="New" ButtonBar.buttonData="RIGHT"/>
+                    <Button text="Save" ButtonBar.buttonData="RIGHT"/>
+                </buttons>
+            </ButtonBar>
+        </VBox>
     </content>
 </DialogPane>

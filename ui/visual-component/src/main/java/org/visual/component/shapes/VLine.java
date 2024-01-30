@@ -7,6 +7,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import lombok.Getter;
+import org.visual.component.arrow.Arrow;
 
 public class VLine extends Group {
   private final Circle beginDot;
@@ -22,7 +23,7 @@ public class VLine extends Group {
   @Getter private double endY;
   private Paint fill;
 
-  private Arrow arrowImageStart = null;
+  private org.visual.component.arrow.Arrow arrowImageStart = null;
   private Arrow arrowImageEnd = null;
 
   public VLine(double width) {
@@ -41,12 +42,12 @@ public class VLine extends Group {
 
   public void setStartStyle(EndpointStyle style) {
     if (style == EndpointStyle.ARROW) {
-      var arrowImage = loadOrMakeArrowImage();
-      calcDirection(arrowImage, false);
-      arrowImage.setLayoutX(getStartX());
-      arrowImage.setLayoutY(getStartY());
-      arrowImageStart = arrowImage;
-      getChildren().add(arrowImage);
+      //      var arrowImage = loadOrMakeArrowImage();
+      //      calcDirection(arrowImage, false);
+      //      arrowImage.setLayoutX(getStartX());
+      //      arrowImage.setLayoutY(getStartY());
+      //      arrowImageStart = arrowImage;
+      //      getChildren().add(arrowImage);
     } else {
       if (arrowImageStart != null) {
         getChildren().remove(arrowImageStart);
@@ -57,12 +58,12 @@ public class VLine extends Group {
 
   public void setEndStyle(EndpointStyle style) {
     if (style == EndpointStyle.ARROW) {
-      var arrowImage = loadOrMakeArrowImage();
-      calcDirection(arrowImage, true);
-      arrowImage.setLayoutX(getEndX());
-      arrowImage.setLayoutY(getEndY());
-      arrowImageEnd = arrowImage;
-      getChildren().add(arrowImage);
+      //      var arrowImage = loadOrMakeArrowImage();
+      //      calcDirection(arrowImage, true);
+      //      arrowImage.setLayoutX(getEndX());
+      //      arrowImage.setLayoutY(getEndY());
+      //      arrowImageEnd = arrowImage;
+      //      getChildren().add(arrowImage);
     } else {
       if (arrowImageEnd != null) {
         getChildren().remove(arrowImageEnd);
@@ -94,13 +95,13 @@ public class VLine extends Group {
     n.getTransforms().add(rotation);
   }
 
-  private Arrow loadOrMakeArrowImage() {
-    var arrow = new Arrow();
-    arrow.setFill(fill);
-    var ratio = width / 32;
-    arrow.setScale(ratio);
-    return arrow;
-  }
+  //  private Arrow loadOrMakeArrowImage() {
+  ////    var arrow = new Arrow();
+  ////    arrow.setFill(fill);
+  ////    var ratio = width / 32;
+  ////    arrow.setScale(ratio);
+  //    return arrow;
+  //  }
 
   public void setStroke(Paint fill) {
     this.fill = fill;
@@ -109,10 +110,10 @@ public class VLine extends Group {
     line.setStroke(fill);
     endDot.setFill(fill);
     if (arrowImageStart != null) {
-      arrowImageStart.setFill(fill);
+      //      arrowImageStart.setFill(fill);
     }
     if (arrowImageEnd != null) {
-      arrowImageEnd.setFill(fill);
+      //      arrowImageEnd.setFill(fill);
     }
   }
 

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.function.Supplier;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -16,13 +17,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.visual.component.display.ThemeLabel;
 
 @Slf4j
 @ExtendWith(ApplicationExtension.class)
 public class TestThemeLabel extends ApplicationTest {
 
-  private final Supplier<ThemeLabel> themeLabel = () -> new ThemeLabel("test");
+  private final Supplier<Label> themeLabel = () -> new Label("test");
 
   @Override
   public void start(@NotNull Stage stage) {

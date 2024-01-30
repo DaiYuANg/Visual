@@ -57,7 +57,7 @@ public abstract class ClickEventHandler implements EventHandler<MouseEvent> {
     onMousePressed();
   }
 
-  private void eventOnMouseReleased(MouseEvent e) {
+  private void eventOnMouseReleased(@NotNull MouseEvent e) {
     if (e.getButton() != MouseButton.PRIMARY) {
       return;
     }

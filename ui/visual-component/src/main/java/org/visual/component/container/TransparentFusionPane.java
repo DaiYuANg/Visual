@@ -1,7 +1,6 @@
 package org.visual.component.container;
 
 import javafx.scene.paint.Color;
-import org.visual.component.theme.Theme;
 
 public class TransparentFusionPane extends FusionPane {
   public TransparentFusionPane() {
@@ -20,12 +19,12 @@ public class TransparentFusionPane extends FusionPane {
   protected class TransparentFusionPaneImpl extends FusionPaneImpl {
     @Override
     protected Color normalColor() {
-      return Theme.current().transparentFusionPaneNormalBackgroundColor();
+      return Color.TRANSPARENT;
     }
 
     @Override
     protected Color hoverColor() {
-      return Theme.current().transparentFusionPaneHoverBackgroundColor();
+      return Color.TRANSPARENT;
     }
   }
 }
