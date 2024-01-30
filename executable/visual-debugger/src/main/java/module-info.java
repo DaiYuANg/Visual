@@ -1,4 +1,7 @@
+import io.avaje.inject.InjectModule;
+
 @SuppressWarnings({"requires-automatic"})
+@InjectModule()
 module org.visual.debugger {
   requires transitive javafx.fxml;
   requires transitive javafx.controls;

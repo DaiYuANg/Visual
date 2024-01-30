@@ -4,9 +4,6 @@ import com.sun.tools.attach.VirtualMachineDescriptor;
 import io.avaje.inject.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
@@ -16,6 +13,10 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.constant.PreferencesKey;
 import org.visual.debugger.context.LayoutContext;
 import org.visual.shared.PreferencesWrapper;
+
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Slf4j
 @Singleton

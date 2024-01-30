@@ -2,9 +2,10 @@ package org.visual.debugger.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
+import lombok.val;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import lombok.val;
 
 @Factory
 public class RootFactory {

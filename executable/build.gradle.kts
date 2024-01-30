@@ -13,5 +13,7 @@ subprojects {
     implementation(rootProject.libs.gestaltConfig)
     implementation(rootProject.libs.gestaltToml)
     testImplementation(rootProject.libs.avajeInjectTest)
+    implementation(rootProject.libs.picocli)
+    annotationProcessor(rootProject.libs.picocliCodegen)
   }
 }

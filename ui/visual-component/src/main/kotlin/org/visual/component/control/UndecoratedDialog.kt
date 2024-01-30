@@ -12,12 +12,21 @@ class UndecoratedDialog<R> : Dialog<R>() {
   init {
     initStyle(StageStyle.TRANSPARENT)
     isResizable = true
+  }
+
+  init {
     dialogPaneProperty().addListener { _, _, _ ->
       run {
         dialogPane.setOnMousePressed(this::onMousePressed)
         dialogPane.setOnMouseDragged(this::onMouseDragged)
         dialogPane.setOnMouseReleased(this::onMouseReleased)
       }
+    }
+  }
+
+  init {
+    dialogPaneProperty().addListener { _, _, t2 ->
+      run { t2.style = "-fx-border-color: black; -fx-border-width: 1;" }
     }
   }
 

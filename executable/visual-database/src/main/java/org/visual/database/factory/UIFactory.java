@@ -5,6 +5,7 @@ import atlantafx.base.theme.PrimerLight;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.inject.PostConstruct;
+import jakarta.inject.Named;
 import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -25,6 +26,7 @@ public class UIFactory {
   }
 
   @Bean
+  @Named("DatabaseStage")
   VisualStage rootStage() {
     return new VisualStage();
   }

@@ -3,8 +3,6 @@ package org.visual.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import jakarta.inject.Named;
-import java.util.List;
-import java.util.prefs.Preferences;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.github.gestalt.config.Gestalt;
@@ -12,13 +10,19 @@ import org.github.gestalt.config.builder.GestaltBuilder;
 import org.github.gestalt.config.loader.EnvironmentVarsLoader;
 import org.github.gestalt.config.loader.MapConfigLoader;
 import org.github.gestalt.config.loader.PropertyLoader;
-import org.github.gestalt.config.source.*;
+import org.github.gestalt.config.source.ClassPathConfigSourceBuilder;
+import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder;
+import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.VisualModelDebugger;
 import org.visual.shared.PreferencesWrapper;
 import org.visual.shared.pojo.JavaFxProperty;
 
+import java.util.List;
+import java.util.prefs.Preferences;
+
 @Factory
+
 public class ConfigFactory {
 
   @SneakyThrows

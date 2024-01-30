@@ -31,6 +31,7 @@ dependencies {
   implementation(libs.avajeValidaorCodegen)
   implementation(libs.picocli)
   implementation(projects.ui.visualCollaborative)
+  implementation(projects.executable.visualDebugger)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.jacksonCore)
   implementation(libs.jacksonDatabind)

@@ -3,8 +3,9 @@ package org.visual.debugger.factory;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.github.classgraph.ClassGraph;
-import java.lang.management.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.lang.management.*;
 
 @Factory
 @Slf4j

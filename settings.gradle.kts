@@ -65,4 +65,5 @@ include("ui:visual-collaborative")
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
 include("website")
-
+include("executable:visual-frame")
+findProject(":executable:visual-frame")?.name = "visual-frame"
