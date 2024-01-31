@@ -30,11 +30,6 @@ public class LayoutController implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     splitPane.setDividerPosition(
         0, Objects.requireNonNull(preferences.get(PreferencesKey.SPLIT_DIVIDER.getValue(), 0.2)));
-    //        splitPane.getDividers().getFirst().positionProperty().addListener((observable,
-    // oldValue, newValue) -> {
-    //            preferences.put(PreferencesKey.SPLIT_DIVIDER.getValue(), newValue.toString());
-    //            log.info("listener:{}", newValue);
-    //        });
     LayoutContext.INSTANCE.addCollapseListener(
         (observableValue, aBoolean, t1) -> {
           firstSplit.setVisible(!t1);
@@ -46,8 +41,6 @@ public class LayoutController implements Initializable {
           }
         });
   }
-
-  private void onSelect(@NotNull VirtualMachineDescriptor vm) {}
 
   void onShutdown() {
     log.info("on shutdown");

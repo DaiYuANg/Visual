@@ -30,6 +30,7 @@ module org.visual.debugger {
   requires net.bytebuddy;
   requires jakarta.inject;
   requires org.github.gestalt.guice;
+  requires io.github.oshai.kotlinlogging;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;

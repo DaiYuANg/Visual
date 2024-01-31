@@ -104,9 +104,7 @@ public final class AppsRepository {
             apps.add(appController);
           }
           final List<StageController> stages = appController.getStages();
-          for (int j = 0; j < stages.size(); j++) {
-            stages.get(j).setEventDispatcher(scenicView.getStageModelListener());
-          }
+          stages.forEach(stage -> stage.setEventDispatcher(scenicView.getStageModelListener()));
           scenicView.configurationUpdated();
           dumpStatus("appAddedStop", appController.getID());
         });

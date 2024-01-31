@@ -2,6 +2,7 @@ package org.visual.debugger.module
 
 import com.google.inject.AbstractModule
 import com.google.inject.Provides
+import com.google.inject.Singleton
 import jakarta.inject.Named
 import org.github.gestalt.config.Gestalt
 import org.github.gestalt.config.builder.GestaltBuilder
@@ -41,6 +42,7 @@ class ConfigModule:AbstractModule() {
 
     @Provides
     @Named("VisualModelDebuggerGestalt")
+    @Singleton
     fun gestalt(): Gestalt? {
         val builder = GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders)
         builder.addSources(
@@ -52,6 +54,7 @@ class ConfigModule:AbstractModule() {
     }
 
     @Provides
+    @Singleton
     fun preferences(): PreferencesWrapper {
         return PreferencesWrapper(Preferences.userNodeForPackage(VisualDebuggerView::class.java))
     }

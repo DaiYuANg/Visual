@@ -18,8 +18,8 @@
         </top>
         <center>
             <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.2,0.8" fx:id="splitPane">
-                <fx:include source="VirtualMachineList.fxml" fx:id="firstSplit"/>
-                <fx:include source="Tabs.fxml"/>
+                <fx:include source="SceneNodeTree.fxml"/>
+                <fx:include source="SceneTab.fxml"/>
             </SplitPane>
         </center>
     </BorderPane>
