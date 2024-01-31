@@ -7,10 +7,12 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       VBox.vgrow="ALWAYS"
-      prefHeight="-Infinity"
-      fx:controller="org.visual.debugger.controller.LayoutController">
+      prefHeight="800"
+      fx:controller="org.visual.debugger.controller.LayoutController"
+      prefWidth="800"
+>
     <GlobalMenuBar/>
-    <BorderPane>
+    <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <fx:include source="Toolbar.fxml"/>
         </top>

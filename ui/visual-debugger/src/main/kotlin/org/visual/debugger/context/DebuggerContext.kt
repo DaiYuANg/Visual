@@ -15,7 +15,9 @@ import org.github.gestalt.config.source.ClassPathConfigSourceBuilder
 import org.github.gestalt.config.source.ConfigSourcePackage
 import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder
 import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder
+import org.visual.debugger.Debugger
 import org.visual.debugger.component.VisualDebugger
+import org.visual.debugger.constant.FXMLKey
 import org.visual.debugger.module.ConfigModule
 import org.visual.debugger.module.JvmFactory
 import org.visual.debugger.module.UIFactory
@@ -67,9 +69,9 @@ data object DebuggerContext {
   }
 
   @SneakyThrows
-  fun load(prefix: String): Parent {
+  fun load(fxmlKey: FXMLKey): Parent {
     val loader =
-        FXMLLoader(VisualDebugger::class.java.getResource("$prefix.fxml")).apply {
+        FXMLLoader(Debugger::class.java.getResource("${fxmlKey.key}.fxml")).apply {
           controllerFactory = Callback { aClass: Class<*> -> injector.getInstance(aClass) }
           charset = StandardCharsets.UTF_8
         }

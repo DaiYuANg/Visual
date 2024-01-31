@@ -5,6 +5,7 @@ import java.util.Optional;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 
 class FXComponentInspector extends AbstractComponentInspector<Node> {
@@ -38,7 +39,7 @@ class FXComponentInspector extends AbstractComponentInspector<Node> {
 
   @Override
   protected Node createStylesComponent(@NotNull Node component) {
-    String labelText = String.join(", ", component.getStyleClass());
+    var labelText = String.join(", ", component.getStyleClass());
     if (labelText.isBlank()) {
       labelText = "(empty)";
     }
@@ -49,7 +50,7 @@ class FXComponentInspector extends AbstractComponentInspector<Node> {
 
   @Override
   protected Node createComponentDetailsPanel(@NotNull ComponentDetails<Node> details) {
-    HBox result = new HBox(details.getClassComponent(), details.getStylesComponent());
+    val result = new HBox(details.getClassComponent(), details.getStylesComponent());
     result.getStyleClass().add(CSSStyleClass.COMPONENT_DETAILS.getCssClassName());
     result.relocate(details.getLocationX(), details.getLocationY());
     details

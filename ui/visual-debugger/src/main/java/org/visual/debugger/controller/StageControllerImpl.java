@@ -53,6 +53,7 @@ import javafx.stage.Window;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.util.NodeUtil;
 import org.visual.debugger.api.AppController;
 import org.visual.debugger.api.FXConnectorEventDispatcher;
@@ -148,12 +149,12 @@ public class StageControllerImpl implements StageController {
 
   private final EventHandler<? super KeyEvent> shortcutsHandler;
 
-  public StageControllerImpl(final Stage stage, final AppController appController) {
+  public StageControllerImpl(final @NotNull Stage stage, final AppController appController) {
     this(stage.getScene().getRoot(), appController, true);
   }
 
   public StageControllerImpl(
-      final Parent target, final AppController appController, final boolean realStageController) {
+          final Parent target, final @NotNull AppController appController, final boolean realStageController) {
     this.appController = appController;
     this.stageID = new StageID(appController.getID(), ConnectorUtils.getNodeUniqueID(target));
 

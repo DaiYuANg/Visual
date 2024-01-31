@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.api.AppController;
+import org.visual.debugger.constant.FXMLKey;
 import org.visual.debugger.context.DebuggerContext;
 import org.visual.debugger.controller.AppControllerImpl;
 import org.visual.debugger.controller.StageControllerImpl;
@@ -51,7 +52,7 @@ public class VisualDebuggerView extends Application {
 
   private final Stage rootStage = DebuggerContext.INSTANCE.get(Stage.class);
 
-  private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load("Layout"));
+  private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load(FXMLKey.LAYOUT));
 
   private final ExceptionListener exceptionListener =
       DebuggerContext.INSTANCE.get(ExceptionListener.class);

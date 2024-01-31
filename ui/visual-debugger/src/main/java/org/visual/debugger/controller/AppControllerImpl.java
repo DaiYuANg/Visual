@@ -51,9 +51,7 @@ public class AppControllerImpl implements AppController {
 
   @Override
   public void close() {
-    for (int i = 0; i < stages.size(); i++) {
-      stages.get(i).close();
-    }
+      stages.forEach(StageController::close);
   }
 
   @Override
