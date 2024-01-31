@@ -30,7 +30,6 @@ dependencies {
   api(libs.apacheCommonIO)
   implementation(projects.libs.fonts)
   testImplementation(projects.libs.fonts)
-  api(projects.ui.visualComponentAnnotation)
 }
 
 tasks.compileSass {

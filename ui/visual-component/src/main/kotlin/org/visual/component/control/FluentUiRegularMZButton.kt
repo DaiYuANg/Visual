@@ -5,9 +5,7 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.control.Button
 import org.kordamp.ikonli.fluentui.FluentUiRegularMZ
 import org.kordamp.ikonli.javafx.FontIcon
-import org.visual.component.annotation.FxComponent
 
-@FxComponent
 class FluentUiRegularMZButton : Button() {
   private val iconProperty: ObjectProperty<FluentUiRegularMZ> by lazy { SimpleObjectProperty() }
 

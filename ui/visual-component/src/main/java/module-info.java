@@ -28,7 +28,6 @@ module org.visual.component {
   requires it.unimi.dsi.fastutil;
   requires javafx.media;
   requires javafx.swing;
-  requires org.visual.component.annotation;
   requires org.apache.commons.io;
   requires io.github.oshai.kotlinlogging;
   requires java.logging;

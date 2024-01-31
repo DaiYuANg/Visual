@@ -5,11 +5,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.visual.debugger.component.VisualDebugger?>
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.database.controller.LayoutController"
             prefHeight="600.0" prefWidth="1000.0"
 >
+    <VisualDebugger/>
     <fx:include source="MenuBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <center>

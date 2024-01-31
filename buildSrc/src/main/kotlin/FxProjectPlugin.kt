@@ -31,6 +31,7 @@ class FxProjectPlugin : Plugin<Project> {
         target.apply<JavaFXPlugin>()
         target.extensions.configure<JavaFXOptions> {
             configureJavaFXOptions(target)
+            version = libs.versions.javafxVersion.get()
             this.configurations = classScope
         }
         target.tasks.jar.get().manifest.apply {
@@ -47,7 +48,6 @@ class FxProjectPlugin : Plugin<Project> {
 
     private fun configureJavaFXOptions(target: Project) {
         target.extensions.configure<JavaFXOptions> {
-            // 设置 JavaFX 模块
             modules(*commonFxModule.toTypedArray())
         }
     }

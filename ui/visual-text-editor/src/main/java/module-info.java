@@ -1,5 +1,5 @@
 module org.visual.model.text.editor {
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires org.slf4j;
   requires static lombok;
   requires javafx.base;

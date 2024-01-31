@@ -11,7 +11,6 @@ module org.visual.debugger {
   requires java.desktop;
   requires static lombok;
   requires org.jetbrains.annotations;
-  requires info.picocli;
   requires javafx.web;
   requires javafx.swing;
   requires org.visual.shared;
@@ -30,6 +29,7 @@ module org.visual.debugger {
   requires io.github.classgraph;
   requires net.bytebuddy;
   requires jakarta.inject;
+  requires org.github.gestalt.guice;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;
@@ -54,7 +54,5 @@ module org.visual.debugger {
   exports org.visual.debugger.inspector;
   exports org.visual.debugger.component;
   exports org.visual.debugger.module;
-  exports org.visual.debugger;
   exports org.visual.debugger.view;
-
 }

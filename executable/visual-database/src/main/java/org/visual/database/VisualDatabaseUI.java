@@ -30,7 +30,6 @@ public class VisualDatabaseUI extends Application {
   @Override
   public void start(Stage primaryStage) {
     rootStage.show();
-    VisualDebuggerView.show(rootScene);
   }
 
   @Override

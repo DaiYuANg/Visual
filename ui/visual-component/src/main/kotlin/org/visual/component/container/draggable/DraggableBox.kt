@@ -2,12 +2,10 @@ package org.visual.component.container.draggable
 
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.Region
-import org.visual.component.annotation.FxComponent
 import org.visual.component.util.getContainer
 import org.visual.component.util.mousePositionToPoint2D
 
-@FxComponent
-open class DraggableBox : BaseDraggableBox() {
+class DraggableBox : BaseDraggableBox() {
 
   init {
     addEventHandler(MouseEvent.MOUSE_PRESSED, this::onMousePressed)

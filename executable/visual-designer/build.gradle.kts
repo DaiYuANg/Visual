@@ -28,7 +28,7 @@ dependencies {
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)
-  implementation(projects.executable.visualDebugger)
+  implementation(projects.ui.visualDebugger)
   implementation(projects.ui.visualComponent)
   implementation(projects.ui.visualGraphEditor)
   implementation(libs.picocli)
