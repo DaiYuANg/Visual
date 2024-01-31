@@ -351,7 +351,7 @@ public class StageControllerImpl implements StageController {
       app.getChildren().add(root);
       if (!popupWindows.isEmpty()) {
         final SVNode subWindows =
-            new SVDummyNode("SubWindows", "Popup", getID().getStageID(), NodeType.SUBWINDOWS_ROOT);
+            new SVDummyNode("SubWindows", "Popup", getID().getStageID(), NodeType.SUB_WINDOWS_ROOT);
         for (int i = 0; i < popupWindows.size(); i++) {
           final PopupWindow window = popupWindows.get(i);
           final SVNode subWindow =
@@ -359,7 +359,7 @@ public class StageControllerImpl implements StageController {
                   "SubWindow -" + ConnectorUtils.nodeClass(window),
                   ConnectorUtils.nodeClass(window),
                   window.hashCode(),
-                  NodeType.SUBWINDOW);
+                  NodeType.SUB_WINDOW);
           subWindow.getChildren().add(createNode(window.getScene().getRoot()));
           subWindows.getChildren().add(subWindow);
         }

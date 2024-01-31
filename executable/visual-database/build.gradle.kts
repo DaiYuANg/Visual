@@ -18,7 +18,7 @@ version = "unspecified"
 plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.web")
 
 application {
-  mainClass = "${group}.VisualModelDatabase"
+  mainClass = "${group}.VisualDatabase"
   mainModule.set(group.toString())
   applicationDefaultJvmArgs = commonJvmArgs
 }

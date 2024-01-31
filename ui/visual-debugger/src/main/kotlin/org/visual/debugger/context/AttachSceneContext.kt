@@ -10,21 +10,14 @@ import org.visual.shared.KSlf4j.Companion.log
 @KSlf4j
 object AttachSceneContext {
     val scene: ObservableMap<Long, Scene> by lazy {
-        FXCollections.synchronizedObservableMap(FXCollections.emptyObservableMap())
+        FXCollections.observableHashMap()
     }
 
     init {
         scene.addListener(MapChangeListener {
             log.atInfo {
-                "add scene ${it.key}"
+                "add scene ${it.key} scenes:${scene}"
             }
         })
     }
-
-//    var scene: Scene?
-//        get() = _scene.get()
-//        set(value) {
-//            _scene.set(value)
-//        }
-
 }

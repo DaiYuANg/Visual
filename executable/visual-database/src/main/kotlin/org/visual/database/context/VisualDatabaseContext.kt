@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.util.Callback
 import lombok.SneakyThrows
-import org.visual.database.VisualModelDatabase
+import org.visual.database.VisualDatabase
 import org.visual.database.constant.FXMLKey
 
 object VisualDatabaseContext {
@@ -19,7 +19,7 @@ object VisualDatabaseContext {
 
   @SneakyThrows
   fun load(fxml: FXMLKey): Parent {
-    val loader = FXMLLoader(VisualModelDatabase::class.java.getResource("${fxml.key}.fxml"))
+    val loader = FXMLLoader(VisualDatabase::class.java.getResource("${fxml.key}.fxml"))
     loader.controllerFactory = Callback { aClass: Class<*> -> beanScope.get(aClass) }
     loader.charset = StandardCharsets.UTF_8
     return loader.load()

@@ -1,11 +1,11 @@
 package org.visual.component.control.dialog;
 
+import static org.visual.component.util.FXUtil.runOnFX;
 import static org.visual.component.util.FXUtils.observeWidth;
 
 import java.util.Objects;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import org.visual.component.util.FXUtils;
 
 public class SimpleAlert extends ThemeAlertBase {
   private SimpleAlert(String title, String contentText) {
@@ -36,6 +36,6 @@ public class SimpleAlert extends ThemeAlertBase {
   }
 
   public static void show(String title, String contentText) {
-    FXUtils.runOnFX(() -> new SimpleAlert(title, contentText).show());
+    runOnFX(() -> new SimpleAlert(title, contentText).show());
   }
 }

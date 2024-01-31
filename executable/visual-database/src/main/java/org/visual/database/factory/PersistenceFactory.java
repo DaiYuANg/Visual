@@ -6,7 +6,7 @@ import io.avaje.inject.Factory;
 import java.util.prefs.Preferences;
 
 import jakarta.inject.Named;
-import org.visual.database.VisualModelDatabase;
+import org.visual.database.VisualDatabase;
 import org.visual.shared.PreferencesWrapper;
 
 @Factory
@@ -19,6 +19,6 @@ public class PersistenceFactory {
   @Bean
   @Named("DatabasePreferences")
   PreferencesWrapper preferencesWrapper() {
-    return new PreferencesWrapper(Preferences.userNodeForPackage(VisualModelDatabase.class));
+    return new PreferencesWrapper(Preferences.userNodeForPackage(VisualDatabase.class));
   }
 }

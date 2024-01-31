@@ -1,30 +1,104 @@
 package org.visual.debugger.component
 
+import javafx.beans.property.SimpleBooleanProperty
+import javafx.beans.property.SimpleObjectProperty
+import javafx.beans.value.ChangeListener
+import javafx.geometry.Pos
+import javafx.scene.Cursor
+import javafx.scene.Scene
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
-import javafx.scene.layout.Region
+import javafx.scene.layout.Background
+import javafx.scene.layout.BackgroundFill
+import javafx.scene.layout.Pane
+import javafx.scene.paint.Color
+import org.visual.component.util.makeSameInsets
+import org.visual.component.util.posToXy
 import org.visual.debugger.Debugger
 import org.visual.debugger.context.AttachSceneContext
-import java.util.UUID
+import org.visual.shared.KSlf4j
+import org.visual.shared.util.AutoIncrement
 
-class VisualDebugger : Region() {
-    private val keyCombination: KeyCombination = KeyCodeCombination(KeyCode.F12)
+
+@KSlf4j
+class VisualDebugger : Pane() {
+    private val keyCombination: KeyCombination by lazy {
+        KeyCodeCombination(KeyCode.F12)
+    }
+
+    private val _show by lazy {
+        SimpleBooleanProperty(false)
+    }
+    var show:Boolean?
+        get() =_show.get()
+        set(value) {
+            value?.let { _show.set(it) }
+        }
+
+    private val _pos by lazy {
+        SimpleObjectProperty(Pos.TOP_LEFT)
+    }
+
+    var pos:Pos?
+        get() = _pos.get()
+        set(value) {_pos.set(value)}
+
+    private var xOffset = 0.0
+    private var yOffset = 0.0
 
     init {
         isManaged = false
-        isVisible = false
+        isVisible = true
+        padding = makeSameInsets(0.5)
+        children.add(DebugWidget())
     }
 
     init {
         sceneProperty().addListener { _, _, newScene ->
             run {
-                val sceneId = UUID.randomUUID().node()
-                AttachSceneContext.scene[sceneId] = newScene
+                val debugger = setupAttachScene(newScene)
                 newScene.accelerators[keyCombination] = Runnable {
-                    Debugger(sceneId).showDebugger()
+                    debugger.showDebugger()
                 }
+                if (_show.get()) {
+                    debugger.showDebugger()
+                }
+                toFront()
             }
+        }
+    }
+
+    private fun setupAttachScene(scene:Scene): Debugger {
+        val sceneId = AutoIncrement.next()
+        AttachSceneContext.scene[sceneId] = scene
+        val debugger = Debugger(sceneId)
+        return debugger
+    }
+
+    init {
+        _pos.addListener { _, _, newValue ->
+            run {
+                val (x,y) = posToXy(newValue)
+                translateX = x - width
+                translateY = y
+                toFront()
+            }
+        }
+    }
+
+    init {
+        setOnMouseEntered {
+            cursor = Cursor.HAND
+        }
+        setOnMousePressed { event ->
+            xOffset = event.x
+            yOffset = event.y
+        }
+
+        setOnMouseDragged { event ->
+            translateX = event.sceneX - xOffset
+            translateY = event.sceneY - yOffset
         }
     }
 }

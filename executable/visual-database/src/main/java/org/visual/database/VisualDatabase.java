@@ -8,12 +8,12 @@ import picocli.CommandLine;
 @CommandLine.Command(name = "vmd", helpCommand = true, mixinStandardHelpOptions = true)
 @Slf4j
 @RequiredArgsConstructor
-public class VisualModelDatabase implements Runnable {
+public class VisualDatabase implements Runnable {
 
   private final String[] args;
 
   public static void main(String[] args) {
-    new CommandLine(new VisualModelDatabase(args)).execute(args);
+    new CommandLine(new VisualDatabase(args)).execute(args);
   }
 
   @Override

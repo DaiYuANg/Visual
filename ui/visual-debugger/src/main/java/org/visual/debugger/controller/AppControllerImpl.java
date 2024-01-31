@@ -18,6 +18,8 @@
 package org.visual.debugger.controller;
 
 import java.util.*;
+
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.visual.debugger.api.AppController;
 import org.visual.debugger.api.StageController;
 
@@ -26,7 +28,7 @@ public class AppControllerImpl implements AppController {
   private static final String LOCAL_ID = "Local";
 
   private final String name;
-  private final List<StageController> stages = new ArrayList<>();
+  private final List<StageController> stages = new ObjectArrayList<>();
 
   private final int id;
 

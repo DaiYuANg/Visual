@@ -28,7 +28,7 @@ class FpsWidget : Label() {
       }
 
   init {
-    textFill = Color.BLACK
+    textFill = Color.WHITE
     toFront()
     frameRateMeter.start()
   }

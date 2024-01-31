@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.visual.component.display.VisualStage;
 import org.visual.database.constant.FXMLKey;
 import org.visual.database.context.VisualDatabaseContext;
-import org.visual.debugger.view.VisualDebuggerView;
 
 @RequiredArgsConstructor
 @Slf4j

@@ -28,13 +28,6 @@ import org.jetbrains.annotations.Unmodifiable;
 
 @UtilityClass
 public class FXUtils {
-  public static void runOnFX(Runnable r) {
-    if (Platform.isFxApplicationThread()) {
-      r.run();
-    } else {
-      Platform.runLater(r);
-    }
-  }
 
   public static void runDelay(int millis, Runnable r) {
     var ptr = new AnimationTimer[1];

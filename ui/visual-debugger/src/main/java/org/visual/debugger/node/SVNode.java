@@ -62,5 +62,5 @@ public interface SVNode {
 
   Ikon getIcon();
 
-  public NodeType getNodeType();
+  NodeType getNodeType();
 }

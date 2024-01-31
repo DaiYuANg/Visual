@@ -1,5 +1,7 @@
 package org.visual.component.loading;
 
+import static org.visual.component.util.FXUtil.runOnFX;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +15,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.visual.component.animation.Callback;
 import org.visual.component.shapes.VLine;
-import org.visual.component.util.FXUtils;
 
 public class VProgressBar extends Group {
   private static final double radius = 1;
@@ -111,7 +112,7 @@ public class VProgressBar extends Group {
       return;
     }
     var item = ite.next();
-    FXUtils.runOnFX(
+    runOnFX(
         () -> {
           var currentCB = currentLoadingItemCallback;
           if (currentCB != null) {
