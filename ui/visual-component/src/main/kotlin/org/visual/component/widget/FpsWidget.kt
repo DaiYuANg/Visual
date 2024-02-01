@@ -11,7 +11,7 @@ class FpsWidget : Label() {
   private var arrayFilled = false
 
   private val t =
-      Thread.ofPlatform().name("fps", 0).unstarted {
+      Thread.ofVirtual().name("fps", 0).unstarted {
         val frameRateMeter =
             object : AnimationTimer() {
               override fun handle(now: Long) {

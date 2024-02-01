@@ -18,15 +18,15 @@ import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder
 import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder
 import org.visual.debugger.Debugger
 import org.visual.debugger.constant.FXMLKey
-import org.visual.debugger.module.ConfigModule
+import org.visual.debugger.module.PreferencesModule
 import org.visual.debugger.module.JvmFactory
 import org.visual.debugger.module.UIFactory
 import java.nio.charset.StandardCharsets
 
 data object DebuggerContext {
 
-  private val configModule by lazy {
-    ConfigModule()
+  private val preferencesModule by lazy {
+    PreferencesModule()
   }
 
   private val configLoaders =
@@ -62,7 +62,7 @@ data object DebuggerContext {
 
   private val uiFactory by lazy { UIFactory() }
 
-  private val injector: Injector = Guice.createInjector(Stage.PRODUCTION,configModule, gestaltModule, JvmFactory, uiFactory)
+  private val injector: Injector = Guice.createInjector(Stage.PRODUCTION,preferencesModule, gestaltModule, JvmFactory, uiFactory)
 
   fun <T> get(clazz: Class<T>): T {
     return injector.getInstance(clazz)

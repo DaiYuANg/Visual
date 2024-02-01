@@ -18,7 +18,6 @@ module org.visual.database {
   requires javafx.media;
   requires info.picocli;
   requires kotlin.stdlib;
-  requires org.visual.collaborative.server;
   requires dev.dirs;
   requires java.prefs;
   requires com.fasterxml.jackson.core;

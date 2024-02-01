@@ -1,1 +1,6 @@
-subprojects { apply<FxProjectPlugin>() }
+subprojects {
+    apply<FxProjectPlugin>()
+    dependencies {
+        testImplementation(rootProject.libs.javafxUnitTest)
+    }
+}

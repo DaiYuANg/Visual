@@ -785,14 +785,17 @@ public class StageControllerImpl implements StageController {
       }
     } else {
       ObservableList<Node> children = NodeUtil.getChildren(node);
-      for (int i = 0; i < children.size(); i++) {
         /**
          * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is
          * true 2) If it is a visibility remove we should remove the visibility listeners of its
          * childrens because the visibility is reduced by their parent
          */
-        updateListeners(children.get(i), add, true);
-      }
+        /**
+         * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is
+         * true 2) If it is a visibility remove we should remove the visibility listeners of its
+         * childrens because the visibility is reduced by their parent
+         */
+        children.forEach(child -> updateListeners(child, add, true));
       children.removeListener(structureInvalidationListener);
       if (node != null && removeVisibilityListener) {
         node.visibleProperty().removeListener(visibilityInvalidationListener);

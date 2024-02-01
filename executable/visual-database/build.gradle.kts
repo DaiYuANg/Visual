@@ -1,8 +1,10 @@
+import CommonPluginExtension.Companion.convertToCamelCase
 import io.avaje.inject.plugin.AvajeInjectPlugin
 
 plugins {
   application
   java
+  alias(libs.plugins.jlink)
 }
 
 apply<KotlinProjectPlugin>()
@@ -38,7 +40,7 @@ dependencies {
   implementation(libs.avajeValidaor)
   implementation(libs.avajeValidaorCodegen)
   implementation(libs.picocli)
-  implementation(projects.ui.visualCollaborative)
+//  implementation(projects.ui.visualCollaborative)
   implementation(projects.ui.visualDebugger)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.jacksonCore)
@@ -52,3 +54,40 @@ dependencies {
   implementation(rootProject.libs.gestaltToml)
   testImplementation(rootProject.libs.avajeInjectTest)
 }
+
+ jlink {
+    addExtraDependencies(
+        "javafx",
+        "kotlin",
+        "jackson",
+        "picocli",
+        "javax"
+    )
+    options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
+    enableCds()
+    launcher {
+        noConsole = true
+        name = convertToCamelCase(project.name)
+        jvmArgs = commonJvmArgs
+    }
+
+ imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))
+    jpackage { appVersion = version.toString() }
+    customImage {
+        jdkModules = listOf("java.desktop", "java.xml", "jdk.unsupported")
+        appModules = listOf(group.toString())
+    }
+    mergedModule {
+        //        additive = true
+        excludeRequires(
+            "java.compiler",
+            "java.rmi",
+            "java.xml.bind",
+            "java.corba",
+            "org.jetbrains.annotations",
+            "java.xml.crypto",
+            "jdk.javadoc",
+            "org.junit.platform.launcher"
+        )
+    }
+ }

@@ -30,17 +30,6 @@ public class NodeUtil {
     return FXCollections.emptyObservableList();
   }
 
-  public static Optional<ObservableList<Node>> getChildrenOptional(final Node node) {
-    return Optional.ofNullable(node)
-        .map(
-            n ->
-                (n instanceof Parent)
-                    ? (Parent) n
-                    : (n instanceof SubScene) ? ((SubScene) n).getRoot() : null)
-        .map(Parent::getChildrenUnmodifiable)
-        .filter(children -> !children.isEmpty());
-  }
-
   /**
    * Retrieves the parent of the given node
    *

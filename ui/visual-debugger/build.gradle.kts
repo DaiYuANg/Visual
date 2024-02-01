@@ -22,6 +22,7 @@ dependencies {
   implementation("net.bytebuddy:byte-buddy:1.14.11")
   implementation(projects.ui.visualTextEditor)
   implementation("com.google.inject:guice:7.0.0")
+  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.17.0")
 }
 
 tasks.jar {

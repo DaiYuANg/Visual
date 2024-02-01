@@ -12,7 +12,6 @@ tasks.jar { manifest { "JavaFxVersion" to libs.versions.javafxVersion.get() } }
 
 dependencies {
   api(libs.oshi)
-  testImplementation(libs.javafxUnitTest)
   api(projects.module.visualShared)
   api(libs.fontawesome5)
   api(libs.ikonliJavafx)

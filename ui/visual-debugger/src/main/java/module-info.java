@@ -31,6 +31,8 @@ module org.visual.debugger {
   requires jakarta.inject;
   requires org.github.gestalt.guice;
   requires io.github.oshai.kotlinlogging;
+  requires com.dlsc.preferencesfx;
+  requires com.google.gson;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;

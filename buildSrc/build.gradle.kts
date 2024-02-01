@@ -22,6 +22,6 @@ dependencies {
     implementation(libs.kotlinGradleAllOpenPlugin)
     implementation(libs.javaFxPlugin)
     implementation(libs.fatJarPlugin)
-    implementation(libs.jlinkPlugin)
+//    implementation(libs.jlinkPlugin)
     implementation(libs.avajeInjectPlugin)
 }

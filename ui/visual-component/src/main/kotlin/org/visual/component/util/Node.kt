@@ -1,3 +1,5 @@
+@file:JvmName("Node")
+
 package org.visual.component.util
 
 import javafx.scene.Node

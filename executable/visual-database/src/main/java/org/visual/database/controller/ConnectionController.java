@@ -1,16 +1,16 @@
 package org.visual.database.controller;
 
 import jakarta.inject.Singleton;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DialogPane;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.collaborative.server.InternalServer;
 import org.visual.component.control.UndecoratedDialog;
 import org.visual.database.constant.FXMLKey;
 import org.visual.database.context.VisualDatabaseContext;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Singleton
 @Slf4j
@@ -26,6 +26,5 @@ public class ConnectionController implements Initializable {
   }
 
   public void createServer() {
-    Thread.ofVirtual().start(() -> new InternalServer().start());
   }
 }

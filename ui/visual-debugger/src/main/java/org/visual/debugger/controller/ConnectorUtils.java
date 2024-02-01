@@ -19,11 +19,7 @@ package org.visual.debugger.controller;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import javafx.animation.Animation;
 import javafx.geometry.Bounds;
@@ -38,12 +34,15 @@ import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.visual.component.util.NodeUtil;
 import org.visual.debugger.api.StageController;
 import org.visual.debugger.node.SVNode;
 
 @Slf4j
+@UtilityClass
 public class ConnectorUtils {
 
   private static final DecimalFormat DFMT = new DecimalFormat("0.0#");
@@ -51,8 +50,6 @@ public class ConnectorUtils {
   static final DecimalFormat df = new DecimalFormat("0.0");
 
   static final Map<Class<?>, String> classNames = new ConcurrentHashMap<>();
-
-  private ConnectorUtils() {}
 
   public static int getBranchCount(final Node node) {
     if (!isNormalNode(node)) return 0;
@@ -62,11 +59,11 @@ public class ConnectorUtils {
     return c;
   }
 
-  public static boolean isNormalNode(final Node node) {
+  public static boolean isNormalNode(final @NotNull Node node) {
     return (node.getId() == null || !node.getId().startsWith(StageController.FX_CONNECTOR_BASE_ID));
   }
 
-  public static String boundsToString(
+  public static @NotNull String boundsToString(
       final double minx, final double miny, final double width, final double height) {
     return DFMT.format(minx)
         + " - "
@@ -77,7 +74,7 @@ public class ConnectorUtils {
         + DFMT.format(height);
   }
 
-  public static String boundsToString(final Bounds b) {
+  public static @NotNull String boundsToString(final @NotNull Bounds b) {
     return boundsToString(b.getMinX(), b.getMinY(), b.getWidth(), b.getHeight());
   }
 
@@ -103,7 +100,7 @@ public class ConnectorUtils {
     return DFMT.format(size);
   }
 
-  public static String nodeClass(final Object node) {
+  public static String nodeClass(final @NotNull Object node) {
     final String value = classNames.get(node.getClass());
     if (value == null) {
       @SuppressWarnings("rawtypes")
@@ -125,12 +122,12 @@ public class ConnectorUtils {
     return value;
   }
 
-  public static String nodeDetail(final SVNode node, final boolean showId) {
+  public static @NotNull String nodeDetail(final @NotNull SVNode node, final boolean showId) {
     return node.getNodeClass()
         + ((showId && node.getId() != null) ? " \"" + node.getId() + "\"" : "");
   }
 
-  public static String serializeInsets(final Insets insets) {
+  public static @NotNull String serializeInsets(final @NotNull Insets insets) {
     return insets.getTop()
         + "|"
         + insets.getLeft()
@@ -144,7 +141,7 @@ public class ConnectorUtils {
     if (value == null) return new Insets(0);
     double top, left, right, bottom;
     int pos = 0;
-    int next = 0;
+    int next;
     next = value.indexOf('|', pos);
     top = Double.parseDouble(value.substring(pos, next));
     pos = next + 1;
@@ -161,25 +158,23 @@ public class ConnectorUtils {
   public static String serializePropertyMap(@SuppressWarnings("rawtypes") final Map propMap) {
     if (propMap == null) return "";
     final StringBuilder sb = new StringBuilder();
-    final Object keys[] = propMap.keySet().toArray();
-    for (int i = 0; i < keys.length; i++) {
-      if (keys[i] instanceof String) {
-        final String propkey = (String) keys[i];
-        if (propkey.contains("pane-") || propkey.contains("box-")) {
+    final Object[] keys = propMap.keySet().toArray();
+      Arrays.stream(keys)
+              .filter(key -> key instanceof String)
+              .map(key -> (String) key)
+              .filter(propkey -> propkey.contains("pane-") || propkey.contains("box-"))
+              .forEach(propkey -> {
           final Object keyvalue = propMap.get(propkey);
-          if (sb.length() > 0) {
-            sb.append(':');
+          if (!sb.isEmpty()) {
+              sb.append(':');
           }
           sb.append(propkey).append('=');
-
           if (propkey.endsWith("margin")) {
-            sb.append(serializeInsets((Insets) keyvalue));
+              sb.append(serializeInsets((Insets) keyvalue));
           } else {
-            sb.append(keyvalue.toString());
+              sb.append(keyvalue.toString());
           }
-        }
-      }
-    }
+      });
     return sb.toString();
   }
 
@@ -239,11 +234,9 @@ public class ConnectorUtils {
   public static boolean acceptWindow(final Window window) {
     if (window instanceof Stage) {
       final Node root = window.getScene() != null ? window.getScene().getRoot() : null;
-      if (root != null
-          && (root.getId() == null
-              || !root.getId().startsWith(StageController.FX_CONNECTOR_BASE_ID))) {
-        return true;
-      }
+        return root != null
+                && (root.getId() == null
+                || !root.getId().startsWith(StageController.FX_CONNECTOR_BASE_ID));
     }
     return false;
   }

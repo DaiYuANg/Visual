@@ -11,7 +11,7 @@
       fx:controller="org.visual.debugger.controller.LayoutController"
       prefWidth="800"
 >
-    <GlobalMenuBar/>
+    <fx:include source="GlobalMenuBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <fx:include source="Toolbar.fxml"/>
