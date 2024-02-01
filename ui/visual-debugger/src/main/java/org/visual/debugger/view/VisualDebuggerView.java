@@ -17,6 +17,7 @@
  */
 package org.visual.debugger.view;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -70,7 +71,7 @@ public class VisualDebuggerView extends Application {
     stage.setHeight(768);
     stage.setTitle("Scenic View v" + ScenicViewGui.VERSION);
 
-    final List<AppController> controllers = new ArrayList<>();
+    final List<AppController> controllers = new ObjectArrayList<>();
     final AppController aController = new AppControllerImpl();
     final boolean sceneRoot = target.getScene().getRoot() == target;
     final StageControllerImpl sController = new StageControllerImpl(target, aController, sceneRoot);

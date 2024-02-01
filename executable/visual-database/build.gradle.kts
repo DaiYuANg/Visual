@@ -20,7 +20,7 @@ plugins.getPlugin(FxProjectPlugin::class.java).modules("javafx.media", "javafx.w
 application {
   mainClass = "${group}.VisualDatabase"
   mainModule.set(group.toString())
-  applicationDefaultJvmArgs = commonJvmArgs
+  applicationDefaultJvmArgs = commonJvmArgs + listOf("-Xmx1G")
 }
 
 dependencies {

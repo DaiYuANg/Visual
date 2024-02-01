@@ -22,5 +22,8 @@
                 <fx:include source="SceneTab.fxml"/>
             </SplitPane>
         </center>
+        <bottom>
+            <fx:include source="StatusBar.fxml"/>
+        </bottom>
     </BorderPane>
 </VBox>

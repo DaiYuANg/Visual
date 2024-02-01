@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox style="-fx-border-style: solid;-fx-border-width: 1;-fx-border-color: black" fx:id="hBox" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.debugger.controller.StatusBarController"
+>
+    <Label text="nodeCount" fx:id="nodeCount"/>
+</HBox>

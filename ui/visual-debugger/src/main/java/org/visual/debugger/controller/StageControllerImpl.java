@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
+
 import javafx.animation.Animation;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -352,17 +354,16 @@ public class StageControllerImpl implements StageController {
       if (!popupWindows.isEmpty()) {
         final SVNode subWindows =
             new SVDummyNode("SubWindows", "Popup", getID().getStageID(), NodeType.SUB_WINDOWS_ROOT);
-        for (int i = 0; i < popupWindows.size(); i++) {
-          final PopupWindow window = popupWindows.get(i);
-          final SVNode subWindow =
-              new SVDummyNode(
-                  "SubWindow -" + ConnectorUtils.nodeClass(window),
-                  ConnectorUtils.nodeClass(window),
-                  window.hashCode(),
-                  NodeType.SUB_WINDOW);
-          subWindow.getChildren().add(createNode(window.getScene().getRoot()));
-          subWindows.getChildren().add(subWindow);
-        }
+          popupWindows.forEach(window -> {
+              final SVNode subWindow =
+                      new SVDummyNode(
+                              "SubWindow -" + ConnectorUtils.nodeClass(window),
+                              ConnectorUtils.nodeClass(window),
+                              window.hashCode(),
+                              NodeType.SUB_WINDOW);
+              subWindow.getChildren().add(createNode(window.getScene().getRoot()));
+              subWindows.getChildren().add(subWindow);
+          });
         app.getChildren().add(subWindows);
       }
       root = app;
@@ -779,9 +780,8 @@ public class StageControllerImpl implements StageController {
         ObservableList<Node> children = NodeUtil.getChildren(node);
         children.removeListener(structureInvalidationListener);
         children.addListener(structureInvalidationListener);
-        for (int i = 0; i < children.size(); i++) {
-          updateListeners(children.get(i), add, removeVisibilityListener);
-        }
+          IntStream.range(0, children.size())
+                  .forEach(i -> updateListeners(children.get(i), add, removeVisibilityListener));
       }
     } else {
       ObservableList<Node> children = NodeUtil.getChildren(node);

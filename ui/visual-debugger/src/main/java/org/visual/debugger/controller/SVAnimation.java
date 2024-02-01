@@ -24,21 +24,22 @@ import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 @ToString
 public final class SVAnimation implements Serializable {
 
   /** */
   @Serial private static final long serialVersionUID = 1L;
 
-  @Getter private final int id;
-  @Getter private final String toString;
-  @Getter private final double rate;
-  @Getter private final double currentRate;
-  @Getter private final String status;
+  private final int id;
+  private final String toString;
+  private final double rate;
+  private final double currentRate;
+  private final String status;
   private final int cycleCount;
-  @Getter private final String currentTime;
-  @Getter private final String cycleDuration;
-  @Getter private final String totalDuration;
+  private final String currentTime;
+  private final String cycleDuration;
+  private final String totalDuration;
 
   public SVAnimation(final int id, final @NotNull Animation animation) {
     this.id = id;

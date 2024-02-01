@@ -19,18 +19,17 @@ package org.visual.debugger.controller;
 
 import java.io.Serial;
 import java.io.Serializable;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Setter
-@Getter
-@ToString
+@Data
 @Accessors(chain = true)
 public final class Configuration implements Serializable {
 
-  /** */
   @Serial private static final long serialVersionUID = 1L;
 
   private boolean showBounds;

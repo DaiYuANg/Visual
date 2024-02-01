@@ -2,21 +2,18 @@ package org.visual.debugger.component
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleObjectProperty
-import javafx.beans.value.ChangeListener
 import javafx.geometry.Pos
 import javafx.scene.Cursor
 import javafx.scene.Scene
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
-import javafx.scene.layout.Background
-import javafx.scene.layout.BackgroundFill
 import javafx.scene.layout.Pane
-import javafx.scene.paint.Color
 import org.visual.component.util.makeSameInsets
 import org.visual.component.util.posToXy
 import org.visual.debugger.Debugger
 import org.visual.debugger.context.AttachSceneContext
+import org.visual.debugger.view.VisualDebuggerView
 import org.visual.shared.KSlf4j
 import org.visual.shared.util.AutoIncrement
 
@@ -62,7 +59,9 @@ class VisualDebugger : Pane() {
                     debugger.showDebugger()
                 }
                 if (_show.get()) {
+                    VisualDebuggerView.show(newScene)
                     debugger.showDebugger()
+//                    debugger.showDebugger()
                 }
                 toFront()
             }
@@ -71,7 +70,7 @@ class VisualDebugger : Pane() {
 
     private fun setupAttachScene(scene:Scene): Debugger {
         val sceneId = AutoIncrement.next()
-        AttachSceneContext.scene[sceneId] = scene
+        AttachSceneContext.scene.set(scene)
         val debugger = Debugger(sceneId)
         return debugger
     }

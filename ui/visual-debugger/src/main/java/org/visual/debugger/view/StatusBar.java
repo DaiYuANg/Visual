@@ -56,7 +56,7 @@ public class StatusBar extends HBox {
     setSpacing(4);
   }
   @Inject
-  public StatusBar(  @NotNull I18n i18n) {
+  public StatusBar(@NotNull I18n i18n) {
     Tooltip tooltip = new Tooltip("Windows bounds in the screen");
     windowTypeLabel = createLabel("Stage:", tooltip);
     stageBoundsText = createValueLabel(tooltip);

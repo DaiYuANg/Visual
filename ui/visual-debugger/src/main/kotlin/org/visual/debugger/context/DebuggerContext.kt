@@ -2,6 +2,7 @@ package org.visual.debugger.context
 
 import com.google.inject.Guice
 import com.google.inject.Injector
+import com.google.inject.Stage
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.util.Callback
@@ -16,7 +17,6 @@ import org.github.gestalt.config.source.ConfigSourcePackage
 import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder
 import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder
 import org.visual.debugger.Debugger
-import org.visual.debugger.component.VisualDebugger
 import org.visual.debugger.constant.FXMLKey
 import org.visual.debugger.module.ConfigModule
 import org.visual.debugger.module.JvmFactory
@@ -62,7 +62,7 @@ data object DebuggerContext {
 
   private val uiFactory by lazy { UIFactory() }
 
-  private val injector: Injector = Guice.createInjector(configModule, gestaltModule, JvmFactory, uiFactory)
+  private val injector: Injector = Guice.createInjector(Stage.PRODUCTION,configModule, gestaltModule, JvmFactory, uiFactory)
 
   fun <T> get(clazz: Class<T>): T {
     return injector.getInstance(clazz)

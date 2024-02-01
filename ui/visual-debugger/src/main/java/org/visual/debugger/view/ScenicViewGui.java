@@ -52,6 +52,7 @@ import javafx.util.Duration;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.api.*;
 import org.visual.debugger.context.DebuggerContext;
 import org.visual.debugger.controller.Configuration;
@@ -935,14 +936,14 @@ public class ScenicViewGui {
   }
 
   public void update() {
-    for (int i = 0; i < appRepository.getApps().size(); i++) {
-      final List<StageController> stages = appRepository.getApps().get(i).getStages();
-      for (int j = 0; j < stages.size(); j++) {
-        if (stages.get(j).isOpened()) {
-          stages.get(j).update();
-        }
-      }
-    }
+      appRepository.getApps()
+              .stream()
+              .map(AppController::getStages)
+              .forEach(stages ->
+                      stages.stream()
+                      .filter(StageController::isOpened)
+                      .forEach(StageController::update)
+              );
   }
 
   StageController getStageController(final StageID id) {
@@ -963,7 +964,9 @@ public class ScenicViewGui {
   }
 
   public void setSelectedNode(final StageController controller, final SVNode value) {
-    if (value != selectedNode) {
+      if (value == selectedNode) {
+          return;
+      }
       if (controller != null && activeStage != controller) {
         /** Remove selected from previous active */
         activeStage.setSelectedNode(null);
@@ -977,7 +980,6 @@ public class ScenicViewGui {
       filterProperties(propertyFilterField.getText());
       threeDOMTab.setSelectedNode(value); // 3D addition
       cssfxTab.setActiveStage((controller == null) ? null : controller.getID());
-    }
   }
 
   public void removeNode() {
@@ -1028,7 +1030,6 @@ public class ScenicViewGui {
     filterField
         .focusedProperty()
         .addListener(
-            (ChangeListener<Boolean>)
                 (o, oldValue, newValue) -> {
                   if (newValue) {
                     setStatusText("Type any text for filtering");
@@ -1120,20 +1121,13 @@ public class ScenicViewGui {
   }
 
   public void goToTab(String tabName) {
-    Tab switchToTab = null;
-    for (Tab tab : tabPane.getTabs()) {
-      if (Objects.equals(tabName, tab.getText())) {
-        switchToTab = tab;
-        break;
-      }
-    }
-
-    if (switchToTab != null) {
-      tabPane.getSelectionModel().select(switchToTab);
-    }
+      tabPane.getTabs()
+              .stream()
+              .filter(tab -> Objects.equals(tabName, tab.getText())).findFirst()
+              .ifPresent(switchToTab -> tabPane.getSelectionModel().select(switchToTab));
   }
 
-  private void doDispatchEvent(final FXConnectorEvent appEvent) {
+  private void doDispatchEvent(final @NotNull FXConnectorEvent appEvent) {
     switch (appEvent.getType()) {
       case EVENT_LOG -> {
         eventsTab.trace((EvLogEvent) appEvent);

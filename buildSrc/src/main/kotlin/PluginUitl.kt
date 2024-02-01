@@ -13,13 +13,13 @@ val commonJvmArgs =
         "-XX:+OptimizeStringConcat",
         "-Xlog:gc*",
         "-XX:+UseCompressedOops",
-        "-Xnoclassgc",
         "-XX:MaxInlineLevel=32",
         "-XX:+AlwaysPreTouch",
         "-XX:+TieredCompilation",
         "-XX:SoftRefLRUPolicyMSPerMB=50",
         "-XX:+UseNUMA",
-        "--enable-preview"
+        "--enable-preview",
+        "-Dcom.sun.management.jmxremote"
     )
 
 
