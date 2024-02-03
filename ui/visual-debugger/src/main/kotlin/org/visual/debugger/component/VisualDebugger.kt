@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.Pane
+import javafx.stage.Stage
 import org.visual.component.util.makeSameInsets
 import org.visual.component.util.posToXy
 import org.visual.debugger.Debugger
@@ -27,8 +28,8 @@ class VisualDebugger : Pane() {
     private val _show by lazy {
         SimpleBooleanProperty(false)
     }
-    var show:Boolean?
-        get() =_show.get()
+    var show: Boolean?
+        get() = _show.get()
         set(value) {
             value?.let { _show.set(it) }
         }
@@ -37,9 +38,11 @@ class VisualDebugger : Pane() {
         SimpleObjectProperty(Pos.TOP_LEFT)
     }
 
-    var pos:Pos?
+    var pos: Pos?
         get() = _pos.get()
-        set(value) {_pos.set(value)}
+        set(value) {
+            _pos.set(value)
+        }
 
     private var xOffset = 0.0
     private var yOffset = 0.0
@@ -68,17 +71,17 @@ class VisualDebugger : Pane() {
         }
     }
 
-    private fun setupAttachScene(scene:Scene): Debugger {
+    private fun setupAttachScene(scene: Scene): Debugger {
         val sceneId = AutoIncrement.next()
-        AttachSceneContext.scene.set(scene)
-        val debugger = Debugger(sceneId)
+        AttachSceneContext.stage.set(scene.window as Stage)
+        val debugger = Debugger()
         return debugger
     }
 
     init {
         _pos.addListener { _, _, newValue ->
             run {
-                val (x,y) = posToXy(newValue)
+                val (x, y) = posToXy(newValue)
                 translateX = x - width
                 translateY = y
                 toFront()

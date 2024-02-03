@@ -4,23 +4,23 @@ import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Node
 import javafx.scene.Parent
-import javafx.scene.Scene
 import javafx.scene.control.SplitPane
+import javafx.stage.Stage
 import org.visual.shared.KSlf4j
 
 @KSlf4j
 object AttachSceneContext {
 
-    val scene by lazy { SimpleObjectProperty<Scene>() }
+    val stage by lazy { SimpleObjectProperty<Stage>() }
 
     val nodeCounts by lazy {
         SimpleIntegerProperty(0)
     }
 
     init {
-        scene.addListener { _, _, newValue ->
+        stage.addListener { _, _, newValue ->
             run {
-                nodeCounts.set(countNodes(newValue.root))
+                nodeCounts.set(countNodes(newValue.scene.root))
             }
         }
     }
