@@ -24,9 +24,9 @@ class GlobalMenuBar @JvmOverloads constructor(var exitHandle: EventHandler<Actio
   private val showBoundsCheckbox by lazy {
     val menuItem = CheckMenuItem("Show Bounds Overlays")
     menuItem.selectedProperty().addListener {
-        arg0: ObservableValue<out Boolean>?,
-        arg1: Boolean?,
-        newValue: Boolean ->
+        _: ObservableValue<out Boolean>?,
+        _: Boolean?,
+        _: Boolean ->
       //                setStatusText(
       //                    if (newValue) toolTipSelected else toolTipNotSelected,
       //                    4000

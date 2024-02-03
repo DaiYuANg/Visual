@@ -18,7 +18,6 @@ import org.visual.debugger.view.VisualDebuggerView
 import org.visual.shared.KSlf4j
 import org.visual.shared.util.AutoIncrement
 
-
 @KSlf4j
 class VisualDebugger : Pane() {
     private val keyCombination: KeyCombination by lazy {
