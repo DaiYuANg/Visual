@@ -32,7 +32,6 @@ module org.visual.component {
   requires io.github.oshai.kotlinlogging;
   requires java.logging;
 
-  exports org.visual.component.title;
   exports org.visual.component.window;
   exports org.visual.component.layout;
   exports org.visual.component.control;
@@ -53,9 +52,6 @@ module org.visual.component {
 
   opens org.visual.component.theme to
       com.sun.jna;
-  opens org.visual.component.title to
-      javafx.graphics,
-      javafx.fxml;
   opens org.visual.component.window to
       javafx.graphics,
       javafx.fxml;
@@ -70,4 +66,8 @@ module org.visual.component {
       javafx.graphics;
 
   exports org.visual.component.handler;
+
+  opens org.visual.component.api to
+      javafx.fxml,
+      javafx.graphics;
 }

@@ -21,7 +21,7 @@ class FxProjectPlugin : Plugin<Project> {
         "javafx.web"
     )
 
-    private val classScope = arrayOf(
+    private var classScope = arrayOf(
         "implementation",
         "testImplementation"
     )
@@ -44,6 +44,10 @@ class FxProjectPlugin : Plugin<Project> {
 
     fun modules(vararg modules: String) {
         commonFxModule.addAll(modules)
+    }
+
+    fun scope(varargs:String){
+        classScope = arrayOf(varargs)
     }
 
     private fun configureJavaFXOptions(target: Project) {

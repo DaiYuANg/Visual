@@ -1,4 +1,4 @@
-package org.visual.component.title;
+package org.visual.component.api;
 
 public interface TitleBar {
 

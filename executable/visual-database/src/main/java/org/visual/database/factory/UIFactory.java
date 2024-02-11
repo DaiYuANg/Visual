@@ -7,6 +7,7 @@ import io.avaje.inject.Factory;
 import io.avaje.inject.PostConstruct;
 import jakarta.inject.Named;
 import javafx.application.Application;
+import javafx.stage.StageStyle;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.component.display.VisualStage;
@@ -26,8 +27,9 @@ public class UIFactory {
   }
 
   @Bean
-//  @Named("DatabaseStage")
   VisualStage rootStage() {
-    return new VisualStage();
+    val stage = new VisualStage();
+    stage.initStyle(StageStyle.TRANSPARENT);
+    return stage;
   }
 }

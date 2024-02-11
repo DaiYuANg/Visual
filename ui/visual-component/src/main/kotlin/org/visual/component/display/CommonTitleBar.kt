@@ -1,6 +1,5 @@
 package org.visual.component.display
 
-import java.util.function.Supplier
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.geometry.Insets
 import javafx.scene.input.KeyCode
@@ -8,7 +7,7 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.stage.Stage
-import org.visual.component.title.TitleBar
+import org.visual.component.api.TitleBar
 import org.visual.component.util.ScreenUtil
 import org.visual.shared.OS
 
@@ -19,7 +18,7 @@ abstract class CommonTitleBar : HBox(), TitleBar {
   private var prevWidth = 0.0
   private var prevHeight = 0.0
 
-  private val stage = Supplier { scene.window as Stage }
+  private val stage by lazy { scene.window as Stage }
 
   init {
     padding = Insets(0.0, 0.0, 0.0, 0.0)
@@ -45,28 +44,28 @@ abstract class CommonTitleBar : HBox(), TitleBar {
 
   override fun close() {
     if (OS.OS == OS.MAC) {
-      stage.get().isIconified = true
+      stage.isIconified = true
       return
     }
-    stage.get().close()
+    stage.close()
   }
 
   override fun maximize() {
-    max(stage.get())
+    max(stage)
   }
 
   override fun minimize() {
-    stage.get().isIconified = true
+    stage.isIconified = true
   }
 
   fun restoreSizeOrMax() {
     if (prevWidth == 0.0 && prevHeight == 0.0) {
       prevWidth = scene.width
       prevHeight = scene.height
-      max(stage.get())
+      max(stage)
     } else {
-      stage.get().width = prevWidth
-      stage.get().height = prevHeight
+      stage.width = prevWidth
+      stage.height = prevHeight
     }
   }
 

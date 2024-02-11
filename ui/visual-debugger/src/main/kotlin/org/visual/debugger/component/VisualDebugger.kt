@@ -2,6 +2,7 @@ package org.visual.debugger.component
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleObjectProperty
+import javafx.beans.value.ChangeListener
 import javafx.geometry.Pos
 import javafx.scene.Cursor
 import javafx.scene.Scene
@@ -9,6 +10,8 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.Pane
+import javafx.stage.Stage
+import javafx.stage.WindowEvent
 import org.visual.component.util.makeSameInsets
 import org.visual.component.util.posToXy
 import org.visual.debugger.Debugger
@@ -52,25 +55,29 @@ class VisualDebugger : Pane() {
     }
 
     init {
+
         sceneProperty().addListener { _, _, newScene ->
             run {
-                val debugger = setupAttachScene(newScene)
-                newScene.accelerators[keyCombination] = Runnable {
-                    debugger.showDebugger()
+                newScene.windowProperty().addListener { _, _, t2 ->
+                    run {
+                        val debugger = setupAttachScene(t2 as Stage)
+                        newScene.accelerators[keyCombination] = Runnable {
+                            debugger.showDebugger()
+                        }
+                        if (_show.get()) {
+                            VisualDebuggerView.show(newScene)
+                            debugger.showDebugger()
+                        }
+                        toFront()
+                    }
                 }
-                if (_show.get()) {
-                    VisualDebuggerView.show(newScene)
-                    debugger.showDebugger()
-//                    debugger.showDebugger()
-                }
-                toFront()
             }
         }
     }
 
-    private fun setupAttachScene(scene:Scene): Debugger {
+    private fun setupAttachScene(stage: Stage): Debugger {
         val sceneId = AutoIncrement.next()
-        AttachSceneContext.scene.set(scene)
+        AttachSceneContext.stage.set(stage)
         val debugger = Debugger(sceneId)
         return debugger
     }

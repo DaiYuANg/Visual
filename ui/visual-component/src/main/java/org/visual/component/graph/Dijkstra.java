@@ -2,15 +2,18 @@ package org.visual.component.graph;
 
 import java.util.*;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class Dijkstra {
   private Dijkstra() {}
 
-  public static <N extends GraphNode<N>> Map<N, GraphPath<N>> dijkstra(N from) {
+  public static <N extends GraphNode<N>> @NotNull Map<N, GraphPath<N>> dijkstra(N from) {
     return dijkstra(from, Collections.emptySet());
   }
 
-  public static <N extends GraphNode<N>> Map<N, GraphPath<N>> dijkstra(
+  @Contract(pure = true)
+  public static <N extends GraphNode<N>> @NotNull Map<N, GraphPath<N>> dijkstra(
       N from, Collection<N> skipNodes) {
     //        if (skipNodes.contains(from)) {
     //            throw new IllegalArgumentException("`skipNodes`=" + skipNodes + " contains
