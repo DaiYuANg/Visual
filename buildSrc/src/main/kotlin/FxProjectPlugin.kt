@@ -1,5 +1,5 @@
-import gradle.kotlin.dsl.accessors._ce4685dcb57783202e770920bb44a340.jar
-import gradle.kotlin.dsl.accessors._ce4685dcb57783202e770920bb44a340.testImplementation
+//import gradle.kotlin.dsl.accessors._ce4685dcb57783202e770920bb44a340.jar
+//import gradle.kotlin.dsl.accessors._ce4685dcb57783202e770920bb44a340.testImplementation
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -34,25 +34,24 @@ class FxProjectPlugin : Plugin<Project> {
             version = libs.versions.javafxVersion.get()
             this.configurations = classScope
         }
-        target.tasks.jar.get().manifest.apply {
-            attributes["JavaFx-Version"] = libs.versions.javafxVersion.get()
-        }
-        target.dependencies {
-            testImplementation(libs.javafxUnitTest)
-        }
+//        target.tasks.jar.get().manifest.apply {
+//            attributes["JavaFx-Version"] = libs.versions.javafxVersion.get()
+//        target.dependencies {
+//            testImplementation(libs.javafxUnitTest)
+//        }
     }
 
     fun modules(vararg modules: String) {
-        commonFxModule.addAll(modules)
+//        commonFxModule.addAll(modules)
     }
 
     fun scope(varargs:String){
-        classScope = arrayOf(varargs)
+//        classScope = arrayOf(varargs)
     }
 
     private fun configureJavaFXOptions(target: Project) {
         target.extensions.configure<JavaFXOptions> {
-            modules(*commonFxModule.toTypedArray())
+//            modules(*commonFxModule.toTypedArray())
         }
     }
 }
