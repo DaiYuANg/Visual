@@ -32,7 +32,7 @@ dependencies {
 }
 
 tasks.compileSass {
-  dependsOn(tasks.spotlessApply)
+//  dependsOn(tasks.spotlessApply)
   sourceDir = project.layout.projectDirectory.file("src/main/sass").asFile
   sourceMap = none
 }

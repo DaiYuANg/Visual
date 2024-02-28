@@ -1,6 +1,6 @@
 [versions]
 jdk = "21"
-kotlin = "1.9.22"
+kotlin = "2.0.0-Beta4"
 apacheCommonIO = "2.14.0"
 directories = "26"
 ikonliJavafx = "12.3.1"

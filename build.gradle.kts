@@ -17,9 +17,9 @@ plugins {
     java
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.lombok)
-    alias(libs.plugins.plantuml)
-    alias(libs.plugins.dokka)
-    alias(libs.plugins.jmh)
+    alias(libs.plugins.plantuml) apply false
+    alias(libs.plugins.dokka) apply false
+    alias(libs.plugins.jmh) apply false
     alias(libs.plugins.jreleaser)
     alias(libs.plugins.dependencycheck)
     id("de.undercouch.download") version "5.5.0"
@@ -53,7 +53,7 @@ subprojects {
             apply<LombokPlugin>()
             apply<JavaLibraryPlugin>()
             apply<PlantUmlPlugin>()
-            apply<FormatterPlugin>()
+//            apply<FormatterPlugin>()
             apply<DokkaPlugin>()
             apply<JReleaserPlugin>()
             apply<ManifestPlugin>()
@@ -128,31 +128,31 @@ subprojects {
             targetCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
         }
 
-        classDiagrams {
-            val glob = "${project.group}.**"
-            val internal = "internal_class_diagram"
-            val full = "full_class_diagram"
-            @Suppress("UNCHECKED_CAST")
-            diagram(
-                internal,
-                closureOf<ClassDiagramsExtension.ClassDiagram> {
-                    include(packages().withNameLike(glob))
-                    writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
-                }
-                        as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
-            )
-
-            @Suppress("UNCHECKED_CAST")
-            diagram(
-                full,
-                closureOf<ClassDiagramsExtension.ClassDiagram> {
-                    include(packages().withNameLike(glob))
-                    include(packages().recursive())
-                    writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
-                }
-                        as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
-            )
-        }
+//        classDiagrams {
+//            val glob = "${project.group}.**"
+//            val internal = "internal_class_diagram"
+//            val full = "full_class_diagram"
+//            @Suppress("UNCHECKED_CAST")
+//            diagram(
+//                internal,
+//                closureOf<ClassDiagramsExtension.ClassDiagram> {
+//                    include(packages().withNameLike(glob))
+//                    writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
+//                }
+//                        as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+//            )
+//
+//            @Suppress("UNCHECKED_CAST")
+//            diagram(
+//                full,
+//                closureOf<ClassDiagramsExtension.ClassDiagram> {
+//                    include(packages().withNameLike(glob))
+//                    include(packages().recursive())
+//                    writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
+//                }
+//                        as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+//            )
+//        }
 
     }
 }

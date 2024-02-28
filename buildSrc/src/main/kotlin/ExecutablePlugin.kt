@@ -35,7 +35,3 @@ class ExecutablePlugin : Plugin<Project> {
         }
     }
 }
-
-class ExecutableExtension{
-
-}
