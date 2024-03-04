@@ -83,7 +83,7 @@ public class FXUtils {
     var screenOb =
         Screen.getScreensForRectangle(
             window.getX(), window.getY(), window.getWidth(), window.getHeight());
-    return screenOb.isEmpty() ? Screen.getPrimary() : screenOb.getFirst();
+    return screenOb.isEmpty() ? Screen.getPrimary() : screenOb.get(0);
   }
 
   public static @NotNull BufferedImage convertToBufferedImage(java.awt.Image awtImage) {

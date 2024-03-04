@@ -119,42 +119,42 @@ public class VProgressBar extends Group {
             currentCB.accept(item);
           }
         });
-    Thread.ofVirtual()
-        .start(
-            () -> {
-              final boolean ok;
-              final Throwable loadingException;
-              {
-                boolean _ok;
-                Throwable _ex;
-                try {
-                  //                    _ok = item.loadFunc.getAsBoolean();
-                  _ex = null;
-                } catch (Throwable t) {
-                  _ex = t;
-                  _ok = false;
-                }
-                //                ok = _ok;
-                loadingException = _ex;
-              }
-              //            if (ok) {
-              //                if (interval > 0) {
-              //                    MiscUtils.threadSleep(interval);
-              //                }
-              //            }
-              //            Platform.runLater(() -> {
-              //                if (!ok) {
-              //                    isDone = true;
-              //                    Platform.runLater(() -> this.cb.failed(new
-              // LoadingFailure(item,
-              // loadingException)));
-              //                    return;
-              //                }
-              //                long newCurr = current + item.weight;
-              //                setProgress(newCurr / (double) total);
-              //                loadItem(total, newCurr, ite, cb);
-              //            });
-            });
+    //    Thread.ofVirtual()
+    //        .start(
+    //            () -> {
+    //              final boolean ok;
+    //              final Throwable loadingException;
+    //              {
+    //                boolean _ok;
+    //                Throwable _ex;
+    //                try {
+    //                  //                    _ok = item.loadFunc.getAsBoolean();
+    //                  _ex = null;
+    //                } catch (Throwable t) {
+    //                  _ex = t;
+    //                  _ok = false;
+    //                }
+    //                //                ok = _ok;
+    //                loadingException = _ex;
+    //              }
+    //              //            if (ok) {
+    //              //                if (interval > 0) {
+    //              //                    MiscUtils.threadSleep(interval);
+    //              //                }
+    //              //            }
+    //              //            Platform.runLater(() -> {
+    //              //                if (!ok) {
+    //              //                    isDone = true;
+    //              //                    Platform.runLater(() -> this.cb.failed(new
+    //              // LoadingFailure(item,
+    //              // loadingException)));
+    //              //                    return;
+    //              //                }
+    //              //                long newCurr = current + item.weight;
+    //              //                setProgress(newCurr / (double) total);
+    //              //                loadItem(total, newCurr, ite, cb);
+    //              //            });
+    //            });
   }
 
   public boolean terminate() {

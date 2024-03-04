@@ -1,10 +1,11 @@
-org.gradle.jvmargs=-Xmx4G -Dfile.encoding=UTF-8 -XX:+UseZGC -XX:+ZGenerational
+org.gradle.jvmargs=-Xmx4G -Dfile.encoding=UTF-8
 org.gradle.daemon=true
 org.gradle.parallel=true
 org.gradle.caching=true
 org.gradle.configureondemand=true
 org.gradle.configuration-cache=false
 systemProp.http.proxyHost=127.0.0.1
-systemProp.http.proxyPort=8000
+systemProp.http.proxyPort=
 systemProp.https.proxyHost=127.0.0.1
-systemProp.https.proxyPort=8000
+systemProp.https.proxyPort=
+org.gradle.daemon.idletimeout=3600

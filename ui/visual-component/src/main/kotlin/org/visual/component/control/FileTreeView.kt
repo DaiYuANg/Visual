@@ -5,6 +5,7 @@ import java.io.File
 import java.nio.file.FileSystems
 import java.nio.file.Path
 import java.nio.file.StandardWatchEventKinds
+import java.util.concurrent.CompletableFuture
 import javafx.application.Platform
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.control.TreeItem
@@ -63,7 +64,7 @@ class FileTreeView : TreeView<File>() {
   }
 
   private fun listen() {
-    Thread.ofVirtual().name(_fileRoot.get().absolutePath, 0).start {
+    CompletableFuture.runAsync {
       while (true) {
         val key = watcher.take()
         key.pollEvents().forEach { event ->

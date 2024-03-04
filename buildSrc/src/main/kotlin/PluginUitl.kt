@@ -1,6 +1,7 @@
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.the
+import org.w3c.dom.Element
 
 val commonJvmArgs =
     listOf(
@@ -36,3 +37,9 @@ fun rootProject(project: Project): Project {
 fun rootLibs(project: Project): LibrariesForLibs {
   return libs(rootProject(project))
 }
+
+fun Element.firstElement(predicate: (Element.() -> Boolean)) =
+    childNodes
+        .run { (0 until length).map(::item) }
+        .filterIsInstance<Element>()
+        .first { it.predicate() }

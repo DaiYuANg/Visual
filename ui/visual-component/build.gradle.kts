@@ -1,6 +1,6 @@
 plugins {
-  id("io.miret.etienne.sass") version ("1.5.0")
-//  `kotlin-project`
+  alias(libs.plugins.sass)
+  `kotlin-project`
 }
 
 group = "org.visual.component"
@@ -21,6 +21,7 @@ dependencies {
   api(libs.flowless)
   api(projects.ui.visualI18n)
   api(libs.apacheCommonIO)
+  api(libs.jSystemThemeDetector)
 }
 
 tasks.compileSass {

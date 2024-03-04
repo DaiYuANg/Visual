@@ -63,8 +63,8 @@ public class CursorOffsetCalculator {
     minOffsetX = offsetBound + 1;
     minOffsetY = offsetBound + 1;
 
-    currentX = ((MoveTo) path.getElements().getFirst()).getX();
-    currentY = ((MoveTo) path.getElements().getFirst()).getY();
+    currentX = ((MoveTo) path.getElements().get(0)).getX();
+    currentY = ((MoveTo) path.getElements().get(0)).getY();
 
     IntStream.range(1, path.getElements().size())
         .mapToObj(i -> path.getElements().get(i))

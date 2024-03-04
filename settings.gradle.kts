@@ -1,44 +1,49 @@
 pluginManagement {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-        google()
-        maven { setUrl("https://jitpack.io") }
-    }
-
-    plugins {
-        id("com.gradle.enterprise") version "3.13.4"
-//    id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
-//    id("org.javamodularity.moduleplugin") version modulepluginVersion
-//    id("org.openjfx.javafxplugin") version javafxPluginVersion
-//    id("org.beryx.jlink") version jlinkVersion
-//    id("io.freefair.lombok") version lombokPluginVersion
-//    id("com.diffplug.spotless") version spotlessPluginVersion
-//    id("com.gorylenko.gradle-git-properties") version gitPropertiesVersion
-    }
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+    maven { setUrl("https://jitpack.io") }
+  }
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 plugins {
-    id("com.gradle.enterprise")
-//  id("org.danilopianini.gradle-pre-commit-git-hooks")
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+  id("com.gradle.enterprise") version "3.13.4"
+  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.2"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 
 buildCache {
-    local {
-        isEnabled = true
-        directory = File(rootProject.projectDir, ".gradle/build-cache")
-    }
+  local {
+    isEnabled = true
+    directory = File(rootProject.projectDir, ".gradle/build-cache")
+  }
 }
 
 gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
+}
+
+gitHooks {
+  preCommit {
+    from {
+      """
+      ./gradlew spotbugsMain
+      ./gradlew spotbugsTest
+      ./gradlew pmdMain
+      ./gradlew pmdTest
+      ./gradlew spotlessApply && git add .
+      """
     }
+  }
+  commitMsg { conventionalCommits { defaultTypes() } }
+  createHooks(true)
 }
 
 rootProject.name = "Visual"

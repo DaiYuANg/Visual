@@ -1,5 +1,5 @@
 plugins {
-//  `kotlin-project`
+  `kotlin-project`
 }
 group = "org.visual.debugger"
 
@@ -19,6 +19,7 @@ dependencies {
   implementation(projects.ui.visualTextEditor)
   implementation(libs.guice)
   implementation(libs.preferencesfx)
+  implementation(libs.classgraph)
 }
 
 tasks.jar {

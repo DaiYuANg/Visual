@@ -5,12 +5,14 @@ import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
+import java.net.URL
 import java.nio.charset.StandardCharsets
-
+import org.w3c.dom.Element
 plugins {
   checkstyle
   jacoco
   idea
+  pmd
   application
   java
   alias(libs.plugins.gitVersion)
@@ -24,11 +26,13 @@ plugins {
   alias(libs.plugins.javafx)
   alias(libs.plugins.fatjar)
   alias(libs.plugins.spotless)
+  alias(libs.plugins.spotbugs)
   `kotlin-project`
 //    alias(libs.plugins.jlink)
   alias(libs.plugins.download)
   alias(libs.plugins.manifest)
   alias(libs.plugins.dotenv)
+//  alias(libs.plugins.javamodularity)
 }
 val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
@@ -39,12 +43,50 @@ var javaCompileArg: List<String> = if (env.MODE.value == "debug") {
 } else {
   listOf("-g:none", "-02")
 }
+
+idea.project.ipr {
+  withXml {
+    asElement()
+      .firstElement { tagName == "component" && getAttribute("name") == "VcsDirectoryMappings" }
+      .firstElement { tagName == "mapping" }
+      .setAttribute("vcs", "Git")
+  }
+//  TODO set idea disable ana https://stackoverflow.com/questions/16369749/how-to-disable-pre-commit-code-analysis-for-git-backed-projects-using-intellij-i
+  withXml{
+    asElement()
+      .firstElement { tagName == "component" && getAttribute("name") == "VcsManagerConfiguration" }
+  }
+}
 allprojects {
+  apply<JavaLibraryPlugin>()
   repositories {
     mavenLocal()
     mavenCentral()
+    maven { setUrl("https://jitpack.io") }
     gradlePluginPortal()
     google()
+  }
+  project.dependencies {
+    compileOnly(rootProject.libs.jetbrainsAnnotation)
+    implementation(rootProject.libs.slf4j)
+    implementation(rootProject.libs.slf4jJdkPlatform)
+    implementation(rootProject.libs.logback)
+    implementation(rootProject.libs.guava)
+    annotationProcessor(rootProject.libs.lombokMapstructBinding)
+    implementation(rootProject.libs.mapstruct)
+    annotationProcessor(rootProject.libs.mapstructProcessor)
+    testImplementation(rootProject.libs.junitBom)
+    testImplementation(platform(rootProject.libs.junitBom))
+    testImplementation(rootProject.libs.junitJuiter)
+    testImplementation(rootProject.libs.junitApi)
+    testImplementation(rootProject.libs.junitEngine)
+    testImplementation(rootProject.libs.junitPlatformSuite)
+    testImplementation(rootProject.libs.junitPerf)
+    testImplementation(platform(rootProject.libs.testcontainersBom))
+    testImplementation(rootProject.libs.testcontainers)
+    testImplementation(rootProject.libs.testcontainersJunit)
+    testImplementation(rootProject.libs.mockitoCore)
+    testImplementation(rootProject.libs.mockitoJunit)
   }
   project.version = details.gitHash
 }
@@ -115,34 +157,11 @@ subprojects {
   if (project.name != "website") {
     apply {
       apply<LombokPlugin>()
-      apply<JavaLibraryPlugin>()
       apply<PlantUmlPlugin>()
       apply<DokkaPlugin>()
       apply<ManifestPlugin>()
     }
 
-    project.dependencies {
-      implementation(rootProject.libs.jetbrainsAnnotation)
-      implementation(rootProject.libs.slf4j)
-      implementation(rootProject.libs.slf4jJdkPlatform)
-      implementation(rootProject.libs.logback)
-      implementation(rootProject.libs.guava)
-      annotationProcessor(rootProject.libs.lombokMapstructBinding)
-      implementation(rootProject.libs.mapstruct)
-      annotationProcessor(rootProject.libs.mapstructProcessor)
-      testImplementation(rootProject.libs.junitBom)
-      testImplementation(platform(rootProject.libs.junitBom))
-      testImplementation(rootProject.libs.junitJuiter)
-      testImplementation(rootProject.libs.junitApi)
-      testImplementation(rootProject.libs.junitEngine)
-      testImplementation(rootProject.libs.junitPlatformSuite)
-      testImplementation(rootProject.libs.junitPerf)
-      testImplementation(platform(rootProject.libs.testcontainersBom))
-      testImplementation(rootProject.libs.testcontainers)
-      testImplementation(rootProject.libs.testcontainersJunit)
-      testImplementation(rootProject.libs.mockitoCore)
-      testImplementation(rootProject.libs.mockitoJunit)
-    }
 
     group = "org." + project.name.replace("-", ".")
     project.tasks.compileJava {
@@ -186,40 +205,52 @@ subprojects {
     }
 
     project.java {
+      modularity.inferModulePath.set(true)
       sourceCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
       targetCompatibility = JavaVersion.toVersion(rootProject.libs.versions.jdk.get())
     }
 
     project.classDiagrams {
-        val glob = "${project.group}.**"
-        val internal = "internal_class_diagram"
-        val full = "full_class_diagram"
-        @Suppress("UNCHECKED_CAST")
-        diagram(
-            internal,
-            closureOf<ClassDiagramsExtension.ClassDiagram> {
-                include(packages().withNameLike(glob))
-                writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
-            }
-                    as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
-        )
+      val glob = "${project.group}.**"
+      val internal = "internal_class_diagram"
+      val full = "full_class_diagram"
+      @Suppress("UNCHECKED_CAST")
+      diagram(
+        internal,
+        closureOf<ClassDiagramsExtension.ClassDiagram> {
+          include(packages().withNameLike(glob))
+          writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
+        }
+          as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+      )
 
-        @Suppress("UNCHECKED_CAST")
-        diagram(
-            full,
-            closureOf<ClassDiagramsExtension.ClassDiagram> {
-                include(packages().withNameLike(glob))
-                include(packages().recursive())
-                writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
-            }
-                    as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
-        )
+      @Suppress("UNCHECKED_CAST")
+      diagram(
+        full,
+        closureOf<ClassDiagramsExtension.ClassDiagram> {
+          include(packages().withNameLike(glob))
+          include(packages().recursive())
+          writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
+        }
+          as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+      )
     }
 
   }
 }
 
 dependencies {
+  implementation(libs.hikariCP)
+  implementation(libs.mavenResloverAPI)
+  implementation(libs.mavenResloverImpl)
+  implementation(libs.mavenResloverJDK21)
+  implementation(libs.mavenResloverSupplier)
+  implementation(libs.mavenResloverUtil)
+  implementation(libs.jacksonCore)
+  implementation(libs.jacksonDatabind)
+  implementation(libs.gestaltGuice)
+  implementation(libs.gestaltKotlin)
+  implementation(libs.jacksonAnnotations)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.pcollections)
   implementation(libs.avajeValidaor)

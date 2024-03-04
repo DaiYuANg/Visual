@@ -27,7 +27,7 @@ public class SimpleAlert extends ThemeAlertBase {
         //      case INFORMATION -> InternalI18n.get().alertInfoTitle();
         //      case WARNING -> InternalI18n.get().alertWarningTitle();
         //      case ERROR -> InternalI18n.get().alertErrorTitle();
-      case null, default -> Objects.requireNonNull(type).name();
+      default -> Objects.requireNonNull(type).name();
     };
   }
 

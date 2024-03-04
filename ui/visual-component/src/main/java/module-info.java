@@ -19,7 +19,6 @@ module org.visual.component {
   requires org.apache.commons.lang3;
   requires transitive atlantafx.base;
   requires static com.sun.jna;
-  requires org.visual.model.jfa;
   requires static com.sun.jna.platform;
   requires transitive org.controlsfx.controls;
   requires eu.iamgio.animated;

@@ -1,5 +1,5 @@
 plugins{
-    `java-library`
+  `kotlin-project`
 }
 
 group = "org.visual.shared"

@@ -101,3 +101,4 @@ cwallet.sso.lck
 .kotlin
 ./scenicView.properties
 .env
+gradle.properties

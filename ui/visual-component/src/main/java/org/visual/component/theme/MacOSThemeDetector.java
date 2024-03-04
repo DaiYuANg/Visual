@@ -22,12 +22,8 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.visual.model.jfa.foundation.Foundation;
-import org.visual.model.jfa.foundation.ID;
-import org.visual.model.jfa.foundation.NSAutoreleasePool;
 
 /**
  * Determines the dark/light theme on a MacOS System through the <i>Apple Foundation framework</i>.
@@ -55,51 +51,51 @@ class MacOSThemeDetector extends OsThemeDetector {
   }
 
   private void initObserver() {
-    final NSAutoreleasePool pool = new NSAutoreleasePool();
-    try {
-      final ID delegateClass =
-          Foundation.allocateObjcClassPair(
-              Foundation.getObjcClass("NSObject"), "NSColorChangesObserver");
-      if (!ID.NIL.equals(delegateClass)) {
-        if (!Foundation.addMethod(
-            delegateClass,
-            Foundation.createSelector("handleAppleThemeChanged:"),
-            themeChangedCallback,
-            "v@")) {
-          log.error("Observer method cannot be added");
-        }
-        Foundation.registerObjcClassPair(delegateClass);
-      }
-
-      final ID delegate = Foundation.invoke("NSColorChangesObserver", "new");
-      Foundation.invoke(
-          Foundation.invoke("NSDistributedNotificationCenter", "defaultCenter"),
-          "addObserver:selector:name:object:",
-          delegate,
-          Foundation.createSelector("handleAppleThemeChanged:"),
-          Foundation.nsString("AppleInterfaceThemeChangedNotification"),
-          ID.NIL);
-    } finally {
-      pool.drain();
-    }
+    //    final NSAutoreleasePool pool = new NSAutoreleasePool();
+    //    try {
+    //      final ID delegateClass =
+    //          Foundation.allocateObjcClassPair(
+    //              Foundation.getObjcClass("NSObject"), "NSColorChangesObserver");
+    //      if (!ID.NIL.equals(delegateClass)) {
+    //        if (!Foundation.addMethod(
+    //            delegateClass,
+    //            Foundation.createSelector("handleAppleThemeChanged:"),
+    //            themeChangedCallback,
+    //            "v@")) {
+    //          log.error("Observer method cannot be added");
+    //        }
+    //        Foundation.registerObjcClassPair(delegateClass);
+    //      }
+    //
+    //      final ID delegate = Foundation.invoke("NSColorChangesObserver", "new");
+    //      Foundation.invoke(
+    //          Foundation.invoke("NSDistributedNotificationCenter", "defaultCenter"),
+    //          "addObserver:selector:name:object:",
+    //          delegate,
+    //          Foundation.createSelector("handleAppleThemeChanged:"),
+    //          Foundation.nsString("AppleInterfaceThemeChangedNotification"),
+    //          ID.NIL);
+    //    } finally {
+    //      pool.drain();
+    //    }
   }
 
   @SuppressWarnings("DuplicatedCode")
   @Override
   public boolean isDark() {
-    val pool = new NSAutoreleasePool();
-    try {
-      final ID userDefaults = Foundation.invoke("NSUserDefaults", "standardUserDefaults");
-      final String appleInterfaceStyle =
-          Foundation.toStringViaUTF8(
-              Foundation.invoke(
-                  userDefaults, "objectForKey:", Foundation.nsString("AppleInterfaceStyle")));
-      return isDarkTheme(appleInterfaceStyle);
-    } catch (RuntimeException e) {
-      log.error("Couldn't execute theme name query with the Os", e);
-    } finally {
-      pool.drain();
-    }
+    //    val pool = new NSAutoreleasePool();
+    //    try {
+    //      final ID userDefaults = Foundation.invoke("NSUserDefaults", "standardUserDefaults");
+    //      final String appleInterfaceStyle =
+    //          Foundation.toStringViaUTF8(
+    //              Foundation.invoke(
+    //                  userDefaults, "objectForKey:", Foundation.nsString("AppleInterfaceStyle")));
+    //      return isDarkTheme(appleInterfaceStyle);
+    //    } catch (RuntimeException e) {
+    //      log.error("Couldn't execute theme name query with the Os", e);
+    //    } finally {
+    //      pool.drain();
+    //    }
     return false;
   }
 

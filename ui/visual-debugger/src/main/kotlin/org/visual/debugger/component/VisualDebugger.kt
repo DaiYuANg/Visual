@@ -68,7 +68,7 @@ class VisualDebugger : Pane() {
   private fun setupAttachScene(stage: Stage): Debugger {
     val sceneId = AutoIncrement.next()
     AttachSceneContext.stage.set(stage)
-    val debugger = Debugger(sceneId)
+    val debugger = Debugger()
     return debugger
   }
 

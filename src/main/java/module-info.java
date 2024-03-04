@@ -35,6 +35,7 @@ module org.visual.designer {
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
   requires kotlin.stdlib;
+  requires org.apache.maven.resolver;
 
   opens org.visual.designer.controller to
       javafx.fxml;
