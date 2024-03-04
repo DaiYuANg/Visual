@@ -1,6 +1,6 @@
 plugins {
   antlr
-  `kotlin-project`
+//  `kotlin-project`
 }
 
 group = "org.visual.model.database"

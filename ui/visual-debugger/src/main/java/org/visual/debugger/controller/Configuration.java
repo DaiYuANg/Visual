@@ -19,11 +19,7 @@ package org.visual.debugger.controller;
 
 import java.io.Serial;
 import java.io.Serializable;
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data

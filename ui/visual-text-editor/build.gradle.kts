@@ -1,5 +1,4 @@
 plugins {
-  `kotlin-project`
 }
 
 group = "org.visual.model.text.editor"

@@ -15,13 +15,9 @@ class NodeTreeView(
     setCellFactory { NodeTreeViewCell }
     onMousePressed = EventHandler { ev: MouseEvent ->
       contextMenu.hide()
-      if (ev.isSecondaryButtonDown) {
-      }
+      if (ev.isSecondaryButtonDown) {}
     }
 
-    onMouseReleased = EventHandler { ev: MouseEvent ->
-      if (ev.isSecondaryButtonDown) {
-      }
-    }
+    onMouseReleased = EventHandler { ev: MouseEvent -> if (ev.isSecondaryButtonDown) {} }
   }
 }

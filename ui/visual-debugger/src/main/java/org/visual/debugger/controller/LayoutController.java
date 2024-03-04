@@ -1,6 +1,5 @@
 package org.visual.debugger.controller;
 
-import com.sun.tools.attach.VirtualMachineDescriptor;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.net.URL;
@@ -11,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.visual.debugger.constant.PreferencesKey;
 import org.visual.debugger.context.LayoutContext;
 import org.visual.shared.PreferencesWrapper;

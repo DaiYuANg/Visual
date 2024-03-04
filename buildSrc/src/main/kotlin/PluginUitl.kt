@@ -19,22 +19,20 @@ val commonJvmArgs =
         "-XX:SoftRefLRUPolicyMSPerMB=50",
         "-XX:+UseNUMA",
         "--enable-preview",
-        "-Dcom.sun.management.jmxremote"
-    )
-
+        "-Dcom.sun.management.jmxremote")
 
 fun libs(project: Project): LibrariesForLibs {
-    return project.the<LibrariesForLibs>()
+  return project.the<LibrariesForLibs>()
 }
 
 fun rootProject(project: Project): Project {
-    return if (project.parent == null) {
-        project
-    } else {
-        rootProject(project.parent!!)
-    }
+  return if (project.parent == null) {
+    project
+  } else {
+    rootProject(project.parent!!)
+  }
 }
 
 fun rootLibs(project: Project): LibrariesForLibs {
-    return libs(rootProject(project))
+  return libs(rootProject(project))
 }

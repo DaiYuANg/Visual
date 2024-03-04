@@ -17,9 +17,8 @@
  */
 package org.visual.debugger.controller;
 
-import java.util.*;
-
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import java.util.*;
 import org.visual.debugger.api.AppController;
 import org.visual.debugger.api.StageController;
 
@@ -53,7 +52,7 @@ public class AppControllerImpl implements AppController {
 
   @Override
   public void close() {
-      stages.forEach(StageController::close);
+    stages.forEach(StageController::close);
   }
 
   @Override

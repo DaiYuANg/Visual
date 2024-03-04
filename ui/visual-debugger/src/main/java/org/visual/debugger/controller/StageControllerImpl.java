@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
-
 import javafx.animation.Animation;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -156,7 +155,9 @@ public class StageControllerImpl implements StageController {
   }
 
   public StageControllerImpl(
-          final Parent target, final @NotNull AppController appController, final boolean realStageController) {
+      final Parent target,
+      final @NotNull AppController appController,
+      final boolean realStageController) {
     this.appController = appController;
     this.stageID = new StageID(appController.getID(), ConnectorUtils.getNodeUniqueID(target));
 
@@ -354,16 +355,17 @@ public class StageControllerImpl implements StageController {
       if (!popupWindows.isEmpty()) {
         final SVNode subWindows =
             new SVDummyNode("SubWindows", "Popup", getID().getStageID(), NodeType.SUB_WINDOWS_ROOT);
-          popupWindows.forEach(window -> {
+        popupWindows.forEach(
+            window -> {
               final SVNode subWindow =
-                      new SVDummyNode(
-                              "SubWindow -" + ConnectorUtils.nodeClass(window),
-                              ConnectorUtils.nodeClass(window),
-                              window.hashCode(),
-                              NodeType.SUB_WINDOW);
+                  new SVDummyNode(
+                      "SubWindow -" + ConnectorUtils.nodeClass(window),
+                      ConnectorUtils.nodeClass(window),
+                      window.hashCode(),
+                      NodeType.SUB_WINDOW);
               subWindow.getChildren().add(createNode(window.getScene().getRoot()));
               subWindows.getChildren().add(subWindow);
-          });
+            });
         app.getChildren().add(subWindows);
       }
       root = app;
@@ -780,22 +782,22 @@ public class StageControllerImpl implements StageController {
         ObservableList<Node> children = NodeUtil.getChildren(node);
         children.removeListener(structureInvalidationListener);
         children.addListener(structureInvalidationListener);
-          IntStream.range(0, children.size())
-                  .forEach(i -> updateListeners(children.get(i), add, removeVisibilityListener));
+        IntStream.range(0, children.size())
+            .forEach(i -> updateListeners(children.get(i), add, removeVisibilityListener));
       }
     } else {
       ObservableList<Node> children = NodeUtil.getChildren(node);
-        /**
-         * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is
-         * true 2) If it is a visibility remove we should remove the visibility listeners of its
-         * childrens because the visibility is reduced by their parent
-         */
-        /**
-         * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is
-         * true 2) If it is a visibility remove we should remove the visibility listeners of its
-         * childrens because the visibility is reduced by their parent
-         */
-        children.forEach(child -> updateListeners(child, add, true));
+      /**
+       * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is true
+       * 2) If it is a visibility remove we should remove the visibility listeners of its childrens
+       * because the visibility is reduced by their parent
+       */
+      /**
+       * If we are removing a node: 1) If it is a real node removal removeVisibilityListener is true
+       * 2) If it is a visibility remove we should remove the visibility listeners of its childrens
+       * because the visibility is reduced by their parent
+       */
+      children.forEach(child -> updateListeners(child, add, true));
       children.removeListener(structureInvalidationListener);
       if (node != null && removeVisibilityListener) {
         node.visibleProperty().removeListener(visibilityInvalidationListener);

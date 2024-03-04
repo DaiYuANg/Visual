@@ -1,11 +1,12 @@
-plugins { `kotlin-project` }
+plugins {
+}
 
 group = "org.visual.collaborative.server"
 
 dependencies {
-  implementation("io.vertx:vertx-core:4.5.1")
-  implementation("io.vertx:vertx-junit5:4.5.1")
-  implementation("io.vertx:vertx-hazelcast:4.5.1")
-  implementation("io.vertx:vertx-lang-kotlin:4.5.1")
+  implementation(libs.vertxCore)
+  testImplementation(libs.vertxJunit5)
+  implementation(libs.vertxHazelcast)
+  implementation(libs.vertxKotlin)
   implementation(projects.module.visualShared)
 }

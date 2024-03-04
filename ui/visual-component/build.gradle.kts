@@ -1,14 +1,9 @@
 plugins {
-  `java-library`
   id("io.miret.etienne.sass") version ("1.5.0")
-  `kotlin-project`
+//  `kotlin-project`
 }
 
 group = "org.visual.component"
-
-version = "unspecified"
-
-tasks.jar { manifest { "JavaFxVersion" to libs.versions.javafxVersion.get() } }
 
 dependencies {
   api(libs.oshi)
@@ -19,7 +14,6 @@ dependencies {
   api(libs.simpleicon)
   api(libs.controlfx)
   api(libs.materialIcons)
-  api(projects.libs.jfa)
   api(libs.atlantafx)
   api(libs.devicons)
   api(libs.apacheCommonPool)
@@ -27,8 +21,6 @@ dependencies {
   api(libs.flowless)
   api(projects.ui.visualI18n)
   api(libs.apacheCommonIO)
-  implementation(projects.libs.fonts)
-  testImplementation(projects.libs.fonts)
 }
 
 tasks.compileSass {

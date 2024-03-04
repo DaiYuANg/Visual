@@ -12,9 +12,9 @@ module org.visual.shared {
   requires org.mapstruct;
   requires java.prefs;
   requires kotlin.stdlib;
-    requires io.github.oshai.kotlinlogging;
+  requires io.github.oshai.kotlinlogging;
 
-    exports org.visual.shared;
+  exports org.visual.shared;
   exports org.visual.shared.pojo;
   exports org.visual.shared.util;
 }

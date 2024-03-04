@@ -1,97 +1,80 @@
 [versions]
 jdk = "21"
 kotlin = "2.0.0-Beta4"
-apacheCommonIO = "2.14.0"
-directories = "26"
 ikonliJavafx = "12.3.1"
 slf4j = "2.1.0-alpha1"
-javafx = "0.1.0"
-freefairPlugin = "8.4"
-logback = "1.4.14"
+freefairPlugin = "8.6"
 ikonli = "12.3.1"
-groovy = "5.0.0-alpha-4"
-javafxUnitTest = "4.0.17"
-junit = "5.10.1"
-testcontainers = "1.19.3"
-junitPlatformSuite = "1.10.1"
-jerbrainsAnnotation = "24.0.1"
-mockito = "5.8.0"
-caffine = "3.1.8"
-spotless = "6.24.0"
-gitVersion = "3.0.0"
-antlr = "4.13.1"
-oshi = "6.4.10"
+junit = "5.10.2"
+testcontainers = "1.19.6"
+mockito = "5.11.0"
 avajeInject = "9.11"
-apacheCommonLang3 = "3.14.0"
-gestalt = "0.24.3"
-guava = "33.0.0-jre"
-plantuml = "2.1.3"
+gestalt = "0.24.6"
 mavenResolver = "2.0.0-alpha-7"
-apacheCommonPool = "2.12.0"
 javafxVersion = "21.0.2"
-mysqlDriver = "8.3.0"
-postgresDriver = "42.7.1"
-mssqlDriver = "12.5.0.jre11-preview"
 eclipseCollections = "11.1.0"
-jgrapht = "1.5.2"
-fastutil = "8.5.12"
-hikariCP = "5.1.0"
-pcollections = "2.1.3"
 avajeConfig = "3.10"
 jackson = "2.16.1"
 picocli = "4.7.5"
-dependencycheck = "9.0.7"
-jmh = "0.7.2"
-jreleaser = "1.10.0"
 mapstruct = "1.6.0.Beta1"
-autoService = "1.1.1"
+jgit = "6.8.0.202311291450-r"
+vertx = "4.5.4"
+guice = "7.0.0"
 
 [plugins]
-javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafx" }
+javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 sass = { id = "io.freefair.sass-java", version.ref = "freefairPlugin" }
 lombok = { id = "io.freefair.lombok", version.ref = "freefairPlugin" }
-gitVersion = { id = "com.palantir.git-version", version.ref = "gitVersion" }
-jreleaser = { id = "org.jreleaser", version.ref = "jreleaser" }
-plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
+gitVersion = { id = "com.palantir.git-version", version = "3.0.0" }
+jreleaser = { id = "org.jreleaser", version = "1.11.0" }
+plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.6" }
 extraJavaModule = { id = "org.gradlex.extra-java-module-info", version = "1.7" }
-dokka = { id = "org.jetbrains.dokka", version = "1.9.10" }
-dependencycheck = { id = "org.owasp.dependencycheck", version.ref = "dependencycheck" }
-jmh = { id = "me.champeau.jmh", version.ref = "jmh" }
+dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
+dependencycheck = { id = "org.owasp.dependencycheck", version = "9.0.7" }
+jmh = { id = "me.champeau.jmh", version = "0.7.2" }
 jlink = { id = "org.beryx.jlink", version = "3.0.1" }
+dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+manifest = { id = "com.coditory.manifest", version = "0.2.6" }
+download = { id = "de.undercouch.download", version = "5.6.0" }
+fatjar = { id = "io.github.goooler.shadow", version = "8.1.6" }
+frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
+versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
 
 [libraries]
-apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "apacheCommonIO" }
-apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "apacheCommonLang3" }
-apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version.ref = "apacheCommonPool" }
-directories = { group = "dev.dirs", name = "directories", version.ref = "directories" }
+apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.14.0" }
+apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
+apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+directories = { group = "dev.dirs", name = "directories", version = "26" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
-oshi = { group = "com.github.oshi", name = "oshi-core-java11", version.ref = "oshi" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.4.13" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.3" }
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
 fluentuiIcon = { group = "org.kordamp.ikonli", name = "ikonli-fluentui-pack", version.ref = "ikonli" }
 devicons = { group = "org.kordamp.ikonli", name = "ikonli-devicons-pack", version.ref = "ikonli" }
 materialIcons = { group = "org.kordamp.ikonli", name = "ikonli-materialdesign2-pack", version.ref = "ikonli" }
 fontawesome5 = { group = "org.kordamp.ikonli", name = "ikonli-fontawesome5-pack", version.ref = "ikonli" }
-groovy = { group = "org.apache.groovy", name = "groovy-all", version.ref = "groovy" }
-javafxUnitTest = { group = "org.testfx", name = "testfx-junit5", version.ref = "javafxUnitTest" }
+groovy = { group = "org.apache.groovy", name = "groovy-all", version = "5.0.0-alpha-4" }
+javafxUnitTest = { group = "org.testfx", name = "testfx-junit5", version = "4.0.17" }
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version.ref = "junitPlatformSuite" }
+junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.10.2" }
 testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
 testcontainersMysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
 testcontainersMssqlserver = { group = "org.testcontainers", name = "mssqlserver", version.ref = "testcontainers" }
 testcontainersPostgresql = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
-jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version.ref = "jerbrainsAnnotation" }
+jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.0.1" }
 mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
-caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version.ref = "caffine" }
-antlr = { group = "org.antlr", name = "antlr4", version.ref = "antlr" }
+caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
+antlr = { group = "org.antlr", name = "antlr4", version = "4.13.1" }
 avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
 avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
 avajeInjectTest = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
@@ -100,24 +83,23 @@ gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", vers
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 gestaltKotlin = { group = "com.github.gestalt-config", name = "gestalt-kotlin", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
-guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
 mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
 mavenResloverImpl = { group = "org.apache.maven.resolver", name = "maven-resolver-impl", version.ref = "mavenResolver" }
 mavenResloverJDK21 = { group = "org.apache.maven.resolver", name = "maven-resolver-transport-jdk", version.ref = "mavenResolver" }
 mavenResloverUtil = { group = "org.apache.maven.resolver", name = "maven-resolver-util", version.ref = "mavenResolver" }
 mavenResloverSupplier = { group = "org.apache.maven.resolver", name = "maven-resolver-supplier", version.ref = "mavenResolver" }
-mysql = { group = "com.mysql", name = "mysql-connector-j", version.ref = "mysqlDriver" }
-postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgresDriver" }
-mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version.ref = "mssqlDriver" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version = "8.3.0" }
+postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.2" }
+mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version = "12.6.1.jre11" }
 eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
 eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
-jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version.ref = "jgrapht" }
-fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
-hikariCP = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikariCP" }
-spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
-pcollections = { group = "org.pcollections", name = "pcollections", version.ref = "pcollections" }
+jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2" }
+fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
+hikariCP = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
+pcollections = { group = "org.pcollections", name = "pcollections", version = "2.1.3" }
 avajeConfig = { group = "io.avaje", name = "avaje-config", version.ref = "avajeConfig" }
 jacksonCore = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jacksonDatabind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -139,14 +121,29 @@ kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lomb
 kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
+kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.3" }
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
 animated = { group = "eu.iamgio", name = "animated", version = "1.3.0" }
 flowless = { group = "org.fxmisc.flowless", name = "flowless", version = "0.7.2" }
-autoService = {group="com.google.auto.service",name="auto-service",version.ref="autoService"}
-junitPerf={group="com.github.noconnor",name="junitperf-junit5",version="1.35.0"}
-javaFxPlugin={group="org.openjfx.javafxplugin",name="org.openjfx.javafxplugin.gradle.plugin",version.ref="javafx"}
-fatJarPlugin={group="io.github.goooler.shadow",name="shadow-gradle-plugin",version="8.1.3"}
-jlinkPlugin={group="org.beryx",name="badass-jlink-plugin",version="3.0.1"}
-avajeInjectPlugin={group="io.avaje.inject",name="inject-gradle-plugin",version="0.3"}
+autoService = { group = "com.google.auto.service", name = "auto-service", version = "1.1.1" }
+junitPerf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.35.0" }
+jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
+jgitJunit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.junit", version.ref = "jgit" }
+jgitLfs = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.lfs", version.ref = "jgit" }
+jgitSSH = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.ssh.apache", version.ref = "jgit" }
+jgitHttp = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.http.apache", version.ref = "jgit" }
+plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2023.13" }
+
+vertxCore = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
+vertxJunit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
+vertxKotlin = { group = "io.vertx", name = "vertx-lang-kotlin", version.ref = "vertx" }
+vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
+vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
+
+classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.165" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
+preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core", version = "11.17.0" }
+
+guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }

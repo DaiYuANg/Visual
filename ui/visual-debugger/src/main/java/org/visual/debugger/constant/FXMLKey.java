@@ -6,8 +6,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum FXMLKey {
+  LAYOUT("Layout");
 
-    LAYOUT("Layout");
-
-    private final String key;
+  private final String key;
 }

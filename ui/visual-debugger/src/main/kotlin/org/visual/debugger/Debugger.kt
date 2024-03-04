@@ -9,26 +9,20 @@ import org.visual.debugger.context.AttachSceneContext
 import org.visual.debugger.context.DebuggerContext.load
 
 class Debugger {
-    private val rootScene by lazy { Scene(load(FXMLKey.LAYOUT)) }
+  private val rootScene by lazy { Scene(load(FXMLKey.LAYOUT)) }
 
-    private val stage by lazy {
-        VisualStage()
-    }
+  private val stage by lazy { VisualStage() }
 
-    init {
-        AttachSceneContext.stage.addListener { _, _, newValue ->
-            run {
-                newValue.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST) {
-                    stage.close()
-                }
-            }
-        }
+  init {
+    AttachSceneContext.stage.addListener { _, _, newValue ->
+      run { newValue.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST) { stage.close() } }
     }
+  }
 
-    fun showDebugger() {
-        runOnFX {
-            stage.scene = rootScene
-            stage.showAndFocus()
-        }
+  fun showDebugger() {
+    runOnFX {
+      stage.scene = rootScene
+      stage.showAndFocus()
     }
+  }
 }

@@ -936,14 +936,11 @@ public class ScenicViewGui {
   }
 
   public void update() {
-      appRepository.getApps()
-              .stream()
-              .map(AppController::getStages)
-              .forEach(stages ->
-                      stages.stream()
-                      .filter(StageController::isOpened)
-                      .forEach(StageController::update)
-              );
+    appRepository.getApps().stream()
+        .map(AppController::getStages)
+        .forEach(
+            stages ->
+                stages.stream().filter(StageController::isOpened).forEach(StageController::update));
   }
 
   StageController getStageController(final StageID id) {
@@ -964,22 +961,22 @@ public class ScenicViewGui {
   }
 
   public void setSelectedNode(final StageController controller, final SVNode value) {
-      if (value == selectedNode) {
-          return;
-      }
-      if (controller != null && activeStage != controller) {
-        /** Remove selected from previous active */
-        activeStage.setSelectedNode(null);
-        activeStage = controller;
-      }
-      storeSelectedNode(value);
-      eventsTab.setSelectedNode(value);
-      loadAPI(null);
-      propertyFilterField.setText("");
-      propertyFilterField.setDisable(value == null);
-      filterProperties(propertyFilterField.getText());
-      threeDOMTab.setSelectedNode(value); // 3D addition
-      cssfxTab.setActiveStage((controller == null) ? null : controller.getID());
+    if (value == selectedNode) {
+      return;
+    }
+    if (controller != null && activeStage != controller) {
+      /** Remove selected from previous active */
+      activeStage.setSelectedNode(null);
+      activeStage = controller;
+    }
+    storeSelectedNode(value);
+    eventsTab.setSelectedNode(value);
+    loadAPI(null);
+    propertyFilterField.setText("");
+    propertyFilterField.setDisable(value == null);
+    filterProperties(propertyFilterField.getText());
+    threeDOMTab.setSelectedNode(value); // 3D addition
+    cssfxTab.setActiveStage((controller == null) ? null : controller.getID());
   }
 
   public void removeNode() {
@@ -1030,13 +1027,13 @@ public class ScenicViewGui {
     filterField
         .focusedProperty()
         .addListener(
-                (o, oldValue, newValue) -> {
-                  if (newValue) {
-                    setStatusText("Type any text for filtering");
-                  } else {
-                    clearStatusText();
-                  }
-                });
+            (o, oldValue, newValue) -> {
+              if (newValue) {
+                setStatusText("Type any text for filtering");
+              } else {
+                clearStatusText();
+              }
+            });
     return filterField;
   }
 
@@ -1121,10 +1118,10 @@ public class ScenicViewGui {
   }
 
   public void goToTab(String tabName) {
-      tabPane.getTabs()
-              .stream()
-              .filter(tab -> Objects.equals(tabName, tab.getText())).findFirst()
-              .ifPresent(switchToTab -> tabPane.getSelectionModel().select(switchToTab));
+    tabPane.getTabs().stream()
+        .filter(tab -> Objects.equals(tabName, tab.getText()))
+        .findFirst()
+        .ifPresent(switchToTab -> tabPane.getSelectionModel().select(switchToTab));
   }
 
   private void doDispatchEvent(final @NotNull FXConnectorEvent appEvent) {

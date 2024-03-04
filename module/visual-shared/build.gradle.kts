@@ -1,4 +1,6 @@
-plugins { `kotlin-project` }
+plugins{
+    `java-library`
+}
 
 group = "org.visual.shared"
 

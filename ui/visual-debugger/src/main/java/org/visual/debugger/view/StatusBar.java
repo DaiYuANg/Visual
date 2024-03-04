@@ -19,6 +19,8 @@ package org.visual.debugger.view;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -34,9 +36,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.i18n.I18n;
 import org.visual.i18n.I18nKeys;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Singleton
@@ -55,6 +54,7 @@ public class StatusBar extends HBox {
     setId("main-statusbar");
     setSpacing(4);
   }
+
   @Inject
   public StatusBar(@NotNull I18n i18n) {
     Tooltip tooltip = new Tooltip("Windows bounds in the screen");

@@ -5,13 +5,7 @@ import javafx.scene.control.MenuItem
 
 class DebuggerMenu : Menu() {
 
-  private val openDebugger by lazy { MenuItem("Open Debugger").apply {
-
-      setOnAction {
-
-      }
-    }
-  }
+  private val openDebugger by lazy { MenuItem("Open Debugger").apply { setOnAction {} } }
 
   init {
     text = "Debugger"

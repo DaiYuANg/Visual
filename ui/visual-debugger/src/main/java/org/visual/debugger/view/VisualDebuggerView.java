@@ -18,6 +18,8 @@
 package org.visual.debugger.view;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import java.lang.instrument.Instrumentation;
+import java.util.List;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -40,10 +42,6 @@ import org.visual.debugger.model.update.LocalUpdateStrategy;
 import org.visual.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.debugger.remote.FXConnectorFactory;
 import org.visual.shared.PreferencesWrapper;
-
-import java.lang.instrument.Instrumentation;
-import java.util.ArrayList;
-import java.util.List;
 
 /** This is the entry point for all different versions of Scenic View. */
 @Slf4j

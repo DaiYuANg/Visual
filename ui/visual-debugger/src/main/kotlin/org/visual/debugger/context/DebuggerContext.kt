@@ -3,6 +3,7 @@ package org.visual.debugger.context
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.google.inject.Stage
+import java.nio.charset.StandardCharsets
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.util.Callback
@@ -18,41 +19,35 @@ import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder
 import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder
 import org.visual.debugger.Debugger
 import org.visual.debugger.constant.FXMLKey
-import org.visual.debugger.module.PreferencesModule
 import org.visual.debugger.module.JvmFactory
+import org.visual.debugger.module.PreferencesModule
 import org.visual.debugger.module.UIFactory
-import java.nio.charset.StandardCharsets
 
 data object DebuggerContext {
 
-  private val preferencesModule by lazy {
-    PreferencesModule()
-  }
+  private val preferencesModule by lazy { PreferencesModule() }
 
-  private val configLoaders =
-    listOf(EnvironmentVarsLoader(), PropertyLoader(), MapConfigLoader())
+  private val configLoaders = listOf(EnvironmentVarsLoader(), PropertyLoader(), MapConfigLoader())
 
   private val environmentSource: ConfigSourcePackage =
-    EnvironmentConfigSourceBuilder.builder()
-      .setPrefix("VISUAL_MODEL")
-      .setFailOnErrors(false)
-      .build()
+      EnvironmentConfigSourceBuilder.builder()
+          .setPrefix("VISUAL_MODEL")
+          .setFailOnErrors(false)
+          .build()
 
   private val classPathSource =
-    ClassPathConfigSourceBuilder.builder()
-      .setResource("visual.model.debugger.properties")
-      .build()
+      ClassPathConfigSourceBuilder.builder().setResource("visual.model.debugger.properties").build()
 
   private val javafxClassPathSource =
-    ClassPathConfigSourceBuilder.builder().setResource("javafx.properties").build()
+      ClassPathConfigSourceBuilder.builder().setResource("javafx.properties").build()
 
-  private val systemSource = SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build()
+  private val systemSource =
+      SystemPropertiesConfigSourceBuilder.builder().setFailOnErrors(false).build()
 
   private val gestaltModule by lazy {
     val builder = GestaltBuilder().useCacheDecorator(true).addConfigLoaders(configLoaders)
     builder.addSources(
-      listOf(classPathSource, environmentSource, systemSource, javafxClassPathSource)
-    )
+        listOf(classPathSource, environmentSource, systemSource, javafxClassPathSource))
     val gestalt = builder.build()
     gestalt.loadConfigs()
     GestaltModule(gestalt)
@@ -62,7 +57,9 @@ data object DebuggerContext {
 
   private val uiFactory by lazy { UIFactory() }
 
-  private val injector: Injector = Guice.createInjector(Stage.PRODUCTION,preferencesModule, gestaltModule, JvmFactory, uiFactory)
+  private val injector: Injector =
+      Guice.createInjector(
+          Stage.PRODUCTION, preferencesModule, gestaltModule, JvmFactory, uiFactory)
 
   fun <T> get(clazz: Class<T>): T {
     return injector.getInstance(clazz)

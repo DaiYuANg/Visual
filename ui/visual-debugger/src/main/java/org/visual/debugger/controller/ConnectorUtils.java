@@ -159,22 +159,23 @@ public class ConnectorUtils {
     if (propMap == null) return "";
     final StringBuilder sb = new StringBuilder();
     final Object[] keys = propMap.keySet().toArray();
-      Arrays.stream(keys)
-              .filter(key -> key instanceof String)
-              .map(key -> (String) key)
-              .filter(propkey -> propkey.contains("pane-") || propkey.contains("box-"))
-              .forEach(propkey -> {
-          final Object keyvalue = propMap.get(propkey);
-          if (!sb.isEmpty()) {
-              sb.append(':');
-          }
-          sb.append(propkey).append('=');
-          if (propkey.endsWith("margin")) {
-              sb.append(serializeInsets((Insets) keyvalue));
-          } else {
-              sb.append(keyvalue.toString());
-          }
-      });
+    Arrays.stream(keys)
+        .filter(key -> key instanceof String)
+        .map(key -> (String) key)
+        .filter(propkey -> propkey.contains("pane-") || propkey.contains("box-"))
+        .forEach(
+            propkey -> {
+              final Object keyvalue = propMap.get(propkey);
+              if (!sb.isEmpty()) {
+                sb.append(':');
+              }
+              sb.append(propkey).append('=');
+              if (propkey.endsWith("margin")) {
+                sb.append(serializeInsets((Insets) keyvalue));
+              } else {
+                sb.append(keyvalue.toString());
+              }
+            });
     return sb.toString();
   }
 
@@ -234,9 +235,9 @@ public class ConnectorUtils {
   public static boolean acceptWindow(final Window window) {
     if (window instanceof Stage) {
       final Node root = window.getScene() != null ? window.getScene().getRoot() : null;
-        return root != null
-                && (root.getId() == null
-                || !root.getId().startsWith(StageController.FX_CONNECTOR_BASE_ID));
+      return root != null
+          && (root.getId() == null
+              || !root.getId().startsWith(StageController.FX_CONNECTOR_BASE_ID));
     }
     return false;
   }

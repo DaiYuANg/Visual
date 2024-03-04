@@ -42,17 +42,6 @@ gradleEnterprise {
 }
 
 rootProject.name = "Visual"
-include("executable:visual-designer")
-include("executable:visual-database")
-
-include("module:visual-jdbc")
-include("module:visual-shared")
-include("module:visual-git")
-
-include("libs:jfa")
-include("serialize:visual-serialize-json")
-include("libs:event")
-include("libs:fonts")
 
 include("ui:visual-component")
 include("ui:visual-text-editor")
@@ -61,6 +50,12 @@ include("ui:visual-i18n")
 include("ui:visual-collaborative")
 include("ui:visual-debugger")
 
+include("module:visual-jdbc")
+include("module:visual-shared")
+include("module:visual-git")
+
+include("serialize:visual-serialize-json")
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
+
 include("website")

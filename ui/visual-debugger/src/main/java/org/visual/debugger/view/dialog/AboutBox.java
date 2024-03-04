@@ -25,10 +25,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.jetbrains.annotations.NotNull;
-import org.visual.debugger.view.VisualDebuggerView;
 import org.visual.debugger.api.StageController;
 import org.visual.debugger.utils.PropertiesUtils;
 import org.visual.debugger.view.ScenicViewGui;
+import org.visual.debugger.view.VisualDebuggerView;
 
 public class AboutBox {
   private static final int SCENE_WIDTH = 476;
