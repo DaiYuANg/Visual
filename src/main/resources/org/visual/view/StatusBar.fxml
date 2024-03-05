@@ -5,7 +5,7 @@
 <AnchorPane
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="org.visual.designer.controller.StatusBarController"
+        fx:controller="org.visual.controller.StatusBarController"
 >
     <Label text="status"/>
 </AnchorPane>

@@ -6,7 +6,7 @@
 <?import org.visual.graph.editor.core.view.GraphEditorContainer?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.visual.designer.controller.EditorController">
+      fx:controller="org.visual.controller.EditorController">
     <ToolBar>
         <!--        <Menu text="File">-->
         <Button text="Load File" onAction="#load"/>

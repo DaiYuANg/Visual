@@ -5,7 +5,7 @@
 <TreeView
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="org.visual.designer.controller.FileTreeViewController"
+        fx:controller="org.visual.controller.FileTreeViewController"
 >
     <TreeItem value="test">
     </TreeItem>

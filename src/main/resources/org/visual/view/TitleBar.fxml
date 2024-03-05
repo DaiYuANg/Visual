@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <HBox xmlns="http://javafx.com/javafx"
                 xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 0"
-                fx:controller="org.visual.designer.controller.TitleBarController"
+                fx:controller="org.visual.controller.TitleBarController"
 >
 <!--    <SystemMenuBar>-->
 <!--        <Menu text="File">-->

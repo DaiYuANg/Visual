@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import org.visual.designer.component.GlobalSystemMenu?>
+<?import org.visual.component.GlobalSystemMenu?>
 <GlobalSystemMenu
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="org.visual.designer.controller.GlobalMenuController">
+        fx:controller="org.visual.controller.GlobalMenuController">
     <Menu text="Tools">
         <MenuItem text="Search"/>
     </Menu>

@@ -4,6 +4,6 @@
 <?import javafx.scene.control.Button?>
 <ToolBar xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
-         fx:controller="org.visual.designer.controller.ToolBarController">
+         fx:controller="org.visual.controller.ToolBarController">
     <Button text="save"/>
 </ToolBar>

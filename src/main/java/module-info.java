@@ -1,5 +1,5 @@
 @SuppressWarnings({"requires-automatic"})
-module org.visual.designer {
+module org.visual {
   requires javafx.graphics;
   requires static lombok;
   requires org.slf4j;
@@ -37,20 +37,23 @@ module org.visual.designer {
   requires kotlin.stdlib;
   requires org.apache.maven.resolver;
 
-  opens org.visual.designer.controller to
+  opens org.visual.controller to
       javafx.fxml;
 
-  exports org.visual.designer.core;
-  exports org.visual.designer.controller to
+  exports org.visual.core;
+  exports org.visual.controller to
       javafx.fxml,
       javafx.graphics;
-  exports org.visual.designer;
-  exports org.visual.designer.component to
+  exports org.visual.view to
+      javafx.fxml,
+      javafx.graphics;
+  exports org.visual;
+  exports org.visual.component to
       javafx.fxml;
 
-  opens org.visual.designer.component to
+  opens org.visual.component to
       javafx.fxml;
 
   provides io.avaje.inject.spi.Module with
-      org.visual.designer.DesignerModule;
+      org.visual.VisualModule;
 }
