@@ -28,7 +28,7 @@ plugins {
   alias(libs.plugins.spotbugs)
   alias(libs.plugins.graalvm)
   `kotlin-project`
-  alias(libs.plugins.jlink)
+//  alias(libs.plugins.jlink)
   alias(libs.plugins.download)
   alias(libs.plugins.manifest)
   alias(libs.plugins.dotenv)
@@ -174,7 +174,7 @@ allprojects {
       testImplementation(rootProject.libs.mockitoCore)
       testImplementation(rootProject.libs.mockitoJunit)
     }
-    project.version = details.gitHash
+    project.version = "${details.branchName}-${details.gitHash}"
 
     project.tasks.jar {
       enabled = true
@@ -275,3 +275,38 @@ dependencies {
   implementation(projects.serialize.visualSerializeJson)
   implementation(libs.picocli)
 }
+
+// jlink {
+//  addExtraDependencies(
+//    "javafx",
+//    "kotlin",
+//    "jackson",
+//    "picocli",
+//  )
+//  options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
+//  enableCds()
+//  launcher {
+//    noConsole = true
+//    name = convertToCamelCase(project.name)
+//    jvmArgs = commonJvmArgs
+//  }
+//  imageZip.set(project.file("${project.layout.buildDirectory}/image-zip/visual-model-image.zip"))
+//  jpackage { appVersion = version.toString() }
+//  customImage {
+//    jdkModules = listOf("java.desktop", "java.xml", "jdk.unsupported")
+//    appModules = listOf(group.toString())
+//  }
+//  mergedModule {
+//    additive = true
+//    excludeRequires(
+//      "java.compiler",
+//      "java.rmi",
+//      "java.xml.bind",
+//      "java.corba",
+//      "org.jetbrains.annotations",
+//      "java.xml.crypto",
+//      "jdk.javadoc",
+//      "org.junit.platform.launcher"
+//    )
+//  }
+// }

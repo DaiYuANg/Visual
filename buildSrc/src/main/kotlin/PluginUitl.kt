@@ -1,3 +1,4 @@
+import java.util.*
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.the
@@ -43,3 +44,14 @@ fun Element.firstElement(predicate: (Element.() -> Boolean)) =
         .run { (0 until length).map(::item) }
         .filterIsInstance<Element>()
         .first { it.predicate() }
+
+fun convertToCamelCase(input: String): String {
+  val words = input.split("-")
+  val camelCaseWords =
+      words.mapIndexed { _, word ->
+        word.replaceFirstChar {
+          if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        }
+      }
+  return camelCaseWords.joinToString("")
+}

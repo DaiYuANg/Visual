@@ -18,5 +18,5 @@ dependencies {
 
 tasks.generateGrammarSource {
   arguments = arguments + listOf("-visitor", "-long-messages")
-  arguments = arguments + listOf("-package", group)
+//  arguments = arguments + listOf("-package", group)
 }
