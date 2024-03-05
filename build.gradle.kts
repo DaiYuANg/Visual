@@ -28,7 +28,7 @@ plugins {
   alias(libs.plugins.spotbugs)
   alias(libs.plugins.graalvm)
   `kotlin-project`
-//    alias(libs.plugins.jlink)
+  alias(libs.plugins.jlink)
   alias(libs.plugins.download)
   alias(libs.plugins.manifest)
   alias(libs.plugins.dotenv)
@@ -147,7 +147,7 @@ allprojects {
       doFirst {
         println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
       }
-//            options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
+//    options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
       options.encoding = StandardCharsets.UTF_8.name()
       options.compilerArgs.addAll(javaCompileArg)
       options.isFork = true

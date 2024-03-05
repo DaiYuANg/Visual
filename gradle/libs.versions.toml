@@ -30,14 +30,14 @@ jreleaser = { id = "org.jreleaser", version = "1.11.0" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.6" }
 extraJavaModule = { id = "org.gradlex.extra-java-module-info", version = "1.7" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
-dependencycheck = { id = "org.owasp.dependencycheck", version = "9.0.7" }
+dependencycheck = { id = "org.owasp.dependencycheck", version = "9.0.9" }
 jmh = { id = "me.champeau.jmh", version = "0.7.2" }
 jlink = { id = "org.beryx.jlink", version = "3.0.1" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
 manifest = { id = "com.coditory.manifest", version = "0.2.6" }
 download = { id = "de.undercouch.download", version = "5.6.0" }
-fatjar = { id = "io.github.goooler.shadow", version = "8.1.6" }
+fatjar = { id = "io.github.goooler.shadow", version = "8.1.7" }
 frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
@@ -139,7 +139,7 @@ jgitJunit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.junit", versi
 jgitLfs = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.lfs", version.ref = "jgit" }
 jgitSSH = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.ssh.apache", version.ref = "jgit" }
 jgitHttp = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.http.apache", version.ref = "jgit" }
-plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2023.13" }
+plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2024.3" }
 
 vertxCore = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertxJunit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
