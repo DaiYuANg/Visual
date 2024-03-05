@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.visual.database.core;
+package org.visual.jdbc.core;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,11 +1,11 @@
 /* (C)2024*/
-package org.visual.database.mapper;
+package org.visual.jdbc.mapper;
 
 import com.zaxxer.hikari.HikariConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.visual.database.core.DatabaseArgument;
+import org.visual.jdbc.core.DatabaseArgument;
 
 @Mapper
 public interface HikariMapper {

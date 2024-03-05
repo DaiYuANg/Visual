@@ -9,3 +9,8 @@ val javafxModules =
         "javafx.swing",
         "javafx.media",
         "javafx.web")
+
+val versionKey = "Version"
+val gitHashKey = "Git-Hash"
+val latestTagKey = "Last-Tag"
+val branchKey = "Branch"

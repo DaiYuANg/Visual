@@ -19,7 +19,7 @@ import picocli.CommandLine;
     subcommands = OpenCommand.class)
 @RequiredArgsConstructor
 @Slf4j
-public class VisualModelDesigner implements Runnable {
+public class VisualApplication implements Runnable {
 
   private final String[] args;
 
@@ -31,7 +31,7 @@ public class VisualModelDesigner implements Runnable {
   @SneakyThrows
   public static void main(String[] args) {
     log.atInfo().log("CommandLine Start");
-    val commandLine = new VisualModelDesigner(args);
+    val commandLine = new VisualApplication(args);
     val exitCode = new CommandLine(commandLine).execute(args);
     exit(exitCode);
   }

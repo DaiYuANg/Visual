@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.visual.database.exception;
+package org.visual.jdbc.exception;
 
 import lombok.experimental.StandardException;
 

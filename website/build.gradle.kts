@@ -2,6 +2,6 @@ plugins {
   alias(libs.plugins.frontend)
 }
 
-frontend{
-    nodeVersion.set("20.9.0")
+frontend {
+  nodeVersion.set("20.9.0")
 }

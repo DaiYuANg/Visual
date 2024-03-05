@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.visual.database.core;
+package org.visual.jdbc.core;
 
 import com.zaxxer.hikari.HikariDataSource;
 import java.util.List;
@@ -8,16 +8,16 @@ import java.util.Set;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.val;
-import org.visual.database.api.VMDatabase;
-import org.visual.database.mapper.HikariMapper;
-import org.visual.database.util.JDBCUtil;
+import org.visual.jdbc.api.VMDatabase;
+import org.visual.jdbc.mapper.HikariMapper;
+import org.visual.jdbc.util.JDBCUtil;
 
 @ToString
 public class Database implements VMDatabase {
   private final HikariDataSource dataSource;
 
   public Database(DatabaseArgument argument) {
-    new org.visual.model.database.MySqlParserBaseListener();
+    new org.visual.jdbc.MySqlParserBaseListener();
     val config = HikariMapper.INSTANCE.buildConfig(argument);
     this.dataSource = new HikariDataSource(config);
   }

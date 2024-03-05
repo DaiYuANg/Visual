@@ -10,9 +10,9 @@ testcontainers = "1.19.6"
 mockito = "5.11.0"
 avajeInject = "9.11"
 gestalt = "0.24.6"
-mavenResolver = "2.0.0-alpha-7"
+mavenResolver = "2.0.0-alpha-8"
 javafxVersion = "21.0.2"
-eclipseCollections = "11.1.0"
+eclipseCollections = "12.0.0.M3"
 avajeConfig = "3.10"
 jackson = "2.16.1"
 picocli = "4.7.5"
@@ -20,6 +20,7 @@ mapstruct = "1.6.0.Beta1"
 jgit = "6.8.0.202311291450-r"
 vertx = "4.5.4"
 guice = "7.0.0"
+jdbi = "3.45.0"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
@@ -42,6 +43,7 @@ versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
 spotbugs = { id = "com.github.spotbugs", version = "6.0.8" }
+graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
 
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.14.0" }
@@ -161,6 +163,8 @@ vertxMQTTClient = { group = "io.vertx", name = "vertx-mqtt", version.ref = "vert
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
 vertxRxJava3 = { group = "io.vertx", name = "vertx-rx-java3", version.ref = "vertx" }
 
+apacheDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
+
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.8" }
 classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.165" }
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
@@ -168,3 +172,6 @@ preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core",
 
 guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
 jSystemThemeDetector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.8" }
+jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.8" }
+
+jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }

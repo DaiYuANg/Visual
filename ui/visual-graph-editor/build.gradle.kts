@@ -6,7 +6,6 @@ group = "org.visual.model.graph-editor"
 
 version = "unspecified"
 
-
 dependencies {
   implementation(projects.ui.visualComponent)
   implementation(libs.pcollections)

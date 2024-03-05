@@ -1,11 +1,12 @@
 plugins {
   antlr
-//  `kotlin-project`
 }
 
-group = "org.visual.model.database"
+group = "org.visual.jdbc"
 
 dependencies {
+  implementation(libs.hikariCP)
+  implementation(libs.jsqlparser)
   testImplementation(libs.testcontainersMysql)
   testImplementation(libs.testcontainersMssqlserver)
   testImplementation(libs.testcontainersPostgresql)
@@ -17,5 +18,5 @@ dependencies {
 
 tasks.generateGrammarSource {
   arguments = arguments + listOf("-visitor", "-long-messages")
-  arguments = arguments + listOf("-package", "org.visual.jdbc")
+  arguments = arguments + listOf("-package", group)
 }

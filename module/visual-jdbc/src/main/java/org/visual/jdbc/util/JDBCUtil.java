@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.visual.database.util;
+package org.visual.jdbc.util;
 
 import java.sql.Connection;
 import java.util.*;
@@ -8,8 +8,8 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.database.core.DatabaseResultKey;
-import org.visual.database.core.DatabaseTableColumn;
+import org.visual.jdbc.core.DatabaseResultKey;
+import org.visual.jdbc.core.DatabaseTableColumn;
 
 @UtilityClass
 public class JDBCUtil {

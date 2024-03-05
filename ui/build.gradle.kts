@@ -6,10 +6,11 @@ subprojects {
   extensions.configure<JavaFXOptions> {
     version = rootProject.libs.versions.javafxVersion.get()
     modules(*javafxModules.toTypedArray())
-    configurations = arrayOf(
-      "compileOnly",
-      "testImplementation"
-    )
+    configurations =
+      arrayOf(
+        "compileOnly",
+        "testImplementation",
+      )
   }
   dependencies {
     testImplementation(rootProject.libs.javafxUnitTest)

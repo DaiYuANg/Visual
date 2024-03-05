@@ -7,5 +7,5 @@ module org.visual.jdbc {
   requires org.jetbrains.annotations;
   requires org.antlr.antlr4.runtime;
 
-  exports org.visual.database.core;
+  exports org.visual.jdbc.core;
 }

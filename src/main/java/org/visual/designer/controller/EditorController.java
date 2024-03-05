@@ -3,6 +3,7 @@ package org.visual.designer.controller;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import jakarta.inject.Singleton;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -18,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.visual.designer.core.GraphEditorPersistence;
@@ -282,11 +282,13 @@ public class EditorController implements Initializable {
     graphEditor.getProperties().gridVisibleProperty().bind(showGridButton.selectedProperty());
     graphEditor.getProperties().snapToGridProperty().bind(snapToGridButton.selectedProperty());
 
-    for (final EditorElement type : EditorElement.values()) {
-      final CheckMenuItem readOnly = new CheckMenuItem(type.name());
-      graphEditor.getProperties().readOnlyProperty(type).bind(readOnly.selectedProperty());
-      //            readOnlyMenu.getItems().add(readOnly);
-    }
+    //            readOnlyMenu.getItems().add(readOnly);
+    Arrays.stream(EditorElement.values())
+        .forEach(
+            type -> {
+              final CheckMenuItem readOnly = new CheckMenuItem(type.name());
+              graphEditor.getProperties().readOnlyProperty(type).bind(readOnly.selectedProperty());
+            });
     minimapButton.setGraphic(new FontIcon(FontAwesomeSolid.MAP));
 
     final SetChangeListener<? super EObject> selectedNodesListener =
@@ -297,11 +299,8 @@ public class EditorController implements Initializable {
 
   /** Adds a listener to make changes to available menu options when the skin type changes. */
   private void addActiveSkinControllerListener() {
-
     activeSkinController.addListener(
-        (observable, oldValue, newValue) -> {
-          handleActiveSkinControllerChange();
-        });
+        (observable, oldValue, newValue) -> handleActiveSkinControllerChange());
   }
 
   /**
@@ -391,8 +390,7 @@ public class EditorController implements Initializable {
   /** Flushes the command stack, so that the undo/redo history is cleared. */
   private void flushCommandStack() {
 
-    final EditingDomain editingDomain =
-        AdapterFactoryEditingDomain.getEditingDomainFor(graphEditor.getModel());
+    val editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(graphEditor.getModel());
     if (editingDomain != null) {
       editingDomain.getCommandStack().flush();
     }
@@ -407,12 +405,13 @@ public class EditorController implements Initializable {
 
     if (leftConnectorPositionButton.isSelected()) {
       return Side.LEFT;
-    } else if (rightConnectorPositionButton.isSelected()) {
-      return Side.RIGHT;
-    } else if (topConnectorPositionButton.isSelected()) {
-      return Side.TOP;
-    } else {
-      return Side.BOTTOM;
     }
+    if (rightConnectorPositionButton.isSelected()) {
+      return Side.RIGHT;
+    }
+    if (topConnectorPositionButton.isSelected()) {
+      return Side.TOP;
+    }
+    return Side.BOTTOM;
   }
 }

@@ -1,5 +1,5 @@
-plugins{
-    `java-library`
+plugins {
+  `java-library`
 }
 group = "org.visual.model.git"
 

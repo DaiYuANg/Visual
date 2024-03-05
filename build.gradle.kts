@@ -5,9 +5,8 @@ import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
-import java.net.URL
 import java.nio.charset.StandardCharsets
-import org.w3c.dom.Element
+
 plugins {
   checkstyle
   jacoco
@@ -27,6 +26,7 @@ plugins {
   alias(libs.plugins.fatjar)
   alias(libs.plugins.spotless)
   alias(libs.plugins.spotbugs)
+  alias(libs.plugins.graalvm)
   `kotlin-project`
 //    alias(libs.plugins.jlink)
   alias(libs.plugins.download)
@@ -38,11 +38,12 @@ val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
 val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 val details = versionDetails()
-var javaCompileArg: List<String> = if (env.MODE.value == "debug") {
-  listOf()
-} else {
-  listOf("-g:none", "-02")
-}
+var javaCompileArg: List<String> =
+  if (env.MODE.value == "debug") {
+    listOf()
+  } else {
+    listOf("-g:none", "-02")
+  }
 
 idea.project.ipr {
   withXml {
@@ -52,7 +53,7 @@ idea.project.ipr {
       .setAttribute("vcs", "Git")
   }
 //  TODO set idea disable ana https://stackoverflow.com/questions/16369749/how-to-disable-pre-commit-code-analysis-for-git-backed-projects-using-intellij-i
-  withXml{
+  withXml {
     asElement()
       .firstElement { tagName == "component" && getAttribute("name") == "VcsManagerConfiguration" }
   }
@@ -66,29 +67,6 @@ allprojects {
     gradlePluginPortal()
     google()
   }
-  project.dependencies {
-    compileOnly(rootProject.libs.jetbrainsAnnotation)
-    implementation(rootProject.libs.slf4j)
-    implementation(rootProject.libs.slf4jJdkPlatform)
-    implementation(rootProject.libs.logback)
-    implementation(rootProject.libs.guava)
-    annotationProcessor(rootProject.libs.lombokMapstructBinding)
-    implementation(rootProject.libs.mapstruct)
-    annotationProcessor(rootProject.libs.mapstructProcessor)
-    testImplementation(rootProject.libs.junitBom)
-    testImplementation(platform(rootProject.libs.junitBom))
-    testImplementation(rootProject.libs.junitJuiter)
-    testImplementation(rootProject.libs.junitApi)
-    testImplementation(rootProject.libs.junitEngine)
-    testImplementation(rootProject.libs.junitPlatformSuite)
-    testImplementation(rootProject.libs.junitPerf)
-    testImplementation(platform(rootProject.libs.testcontainersBom))
-    testImplementation(rootProject.libs.testcontainers)
-    testImplementation(rootProject.libs.testcontainersJunit)
-    testImplementation(rootProject.libs.mockitoCore)
-    testImplementation(rootProject.libs.mockitoJunit)
-  }
-  project.version = details.gitHash
 }
 
 spotless {
@@ -117,7 +95,7 @@ spotless {
     indentWithSpaces(identWidth)
   }
   kotlinGradle {
-    target("**/src/**/*.gradle.kts", "./*.gradle.kts")
+    target("**/*.gradle.kts")
     ktfmt()
     ktlint()
       .setEditorConfigPath("$projectDir/.editorconfig") // sample unusual placement
@@ -147,21 +125,22 @@ spotless {
 javafx {
   version = libs.versions.javafxVersion.get()
   modules(*javafxModules.toTypedArray())
-  configurations = arrayOf(
-    "implementation",
-    "testImplementation"
-  )
+  configurations =
+    arrayOf(
+      "implementation",
+      "testImplementation",
+    )
 }
 
-subprojects {
+allprojects {
   if (project.name != "website") {
     apply {
       apply<LombokPlugin>()
       apply<PlantUmlPlugin>()
       apply<DokkaPlugin>()
       apply<ManifestPlugin>()
+      apply<KotlinProjectPlugin>()
     }
-
 
     group = "org." + project.name.replace("-", ".")
     project.tasks.compileJava {
@@ -175,25 +154,44 @@ subprojects {
       options.isDebug = true
       options.isIncremental = true
     }
+    project.dependencies {
+      compileOnly(rootProject.libs.jetbrainsAnnotation)
+      implementation(rootProject.libs.slf4j)
+      implementation(rootProject.libs.slf4jJdkPlatform)
+      implementation(rootProject.libs.guava)
+      annotationProcessor(rootProject.libs.lombokMapstructBinding)
+      implementation(rootProject.libs.mapstruct)
+      annotationProcessor(rootProject.libs.mapstructProcessor)
+      testImplementation(platform(rootProject.libs.junitBom))
+      testImplementation(rootProject.libs.junitJuiter)
+      testImplementation(rootProject.libs.junitApi)
+      testImplementation(rootProject.libs.junitEngine)
+      testImplementation(rootProject.libs.junitPlatformSuite)
+      testImplementation(rootProject.libs.junitPerf)
+      testImplementation(platform(rootProject.libs.testcontainersBom))
+      testImplementation(rootProject.libs.testcontainers)
+      testImplementation(rootProject.libs.testcontainersJunit)
+      testImplementation(rootProject.libs.mockitoCore)
+      testImplementation(rootProject.libs.mockitoJunit)
+    }
+    project.version = details.gitHash
 
     project.tasks.jar {
       enabled = true
       duplicatesStrategy = DuplicatesStrategy.INCLUDE
-      manifest.attributes["Version"] = version
-      manifest.attributes["Git-Hash"] = details.gitHashFull
-      manifest.attributes["Last-Tag"] = details.lastTag
-      manifest.attributes["Branch"] = details.branchName
     }
+
     project.extensions.configure(ManifestPluginExtension::class.java) {
       buildAttributes = true
       implementationAttributes = true
       scmAttributes = true
-      attributes = mapOf(
-        "Version" to version,
-        "Git-Hash" to details.gitHashFull,
-        "Last-Tag" to details.lastTag,
-        "Branch" to details.branchName
-      )
+      attributes =
+        mapOf(
+          versionKey to version,
+          gitHashKey to details.gitHashFull,
+          latestTagKey to details.lastTag,
+          branchKey to details.branchName,
+        )
     }
 
     project.tasks.test {
@@ -235,8 +233,11 @@ subprojects {
           as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
       )
     }
-
   }
+}
+
+application {
+  applicationDefaultJvmArgs = commonJvmArgs
 }
 
 dependencies {
@@ -251,22 +252,26 @@ dependencies {
   implementation(libs.gestaltGuice)
   implementation(libs.gestaltKotlin)
   implementation(libs.jacksonAnnotations)
+  implementation(rootProject.libs.logback)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.pcollections)
   implementation(libs.avajeValidaor)
   annotationProcessor(libs.avajeValidaorCodegen)
-  implementation(rootProject.libs.avajeInject)
-  annotationProcessor(rootProject.libs.avajeInjectGenerator)
-  implementation(rootProject.libs.gestaltConfig)
-  implementation(rootProject.libs.gestaltToml)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  implementation(libs.gestaltConfig)
+  implementation(libs.gestaltToml)
+  testImplementation(libs.javafxUnitTest)
   testImplementation(rootProject.libs.avajeInjectTest)
-  implementation(rootProject.libs.picocli)
-  annotationProcessor(rootProject.libs.picocliCodegen)
+  implementation(libs.picocli)
+  annotationProcessor(libs.picocliCodegen)
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)
   implementation(projects.ui.visualDebugger)
   implementation(projects.ui.visualComponent)
   implementation(projects.ui.visualGraphEditor)
+  implementation(projects.serialize.visualSerializeApi)
+  implementation(projects.serialize.visualSerializeJson)
   implementation(libs.picocli)
 }
