@@ -102,3 +102,4 @@ cwallet.sso.lck
 ./scenicView.properties
 .env
 gradle.properties
+*.hprof

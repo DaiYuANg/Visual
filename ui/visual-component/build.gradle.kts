@@ -6,22 +6,22 @@ plugins {
 group = "org.visual.component"
 
 dependencies {
-  api(libs.oshi)
-  api(projects.module.visualShared)
-  api(libs.fontawesome5)
-  api(libs.ikonliJavafx)
-  api(libs.fluentuiIcon)
-  api(libs.simpleicon)
-  api(libs.controlfx)
-  api(libs.materialIcons)
-  api(libs.atlantafx)
-  api(libs.devicons)
-  api(libs.apacheCommonPool)
-  api(libs.animated)
-  api(libs.flowless)
-  api(projects.ui.visualI18n)
-  api(libs.apacheCommonIO)
-  api(libs.jSystemThemeDetector)
+  implementation(libs.oshi)
+  implementation(projects.module.visualShared)
+  implementation(libs.fontawesome5)
+  implementation(libs.ikonliJavafx)
+  implementation(libs.fluentuiIcon)
+  implementation(libs.simpleicon)
+  implementation(libs.controlfx)
+  implementation(libs.materialIcons)
+  implementation(libs.atlantafx)
+  implementation(libs.devicons)
+  implementation(libs.apacheCommonPool)
+  implementation(libs.animated)
+  implementation(libs.flowless)
+  implementation(projects.ui.visualI18n)
+  implementation(libs.apacheCommonIO)
+  implementation(libs.jSystemThemeDetector)
 }
 
 tasks.compileSass {

@@ -165,6 +165,7 @@ preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core",
 guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
 jSystemThemeDetector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.8" }
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.8" }
+immutable = {group="org.immutables",name="value",version="2.10.1"}
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
 pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }

@@ -12,7 +12,7 @@ public class Point {
   public double y;
 
   @Contract("_, _ -> new")
-  public static @NotNull Point midOf(Point a, Point b) {
+  public static @NotNull Point midOf(@NotNull Point a, @NotNull Point b) {
     return new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
   }
 

@@ -32,7 +32,6 @@ module org.visual {
   requires com.fasterxml.jackson.annotation;
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
-  requires kotlin.stdlib;
   requires org.apache.maven.resolver;
   requires io.avaje.inject;
 
