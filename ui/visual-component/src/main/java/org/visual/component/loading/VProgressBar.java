@@ -1,7 +1,5 @@
 package org.visual.component.loading;
 
-import static org.visual.component.util.FXUtil.runOnFX;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

@@ -11,8 +11,6 @@ module org.visual.shared {
   requires org.jetbrains.annotations;
   requires org.mapstruct;
   requires java.prefs;
-  requires kotlin.stdlib;
-  requires io.github.oshai.kotlinlogging;
 
   exports org.visual.shared;
   exports org.visual.shared.pojo;

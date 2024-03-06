@@ -7,6 +7,6 @@ dependencies {
   implementation(libs.vertxCore)
   testImplementation(libs.vertxJunit5)
   implementation(libs.vertxHazelcast)
-  implementation(libs.vertxKotlin)
+//  implementation(libs.vertxKotlin)
   implementation(projects.module.visualShared)
 }

@@ -1,6 +1,6 @@
 plugins {
   alias(libs.plugins.sass)
-  `kotlin-project`
+//  `kotlin-project`
 }
 
 group = "org.visual.component"

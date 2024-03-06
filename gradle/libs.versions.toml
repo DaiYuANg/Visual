@@ -1,6 +1,5 @@
 [versions]
 jdk = "21"
-kotlin = "2.0.0-Beta4"
 ikonliJavafx = "12.3.1"
 slf4j = "2.1.0-alpha1"
 freefairPlugin = "8.6"
@@ -84,7 +83,6 @@ avajeInjectTest = { group = "io.avaje", name = "avaje-inject", version.ref = "av
 gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
 gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
-gestaltKotlin = { group = "com.github.gestalt-config", name = "gestalt-kotlin", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
 guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
 mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
@@ -122,12 +120,6 @@ avajeValidaor = { group = "io.avaje", name = "avaje-validator-constraints", vers
 avajeValidaorCodegen = { group = "io.avaje", name = "avaje-validator-generator", version = "1.3" }
 atlantafx = { group = "io.github.mkpaz", name = "atlantafx-base", version = "2.0.1" }
 controlfx = { group = "org.controlsfx", name = "controlsfx", version = "11.2.0" }
-kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
-kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
-kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
-kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.3" }
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
@@ -144,7 +136,6 @@ plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version 
 
 vertxCore = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertxJunit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
-vertxKotlin = { group = "io.vertx", name = "vertx-lang-kotlin", version.ref = "vertx" }
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
 vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertxPostgresqlClient = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
@@ -176,3 +167,19 @@ jSystemThemeDetector = { group = "com.github.Dansoftowner", name = "jSystemTheme
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.8" }
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
+pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
+
+#Plugins
+spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }
+javaFxPlugin = { group = "org.openjfx.javafxplugin", name = "org.openjfx.javafxplugin.gradle.plugin", version = "0.1.0" }
+lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.4" }
+plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
+dokkaPlugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version = "1.9.20" }
+manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
+semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
+versionCheckPlugin = { group = "com.github.ben-manes", name = "gradle-versions-plugin", version = "0.51.0" }
+dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
+jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
+jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
+spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
+graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.1" }

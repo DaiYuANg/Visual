@@ -1,11 +1,13 @@
 package org.visual.component
 
+import jakarta.inject.Singleton
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuItem
 import javafx.scene.input.KeyCombination
 import javafx.stage.Stage
 import org.visual.component.display.SystemMenuBar
 
+@Singleton
 class GlobalSystemMenu : SystemMenuBar() {
 
   private val exitItem by lazy {

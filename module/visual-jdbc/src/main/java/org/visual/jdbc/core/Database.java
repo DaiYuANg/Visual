@@ -17,7 +17,7 @@ public class Database implements VMDatabase {
   private final HikariDataSource dataSource;
 
   public Database(DatabaseArgument argument) {
-    new org.visual.jdbc.MySqlParserBaseListener();
+    //    new org.visual.jdbc.MySqlParserBaseListener();
     val config = HikariMapper.INSTANCE.buildConfig(argument);
     this.dataSource = new HikariDataSource(config);
   }

@@ -1,11 +1,6 @@
-plugins {
-  `kotlin-project`
-}
 group = "org.visual.debugger"
 
 val mainClassPath = "org.visual.debugger.VisualDebugger"
-
-version = "unspecified"
 
 dependencies {
   implementation(projects.ui.visualComponent)
@@ -14,7 +9,7 @@ dependencies {
   implementation(libs.pcollections)
   implementation(projects.ui.visualI18n)
   implementation(libs.gestaltGuice)
-  implementation(libs.gestaltKotlin)
+//  implementation(libs.gestaltKotlin)
   implementation(libs.bytebuddy)
   implementation(projects.ui.visualTextEditor)
   implementation(libs.guice)
