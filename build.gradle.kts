@@ -38,6 +38,7 @@ val plantUMLSuffix = "puml"
 val gitVersion: groovy.lang.Closure<String> by extra
 val versionDetails: groovy.lang.Closure<VersionDetails> by extra
 val details = versionDetails()
+val mainClassPath = "org.visual.VisualApplication"
 var javaCompileArg: List<String> =
   if (env.MODE.value == "debug") {
     listOf()
@@ -238,6 +239,7 @@ allprojects {
 
 application {
   applicationDefaultJvmArgs = commonJvmArgs
+  mainClass = mainClassPath
 }
 
 dependencies {
@@ -263,7 +265,6 @@ dependencies {
   implementation(libs.gestaltToml)
   testImplementation(libs.javafxUnitTest)
   testImplementation(rootProject.libs.avajeInjectTest)
-  implementation(libs.picocli)
   annotationProcessor(libs.picocliCodegen)
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualGit)
@@ -274,8 +275,34 @@ dependencies {
   implementation(projects.serialize.visualSerializeApi)
   implementation(projects.serialize.visualSerializeJson)
   implementation(libs.picocli)
+  implementation(libs.picocliJline)
 }
 
+graalvmNative {
+  toolchainDetection.set(true)
+
+  binaries {
+    named("main") {
+      // Main options
+      mainClass.set(mainClassPath) // The main class to use, defaults to the application.mainClass
+      debug.set(true) // Determines if debug info should be generated, defaults to false (alternatively add --debug-native to the CLI)
+      verbose.set(true) // Add verbose output, defaults to false
+      fallback.set(true) // Sets the fallback mode of native-image, defaults to false
+      sharedLibrary.set(false) // Determines if image is a shared library, defaults to false if `java-library` plugin isn't included
+      quickBuild.set(false) // Determines if image is being built in quick build mode (alternatively use GRAALVM_QUICK_BUILD environment variable, or add --native-quick-build to the CLI)
+      richOutput.set(true) // Determines if native-image building should be done with rich output
+
+      // Advanced options
+      buildArgs.add("--link-at-build-time") // Passes '--link-at-build-time' to the native image builder options. This can be used to pass parameters which are not directly supported by this extension
+//      jvmArgs.addAll(*commonJvmArgs.toTypedArray()) // Passes 'flag' directly to the JVM running the native image builder
+
+      // Runtime options
+      runtimeArgs.add("--help") // Passes '--help' to built image, during "nativeRun" task
+
+      useFatJar.set(true) // Instead of passing each jar individually, builds a fat jar
+    }
+  }
+}
 // jlink {
 //  addExtraDependencies(
 //    "javafx",

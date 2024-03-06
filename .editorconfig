@@ -30,3 +30,6 @@ indent_size = 0
 
 [{*.yaml,*.yml}]
 indent_size = 2
+
+[*.kts]
+max_line_length=400

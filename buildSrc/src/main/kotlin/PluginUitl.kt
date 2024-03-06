@@ -10,7 +10,7 @@ val commonJvmArgs =
         "-XX:+ZGenerational",
         "-XX:+UseCompressedClassPointers",
         "-verbose:gc",
-        "-XX:+UseLargePages",
+        //        "-XX:+UseLargePages",
         "-XX:+UseStringDeduplication",
         "-XX:+OptimizeStringConcat",
         "-Xlog:gc*",

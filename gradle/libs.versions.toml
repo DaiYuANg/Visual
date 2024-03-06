@@ -116,6 +116,7 @@ jacksonDataTypeJsonP = { group = "com.fasterxml.jackson.datatype", name = "jacks
 jacksonDataTypeXML = { group = "com.fasterxml.jackson.datatype", name = "jackson-dataformat-xml", version.ref = "jackson" }
 jacksonJrAll = { group = "com.fasterxml.jackson.jr", name = "jackson-jr-all", version.ref = "jackson" }
 picocli = { group = "info.picocli", name = "picocli", version.ref = "picocli" }
+picocliJline = { group = "info.picocli", name = "picocli-shell-jline3", version.ref = "picocli" }
 picocliCodegen = { group = "info.picocli", name = "picocli-codegen", version.ref = "picocli" }
 avajeValidaor = { group = "io.avaje", name = "avaje-validator-constraints", version = "1.3" }
 avajeValidaorCodegen = { group = "io.avaje", name = "avaje-validator-generator", version = "1.3" }
