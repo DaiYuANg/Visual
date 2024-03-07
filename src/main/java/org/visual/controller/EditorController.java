@@ -299,8 +299,7 @@ public class EditorController implements Initializable {
 
   /** Adds a listener to make changes to available menu options when the skin type changes. */
   private void addActiveSkinControllerListener() {
-    activeSkinController.addListener(
-        (observable, oldValue, newValue) -> handleActiveSkinControllerChange());
+    activeSkinController.addListener((_, _, _) -> handleActiveSkinControllerChange());
   }
 
   /**

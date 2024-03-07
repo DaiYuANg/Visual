@@ -7,7 +7,6 @@ module org.visual.model.text.editor {
   requires javafx.controls;
   requires org.apache.commons.lang3;
   requires org.visual.shared;
-  requires kotlin.stdlib;
 
   exports org.visual.text.editor;
 }

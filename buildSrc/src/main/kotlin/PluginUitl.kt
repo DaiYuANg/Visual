@@ -4,31 +4,6 @@ import org.gradle.kotlin.dsl.the
 import org.w3c.dom.Element
 import java.util.Locale
 
-val commonJvmArgs =
-  listOf(
-    "-XX:+UseZGC",
-    "-XX:+ZGenerational",
-    "-XX:+UseCompressedClassPointers",
-    "-verbose:gc",
-    //        "-XX:+UseLargePages",
-    "-XX:+UseStringDeduplication",
-    "-XX:+OptimizeStringConcat",
-    "-Xlog:gc*",
-    "-XX:+UseCompressedOops",
-    "-XX:MaxInlineLevel=32",
-    "-XX:+AlwaysPreTouch",
-    "-XX:+TieredCompilation",
-    "-XX:SoftRefLRUPolicyMSPerMB=50",
-    "-XX:+UseNUMA",
-    "--enable-preview",
-    "-Dcom.sun.management.jmxremote",
-  )
-
-const val IMPLEMENTATION = "implementation"
-const val TEST_IMPLEMENTATION = "testImplementation"
-const val COMPILE_ONLY = "compileOnly"
-const val ANNOTATION_PROCESSOR = "annotationProcessor"
-
 fun libs(project: Project): LibrariesForLibs {
   return project.the<LibrariesForLibs>()
 }

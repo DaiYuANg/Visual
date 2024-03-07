@@ -1,6 +1,6 @@
 package org.visual.component.display.table;
 
-import static org.visual.component.util.FXUtil.runOnFX;
+import static org.visual.component.util.FxUtil.runOnFx;
 
 import java.util.List;
 import java.util.function.Function;
@@ -147,7 +147,7 @@ public class VTableRow<S> implements RowInformer {
 
   @Override
   public void informRowUpdate() {
-    runOnFX(this::informRowUpdate0);
+    runOnFx(this::informRowUpdate0);
   }
 
   private void informRowUpdate0() {

@@ -25,4 +25,6 @@ dependencies {
   implementation(libs.spotbugsPlugin)
   implementation(libs.graalvmPlugin)
   implementation(libs.apacheCommonLang3)
+  implementation(libs.jlinkPlugin)
+  implementation(libs.fatjarPlugin)
 }

@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.visual.component.animation.Callback;
 import org.visual.component.shapes.VLine;
+import org.visual.component.util.FxUtil;
 
 public class VProgressBar extends Group {
   private static final double radius = 1;
@@ -110,7 +111,7 @@ public class VProgressBar extends Group {
       return;
     }
     var item = ite.next();
-    runOnFX(
+    FxUtil.runOnFx(
         () -> {
           var currentCB = currentLoadingItemCallback;
           if (currentCB != null) {

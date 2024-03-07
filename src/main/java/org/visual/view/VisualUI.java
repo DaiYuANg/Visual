@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.component.theme.OsThemeDetector;
-import org.visual.constant.FXMLViews;
+import org.visual.constant.FXMLView;
 import org.visual.context.ApplicationContext;
 import org.visual.handle.GlobalExceptionHandler;
 
 @Slf4j
 public class VisualUI extends Application {
-  private final Parent rootFxml = ApplicationContext.INSTANCE.load(FXMLViews.MAIN_LAYOUT.getView());
+  private final Parent rootFxml = ApplicationContext.INSTANCE.load(FXMLView.MAIN_LAYOUT);
 
   private final Scene rootScene = new Scene(rootFxml);
 

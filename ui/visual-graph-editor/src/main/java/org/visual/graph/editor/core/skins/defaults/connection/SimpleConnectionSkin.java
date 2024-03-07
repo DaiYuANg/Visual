@@ -12,7 +12,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import kotlin.NotImplementedError;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.graph.editor.api.GConnectionSkin;
@@ -261,6 +260,6 @@ public class SimpleConnectionSkin extends GConnectionSkin {
 
   @Override
   protected void selectionChanged(boolean isSelected) {
-    throw new NotImplementedError();
+    throw new RuntimeException();
   }
 }

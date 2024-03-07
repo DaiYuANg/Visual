@@ -20,6 +20,7 @@ package org.visual.debugger.view;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import java.lang.instrument.Instrumentation;
 import java.util.List;
+import java.util.prefs.Preferences;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -41,7 +42,6 @@ import org.visual.debugger.model.attach.AttachHandlerFactory;
 import org.visual.debugger.model.update.LocalUpdateStrategy;
 import org.visual.debugger.model.update.RemoteVMsUpdateStrategy;
 import org.visual.debugger.remote.FXConnectorFactory;
-import org.visual.shared.PreferencesWrapper;
 
 /** This is the entry point for all different versions of Scenic View. */
 @Slf4j
@@ -56,8 +56,7 @@ public class VisualDebuggerView extends Application {
   private final ExceptionListener exceptionListener =
       DebuggerContext.INSTANCE.get(ExceptionListener.class);
 
-  private final PreferencesWrapper preferencesWrapper =
-      DebuggerContext.INSTANCE.get(PreferencesWrapper.class);
+  private final Preferences preferencesWrapper = DebuggerContext.INSTANCE.get(Preferences.class);
 
   public static void show(final @NotNull Scene target) {
     show(target.getRoot());

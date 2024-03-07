@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
-import kotlin.NotImplementedError;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.graph.editor.api.GConnectorSkin;
@@ -173,6 +172,6 @@ public class DefaultConnectorSkin extends GConnectorSkin {
   @Override
   protected void selectionChanged(boolean isSelected) {
     // Not implemented
-    throw new NotImplementedError();
+    throw new RuntimeException();
   }
 }

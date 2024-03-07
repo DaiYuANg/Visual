@@ -1,11 +1,12 @@
 package org.visual.component.control.dialog;
 
-import static org.visual.component.util.FXUtil.runOnFX;
 import static org.visual.component.util.FXUtils.observeWidth;
 
 import java.util.Objects;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import org.jetbrains.annotations.NotNull;
+import org.visual.component.util.FxUtil;
 
 public class SimpleAlert extends ThemeAlertBase {
   private SimpleAlert(String title, String contentText) {
@@ -22,7 +23,7 @@ public class SimpleAlert extends ThemeAlertBase {
     alertMessagePane.getChildren().add(alertMessage);
   }
 
-  private static String typeToTitle(Alert.AlertType type) {
+  private static String typeToTitle(Alert.@NotNull AlertType type) {
     return switch (type) {
         //      case INFORMATION -> InternalI18n.get().alertInfoTitle();
         //      case WARNING -> InternalI18n.get().alertWarningTitle();
@@ -36,6 +37,6 @@ public class SimpleAlert extends ThemeAlertBase {
   }
 
   public static void show(String title, String contentText) {
-    runOnFX(() -> new SimpleAlert(title, contentText).show());
+    FxUtil.runOnFx(() -> new SimpleAlert(title, contentText).show());
   }
 }

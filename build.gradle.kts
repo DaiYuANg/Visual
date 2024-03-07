@@ -1,7 +1,6 @@
 plugins {
   jacoco
   java
-  alias(libs.plugins.fatjar)
   alias(libs.plugins.dotenv)
 }
 apply<IdeaSetting>()
@@ -10,8 +9,11 @@ apply<RepositoriesSetting>()
 apply<JavaFxSetting>()
 apply<AllProjectSetting>()
 apply<RootProjectSetting>()
+apply<ReleaseSetting>()
 
 dependencies {
+  compileOnly(projects.codegen.visualCodegen)
+  annotationProcessor(projects.codegen.visualCodegen)
   implementation(libs.hikariCP)
   implementation(libs.mavenResloverAPI)
   implementation(libs.mavenResloverImpl)
@@ -36,8 +38,8 @@ dependencies {
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)
-//  implementation(projects.ui.visualDebugger)
-//  implementation(projects.ui.visualComponent)
+  implementation(projects.ui.visualDebugger)
+  implementation(projects.ui.visualComponent)
   implementation(projects.ui.visualGraphEditor)
   implementation(projects.serialize.visualSerializeApi)
   implementation(projects.serialize.visualSerializeJson)

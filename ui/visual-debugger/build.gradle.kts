@@ -8,13 +8,13 @@ dependencies {
   implementation(libs.gestaltConfig)
   implementation(libs.pcollections)
   implementation(projects.ui.visualI18n)
-  implementation(libs.gestaltGuice)
-//  implementation(libs.gestaltKotlin)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
   implementation(libs.bytebuddy)
   implementation(projects.ui.visualTextEditor)
-  implementation(libs.guice)
   implementation(libs.preferencesfx)
   implementation(libs.classgraph)
+  testImplementation(libs.avajeInjectTest)
 }
 
 tasks.jar {

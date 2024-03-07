@@ -64,3 +64,4 @@ include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
 
 include("website")
+include("codegen:visual-codegen")

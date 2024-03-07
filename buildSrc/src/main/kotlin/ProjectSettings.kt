@@ -11,6 +11,33 @@ val javafxModules =
     "javafx.web",
   )
 
+val commonJvmArgs =
+  listOf(
+    "-XX:+UseZGC",
+    "-XX:+ZGenerational",
+    "-XX:+UseCompressedClassPointers",
+    "-verbose:gc",
+    "-Dcom.sun.management.jmxremote",
+    //        "-XX:+UseLargePages",
+    "-XX:+UseStringDeduplication",
+    "-XX:+OptimizeStringConcat",
+    "-Xlog:gc*",
+    "-XX:+UseCompressedOops",
+    "-XX:MaxInlineLevel=32",
+    "-XX:+AlwaysPreTouch",
+    "-XX:+TieredCompilation",
+    "-XX:SoftRefLRUPolicyMSPerMB=50",
+    "-XX:+UseNUMA",
+    "--enable-preview",
+    "-Xmx1G",
+    "-Dcom.sun.management.jmxremote",
+  )
+
+const val IMPLEMENTATION = "implementation"
+const val TEST_IMPLEMENTATION = "testImplementation"
+const val COMPILE_ONLY = "compileOnly"
+const val ANNOTATION_PROCESSOR = "annotationProcessor"
+
 const val VERSION_KEY = "Version"
 const val GIT_HASH_KEY = "Git-Hash"
 const val LATEST_TAG_KEY = "Last-Tag"

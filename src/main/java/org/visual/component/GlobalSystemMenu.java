@@ -4,8 +4,9 @@ import java.util.function.Supplier;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import lombok.val;
+import org.visual.component.display.SystemMenuBar;
 
-public class GlobalSystemMenu {
+public class GlobalSystemMenu extends SystemMenuBar {
 
   private final Supplier<MenuItem> exitItem =
       () -> {

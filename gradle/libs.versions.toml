@@ -5,7 +5,7 @@ slf4j = "2.1.0-alpha1"
 freefairPlugin = "8.6"
 ikonli = "12.3.1"
 junit = "5.10.2"
-testcontainers = "1.19.6"
+testcontainers = "1.19.7"
 mockito = "5.11.0"
 avajeInject = "9.11"
 gestalt = "0.24.6"
@@ -13,7 +13,7 @@ mavenResolver = "2.0.0-alpha-8"
 javafxVersion = "21.0.2"
 eclipseCollections = "12.0.0.M3"
 avajeConfig = "3.10"
-jackson = "2.16.1"
+jackson = "2.17.0-rc1"
 picocli = "4.7.5"
 mapstruct = "1.6.0.Beta1"
 jgit = "6.8.0.202311291450-r"
@@ -24,25 +24,13 @@ jdbi = "3.45.0"
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 lombok = { id = "io.freefair.lombok", version.ref = "freefairPlugin" }
-gitVersion = { id = "com.palantir.git-version", version = "3.0.0" }
-jreleaser = { id = "org.jreleaser", version = "1.11.0" }
-plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.6" }
 extraJavaModule = { id = "org.gradlex.extra-java-module-info", version = "1.7" }
-dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
-dependencycheck = { id = "org.owasp.dependencycheck", version = "9.0.9" }
-jmh = { id = "me.champeau.jmh", version = "0.7.2" }
-jlink = { id = "org.beryx.jlink", version = "3.0.1" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
-manifest = { id = "com.coditory.manifest", version = "0.2.6" }
-download = { id = "de.undercouch.download", version = "5.6.0" }
 fatjar = { id = "io.github.goooler.shadow", version = "8.1.7" }
 frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
-spotbugs = { id = "com.github.spotbugs", version = "6.0.8" }
-graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
 
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.14.0" }
@@ -72,7 +60,7 @@ testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", ve
 testcontainersMysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
 testcontainersMssqlserver = { group = "org.testcontainers", name = "mssqlserver", version.ref = "testcontainers" }
 testcontainersPostgresql = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
-jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.0.1" }
+jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.1.0" }
 mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
@@ -153,11 +141,9 @@ vertxAMQPClient = { group = "io.vertx", name = "vertx-amqp-client", version.ref 
 vertxRabbitmqClient = { group = "io.vertx", name = "vertx-rabbitmq-client", version.ref = "vertx" }
 vertxMQTTClient = { group = "io.vertx", name = "vertx-mqtt", version.ref = "vertx" }
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
-vertxRxJava3 = { group = "io.vertx", name = "vertx-rx-java3", version.ref = "vertx" }
 
 apacheDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 
-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.8" }
 classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.165" }
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
 preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core", version = "11.17.0" }
@@ -165,10 +151,12 @@ preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core",
 guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
 jSystemThemeDetector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.8" }
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.8" }
-immutable = {group="org.immutables",name="value",version="2.10.1"}
+immutable = { group = "org.immutables", name = "value", version = "2.10.1" }
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
 pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.6" }
+mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.7.2" }
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }
@@ -184,3 +172,5 @@ jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", v
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
 graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.1" }
+jlinkPlugin = { group = "org.beryx", name = "badass-jlink-plugin", version = "3.0.1" }
+fatjarPlugin = { group = "io.github.goooler.shadow", name = "shadow-gradle-plugin", version = "8.1.7" }

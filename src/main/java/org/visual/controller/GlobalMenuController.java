@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import org.visual.debugger.inspector.FXComponentInspectorHandler;
-import org.visual.debugger.view.VisualDebuggerView;
 
 @Singleton
 public class GlobalMenuController implements Initializable {
@@ -22,11 +20,11 @@ public class GlobalMenuController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {}
 
   public void openDebugger() {
-    VisualDebuggerView.show(rootStage.getScene());
+    //    VisualDebuggerView.show(rootStage.getScene());
   }
 
   public void enableInspector() {
     enableInspectorMenu.setText("Disable Inspector");
-    FXComponentInspectorHandler.handleAll();
+    //    FXComponentInspectorHandler.handleAll();
   }
 }

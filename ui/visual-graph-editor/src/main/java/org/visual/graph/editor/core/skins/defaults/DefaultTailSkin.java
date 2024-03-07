@@ -13,7 +13,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Polyline;
-import kotlin.NotImplementedError;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.graph.editor.api.GTailSkin;
@@ -203,6 +202,6 @@ public class DefaultTailSkin extends GTailSkin {
   @Override
   protected void selectionChanged(boolean isSelected) {
     // Not implemented
-    throw new NotImplementedError();
+    throw new RuntimeException();
   }
 }

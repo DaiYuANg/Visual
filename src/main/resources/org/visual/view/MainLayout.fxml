@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.*?>
-<?import org.visual.debugger.component.VisualDebugger?>
+<!--<?import org.visual.debugger.component.VisualDebugger?>-->
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.controller.MainLayoutController"
       prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 0" styleClass="root-window">
-    <VisualDebugger show="true"/>
+<!--    <VisualDebugger show="true"/>-->
     <fx:include source="GlobalMenu.fxml"/>
     <fx:include source="ToolBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">

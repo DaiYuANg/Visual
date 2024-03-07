@@ -17,8 +17,7 @@
  */
 package org.visual.debugger.view;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
@@ -38,7 +37,7 @@ import org.visual.i18n.I18n;
 import org.visual.i18n.I18nKeys;
 
 @Slf4j
-@Singleton
+// @Singleton
 @NoArgsConstructor(force = true)
 public class StatusBar extends HBox {
   private final Label windowTypeLabel;

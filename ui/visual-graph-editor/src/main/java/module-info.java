@@ -10,7 +10,6 @@ module org.visual.graph.editor {
   requires org.eclipse.emf.edit;
   requires org.jetbrains.annotations;
   requires org.eclipse.emf.ecore.xmi;
-  requires kotlin.stdlib;
   requires it.unimi.dsi.fastutil;
   requires org.jgrapht.core;
   requires org.visual.shared;

@@ -28,6 +28,7 @@ module org.visual.component {
   requires javafx.swing;
   requires org.apache.commons.io;
   requires java.logging;
+  requires org.visual.codegen;
 
   exports org.visual.component.window;
   exports org.visual.component.control;
@@ -56,4 +57,9 @@ module org.visual.component {
   opens org.visual.component.api to
       javafx.fxml,
       javafx.graphics;
+
+  exports org.visual.component.display;
+  exports org.visual.component.arrow;
+  exports org.visual.component.widget;
+//    exports org.visual.component.widget;
 }

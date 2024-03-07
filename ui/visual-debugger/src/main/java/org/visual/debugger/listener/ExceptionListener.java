@@ -1,6 +1,6 @@
 package org.visual.debugger.listener;
 
-import com.google.inject.Singleton;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 

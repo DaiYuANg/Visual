@@ -1,6 +1,6 @@
 package org.visual.debugger.controller;
 
-import com.google.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

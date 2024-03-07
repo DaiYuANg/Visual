@@ -14,8 +14,6 @@ module org.visual.debugger {
   requires javafx.web;
   requires javafx.swing;
   requires org.visual.shared;
-  requires org.visual.component;
-  requires com.google.guice;
   requires org.github.gestalt.core;
   requires java.management;
   requires java.management.rmi;
@@ -23,16 +21,15 @@ module org.visual.debugger {
   requires org.visual.i18n;
   requires java.prefs;
   requires it.unimi.dsi.fastutil;
-  requires kotlin.stdlib;
   requires org.slf4j.jdk.platform.logging;
   requires org.fxmisc.flowless;
   requires io.github.classgraph;
   requires net.bytebuddy;
   requires jakarta.inject;
-  requires org.github.gestalt.guice;
-  requires io.github.oshai.kotlinlogging;
   requires com.dlsc.preferencesfx;
   requires com.google.gson;
+  requires org.visual.component;
+  requires io.avaje.inject;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;
@@ -59,6 +56,8 @@ module org.visual.debugger {
   exports org.visual.debugger.model.update;
   exports org.visual.debugger.inspector;
   exports org.visual.debugger.component;
-  exports org.visual.debugger.module;
   exports org.visual.debugger.view;
+
+  provides io.avaje.inject.spi.Module with
+      org.visual.debugger.DebuggerModule;
 }

@@ -1,5 +1,3 @@
-import com.coditory.gradle.manifest.ManifestPlugin
-import com.coditory.gradle.manifest.ManifestPluginExtension
 import com.xenoterracide.gradle.semver.SemverExtension
 import com.xenoterracide.gradle.semver.SemverPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
@@ -29,7 +27,6 @@ class AllProjectSetting : Plugin<Project> {
           apply<LombokPlugin>()
           apply<PlantUmlPlugin>()
           apply<DokkaPlugin>()
-          apply<ManifestPlugin>()
           apply<SemverPlugin>()
         }
 
@@ -43,14 +40,14 @@ class AllProjectSetting : Plugin<Project> {
           }
 //    options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
           options.encoding = StandardCharsets.UTF_8.name()
-//          options.compilerArgs.addAll(javaCompileArg)
+          options.compilerArgs.add("--enable-preview")
           options.isFork = true
           options.isDebug = true
           options.isIncremental = true
         }
 
         project.dependencies {
-          add(COMPILE_ONLY, rootLib.jetbrainsAnnotation)
+          add(IMPLEMENTATION, rootLib.jetbrainsAnnotation)
           add(IMPLEMENTATION, rootLib.slf4j)
           add(IMPLEMENTATION, rootLib.slf4jJdkPlatform)
           add(IMPLEMENTATION, rootLib.guava)
@@ -75,19 +72,6 @@ class AllProjectSetting : Plugin<Project> {
         project.tasks.withType(Jar::class.java) {
           enabled = true
           duplicatesStrategy = DuplicatesStrategy.INCLUDE
-        }
-
-        project.extensions.configure(ManifestPluginExtension::class.java) {
-          buildAttributes = true
-          implementationAttributes = true
-          scmAttributes = true
-          attributes =
-            mapOf(
-              VERSION_KEY to version,
-              GIT_HASH_KEY to git.commit,
-              LATEST_TAG_KEY to git.latestTag,
-              BRANCH_KEY to git.branch,
-            )
         }
 
         project.tasks.withType(Test::class.java) {
