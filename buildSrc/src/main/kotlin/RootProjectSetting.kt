@@ -39,6 +39,7 @@ class RootProjectSetting : Plugin<Project> {
           GIT_HASH_KEY to git.commit,
           LATEST_TAG_KEY to git.latestTag,
           BRANCH_KEY to git.branch,
+          MAIN_CLASS_KEY to mainClassPath,
         )
     }
   }

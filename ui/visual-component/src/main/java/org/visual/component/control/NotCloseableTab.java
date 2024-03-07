@@ -2,9 +2,9 @@ package org.visual.component.control;
 
 import javafx.scene.control.Tab;
 
-class NotCloseableTab extends Tab {
+public class NotCloseableTab extends Tab {
 
-  NotCloseableTab() {
+  public NotCloseableTab() {
     setClosable(false);
   }
 }

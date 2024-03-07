@@ -15,7 +15,7 @@ public class CollaborativeServer extends AbstractVerticle {
   private final Vertx vertx = CollaborativeContext.INSTANCE.getBeanScope().get(Vertx.class);
 
   @Override
-  public void start() throws Exception {
+  public void start() {
     val listen = Future.await(server.connectHandler(event -> {}).listen());
     log.atInfo().log("start at：{}", listen.actualPort());
   }

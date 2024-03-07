@@ -35,18 +35,13 @@ module org.visual.debugger {
       javafx.fxml;
   opens org.visual.debugger.view.threedom to
       javafx.fxml;
-  opens org.visual.debugger.view to
-      com.google.guice;
   opens org.visual.debugger.remote to
       java.instrument,
       java.rmi;
   opens org.visual.debugger.component to
       javafx.fxml;
   opens org.visual.debugger.controller to
-      javafx.fxml,
-      com.google.guice;
-  opens org.visual.debugger.listener to
-      com.google.guice;
+      javafx.fxml;
 
   exports org.visual.debugger.controller;
   exports org.visual.debugger.api;

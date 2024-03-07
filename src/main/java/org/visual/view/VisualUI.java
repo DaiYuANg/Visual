@@ -1,7 +1,6 @@
 /* (C)2024*/
 package org.visual.view;
 
-import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -10,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.component.theme.OsThemeDetector;
 import org.visual.constant.FXMLView;
 import org.visual.context.ApplicationContext;
 import org.visual.handle.GlobalExceptionHandler;
@@ -26,14 +24,7 @@ public class VisualUI extends Application {
   private final GlobalExceptionHandler exceptionHandler =
       ApplicationContext.INSTANCE.get(GlobalExceptionHandler.class);
 
-  private final String theme;
-
-  {
-    theme =
-        OsThemeDetector.getDetector().isDark()
-            ? new PrimerDark().getUserAgentStylesheet()
-            : new PrimerLight().getUserAgentStylesheet();
-  }
+  private final String theme = new PrimerLight().getUserAgentStylesheet();
 
   @Override
   public void init() {

@@ -21,8 +21,7 @@ dependencies {
   api(libs.flowless)
   api(projects.ui.visualI18n)
   api(libs.apacheCommonIO)
-  api(libs.jSystemThemeDetector)
-  compileOnly(projects.codegen.visualCodegen)
+  implementation(projects.codegen.visualCodegen)
   annotationProcessor(projects.codegen.visualCodegen)
 }
 

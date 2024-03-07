@@ -67,7 +67,7 @@ class AllProjectSetting : Plugin<Project> {
           add(TEST_IMPLEMENTATION, rootLib.mockitoJunit)
         }
 
-        project.version = "${git.branch}-${git.latestTag}"
+        project.version = "${git.branch}-${git.commitShort}"
 
         project.tasks.withType(Jar::class.java) {
           enabled = true

@@ -20,7 +20,7 @@ module org.visual {
   requires dev.dirs;
   requires org.visual.i18n;
   requires org.kordamp.ikonli.fluentui;
-  //    requires org.visual.debugger;
+  requires org.visual.debugger;
   requires info.picocli;
   requires org.visual.graph.editor;
   requires org.eclipse.emf.common;

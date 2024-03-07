@@ -65,3 +65,5 @@ include("serialize:visual-serialize-api")
 
 include("website")
 include("codegen:visual-codegen")
+include("module:visual-local-store")
+findProject(":module:visual-local-store")?.name = "visual-local-store"

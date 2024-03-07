@@ -28,7 +28,6 @@ module org.visual.component {
   requires javafx.swing;
   requires org.apache.commons.io;
   requires java.logging;
-  requires org.visual.codegen;
 
   exports org.visual.component.window;
   exports org.visual.component.control;
@@ -37,14 +36,11 @@ module org.visual.component {
   exports org.visual.component.control.dialog;
   exports org.visual.component.control.scroll;
   exports org.visual.component.util;
-  exports org.visual.component.theme;
   exports org.visual.component.container;
   exports org.visual.component.animation;
   exports org.visual.component.api;
   exports org.visual.component.wrapper;
 
-  opens org.visual.component.theme to
-      com.sun.jna;
   opens org.visual.component.window to
       javafx.graphics,
       javafx.fxml;

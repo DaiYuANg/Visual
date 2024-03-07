@@ -20,6 +20,7 @@ jgit = "6.8.0.202311291450-r"
 vertx = "4.5.4"
 guice = "7.0.0"
 jdbi = "3.45.0"
+ebean = "15.0.1"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
@@ -31,6 +32,7 @@ frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
+ebean = { id = "io.ebean", version.ref = "ebean" }
 
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.14.0" }
@@ -158,6 +160,18 @@ pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
 mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.6" }
 mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.7.2" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
+
+ebeanAPI = { group = "io.ebean", name = "ebean-api", version.ref = "ebean" }
+ebeanCore = { group = "io.ebean", name = "ebean-core", version.ref = "ebean" }
+ebeanQueryBean = { group = "io.ebean", name = "ebean-querybean", version.ref = "ebean" }
+ebeanQueryBeanGenerator = { group = "io.ebean", name = "querybean-generator", version.ref = "ebean" }
+ebeanDataSource = { group = "io.ebean", name = "ebean-datasource", version = "8.12" }
+ebeanAnnotation = { group = "io.ebean", name = "ebean-annotation", version = "8.4" }
+ebeanTest = { group = "io.ebean", name = "ebean-test", version.ref = "ebean" }
+ebeanMigration = { group = "io.ebean", name = "ebean-migration", version = "14.0.0" }
+ebeanPlatformH2 = { group = "io.ebean", name = "ebean-platform-h2", version.ref = "ebean" }
+ebeanDDLGenerator = { group = "io.ebean", name = "ebean-ddl-generator",version.ref="ebean" }
+jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }

@@ -64,17 +64,11 @@ public class EditorController implements Initializable {
 
   @FXML private RadioButton snapToGridButton;
 
-  //    @FXML
-  //    private Menu readOnlyMenu;
-
   @FXML private RadioButton defaultSkinButton;
 
   @FXML private RadioButton treeSkinButton;
 
   @FXML private RadioButton titledSkinButton;
-
-  //    @FXML
-  //    private Menu intersectionStyle;
 
   @FXML private RadioButton gappedStyleButton;
 
@@ -299,7 +293,7 @@ public class EditorController implements Initializable {
 
   /** Adds a listener to make changes to available menu options when the skin type changes. */
   private void addActiveSkinControllerListener() {
-    activeSkinController.addListener((_, _, _) -> handleActiveSkinControllerChange());
+    activeSkinController.addListener((a, b, c) -> handleActiveSkinControllerChange());
   }
 
   /**

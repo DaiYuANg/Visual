@@ -35,6 +35,7 @@ dependencies {
   implementation(libs.gestaltToml)
   testImplementation(libs.javafxUnitTest)
   annotationProcessor(libs.picocliCodegen)
+  implementation(projects.ui.visualCollaborative)
   implementation(projects.ui.visualI18n)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)
@@ -45,5 +46,6 @@ dependencies {
   implementation(projects.serialize.visualSerializeJson)
   implementation(libs.picocli)
   implementation(libs.picocliJline)
+  implementation(projects.module.visualLocalStore)
   testImplementation(rootProject.libs.avajeInjectTest)
 }
