@@ -4,4 +4,5 @@ dependencies {
   compileOnly(libs.autoService)
   annotationProcessor(libs.autoService)
   implementation(libs.bytebuddy)
+  implementation(libs.javapoet)
 }

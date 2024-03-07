@@ -157,6 +157,7 @@ jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
 pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
 mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.6" }
 mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.7.2" }
+javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }
