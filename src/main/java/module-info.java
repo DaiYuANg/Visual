@@ -34,6 +34,8 @@ module org.visual {
   requires org.slf4j.jdk.platform.logging;
   requires org.apache.maven.resolver;
   requires io.avaje.inject;
+  requires org.visual.local.store;
+  requires io.ebean.api;
 
   opens org.visual.controller to
       javafx.fxml;

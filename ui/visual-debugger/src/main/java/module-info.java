@@ -23,7 +23,6 @@ module org.visual.debugger {
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
   requires org.fxmisc.flowless;
-  requires io.github.classgraph;
   requires net.bytebuddy;
   requires jakarta.inject;
   requires com.dlsc.preferencesfx;

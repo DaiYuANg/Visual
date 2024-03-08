@@ -16,7 +16,7 @@ class FormatSetting : Plugin<Project> {
     target.extensions.configure(SpotlessExtension::class.java) {
       encoding = StandardCharsets.UTF_8
       format("misc") {
-        target("*.md", ".gitignore", "gradle/libs.versions.toml")
+        target("*.md", ".gitignore", "gradle/libs.versions.toml", "**/*.fxml")
         indentWithSpaces(IDENT_WIDTH)
         trimTrailingWhitespace()
         targetExclude("**/node_modules/**/*")

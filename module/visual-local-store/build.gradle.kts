@@ -5,7 +5,7 @@ plugins {
 group = "org.visual.local.store"
 
 dependencies {
-  implementation(libs.ebeanAPI)
+  api(libs.ebeanAPI)
   implementation(libs.ebeanCore)
   implementation(libs.ebeanAnnotation)
   implementation(libs.ebeanDataSource)
@@ -27,6 +27,10 @@ tasks.register<JavaExec>("executeMigration") {
   classpath = sourceSets["main"].runtimeClasspath
   mainClass.set("org.visual.local.store.DBMigration")
   args(projectDir.toString())
+}
+
+tasks.jar {
+  dependsOn("executeMigration")
 }
 
 ebean {

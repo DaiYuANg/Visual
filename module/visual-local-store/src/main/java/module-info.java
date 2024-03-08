@@ -12,6 +12,13 @@ module org.visual.local.store {
   requires io.ebean.migration;
   requires io.ebean.ddl.generator;
 
+  opens dbmigration;
+
+  exports org.visual.local.store.entity;
+  exports org.visual.local.store.repository;
+
   provides io.avaje.inject.spi.Module with
-      org.visual.local.store.factory.FactoryModule;
+      org.visual.local.store.StoreModule;
+  provides io.ebean.config.EntityClassRegister with
+      org.visual.local.store.entity.EbeanEntityRegister;
 }

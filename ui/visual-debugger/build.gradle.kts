@@ -13,7 +13,6 @@ dependencies {
   implementation(libs.bytebuddy)
   implementation(projects.ui.visualTextEditor)
   implementation(libs.preferencesfx)
-  implementation(libs.classgraph)
   testImplementation(libs.avajeInjectTest)
 }
 

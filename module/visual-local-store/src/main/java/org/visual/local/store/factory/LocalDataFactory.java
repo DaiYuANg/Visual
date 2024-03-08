@@ -29,6 +29,7 @@ public class LocalDataFactory {
   DatabaseConfig databaseConfig(DataSourceConfig ds) {
     val config = new DatabaseConfig();
     config.setDataSourceConfig(ds);
+    config.setRunMigration(true);
     return config;
   }
 

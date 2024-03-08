@@ -1,5 +1,8 @@
 package org.visual.local.store.base;
 
+import io.ebean.annotation.DbDefault;
+import io.ebean.annotation.WhenCreated;
+import io.ebean.annotation.WhenModified;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,6 +20,13 @@ public class BaseEntity {
 
   @Id @GeneratedValue private long id;
 
-  @Column private Date createAt;
-  @Column private Date deleteAt;
+  @WhenCreated
+  @Column
+  @DbDefault("NOW()")
+  private Date createAt;
+
+  @WhenModified
+  @Column
+  @DbDefault("NOW()")
+  private Date deleteAt;
 }

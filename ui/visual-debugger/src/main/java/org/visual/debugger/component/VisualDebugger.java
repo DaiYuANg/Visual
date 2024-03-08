@@ -68,9 +68,7 @@ public class VisualDebugger extends Pane {
                       (windowObservable, oldWindow, newWindow) -> {
                         Stage stage = (Stage) newWindow;
                         Debugger debugger = setupAttachScene(stage);
-                        newScene
-                            .getAccelerators()
-                            .put(keyCombination, () -> debugger.showDebugger());
+                        newScene.getAccelerators().put(keyCombination, debugger::showDebugger);
                         if (_show.get()) {
                           VisualDebuggerView.show(newScene);
                           debugger.showDebugger();
