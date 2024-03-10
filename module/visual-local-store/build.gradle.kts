@@ -1,38 +1,30 @@
 plugins {
-  alias(libs.plugins.ebean)
+  alias(libs.plugins.hibernate)
+  alias(libs.plugins.extraJavaModule)
 }
 
 group = "org.visual.local.store"
 
 dependencies {
-  api(libs.ebeanAPI)
-  implementation(libs.ebeanCore)
-  implementation(libs.ebeanAnnotation)
-  implementation(libs.ebeanDataSource)
-  implementation(libs.ebeanPlatformH2)
+  implementation(enforcedPlatform(libs.hibernatePlatform))
+  implementation(libs.hibernateCore)
+  implementation(libs.hibernateGraalvm)
+  implementation(libs.hibernateHikaricp)
+  implementation(libs.hibernateValidator)
   implementation(libs.h2)
-  implementation(libs.ebeanQueryBean)
   implementation(libs.directories)
   implementation(libs.avajeInject)
-  implementation(libs.ebeanMigration)
-  implementation(libs.ebeanDDLGenerator)
+  implementation(libs.jakartaPersistenceAPI)
   annotationProcessor(libs.avajeInjectGenerator)
-  annotationProcessor(libs.ebeanQueryBeanGenerator)
-  testImplementation(libs.ebeanTest)
+  annotationProcessor(libs.hibernateJpamodelgen)
+  testImplementation(libs.hibernateTesting)
 }
 
-tasks.register<JavaExec>("executeMigration") {
-  group = "build"
-  javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
-  classpath = sourceSets["main"].runtimeClasspath
-  mainClass.set("org.visual.local.store.DBMigration")
-  args(projectDir.toString())
-}
-
-tasks.jar {
-  dependsOn("executeMigration")
-}
-
-ebean {
-  debugLevel = 1
+hibernate {
+  enhancement {
+    enableLazyInitialization.set(true)
+    enableDirtyTracking.set(true)
+    enableAssociationManagement.set(true)
+    enableExtendedEnhancement.set(true)
+  }
 }

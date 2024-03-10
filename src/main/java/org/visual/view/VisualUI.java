@@ -9,11 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.visual.constant.FXMLView;
 import org.visual.context.ApplicationContext;
 import org.visual.handle.GlobalExceptionHandler;
-import org.visual.local.store.repository.HistoryRepository;
 
 @Slf4j
 public class VisualUI extends Application {
@@ -26,8 +24,8 @@ public class VisualUI extends Application {
   private final GlobalExceptionHandler exceptionHandler =
       ApplicationContext.INSTANCE.get(GlobalExceptionHandler.class);
 
-  private final HistoryRepository historyRepository =
-      ApplicationContext.INSTANCE.get(HistoryRepository.class);
+  //  private final HistoryRepository historyRepository =
+  //      ApplicationContext.INSTANCE.get(HistoryRepository.class);
 
   private final String theme = new PrimerLight().getUserAgentStylesheet();
 
@@ -35,8 +33,8 @@ public class VisualUI extends Application {
   public void init() {
     Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
     Application.setUserAgentStylesheet(theme);
-    val latestHistory = historyRepository.findLatestHistory();
-    log.info("Latest history:{}", latestHistory);
+    //    val latestHistory = historyRepository.findLatestHistory();
+    //    log.info("Latest history:{}", latestHistory);
     //        rootScene.getStylesheets().addAll("/help.css", "/theme.css");
     rootScene.setFill(Color.TRANSPARENT);
   }

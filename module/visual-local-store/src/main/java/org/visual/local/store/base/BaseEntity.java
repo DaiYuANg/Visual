@@ -1,8 +1,5 @@
 package org.visual.local.store.base;
 
-import io.ebean.annotation.DbDefault;
-import io.ebean.annotation.WhenCreated;
-import io.ebean.annotation.WhenModified;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,6 +8,8 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @MappedSuperclass
 @Getter
@@ -20,13 +19,7 @@ public class BaseEntity {
 
   @Id @GeneratedValue private long id;
 
-  @WhenCreated
-  @Column
-  @DbDefault("NOW()")
-  private Date createAt;
+  @CreationTimestamp @Column private Date createAt;
 
-  @WhenModified
-  @Column
-  @DbDefault("NOW()")
-  private Date deleteAt;
+  @UpdateTimestamp @Column private Date deleteAt;
 }

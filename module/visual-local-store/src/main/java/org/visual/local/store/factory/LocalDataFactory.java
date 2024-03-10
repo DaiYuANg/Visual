@@ -1,40 +1,39 @@
 package org.visual.local.store.factory;
 
+import static java.lang.Boolean.TRUE;
+import static org.hibernate.cfg.JdbcSettings.*;
+
 import dev.dirs.BaseDirectories;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import io.ebean.Database;
-import io.ebean.DatabaseFactory;
-import io.ebean.config.DatabaseConfig;
-import io.ebean.datasource.DataSourceConfig;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.visual.local.store.entity.History;
 
 @Factory
 @Slf4j
 public class LocalDataFactory {
 
   @Bean
-  DataSourceConfig dataSourceConfig() {
-    val ds = new DataSourceConfig();
+  SessionFactory sessionFactory() {
     val url = STR."jdbc:h2:\{BaseDirectories.get().dataLocalDir}visual.db";
-    log.info("Database URL at:{}", url);
-    ds.setUsername("sa");
-    ds.setPassword("");
-    ds.setUrl(url);
-    return ds;
-  }
-
-  @Bean
-  DatabaseConfig databaseConfig(DataSourceConfig ds) {
-    val config = new DatabaseConfig();
-    config.setDataSourceConfig(ds);
-    config.setRunMigration(true);
-    return config;
-  }
-
-  @Bean
-  Database database(DatabaseConfig config) {
-    return DatabaseFactory.create(config);
+    val sessionFactory =
+        new Configuration()
+            .addAnnotatedClass(History.class)
+            // use H2 in-memory database
+            .setProperty(JAKARTA_JDBC_URL, url)
+            .setProperty(JAKARTA_JDBC_USER, "sa")
+            .setProperty(JAKARTA_JDBC_PASSWORD, "")
+            // use Agroal connection pool
+            .setProperty("hibernate.agroal.maxSize", "20")
+            // display SQL in console
+            .setProperty(SHOW_SQL, TRUE.toString())
+            .setProperty(FORMAT_SQL, TRUE.toString())
+            .setProperty(HIGHLIGHT_SQL, TRUE.toString())
+            .buildSessionFactory();
+    sessionFactory.getSchemaManager().exportMappedObjects(true);
+    return sessionFactory;
   }
 }
