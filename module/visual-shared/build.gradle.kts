@@ -11,4 +11,5 @@ dependencies {
   api(libs.directories)
   api(libs.jacksonCore)
   api(libs.oshi)
+  implementation(libs.guava)
 }

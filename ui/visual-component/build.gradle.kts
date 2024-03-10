@@ -21,6 +21,7 @@ dependencies {
   api(libs.flowless)
   api(projects.ui.visualI18n)
   api(libs.apacheCommonIO)
+  implementation(libs.guava)
   implementation(projects.codegen.visualCodegen)
   annotationProcessor(projects.codegen.visualCodegen)
 }

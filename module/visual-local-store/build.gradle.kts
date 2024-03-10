@@ -1,6 +1,6 @@
 plugins {
   alias(libs.plugins.hibernate)
-  alias(libs.plugins.extraJavaModule)
+//  alias(libs.plugins.extraJavaModule)
 }
 
 group = "org.visual.local.store"
@@ -15,16 +15,17 @@ dependencies {
   implementation(libs.directories)
   implementation(libs.avajeInject)
   implementation(libs.jakartaPersistenceAPI)
+  implementation(libs.guava)
   annotationProcessor(libs.avajeInjectGenerator)
   annotationProcessor(libs.hibernateJpamodelgen)
   testImplementation(libs.hibernateTesting)
 }
 
 hibernate {
-  enhancement {
-    enableLazyInitialization.set(true)
-    enableDirtyTracking.set(true)
-    enableAssociationManagement.set(true)
-    enableExtendedEnhancement.set(true)
-  }
+//  enhancement {
+//    enableLazyInitialization.set(true)
+//    enableDirtyTracking.set(true)
+//    enableAssociationManagement.set(true)
+//    enableExtendedEnhancement.set(true)
+//  }
 }

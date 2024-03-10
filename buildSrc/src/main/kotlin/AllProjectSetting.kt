@@ -50,8 +50,6 @@ class AllProjectSetting : Plugin<Project> {
           add(IMPLEMENTATION, rootLib.jetbrainsAnnotation)
           add(IMPLEMENTATION, rootLib.slf4j)
           add(IMPLEMENTATION, rootLib.slf4jJdkPlatform)
-          add(IMPLEMENTATION, rootLib.guava)
-//          annotationProcessor(rootLib.lombokMapstructBinding)
           add(IMPLEMENTATION, rootLib.mapstruct)
           add(ANNOTATION_PROCESSOR, rootLib.mapstructProcessor)
           add(TEST_IMPLEMENTATION, platform(rootLib.junitBom))

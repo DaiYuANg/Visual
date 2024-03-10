@@ -16,7 +16,7 @@ avajeConfig = "3.10"
 jackson = "2.17.0-rc1"
 picocli = "4.7.5"
 mapstruct = "1.6.0.Beta1"
-jgit = "6.8.0.202311291450-r"
+jgit = "6.9.0.202403050737-r"
 vertx = "4.5.4"
 guice = "7.0.0"
 jdbi = "3.45.0"
@@ -151,7 +151,7 @@ preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core",
 
 guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
 jSystemThemeDetector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.8" }
-jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.8" }
+jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.9" }
 immutable = { group = "org.immutables", name = "value", version = "2.10.1" }
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
