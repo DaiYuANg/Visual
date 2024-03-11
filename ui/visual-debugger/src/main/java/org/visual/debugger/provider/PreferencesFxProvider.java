@@ -1,29 +1,23 @@
-package org.visual.debugger.factory;
+package org.visual.debugger.provider;
 
 import com.dlsc.preferencesfx.PreferencesFx;
 import com.dlsc.preferencesfx.model.Category;
 import com.dlsc.preferencesfx.model.Group;
 import com.dlsc.preferencesfx.model.Setting;
-import io.avaje.inject.Bean;
-import io.avaje.inject.Factory;
-import java.util.prefs.Preferences;
+import jakarta.inject.Provider;
 import javafx.beans.property.SimpleStringProperty;
+import lombok.extern.slf4j.Slf4j;
 import org.visual.debugger.dto.SaveClass;
 
-@Factory
-public class RootFactory {
+@Slf4j
+public class PreferencesFxProvider implements Provider<PreferencesFx> {
 
-  @Bean
-  PreferencesFx preferencesFx() {
+  @Override
+  public PreferencesFx get() {
     return PreferencesFx.of(
         SaveClass.class,
         Category.of(
             "Category Title",
             Group.of("Group Title", Setting.of("Setting Title", new SimpleStringProperty()))));
-  }
-
-  @Bean
-  Preferences preferences() {
-    return Preferences.systemRoot();
   }
 }

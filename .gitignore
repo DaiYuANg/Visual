@@ -103,3 +103,4 @@ cwallet.sso.lck
 .env
 gradle.properties
 *.hprof
+*.dot

@@ -1,10 +1,11 @@
 package org.visual.collaborative.server.context;
 
-import io.avaje.inject.BeanScope;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import lombok.Getter;
 
 public enum CollaborativeContext {
   INSTANCE;
 
-  @Getter private final BeanScope beanScope = BeanScope.builder().shutdownHook(true).build();
+  @Getter private final Injector injector = Guice.createInjector();
 }

@@ -1,6 +1,6 @@
 plugins {
   alias(libs.plugins.hibernate)
-//  alias(libs.plugins.extraJavaModule)
+  alias(libs.plugins.flyway)
 }
 
 group = "org.visual.local.store"
@@ -13,10 +13,10 @@ dependencies {
   implementation(libs.hibernateValidator)
   implementation(libs.h2)
   implementation(libs.directories)
-  implementation(libs.avajeInject)
   implementation(libs.jakartaPersistenceAPI)
   implementation(libs.guava)
-  annotationProcessor(libs.avajeInjectGenerator)
+  implementation(libs.guice)
+  implementation(libs.guicePersist)
   annotationProcessor(libs.hibernateJpamodelgen)
   compileOnly("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
   implementation("com.querydsl:querydsl-core:${libs.versions.queryDsl.get()}")

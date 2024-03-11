@@ -1,4 +1,4 @@
-package org.visual.collaborative.server;
+package org.visual.collaborative.server.internal;
 
 import io.vertx.core.*;
 import io.vertx.core.net.NetServer;
@@ -10,9 +10,9 @@ import org.visual.collaborative.server.context.CollaborativeContext;
 public class CollaborativeServer extends AbstractVerticle {
 
   private final NetServer server =
-      CollaborativeContext.INSTANCE.getBeanScope().get(NetServer.class);
+      CollaborativeContext.INSTANCE.getInjector().getInstance(NetServer.class);
 
-  private final Vertx vertx = CollaborativeContext.INSTANCE.getBeanScope().get(Vertx.class);
+  private final Vertx vertx = CollaborativeContext.INSTANCE.getInjector().getInstance(Vertx.class);
 
   @Override
   public void start() {

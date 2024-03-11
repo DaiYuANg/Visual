@@ -1,8 +1,7 @@
 package org.visual.collaborative.server;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import org.visual.collaborative.server.internal.CollaborativeServer;
 
 class CollaborativeServerTest {
 

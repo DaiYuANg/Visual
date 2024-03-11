@@ -6,11 +6,10 @@ module org.visual.collaborative.server {
   requires io.vertx.clustermanager.hazelcast;
   requires java.transaction.xa;
   requires org.visual.shared;
-  requires io.avaje.inject;
+  requires jakarta.inject;
   requires static org.jetbrains.annotations;
-
-  provides io.avaje.inject.spi.Module with
-      org.visual.collaborative.server.factory.FactoryModule;
+  requires com.google.guice;
 
   exports org.visual.collaborative.server;
+  exports org.visual.collaborative.server.internal;
 }

@@ -67,3 +67,5 @@ include("website")
 include("codegen:visual-codegen")
 include("module:visual-local-store")
 findProject(":module:visual-local-store")?.name = "visual-local-store"
+include("module:visual-maven-repository")
+findProject(":module:visual-maven-repository")?.name = "visual-maven-repository"

@@ -20,7 +20,8 @@ module org.visual {
   requires dev.dirs;
   requires org.visual.i18n;
   requires org.kordamp.ikonli.fluentui;
-  requires org.visual.debugger;
+  requires org.github.gestalt.guice;
+  //  requires org.visual.debugger;
   requires info.picocli;
   requires org.visual.graph.editor;
   requires org.eclipse.emf.common;
@@ -32,11 +33,10 @@ module org.visual {
   requires com.fasterxml.jackson.annotation;
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
-  requires org.apache.maven.resolver;
-  requires io.avaje.inject;
-
-  //  requires org.visual.local.store;
-  //  requires io.ebean.api;
+  requires com.google.guice;
+  requires com.google.guice.extensions.grapher;
+  requires com.google.guice.extensions.jmx;
+  requires org.visual.local.store;
 
   opens org.visual.controller to
       javafx.fxml;
@@ -52,7 +52,4 @@ module org.visual {
   exports org.visual.component to
       javafx.fxml,
       javafx.graphics;
-
-  provides io.avaje.inject.spi.Module with
-      org.visual.VisualModule;
 }

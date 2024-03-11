@@ -11,4 +11,5 @@ dependencies {
   implementation(libs.jgitLfs)
   implementation(libs.jgitSSH)
   implementation(libs.jgitHttp)
+  implementation(libs.guice)
 }

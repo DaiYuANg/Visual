@@ -1,19 +1,18 @@
-/* (C)2024*/
-package org.visual.factory;
+package org.visual.provider;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import io.avaje.inject.Bean;
-import io.avaje.inject.Factory;
-import java.util.concurrent.*;
+import jakarta.inject.Provider;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.shared.OS;
 
-@Factory
 @Slf4j
-public class RootFactory {
-
-  @Bean
-  Executor executor() {
+public class ExecutorProvider implements Provider<Executor> {
+  @Override
+  public Executor get() {
     return new ThreadPoolExecutor(
         OS.cpuCore,
         OS.cpuCore + 1,
