@@ -18,6 +18,13 @@ dependencies {
   implementation(libs.guava)
   annotationProcessor(libs.avajeInjectGenerator)
   annotationProcessor(libs.hibernateJpamodelgen)
+  compileOnly("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
+  implementation("com.querydsl:querydsl-core:${libs.versions.queryDsl.get()}")
+  implementation("com.querydsl:querydsl-jpa:${libs.versions.queryDsl.get()}:jakarta")
+  implementation("com.querydsl:querydsl-guava:${libs.versions.queryDsl.get()}")
+  implementation("com.querydsl:querydsl-collections:${libs.versions.queryDsl.get()}")
+  implementation("com.querydsl:querydsl-spatial:${libs.versions.queryDsl.get()}")
+  annotationProcessor("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
   testImplementation(libs.hibernateTesting)
 }
 

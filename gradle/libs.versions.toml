@@ -21,6 +21,7 @@ vertx = "4.5.4"
 guice = "7.0.0"
 jdbi = "3.45.0"
 hibernate = "6.4.4.Final"
+queryDsl = "5.1.0"
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
@@ -42,7 +43,7 @@ directories = { group = "dev.dirs", name = "directories", version = "26" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
-oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.4.13" }
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.5.0" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.3" }
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
 fluentuiIcon = { group = "org.kordamp.ikonli", name = "ikonli-fluentui-pack", version.ref = "ikonli" }

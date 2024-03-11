@@ -7,6 +7,10 @@ module org.visual.local.store {
   requires org.hibernate.orm.graalvm;
   requires jakarta.persistence;
   requires java.naming;
+  requires com.querydsl.core;
+  requires java.compiler;
+  requires com.querydsl.jpa;
+  requires org.jetbrains.annotations;
 
   exports org.visual.local.store.entity;
   exports org.visual.local.store.repository;

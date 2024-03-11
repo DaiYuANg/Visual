@@ -26,6 +26,7 @@ dependencies {
   implementation(libs.jacksonAnnotations)
   implementation(libs.logback)
   implementation(libs.avajeInject)
+  implementation(libs.guice)
   annotationProcessor(libs.avajeInjectGenerator)
   implementation(libs.avajeValidaor)
   annotationProcessor(libs.avajeValidaorCodegen)

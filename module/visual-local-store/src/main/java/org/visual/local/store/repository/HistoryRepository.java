@@ -21,6 +21,7 @@ public class HistoryRepository {
   }
 
   public Optional<History> findLatestHistory() {
+
     //    val query =
     //        new QHistory()
     //            .select(QHistory.alias().path)
