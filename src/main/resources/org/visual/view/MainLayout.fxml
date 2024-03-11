@@ -7,8 +7,8 @@
       fx:controller="org.visual.controller.MainLayoutController"
       prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 0" styleClass="root-window">
 <!--    <VisualDebugger show="true"/>-->
-    <fx:include source="GlobalMenu.fxml"/>
-    <fx:include source="ToolBar.fxml"/>
+    <fx:include source="layout/GlobalMenu.fxml"/>
+    <fx:include source="layout/ToolBar.fxml"/>
     <BorderPane VBox.vgrow="ALWAYS">
         <center>
             <SplitPane dividerPositions="0.2,0.8">
@@ -18,7 +18,7 @@
         </center>
         <border/>
         <bottom>
-            <fx:include source="StatusBar.fxml"/>
+            <fx:include source="layout/StatusBar.fxml"/>
         </bottom>
     </BorderPane>
 </VBox>

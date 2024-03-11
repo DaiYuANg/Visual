@@ -11,25 +11,26 @@ val javafxModules =
     "javafx.web",
   )
 
-val commonJvmArgs =
+val devJvmArguments =
   listOf(
     "-XX:+UseZGC",
     "-XX:+ZGenerational",
     "-XX:+UseCompressedClassPointers",
     "-verbose:gc",
     "-Dcom.sun.management.jmxremote",
-    //        "-XX:+UseLargePages",
     "-XX:+UseStringDeduplication",
     "-XX:+OptimizeStringConcat",
     "-Xlog:gc*",
+    "-Xlog:async",
+    "-Xlog:os",
+    "-Xlog:metaspace",
     "-XX:+UseCompressedOops",
     "-XX:MaxInlineLevel=32",
     "-XX:+AlwaysPreTouch",
     "-XX:+TieredCompilation",
     "-XX:SoftRefLRUPolicyMSPerMB=50",
     "-XX:+UseNUMA",
-    "--enable-preview",
-    "-Xmx1G",
+    "-Xmx256M",
     "-Dcom.sun.management.jmxremote",
   )
 

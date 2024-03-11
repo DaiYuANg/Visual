@@ -9,7 +9,7 @@ testcontainers = "1.19.7"
 mockito = "5.11.0"
 gestalt = "0.24.6"
 mavenResolver = "2.0.0-alpha-8"
-javafxVersion = "21.0.2"
+javafxVersion = "23-ea+3"
 eclipseCollections = "12.0.0.M3"
 avajeConfig = "3.10"
 jackson = "2.17.0-rc1"
@@ -21,15 +21,14 @@ guice = "7.0.0"
 jdbi = "3.45.0"
 hibernate = "6.4.4.Final"
 queryDsl = "5.1.0"
+groovy = "5.0.0-alpha-6"
 
 [plugins]
-javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
-lombok = { id = "io.freefair.lombok", version.ref = "freefairPlugin" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 fatjar = { id = "io.github.goooler.shadow", version = "8.1.7" }
 frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.14" }
+javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
 hibernate = { id = "org.hibernate.orm", version.ref = "hibernate" }
 flyway = { id = "org.flywaydb.flyway", version = "10.9.1" }
@@ -40,16 +39,18 @@ apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", vers
 apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
+
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
-oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.5.0" }
+slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
+
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.4.13" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.3" }
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
 fluentuiIcon = { group = "org.kordamp.ikonli", name = "ikonli-fluentui-pack", version.ref = "ikonli" }
 devicons = { group = "org.kordamp.ikonli", name = "ikonli-devicons-pack", version.ref = "ikonli" }
 materialIcons = { group = "org.kordamp.ikonli", name = "ikonli-materialdesign2-pack", version.ref = "ikonli" }
 fontawesome5 = { group = "org.kordamp.ikonli", name = "ikonli-fontawesome5-pack", version.ref = "ikonli" }
-groovy = { group = "org.apache.groovy", name = "groovy-all", version = "5.0.0-alpha-4" }
 javafxUnitTest = { group = "org.testfx", name = "testfx-junit5", version = "4.0.18" }
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
@@ -69,6 +70,8 @@ caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version 
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.1" }
 gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
 gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
+gestaltYaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", version.ref = "gestalt" }
+gestaltJSON = { group = "com.github.gestalt-config", name = "gestalt-json", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
 guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
@@ -90,7 +93,6 @@ jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
 hikariCP = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
 pcollections = { group = "org.pcollections", name = "pcollections", version = "4.0.1" }
-avajeConfig = { group = "io.avaje", name = "avaje-config", version.ref = "avajeConfig" }
 jacksonCore = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jacksonDatabind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jacksonAnnotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "jackson" }
@@ -135,10 +137,6 @@ vertxMongoDBClient = { group = "io.vertx", name = "vertx-mongo-client", version.
 vertxRedisClient = { group = "io.vertx", name = "vertx-redis-client", version.ref = "vertx" }
 vertxCassandraClient = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
 vertxJdbcClient = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
-vertxKafkaClient = { group = "io.vertx", name = "vertx-kafka-client", version.ref = "vertx" }
-vertxAMQPClient = { group = "io.vertx", name = "vertx-amqp-client", version.ref = "vertx" }
-vertxRabbitmqClient = { group = "io.vertx", name = "vertx-rabbitmq-client", version.ref = "vertx" }
-vertxMQTTClient = { group = "io.vertx", name = "vertx-mqtt", version.ref = "vertx" }
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
 
 apacheDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
@@ -174,6 +172,14 @@ hibernateGraalvm = { group = "org.hibernate.orm", name = "hibernate-graalvm", ve
 hibernateJfr = { group = "org.hibernate.orm", name = "hibernate-jfr", version.ref = "hibernate" }
 jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 
+queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
+queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+queryDslCollections = { group = "com.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+queryDslSpatial = { group = "com.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+
+groovy = { group = "org.apache.groovy", name = "groovy", version.ref = "groovy" }
+groovyJsr223 = { group = "org.apache.groovy", name = "groovy-jsr223", version.ref = "groovy" }
+groovyJMX = { group = "org.apache.groovy", name = "groovy-jmx", version.ref = "groovy" }
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }

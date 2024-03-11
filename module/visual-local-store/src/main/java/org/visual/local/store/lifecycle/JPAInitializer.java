@@ -10,7 +10,6 @@ public class JPAInitializer {
 
   @Inject
   JPAInitializer(@NotNull PersistService service) {
-    System.err.println("start jpa");
     service.start();
   }
 }

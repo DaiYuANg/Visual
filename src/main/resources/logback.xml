@@ -1,8 +1,10 @@
 <configuration>
-
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      <!--      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+      <pattern>
+        %d{HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %cyan(%logger{15}) -%kvp %yellow(%msg) %n
+      </pattern>
     </encoder>
   </appender>
 
@@ -29,6 +31,6 @@
     <appender-ref ref="ASYNC"/>
   </root>
 
-  <logger name="io.ebean.SQL" level="TRACE"/>
+  <logger name="org.visual" level="DEBUG"/>
 
 </configuration>

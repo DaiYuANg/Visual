@@ -33,7 +33,7 @@ public class FontAwesomeIconicTextField extends CustomTextField {
 
   public FontAwesomeIconicTextField() {
     InvalidationListener listener =
-        _ -> {
+        b -> {
           FontAwesomeSolid newIcon = _icon.get();
           IconicPos newIconPos = _iconPos.get();
           setupIcon(newIcon, newIconPos);

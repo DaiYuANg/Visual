@@ -18,6 +18,6 @@ public class FluentUiRegularALButton extends Button {
   }
 
   public FluentUiRegularALButton() {
-    iconProperty.addListener((_, _, newValue) -> setGraphic(new FontIcon(newValue)));
+    iconProperty.addListener((a, b, newValue) -> setGraphic(new FontIcon(newValue)));
   }
 }

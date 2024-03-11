@@ -15,8 +15,8 @@ public class Debugger {
   public Debugger() {
     AttachSceneContext.getStage()
         .addListener(
-            (_, _, newValue) ->
-                newValue.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, _ -> stage.close()));
+            (a, b, newValue) ->
+                newValue.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, c -> stage.close()));
   }
 
   public void showDebugger() {

@@ -8,6 +8,9 @@ import org.gradle.api.plugins.quality.PmdPlugin
 import java.nio.charset.StandardCharsets
 
 class FormatSetting : Plugin<Project> {
+  private val miscTarget =
+    listOf("*.md", ".gitignore", "gradle/libs.versions.toml", "**/*.fxml", "**/*.scss", "**/*.css")
+
   override fun apply(target: Project) {
     target.plugins.apply(SpotlessPlugin::class.java)
     target.plugins.apply(CheckstylePlugin::class.java)
@@ -16,7 +19,7 @@ class FormatSetting : Plugin<Project> {
     target.extensions.configure(SpotlessExtension::class.java) {
       encoding = StandardCharsets.UTF_8
       format("misc") {
-        target("*.md", ".gitignore", "gradle/libs.versions.toml", "**/*.fxml")
+        target(miscTarget)
         indentWithSpaces(IDENT_WIDTH)
         trimTrailingWhitespace()
         targetExclude("**/node_modules/**/*")

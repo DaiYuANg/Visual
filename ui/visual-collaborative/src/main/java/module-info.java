@@ -1,4 +1,4 @@
-module org.visual.collaborative.server {
+module org.visual.collaborative {
   requires io.vertx.core;
   requires static lombok;
   requires javafx.base;
@@ -10,6 +10,5 @@ module org.visual.collaborative.server {
   requires static org.jetbrains.annotations;
   requires com.google.guice;
 
-  exports org.visual.collaborative.server;
-  exports org.visual.collaborative.server.internal;
+  exports org.visual.collaborative;
 }

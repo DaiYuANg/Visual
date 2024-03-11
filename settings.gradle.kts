@@ -58,14 +58,13 @@ include("ui:visual-debugger")
 include("module:visual-jdbc")
 include("module:visual-shared")
 include("module:visual-git")
+include("module:visual-local-store")
+include("module:visual-maven-repository")
+include("module:visual-config")
+include("module:visual-script")
 
 include("serialize:visual-serialize-json")
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
 
-include("website")
 include("codegen:visual-codegen")
-include("module:visual-local-store")
-findProject(":module:visual-local-store")?.name = "visual-local-store"
-include("module:visual-maven-repository")
-findProject(":module:visual-maven-repository")?.name = "visual-maven-repository"

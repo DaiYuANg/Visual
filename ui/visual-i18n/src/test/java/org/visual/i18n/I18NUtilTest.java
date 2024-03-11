@@ -1,9 +1,9 @@
 package org.visual.i18n;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.visual.i18n.core.I18nKeys;
+import org.visual.i18n.core.I18nUtil;
 
 class I18NUtilTest {
 

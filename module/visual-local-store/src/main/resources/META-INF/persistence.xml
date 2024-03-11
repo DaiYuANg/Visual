@@ -12,22 +12,17 @@
     <class>org.visual.local.store.entity.History</class>
 
     <properties>
-      <!-- vendor-specific properties go here -->
-      <!-- PostgreSQL -->
       <property name="jakarta.persistence.jdbc.url"
                 value="jdbc:h2:./visual.db"/>
 
-      <!-- Credentials -->
       <property name="jakarta.persistence.jdbc.user"
                 value="sa"/>
       <property name="jakarta.persistence.jdbc.password"
                 value=""/>
 
-      <!-- Automatic schema export -->
-      <property name="jakarta.persistence.schema-generation.database.action"
-                value="drop-and-create"/>
+      <property name="hibernate.hbm2ddl.auto"
+                value="update"/>
 
-      <!-- SQL statement logging -->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.highlight_sql" value="true"/>

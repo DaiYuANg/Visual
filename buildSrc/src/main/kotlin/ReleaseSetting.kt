@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jreleaser.gradle.plugin.JReleaserPlugin
@@ -7,6 +8,10 @@ class ReleaseSetting : Plugin<Project> {
   override fun apply(target: Project) {
     target.plugins.apply(JReleaserPlugin::class.java)
     target.plugins.apply(ShadowPlugin::class.java)
+
+    target.tasks.withType(ShadowJar::class.java) {
+      minimize()
+    }
 //    target.plugins.apply()
 //    target.plugins.apply(JlinkPlugin::class.java)
     // jlink {

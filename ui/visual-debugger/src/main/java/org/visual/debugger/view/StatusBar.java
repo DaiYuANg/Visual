@@ -33,8 +33,8 @@ import javafx.util.Duration;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.i18n.I18n;
-import org.visual.i18n.I18nKeys;
+import org.visual.i18n.core.I18n;
+import org.visual.i18n.core.I18nKeys;
 
 @Slf4j
 // @Singleton

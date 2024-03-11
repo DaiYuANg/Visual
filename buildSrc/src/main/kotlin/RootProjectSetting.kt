@@ -10,20 +10,22 @@ import org.gradle.api.plugins.ApplicationPlugin
 import org.gradle.api.plugins.JavaApplication
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 
 class RootProjectSetting : Plugin<Project> {
   private val mainClassPath = "org.visual.VisualApplication"
 
   override fun apply(target: Project) {
-    val semver = target.extensions.getByType(SemverExtension::class.java)
+    val semver = target.extensions.getByType(SemverExtension::class)
     val git = semver.git
-    target.plugins.apply(ApplicationPlugin::class.java)
-    target.plugins.apply(NativeImagePlugin::class.java)
-    target.plugins.apply(VersionsPlugin::class.java)
-    target.plugins.apply(ManifestPlugin::class.java)
+    target.plugins.apply(ApplicationPlugin::class)
+    target.plugins.apply(NativeImagePlugin::class)
+    target.plugins.apply(VersionsPlugin::class)
+    target.plugins.apply(ManifestPlugin::class)
+//    target.plugins.apply(JlinkPlugin::class)
     target.configure<JavaApplication> {
       mainClass.set(mainClassPath)
-      applicationDefaultJvmArgs = commonJvmArgs
+      applicationDefaultJvmArgs = devJvmArguments
     }
     target.configure<GraalVMExtension> {
       toolchainDetection.set(true)

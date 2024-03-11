@@ -189,10 +189,11 @@ class FullPropertiesDetailPaneInfo extends DetailPaneInfo {
         detail.setValue(detailString.append(")").toString());
       }
       case Tooltip tooltip -> detail.setValue("Tooltip [text=\"" + tooltip.getText() + "\"]");
-      case null, default -> {
+      case null -> {
         detail.setValue(value == null ? Detail.EMPTY_DETAIL : value.toString());
         detail.setDefault(value == null);
       }
+      default -> throw new IllegalStateException("Unexpected value: " + value);
     }
 
     if (observable instanceof Property) {

@@ -18,6 +18,6 @@ public class FluentUiRegularMZButton extends Button {
   }
 
   public FluentUiRegularMZButton() {
-    iconProperty.addListener((_, _, newValue) -> setGraphic(new FontIcon(newValue)));
+    iconProperty.addListener((a, b, newValue) -> setGraphic(new FontIcon(newValue)));
   }
 }

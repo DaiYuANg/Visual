@@ -6,7 +6,13 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum FXMLView {
-  MAIN_LAYOUT("MainLayout");
+  MAIN_LAYOUT("MainLayout"),
+
+  CREATION("creation/Creation"),
+
+  ER_GUIDE("guide/ERGuide"),
+
+  OBJECT_ORIENTED_GUIDE("guide/ObjectOrientedGuide");
 
   private final String view;
 }

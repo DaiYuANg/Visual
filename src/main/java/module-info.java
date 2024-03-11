@@ -13,15 +13,14 @@ module org.visual {
   requires org.kordamp.ikonli.core;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.fontawesome5;
-  requires org.github.gestalt.core;
-  requires org.github.gestalt.toml;
   requires java.logging;
   requires org.visual.shared;
   requires dev.dirs;
   requires org.visual.i18n;
   requires org.kordamp.ikonli.fluentui;
-  requires org.github.gestalt.guice;
-  //  requires org.visual.debugger;
+  requires org.visual.debugger;
+  requires org.visual.collaborative;
+  requires org.visual.config;
   requires info.picocli;
   requires org.visual.graph.editor;
   requires org.eclipse.emf.common;
@@ -29,8 +28,6 @@ module org.visual {
   requires org.eclipse.emf.ecore;
   requires org.eclipse.emf.edit;
   requires com.fasterxml.jackson.core;
-  requires com.fasterxml.jackson.databind;
-  requires com.fasterxml.jackson.annotation;
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
   requires com.google.guice;
@@ -52,4 +49,5 @@ module org.visual {
   exports org.visual.component to
       javafx.fxml,
       javafx.graphics;
+  exports org.visual.constant;
 }

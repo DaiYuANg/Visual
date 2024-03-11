@@ -10,7 +10,7 @@ public class StageProvider implements Provider<Stage> {
   public Stage get() {
     Stage rootStage = new Stage();
     rootStage.centerOnScreen();
-    //        rootStage.initStyle(StageStyle.TRANSPARENT);
+    //    rootStage.initStyle(StageStyle.TRANSPARENT);
     rootStage.setResizable(true);
     return rootStage;
   }
