@@ -3,8 +3,6 @@ module org.visual.shared {
   requires transitive org.apache.commons.lang3;
   requires transitive org.slf4j;
   requires com.google.common;
-  requires it.unimi.dsi.fastutil;
-  requires org.jgrapht.core;
   requires transitive com.github.oshi;
   requires com.fasterxml.jackson.core;
   requires static lombok;
@@ -12,7 +10,8 @@ module org.visual.shared {
   requires org.mapstruct;
   requires java.prefs;
 
-  exports org.visual.shared;
   exports org.visual.shared.pojo;
   exports org.visual.shared.util;
+  exports org.visual.shared.funcational;
+  exports org.visual.shared.singleton;
 }

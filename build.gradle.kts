@@ -13,18 +13,16 @@ apply<ReleaseSetting>()
 
 dependencies {
   implementation(libs.logback)
-
-//  implementation(libs.guice)
-//  implementation(libs.guiceJMX)
-//  implementation(libs.guiceGrapher)
-//  implementation(libs.guiceThrowingproviders)
-//  implementation(libs.guiceAssistedinject)
-//  testImplementation(libs.guiceTestlib)
+  implementation(libs.fastutil)
 
   implementation(libs.avajeInject)
   annotationProcessor(libs.avajeInjectGenerator)
   testImplementation(libs.avajeInjectTest)
   testAnnotationProcessor(libs.avajeInjectTestGenerator)
+
+  implementation(libs.avajeValidaor)
+  implementation(libs.avajeValidaorConstraints)
+  annotationProcessor(libs.avajeValidaorCodegen)
 
   implementation(libs.picocli)
   implementation(libs.picocliJline)

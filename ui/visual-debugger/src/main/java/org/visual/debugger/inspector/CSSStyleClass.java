@@ -1,5 +1,10 @@
 package org.visual.debugger.inspector;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum CSSStyleClass {
   COMPONENT_DETAILS("component-details"),
   FIELD_COMPONENT("field-component"),
@@ -7,12 +12,4 @@ public enum CSSStyleClass {
   STYLES_COMPONENT("styles-component");
 
   private final String cssClassName;
-
-  CSSStyleClass(String cssClassName) {
-    this.cssClassName = cssClassName;
-  }
-
-  public String getCssClassName() {
-    return cssClassName;
-  }
 }

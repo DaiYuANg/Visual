@@ -1,18 +1,21 @@
 package org.visual.component.control;
 
 import atlantafx.base.controls.CustomTextField;
+import java.util.Optional;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.visual.codegen.annotation.FxProperty;
 
 public class FontAwesomeIconicTextField extends CustomTextField {
 
+  @FxProperty
   private final SimpleObjectProperty<FontAwesomeSolid> _icon = new SimpleObjectProperty<>();
-
-  private final SimpleObjectProperty<IconicPos> _iconPos =
-      new SimpleObjectProperty<>(IconicPos.LEFT);
 
   public FontAwesomeSolid getIcon() {
     return _icon.get();
@@ -22,11 +25,15 @@ public class FontAwesomeIconicTextField extends CustomTextField {
     _icon.set(value);
   }
 
+  private final SimpleObjectProperty<IconicPos> _iconPos =
+      new SimpleObjectProperty<>(IconicPos.LEFT);
+
   @SuppressWarnings("unused")
   public IconicPos getIconPos() {
     return _iconPos.get();
   }
 
+  @SuppressWarnings("unused")
   public void setIconPos(IconicPos value) {
     _iconPos.set(value);
   }
@@ -34,7 +41,7 @@ public class FontAwesomeIconicTextField extends CustomTextField {
   public FontAwesomeIconicTextField() {
     InvalidationListener listener =
         b -> {
-          FontAwesomeSolid newIcon = _icon.get();
+          val newIcon = _icon.get();
           IconicPos newIconPos = _iconPos.get();
           setupIcon(newIcon, newIconPos);
         };
@@ -56,5 +63,12 @@ public class FontAwesomeIconicTextField extends CustomTextField {
       default:
         throw new UnsupportedOperationException();
     }
+  }
+
+  public EventHandler<? super MouseEvent> getOnEventClick(
+      EventHandler<? super MouseEvent> handler) {
+    val item = Optional.ofNullable(getLeft()).orElse(getRight());
+    item.setOnMouseClicked(handler);
+    return handler;
   }
 }

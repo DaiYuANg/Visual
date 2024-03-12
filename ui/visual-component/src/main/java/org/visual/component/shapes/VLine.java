@@ -7,7 +7,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import lombok.Getter;
-import org.visual.component.arrow.Arrow;
 
 public class VLine extends Group {
   private final Circle beginDot;
@@ -23,7 +22,7 @@ public class VLine extends Group {
   @Getter private double endY;
   private Paint fill;
 
-  private org.visual.component.arrow.Arrow arrowImageStart = null;
+  private Arrow arrowImageStart = null;
   private Arrow arrowImageEnd = null;
 
   public VLine(double width) {

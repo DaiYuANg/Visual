@@ -3,11 +3,11 @@ package org.visual.component.control.dialog;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.visual.component.container.VStage;
-import org.visual.component.container.VStageInitParams;
 import org.visual.component.control.button.FusionButton;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
+import org.visual.component.layout.VStage;
+import org.visual.component.layout.VStageInitParams;
 
 public class ThemeAlertBase extends VStage {
   public static final int PADDING_H = 20;

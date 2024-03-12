@@ -6,7 +6,6 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class NetUtil {
-
   public static int randomPort() {
     try (ServerSocket serverSocket = new ServerSocket(0)) {
       return serverSocket.getLocalPort();

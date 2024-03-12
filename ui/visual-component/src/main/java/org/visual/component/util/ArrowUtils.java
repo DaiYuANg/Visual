@@ -2,11 +2,13 @@
 package org.visual.component.util;
 
 import javafx.geometry.Point2D;
+import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.component.arrow.Arrow;
+import org.visual.component.shapes.Arrow;
 
 /** Utils for drawing arrows. Used by connection and tail skins. */
+@UtilityClass
 public class ArrowUtils {
 
   /**
@@ -17,7 +19,7 @@ public class ArrowUtils {
    * @param end the end position
    * @param offset an offset from start and end positions
    */
-  public static void draw(
+  public void draw(
       final @NotNull Arrow arrow,
       final @NotNull Point2D start,
       final @NotNull Point2D end,

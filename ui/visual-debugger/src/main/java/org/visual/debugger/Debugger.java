@@ -9,7 +9,7 @@ import org.visual.debugger.context.AttachSceneContext;
 import org.visual.debugger.context.DebuggerContext;
 
 public class Debugger {
-  private final Scene rootScene = new Scene(DebuggerContext.load(FXMLKey.LAYOUT));
+  private final Scene rootScene = new Scene(DebuggerContext.INSTANCE.load(FXMLKey.LAYOUT));
   private final VisualStage stage = new VisualStage();
 
   public Debugger() {

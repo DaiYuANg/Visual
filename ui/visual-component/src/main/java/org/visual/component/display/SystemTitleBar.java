@@ -1,7 +1,7 @@
 package org.visual.component.display;
 
 import javafx.scene.layout.Pane;
-import org.visual.shared.OS;
+import org.visual.shared.singleton.OS;
 
 public class SystemTitleBar extends Pane {
   public SystemTitleBar() {

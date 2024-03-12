@@ -1,9 +1,15 @@
+import io.avaje.inject.InjectModule;
+import org.visual.local.store.StoreModule;
+
 @SuppressWarnings({"requires-automatic"})
+@InjectModule(
+    name = "visual",
+    requiresPackages = {StoreModule.class})
 module org.visual {
   requires javafx.graphics;
   requires static lombok;
+  requires static org.jetbrains.annotations;
   requires org.slf4j;
-  requires org.jetbrains.annotations;
   requires com.google.common;
   requires jakarta.inject;
   requires javafx.fxml;
@@ -28,7 +34,6 @@ module org.visual {
   requires org.eclipse.emf.ecore;
   requires org.eclipse.emf.edit;
   requires com.fasterxml.jackson.core;
-  requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
   requires org.visual.local.store;
   requires org.apache.fury.core;
@@ -50,6 +55,20 @@ module org.visual {
       javafx.fxml,
       javafx.graphics;
   exports org.visual.constant;
+
+  opens org.visual.controller.layout to
+      javafx.fxml;
+
+  exports org.visual.controller.layout to
+      javafx.fxml,
+      javafx.graphics;
+
+  opens org.visual.controller.creation to
+      javafx.fxml;
+
+  exports org.visual.controller.creation to
+      javafx.fxml,
+      javafx.graphics;
 
   provides io.avaje.inject.spi.Module with
       org.visual.VisualModule;

@@ -17,11 +17,7 @@ import org.visual.graph.editor.api.GraphEditor;
 import org.visual.graph.editor.model.GModel;
 import org.visual.view.VisualUI;
 
-/**
- * Helper class for crudely loading {@link GModel} states to and from XML.
- *
- * <p>Not part of the graph editor library, only used in the {@link GraphEditorDemo} application.
- */
+/** Helper class for crudely loading {@link GModel} states to and from XML. */
 public class GraphEditorPersistence {
 
   private static final String FILE_EXTENSION = ".graph"; // $NON-NLS-1$

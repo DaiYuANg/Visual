@@ -17,7 +17,7 @@
  */
 package org.visual.debugger.model.attach;
 
-import static org.visual.shared.OS.OS;
+import static org.visual.shared.singleton.OS.OS;
 
 import com.sun.tools.attach.VirtualMachine;
 import java.io.File;

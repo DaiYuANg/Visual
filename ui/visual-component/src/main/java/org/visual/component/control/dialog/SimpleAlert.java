@@ -1,12 +1,11 @@
 package org.visual.component.control.dialog;
 
-import static org.visual.component.util.FXUtils.observeWidth;
-
 import java.util.Objects;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.util.FxUtil;
+import org.visual.component.util.ObserveUtil;
 
 public class SimpleAlert extends ThemeAlertBase {
   private SimpleAlert(String title, String contentText) {
@@ -18,7 +17,7 @@ public class SimpleAlert extends ThemeAlertBase {
             setWrapText(true);
           }
         };
-    observeWidth(getSceneGroup().getNode(), alertMessage, -PADDING_H * 2);
+    ObserveUtil.observeWidth(getSceneGroup().getNode(), alertMessage, -PADDING_H * 2);
 
     alertMessagePane.getChildren().add(alertMessage);
   }

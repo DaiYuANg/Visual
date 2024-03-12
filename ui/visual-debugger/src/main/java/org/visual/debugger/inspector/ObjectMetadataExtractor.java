@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.Nullable;
 
 public class ObjectMetadataExtractor<T> {
 
@@ -31,7 +32,7 @@ public class ObjectMetadataExtractor<T> {
         .orElseGet(() -> findFieldNameInHierarchy(inspector.getParent(parentOfComponent)));
   }
 
-  private String getFieldNameInParent(Object component, Object parent, Field field) {
+  private @Nullable String getFieldNameInParent(Object component, Object parent, Field field) {
     try {
       // Allow access to private fields
       field.setAccessible(true);

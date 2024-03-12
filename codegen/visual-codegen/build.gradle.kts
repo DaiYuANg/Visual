@@ -1,8 +1,8 @@
 group = "org.visual.codegen"
 
 dependencies {
-  compileOnly(libs.autoService)
-  annotationProcessor(libs.autoService)
   implementation(libs.bytebuddy)
   implementation(libs.javapoet)
+  compileOnly(libs.prism)
+  annotationProcessor(libs.prism)
 }

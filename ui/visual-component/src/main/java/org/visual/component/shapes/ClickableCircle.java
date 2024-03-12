@@ -8,7 +8,7 @@ import org.visual.component.algebradata.ColorData;
 import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
-import org.visual.component.control.click.ClickEventHandler;
+import org.visual.component.handler.ClickEventHandler;
 
 public class ClickableCircle extends Circle {
   private EventHandler<?> handler;

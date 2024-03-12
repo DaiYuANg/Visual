@@ -13,7 +13,7 @@ import org.visual.component.animation.AnimationGraph;
 import org.visual.component.animation.AnimationGraphBuilder;
 import org.visual.component.animation.AnimationNode;
 import org.visual.component.handler.DragHandler;
-import org.visual.component.util.FXUtils;
+import org.visual.component.util.ObserveUtil;
 
 public class VScrollPane implements NodeWithVScrollPane {
   public static final int SCROLL_WIDTH = 4;
@@ -309,7 +309,7 @@ public class VScrollPane implements NodeWithVScrollPane {
                         - VScrollPane.SCROLL_PADDING);
     pane.getNode().widthProperty().addListener((ob, old, now) -> update.run());
     pane.hposProperty().addListener((ob, old, now) -> update.run());
-    FXUtils.observeHeight(node.getSelfNode(), pane.getNode());
+    ObserveUtil.observeHeight(node.getSelfNode(), pane.getNode());
     return pane;
   }
 }

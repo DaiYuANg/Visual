@@ -32,7 +32,7 @@ class FXComponentInspector extends AbstractComponentInspector<Node> {
 
   @Override
   protected Node createClassComponent(@NotNull Node component) {
-    Label result = new Label(component.getClass().getName());
+    val result = new Label(component.getClass().getName());
     result.getStyleClass().add(CSSStyleClass.CLASS_COMPONENT.getCssClassName());
     return result;
   }
@@ -43,7 +43,7 @@ class FXComponentInspector extends AbstractComponentInspector<Node> {
     if (labelText.isBlank()) {
       labelText = "(empty)";
     }
-    Label result = new Label(labelText);
+    val result = new Label(labelText);
     result.getStyleClass().add(CSSStyleClass.STYLES_COMPONENT.getCssClassName());
     return result;
   }

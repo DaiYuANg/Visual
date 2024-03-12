@@ -13,7 +13,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import lombok.Getter;
 import org.visual.component.layout.HPadding;
-import org.visual.component.util.FXUtils;
+import org.visual.component.util.ObserveUtil;
 
 public class VTableColumn<S, T> {
   private static final Color COLOR_TOP = new Color(0xef / 255d, 0xef / 255d, 0xef, 1);
@@ -78,7 +78,7 @@ public class VTableColumn<S, T> {
         };
     columnNode.getChildren().addAll(new HPadding(sortWidth), columnContentNode, sortLabel);
     columnNode.setBackground(BG);
-    FXUtils.observeHeight(columnContentNode, columnNode);
+    ObserveUtil.observeHeight(columnContentNode, columnNode);
     columnNode.setAlignment(Pos.CENTER);
 
     columnNode.setOnMouseClicked(

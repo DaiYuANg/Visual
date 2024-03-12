@@ -1,7 +1,5 @@
 package org.visual.component.display.table;
 
-import static org.visual.component.util.FxUtil.runOnFx;
-
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -18,6 +16,7 @@ import javafx.scene.paint.Color;
 import lombok.Getter;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.component.util.FxUtil;
 
 public class VTableRow<S> implements RowInformer {
   private static final Color COLOR_SELECTED = new Color(0, 0x96 / 255d, 0xc9 / 255d, 1);
@@ -147,7 +146,7 @@ public class VTableRow<S> implements RowInformer {
 
   @Override
   public void informRowUpdate() {
-    runOnFx(this::informRowUpdate0);
+    FxUtil.runOnFx(this::informRowUpdate0);
   }
 
   private void informRowUpdate0() {

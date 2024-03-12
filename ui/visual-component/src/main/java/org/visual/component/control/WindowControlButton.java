@@ -2,9 +2,9 @@ package org.visual.component.control;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.visual.component.container.VStage;
-import org.visual.component.container.VStageInitParams;
 import org.visual.component.control.button.AbstractFusionButton;
+import org.visual.component.layout.VStage;
+import org.visual.component.layout.VStageInitParams;
 
 public abstract class WindowControlButton extends AbstractFusionButton {
   public static final int WIDTH = 64;

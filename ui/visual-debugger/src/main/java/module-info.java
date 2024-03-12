@@ -10,7 +10,7 @@ module org.visual.debugger {
   requires jdk.attach;
   requires java.desktop;
   requires static lombok;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires javafx.web;
   requires javafx.swing;
   requires org.visual.shared;

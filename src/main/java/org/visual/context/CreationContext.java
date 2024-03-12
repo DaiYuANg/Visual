@@ -9,14 +9,18 @@ import org.visual.constant.AvailableFeature;
 public enum CreationContext {
   INSTANCE;
 
-  private final SimpleObjectProperty<AvailableFeature> simpleStringProperty =
-      new SimpleObjectProperty<>(AvailableFeature.ER);
+  private final SimpleObjectProperty<AvailableFeature> featureSimpleObjectProperty =
+      new SimpleObjectProperty<>(AvailableFeature.OBJECT_ORIENTED);
 
   public void addListener(ChangeListener<AvailableFeature> changeListener) {
-    simpleStringProperty.addListener(changeListener);
+    featureSimpleObjectProperty.addListener(changeListener);
   }
 
   public void set(AvailableFeature feature) {
-    simpleStringProperty.setValue(feature);
+    featureSimpleObjectProperty.setValue(feature);
+  }
+
+  public AvailableFeature get() {
+    return featureSimpleObjectProperty.get();
   }
 }

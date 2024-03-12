@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.visual.component.api.TitleBar;
 import org.visual.component.util.ScreenUtil;
-import org.visual.shared.OS;
+import org.visual.shared.singleton.OS;
 
 public abstract class CommonTitleBar extends HBox implements TitleBar {
   private final SimpleDoubleProperty xOffset = new SimpleDoubleProperty(0.0);

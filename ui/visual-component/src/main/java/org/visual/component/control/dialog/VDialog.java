@@ -11,12 +11,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
-import org.visual.component.container.FusionPane;
-import org.visual.component.container.VStage;
 import org.visual.component.control.button.FusionButton;
+import org.visual.component.layout.FusionPane;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
-import org.visual.component.util.FXUtils;
+import org.visual.component.layout.VStage;
+import org.visual.component.util.FxUtil;
+import org.visual.component.util.ObserveUtil;
 
 public class VDialog<T> {
   private static final int BUTTON_HEIGHT = 45;
@@ -41,9 +42,9 @@ public class VDialog<T> {
 
     buttonHBox.setAlignment(Pos.CENTER_RIGHT);
     buttonHBox.setSpacing(5);
-    FXUtils.observeWidth(buttonPane.getContentPane(), buttonHBox);
+    ObserveUtil.observeWidth(buttonPane.getContentPane(), buttonHBox);
 
-    FXUtils.observeWidth(
+    ObserveUtil.observeWidth(
         stage.getInitialScene().getScrollPane().getNode(),
         stage.getInitialScene().getContentPane(),
         -1);
@@ -64,7 +65,7 @@ public class VDialog<T> {
               h = VStage.TITLE_BAR_HEIGHT + h + 10;
               stage.getStage().setHeight(h);
             });
-    FXUtils.forceUpdate(stage.getStage());
+    FxUtil.forceUpdate(stage.getStage());
     root.getChildren()
         .add(
             new HBox(
@@ -87,7 +88,7 @@ public class VDialog<T> {
         btn -> {
           var name = btn.name;
           var button = new FusionButton(name);
-          var textBounds = FXUtils.calculateTextBounds(button.getTextNode());
+          var textBounds = FxUtil.calculateTextBounds(button.getTextNode());
           button.setPrefWidth(Math.max(textBounds.getWidth() + 40, 120));
           button.setPrefHeight(BUTTON_HEIGHT);
           ls.add(button);

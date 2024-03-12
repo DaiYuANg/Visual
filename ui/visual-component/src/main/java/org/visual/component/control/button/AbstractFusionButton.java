@@ -1,7 +1,7 @@
 package org.visual.component.control.button;
 
 import javafx.scene.paint.Color;
-import org.visual.component.container.AbstractFusionPane;
+import org.visual.component.layout.AbstractFusionPane;
 
 public abstract class AbstractFusionButton extends AbstractFusionPane {
   protected abstract void onMouseClicked();

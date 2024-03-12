@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Window;
 import lombok.Getter;
 import lombok.Setter;
-import org.visual.component.util.FXUtils;
+import org.visual.component.util.FxUtil;
 
 public class FusionButton extends AbstractFusionButton {
   private final Label text = new Label() {};
@@ -101,7 +101,7 @@ public class FusionButton extends AbstractFusionButton {
   }
 
   private void updateTextPosition() {
-    var bounds = FXUtils.calculateTextBounds(text);
+    var bounds = FxUtil.calculateTextBounds(text);
     text.setLayoutX((getWidth() - bounds.getWidth()) / 2);
     text.setLayoutY((getHeight() - bounds.getHeight()) / 2);
   }

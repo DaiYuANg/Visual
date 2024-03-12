@@ -22,6 +22,15 @@ public class GeometryUtil {
     return new Point2D(sceneX - containerScene.getX(), sceneY - containerScene.getY());
   }
 
+  /**
+   * Moves an x or y position value off-pixel.
+   *
+   * <p>This is for example useful for a 1-pixel-wide stroke with a stroke-type of centered. The x
+   * and y positions need to be off-pixel so that the stroke is on-pixel.
+   *
+   * @param position the position to move off-pixel
+   * @return the position moved to the nearest value halfway between two integers
+   */
   public static double moveOffPixel(double position) {
     return ceil(position) - HALF_A_PIXEL;
   }

@@ -5,9 +5,7 @@ module org.visual.component {
   requires transitive javafx.fxml;
   requires static lombok;
   requires org.slf4j;
-  requires com.google.common;
-  requires com.github.oshi;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires transitive org.kordamp.ikonli.core;
   requires transitive org.kordamp.ikonli.javafx;
   requires transitive org.kordamp.ikonli.fontawesome5;
@@ -15,6 +13,7 @@ module org.visual.component {
   requires transitive org.kordamp.ikonli.simpleicons;
   requires transitive org.kordamp.ikonli.devicons;
   requires transitive org.kordamp.ikonli.materialdesign2;
+  requires com.google.common;
   requires org.visual.shared;
   requires org.apache.commons.lang3;
   requires transitive atlantafx.base;
@@ -28,15 +27,15 @@ module org.visual.component {
   requires javafx.swing;
   requires org.apache.commons.io;
   requires java.logging;
+  requires static org.visual.codegen;
 
   exports org.visual.component.window;
   exports org.visual.component.control;
-  exports org.visual.component.control.click;
   exports org.visual.component.control.button;
   exports org.visual.component.control.dialog;
   exports org.visual.component.control.scroll;
   exports org.visual.component.util;
-  exports org.visual.component.container;
+  exports org.visual.component.layout;
   exports org.visual.component.animation;
   exports org.visual.component.api;
   exports org.visual.component.wrapper;
@@ -47,7 +46,7 @@ module org.visual.component {
   opens org.visual.component.control to
       javafx.graphics,
       javafx.fxml;
-  opens org.visual.component.container to
+  opens org.visual.component.layout to
       javafx.fxml,
       javafx.graphics;
   opens org.visual.component.api to
@@ -55,7 +54,8 @@ module org.visual.component {
       javafx.graphics;
 
   exports org.visual.component.display;
-  exports org.visual.component.arrow;
   exports org.visual.component.widget;
+  exports org.visual.component.shapes;
+  exports org.visual.component.handler;
 //    exports org.visual.component.widget;
 }

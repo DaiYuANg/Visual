@@ -17,7 +17,7 @@
  */
 package org.visual.debugger.remote;
 
-import static org.visual.shared.OS.OS;
+import static org.visual.shared.singleton.OS.OS;
 
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
@@ -314,7 +314,7 @@ class RemoteConnectorImpl extends UnicastRemoteObject implements RemoteConnector
     }
     final long initial = System.currentTimeMillis();
     /** MAC Seems to be slower using attach API */
-    final long timeout = OS == org.visual.shared.OS.MAC ? 30000 : 10000;
+    final long timeout = OS == org.visual.shared.singleton.OS.MAC ? 30000 : 10000;
     while (count.get() != 0 && System.currentTimeMillis() - initial < timeout) {
       try {
         Thread.sleep(50);

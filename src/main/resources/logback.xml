@@ -31,6 +31,6 @@
     <appender-ref ref="ASYNC"/>
   </root>
 
-  <logger name="org.visual" level="DEBUG"/>
+  <logger name="org.visual" level="TRACE"/>
 
 </configuration>

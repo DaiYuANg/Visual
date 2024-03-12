@@ -4,10 +4,10 @@ import java.util.List;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.visual.component.animation.Callback;
-import org.visual.component.container.VStage;
-import org.visual.component.container.VStageInitParams;
 import org.visual.component.layout.HPadding;
 import org.visual.component.layout.VPadding;
+import org.visual.component.layout.VStage;
+import org.visual.component.layout.VStageInitParams;
 
 public class LoadingStage extends VStage {
   private final LoadingPane loadingPane;

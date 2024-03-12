@@ -2,15 +2,12 @@ package org.visual.component.wrapper;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class BufferedImageCanvasBox implements CanvasBox {
   private final BufferedImage bImg;
   private final Graphics2D g;
-
-  BufferedImageCanvasBox(BufferedImage bImg, Graphics2D g) {
-    this.bImg = bImg;
-    this.g = g;
-  }
 
   @Override
   public void setPaint(int rgb) {

@@ -11,6 +11,7 @@ dependencies {
   implementation(projects.ui.visualTextEditor)
   implementation(libs.preferencesfx)
   implementation(libs.avajeInject)
+  implementation(libs.fastutil)
   annotationProcessor(libs.avajeInjectGenerator)
   testImplementation(libs.avajeInjectTest)
   testAnnotationProcessor(libs.avajeInjectTestGenerator)

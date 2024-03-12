@@ -1,0 +1,19 @@
+package org.visual.command;
+
+import java.util.NoSuchElementException;
+import lombok.extern.slf4j.Slf4j;
+import org.visual.context.DIContext;
+import picocli.CommandLine;
+
+@Slf4j
+public class DIFactory implements CommandLine.IFactory {
+
+  @Override
+  public <K> K create(Class<K> cls) throws Exception {
+    try {
+      return DIContext.INSTANCE.get(cls);
+    } catch (NoSuchElementException ex) { // no implementation found in Guice configuration
+      return CommandLine.defaultFactory().create(cls); // fallback if missing
+    }
+  }
+}

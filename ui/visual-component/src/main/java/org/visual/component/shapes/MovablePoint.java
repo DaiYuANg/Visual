@@ -5,11 +5,12 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.handler.DragHandler;
 import org.visual.component.pojo.Point;
-import org.visual.component.util.FXUtils;
+import org.visual.component.util.FxUtil;
 
 public class MovablePoint extends Group {
   public MovablePoint(String labelText) {
@@ -17,13 +18,13 @@ public class MovablePoint extends Group {
     point.setStrokeWidth(2);
     point.setStroke(Color.RED);
     point.setFill(Color.TRANSPARENT);
-    var dot = new Circle(2);
+    val dot = new Circle(2);
     dot.setFill(Color.RED);
     dot.setStrokeWidth(0);
-    var label = new Label(labelText) {};
+    val label = new Label(labelText) {};
     point.setCursor(Cursor.MOVE);
     label.setTextFill(Color.RED);
-    var wh = FXUtils.calculateTextBounds(label);
+    val wh = FxUtil.calculateTextBounds(label);
     label.setLayoutX(-wh.getWidth() / 2);
     label.setLayoutY(10);
 

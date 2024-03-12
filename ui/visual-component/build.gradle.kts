@@ -5,7 +5,6 @@ plugins {
 group = "org.visual.component"
 
 dependencies {
-  api(libs.oshi)
   api(projects.module.visualShared)
   api(libs.fontawesome5)
   api(libs.ikonliJavafx)
@@ -18,9 +17,10 @@ dependencies {
   api(libs.apacheCommonPool)
   api(libs.animated)
   api(libs.flowless)
-  api(projects.ui.visualI18n)
   api(libs.apacheCommonIO)
+
   implementation(libs.guava)
+  implementation(libs.fastutil)
   implementation(projects.codegen.visualCodegen)
   annotationProcessor(projects.codegen.visualCodegen)
 }

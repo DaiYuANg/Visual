@@ -3,17 +3,14 @@ package org.visual.component.wrapper;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
+import lombok.NonNull;
 
 public class FXWritableImageBox implements ImageBox {
   private final WritableImage img;
   private final PixelReader reader;
   private final double scale;
 
-  public FXWritableImageBox(WritableImage img) {
-    this(img, 1);
-  }
-
-  public FXWritableImageBox(WritableImage img, double scale) {
+  public FXWritableImageBox(@NonNull WritableImage img, double scale) {
     this.img = img;
     this.reader = img.getPixelReader();
     this.scale = scale;

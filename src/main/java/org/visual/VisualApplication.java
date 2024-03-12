@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.command.DIFactory;
 import org.visual.command.OpenCommand;
-import org.visual.factory.DIFactory;
 import org.visual.view.VisualUI;
 import picocli.CommandLine;
 

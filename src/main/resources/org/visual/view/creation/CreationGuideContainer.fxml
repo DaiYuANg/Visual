@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.StackPane?>
 <StackPane fx:id="container" xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="org.visual.controller.CreationGuideContainerController"
+           fx:controller="org.visual.controller.creation.CreationGuideContainerController"
            prefHeight="400.0" prefWidth="600.0">
 </StackPane>

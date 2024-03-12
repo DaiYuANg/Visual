@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
-import org.visual.component.arrow.Arrow;
+import org.visual.component.shapes.Arrow;
 import org.visual.component.util.ArrowUtils;
 import org.visual.graph.editor.api.GConnectionSkin;
 import org.visual.graph.editor.api.GJointSkin;

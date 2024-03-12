@@ -3,8 +3,8 @@
 <?import javafx.scene.control.Button?>
 <SplitPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="org.visual.controller.CreationController"
-           prefHeight="500.0" prefWidth="800.0" dividerPositions="0.2,0.8">
+           fx:controller="org.visual.controller.creation.CreationController"
+           prefHeight="500.0" prefWidth="800.0" dividerPositions="0.3,0.7">
   <fx:include source="CreationProject.fxml"/>
   <fx:include source="CreationGuideContainer.fxml"/>
 </SplitPane>

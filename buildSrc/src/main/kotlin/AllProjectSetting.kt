@@ -37,7 +37,7 @@ class AllProjectSetting : Plugin<Project> {
         doFirst {
           println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
         }
-//    options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
+//        options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
         options.encoding = StandardCharsets.UTF_8.name()
         options.isFork = true
         options.isDebug = true
@@ -45,7 +45,7 @@ class AllProjectSetting : Plugin<Project> {
       }
 
       project.dependencies {
-        add(IMPLEMENTATION, rootLib.jetbrainsAnnotation)
+        add(COMPILE_ONLY, rootLib.jetbrainsAnnotation)
         add(IMPLEMENTATION, rootLib.slf4j)
         add(IMPLEMENTATION, rootLib.slf4jJdkPlatform)
         add(IMPLEMENTATION, rootLib.mapstruct)

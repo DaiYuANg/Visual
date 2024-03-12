@@ -16,9 +16,6 @@ import org.visual.local.store.api.HistoryRepository;
 
 @Slf4j
 public class VisualUI extends Application {
-  private final GlobalExceptionHandler exceptionHandler =
-      DIContext.INSTANCE.get(GlobalExceptionHandler.class);
-
   private final String theme = new PrimerLight().getUserAgentStylesheet();
 
   private final HistoryRepository historyRepository =
@@ -26,32 +23,18 @@ public class VisualUI extends Application {
 
   @Override
   public void init() {
+    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
     Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
     Application.setUserAgentStylesheet(theme);
-    //            rootScene.getStylesheets().addAll("/help.css", "/theme.css");
-    //    rootScene.setFill(Color.TRANSPARENT);
   }
 
   @SneakyThrows
   @Override
   public void start(Stage stage) {
     val rootStage = DIContext.INSTANCE.get(Stage.class);
-    historyRepository
-        .findLatestHistory()
-        .ifPresentOrElse(
-            history -> {
-              log.atDebug().log("history not found");
-              val rootFxml = UIContext.INSTANCE.load(FXMLView.MAIN_LAYOUT);
-              val rootScene = new Scene(rootFxml);
-              rootStage.setScene(rootScene);
-              //      open history
-            },
-            () -> {
-              log.atDebug().log("Not found history");
-              val creationFXML = UIContext.INSTANCE.load(FXMLView.CREATION);
-              val creationScene = new Scene(creationFXML);
-              rootStage.setScene(creationScene);
-            });
+    val rootFxml = UIContext.INSTANCE.load(FXMLView.MAIN_LAYOUT);
+    val rootScene = new Scene(rootFxml);
+    rootStage.setScene(rootScene);
     rootStage.show();
   }
 }

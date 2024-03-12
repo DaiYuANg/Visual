@@ -6,6 +6,7 @@ import com.github.noconnor.junitperf.JUnitPerfTestRequirement;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.visual.shared.funcational.ManifestReader;
 
 @ExtendWith(JUnitPerfInterceptor.class)
 class ManifestReaderTest {

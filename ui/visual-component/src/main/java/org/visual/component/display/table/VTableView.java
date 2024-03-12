@@ -16,7 +16,8 @@ import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.visual.component.control.scroll.NodeWithVScrollPane;
 import org.visual.component.control.scroll.VScrollPane;
-import org.visual.component.util.FXUtils;
+import org.visual.component.util.ObserveUtil;
+import org.visual.component.util.SizeUtil;
 
 public class VTableView<S> implements NodeWithVScrollPane {
   private final Pane root = new Pane();
@@ -55,7 +56,7 @@ public class VTableView<S> implements NodeWithVScrollPane {
     items.addListener(itemsListener);
 
     root.getChildren().add(rootVBox);
-    FXUtils.observeWidthHeightWithPreferred(root, rootVBox);
+    ObserveUtil.observeWidthHeightWithPreferred(root, rootVBox);
 
     var columnPane = new HBox();
     rootVBox.getChildren().addAll(columnPane, scrollPane.getNode());
@@ -104,8 +105,8 @@ public class VTableView<S> implements NodeWithVScrollPane {
 
     columnPane.getChildren().addAll(this.columnPane, fixColumnWidthColum);
 
-    FXUtils.makeTopOnlyRoundedClipFor(columnPane, 4);
-    FXUtils.makeBottomOnlyRoundedClipFor(dataPane, 4);
+    SizeUtil.makeTopOnlyRoundedClipFor(columnPane, 4);
+    SizeUtil.makeBottomOnlyRoundedClipFor(dataPane, 4);
   }
 
   public Region getNode() {
