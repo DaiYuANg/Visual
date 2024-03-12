@@ -7,16 +7,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import lombok.RequiredArgsConstructor;
-import org.visual.local.store.api.HistoryRepository;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__({@Inject}))
 public class MainLayoutController implements Initializable {
 
-  private final HistoryRepository historyRepository;
+  //  private final HistoryRepository historyRepository;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    historyRepository.findLatestHistory();
+    //    historyRepository.findLatestHistory();
   }
 }

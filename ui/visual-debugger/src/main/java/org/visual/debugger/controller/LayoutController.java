@@ -1,17 +1,14 @@
 package org.visual.debugger.controller;
 
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.debugger.constant.PreferencesKey;
 import org.visual.debugger.context.LayoutContext;
 
 @Slf4j
@@ -22,14 +19,14 @@ public class LayoutController implements Initializable {
 
   @FXML SplitPane splitPane;
 
-  @Inject Preferences preferences;
+  //  @Inject Preferences preferences;
 
   //  @Inject PreferencesWrapper preferences;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    splitPane.setDividerPosition(
-        0, preferences.getDouble(PreferencesKey.SPLIT_DIVIDER.getValue(), 0.2));
+    //    splitPane.setDividerPosition(
+    //        0, preferences.getDouble(PreferencesKey.SPLIT_DIVIDER.getValue(), 0.2));
     LayoutContext.addCollapseListener(
         (observableValue, aBoolean, t1) -> {
           firstSplit.setVisible(!t1);
@@ -45,8 +42,9 @@ public class LayoutController implements Initializable {
   @SneakyThrows
   void onShutdown() {
     log.info("on shutdown");
-    preferences.putDouble(
-        PreferencesKey.SPLIT_DIVIDER.getValue(), splitPane.getDividers().getFirst().getPosition());
-    preferences.flush();
+    //    preferences.putDouble(
+    //        PreferencesKey.SPLIT_DIVIDER.getValue(),
+    // splitPane.getDividers().getFirst().getPosition());
+    //    preferences.flush();
   }
 }

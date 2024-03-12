@@ -15,9 +15,7 @@ dependencies {
   implementation(libs.directories)
   implementation(libs.jakartaPersistenceAPI)
   implementation(libs.guava)
-  implementation(libs.guice)
   implementation(libs.hikariCP)
-  implementation(libs.guicePersist)
   annotationProcessor(libs.hibernateJpamodelgen)
   compileOnly("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
   annotationProcessor("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
@@ -27,6 +25,14 @@ dependencies {
   implementation(libs.queryDslSpatial)
   implementation(libs.queryDslCollections)
   testImplementation(libs.hibernateTesting)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
+//  implementation(libs.nitrite)
+//  implementation(libs.nitriteJackson)
+//  implementation(libs.nitriteMvstore)
+//  implementation(libs.nitriteSpatial)
 }
 
 hibernate {

@@ -2,6 +2,7 @@ package org.visual.provider;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.inject.Provider;
+import jakarta.inject.Singleton;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.visual.shared.OS;
 
 @Slf4j
+@Singleton
 public class ExecutorProvider implements Provider<Executor> {
   @Override
   public Executor get() {

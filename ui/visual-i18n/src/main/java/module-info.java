@@ -4,12 +4,11 @@ module org.visual.i18n {
   requires static lombok;
   requires transitive org.jetbrains.annotations;
   requires javafx.base;
-  requires com.google.guice;
+  requires io.avaje.inject;
 
   exports org.visual.i18n.api;
-
-  opens org.visual.i18n.service to
-      com.google.guice;
-
   exports org.visual.i18n.core;
+
+  provides io.avaje.inject.spi.Module with
+      org.visual.i18n.service.ServiceModule;
 }

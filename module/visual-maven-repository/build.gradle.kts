@@ -6,5 +6,8 @@ dependencies {
   implementation(libs.mavenResloverJDK21)
   implementation(libs.mavenResloverSupplier)
   implementation(libs.mavenResloverUtil)
-  implementation(libs.guice)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
 }

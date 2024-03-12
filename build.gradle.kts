@@ -13,19 +13,28 @@ apply<ReleaseSetting>()
 
 dependencies {
   implementation(libs.logback)
-  implementation(libs.guice)
-  implementation(libs.guiceJMX)
-  implementation(libs.guiceGrapher)
-  implementation(libs.guiceThrowingproviders)
-  implementation(libs.guiceAssistedinject)
-  testImplementation(libs.guiceTestlib)
-  implementation(libs.slf4jJulBridage)
+
+//  implementation(libs.guice)
+//  implementation(libs.guiceJMX)
+//  implementation(libs.guiceGrapher)
+//  implementation(libs.guiceThrowingproviders)
+//  implementation(libs.guiceAssistedinject)
+//  testImplementation(libs.guiceTestlib)
+
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
 
   implementation(libs.picocli)
   implementation(libs.picocliJline)
   annotationProcessor(libs.picocliCodegen)
 
   implementation(libs.pcollections)
+  implementation(libs.slf4jJulBridage)
+
+  implementation(libs.furyCore)
+  implementation(libs.furyFormat)
 
   implementation(projects.module.visualConfig)
   implementation(projects.serialize.visualSerializeApi)

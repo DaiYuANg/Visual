@@ -1,8 +1,4 @@
-plugins {
-//  `kotlin-project`
-}
-
-group = "org.visual.model.graph-editor"
+group = "org.visual.graph-editor"
 
 version = "unspecified"
 
@@ -14,4 +10,6 @@ dependencies {
   api("org.eclipse.emf:org.eclipse.emf.common:2.29.0")
   api("org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.36.0")
   api("org.eclipse.emf:org.eclipse.emf.edit:2.20.0")
+  implementation(libs.jgrapht)
+  implementation(libs.fastutil)
 }

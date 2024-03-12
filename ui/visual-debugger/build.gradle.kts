@@ -10,8 +10,10 @@ dependencies {
   implementation(libs.bytebuddy)
   implementation(projects.ui.visualTextEditor)
   implementation(libs.preferencesfx)
-  implementation(libs.guice)
-  testImplementation(libs.guiceTestlib)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
 }
 
 tasks.jar {

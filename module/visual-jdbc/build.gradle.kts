@@ -14,6 +14,10 @@ dependencies {
   testImplementation(libs.postgres)
   testImplementation(libs.mssql)
   antlr(libs.antlr)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
 }
 
 tasks.generateGrammarSource {

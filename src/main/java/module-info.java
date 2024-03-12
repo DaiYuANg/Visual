@@ -30,10 +30,10 @@ module org.visual {
   requires com.fasterxml.jackson.core;
   requires it.unimi.dsi.fastutil;
   requires org.slf4j.jdk.platform.logging;
-  requires com.google.guice;
-  requires com.google.guice.extensions.grapher;
-  requires com.google.guice.extensions.jmx;
   requires org.visual.local.store;
+  requires org.apache.fury.core;
+  requires org.apache.fury.format;
+  requires io.avaje.inject;
 
   opens org.visual.controller to
       javafx.fxml;
@@ -50,4 +50,7 @@ module org.visual {
       javafx.fxml,
       javafx.graphics;
   exports org.visual.constant;
+
+  provides io.avaje.inject.spi.Module with
+      org.visual.VisualModule;
 }

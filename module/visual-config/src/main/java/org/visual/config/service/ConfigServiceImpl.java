@@ -1,6 +1,7 @@
 package org.visual.config.service;
 
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.github.gestalt.config.Gestalt;
@@ -9,6 +10,7 @@ import org.visual.config.api.ConfigService;
 import org.visual.config.model.UIConfiguration;
 
 @Slf4j
+@Singleton
 public class ConfigServiceImpl implements ConfigService {
 
   private final Gestalt gestalt;

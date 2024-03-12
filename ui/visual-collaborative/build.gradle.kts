@@ -1,7 +1,7 @@
 plugins {
 }
 
-group = "org.visual.collaborative.server"
+group = "org.visual.collaborative"
 
 dependencies {
   implementation(libs.vertxCore)
@@ -9,6 +9,9 @@ dependencies {
   implementation(libs.vertxHazelcast)
   implementation(projects.module.visualShared)
   implementation(libs.mutiny)
-  implementation(libs.guice)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
+  testImplementation(libs.avajeInjectTest)
+  testAnnotationProcessor(libs.avajeInjectTestGenerator)
   implementation(libs.mutinyVertx)
 }

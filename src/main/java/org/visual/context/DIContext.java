@@ -1,22 +1,19 @@
 package org.visual.context;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import io.avaje.inject.BeanScope;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
-import org.visual.config.ConfigModule;
-import org.visual.module.RootModule;
 
 @Getter
 public enum DIContext {
   INSTANCE;
-  private final Injector injector;
+  private final BeanScope injector;
 
   DIContext() {
-    injector = Guice.createInjector(new RootModule(), new ConfigModule());
+    injector = BeanScope.builder().shutdownHook(true).build();
   }
 
   public <T> @NotNull T get(Class<T> clazz) {
-    return injector.getInstance(clazz);
+    return injector.get(clazz);
   }
 }
