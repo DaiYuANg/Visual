@@ -8,7 +8,7 @@ module org.visual.graph.editor {
   requires org.eclipse.emf.ecore;
   requires org.eclipse.emf.common;
   requires org.eclipse.emf.edit;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires org.eclipse.emf.ecore.xmi;
   requires it.unimi.dsi.fastutil;
   requires org.jgrapht.core;

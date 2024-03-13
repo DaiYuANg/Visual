@@ -20,16 +20,18 @@ jdbi = "3.45.0"
 groovy = "5.0.0-alpha-6"
 fury = "0.5.0-SNAPSHOT"
 avajeInject = "9.12-RC2"
-nitrite = "4.2.2"
+nitrite = "4.3.0-SNAPSHOT"
 avajeValidaor = "1.3"
+hibernate = "6.4.4.Final"
+queryDsl = "5.1.0"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 fatjar = { id = "io.github.goooler.shadow", version = "8.1.7" }
-frontend = { id = "org.siouan.frontend-jdk17", version = "8.0.0" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
+hibernate = { id = "org.hibernate.orm", version.ref = "hibernate" }
 
 [libraries]
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.14.0" }
@@ -174,10 +176,21 @@ pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
-nitriteBom = { group = "org.dizitart", name = "nitrite-bom", version.ref = "nitrite" }
-nitrite = { group = "org.dizitart", name = "nitrite", version.ref = "nitrite" }
-nitriteMvstore = { group = "org.dizitart", name = "nitrite-mvstore-adapter", version.ref = "nitrite" }
-nitriteJackson = { group = "org.dizitart", name = "nitrite-jackson-mapper", version.ref = "nitrite" }
+hibernatePlatform = { group = "org.hibernate.orm", name = "hibernate-platform", version.ref = "hibernate" }
+hibernateCore = { group = "org.hibernate.orm", name = "hibernate-core", version.ref = "hibernate" }
+hibernateJpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen", version.ref = "hibernate" }
+hibernateValidator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "8.0.1.Final" }
+hibernateHikaricp = { group = "org.hibernate.orm", name = "hibernate-hikaricp", version.ref = "hibernate" }
+hibernateTesting = { group = "org.hibernate.orm", name = "hibernate-testing", version.ref = "hibernate" }
+hibernateGraalvm = { group = "org.hibernate.orm", name = "hibernate-graalvm", version.ref = "hibernate" }
+hibernateJfr = { group = "org.hibernate.orm", name = "hibernate-jfr", version.ref = "hibernate" }
+
+jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M1" }
+
+queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
+queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+queryDslCollections = { group = "com.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+queryDslSpatial = { group = "com.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
 
 #Groovy
 groovy = { group = "org.apache.groovy", name = "groovy", version.ref = "groovy" }

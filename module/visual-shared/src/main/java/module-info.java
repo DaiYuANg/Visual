@@ -6,7 +6,7 @@ module org.visual.shared {
   requires transitive com.github.oshi;
   requires com.fasterxml.jackson.core;
   requires static lombok;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires org.mapstruct;
   requires java.prefs;
 

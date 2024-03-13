@@ -7,7 +7,7 @@ module org.visual.config {
   requires dev.dirs;
   requires org.github.gestalt.yaml;
   requires org.github.gestalt.json;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires jakarta.inject;
 
   exports org.visual.config;

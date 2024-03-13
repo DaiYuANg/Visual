@@ -5,14 +5,19 @@ module org.visual.local.store {
   requires java.naming;
   requires com.google.common;
   requires java.compiler;
-  requires org.jetbrains.annotations;
+  requires static org.jetbrains.annotations;
   requires jakarta.inject;
   requires io.avaje.inject;
+  requires org.hibernate.orm.core;
+  requires org.hibernate.orm.graalvm;
+  requires jakarta.persistence;
 
   exports org.visual.local.store.api;
   exports org.visual.local.store.entity;
   exports org.visual.local.store.repository;
-  exports org.visual.local.store;
+
+  opens org.visual.local.store.entity to
+      org.hibernate.orm.core;
 
   provides io.avaje.inject.spi.Module with
       org.visual.local.store.StoreModule;
