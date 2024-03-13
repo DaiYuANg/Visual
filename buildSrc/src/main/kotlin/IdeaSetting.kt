@@ -7,14 +7,18 @@ class IdeaSetting : Plugin<Project> {
     target.plugins.apply(IdeaPlugin::class.java).model.project.ipr {
       withXml {
         asElement()
-          .firstElement { tagName == "component" && getAttribute("name") == "VcsDirectoryMappings" }
-          .firstElement { tagName == "mapping" }
-          .setAttribute("vcs", "Git")
+            .firstElement {
+              tagName == "component" && getAttribute("name") == "VcsDirectoryMappings"
+            }
+            .firstElement { tagName == "mapping" }
+            .setAttribute("vcs", "Git")
       }
-//  TODO set idea disable ana https://stackoverflow.com/questions/16369749/how-to-disable-pre-commit-code-analysis-for-git-backed-projects-using-intellij-i
+      //  TODO set idea disable ana
+      // https://stackoverflow.com/questions/16369749/how-to-disable-pre-commit-code-analysis-for-git-backed-projects-using-intellij-i
       withXml {
-        asElement()
-          .firstElement { tagName == "component" && getAttribute("name") == "VcsManagerConfiguration" }
+        asElement().firstElement {
+          tagName == "component" && getAttribute("name") == "VcsManagerConfiguration"
+        }
       }
     }
   }

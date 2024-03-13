@@ -1,21 +1,16 @@
-package org.visual.factory;
+package org.visual.provider;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import io.avaje.inject.Bean;
-import io.avaje.inject.Factory;
-import io.avaje.inject.Lazy;
+import jakarta.inject.Provider;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.visual.shared.singleton.OS;
 
-@Factory
-@Lazy
-public class RootFactory {
-
-  @Bean
-  Executor executor() {
+public class ExecutorProvider implements Provider<Executor> {
+  @Override
+  public Executor get() {
     return new ThreadPoolExecutor(
         OS.cpuCore,
         OS.cpuCore + 1,

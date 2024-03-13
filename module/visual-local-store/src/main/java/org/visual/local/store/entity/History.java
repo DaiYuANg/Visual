@@ -6,10 +6,10 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table
 @Getter
 @Setter
+@Entity
+@Table
 public class History {
 
   @Id private long id;

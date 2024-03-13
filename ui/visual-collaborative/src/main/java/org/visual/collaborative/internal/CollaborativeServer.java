@@ -9,9 +9,10 @@ import org.visual.collaborative.context.CollaborativeContext;
 @Slf4j
 public class CollaborativeServer extends AbstractVerticle {
 
-  private final NetServer server = CollaborativeContext.INSTANCE.getInjector().get(NetServer.class);
+  private final NetServer server =
+      CollaborativeContext.INSTANCE.getInjector().getInstance(NetServer.class);
 
-  private final Vertx vertx = CollaborativeContext.INSTANCE.getInjector().get(Vertx.class);
+  private final Vertx vertx = CollaborativeContext.INSTANCE.getInjector().getInstance(Vertx.class);
 
   @Override
   public void start() {

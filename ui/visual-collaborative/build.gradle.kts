@@ -9,9 +9,7 @@ dependencies {
   implementation(libs.vertxHazelcast)
   implementation(projects.module.visualShared)
   implementation(libs.mutiny)
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
-  testImplementation(libs.avajeInjectTest)
-  testAnnotationProcessor(libs.avajeInjectTestGenerator)
+  implementation(libs.guice)
   implementation(libs.mutinyVertx)
+  implementation(libs.vertxKotlin)
 }

@@ -5,11 +5,7 @@ plugins {
 group = "org.visual.local.store"
 
 dependencies {
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
-  testImplementation(libs.avajeInjectTest)
-  testAnnotationProcessor(libs.avajeInjectTestGenerator)
-  implementation(libs.directories)
+  implementation(libs.guava)
 
   implementation(enforcedPlatform(libs.hibernatePlatform))
   implementation(libs.hibernateCore)
@@ -18,7 +14,8 @@ dependencies {
   implementation(libs.hibernateValidator)
   implementation(libs.h2)
   implementation(libs.jakartaPersistenceAPI)
-
+//  annotationProcessor(libs.jakartaPersistenceAPI)
+  annotationProcessor(libs.hibernateJpamodelgen)
   compileOnly("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
   annotationProcessor("com.querydsl:querydsl-apt:${libs.versions.queryDsl.get()}:jakarta")
   implementation("com.querydsl:querydsl-jpa:${libs.versions.queryDsl.get()}:jakarta")
@@ -29,10 +26,10 @@ dependencies {
 
   testImplementation(libs.hibernateTesting)
 
-  implementation(libs.guava)
+  implementation(libs.guice)
+  implementation(libs.guicePersist)
+  implementation(libs.directories)
 }
 
 hibernate {
-  enhancement {
-  }
 }

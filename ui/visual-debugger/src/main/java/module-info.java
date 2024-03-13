@@ -27,7 +27,7 @@ module org.visual.debugger {
   requires com.dlsc.preferencesfx;
   requires com.google.gson;
   requires org.visual.component;
-  requires io.avaje.inject;
+  requires com.google.guice;
 
   opens org.visual.debugger.view.cssfx to
       javafx.fxml;
@@ -50,7 +50,4 @@ module org.visual.debugger {
   exports org.visual.debugger.inspector;
   exports org.visual.debugger.component;
   exports org.visual.debugger.view;
-
-  provides io.avaje.inject.spi.Module with
-      org.visual.debugger.DebuggerModule;
 }

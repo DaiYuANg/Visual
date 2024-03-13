@@ -1,6 +1,7 @@
 package org.visual.debugger.context;
 
-import io.avaje.inject.BeanScope;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import java.nio.charset.StandardCharsets;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,10 +14,10 @@ import org.visual.debugger.constant.FXMLKey;
 public enum DebuggerContext {
   INSTANCE;
 
-  private final BeanScope injector = BeanScope.builder().build();
+  private final Injector injector = Guice.createInjector();
 
   public <T> @NonNull T get(Class<T> clazz) {
-    return injector.get(clazz);
+    return injector.getInstance(clazz);
   }
 
   @SneakyThrows

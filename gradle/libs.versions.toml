@@ -19,11 +19,13 @@ vertx = "4.5.4"
 jdbi = "3.45.0"
 groovy = "5.0.0-alpha-6"
 fury = "0.5.0-SNAPSHOT"
-avajeInject = "9.12-RC2"
 nitrite = "4.3.0-SNAPSHOT"
 avajeValidaor = "1.3"
 hibernate = "6.4.4.Final"
 queryDsl = "5.1.0"
+h2 = "2.2.224"
+guice = "7.0.0"
+kotlin = "1.9.23"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
@@ -85,7 +87,8 @@ gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", vers
 gestaltYaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", version.ref = "gestalt" }
 gestaltJSON = { group = "com.github.gestalt-config", name = "gestalt-json", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
-#gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
+gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
+gestaltKotlin = { group = "com.github.gestalt-config", name = "gestalt-kotlin", version.ref = "gestalt" }
 
 guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
 
@@ -98,7 +101,8 @@ mavenResloverSupplier = { group = "org.apache.maven.resolver", name = "maven-res
 mysql = { group = "com.mysql", name = "mysql-connector-j", version = "8.3.0" }
 postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.2" }
 mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version = "12.6.1.jre11" }
-h2 = { group = "com.h2database", name = "h2", version = "2.2.224" }
+h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
+h2Mvstore = { group = "com.h2database", name = "h2-mvstore", version.ref = "h2" }
 sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.1.0" }
 hikariCP = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
 
@@ -148,6 +152,7 @@ vertxJunit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx"
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
 vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertxPostgresqlClient = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
+vertxKotlin = { group = "io.vertx", name = "vertx-lang-kotlin", version.ref = "vertx" }
 vertxMySQLClient = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
 vertxDB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
 vertxOrcaleClient = { group = "io.vertx", name = "vertx-oracle-client", version.ref = "vertx" }
@@ -162,11 +167,6 @@ mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.8" }
 mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.10.0" }
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
-
-avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
-avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
-avajeInjectTest = { group = "io.avaje", name = "avaje-inject-test", version.ref = "avajeInject" }
-avajeInjectTestGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
 
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.9" }
 immutable = { group = "org.immutables", name = "value", version = "2.10.1" }
@@ -185,7 +185,7 @@ hibernateTesting = { group = "org.hibernate.orm", name = "hibernate-testing", ve
 hibernateGraalvm = { group = "org.hibernate.orm", name = "hibernate-graalvm", version.ref = "hibernate" }
 hibernateJfr = { group = "org.hibernate.orm", name = "hibernate-jfr", version.ref = "hibernate" }
 
-jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M1" }
+jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.1.0" }
 
 queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
 queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
@@ -199,6 +199,14 @@ groovyJMX = { group = "org.apache.groovy", name = "groovy-jmx", version.ref = "g
 
 furyCore = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 furyFormat = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
+
+guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
+guiceAssistedinject = { group = "com.google.inject.extensions", name = "guice-assistedinject", version.ref = "guice" }
+guicePersist = { group = "com.google.inject.extensions", name = "guice-persist", version.ref = "guice" }
+guiceJNDI = { group = "com.google.inject.extensions", name = "guice-jndi", version.ref = "guice" }
+guiceJMX = { group = "com.google.inject.extensions", name = "guice-jmx", version.ref = "guice" }
+guiceThrowingproviders = { group = "com.google.inject.extensions", name = "guice-throwingproviders", version.ref = "guice" }
+guiceTestlib = { group = "com.google.inject.extensions", name = "guice-testlib", version.ref = "guice" }
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }
@@ -216,3 +224,9 @@ spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-p
 graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.1" }
 jlinkPlugin = { group = "org.beryx", name = "badass-jlink-plugin", version = "3.0.1" }
 fatjarPlugin = { group = "io.github.goooler.shadow", name = "shadow-gradle-plugin", version = "8.1.7" }
+kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
+kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
+kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
+kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.3" }

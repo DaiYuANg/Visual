@@ -10,15 +10,18 @@ apply<JavaFxSetting>()
 apply<AllProjectSetting>()
 apply<RootProjectSetting>()
 apply<ReleaseSetting>()
+apply<KotlinSetting>()
 
 dependencies {
   implementation(libs.logback)
   implementation(libs.fastutil)
 
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
-  testImplementation(libs.avajeInjectTest)
-  testAnnotationProcessor(libs.avajeInjectTestGenerator)
+  implementation(libs.logback)
+  implementation(libs.guice)
+  implementation(libs.guiceJMX)
+  implementation(libs.guiceThrowingproviders)
+  implementation(libs.guiceAssistedinject)
+  testImplementation(libs.guiceTestlib)
 
   implementation(libs.avajeValidaor)
   implementation(libs.avajeValidaorConstraints)
@@ -30,9 +33,6 @@ dependencies {
 
   implementation(libs.pcollections)
   implementation(libs.slf4jJulBridage)
-
-  implementation(libs.furyCore)
-  implementation(libs.furyFormat)
 
   implementation(projects.module.visualConfig)
   implementation(projects.serialize.visualSerializeApi)

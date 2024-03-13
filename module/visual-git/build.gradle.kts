@@ -11,8 +11,5 @@ dependencies {
   implementation(libs.jgitLfs)
   implementation(libs.jgitSSH)
   implementation(libs.jgitHttp)
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
-  testImplementation(libs.avajeInjectTest)
-  testAnnotationProcessor(libs.avajeInjectTestGenerator)
+  implementation(libs.guice)
 }

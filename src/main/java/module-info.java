@@ -1,10 +1,4 @@
-import io.avaje.inject.InjectModule;
-import org.visual.local.store.StoreModule;
-
 @SuppressWarnings({"requires-automatic"})
-@InjectModule(
-    name = "visual",
-    requiresPackages = {StoreModule.class})
 module org.visual {
   requires javafx.graphics;
   requires static lombok;
@@ -36,9 +30,13 @@ module org.visual {
   requires com.fasterxml.jackson.core;
   requires org.slf4j.jdk.platform.logging;
   requires org.visual.local.store;
-  requires org.apache.fury.core;
-  requires org.apache.fury.format;
-  requires io.avaje.inject;
+  requires com.google.guice;
+  requires com.google.guice.extensions.jmx;
+  requires com.google.guice.extensions.assistedinject;
+  requires com.google.guice.extensions.throwingproviders;
+
+  exports org.visual to
+      com.google.guice;
 
   opens org.visual.controller to
       javafx.fxml;
@@ -50,7 +48,6 @@ module org.visual {
   exports org.visual.view to
       javafx.fxml,
       javafx.graphics;
-  exports org.visual;
   exports org.visual.component to
       javafx.fxml,
       javafx.graphics;
@@ -63,13 +60,16 @@ module org.visual {
       javafx.fxml,
       javafx.graphics;
 
+  opens org.visual.handle to
+      com.google.guice;
+  opens org.visual.provider to
+      com.google.guice;
+  opens org.visual.component to
+      com.google.guice;
   opens org.visual.controller.creation to
       javafx.fxml;
 
   exports org.visual.controller.creation to
       javafx.fxml,
       javafx.graphics;
-
-  provides io.avaje.inject.spi.Module with
-      org.visual.VisualModule;
 }

@@ -9,10 +9,7 @@ dependencies {
   implementation(libs.jsqlparser)
 
   antlr(libs.antlr)
-  implementation(libs.avajeInject)
-  annotationProcessor(libs.avajeInjectGenerator)
-  testImplementation(libs.avajeInjectTest)
-  testAnnotationProcessor(libs.avajeInjectTestGenerator)
+  implementation(libs.guice)
 
   testImplementation(libs.testcontainersMysql)
   testImplementation(libs.testcontainersMssqlserver)

@@ -2,6 +2,7 @@ import com.xenoterracide.gradle.semver.SemverExtension
 import com.xenoterracide.gradle.semver.SemverPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
+import java.nio.charset.StandardCharsets
 import name.remal.gradle_plugins.lombok.LombokPlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -16,7 +17,6 @@ import org.gradle.kotlin.dsl.closureOf
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.dokka.gradle.DokkaPlugin
-import java.nio.charset.StandardCharsets
 
 class AllProjectSetting : Plugin<Project> {
   override fun apply(target: Project) {
@@ -37,7 +37,8 @@ class AllProjectSetting : Plugin<Project> {
         doFirst {
           println("AnnotationProcessorPath for $name is ${options.annotationProcessorPath?.files}")
         }
-//        options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
+        //
+        // options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
         options.encoding = StandardCharsets.UTF_8.name()
         options.isFork = true
         options.isDebug = true
@@ -90,22 +91,27 @@ class AllProjectSetting : Plugin<Project> {
         val full = "full_class_diagram"
         @Suppress("UNCHECKED_CAST")
         diagram(
-          internal,
-          closureOf<ClassDiagramsExtension.ClassDiagram> {
-            include(packages().withNameLike(glob))
-            writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$PLANTUML_SUFFIX")))
-          }
-            as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+            internal,
+            closureOf<ClassDiagramsExtension.ClassDiagram> {
+              include(packages().withNameLike(glob))
+              writeTo(
+                  file(
+                      project.layout.buildDirectory.file(
+                          "$internal.${project.name}.$PLANTUML_SUFFIX")))
+            }
+                as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
         )
         @Suppress("UNCHECKED_CAST")
         diagram(
-          full,
-          closureOf<ClassDiagramsExtension.ClassDiagram> {
-            include(packages().withNameLike(glob))
-            include(packages().recursive())
-            writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$PLANTUML_SUFFIX")))
-          }
-            as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+            full,
+            closureOf<ClassDiagramsExtension.ClassDiagram> {
+              include(packages().withNameLike(glob))
+              include(packages().recursive())
+              writeTo(
+                  file(
+                      project.layout.buildDirectory.file("$full.${project.name}.$PLANTUML_SUFFIX")))
+            }
+                as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
         )
       }
     }

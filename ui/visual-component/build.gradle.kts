@@ -2,6 +2,8 @@ plugins {
   alias(libs.plugins.sass)
 }
 
+apply<KotlinSetting>()
+
 group = "org.visual.component"
 
 dependencies {

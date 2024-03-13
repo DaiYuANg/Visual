@@ -8,5 +8,7 @@ module org.visual.collaborative {
   requires org.visual.shared;
   requires jakarta.inject;
   requires static org.jetbrains.annotations;
-  requires io.avaje.inject;
+  requires com.google.guice;
+
+  exports org.visual.collaborative;
 }

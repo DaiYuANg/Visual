@@ -1,4 +1,4 @@
-package org.visual.config;
+package org.visual.config.provider;
 
 import jakarta.inject.Provider;
 import jakarta.inject.Singleton;

@@ -1,15 +1,16 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.github.spotbugs.snom.SpotBugsPlugin
+import java.nio.charset.StandardCharsets
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.quality.CheckstylePlugin
 import org.gradle.api.plugins.quality.PmdPlugin
-import java.nio.charset.StandardCharsets
 
 class FormatSetting : Plugin<Project> {
   private val miscTarget =
-    listOf("*.md", ".gitignore", "gradle/libs.versions.toml", "**/*.fxml", "**/*.scss", "**/*.css")
+      listOf(
+          "*.md", ".gitignore", "gradle/libs.versions.toml", "**/*.fxml", "**/*.scss", "**/*.css")
 
   override fun apply(target: Project) {
     target.plugins.apply(SpotlessPlugin::class.java)
@@ -32,22 +33,22 @@ class FormatSetting : Plugin<Project> {
         indentWithSpaces(2)
         removeUnusedImports()
         formatAnnotations()
-          .addTypeAnnotation("Empty")
-          .addTypeAnnotation("NonEmpty")
-          .removeTypeAnnotation("Localized")
+            .addTypeAnnotation("Empty")
+            .addTypeAnnotation("NonEmpty")
+            .removeTypeAnnotation("Localized")
       }
       kotlin {
-        target("buildSrc/src/main/kotlin/*.kt")
+        target("**/*.kt")
         ktfmt()
-        ktlint()
+        //        ktlint()
       }
       kotlinGradle {
         target("**/*.gradle.kts")
         ktfmt()
         ktlint()
-          .setEditorConfigPath(
-            "${target.rootProject.layout.projectDirectory}/.editorconfig",
-          ) // sample unusual placement
+            .setEditorConfigPath(
+                "${target.rootProject.layout.projectDirectory}/.editorconfig",
+            ) // sample unusual placement
         indentWithSpaces(IDENT_WIDTH)
       }
       json {
@@ -70,6 +71,5 @@ class FormatSetting : Plugin<Project> {
         antlr4Formatter()
       }
     }
-//    target.
   }
 }

@@ -12,13 +12,11 @@ class JavaFxSetting : Plugin<Project> {
       version = rootLibs.versions.javafxVersion.get()
       modules(*javafxModules.toTypedArray())
       configurations =
-        arrayOf(
-          "implementation",
-          "testImplementation",
-        )
+          arrayOf(
+              "implementation",
+              "testImplementation",
+          )
     }
-    target.dependencies {
-      add(TEST_IMPLEMENTATION, rootLibs.javafxUnitTest)
-    }
+    target.dependencies { add(TEST_IMPLEMENTATION, rootLibs.javafxUnitTest) }
   }
 }
