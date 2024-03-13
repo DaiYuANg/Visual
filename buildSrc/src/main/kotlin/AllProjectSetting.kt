@@ -77,6 +77,7 @@ class AllProjectSetting : Plugin<Project> {
         forkEvery = 100
         reports.html.required.set(false)
         reports.junitXml.required.set(false)
+        workingDir = projectDir
       }
 
       project.extensions.configure<JavaPluginExtension> {

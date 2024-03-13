@@ -20,11 +20,10 @@ dependencies {
   api(libs.animated)
   api(libs.flowless)
   api(libs.apacheCommonIO)
+  api(libs.formfx)
 
   implementation(libs.guava)
   implementation(libs.fastutil)
-  implementation(projects.codegen.visualCodegen)
-  annotationProcessor(projects.codegen.visualCodegen)
 }
 
 tasks.compileSass {

@@ -8,6 +8,8 @@ class ReleaseSetting : Plugin<Project> {
   override fun apply(target: Project) {
     target.plugins.apply(JReleaserPlugin::class.java)
     target.plugins.apply(ShadowPlugin::class.java)
+    //    target.plugins.apply(NativeImagePlugin::class)
+    //    target.configure<GraalVMExtension> { toolchainDetection.set(true) }
 
     target.tasks.withType(ShadowJar::class.java) { minimize() }
     //    target.plugins.apply()

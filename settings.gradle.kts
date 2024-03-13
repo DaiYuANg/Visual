@@ -62,9 +62,8 @@ include("module:visual-local-store")
 include("module:visual-maven-repository")
 include("module:visual-config")
 include("module:visual-script")
+include("module:visual-pdm")
 
 include("serialize:visual-serialize-json")
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
-
-include("codegen:visual-codegen")

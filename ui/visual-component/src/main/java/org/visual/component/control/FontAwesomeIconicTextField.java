@@ -10,11 +10,9 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.visual.codegen.annotation.FxProperty;
 
 public class FontAwesomeIconicTextField extends CustomTextField {
 
-  @FxProperty
   private final SimpleObjectProperty<FontAwesomeSolid> _icon = new SimpleObjectProperty<>();
 
   public FontAwesomeSolid getIcon() {

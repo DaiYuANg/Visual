@@ -37,7 +37,7 @@ dependencies {
   implementation(projects.module.visualConfig)
   implementation(projects.serialize.visualSerializeApi)
   implementation(projects.serialize.visualSerializeJson)
-  implementation(projects.module.visualScript)
+//  implementation(projects.module.visualScript)
   implementation(projects.module.visualLocalStore)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)
@@ -46,8 +46,16 @@ dependencies {
   implementation(projects.ui.visualGraphEditor)
   implementation(projects.ui.visualCollaborative)
   implementation(projects.ui.visualI18n)
-  compileOnly(projects.codegen.visualCodegen)
-  annotationProcessor(projects.codegen.visualCodegen)
+
+  implementation(libs.immutablesValue)
+  implementation(libs.immutablesBuilder)
+  annotationProcessor(libs.immutablesValue)
+  implementation(libs.immutablesAnnotate)
+  implementation(libs.immutablesSerial)
 
   testImplementation(libs.javafxUnitTest)
+}
+
+tasks.compileJava {
+  options.compilerArgs.add("-Aimmutables.gradle.incremental")
 }

@@ -1,6 +1,8 @@
 plugins {
 }
 
+apply<KotlinSetting>()
+
 group = "org.visual.collaborative"
 
 dependencies {

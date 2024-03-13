@@ -2,8 +2,6 @@ import com.coditory.gradle.manifest.ManifestPlugin
 import com.coditory.gradle.manifest.ManifestPluginExtension
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.xenoterracide.gradle.semver.SemverExtension
-import org.graalvm.buildtools.gradle.NativeImagePlugin
-import org.graalvm.buildtools.gradle.dsl.GraalVMExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ApplicationPlugin
@@ -19,7 +17,6 @@ class RootProjectSetting : Plugin<Project> {
     val semver = target.extensions.getByType(SemverExtension::class)
     val git = semver.git
     target.plugins.apply(ApplicationPlugin::class)
-    target.plugins.apply(NativeImagePlugin::class)
     target.plugins.apply(VersionsPlugin::class)
     target.plugins.apply(ManifestPlugin::class)
     //    target.plugins.apply(JlinkPlugin::class)
@@ -27,7 +24,6 @@ class RootProjectSetting : Plugin<Project> {
       mainClass.set(mainClassPath)
       applicationDefaultJvmArgs = devJvmArguments
     }
-    target.configure<GraalVMExtension> { toolchainDetection.set(true) }
 
     target.extensions.configure(ManifestPluginExtension::class.java) {
       buildAttributes = true

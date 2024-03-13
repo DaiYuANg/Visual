@@ -2,9 +2,13 @@ package org.visual.model;
 
 import java.util.UUID;
 import lombok.Data;
+import org.immutables.value.Value;
 
 @Data
-public class Project {
+@Value.Immutable
+@Value.Style(jakarta = true, jdk9Collections = true)
+public abstract class Project {
 
-  private UUID uuid;
+  @Value.Parameter
+  public abstract UUID uuid();
 }

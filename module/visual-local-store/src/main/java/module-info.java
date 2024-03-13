@@ -6,21 +6,22 @@ module org.visual.local.store {
   requires com.google.common;
   requires static org.jetbrains.annotations;
   requires jakarta.inject;
+  requires io.ebean.annotation;
+  requires io.ebean.api;
+  requires io.ebean.platform.h2;
+  requires io.ebean.core;
+  requires io.ebean.core.type;
   requires com.google.guice;
-  requires com.google.guice.extensions.persist;
-  requires org.hibernate.orm.core;
-  requires org.hibernate.orm.graalvm;
-  requires jakarta.persistence;
+  requires io.ebean.querybean;
+  requires io.ebean.ddl.generator;
   requires java.compiler;
-  requires com.querydsl.core;
+  requires io.github.oshai.kotlinlogging;
+  requires kotlin.stdlib;
 
   exports org.visual.local.store.api;
   exports org.visual.local.store.repository;
   exports org.visual.local.store.entity;
   exports org.visual.local.store;
-
-  opens org.visual.local.store.lifecycle to
+  exports org.visual.local.store.provider to
       com.google.guice;
-  opens org.visual.local.store.entity to
-      org.hibernate.orm.core;
 }

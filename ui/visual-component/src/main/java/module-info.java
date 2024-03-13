@@ -27,7 +27,7 @@ module org.visual.component {
   requires javafx.swing;
   requires org.apache.commons.io;
   requires java.logging;
-  requires static org.visual.codegen;
+  requires io.github.oshai.kotlinlogging;
 
   exports org.visual.component.window;
   exports org.visual.component.control;
@@ -39,6 +39,8 @@ module org.visual.component {
   exports org.visual.component.animation;
   exports org.visual.component.api;
   exports org.visual.component.wrapper;
+
+  requires kotlin.stdlib;
 
   opens org.visual.component.window to
       javafx.graphics,

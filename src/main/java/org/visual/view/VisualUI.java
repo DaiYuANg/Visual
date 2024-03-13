@@ -37,9 +37,4 @@ public class VisualUI extends Application {
     rootStage.setScene(rootScene);
     rootStage.show();
   }
-
-  @Override
-  public void stop() throws Exception {
-    Platform.exit();
-  }
 }

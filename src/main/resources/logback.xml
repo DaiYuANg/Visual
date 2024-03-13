@@ -33,5 +33,10 @@
 
   <logger name="org.visual" level="TRACE"/>
   <logger name="com.google.inject" level="TRACE"/>
+  <logger name="io.ebean.SQL" level="TRACE"/>
+
+  <logger name="io.ebean.TXN" level="TRACE"/>
+  <logger name="io.ebean.DDL" level="TRACE"/>
+
 
 </configuration>

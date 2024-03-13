@@ -10,8 +10,6 @@ module org.visual {
   requires javafx.controls;
   requires javafx.web;
   requires org.visual.component;
-  requires org.kordamp.ikonli.core;
-  requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.fontawesome5;
   requires java.logging;
   requires org.visual.shared;
@@ -34,6 +32,15 @@ module org.visual {
   requires com.google.guice.extensions.jmx;
   requires com.google.guice.extensions.assistedinject;
   requires com.google.guice.extensions.throwingproviders;
+  requires kotlin.stdlib;
+  requires io.github.oshai.kotlinlogging;
+  requires org.immutables.value;
+  requires org.immutables.builder;
+  requires org.immutables.serial;
+  requires org.immutables.annotate;
+  requires com.google.errorprone.annotations;
+  requires java.compiler;
+  requires com.dlsc.formsfx;
 
   exports org.visual to
       com.google.guice;
@@ -51,7 +58,7 @@ module org.visual {
   exports org.visual.component to
       javafx.fxml,
       javafx.graphics;
-  exports org.visual.constant;
+  exports org.visual.feature;
 
   opens org.visual.controller.layout to
       javafx.fxml;
@@ -66,10 +73,4 @@ module org.visual {
       com.google.guice;
   opens org.visual.component to
       com.google.guice;
-  opens org.visual.controller.creation to
-      javafx.fxml;
-
-  exports org.visual.controller.creation to
-      javafx.fxml,
-      javafx.graphics;
 }

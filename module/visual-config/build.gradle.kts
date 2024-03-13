@@ -10,6 +10,6 @@ dependencies {
   implementation(libs.directories)
   implementation(libs.guava)
   implementation(libs.gestaltGuice) {
-    exclude(group = "com.google.guava", module = "guava")
+    exclude(group = libs.guava.get().group, module = libs.guava.get().name)
   }
 }

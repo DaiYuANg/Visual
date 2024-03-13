@@ -10,5 +10,4 @@ systemProp.http.proxyPort=
 systemProp.https.proxyHost=127.0.0.1
 systemProp.https.proxyPort=
 org.gradle.daemon.idletimeout=3600
-kotlin.daemon.jvmargs=-Xmx4G -Xms=2G
-kotlin.experimental.tryK2=true
+kotlin.daemon.jvmargs=-Xmx4G -Xms=2G -XX:+UseParallelGC
