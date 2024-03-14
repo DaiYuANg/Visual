@@ -51,7 +51,8 @@ module org.visual {
   exports org.visual.core;
   exports org.visual.controller to
       javafx.fxml,
-      javafx.graphics;
+      javafx.graphics,
+      com.google.guice;
   exports org.visual.view to
       javafx.fxml,
       javafx.graphics;
@@ -61,7 +62,8 @@ module org.visual {
   exports org.visual.feature;
 
   opens org.visual.controller.layout to
-      javafx.fxml;
+      javafx.fxml,
+      com.google.guice;
 
   exports org.visual.controller.layout to
       javafx.fxml,
