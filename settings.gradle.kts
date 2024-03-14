@@ -67,3 +67,5 @@ include("module:visual-pdm")
 include("serialize:visual-serialize-json")
 include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
+
+include("website")

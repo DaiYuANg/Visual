@@ -1,7 +1,4 @@
-# VisualModel
-
-## Visual Model Language
-
+# Visual
 
 ## Getting started
 
