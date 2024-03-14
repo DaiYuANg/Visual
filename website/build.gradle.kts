@@ -4,7 +4,7 @@ plugins {
   alias(libs.plugins.asciidoctorEpub)
   alias(libs.plugins.asciidoctorEditconfig)
   alias(libs.plugins.asciidoctorGem)
-//  alias(libs.plugins.asciidoctorRevealjs)
+  idea
 }
 
 repositories {
@@ -17,10 +17,6 @@ asciidoctorj {
   modules {
     diagram.use()
   }
-}
-
-dependencies {
-  asciidoctorGems("asciidoctor-plantuml:0.1.1")
 }
 
 tasks.asciidoctor {
@@ -38,4 +34,10 @@ tasks.asciidoctor {
 
 tasks.build {
   dependsOn(tasks.asciidoctor)
+}
+
+idea {
+  module {
+    sourceDirs = project.tasks.asciidoctor.get().sourceFileTree.toMutableSet()
+  }
 }

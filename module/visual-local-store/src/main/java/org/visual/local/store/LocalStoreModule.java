@@ -6,10 +6,10 @@ import com.google.inject.persist.jpa.JpaPersistOptions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.local.store.api.HistoryRepository;
+import org.visual.local.store.api.ProjectRepository;
 import org.visual.local.store.lifecycle.JPAInitializer;
 import org.visual.local.store.provider.JpaQueryFactoryProvider;
-import org.visual.local.store.repository.HistoryRepositoryImpl;
+import org.visual.local.store.repository.ProjectRepositoryImpl;
 
 @Slf4j
 public class LocalStoreModule extends AbstractModule {
@@ -20,6 +20,6 @@ public class LocalStoreModule extends AbstractModule {
     install(new JpaPersistModule("visualUnit", option));
     bind(JPAInitializer.class).asEagerSingleton();
     bind(JPAQueryFactory.class).toProvider(JpaQueryFactoryProvider.class);
-    bind(HistoryRepository.class).to(HistoryRepositoryImpl.class);
+    bind(ProjectRepository.class).to(ProjectRepositoryImpl.class);
   }
 }

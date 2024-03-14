@@ -9,7 +9,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
     <!-- JPA entities must be registered here -->
-    <class>org.visual.local.store.entity.History</class>
+    <class>org.visual.local.store.entity.Project</class>
 
     <properties>
       <!-- vendor-specific properties go here -->

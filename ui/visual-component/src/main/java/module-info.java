@@ -28,6 +28,7 @@ module org.visual.component {
   requires org.apache.commons.io;
   requires java.logging;
   requires io.github.oshai.kotlinlogging;
+  requires java.prefs;
 
   exports org.visual.component.window;
   exports org.visual.component.control;

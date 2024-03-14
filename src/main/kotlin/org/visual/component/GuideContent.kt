@@ -2,26 +2,49 @@ package org.visual.component
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.inject.Singleton
-import javafx.beans.property.SimpleObjectProperty
-import javafx.scene.layout.GridPane
+import java.nio.file.Path
+import java.util.function.Consumer
+import javafx.beans.property.SimpleStringProperty
+import javafx.scene.control.Label
+import javafx.scene.control.TextField
+import javafx.scene.layout.HBox
+import javafx.stage.DirectoryChooser
 import lombok.extern.slf4j.Slf4j
-import org.visual.feature.AvailableFeature
+import org.apache.commons.lang3.SystemUtils
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid
+import org.visual.component.control.FontAwesomeSolidButton
 
 @Singleton
 @Slf4j
-class GuideContent : GridPane() {
+class GuideContent : HBox() {
 
   private val log = KotlinLogging.logger {}
 
-  private val featureProperty = SimpleObjectProperty<AvailableFeature>()
+  private val internalPath = SimpleStringProperty(SystemUtils.USER_HOME)
 
-  init {
-    prefWidth = 500.0
-    prefHeight = 500.0
+  private val dc by lazy {
+    DirectoryChooser().apply { initialDirectory = Path.of(internalPath.get()).toFile() }
   }
 
   init {
-    val all = AvailableFeature.entries.stream().map { it.thumbnail }.toList()
-    addRow(0, *all.toTypedArray())
+    centerShapeProperty().set(true)
+  }
+
+  init {
+    val label = Label("Path")
+    val input = TextField().apply { textProperty().bind(internalPath) }
+    val btn =
+        FontAwesomeSolidButton(FontAwesomeSolid.FILE).apply {
+          setOnAction {
+            val path = dc.showDialog(scene.window)
+            log.atTrace { message = "dir is :${path.absolutePath}" }
+            internalPath.set(path.absolutePath)
+          }
+        }
+    children.addAll(label, input, btn)
+  }
+
+  fun listenChoose(callback: Consumer<Path>) {
+    internalPath.addListener { _, _, t2 -> run { callback.accept(Path.of(t2)) } }
   }
 }
