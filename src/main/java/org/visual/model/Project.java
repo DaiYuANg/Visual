@@ -1,14 +1,18 @@
 package org.visual.model;
 
+import java.nio.file.Path;
+import java.util.Set;
 import java.util.UUID;
+import lombok.Builder;
 import lombok.Data;
-import org.immutables.value.Value;
 
 @Data
-@Value.Immutable
-@Value.Style(jakarta = true, jdk9Collections = true)
-public abstract class Project {
+@Builder
+public class Project {
 
-  @Value.Parameter
-  public abstract UUID uuid();
+  private UUID uuid;
+
+  private Path path;
+
+  private Set<Diagram> diagrams;
 }

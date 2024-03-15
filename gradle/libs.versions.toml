@@ -7,7 +7,7 @@ ikonli = "12.3.1"
 junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
-gestalt = "0.24.6"
+gestalt = "0.25.0"
 mavenResolver = "2.0.0-alpha-8"
 javafxVersion = "23-ea+3"
 eclipseCollections = "12.0.0.M3"
@@ -141,6 +141,10 @@ jacksonDataTypeGuava = { group = "com.fasterxml.jackson.datatype", name = "jacks
 jacksonDataTypePCollection = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-pcollections", version.ref = "jackson" }
 jacksonDataTypeJsonP = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jakarta-jsonp", version.ref = "jackson" }
 jacksonDataTypeXML = { group = "com.fasterxml.jackson.datatype", name = "jackson-dataformat-xml", version.ref = "jackson" }
+jacksonWoodstox = { group = "com.fasterxml.woodstox", name = "woodstox-core", version = "6.5.0" }
+jacksonGuice = { group = "com.fasterxml.jackson.module", name = "jackson-module-guice", version.ref = "jackson" }
+jacksonGuice7 = { group = "com.fasterxml.jackson.module", name = "jackson-module-guice7", version.ref = "jackson" }
+jacksonAfterburner = { group = "com.fasterxml.jackson.module", name = "jackson-module-afterburner", version.ref = "jackson" }
 jacksonJrAll = { group = "com.fasterxml.jackson.jr", name = "jackson-jr-all", version.ref = "jackson" }
 
 picocli = { group = "info.picocli", name = "picocli", version.ref = "picocli" }

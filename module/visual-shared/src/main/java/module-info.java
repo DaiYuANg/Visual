@@ -9,6 +9,7 @@ module org.visual.shared {
   requires static org.jetbrains.annotations;
   requires org.mapstruct;
   requires java.prefs;
+  requires it.unimi.dsi.fastutil;
 
   exports org.visual.shared.pojo;
   exports org.visual.shared.util;
