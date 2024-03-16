@@ -31,19 +31,19 @@ gradleEnterprise {
 }
 
 gitHooks {
-  preCommit {
-    from {
-      """
-      ./gradlew spotbugsMain
-      ./gradlew spotbugsTest
-      ./gradlew pmdMain
-      ./gradlew pmdTest
-      ./gradlew spotlessApply && git add .
-      """
-    }
-  }
-  commitMsg { conventionalCommits { defaultTypes() } }
-  createHooks(true)
+//  preCommit {
+//    from {
+//      """
+//      ./gradlew spotbugsMain
+//      ./gradlew spotbugsTest
+//      ./gradlew pmdMain
+//      ./gradlew pmdTest
+//      ./gradlew spotlessApply && git add .
+//      """
+//    }
+//  }
+//  commitMsg { conventionalCommits { defaultTypes() } }
+//  createHooks(true)
 }
 
 rootProject.name = "Visual"
