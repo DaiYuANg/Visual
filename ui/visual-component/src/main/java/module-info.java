@@ -40,6 +40,7 @@ module org.visual.component {
   exports org.visual.component.animation;
   exports org.visual.component.api;
   exports org.visual.component.wrapper;
+  exports org.visual.component.dsl;
 
   requires kotlin.stdlib;
 

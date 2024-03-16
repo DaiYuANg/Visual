@@ -8,6 +8,10 @@ import org.visual.component.display.SystemMenuBar;
 
 public class GlobalSystemMenu extends SystemMenuBar {
 
+  public GlobalSystemMenu() {
+    setUseSystemMenuBar(true);
+  }
+
   private final Supplier<MenuItem> exitItem =
       () -> {
         val menuItem = new MenuItem("exit");

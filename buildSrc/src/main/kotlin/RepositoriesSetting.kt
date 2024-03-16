@@ -13,7 +13,7 @@ class RepositoriesSetting : Plugin<Project> {
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
         maven { setUrl("https://repository.apache.org/snapshots/") }
-        maven { setUrl("https://oss.sonatype.org/content/repositories/snapshots") }
+        //        maven { setUrl("https://oss.sonatype.org/content/repositories/snapshots") }
         gradlePluginPortal()
         google()
       }

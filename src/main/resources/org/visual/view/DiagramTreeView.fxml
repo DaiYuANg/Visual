@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TreeItem?>
+<?import org.visual.component.DiagramTreeView?>
+<DiagramTreeView
+  fx:id="tree"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.visual.controller.DiagramTreeViewController"
+>
+</DiagramTreeView>

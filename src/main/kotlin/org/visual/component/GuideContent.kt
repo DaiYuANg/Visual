@@ -3,48 +3,65 @@ package org.visual.component
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.inject.Singleton
 import java.nio.file.Path
-import java.util.function.Consumer
-import javafx.beans.property.SimpleStringProperty
+import javafx.geometry.Insets
+import javafx.geometry.Pos
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
+import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
+import javafx.scene.text.Text
 import javafx.stage.DirectoryChooser
 import lombok.extern.slf4j.Slf4j
-import org.apache.commons.lang3.SystemUtils
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid
 import org.visual.component.control.FontAwesomeSolidButton
+import org.visual.store.GuideStore
 
 @Singleton
 @Slf4j
-class GuideContent : HBox() {
+class GuideContent : GridPane() {
 
   private val log = KotlinLogging.logger {}
 
-  private val internalPath = SimpleStringProperty(SystemUtils.USER_HOME)
-
   private val dc by lazy {
-    DirectoryChooser().apply { initialDirectory = Path.of(internalPath.get()).toFile() }
+    DirectoryChooser().apply { initialDirectory = Path.of(GuideStore.path.get()).toFile() }
   }
 
   init {
     centerShapeProperty().set(true)
+    alignment = Pos.CENTER
+    hgap = 10.0
+    vgap = 10.0
+    padding = Insets(25.0, 25.0, 25.0, 25.0)
   }
 
   init {
-    val label = Label("Path")
-    val input = TextField().apply { textProperty().bind(internalPath) }
-    val btn =
-        FontAwesomeSolidButton(FontAwesomeSolid.FILE).apply {
-          setOnAction {
-            val path = dc.showDialog(scene.window)
-            log.atTrace { message = "dir is :${path.absolutePath}" }
-            internalPath.set(path.absolutePath)
-          }
-        }
-    children.addAll(label, input, btn)
-  }
+    val sceneTitle = Text("Create Visual Project")
+    add(sceneTitle, 0, 0, 2, 1)
 
-  fun listenChoose(callback: Consumer<Path>) {
-    internalPath.addListener { _, _, t2 -> run { callback.accept(Path.of(t2)) } }
+    val total = Label("Name:")
+    add(total, 0, 1)
+
+    val totalField = TextField().apply { textProperty().bindBidirectional(GuideStore.projectName) }
+    add(totalField, 1, 1)
+
+    val percent = Label("Path")
+    add(percent, 0, 2)
+
+    val inputBox =
+        HBox().apply {
+          val pathInput: TextField = TextField().apply { textProperty().bind(GuideStore.path) }
+          val btn =
+              FontAwesomeSolidButton(FontAwesomeSolid.FILE).apply {
+                setOnAction {
+                  val path = dc.showDialog(scene.window)
+                  log.atTrace { message = "dir is :${path.absolutePath}" }
+                  GuideStore.path.set(path.absolutePath)
+                }
+              }
+          alignment = Pos.CENTER
+          children.addAll(pathInput, btn)
+        }
+
+    add(inputBox, 1, 2)
   }
 }

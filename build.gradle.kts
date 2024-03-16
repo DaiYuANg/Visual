@@ -15,8 +15,12 @@ apply<KotlinSetting>()
 dependencies {
   implementation(libs.logback)
   implementation(libs.fastutil)
-  implementation(libs.dataFaker)
   implementation(libs.mutiny)
+  implementation(libs.dataFaker)
+  implementation(libs.jgrapht)
+  implementation(libs.eclipseCollections)
+  implementation(libs.eclipseCollectionsAPI)
+  implementation(libs.eclipseCollectionsForkjoin)
 
   implementation(libs.logback)
   implementation(libs.guice)

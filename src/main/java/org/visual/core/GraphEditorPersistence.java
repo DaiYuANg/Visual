@@ -20,14 +20,13 @@ import org.visual.view.VisualUI;
 /** Helper class for crudely loading {@link GModel} states to and from XML. */
 public class GraphEditorPersistence {
 
-  private static final String FILE_EXTENSION = ".graph"; // $NON-NLS-1$
-  private static final String CHOOSER_TEXT =
-      "Graph Model Files (*" + FILE_EXTENSION + ")"; // $NON-NLS-1$ //$NON-NLS-2$
+  private static final String FILE_EXTENSION = ".graph";
+  private static final String CHOOSER_TEXT = "Graph Model Files (*" + FILE_EXTENSION + ")";
 
-  private static final String SAMPLE_FILE = "sample" + FILE_EXTENSION; // $NON-NLS-1$
-  private static final String SAMPLE_FILE_LARGE = "sample-large" + FILE_EXTENSION; // $NON-NLS-1$
-  private static final String TREE_FILE = "tree" + FILE_EXTENSION; // $NON-NLS-1$
-  private static final String TITLED_FILE = "titled" + FILE_EXTENSION; // $NON-NLS-1$
+  private static final String SAMPLE_FILE = "sample" + FILE_EXTENSION;
+  private static final String SAMPLE_FILE_LARGE = "sample-large" + FILE_EXTENSION;
+  private static final String TREE_FILE = "tree" + FILE_EXTENSION;
+  private static final String TITLED_FILE = "titled" + FILE_EXTENSION;
 
   private File initialDirectory = null;
 

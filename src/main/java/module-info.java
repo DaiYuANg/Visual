@@ -41,6 +41,10 @@ module org.visual {
   requires com.google.errorprone.annotations;
   requires java.compiler;
   requires com.dlsc.formsfx;
+  requires it.unimi.dsi.fastutil;
+  requires org.eclipse.collections.impl;
+  requires org.eclipse.collections.api;
+  requires org.jgrapht.core;
 
   exports org.visual to
       com.google.guice;

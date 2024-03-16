@@ -2,12 +2,11 @@
 jdk = "21"
 ikonliJavafx = "12.3.1"
 slf4j = "2.1.0-alpha1"
-freefairPlugin = "8.6"
 ikonli = "12.3.1"
 junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
-gestalt = "0.24.6"
+gestalt = "0.25.0"
 mavenResolver = "2.0.0-alpha-8"
 javafxVersion = "23-ea+3"
 eclipseCollections = "12.0.0.M3"
@@ -19,7 +18,6 @@ vertx = "4.5.5"
 jdbi = "3.45.0"
 groovy = "5.0.0-alpha-7"
 fury = "0.5.0-SNAPSHOT"
-nitrite = "4.3.0-SNAPSHOT"
 avajeValidaor = "1.3"
 hibernate = "6.4.4.Final"
 queryDsl = "5.1.0"
@@ -29,7 +27,7 @@ kotlin = "2.0.0-Beta4"
 ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
-
+avajeInject = "9.12-RC2"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
@@ -112,7 +110,7 @@ mavenResloverUtil = { group = "org.apache.maven.resolver", name = "maven-resolve
 mavenResloverSupplier = { group = "org.apache.maven.resolver", name = "maven-resolver-supplier", version.ref = "mavenResolver" }
 
 mysql = { group = "com.mysql", name = "mysql-connector-j", version = "8.3.0" }
-postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.2" }
+postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
 mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version = "12.6.1.jre11" }
 h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
 h2Mvstore = { group = "com.h2database", name = "h2-mvstore", version.ref = "h2" }
@@ -151,6 +149,10 @@ avajeValidaor = { group = "io.avaje", name = "avaje-validator-constraints", vers
 avajeValidaorConstraints = { group = "io.avaje", name = "avaje-validator-constraints", version.ref = "avajeValidaor" }
 avajeValidaorCodegen = { group = "io.avaje", name = "avaje-validator-generator", version.ref = "avajeValidaor" }
 
+avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
+avajeInjectTest = { group = "io.avaje", name = "avaje-inject-test", version.ref = "avajeInject" }
+avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
+
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 
@@ -177,7 +179,7 @@ vertxCassandraClient = { group = "io.vertx", name = "vertx-cassandra-client", ve
 vertxJdbcClient = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
 mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.8" }
-mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.10.0" }
+mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.11.0" }
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
 

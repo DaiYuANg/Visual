@@ -6,19 +6,19 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.controller.MainLayoutController"
       prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 0" styleClass="root-window">
-<!--    <VisualDebugger show="true"/>-->
-    <fx:include source="layout/GlobalMenu.fxml"/>
-    <fx:include source="layout/ToolBar.fxml"/>
-    <BorderPane VBox.vgrow="ALWAYS">
-        <center>
-            <SplitPane dividerPositions="0.2,0.8">
-                <fx:include source="FileTreeView.fxml"/>
-                <fx:include source="Editor.fxml"/>
-            </SplitPane>
-        </center>
-        <border/>
-        <bottom>
-            <fx:include source="layout/StatusBar.fxml"/>
-        </bottom>
-    </BorderPane>
+  <!--    <VisualDebugger show="true"/>-->
+  <fx:include source="layout/GlobalMenu.fxml"/>
+  <fx:include source="layout/ToolBar.fxml"/>
+  <BorderPane VBox.vgrow="ALWAYS">
+    <center>
+      <SplitPane dividerPositions="0.2,0.8">
+        <fx:include source="DiagramTreeView.fxml"/>
+        <fx:include source="Project.fxml"/>
+      </SplitPane>
+    </center>
+    <border/>
+    <bottom>
+      <fx:include source="layout/StatusBar.fxml"/>
+    </bottom>
+  </BorderPane>
 </VBox>

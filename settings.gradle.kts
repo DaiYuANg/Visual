@@ -69,3 +69,5 @@ include("serialize:visual-serialize-plantuml")
 include("serialize:visual-serialize-api")
 
 include("website")
+include("ui:visual-collections")
+findProject(":ui:visual-collections")?.name = "visual-collections"

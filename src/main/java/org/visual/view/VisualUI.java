@@ -30,11 +30,19 @@ public class VisualUI extends Application {
   @SneakyThrows
   @Override
   public void start(Stage stage) {
-    log.info("UI Started");
+    log.atInfo().log("UI Started");
     val rootStage = DIContext.INSTANCE.get(Stage.class);
+
+    val rootScene = DIContext.INSTANCE.get(Scene.class);
+
     val rootFxml = UIContext.INSTANCE.load(FXMLView.MAIN_LAYOUT);
-    val rootScene = new Scene(rootFxml);
+
+    rootScene.setRoot(rootFxml);
+
+    log.info(rootScene.getRoot().toString());
+
     rootStage.setScene(rootScene);
-    rootStage.show();
+
+    rootStage.showAndWait();
   }
 }

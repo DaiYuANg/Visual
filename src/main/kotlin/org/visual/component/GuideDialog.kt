@@ -3,27 +3,22 @@ package org.visual.component
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import java.nio.file.Path
-import javafx.beans.property.SimpleObjectProperty
-import javafx.scene.control.ButtonBar
 import javafx.scene.control.ButtonType
 import javafx.scene.control.Dialog
 import javafx.scene.control.DialogPane
+import org.visual.model.Project
+import org.visual.store.GuideStore
 
 @Singleton
-class GuideDialog @Inject constructor(guideContent: GuideContent) : Dialog<Path>() {
+class GuideDialog @Inject constructor(guideContent: GuideContent) : Dialog<Project>() {
 
   private val log = KotlinLogging.logger {}
 
   private val finishButton = ButtonType.FINISH
 
-  private val cancelButton = ButtonType.CANCEL
-
-  private val result = SimpleObjectProperty<Path>()
-
   private val guidePane by lazy {
     DialogPane().apply {
-      buttonTypes.addAll(finishButton, cancelButton)
+      buttonTypes.addAll(finishButton)
       content = guideContent
     }
   }
@@ -34,16 +29,18 @@ class GuideDialog @Inject constructor(guideContent: GuideContent) : Dialog<Path>
   }
 
   init {
-    guideContent.listenChoose { result.set(it) }
-  }
-
-  init {
     setResultConverter {
-      log.atTrace { message = "buttonType:${it}" }
-      if (it.buttonData == ButtonBar.ButtonData.FINISH) {
-        result.get()
+      log.atTrace { message = "button type${it}" }
+      when (it) {
+        ButtonType.FINISH -> {
+          val path = GuideStore.toJdkPath()
+          val name = GuideStore.projectName.get()
+          Project.builder().path(path).name(name).build()
+        }
+        else -> {
+          null
+        }
       }
-      result.get()
     }
   }
 }

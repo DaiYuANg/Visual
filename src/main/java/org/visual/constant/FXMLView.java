@@ -12,6 +12,8 @@ public enum FXMLView {
 
   ER_GUIDE("guide/ERGuide"),
 
+  EDITOR("Editor"),
+
   OBJECT_ORIENTED_GUIDE("guide/ObjectOrientedGuide");
 
   private final String view;
