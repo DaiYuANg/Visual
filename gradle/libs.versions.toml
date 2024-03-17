@@ -251,7 +251,7 @@ dokkaPlugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", ver
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
 semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
 versionCheckPlugin = { group = "com.github.ben-manes", name = "gradle-versions-plugin", version = "0.51.0" }
-dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
+dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.10" }
 jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
