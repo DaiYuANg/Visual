@@ -59,10 +59,12 @@ module org.visual {
       com.google.guice;
   exports org.visual.view to
       javafx.fxml,
-      javafx.graphics;
+      javafx.graphics,
+      com.google.guice;
   exports org.visual.component to
       javafx.fxml,
-      javafx.graphics;
+      javafx.graphics,
+      com.google.guice;
   exports org.visual.feature;
 
   opens org.visual.controller.layout to

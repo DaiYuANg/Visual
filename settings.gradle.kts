@@ -31,19 +31,19 @@ gradleEnterprise {
 }
 
 gitHooks {
-//  preCommit {
-//    from {
-//      """
-//      ./gradlew spotbugsMain
-//      ./gradlew spotbugsTest
-//      ./gradlew pmdMain
-//      ./gradlew pmdTest
-//      ./gradlew spotlessApply && git add .
-//      """
-//    }
-//  }
-//  commitMsg { conventionalCommits { defaultTypes() } }
-//  createHooks(true)
+  preCommit {
+    from {
+      """
+      ./gradlew spotbugsMain
+      ./gradlew spotbugsTest
+      ./gradlew pmdMain
+      ./gradlew pmdTest
+      ./gradlew spotlessApply && git add .
+      """
+    }
+  }
+  commitMsg { conventionalCommits { defaultTypes() } }
+  createHooks(true)
 }
 
 rootProject.name = "Visual"
@@ -61,7 +61,6 @@ include("module:visual-git")
 include("module:visual-local-store")
 include("module:visual-maven-repository")
 include("module:visual-config")
-include("module:visual-script")
 include("module:visual-pdm")
 
 include("serialize:visual-serialize-json")

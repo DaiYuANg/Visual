@@ -43,7 +43,6 @@ dependencies {
   implementation(projects.module.visualConfig)
   implementation(projects.serialize.visualSerializeApi)
   implementation(projects.serialize.visualSerializeJson)
-//  implementation(projects.module.visualScript)
   implementation(projects.module.visualLocalStore)
   implementation(projects.module.visualGit)
   implementation(projects.module.visualShared)

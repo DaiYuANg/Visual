@@ -21,6 +21,8 @@ module org.visual.local.store {
   exports org.visual.local.store.repository;
   exports org.visual.local.store.entity;
   exports org.visual.local.store;
+  exports org.visual.local.store.lifecycle to
+      com.google.guice;
 //  exports org.visual.local.store.provider to
 //      com.google.guice;
 }
