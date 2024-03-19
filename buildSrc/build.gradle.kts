@@ -23,7 +23,7 @@ dependencies {
   implementation(libs.jreleaserPlugin)
   implementation(libs.jmhPlugin)
   implementation(libs.spotbugsPlugin)
-//  implementation(libs.graalvmPlugin)
+  implementation(libs.graalvmPlugin)
   implementation(libs.apacheCommonLang3)
   implementation(libs.jlinkPlugin)
   implementation(libs.fatjarPlugin)

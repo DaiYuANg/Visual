@@ -1,4 +1,3 @@
-@SuppressWarnings({"requires-automatic"})
 module org.visual {
   requires javafx.graphics;
   requires static lombok;
@@ -45,6 +44,7 @@ module org.visual {
   requires org.eclipse.collections.impl;
   requires org.eclipse.collections.api;
   requires org.jgrapht.core;
+  requires jakarta.cdi;
 
   exports org.visual to
       com.google.guice;

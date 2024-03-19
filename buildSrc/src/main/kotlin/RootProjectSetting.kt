@@ -19,10 +19,10 @@ class RootProjectSetting : Plugin<Project> {
     target.plugins.apply(ApplicationPlugin::class)
     target.plugins.apply(VersionsPlugin::class)
     target.plugins.apply(ManifestPlugin::class)
-    //    target.plugins.apply(JlinkPlugin::class)
     target.configure<JavaApplication> {
       mainClass.set(mainClassPath)
       applicationDefaultJvmArgs = devJvmArguments
+      mainModule.set("org.visual")
     }
 
     target.extensions.configure(ManifestPluginExtension::class.java) {

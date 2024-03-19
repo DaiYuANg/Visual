@@ -34,9 +34,9 @@ dependencies {
   annotationProcessor(libs.avajeValidaorCodegen)
 
   implementation(libs.picocli)
-  implementation(libs.picocliJline)
+//  implementation(libs.picocliJline)
   annotationProcessor(libs.picocliCodegen)
-
+  implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0")
   implementation(libs.pcollections)
   implementation(libs.slf4jJulBridage)
 
@@ -64,3 +64,5 @@ dependencies {
 tasks.compileJava {
   options.compilerArgs.add("-Aimmutables.gradle.incremental")
 }
+
+subprojects { parent!!.path.takeIf { it != rootProject.path }?.let { evaluationDependsOn(it) } }

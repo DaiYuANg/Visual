@@ -129,7 +129,7 @@ fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
 jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.1.0" }
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.1" }
-pcollections = { group = "org.pcollections", name = "pcollections", version = "4.0.1" }
+pcollections = { group = "org.pcollections", name = "pcollections", version = "4.0.2" }
 
 jacksonCore = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jacksonDatabind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -178,8 +178,8 @@ vertxRedisClient = { group = "io.vertx", name = "vertx-redis-client", version.re
 vertxCassandraClient = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
 vertxJdbcClient = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.5.8" }
-mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.11.0" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.6.0" }
+mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.12.0" }
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
 

@@ -66,8 +66,8 @@ class AllProjectSetting : Plugin<Project> {
           add(TEST_IMPLEMENTATION, rootLib.mockitoJunit)
         }
 
-        project.version = "${git.branch}-${git.commitShort}"
-
+        //        project.version = "${git.branch}-${git.commitShort}"
+        project.version = "0.1"
         project.tasks.withType(Jar::class.java) {
           enabled = true
           duplicatesStrategy = DuplicatesStrategy.INCLUDE
