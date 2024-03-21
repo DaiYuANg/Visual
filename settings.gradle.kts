@@ -48,25 +48,23 @@ gitHooks {
 
 rootProject.name = "Visual"
 
-include("ui:visual-component")
-include("ui:visual-text-editor")
-include("ui:visual-graph-editor")
-include("ui:visual-i18n")
-include("ui:visual-collaborative")
-include("ui:visual-debugger")
-
-include("module:visual-jdbc")
-include("module:visual-shared")
-include("module:visual-git")
-include("module:visual-local-store")
-include("module:visual-maven-repository")
-include("module:visual-config")
-include("module:visual-pdm")
-
-include("serialize:visual-serialize-json")
-include("serialize:visual-serialize-plantuml")
-include("serialize:visual-serialize-api")
-
+// include("ui:visual-component")
+// include("ui:visual-text-editor")
+// include("ui:visual-graph-editor")
+// include("ui:visual-i18n")
+// include("ui:visual-collaborative")
+// include("ui:visual-debugger")
+//
+// include("module:visual-jdbc")
+// include("module:visual-shared")
+// include("module:visual-git")
+// include("module:visual-local-store")
+// include("module:visual-maven-repository")
+// include("module:visual-config")
+// include("module:visual-pdm")
+//
+// include("serialize:visual-serialize-json")
+// include("serialize:visual-serialize-plantuml")
+// include("serialize:visual-serialize-api")
+//
 include("website")
-include("ui:visual-collections")
-findProject(":ui:visual-collections")?.name = "visual-collections"

@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.beryx.jlink.JlinkPlugin
 import org.beryx.jlink.data.JlinkPluginExtension
 import org.graalvm.buildtools.gradle.NativeImagePlugin
@@ -17,11 +16,13 @@ class ReleaseSetting : Plugin<Project> {
     target.plugins.apply(NativeImagePlugin::class)
     target.configure<GraalVMExtension> { toolchainDetection.set(true) }
     target.plugins.apply(JlinkPlugin::class)
-    target.tasks.withType(ShadowJar::class.java) { minimize() }
+    //    target.tasks.withType(ShadowJar::class.java) { minimize() }
 
     target.configure<JlinkPluginExtension> {
       addExtraDependencies("javafx", "kotlin", "jackson", "picocli", "jakarta")
-      options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
+      options.addAll("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
+      //      options = listOf("--strip-debug", "--compress", "2", "--no-header-files",
+      // "--no-man-pages")
       enableCds()
       launcher {
         noConsole = true

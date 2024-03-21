@@ -12,7 +12,6 @@ import lombok.val;
 import org.visual.constant.FXMLView;
 import org.visual.context.DIContext;
 import org.visual.context.UIContext;
-import org.visual.handle.GlobalExceptionHandler;
 
 @Slf4j
 public class VisualUI extends Application {
@@ -22,8 +21,8 @@ public class VisualUI extends Application {
   public void init() {
     log.info("UI init");
     Platform.setImplicitExit(false);
-    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
-    Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
+    //    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
+    //    Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
     Application.setUserAgentStylesheet(theme);
   }
 

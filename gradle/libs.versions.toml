@@ -23,7 +23,6 @@ hibernate = "6.4.4.Final"
 queryDsl = "5.1.0"
 h2 = "2.2.224"
 guice = "7.0.0"
-kotlin = "2.0.0-Beta4"
 ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
@@ -99,7 +98,6 @@ gestaltYaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", vers
 gestaltJSON = { group = "com.github.gestalt-config", name = "gestalt-json", version.ref = "gestalt" }
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
-gestaltKotlin = { group = "com.github.gestalt-config", name = "gestalt-kotlin", version.ref = "gestalt" }
 
 guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
 
@@ -167,7 +165,6 @@ vertxJunit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx"
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
 vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertxPostgresqlClient = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
-vertxKotlin = { group = "io.vertx", name = "vertx-lang-kotlin", version.ref = "vertx" }
 vertxMySQLClient = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
 vertxDB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
 vertxOrcaleClient = { group = "io.vertx", name = "vertx-oracle-client", version.ref = "vertx" }
@@ -258,9 +255,3 @@ spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-p
 graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.1" }
 jlinkPlugin = { group = "org.beryx", name = "badass-jlink-plugin", version = "3.0.1" }
 fatjarPlugin = { group = "io.github.goooler.shadow", name = "shadow-gradle-plugin", version = "8.1.7" }
-kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
-kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
-kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
-kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.3" }

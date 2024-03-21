@@ -9,7 +9,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.command.OpenCommand;
-import org.visual.factory.GuiceFactory;
 import org.visual.view.VisualUI;
 import picocli.CommandLine;
 
@@ -33,7 +32,7 @@ public class VisualApplication implements Runnable {
   public static void main(String[] args) {
     log.atDebug().log("Visual Start");
     val commandLine = new VisualApplication(args);
-    val exitCode = new CommandLine(commandLine, new GuiceFactory()).execute(args);
+    val exitCode = new CommandLine(commandLine).execute(args);
     exit(exitCode);
   }
 }

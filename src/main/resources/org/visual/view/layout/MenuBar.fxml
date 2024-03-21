@@ -2,11 +2,10 @@
 
 <?import javafx.scene.control.*?>
 
-<?import org.visual.component.display.SystemMenuBar?>
-<SystemMenuBar xmlns="http://javafx.com/javafx"
+<MenuBar xmlns="http://javafx.com/javafx"
                xmlns:fx="http://javafx.com/fxml"
                fx:controller="org.visual.designer.controller.MenuBarController">
     <Menu text="File">
         <MenuItem text="File"/>
     </Menu>
-</SystemMenuBar>
+</MenuBar>

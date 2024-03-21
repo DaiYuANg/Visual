@@ -3,24 +3,17 @@ package org.visual.controller.layout;
 import jakarta.inject.Singleton;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
+import lombok.extern.slf4j.Slf4j;
 
 @Singleton
+@Slf4j
 public class GlobalMenuController implements Initializable {
-
-  @FXML MenuItem enableInspectorMenu;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {}
 
-  public void openDebugger() {
-    //    VisualDebuggerView.show(rootStage.getScene());
-  }
+  public void openDebugger(ActionEvent actionEvent) {}
 
-  public void enableInspector() {
-    enableInspectorMenu.setText("Disable Inspector");
-    //    FXComponentInspectorHandler.handleAll();
-  }
+  public void enableInspector(ActionEvent actionEvent) {}
 }

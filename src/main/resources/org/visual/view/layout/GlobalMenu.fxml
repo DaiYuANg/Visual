@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import org.visual.component.GlobalSystemMenu?>
-<GlobalSystemMenu
+<MenuBar
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:controller="org.visual.controller.layout.GlobalMenuController"
@@ -14,4 +13,4 @@
         <MenuItem text="Open Debugger" onAction="#openDebugger"/>
         <MenuItem text="Enable Inspector" fx:id="enableInspectorMenu" onAction="#enableInspector"/>
     </Menu>
-</GlobalSystemMenu>
+</MenuBar>
