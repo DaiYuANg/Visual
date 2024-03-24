@@ -10,6 +10,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.lombok.gradle.LombokExtension
 import org.jetbrains.kotlin.lombok.gradle.LombokSubplugin
+import org.jetbrains.kotlin.noarg.gradle.NoArgGradleSubplugin
 import org.jetbrains.kotlinx.serialization.gradle.SerializationGradleSubplugin
 
 class KotlinSetting : Plugin<Project> {
@@ -22,7 +23,7 @@ class KotlinSetting : Plugin<Project> {
     target.apply<KotlinPluginWrapper>()
     target.apply<LombokSubplugin>()
     target.apply<AllOpenGradleSubplugin>()
-    //    target.apply<NoArgGradleSubplugin>()
+    target.apply<NoArgGradleSubplugin>()
     target.apply<SerializationGradleSubplugin>()
 
     target.dependencies { add(IMPLEMENTATION, rootLib.kotlinLogging) }

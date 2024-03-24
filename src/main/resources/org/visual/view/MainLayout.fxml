@@ -11,8 +11,8 @@
   <BorderPane VBox.vgrow="ALWAYS">
     <center>
       <SplitPane dividerPositions="0.2,0.8">
-<!--        <fx:include source="DiagramTreeView.fxml"/>-->
-<!--        <fx:include source="Project.fxml"/>-->
+        <fx:include source="TreeView.fxml"/>
+        <fx:include source="Project.fxml"/>
       </SplitPane>
     </center>
     <border/>

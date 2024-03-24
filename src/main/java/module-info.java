@@ -22,6 +22,7 @@ module org.visual {
   requires org.jgrapht.core;
   requires atlantafx.base;
   requires com.google.guice;
+  requires kotlin.stdlib;
 
   exports org.visual.view to
       javafx.fxml,
@@ -31,6 +32,12 @@ module org.visual {
       com.google.guice;
 
   opens org.visual.controller to
+      javafx.fxml;
+
+  exports org.visual.component to
+      javafx.fxml;
+
+  opens org.visual.component to
       javafx.fxml;
 
   exports org.visual.provider to
