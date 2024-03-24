@@ -21,12 +21,20 @@ module org.visual {
   requires org.eclipse.collections.api;
   requires org.jgrapht.core;
   requires atlantafx.base;
-  requires io.avaje.inject;
+  requires com.google.guice;
 
   exports org.visual.view to
       javafx.fxml,
       javafx.graphics;
+  exports org.visual.controller to
+      javafx.fxml,
+      com.google.guice;
 
-  provides io.avaje.inject.spi.Module with
-      org.visual.VisualModule;
+  opens org.visual.controller to
+      javafx.fxml;
+
+  exports org.visual.provider to
+      com.google.guice;
+  exports org.visual.controller.layout to
+      com.google.guice;
 }

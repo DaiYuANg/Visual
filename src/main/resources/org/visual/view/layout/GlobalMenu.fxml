@@ -5,6 +5,7 @@
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:controller="org.visual.controller.layout.GlobalMenuController"
+        useSystemMenuBar="true"
 >
     <Menu text="Tools">
         <MenuItem text="Search"/>

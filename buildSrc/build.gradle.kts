@@ -27,4 +27,9 @@ dependencies {
   implementation(libs.apacheCommonLang3)
   implementation(libs.jlinkPlugin)
   implementation(libs.fatjarPlugin)
+  implementation(libs.kotlinGradlePlugin)
+  implementation(libs.kotlinGradleLombokPlugin)
+  implementation(libs.kotlinGradleSerializationPlugin)
+  implementation(libs.kotlinGradleNoArgPlugin)
+  implementation(libs.kotlinGradleAllOpenPlugin)
 }
