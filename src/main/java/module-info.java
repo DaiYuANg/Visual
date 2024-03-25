@@ -23,6 +23,7 @@ module org.visual {
   requires atlantafx.base;
   requires com.google.guice;
   requires kotlin.stdlib;
+  requires io.github.oshai.kotlinlogging;
 
   exports org.visual.view to
       javafx.fxml,
