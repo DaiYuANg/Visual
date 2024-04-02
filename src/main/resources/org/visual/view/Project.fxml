@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import org.visual.component.AutoScrollingWindow?>
+<?import org.visual.component.AutoScrollingEventWindow?>
 <TabPane fx:id="root" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="org.visual.controller.ProjectController">
   <Tab text="untitled">
-    <AutoScrollingWindow/>
+    <AutoScrollingEventWindow fx:id="window"/>
   </Tab>
 </TabPane>

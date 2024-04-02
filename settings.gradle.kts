@@ -68,3 +68,4 @@ rootProject.name = "Visual"
 // include("serialize:visual-serialize-api")
 //
 include("website")
+include("visual-maven")
