@@ -27,7 +27,7 @@ ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
 avajeInject = "9.12-RC2"
-kotlin = "2.0.0-Beta5"
+kotlin = "2.0.0-RC1"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
@@ -60,7 +60,7 @@ slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "s
 prism = { group = "io.avaje", name = "avaje-prisms", version = "1.21" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.5.0" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.3" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.4" }
 
 #UI
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
