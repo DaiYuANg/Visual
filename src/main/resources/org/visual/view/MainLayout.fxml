@@ -15,7 +15,6 @@
         <fx:include source="Project.fxml"/>
       </SplitPane>
     </center>
-    <border/>
     <bottom>
 <!--      <fx:include source="layout/StatusBar.fxml"/>-->
     </bottom>

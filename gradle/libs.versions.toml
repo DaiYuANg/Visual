@@ -7,7 +7,7 @@ junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
 gestalt = "0.25.0"
-mavenResolver = "2.0.0-alpha-8"
+mavenResolver = "2.0.0-alpha-10"
 javafxVersion = "23-ea+3"
 eclipseCollections = "12.0.0.M3"
 jackson = "2.17.0"
@@ -60,7 +60,7 @@ slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "s
 prism = { group = "io.avaje", name = "avaje-prisms", version = "1.21" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.5.0" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.4" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.6" }
 
 #UI
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
@@ -261,4 +261,4 @@ kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lomb
 kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.3" }
+kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "6.0.9" }

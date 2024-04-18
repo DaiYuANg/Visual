@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 
 <MenuBar xmlns="http://javafx.com/javafx"
-               xmlns:fx="http://javafx.com/fxml"
-               fx:controller="org.visual.designer.controller.MenuBarController">
-    <Menu text="File">
-        <MenuItem text="File"/>
-    </Menu>
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="org.visual.controller.layout.GlobalMenuController">
+  <Menu text="File">
+    <MenuItem text="File"/>
+  </Menu>
 </MenuBar>

@@ -69,3 +69,4 @@ rootProject.name = "Visual"
 //
 include("website")
 include("visual-maven")
+include("visual-store")

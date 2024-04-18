@@ -2,8 +2,22 @@
 
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Button?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.Tooltip?>
 <ToolBar xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="org.visual.controller.layout.ToolBarController">
-    <Button text="save"/>
+  <Button text="Save" onAction="#save">
+    <graphic>
+      <FontIcon iconLiteral="far-save"/>
+    </graphic>
+    <tooltip>
+      <Tooltip text="save current"/>
+    </tooltip>
+  </Button>
+  <Button text="Add Item" onAction="#addItem">
+    <graphic>
+      <FontIcon iconLiteral="fas-plus"/>
+    </graphic>
+  </Button>
 </ToolBar>

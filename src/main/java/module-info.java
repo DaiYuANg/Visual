@@ -24,6 +24,9 @@ module org.visual {
   requires com.google.guice;
   requires kotlin.stdlib;
   requires io.github.oshai.kotlinlogging;
+  requires org.kordamp.ikonli.core;
+  requires org.kordamp.ikonli.javafx;
+  requires org.kordamp.ikonli.fontawesome5;
 
   exports org.visual.view to
       javafx.fxml,
@@ -33,6 +36,8 @@ module org.visual {
       com.google.guice;
 
   opens org.visual.controller to
+      javafx.fxml;
+  opens org.visual.controller.layout to
       javafx.fxml;
 
   exports org.visual.component to
@@ -44,5 +49,6 @@ module org.visual {
   exports org.visual.provider to
       com.google.guice;
   exports org.visual.controller.layout to
-      com.google.guice;
+      com.google.guice,
+      javafx.fxml;
 }
