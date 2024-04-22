@@ -24,6 +24,8 @@ dependencies {
   implementation(libs.atlantafx)
   implementation(libs.guava)
 
+  implementation(projects.visualEditor)
+
   implementation(libs.ikonliJavafx)
   implementation(libs.fontawesome5)
 
