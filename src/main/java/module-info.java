@@ -5,7 +5,6 @@ module org.visual {
   requires org.slf4j;
   requires com.google.common;
   requires jakarta.inject;
-  requires javafx.fxml;
   requires javafx.controls;
   requires javafx.web;
   requires java.logging;
@@ -27,28 +26,12 @@ module org.visual {
   requires org.kordamp.ikonli.core;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.fontawesome5;
+  requires org.visual.dsl;
 
   exports org.visual.view to
-      javafx.fxml,
       javafx.graphics;
-  exports org.visual.controller to
-      javafx.fxml,
-      com.google.guice;
-
-  opens org.visual.controller to
-      javafx.fxml;
-  opens org.visual.controller.layout to
-      javafx.fxml;
-
-  exports org.visual.component to
-      javafx.fxml;
-
-  opens org.visual.component to
-      javafx.fxml;
-
   exports org.visual.provider to
       com.google.guice;
-  exports org.visual.controller.layout to
-      com.google.guice,
-      javafx.fxml;
+  exports org.visual.exception to
+      com.google.guice;
 }

@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.constant.FXMLView;
+import org.jetbrains.annotations.NotNull;
 import org.visual.context.DIContext;
-import org.visual.context.UIContext;
+import org.visual.exception.GlobalExceptionHandler;
 
 @Slf4j
 public class VisualUI extends Application {
@@ -21,27 +21,18 @@ public class VisualUI extends Application {
   public void init() {
     log.info("UI init");
     Platform.setImplicitExit(false);
-    //    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
-    //    Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
+    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
+    Thread.setDefaultUncaughtExceptionHandler(exceptionHandler);
     Application.setUserAgentStylesheet(theme);
   }
 
   @SneakyThrows
   @Override
-  public void start(Stage stage) {
+  public void start(@NotNull Stage stage) {
     log.atInfo().log("UI Started");
-    val rootStage = DIContext.INSTANCE.get(Stage.class);
-
-    val rootScene = DIContext.INSTANCE.get(Scene.class);
-
-    val rootFxml = UIContext.INSTANCE.load(FXMLView.MAIN_LAYOUT);
-
-    rootScene.setRoot(rootFxml);
-
-    log.info(rootScene.getRoot().toString());
-
-    rootStage.setScene(rootScene);
-
-    rootStage.showAndWait();
+    val scene = DIContext.INSTANCE.get(Scene.class);
+    stage.setScene(scene);
+    stage.show();
+    stage.requestFocus();
   }
 }
