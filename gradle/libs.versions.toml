@@ -27,7 +27,7 @@ ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
 avajeInject = "9.12-RC2"
-kotlin = "2.0.0-RC1"
+kotlin = "2.0.0-RC2"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }

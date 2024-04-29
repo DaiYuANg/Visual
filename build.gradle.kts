@@ -23,7 +23,6 @@ dependencies {
   implementation(libs.eclipseCollectionsForkjoin)
   implementation(libs.atlantafx)
   implementation(libs.guava)
-  implementation(projects.visualDsl)
 
   implementation(projects.visualEditor)
 

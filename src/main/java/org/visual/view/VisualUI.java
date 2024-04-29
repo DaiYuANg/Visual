@@ -32,6 +32,8 @@ public class VisualUI extends Application {
     log.atInfo().log("UI Started");
     val scene = DIContext.INSTANCE.get(Scene.class);
     stage.setScene(scene);
+    stage.setWidth(800.0);
+    stage.setHeight(600.0);
     stage.show();
     stage.requestFocus();
   }

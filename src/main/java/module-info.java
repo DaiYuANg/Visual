@@ -26,8 +26,9 @@ module org.visual {
   requires org.kordamp.ikonli.core;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.fontawesome5;
-  requires org.visual.dsl;
 
+  exports org.visual.component to
+      com.google.guice;
   exports org.visual.view to
       javafx.graphics;
   exports org.visual.provider to
