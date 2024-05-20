@@ -185,7 +185,7 @@ jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "
 immutable = { group = "org.immutables", name = "value", version = "2.10.1" }
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
-pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
+pf4j = { group = "org.pf4j", name = "pf4j", version = "3.11.1" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
