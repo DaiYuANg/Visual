@@ -11,9 +11,9 @@ pluginManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 plugins {
-  id("com.gradle.enterprise") version "3.13.4"
-  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.2"
-  id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.7"
+  id("com.gradle.develocity") version "3.17.5"
 }
 
 buildCache {
@@ -23,10 +23,9 @@ buildCache {
   }
 }
 
-gradleEnterprise {
+develocity {
   buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
+    termsOfUseAgree.set("true")
   }
 }
 
@@ -42,31 +41,17 @@ gitHooks {
       """
     }
   }
-  commitMsg { conventionalCommits { defaultTypes() } }
+  commitMsg {
+    conventionalCommits {
+      defaultTypes()
+      types("format")
+    }
+  }
   createHooks(true)
 }
 
 rootProject.name = "Visual"
 
-// include("ui:visual-component")
-// include("ui:visual-text-editor")
-// include("ui:visual-graph-editor")
-// include("ui:visual-i18n")
-// include("ui:visual-collaborative")
-// include("ui:visual-debugger")
-//
-// include("module:visual-jdbc")
-// include("module:visual-shared")
-// include("module:visual-git")
-// include("module:visual-local-store")
-// include("module:visual-maven-repository")
-// include("module:visual-config")
-// include("module:visual-pdm")
-//
-// include("serialize:visual-serialize-json")
-// include("serialize:visual-serialize-plantuml")
-// include("serialize:visual-serialize-api")
-//
 include("website")
 include("visual-maven")
 include("visual-store")

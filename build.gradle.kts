@@ -10,7 +10,6 @@ apply<JavaFxSetting>()
 apply<AllProjectSetting>()
 apply<RootProjectSetting>()
 apply<ReleaseSetting>()
-apply<KotlinSetting>()
 
 dependencies {
   implementation(libs.logback)
@@ -31,28 +30,20 @@ dependencies {
 
   implementation(libs.logback)
 
-  implementation(libs.guice)
-  implementation(libs.guiceJNDI)
-  implementation(libs.guiceJMX)
-  implementation(libs.guiceThrowingproviders)
-  testImplementation(libs.guiceTestlib)
+  implementation(libs.avajeInject)
+  annotationProcessor(libs.avajeInjectGenerator)
 
   implementation(libs.picocli)
   implementation(libs.picocliJline)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.pcollections)
   implementation(libs.slf4jJulBridage)
+  implementation(libs.recordBuilderCore)
+  annotationProcessor(libs.recordBuilderProcess)
 
-  implementation(libs.immutablesValue)
-  implementation(libs.immutablesBuilder)
-  annotationProcessor(libs.immutablesValue)
-  implementation(libs.immutablesAnnotate)
-  implementation(libs.immutablesSerial)
+  implementation(projects.visualStore)
+
   testImplementation(libs.javafxUnitTest)
-}
-
-tasks.compileJava {
-  options.compilerArgs.add("-Aimmutables.gradle.incremental")
 }
 
 subprojects { parent!!.path.takeIf { it != rootProject.path }?.let { evaluationDependsOn(it) } }

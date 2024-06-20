@@ -4,30 +4,31 @@ ikonliJavafx = "12.3.1"
 slf4j = "2.1.0-alpha1"
 ikonli = "12.3.1"
 junit = "5.10.2"
-testcontainers = "1.19.7"
-mockito = "5.11.0"
+testcontainers = "1.19.8"
+mockito = "5.12.0"
 gestalt = "0.25.0"
 mavenResolver = "2.0.0-alpha-10"
-javafxVersion = "23-ea+3"
+javafxVersion = "23-ea+22"
 eclipseCollections = "12.0.0.M3"
 jackson = "2.17.0"
-picocli = "4.7.5"
-mapstruct = "1.6.0.Beta1"
+picocli = "4.7.6"
+mapstruct = "1.6.0.Beta2"
 jgit = "6.9.0.202403050737-r"
 vertx = "4.5.5"
 jdbi = "3.45.0"
 groovy = "5.0.0-alpha-7"
 fury = "0.5.0-SNAPSHOT"
 avajeValidaor = "1.3"
-hibernate = "6.4.4.Final"
-queryDsl = "5.1.0"
+hibernate = "7.0.0.Alpha3"
+queryDsl = "6.4"
 h2 = "2.2.224"
 guice = "7.0.0"
 ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
-avajeInject = "9.12-RC2"
-kotlin = "2.0.0-RC2"
+avajeInject = "10.0-RC7"
+kotlin = "2.0.0"
+recordBuilder = "41"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
@@ -50,7 +51,7 @@ apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", vers
 apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
 apacheDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.1.0" }
+dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.2.2" }
 
 #Slf4j
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
@@ -83,7 +84,7 @@ junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
 junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.10.2" }
-junitPerf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.35.0" }
+junitPerf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.36.0" }
 testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
@@ -100,7 +101,7 @@ gestaltJSON = { group = "com.github.gestalt-config", name = "gestalt-json", vers
 gestaltGit = { group = "com.github.gestalt-config", name = "gestalt-git", version.ref = "gestalt" }
 gestaltGuice = { group = "com.github.gestalt-config", name = "gestalt-guice", version.ref = "gestalt" }
 
-guava = { group = "com.google.guava", name = "guava", version = "33.1.0-jre" }
+guava = { group = "com.google.guava", name = "guava", version = "33.2.1-jre" }
 
 mavenResloverAPI = { group = "org.apache.maven.resolver", name = "maven-resolver-api", version.ref = "mavenResolver" }
 mavenResloverImpl = { group = "org.apache.maven.resolver", name = "maven-resolver-impl", version.ref = "mavenResolver" }
@@ -181,11 +182,16 @@ mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-co
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
 
+autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
+
+recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
+recordBuilderProcess = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.9" }
 immutable = { group = "org.immutables", name = "value", version = "2.10.1" }
 
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
-pf4j = { group = "org.pf4j", name = "pf4j", version = "3.10.0" }
+pf4j = { group = "org.pf4j", name = "pf4j", version = "3.11.1" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
@@ -204,6 +210,8 @@ hibernateHikaricp = { group = "org.hibernate.orm", name = "hibernate-hikaricp", 
 hibernateTesting = { group = "org.hibernate.orm", name = "hibernate-testing", version.ref = "hibernate" }
 hibernateGraalvm = { group = "org.hibernate.orm", name = "hibernate-graalvm", version.ref = "hibernate" }
 hibernateJfr = { group = "org.hibernate.orm", name = "hibernate-jfr", version.ref = "hibernate" }
+hibernateEnvers = { group = "org.hibernate.orm", name = "hibernate-envers", version.ref = "hibernate" }
+hibernateProcessor = { group = "org.hibernate.orm", name = 'hibernate-processor', version.ref = "hibernate" }
 
 ebeanAPI = { group = "io.ebean", name = "ebean-api", version.ref = "ebean" }
 ebeanCore = { group = "io.ebean", name = "ebean-core", version.ref = "ebean" }
@@ -218,10 +226,13 @@ ebeanDDLGenerator = { group = "io.ebean", name = "ebean-ddl-generator", version.
 
 jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 
-queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
-queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
-queryDslCollections = { group = "com.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
-queryDslSpatial = { group = "com.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+#QueryDSL
+queryDslJPA = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
+queryDslApt = { group = "io.github.openfeign.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
+queryDslSpatial = { group = "io.github.openfeign.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+queryDslGuava = { group = "io.github.openfeign.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+queryDslCollection = { group = "io.github.openfeign.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+queryDslCore = { group = "io.github.openfeign.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
 
 #Groovy
 groovy = { group = "org.apache.groovy", name = "groovy", version.ref = "groovy" }
@@ -230,15 +241,6 @@ groovyJMX = { group = "org.apache.groovy", name = "groovy-jmx", version.ref = "g
 
 furyCore = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 furyFormat = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
-
-guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
-guiceAssistedinject = { group = "com.google.inject.extensions", name = "guice-assistedinject", version.ref = "guice" }
-guicePersist = { group = "com.google.inject.extensions", name = "guice-persist", version.ref = "guice" }
-guiceJNDI = { group = "com.google.inject.extensions", name = "guice-jndi", version.ref = "guice" }
-guiceJMX = { group = "com.google.inject.extensions", name = "guice-jmx", version.ref = "guice" }
-guiceThrowingproviders = { group = "com.google.inject.extensions", name = "guice-throwingproviders", version.ref = "guice" }
-guiceTestlib = { group = "com.google.inject.extensions", name = "guice-testlib", version.ref = "guice" }
-
 
 #Plugins
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.25.0" }
@@ -253,7 +255,7 @@ dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle",
 jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
-graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.1" }
+graalvmPlugin = { group = "org.graalvm.buildtools", name = "native-gradle-plugin", version = "0.10.2" }
 jlinkPlugin = { group = "org.beryx", name = "badass-jlink-plugin", version = "3.0.1" }
 fatjarPlugin = { group = "io.github.goooler.shadow", name = "shadow-gradle-plugin", version = "8.1.7" }
 kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
