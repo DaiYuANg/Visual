@@ -9,5 +9,7 @@ public class InitializationDialog extends Dialog<File> {
 
   {
     setDialogPane(new InitializationPane());
+    setTitle("Initialization");
+    setResizable(true);
   }
 }

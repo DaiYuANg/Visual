@@ -14,7 +14,7 @@ import lombok.val;
 public class GlobalMenu extends MenuBar {
 
   private final Menu menu =
-      new Menu() {
+      new Menu("File") {
         {
           val fileItem = new MenuItem("File");
           getItems().add(fileItem);

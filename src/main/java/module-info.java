@@ -17,13 +17,13 @@ module org.visual {
   requires org.eclipse.collections.api;
   requires org.jgrapht.core;
   requires atlantafx.base;
-  requires kotlin.stdlib;
   requires org.kordamp.ikonli.core;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.fontawesome5;
   requires io.avaje.inject;
   requires io.soabase.recordbuilder.core;
   requires org.visual.store;
+  requires org.visual.i18n;
 
   exports org.visual.view to
       javafx.graphics;

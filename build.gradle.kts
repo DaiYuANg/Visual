@@ -42,6 +42,10 @@ dependencies {
   annotationProcessor(libs.recordBuilderProcess)
 
   implementation(projects.visualStore)
+  implementation(projects.visualI18n)
+
+  implementation(libs.gestaltToml)
+  implementation(libs.gestaltConfig)
 
   testImplementation(libs.javafxUnitTest)
 }

@@ -1,7 +1,6 @@
 package org.visual.component;
 
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -13,4 +12,19 @@ public class InitializationPane extends DialogPane {
           setCache(true);
         }
       };
+
+  private final ListView<String> left =
+      new ListView<>() {
+        {
+          getItems().add("test");
+        }
+      };
+
+  private final ButtonType confirm = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+
+  {
+    splitPane.getItems().add(left);
+    setGraphic(splitPane);
+    getButtonTypes().add(confirm);
+  }
 }

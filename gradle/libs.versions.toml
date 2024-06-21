@@ -177,7 +177,7 @@ vertxRedisClient = { group = "io.vertx", name = "vertx-redis-client", version.re
 vertxCassandraClient = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
 vertxJdbcClient = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
 vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.6.0" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.6.1" }
 mutinyVertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version = "3.12.0" }
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
