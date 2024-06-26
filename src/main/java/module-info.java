@@ -24,6 +24,11 @@ module org.visual {
   requires io.soabase.recordbuilder.core;
   requires org.visual.store;
   requires org.visual.i18n;
+  requires io.vavr;
+  requires org.visual.config;
+  requires jdk.jfr;
+  requires org.kordamp.ikonli.fluentui;
+  requires org.visual.dsl;
 
   exports org.visual.view to
       javafx.graphics;

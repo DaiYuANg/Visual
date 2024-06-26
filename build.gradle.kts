@@ -22,10 +22,13 @@ dependencies {
   implementation(libs.eclipseCollectionsForkjoin)
   implementation(libs.atlantafx)
   implementation(libs.guava)
+  implementation(libs.vavr)
 
   implementation(projects.visualEditor)
 
   implementation(libs.ikonliJavafx)
+  implementation(libs.materialIcons)
+  implementation(libs.fluentuiIcon)
   implementation(libs.fontawesome5)
 
   implementation(libs.logback)
@@ -43,9 +46,8 @@ dependencies {
 
   implementation(projects.visualStore)
   implementation(projects.visualI18n)
-
-  implementation(libs.gestaltToml)
-  implementation(libs.gestaltConfig)
+  implementation(projects.visualConfig)
+  implementation(projects.visualDsl)
 
   testImplementation(libs.javafxUnitTest)
 }

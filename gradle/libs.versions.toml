@@ -6,7 +6,7 @@ ikonli = "12.3.1"
 junit = "5.10.2"
 testcontainers = "1.19.8"
 mockito = "5.12.0"
-gestalt = "0.25.0"
+gestalt = "0.31.0"
 mavenResolver = "2.0.0-alpha-10"
 javafxVersion = "23-ea+22"
 eclipseCollections = "12.0.0.M3"
@@ -22,11 +22,10 @@ avajeValidaor = "1.3"
 hibernate = "7.0.0.Alpha3"
 queryDsl = "6.4"
 h2 = "2.2.224"
-guice = "7.0.0"
 ebean = "15.0.1"
 immutables = "2.10.1"
 asciidoctor = "4.0.2"
-avajeInject = "10.0-RC7"
+avajeInject = "10.0-RC9"
 kotlin = "2.0.0"
 recordBuilder = "41"
 
@@ -224,7 +223,7 @@ ebeanMigration = { group = "io.ebean", name = "ebean-migration", version = "14.0
 ebeanPlatformH2 = { group = "io.ebean", name = "ebean-platform-h2", version.ref = "ebean" }
 ebeanDDLGenerator = { group = "io.ebean", name = "ebean-ddl-generator", version.ref = "ebean" }
 
-jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
+jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
 
 #QueryDSL
 queryDslJPA = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }

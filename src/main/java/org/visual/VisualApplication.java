@@ -3,11 +3,13 @@ package org.visual;
 
 import static java.lang.System.exit;
 
+import io.vavr.control.Try;
 import javafx.application.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.command.CompileCommand;
 import org.visual.command.OpenCommand;
 import org.visual.view.VisualUI;
 import picocli.CommandLine;
@@ -16,15 +18,21 @@ import picocli.CommandLine;
     name = "Visual",
     mixinStandardHelpOptions = true,
     helpCommand = true,
-    subcommands = OpenCommand.class)
+    subcommands = {OpenCommand.class, CompileCommand.class})
 @RequiredArgsConstructor
 @Slf4j
 public class VisualApplication implements Runnable {
 
   private final String[] args;
 
+  @SneakyThrows
   @Override
   public void run() {
+
+    Try.run(
+        () -> {
+          log.atInfo().log("启动");
+        });
     Application.launch(VisualUI.class, args);
   }
 

@@ -14,15 +14,14 @@ import org.visual.component.GlobalMenu;
 @Singleton
 public class MainLayout extends VBox {
 
-  private final BorderPane content =
-      new BorderPane() {
-        {
-          val button = new Button("test");
-          setCenter(button);
-        }
-      };
-
   public MainLayout(GlobalMenu globalMenu) {
+    val content =
+        new BorderPane() {
+          {
+            val button = new Button("test");
+            setCenter(button);
+          }
+        };
     content.setTop(globalMenu);
     getChildren().add(content);
   }

@@ -3,8 +3,6 @@ package org.visual.view;
 
 import static java.lang.Thread.setDefaultUncaughtExceptionHandler;
 import static javafx.application.Platform.setImplicitExit;
-import static org.visual.context.DIContext.INSTANCE;
-import static org.visual.i18n.I18n.t;
 
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
@@ -15,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.component.InitializationDialog;
+import org.visual.context.DIContext;
 import org.visual.exception.GlobalExceptionHandler;
+import org.visual.i18n.I18n;
 import org.visual.i18n.constant.Action;
 import org.visual.store.api.HistoryRepository;
 
@@ -27,7 +27,7 @@ public class VisualUI extends Application {
   public void init() {
     log.info("UI init");
     setImplicitExit(false);
-    val exceptionHandler = INSTANCE.get(GlobalExceptionHandler.class);
+    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
     setDefaultUncaughtExceptionHandler(exceptionHandler);
     Application.setUserAgentStylesheet(theme);
   }
@@ -36,9 +36,9 @@ public class VisualUI extends Application {
   @Override
   public void start(@NotNull Stage stage) {
     log.atInfo().log("UI Started");
-    val scene = INSTANCE.get(Scene.class);
-    log.atInfo().log(t(Action.CONFIRM));
-    val w = INSTANCE.get(HistoryRepository.class).queryHistory();
+    val scene = DIContext.INSTANCE.get(Scene.class);
+    log.atInfo().log(I18n.INSTANCE.t(Action.CONFIRM));
+    val w = DIContext.INSTANCE.get(HistoryRepository.class).queryHistory();
     if (w.isEmpty()) {
       new InitializationDialog().showAndWait();
     }

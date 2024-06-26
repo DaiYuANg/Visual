@@ -5,14 +5,16 @@ import static java.util.Optional.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Function;
-import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.collections.api.factory.Maps;
 import org.eclipse.collections.api.map.MutableMap;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-@UtilityClass
-public class I18n {
+@Slf4j
+public enum I18n {
+  INSTANCE;
+
   private final Locale defaultLocalLocale = Locale.getDefault();
 
   private final Locale defaultLocale = Locale.ENGLISH;
