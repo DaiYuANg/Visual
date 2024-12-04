@@ -11,9 +11,9 @@ pluginManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 plugins {
-  id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.7"
-  id("com.gradle.develocity") version "3.17.5"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
+  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.15"
+  id("com.gradle.develocity") version "3.18.2"
 }
 
 buildCache {
@@ -29,11 +29,8 @@ gitHooks {
   preCommit {
     from {
       """
-      ./gradlew spotbugsMain
-      ./gradlew spotbugsTest
-      ./gradlew pmdMain
-      ./gradlew pmdTest
-      ./gradlew spotlessApply && git add .
+      ./gradlew spotlessApply
+      git add .
       """
     }
   }
