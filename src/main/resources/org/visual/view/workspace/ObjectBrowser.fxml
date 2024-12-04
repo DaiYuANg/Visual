@@ -2,10 +2,11 @@
 
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.VBox?>
-<VBox
+<?import javafx.scene.layout.HBox?>
+<HBox
   xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="org.visual.controller.ObjectBrowserController"
 >
   <TreeView fx:id="treeView"/>
-</VBox>
+</HBox>

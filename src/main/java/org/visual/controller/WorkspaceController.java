@@ -3,9 +3,9 @@ package org.visual.controller;
 import jakarta.inject.Singleton;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 @Slf4j
 @RequiredArgsConstructor
 public class WorkspaceController implements Initializable {
-  public Rectangle separator;
+  public Separator separator;
   public HBox leftPane;
   private double initialX;  // 鼠标按下时的初始 X 坐标
   private double initialWidth; // 按下时左侧区域的宽度
@@ -39,7 +39,9 @@ public class WorkspaceController implements Initializable {
 
   // 处理鼠标拖动事件
   private void onMouseDragged(@NotNull MouseEvent event) {
-    // 计算鼠标拖动的偏移量
+    if (leftPane.getWidth() > 400) {
+      return;
+    }
     val offsetX = event.getSceneX() - initialX;
     val newWidth = initialWidth + offsetX;
 

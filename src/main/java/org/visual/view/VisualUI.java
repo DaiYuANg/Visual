@@ -1,9 +1,6 @@
 /* (C)2024*/
 package org.visual.view;
 
-import static java.lang.Thread.setDefaultUncaughtExceptionHandler;
-import static javafx.application.Platform.setImplicitExit;
-
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,7 +11,9 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.context.DIContext;
 import org.visual.exception.GlobalExceptionHandler;
-import org.visual.ui.EditableContent;
+
+import static java.lang.Thread.setDefaultUncaughtExceptionHandler;
+import static javafx.application.Platform.setImplicitExit;
 
 @Slf4j
 public class VisualUI extends Application {
@@ -34,7 +33,6 @@ public class VisualUI extends Application {
   public void start(@NotNull Stage stage) {
     log.atInfo().log("UI Started");
     val scene = DIContext.INSTANCE.get(Scene.class);
-    new EditableContent();
     stage.setScene(scene);
     stage.setWidth(800.0);
     stage.setHeight(600.0);

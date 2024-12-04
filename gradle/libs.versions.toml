@@ -22,7 +22,6 @@ queryDsl = "6.9"
 h2 = "2.3.232"
 asciidoctor = "4.0.3"
 avajeInject = "11.0"
-kotlin = "2.0.0"
 recordBuilder = "43"
 mutinyVertx = "3.17.1"
 schemacrawler = "16.23.2"
@@ -33,9 +32,6 @@ dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
-sass = { id = "io.miret.etienne.sass", version = "1.5.0" }
-kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version = "2.1.0" }
 maniftest = { id = "com.coditory.manifest", version = "0.2.6" }
 hibernate = { id = "org.hibernate.orm", version.ref = "hibernate" }
 shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta2" }
@@ -48,7 +44,6 @@ asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidocto
 asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctorEpub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
 asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
-asciidoctorRevealjs = { id = "org.asciidoctor.jvm.revealjs", version = "4.0.0-alpha.1" }
 asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
 
 [libraries]
@@ -221,8 +216,6 @@ queryDslCore = { group = "io.github.openfeign.querydsl", name = "querydsl-core",
 
 fury-core = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 fury-format = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
-
-kotlinLogging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.3" }
 
 graalvm-polyglot = { group = "org.graalvm.polyglot", name = "polyglot", version.ref = "polyglot" }
 graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js-community", version.ref = "polyglot" }

@@ -1,6 +1,5 @@
 import com.xenoterracide.gradle.semver.GitMetadataExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -11,7 +10,6 @@ plugins {
   alias(libs.plugins.dotenv)
   alias(libs.plugins.javafx)
   alias(libs.plugins.hibernate)
-  alias(libs.plugins.kotlinJvm)
   alias(libs.plugins.versionCheck)
   alias(libs.plugins.plantuml)
   alias(libs.plugins.maniftest)
@@ -132,7 +130,6 @@ dependencies {
   implementation(libs.vavr)
   implementation(libs.gestaltToml)
   implementation(libs.gestaltConfig)
-  implementation(libs.kotlinLogging)
   implementation(libs.slf4j)
   implementation(libs.slf4jJdkPlatform)
   implementation(libs.slf4jJulBridage)
@@ -171,10 +168,11 @@ dependencies {
 
   antlr(libs.antlr)
 
-  //  implementation(libs.graalvm.polyglot)
-  //  implementation(libs.graalvm.polyglot.js)
-  //  implementation(libs.graalvm.polyglot.python)
-  //  implementation(libs.graalvm.polyglot.profile)
+  testImplementation(enforcedPlatform(libs.testcontainers.bom))
+  testImplementation(libs.testcontainers.junit)
+  testImplementation(libs.testcontainers.mysql)
+  testImplementation(libs.testcontainers.postgresql)
+  testImplementation(libs.testcontainers.mssqlserver)
 }
 
 javafx {
@@ -188,26 +186,7 @@ javafx {
 
 val jdkVersion: String = libs.versions.jdk.get()
 
-kotlin { jvmToolchain(jdkVersion.toInt()) }
-
-tasks.withType(KotlinCompile::class) {
-  dependsOn(tasks.generateGrammarSource)
-  val compileJava: JavaCompile by tasks
-  destinationDirectory.set(compileJava.destinationDirectory)
-}
-
-val sourceSets = extensions.getByType(SourceSetContainer::class)
-
-tasks.withType(JavaCompile::class).configureEach {
-  options.compilerArgumentProviders.add(
-    CommandLineArgumentProvider {
-      listOf("--patch-module", "$group=${sourceSets["main"].output.asPath}")
-    },
-  )
-}
-
 tasks.compileJava {
-  //
   // options.forkOptions.jvmArgs!!.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
   options.encoding = StandardCharsets.UTF_8.name()
   options.isFork = true
@@ -298,8 +277,14 @@ tasks.withType(AbstractArchiveTask::class.java) {
 
 jlink {
   options = listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
-  //  enableCds()
+  enableCds()
   mainClass.set(mainClassPath)
+  moduleName.set(mainModule)
+  mergedModule {
+    requires("io.avaje.inject.events")
+    uses("io.avaje.inject.events.spi.ObserverManagerPlugin")
+  }
+  forceMerge("io.avaje.inject.events")
 }
 
 spotless {
@@ -307,19 +292,12 @@ spotless {
     target("*.java")
     importOrder()
     removeUnusedImports()
-    //    googleJavaFormat().formatJavadoc(true)
-    //    indentWithSpaces(2)
-    //
-    //    formatAnnotations()
-    //      .addTypeAnnotation("Empty")
-    //      .addTypeAnnotation("NonEmpty")
-    //      .removeTypeAnnotation("Localized")
+    indentWithSpaces(2)
+    formatAnnotations()
+      .addTypeAnnotation("Empty")
+      .addTypeAnnotation("NonEmpty")
+      .removeTypeAnnotation("Localized")
   }
-  kotlin {
-    target("*.kt")
-    ktfmt()
-  }
-
   kotlinGradle {
     target("**/*.gradle.kts")
     ktfmt()
@@ -335,4 +313,13 @@ tasks.generateGrammarSource {
   maxHeapSize = "1G"
   arguments = arguments + listOf("-visitor", "-long-messages")
   outputDirectory = File("${project.projectDir}/build/generated/antlr/main/java/org/visual/grammar")
+}
+
+hibernate {
+  enhancement {
+    enableDirtyTracking.set(true)
+    enableExtendedEnhancement.set(true)
+    enableLazyInitialization.set(true)
+    enableAssociationManagement.set(true)
+  }
 }

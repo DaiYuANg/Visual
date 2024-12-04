@@ -22,6 +22,7 @@ public class ObjectBrowserController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     log.atInfo().log("初始化");
+    treeView.setStyle("-fx-border-color: transparent;");
     // 创建根节点
     TreeItem<DatabaseObj> rootItem = new TreeItem<>(new DatabaseObj("Database Objects", "root"));
     rootItem.setExpanded(true); // 默认展开

@@ -7,17 +7,18 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.shape.Rectangle?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.visual.controller.WorkspaceController"
+<BorderPane
+  xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="org.visual.controller.WorkspaceController"
 >
   <top>
     <fx:include source="workspace/TopToolBar.fxml"/>
   </top>
   <left>
-    <HBox fx:id="leftPane" prefHeight="300">
-      <fx:include source="ObjectBrowser.fxml"/>
-      <Rectangle fx:id="separator" width="20" height="300" fill="GRAY"/>
+    <HBox fx:id="leftPane">
+      <fx:include VBox.vgrow="ALWAYS" source="workspace/ObjectBrowser.fxml"/>
+      <Separator fx:id="separator" orientation="VERTICAL" VBox.vgrow="ALWAYS"/>
     </HBox>
   </left>
   <center>

@@ -1,6 +1,7 @@
 package org.visual.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import io.avaje.inject.Lazy;
 import jakarta.inject.Singleton;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import org.visual.entity.History;
 @Singleton
 @Slf4j
 @RequiredArgsConstructor
+@Lazy
 public class HistoryRepositoryImpl implements HistoryRepository {
   private final JPAQueryFactory jpaQueryFactory;
 

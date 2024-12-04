@@ -1,14 +1,13 @@
 package org.visual.controller;
 
 import jakarta.inject.Singleton;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DialogPane;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.component.AboutDialog;
 import org.visual.constant.ViewConstant;
-import org.visual.ui.AboutDialog;
 import org.visual.util.FxmlLoaderHelper;
 
 import java.net.URL;

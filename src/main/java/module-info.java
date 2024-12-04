@@ -26,7 +26,6 @@ module org.visual {
   requires com.querydsl.jpa;
   requires jakarta.persistence;
   requires javafx.fxml;
-  requires kotlin.stdlib;
   requires org.apache.commons.io;
   requires org.hibernate.orm.core;
   requires io.vertx.core;
@@ -43,6 +42,7 @@ module org.visual {
   requires org.eclipse.jgit;
   requires org.apache.commons.lang3;
   requires org.apache.commons.pool2;
+  requires io.avaje.inject.events;
 
   exports org.visual.view to
     javafx.graphics;
