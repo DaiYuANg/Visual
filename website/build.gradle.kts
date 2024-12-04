@@ -7,17 +7,9 @@ plugins {
   idea
 }
 
-repositories {
-  ruby {
-    gems()
-  }
-}
+repositories { ruby { gems() } }
 
-asciidoctorj {
-  modules {
-    diagram.use()
-  }
-}
+asciidoctorj { modules { diagram.use() } }
 
 tasks.asciidoctor {
   parallelMode = true
@@ -32,12 +24,14 @@ tasks.asciidoctor {
   }
 }
 
-tasks.build {
-  dependsOn(tasks.asciidoctor)
-}
+tasks.build { dependsOn(tasks.asciidoctor) }
 
 idea {
   module {
-    sourceDirs = project.tasks.asciidoctor.get().sourceFileTree.toMutableSet()
+    sourceDirs =
+      project.tasks.asciidoctor
+        .get()
+        .sourceFileTree
+        .toMutableSet()
   }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<TabPane xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="org.visual.controller.TabController"
+>
+  <Tab text="Tab 1">
+    <VBox>
+      <Label text="This is the content of Tab 1"/>
+    </VBox>
+    <Pane fx:id="pane" style="-fx-background-color: white;">
+      <!-- Example draggable table -->
+      <VBox fx:id="table1" layoutX="100" layoutY="100" prefWidth="200" prefHeight="150"
+            style="-fx-background-color: lightblue; -fx-border-color: black;">
+        <Label text="Table 1"/>
+        <Label text="id INT"/>
+        <Label text="name VARCHAR"/>
+      </VBox>
+
+      <VBox fx:id="table2" layoutX="400" layoutY="100" prefWidth="200" prefHeight="150"
+            style="-fx-background-color: lightgreen; -fx-border-color: black;">
+        <Label text="Table 2"/>
+        <Label text="id INT"/>
+        <Label text="age INT"/>
+      </VBox>
+    </Pane>
+  </Tab>
+</TabPane>

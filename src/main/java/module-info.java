@@ -1,5 +1,4 @@
 module org.visual {
-  requires javafx.graphics;
   requires static lombok;
   requires static org.jetbrains.annotations;
   requires org.slf4j;
@@ -7,10 +6,8 @@ module org.visual {
   requires jakarta.inject;
   requires javafx.controls;
   requires javafx.web;
-  requires java.logging;
   requires info.picocli;
   requires org.slf4j.jdk.platform.logging;
-  requires java.compiler;
   requires io.smallrye.mutiny;
   requires it.unimi.dsi.fastutil;
   requires org.eclipse.collections.impl;
@@ -22,17 +19,34 @@ module org.visual {
   requires org.kordamp.ikonli.fontawesome5;
   requires io.avaje.inject;
   requires io.soabase.recordbuilder.core;
-  requires org.visual.store;
-  requires org.visual.i18n;
   requires io.vavr;
-  requires org.visual.config;
   requires jdk.jfr;
   requires org.kordamp.ikonli.fluentui;
-  requires org.visual.dsl;
+  requires com.querydsl.core;
+  requires com.querydsl.jpa;
+  requires jakarta.persistence;
+  requires javafx.fxml;
+  requires kotlin.stdlib;
+  requires org.apache.commons.io;
+  requires org.hibernate.orm.core;
+  requires io.vertx.core;
+  requires io.smallrye.mutiny.vertx.core;
+  requires io.smallrye.mutiny.vertx.web.client;
+  requires java.naming;
+  requires java.compiler;
+  requires com.fasterxml.jackson.databind;
+  requires org.apache.fury.core;
+  requires io.smallrye.mutiny.vertx.web;
+  requires org.controlsfx.controls;
+  requires org.mapstruct;
+  requires org.github.gestalt.core;
+  requires org.eclipse.jgit;
+  requires org.apache.commons.lang3;
+  requires org.apache.commons.pool2;
 
   exports org.visual.view to
-      javafx.graphics;
+    javafx.graphics;
 
   provides io.avaje.inject.spi.InjectExtension with
-      org.visual.VisualModule;
+    org.visual.VisualModule;
 }

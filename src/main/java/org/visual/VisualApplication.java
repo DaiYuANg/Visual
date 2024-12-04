@@ -5,6 +5,7 @@ import static java.lang.System.exit;
 
 import io.vavr.control.Try;
 import javafx.application.Application;
+import javafx.application.Platform;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +16,10 @@ import org.visual.view.VisualUI;
 import picocli.CommandLine;
 
 @CommandLine.Command(
-    name = "Visual",
-    mixinStandardHelpOptions = true,
-    helpCommand = true,
-    subcommands = {OpenCommand.class, CompileCommand.class})
+  name = "Visual",
+  mixinStandardHelpOptions = true,
+  helpCommand = true,
+  subcommands = {OpenCommand.class, CompileCommand.class})
 @RequiredArgsConstructor
 @Slf4j
 public class VisualApplication implements Runnable {
@@ -28,11 +29,7 @@ public class VisualApplication implements Runnable {
   @SneakyThrows
   @Override
   public void run() {
-
-    Try.run(
-        () -> {
-          log.atInfo().log("启动");
-        });
+    Try.run(() -> log.atInfo().log("启动"));
     Application.launch(VisualUI.class, args);
   }
 

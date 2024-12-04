@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<DialogPane
+  xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="org.visual.controller.DatabaseConnectionFormController"
+  prefHeight="400.0" prefWidth="600.0"
+>
+  <content>
+    <VBox>
+      <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+      </padding>
+      <Text text="Database Connection" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+      <VBox spacing="10">
+        <!-- Database Type -->
+        <HBox spacing="10">
+          <Label text="Database Type:"/>
+          <ComboBox fx:id="dbTypeComboBox" prefWidth="200">
+            <items>
+              <FXCollections fx:factory="observableArrayList">
+                <String fx:value="MySQL"/>
+                <String fx:value="PostgreSQL"/>
+                <String fx:value="SQLite"/>
+              </FXCollections>
+            </items>
+          </ComboBox>
+        </HBox>
+        <!-- Host -->
+        <HBox spacing="10">
+          <Label text="Host:"/>
+          <TextField fx:id="hostField" promptText="Enter host (e.g., localhost)"/>
+        </HBox>
+
+        <!-- Port -->
+        <HBox spacing="10">
+          <Label text="Port:"/>
+          <TextField fx:id="portField" promptText="Enter port"/>
+        </HBox>
+
+        <!-- Database Name -->
+        <HBox spacing="10">
+          <Label text="Database Name:"/>
+          <TextField fx:id="dbNameField" promptText="Enter database name"/>
+        </HBox>
+
+        <!-- Username -->
+        <HBox spacing="10">
+          <Label text="Username:"/>
+          <TextField fx:id="usernameField" promptText="Enter username"/>
+        </HBox>
+
+        <!-- Password -->
+        <HBox spacing="10">
+          <Label text="Password:"/>
+          <PasswordField fx:id="passwordField" promptText="Enter password"/>
+        </HBox>
+
+        <!-- Connect Button -->
+        <HBox alignment="center" spacing="10">
+          <Button text="Test Connect" fx:id="testConnect" onAction="#handleTestConnect"/>
+          <Button text="Connect" fx:id="connectButton" onAction="#handleConnect"/>
+        </HBox>
+      </VBox>
+    </VBox>
+  </content>
+  <ButtonType text="CLOSE" buttonData="CANCEL_CLOSE"/>
+</DialogPane>

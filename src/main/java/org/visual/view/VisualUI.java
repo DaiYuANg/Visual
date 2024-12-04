@@ -12,12 +12,9 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.visual.component.InitializationDialog;
 import org.visual.context.DIContext;
 import org.visual.exception.GlobalExceptionHandler;
-import org.visual.i18n.I18n;
-import org.visual.i18n.constant.Action;
-import org.visual.store.api.HistoryRepository;
+import org.visual.ui.EditableContent;
 
 @Slf4j
 public class VisualUI extends Application {
@@ -37,11 +34,7 @@ public class VisualUI extends Application {
   public void start(@NotNull Stage stage) {
     log.atInfo().log("UI Started");
     val scene = DIContext.INSTANCE.get(Scene.class);
-    log.atInfo().log(I18n.INSTANCE.t(Action.CONFIRM));
-    val w = DIContext.INSTANCE.get(HistoryRepository.class).queryHistory();
-    if (w.isEmpty()) {
-      new InitializationDialog().showAndWait();
-    }
+    new EditableContent();
     stage.setScene(scene);
     stage.setWidth(800.0);
     stage.setHeight(600.0);

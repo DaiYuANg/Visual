@@ -23,11 +23,7 @@ buildCache {
   }
 }
 
-develocity {
-  buildScan {
-    termsOfUseAgree.set("true")
-  }
-}
+develocity { buildScan { termsOfUseAgree.set("true") } }
 
 gitHooks {
   preCommit {
@@ -53,9 +49,3 @@ gitHooks {
 rootProject.name = "Visual"
 
 include("website")
-include("visual-maven")
-include("visual-store")
-include("visual-editor")
-include("visual-i18n")
-include("visual-config")
-include("visual-dsl")
