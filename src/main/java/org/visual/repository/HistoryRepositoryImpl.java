@@ -1,26 +1,22 @@
 package org.visual.repository;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import io.avaje.inject.Lazy;
+import io.ebean.Database;
 import jakarta.inject.Singleton;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.visual.api.HistoryRepository;
 import org.visual.entity.History;
 
+import java.util.List;
+
 @Singleton
 @Slf4j
 @RequiredArgsConstructor
-@Lazy
 public class HistoryRepositoryImpl implements HistoryRepository {
-  private final JPAQueryFactory jpaQueryFactory;
+  private final Database database;
 
   @Override
   public List<History> queryHistory() {
-    return new ArrayList<>();
+    return database.createQuery(History.class).findList();
   }
 }

@@ -32,11 +32,11 @@
   </root>
 
   <logger name="org.visual" level="TRACE"/>
-  <logger name="com.google.inject" level="TRACE"/>
+  <logger name="io.avaje.inject" level="TRACE"/>
   <logger name="io.ebean.SQL" level="TRACE"/>
 
   <logger name="io.ebean.TXN" level="TRACE"/>
   <logger name="io.ebean.DDL" level="TRACE"/>
-
+  <logger name="org.github.gestalt.config" level="TRACE"/>
 
 </configuration>

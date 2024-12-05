@@ -1,7 +1,9 @@
 /* (C)2024*/
 package org.visual.view;
 
+import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
+import com.jthemedetecor.OsThemeDetector;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,32 +12,42 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.visual.context.DIContext;
-import org.visual.exception.GlobalExceptionHandler;
+import org.visual.model.UIConfig;
 
-import static java.lang.Thread.setDefaultUncaughtExceptionHandler;
+import java.awt.*;
+
 import static javafx.application.Platform.setImplicitExit;
 
 @Slf4j
 public class VisualUI extends Application {
-  private final String theme = new PrimerLight().getUserAgentStylesheet();
+  private final OsThemeDetector detector = DIContext.INSTANCE.get(OsThemeDetector.class);
+  private final UIConfig uiConfig = DIContext.INSTANCE.get(UIConfig.class);
+  private final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
   @Override
   public void init() {
     log.info("UI init");
     setImplicitExit(false);
-    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
-    setDefaultUncaughtExceptionHandler(exceptionHandler);
-    Application.setUserAgentStylesheet(theme);
+    Application.setUserAgentStylesheet(detectTheme());
+    log.atInfo().log("UI Config:{}", uiConfig);
+  }
+
+  private @NotNull String detectTheme() {
+    return detector.isDark() ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet();
   }
 
   @SneakyThrows
   @Override
   public void start(@NotNull Stage stage) {
     log.atInfo().log("UI Started");
+    // 获取默认的图形工具包
+    val screenSize = toolkit.getScreenSize();
+    val width = screenSize.width * 0.8;
+    val height = screenSize.height * 0.8;
     val scene = DIContext.INSTANCE.get(Scene.class);
     stage.setScene(scene);
-    stage.setWidth(800.0);
-    stage.setHeight(600.0);
+    stage.setWidth(width);
+    stage.setHeight(height);
     stage.show();
     stage.requestFocus();
   }

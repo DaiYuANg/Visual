@@ -1,43 +1,51 @@
 /* (C)2024*/
 package org.visual;
 
-import static java.lang.System.exit;
-
-import io.vavr.control.Try;
-import javafx.application.Application;
-import javafx.application.Platform;
-import lombok.RequiredArgsConstructor;
+import io.smallrye.mutiny.infrastructure.Infrastructure;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.command.CompileCommand;
-import org.visual.command.OpenCommand;
-import org.visual.view.VisualUI;
+import org.visual.api.Lifecycle;
+import org.visual.command.PicoFactory;
+import org.visual.command.VisualCommand;
+import org.visual.context.DIContext;
+import org.visual.exception.GlobalExceptionHandler;
+import org.visual.logger.MutinySlf4jLogger;
+import org.visual.util.SPI;
 import picocli.CommandLine;
 
-@CommandLine.Command(
-  name = "Visual",
-  mixinStandardHelpOptions = true,
-  helpCommand = true,
-  subcommands = {OpenCommand.class, CompileCommand.class})
-@RequiredArgsConstructor
+import static io.smallrye.mutiny.Multi.createFrom;
+import static io.smallrye.mutiny.infrastructure.Infrastructure.setOperatorLogger;
+import static java.lang.System.exit;
+import static java.lang.Thread.setDefaultUncaughtExceptionHandler;
+
 @Slf4j
-public class VisualApplication implements Runnable {
+public class VisualApplication {
+  static {
+    setOperatorLogger(new MutinySlf4jLogger());
+  }
 
-  private final String[] args;
+  static {
+    createFrom()
+      .iterable(SPI.load(Lifecycle.class))
+      .emitOn(Infrastructure.getDefaultExecutor())
+      .onItem()
+      .invoke(Lifecycle::onStart)
+      .subscribe().with(t -> {
+        log.atInfo().log(t.toString());
+      });
+  }
 
-  @SneakyThrows
-  @Override
-  public void run() {
-    Try.run(() -> log.atInfo().log("启动"));
-    Application.launch(VisualUI.class, args);
+  static {
+    val exceptionHandler = DIContext.INSTANCE.get(GlobalExceptionHandler.class);
+    setDefaultUncaughtExceptionHandler(exceptionHandler);
   }
 
   @SneakyThrows
   public static void main(String[] args) {
     log.atDebug().log("Visual Start");
-    val commandLine = new VisualApplication(args);
-    val exitCode = new CommandLine(commandLine).execute(args);
+    val commandLine = new VisualCommand(args);
+    val exitCode = new CommandLine(commandLine, new PicoFactory()).execute(args);
     exit(exitCode);
   }
 }

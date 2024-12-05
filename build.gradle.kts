@@ -9,7 +9,7 @@ plugins {
   alias(libs.plugins.lombok)
   alias(libs.plugins.dotenv)
   alias(libs.plugins.javafx)
-  alias(libs.plugins.hibernate)
+  alias(libs.plugins.ebean)
   alias(libs.plugins.versionCheck)
   alias(libs.plugins.plantuml)
   alias(libs.plugins.maniftest)
@@ -24,8 +24,8 @@ val git: GitMetadataExtension = semver.git
 
 allprojects {
   repositories {
-    mavenLocal()
     mavenCentral()
+    mavenLocal()
     maven { setUrl("https://jitpack.io") }
     gradlePluginPortal()
     google()
@@ -41,7 +41,6 @@ application {
 }
 
 dependencies {
-  implementation(libs.logback)
   implementation(libs.fastutil)
   implementation(libs.mutiny)
   implementation(libs.mutiny.vertx)
@@ -51,17 +50,19 @@ dependencies {
   implementation(libs.mutiny.vertx.web)
   implementation(libs.vertx.web.client)
   testImplementation(libs.vertx.junit5)
-  implementation(libs.dataFaker)
+  testImplementation(libs.dataFaker)
   implementation(libs.jgrapht)
-  implementation(libs.eclipseCollections)
-  implementation(libs.eclipseCollectionsAPI)
-  implementation(libs.eclipseCollectionsForkjoin)
+  implementation(libs.eclipse.collections)
+  implementation(libs.eclipse.collections.api)
   implementation(libs.atlantafx)
   implementation(libs.controlfx)
   implementation(libs.guava)
   implementation(libs.vavr)
   implementation(libs.devicons)
-
+  implementation("com.github.Dansoftowner:jSystemThemeDetector:3.9.1") {
+    exclude(group = "net.java.dev.jna", module = "jna")
+  }
+  implementation(libs.oshi)
   implementation(libs.caffine)
 
   implementation(libs.ikonliJavafx)
@@ -77,7 +78,6 @@ dependencies {
   implementation(libs.picocli)
   annotationProcessor(libs.picocliCodegen)
   implementation(libs.pcollections)
-  implementation(libs.slf4jJulBridage)
   implementation(libs.recordBuilderCore)
   annotationProcessor(libs.recordBuilderProcess)
 
@@ -85,54 +85,36 @@ dependencies {
 
   testImplementation(libs.avajeInjectTest)
 
-  implementation(enforcedPlatform(libs.hibernatePlatform))
   runtimeOnly(libs.h2)
-  implementation(libs.hibernateCore)
-  implementation(libs.hibernateHikaricp)
-  implementation(libs.hibernateJfr)
-  implementation(libs.hibernateEnvers)
-  implementation(libs.hibernateValidator)
-  implementation(libs.eclipse.parsson)
-  implementation(libs.slf4j)
-  implementation(libs.hibernateGraalvm)
-  testImplementation(libs.hibernateTesting)
-  implementation(libs.bytebuddy)
-  implementation(libs.jakarta.cdi.api)
-  implementation(libs.jakarta.xml.bind)
-  implementation(libs.jboss.logging)
-
-  implementation(libs.apacheCommonIO)
-  implementation(libs.jakartaPersistenceAPI)
-
-  annotationProcessor(libs.hibernateProcessor)
-  annotationProcessor(libs.hibernateJpamodelgen)
+  implementation(libs.ebean.api)
+  implementation(libs.ebean.core)
+  testImplementation(libs.ebean.test)
+  implementation(libs.ebean.annotation)
+  implementation(libs.ebean.query.bean)
+  implementation(libs.ebean.data.source)
+  implementation(libs.ebean.platform.h2)
+  implementation(libs.ebean.migration)
+  annotationProcessor(libs.ebean.query.bean.generator)
 
   implementation(libs.jgit)
   implementation(libs.jgit.lfs)
   implementation(libs.jgit.ssh)
   implementation(libs.jgit.http)
   testImplementation(libs.jgit.junit)
-  val queryDSLApt = variantOf(libs.queryDslApt) { classifier(jakarta) }
-  // queryDSL
-  compileOnly(queryDSLApt)
-  annotationProcessor(queryDSLApt)
-  implementation(libs.queryDslJPA)
-  implementation(libs.queryDslCore)
-  implementation(libs.queryDslGuava)
-  implementation(libs.queryDslCollection)
-  implementation(libs.queryDslSpatial)
-  annotationProcessor(libs.jakartaPersistenceAPI)
 
   compileOnly(libs.jetbrainsAnnotation)
   implementation(libs.apacheCommonIO)
   implementation(libs.directories)
-  implementation(libs.guava)
   implementation(libs.vavr)
-  implementation(libs.gestaltToml)
-  implementation(libs.gestaltConfig)
+  implementation(libs.gestalt.toml)
+  implementation(libs.gestalt.yaml)
+  implementation(libs.gestalt)
   implementation(libs.slf4j)
   implementation(libs.slf4jJdkPlatform)
   implementation(libs.slf4jJulBridage)
+  implementation(libs.avaje.validaor)
+  implementation(libs.avaje.validaor.constraints)
+  annotationProcessor(libs.avaje.validaor.codegen)
   implementation(libs.mapstruct)
   annotationProcessor(libs.mapstruct.processor)
 
@@ -150,10 +132,12 @@ dependencies {
   implementation(libs.jackson.core)
   implementation(libs.jackson.data.type.guava)
   implementation(libs.jackson.data.type.jsonP)
+  implementation(libs.jackson.data.type.xml)
   implementation(libs.jackson.data.type.eclipse.collection)
   implementation(libs.jackson.data.type.pcollection)
   implementation(libs.jackson.databind)
   implementation(libs.jackson.annotations)
+  implementation(libs.eclipse.parsson)
 
   implementation(libs.jsh)
 
@@ -166,6 +150,8 @@ dependencies {
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
+  compileOnly(libs.avaje.spi.service)
+  annotationProcessor(libs.avaje.spi.service)
   antlr(libs.antlr)
 
   testImplementation(enforcedPlatform(libs.testcontainers.bom))
@@ -280,11 +266,7 @@ jlink {
   enableCds()
   mainClass.set(mainClassPath)
   moduleName.set(mainModule)
-  mergedModule {
-    requires("io.avaje.inject.events")
-    uses("io.avaje.inject.events.spi.ObserverManagerPlugin")
-  }
-  forceMerge("io.avaje.inject.events")
+  mergedModule {}
 }
 
 spotless {
@@ -315,11 +297,7 @@ tasks.generateGrammarSource {
   outputDirectory = File("${project.projectDir}/build/generated/antlr/main/java/org/visual/grammar")
 }
 
-hibernate {
-  enhancement {
-    enableDirtyTracking.set(true)
-    enableExtendedEnhancement.set(true)
-    enableLazyInitialization.set(true)
-    enableAssociationManagement.set(true)
-  }
+ebean {
+  debugLevel = 1
+  queryBeans = true
 }

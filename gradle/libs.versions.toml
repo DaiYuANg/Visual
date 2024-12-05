@@ -8,7 +8,7 @@ testcontainers = "1.20.4"
 mockito = "5.14.2"
 gestalt = "0.35.1"
 eclipseCollections = "12.0.0.M3"
-jackson = "2.18.1"
+jackson = "2.18.2"
 picocli = "4.7.6"
 mapstruct = "1.6.3"
 jgit = "7.1.0.202411261347-r"
@@ -16,7 +16,7 @@ vertx = "4.5.11"
 jdbi = "3.45.0"
 groovy = "5.0.0-alpha-7"
 fury = "0.9.0"
-avajeValidaor = "1.3"
+avajeValidaor = "2.3"
 hibernate = "7.0.0.Beta2"
 queryDsl = "6.9"
 h2 = "2.3.232"
@@ -26,6 +26,7 @@ recordBuilder = "43"
 mutinyVertx = "3.17.1"
 schemacrawler = "16.23.2"
 polyglot = "24.1.1"
+ebean = "15.8.0"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
@@ -39,6 +40,7 @@ jlink = { id = "org.beryx.jlink", version = "3.1.1" }
 graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
 lombok = { id = "name.remal.lombok", version = "2.2.12" }
+ebean = { id = "io.ebean", version.ref = "ebean" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.4" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
@@ -61,7 +63,7 @@ slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "s
 
 prism = { group = "io.avaje", name = "avaje-prisms", version = "1.21" }
 
-oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.5.0" }
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.5" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.12" }
 
 #UI
@@ -92,8 +94,9 @@ testcontainers-postgresql = { group = "org.testcontainers", name = "postgresql",
 mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
 
-gestaltConfig = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
-gestaltToml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
+gestalt = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
+gestalt-toml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
+gestalt-yaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", version.ref = "gestalt" }
 
 guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
 
@@ -105,12 +108,9 @@ h2Mvstore = { group = "com.h2database", name = "h2-mvstore", version.ref = "h2" 
 sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.1.0" }
 hikariCP = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
 
-eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
-eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
-eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
-eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
+eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
+eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
 
-autoService = { group = "com.google.auto.service", name = "auto-service", version = "1.1.1" }
 plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2024.3" }
 jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
@@ -126,17 +126,14 @@ jackson-data-type-eclipse-collection = { group = "com.fasterxml.jackson.datatype
 jackson-data-type-guava = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-guava", version.ref = "jackson" }
 jackson-data-type-pcollection = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-pcollections", version.ref = "jackson" }
 jackson-data-type-jsonP = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jakarta-jsonp", version.ref = "jackson" }
-jackson-data-type-xml = { group = "com.fasterxml.jackson.datatype", name = "jackson-dataformat-xml", version.ref = "jackson" }
+jackson-data-type-xml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-xml", version.ref = "jackson" }
+eclipse-parsson = { group = "org.eclipse.parsson", name = "parsson", version = "1.1.7" }
 
 picocli = { group = "info.picocli", name = "picocli", version.ref = "picocli" }
 picocliCodegen = { group = "info.picocli", name = "picocli-codegen", version.ref = "picocli" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy" }
-jakarta-cdi-api = { group = "jakarta.enterprise", name = "jakarta.enterprise.cdi-api", version = "4.1.0" }
-jakarta-xml-bind = { group = "jakarta.xml.bind", name = "jakarta.xml.bind-api" }
-jboss-logging = { group = "org.jboss.logging", name = "jboss-logging" }
-avajeValidaor = { group = "io.avaje", name = "avaje-validator-constraints", version.ref = "avajeValidaor" }
-avajeValidaorConstraints = { group = "io.avaje", name = "avaje-validator-constraints", version.ref = "avajeValidaor" }
-avajeValidaorCodegen = { group = "io.avaje", name = "avaje-validator-generator", version.ref = "avajeValidaor" }
+avaje-validaor = { group = "io.avaje", name = "avaje-validator", version.ref = "avajeValidaor" }
+avaje-validaor-constraints = { group = "io.avaje", name = "avaje-validator-constraints", version.ref = "avajeValidaor" }
+avaje-validaor-codegen = { group = "io.avaje", name = "avaje-validator-generator", version.ref = "avajeValidaor" }
 
 schemacrawler = { group = "us.fatehi", name = "schemacrawler", version.ref = "schemacrawler" }
 schemacrawler-mySQL = { group = "us.fatehi", name = "schemacrawler-mysql", version.ref = "schemacrawler" }
@@ -163,7 +160,7 @@ vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
 vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
-vertxPostgresqlClient = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
+vertx-postgresql-client = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
 vertxMySQLClient = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
 vertxDB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
 vertxOrcaleClient = { group = "io.vertx", name = "vertx-oracle-client", version.ref = "vertx" }
@@ -192,31 +189,25 @@ javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
 vavr = { group = "io.vavr", name = "vavr", version = "1.0.0-alpha-4" }
 
-hibernatePlatform = { group = "org.hibernate.orm", name = "hibernate-platform", version.ref = "hibernate" }
-hibernateCore = { group = "org.hibernate.orm", name = "hibernate-core", version.ref = "hibernate" }
-hibernateJpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen", version.ref = "hibernate" }
 hibernateValidator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "8.0.1.Final" }
-hibernateHikaricp = { group = "org.hibernate.orm", name = "hibernate-hikaricp", version.ref = "hibernate" }
-hibernateTesting = { group = "org.hibernate.orm", name = "hibernate-testing", version.ref = "hibernate" }
-hibernateGraalvm = { group = "org.hibernate.orm", name = "hibernate-graalvm", version.ref = "hibernate" }
-hibernateJfr = { group = "org.hibernate.orm", name = "hibernate-jfr", version.ref = "hibernate" }
-hibernateEnvers = { group = "org.hibernate.orm", name = "hibernate-envers", version.ref = "hibernate" }
-hibernateProcessor = { group = "org.hibernate.orm", name = 'hibernate-processor', version.ref = "hibernate" }
-eclipse-parsson = { group = "org.eclipse.parsson", name = "parsson", version = "1.1.7" }
+
+ebean-api = { group = "io.ebean", name = "ebean-api", version.ref = "ebean" }
+ebean-core = { group = "io.ebean", name = "ebean-core", version.ref = "ebean" }
+ebean-query-bean = { group = "io.ebean", name = "ebean-querybean", version.ref = "ebean" }
+ebean-query-bean-generator = { group = "io.ebean", name = "querybean-generator", version.ref = "ebean" }
+ebean-data-source = { group = "io.ebean", name = "ebean-datasource", version = "9.2" }
+ebean-annotation = { group = "io.ebean", name = "ebean-annotation", version = "8.4" }
+ebean-test = { group = "io.ebean", name = "ebean-test", version.ref = "ebean" }
+ebean-migration = { group = "io.ebean", name = "ebean-migration", version = "14.2.0" }
+ebean-platform-h2 = { group = "io.ebean", name = "ebean-platform-h2", version.ref = "ebean" }
+ebean-ddl-generator = { group = "io.ebean", name = "ebean-ddl-generator", version.ref = "ebean" }
 
 jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
-
-#QueryDSL
-queryDslJPA = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
-queryDslApt = { group = "io.github.openfeign.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
-queryDslSpatial = { group = "io.github.openfeign.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
-queryDslGuava = { group = "io.github.openfeign.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
-queryDslCollection = { group = "io.github.openfeign.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
-queryDslCore = { group = "io.github.openfeign.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
 
 fury-core = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 fury-format = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
 
+avaje-spi-service = { group = "io.avaje", name = "avaje-spi-service", version = "2.8" }
 graalvm-polyglot = { group = "org.graalvm.polyglot", name = "polyglot", version.ref = "polyglot" }
 graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js-community", version.ref = "polyglot" }
 graalvm-polyglot-python = { group = "org.graalvm.polyglot", name = "python-community", version.ref = "polyglot" }

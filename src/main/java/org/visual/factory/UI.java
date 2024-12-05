@@ -1,5 +1,6 @@
 package org.visual.factory;
 
+import com.jthemedetecor.OsThemeDetector;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.inject.Lazy;
@@ -22,5 +23,10 @@ public class UI {
   @Bean
   Scene scene(Parent mainLayout) {
     return new Scene(mainLayout);
+  }
+
+  @Bean
+  OsThemeDetector themeDetector() {
+    return OsThemeDetector.getDetector();
   }
 }

@@ -1,13 +1,14 @@
 package org.visual.entity;
 
+import io.ebean.Model;
+import io.ebean.annotation.WhenCreated;
+import io.ebean.annotation.WhenModified;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -16,17 +17,17 @@ import static org.visual.constant.FieldNaming.*;
 @MappedSuperclass
 @Getter
 @Setter
-public class BaseEntity {
+public class BaseEntity extends Model {
 
   @Id
   @GeneratedValue
   private Long id;
 
-  @CreationTimestamp
+  @WhenCreated
   @Column(name = CREATE_AT)
   private Date createAt;
 
-  @UpdateTimestamp
+  @WhenModified
   @Column(name = UPDATE_AT)
   private Date updateAt;
 

@@ -2,6 +2,7 @@ package org.visual.factory;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
+import lombok.val;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -10,7 +11,8 @@ import java.util.concurrent.Executors;
 public class ThreadPool {
 
   @Bean
-  public Executor executor() {
-    return Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+  Executor executor() {
+    val factory = Thread.ofVirtual().name("visual-virtual-", 0).factory();
+    return Executors.newThreadPerTaskExecutor(factory);
   }
 }
