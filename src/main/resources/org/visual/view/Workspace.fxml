@@ -6,14 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.shape.Rectangle?>
 <BorderPane
   xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="org.visual.controller.WorkspaceController"
 >
   <top>
-    <fx:include source="workspace/TopToolBar.fxml"/>
+    <fx:include source="GlobalMenu.fxml"/>
+    <!--    <fx:include source="workspace/ActionBar.fxml"/>-->
   </top>
   <left>
     <HBox fx:id="leftPane">
@@ -24,4 +24,10 @@
   <center>
     <fx:include source="workspace/Tab.fxml"/>
   </center>
+  <right>
+    <HBox>
+      <Separator fx:id="separatorRight" orientation="VERTICAL" VBox.vgrow="ALWAYS"/>
+      <fx:include source="workspace/ComponentArea.fxml"/>
+    </HBox>
+  </right>
 </BorderPane>

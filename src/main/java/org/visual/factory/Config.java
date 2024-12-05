@@ -17,8 +17,10 @@ import org.github.gestalt.config.source.EnvironmentConfigSourceBuilder;
 import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder;
 import org.github.gestalt.config.toml.TomlModuleConfigBuilder;
 import org.github.gestalt.config.yaml.YamlModuleConfigBuilder;
+import org.visual.VisualApplication;
 
 import java.util.Set;
+import java.util.prefs.Preferences;
 
 @Factory
 @Lazy
@@ -79,5 +81,10 @@ public class Config {
     sources.forEach(builder::addSource);
     moduleConfigs.forEach(builder::addModuleConfig);
     return builder.build();
+  }
+
+  @Bean
+  Preferences preferences() {
+    return Preferences.userNodeForPackage(VisualApplication.class);
   }
 }

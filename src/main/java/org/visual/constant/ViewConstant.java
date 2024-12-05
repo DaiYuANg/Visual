@@ -10,6 +10,8 @@ public enum ViewConstant {
 
   DATABASE_CONNECT_FORM("DatabaseConnectionForm"),
 
+  SETTING("Setting"),
+
   ABOUT("About");
 
   private final String viewName;

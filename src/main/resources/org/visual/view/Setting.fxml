@@ -6,24 +6,29 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import java.lang.String?>
 <?import javafx.scene.layout.StackPane?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.control.DialogPane?>
+<DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.visual.controller.SettingController"
             prefHeight="400.0" prefWidth="600.0">
-  <left>
-    <ListView fx:id="settingsMenu" prefWidth="150">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="General"/>
-          <String fx:value="Appearance"/>
-          <String fx:value="Network"/>
-        </FXCollections>
-      </items>
-    </ListView>
-  </left>
-  <center>
-    <StackPane fx:id="settingsForm">
-      <!-- This will be dynamically populated with the selected form -->
-    </StackPane>
-  </center>
-</BorderPane>
+  <content>
+    <BorderPane>
+      <left>
+        <ListView fx:id="settingsMenu" prefWidth="150">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="General"/>
+              <String fx:value="Appearance"/>
+              <String fx:value="Network"/>
+            </FXCollections>
+          </items>
+        </ListView>
+      </left>
+      <center>
+        <StackPane fx:id="settingsForm">
+          <!-- This will be dynamically populated with the selected form -->
+        </StackPane>
+      </center>
+    </BorderPane>
+  </content>
+</DialogPane>

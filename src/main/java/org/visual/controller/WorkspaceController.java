@@ -1,6 +1,7 @@
 package org.visual.controller;
 
 import jakarta.inject.Singleton;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Separator;
@@ -18,17 +19,21 @@ import java.util.ResourceBundle;
 @Slf4j
 @RequiredArgsConstructor
 public class WorkspaceController implements Initializable {
-  public Separator separator;
-  public HBox leftPane;
-  private double initialX;  // 鼠标按下时的初始 X 坐标
+  @FXML
+  private Separator separator;
+  @FXML
+  private HBox leftPane;
+  @FXML
+  private Separator separatorRight;
+  private double initialX;
   private double initialWidth; // 按下时左侧区域的宽度
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    // 初始化分隔条的拖拽事件
     separator.setCursor(Cursor.H_RESIZE);
     separator.setOnMousePressed(this::onMousePressed);
     separator.setOnMouseDragged(this::onMouseDragged);
+    separatorRight.setCursor(Cursor.H_RESIZE);
   }
 
   // 处理鼠标按下事件

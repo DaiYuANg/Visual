@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.visual.controller.ComponentAreaController"
+      prefWidth="200"
+>
+  <HBox spacing="10" alignment="CENTER_LEFT">
+    <!-- 左边元素 -->
+    <Label text="Toolbox"/>
+    <!-- 中间的空白区域 -->
+    <Region HBox.hgrow="ALWAYS"/>
+    <Button text="Right Item"/>
+  </HBox>
+  <Separator/>
+  <Accordion>
+    <panes>
+      <TitledPane text="Section 1">
+        <StackPane>
+          <!-- 这里可以添加面板的内容 -->
+          <Label text="This is content for Section 1"/>
+        </StackPane>
+      </TitledPane>
+      <TitledPane text="Section 2">
+        <GridPane hgap="20" vgap="15">
+          <StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Button
+              mnemonicParsing="false"
+              prefWidth="50.0">
+              <graphic>
+                <FontIcon iconLiteral="di-java" iconSize="64"/>
+              </graphic>
+            </Button>
+          </StackPane>
+          <StackPane GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Button mnemonicParsing="false" prefWidth="50">
+              <graphic>
+                <FontIcon iconLiteral="mdi2r-rectangle-outline" iconSize="64"/>
+              </graphic>
+            </Button>
+          </StackPane>
+        </GridPane>
+      </TitledPane>
+    </panes>
+  </Accordion>
+</VBox>

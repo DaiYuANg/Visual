@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox
+<MenuBar
   xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="org.visual.controller.GlobalMenuController"
+  useSystemMenuBar="true"
 >
-  <MenuBar useSystemMenuBar="true">
-    <fx:include source="menu/FileMenu.fxml"/>
-    <fx:include source="menu/EditMenu.fxml"/>
-    <fx:include source="menu/ConnectionMenu.fxml"/>
-    <fx:include source="menu/VCSMenu.fxml"/>
-    <fx:include source="menu/HelpMenu.fxml"/>
-  </MenuBar>
-</VBox>
+  <fx:include source="menu/FileMenu.fxml"/>
+  <fx:include source="menu/EditMenu.fxml"/>
+  <fx:include source="menu/ConnectionMenu.fxml"/>
+  <fx:include source="menu/VCSMenu.fxml"/>
+  <fx:include source="menu/HelpMenu.fxml"/>
+</MenuBar>

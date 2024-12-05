@@ -50,6 +50,7 @@ module org.visual {
   requires org.github.gestalt.core;
   requires org.github.gestalt.toml;
   requires dev.dirs;
+  requires java.prefs;
 
   exports org.visual.view to
     javafx.graphics;
