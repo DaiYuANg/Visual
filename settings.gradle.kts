@@ -46,3 +46,15 @@ gitHooks {
 rootProject.name = "Visual"
 
 include("website")
+
+include("visual-core")
+
+include("visual-app")
+
+include("visual-database")
+
+include("visual-config")
+
+include("visual-api")
+
+include("visual-i18n")

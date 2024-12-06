@@ -14,11 +14,8 @@ mapstruct = "1.6.3"
 jgit = "7.1.0.202411261347-r"
 vertx = "4.5.11"
 jdbi = "3.45.0"
-groovy = "5.0.0-alpha-7"
 fury = "0.9.0"
 avajeValidaor = "2.3"
-hibernate = "7.0.0.Beta2"
-queryDsl = "6.9"
 h2 = "2.3.232"
 asciidoctor = "4.0.3"
 avajeInject = "11.0"
@@ -34,14 +31,13 @@ javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 maniftest = { id = "com.coditory.manifest", version = "0.2.6" }
-hibernate = { id = "org.hibernate.orm", version.ref = "hibernate" }
 shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta2" }
 jlink = { id = "org.beryx.jlink", version = "3.1.1" }
 graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
 lombok = { id = "name.remal.lombok", version = "2.2.12" }
 ebean = { id = "io.ebean", version.ref = "ebean" }
-semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.4" }
+semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctorEpub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
@@ -49,10 +45,11 @@ asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
 asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
 
 [libraries]
-apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.18.0" }
-apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
-apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
-apacheDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
+apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.0" }
+apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
+apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.12.0" }
+apache-common-db-util = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
 dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 
@@ -60,8 +57,6 @@ dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
 slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
-
-prism = { group = "io.avaje", name = "avaje-prisms", version = "1.21" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.5" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.12" }
@@ -75,24 +70,23 @@ fontawesome5 = { group = "org.kordamp.ikonli", name = "ikonli-fontawesome5-pack"
 javafxUnitTest = { group = "org.testfx", name = "testfx-junit5", version = "4.0.18" }
 atlantafx = { group = "io.github.mkpaz", name = "atlantafx-base", version = "2.0.1" }
 controlfx = { group = "org.controlsfx", name = "controlsfx", version = "11.2.1" }
-preferencesfx = { group = "com.dlsc.preferencesfx", name = "preferencesfx-core", version = "11.17.0" }
 ikonliJavafx = { group = "org.kordamp.ikonli", name = "ikonli-javafx", version.ref = "ikonliJavafx" }
 
 #Test
-junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
-junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
-junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
-junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.10.2" }
-junitPerf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.37.0" }
+junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+junit-juiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junit-platform-suite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.10.2" }
+junit-perf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.37.0" }
 testcontainers-bom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainers-junit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
 testcontainers-mysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
 testcontainers-mssqlserver = { group = "org.testcontainers", name = "mssqlserver", version.ref = "testcontainers" }
 testcontainers-postgresql = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
-mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
 
 gestalt = { group = "com.github.gestalt-config", name = "gestalt-core", version.ref = "gestalt" }
 gestalt-toml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
@@ -100,24 +94,20 @@ gestalt-yaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", ver
 
 guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
 
-mysql = { group = "com.mysql", name = "mysql-connector-j", version = "8.3.0" }
-postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
-mssql = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version = "12.6.1.jre11" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.1.0" }
+postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
 h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
-h2Mvstore = { group = "com.h2database", name = "h2-mvstore", version.ref = "h2" }
-sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.1.0" }
-hikariCP = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
+sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.1.0" }
 
 eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
 
-plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2024.3" }
+plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2024.8" }
 jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
-jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
+jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }
-pcollections = { group = "org.pcollections", name = "pcollections", version = "4.0.2" }
 
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -141,9 +131,9 @@ schemacrawler-sqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", ver
 schemacrawler-postgreSQL = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
 schemacrawler-sql-server = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
-avajeInject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
-avajeInjectTest = { group = "io.avaje", name = "avaje-inject-test", version.ref = "avajeInject" }
-avajeInjectGenerator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
+avaje-inject = { group = "io.avaje", name = "avaje-inject", version.ref = "avajeInject" }
+avaje-inject-test = { group = "io.avaje", name = "avaje-inject-test", version.ref = "avajeInject" }
+avaje-inject-generator = { group = "io.avaje", name = "avaje-inject-generator", version.ref = "avajeInject" }
 
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
@@ -160,36 +150,33 @@ vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
 vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
+vertx-hazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
+vertx-micrometer-metrics = { group = "io.vertx", name = "vertx-micrometer-metrics", version.ref = "vertx" }
+micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.1" }
 vertx-postgresql-client = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
-vertxMySQLClient = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
-vertxDB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
-vertxOrcaleClient = { group = "io.vertx", name = "vertx-oracle-client", version.ref = "vertx" }
-vertxMssqlClient = { group = "io.vertx", name = "vertx-mssql-client", version.ref = "vertx" }
-vertxSqlClientTemplate = { group = "io.vertx", name = "vertx-sql-client-templates", version.ref = "vertx" }
-vertxMongoDBClient = { group = "io.vertx", name = "vertx-mongo-client", version.ref = "vertx" }
-vertxRedisClient = { group = "io.vertx", name = "vertx-redis-client", version.ref = "vertx" }
-vertxCassandraClient = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
-vertxJdbcClient = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
-vertxURLTemplate = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
+vertx-mySQL-client = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
+vertx-DB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
+vertx-orcale-client = { group = "io.vertx", name = "vertx-oracle-client", version.ref = "vertx" }
+vertx-mssql-client = { group = "io.vertx", name = "vertx-mssql-client", version.ref = "vertx" }
+vertx-sql-client-template = { group = "io.vertx", name = "vertx-sql-client-templates", version.ref = "vertx" }
+vertx-mongo-db-Client = { group = "io.vertx", name = "vertx-mongo-client", version.ref = "vertx" }
+vertx-redis-client = { group = "io.vertx", name = "vertx-redis-client", version.ref = "vertx" }
+vertx-cassandra-client = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
+vertx-jdbc-client = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
+vertx-url-template = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
 mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.7.0" }
 mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version.ref = "mutinyVertx" }
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
 
-auto-factory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
-
-recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
-recordBuilderProcess = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
+record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
 
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.9" }
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
-pf4j = { group = "org.pf4j", name = "pf4j", version = "3.11.1" }
-
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
 vavr = { group = "io.vavr", name = "vavr", version = "1.0.0-alpha-4" }
-
-hibernateValidator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "8.0.1.Final" }
 
 ebean-api = { group = "io.ebean", name = "ebean-api", version.ref = "ebean" }
 ebean-core = { group = "io.ebean", name = "ebean-core", version.ref = "ebean" }
@@ -202,8 +189,6 @@ ebean-migration = { group = "io.ebean", name = "ebean-migration", version = "14.
 ebean-platform-h2 = { group = "io.ebean", name = "ebean-platform-h2", version.ref = "ebean" }
 ebean-ddl-generator = { group = "io.ebean", name = "ebean-ddl-generator", version.ref = "ebean" }
 
-jakartaPersistenceAPI = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
-
 fury-core = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 fury-format = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
 
@@ -212,3 +197,7 @@ graalvm-polyglot = { group = "org.graalvm.polyglot", name = "polyglot", version.
 graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js-community", version.ref = "polyglot" }
 graalvm-polyglot-python = { group = "org.graalvm.polyglot", name = "python-community", version.ref = "polyglot" }
 graalvm-polyglot-profile = { group = "org.graalvm.polyglot", name = "profiler", version.ref = "polyglot" }
+
+theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.9.1" }
+
+lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.12" }

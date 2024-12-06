@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+  xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="org.visual.app.controller.workspace.WorkspaceController"
+>
+  <top>
+    <fx:include source="GlobalMenu.fxml"/>
+  </top>
+  <left>
+    <HBox fx:id="leftPane">
+      <fx:include VBox.vgrow="ALWAYS" source="workspace/ObjectBrowser.fxml"/>
+      <Separator fx:id="separator" orientation="VERTICAL" VBox.vgrow="ALWAYS"/>
+    </HBox>
+  </left>
+  <center>
+    <fx:include source="workspace/Tab.fxml"/>
+  </center>
+  <right>
+    <HBox>
+      <Separator fx:id="separatorRight" orientation="VERTICAL" VBox.vgrow="ALWAYS"/>
+      <fx:include source="workspace/ComponentArea.fxml"/>
+    </HBox>
+  </right>
+</BorderPane>
