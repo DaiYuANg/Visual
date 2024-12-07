@@ -28,6 +28,7 @@ dependencies {
   implementation(projects.visualConfig)
   implementation(projects.visualDatabase)
   implementation(projects.visualApi)
+  implementation(projects.visualI18n)
   implementation(libs.fastutil)
   implementation(libs.vertx.web)
   implementation(libs.mutiny.vertx.web.client)
@@ -36,8 +37,7 @@ dependencies {
   testImplementation(libs.vertx.junit5)
   testImplementation(libs.dataFaker)
   implementation(libs.jgrapht)
-  implementation(libs.eclipse.collections)
-  implementation(libs.eclipse.collections.api)
+
   implementation(libs.atlantafx)
   implementation(libs.controlfx)
   implementation(libs.guava)
