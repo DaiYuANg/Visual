@@ -15,7 +15,7 @@ import org.visual.app.ui.FXMLHelper;
 @Slf4j
 @Lazy
 @RequiredArgsConstructor
-public class UI {
+public class UIFactory {
 
   private final FXMLHelper fxmlHelper;
 

@@ -28,7 +28,7 @@
         <!-- Host -->
         <HBox spacing="10">
           <Label text="Host:"/>
-          <CustomTextField style="-fx-text-fill: white;" fx:id="hostField" promptText="Enter host (e.g., localhost)">
+          <CustomTextField fx:id="hostField" promptText="Enter host (e.g., localhost)">
             <left>
               <FontIcon iconLiteral="mdi2d-database"/>
             </left>

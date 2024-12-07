@@ -1,6 +1,7 @@
 package org.visual.app.repository;
 
 import io.ebean.Database;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +14,10 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class HistoryRepositoryImpl implements HistoryRepository {
-  private final Database database;
+  private final Uni<Database> database;
 
   @Override
-  public List<History> queryHistory() {
-    return database.createQuery(History.class).findList();
+  public Uni<List<History>> queryHistory() {
+    return database.map(db -> db.createQuery(History.class).findList());
   }
 }

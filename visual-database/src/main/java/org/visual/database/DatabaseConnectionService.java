@@ -16,10 +16,10 @@ public class DatabaseConnectionService {
   private final Validator validator;
 
   @SneakyThrows
-  public Boolean checkConnectable(@NotNull DBConnection form) {
-    validator.validate(form);
-    val url = form.buildConnectionUrl();
+  public Boolean checkConnectable(@NotNull DBConnection connection) {
+    validator.validate(connection);
+    val url = connection.buildConnectionUrl();
     log.atInfo().log("URL:{}", url);
-    return form.testConnect();
+    return connection.testConnect();
   }
 }

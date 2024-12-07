@@ -6,7 +6,6 @@ import io.smallrye.mutiny.infrastructure.Infrastructure;
 import javafx.application.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.app.api.HistoryRepository;
 import org.visual.app.context.DIContext;
 import org.visual.app.view.VisualUI;
 import picocli.CommandLine;
@@ -21,11 +20,8 @@ import picocli.CommandLine;
 public class VisualCommand implements Runnable {
   private final String[] args;
 
-  private final HistoryRepository historyRepository = DIContext.INSTANCE.get(HistoryRepository.class);
-
   @Override
   public void run() {
-    historyRepository.queryHistory();
     Uni.createFrom().item(DIContext.INSTANCE)
       .map((context) -> context.get(ServiceManager.class))
       .emitOn(Infrastructure.getDefaultExecutor())

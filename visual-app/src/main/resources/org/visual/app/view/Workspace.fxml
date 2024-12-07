@@ -24,9 +24,6 @@
     <fx:include source="workspace/Tab.fxml"/>
   </center>
   <right>
-    <HBox>
-      <Separator fx:id="separatorRight" orientation="VERTICAL" VBox.vgrow="ALWAYS"/>
-      <fx:include source="workspace/ComponentArea.fxml"/>
-    </HBox>
+    <fx:include source="workspace/ComponentArea.fxml"/>
   </right>
 </BorderPane>

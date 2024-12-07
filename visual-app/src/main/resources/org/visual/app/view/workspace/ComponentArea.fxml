@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.app.controller.workspace.ComponentAreaController"
       prefWidth="200"
+      style="
+      -fx-border-style: solid;       /* 设置边框为实线 */
+    -fx-border-width: 0 0 0 3;     /* top, right, bottom, left 边框宽度，只有右边有宽度 */
+    -fx-border-color: rgba(0,0,0,0.16);
+"
 >
   <HBox spacing="10" alignment="CENTER_LEFT">
     <Label text="Toolbox"/>
@@ -14,34 +21,7 @@
     <Button text="Right Item"/>
   </HBox>
   <Separator/>
-  <Accordion>
-    <panes>
-      <TitledPane text="Section 1">
-        <StackPane>
-          <!-- 这里可以添加面板的内容 -->
-          <Label text="This is content for Section 1"/>
-        </StackPane>
-      </TitledPane>
-      <TitledPane text="Section 2">
-        <GridPane hgap="20" vgap="15">
-          <StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
-            <Button
-              mnemonicParsing="false"
-              prefWidth="50.0">
-              <graphic>
-                <FontIcon iconLiteral="di-java" iconSize="64"/>
-              </graphic>
-            </Button>
-          </StackPane>
-          <StackPane GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <Button mnemonicParsing="false" prefWidth="50">
-              <graphic>
-                <FontIcon iconLiteral="mdi2r-rectangle-outline" iconSize="64"/>
-              </graphic>
-            </Button>
-          </StackPane>
-        </GridPane>
-      </TitledPane>
-    </panes>
-  </Accordion>
+  <VBox>
+    <TreeView fx:id="treeView"/>
+  </VBox>
 </VBox>

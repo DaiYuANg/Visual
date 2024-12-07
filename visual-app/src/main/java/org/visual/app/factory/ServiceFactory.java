@@ -8,7 +8,7 @@ import io.avaje.inject.Factory;
 import java.util.Set;
 
 @Factory
-public class Task {
+public class ServiceFactory {
 
   @Bean
   ServiceManager serviceManager(Set<Service> services) {

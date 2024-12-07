@@ -8,6 +8,7 @@ plugins {
   alias(libs.plugins.jlink)
   alias(libs.plugins.graalvm)
   alias(libs.plugins.shadow)
+  alias(libs.plugins.sass)
 }
 
 apply<ModulePlugin>()
@@ -104,6 +105,8 @@ dependencies {
 
   implementation(libs.jsh)
 
+  implementation("org.webjars.npm:fontsource-variable__jetbrains-mono:5.0.6")
+
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
@@ -114,6 +117,7 @@ dependencies {
 
 javafx {
   modules(*javafxModules.toTypedArray())
+  version = "23"
   configurations =
     arrayOf(
       IMPLEMENTATION,
@@ -174,5 +178,18 @@ jlink {
   enableCds()
   mainClass.set(mainClassPath)
   moduleName.set(mainModule)
-  mergedModule { uses("org.visual.api.Lifecycle") }
+  //  mergedModule { uses("org.visual.api.Lifecycle") }
+}
+
+tasks.compileJava { dependsOn(tasks.compileSass) }
+
+tasks.compileSass {
+  style = compressed
+  sourceMap = embed
+  sourceDir = layout.projectDirectory.file("src/main/sass").asFile
+  outputDir =
+    layout.buildDirectory
+      .file("resources/main/style")
+      .get()
+      .asFile
 }

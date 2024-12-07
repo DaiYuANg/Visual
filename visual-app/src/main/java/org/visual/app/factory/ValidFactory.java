@@ -5,7 +5,7 @@ import io.avaje.inject.Factory;
 import io.avaje.validation.Validator;
 
 @Factory
-public class Valid {
+public class ValidFactory {
 
   @Bean
   Validator validator() {

@@ -1,6 +1,7 @@
 package org.visual.app.controller.menu;
 
 import io.avaje.inject.Lazy;
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
 import javafx.animation.PauseTransition;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
+import org.visual.app.context.ApplicationContext;
 import org.visual.app.view.model.DatabaseConnectionFormViewModel;
 import org.visual.database.DatabaseConnectionService;
 import org.visual.database.SupportDatabaseType;
@@ -31,7 +33,9 @@ public class DatabaseConnectionFormController implements Initializable {
 
   private final DatabaseConnectionService databaseConnectionService;
 
-  private final EventBus eventBus;
+  private final Uni<EventBus> eventBus;
+
+  private final ApplicationContext applicationContext;
   @FXML
   private DialogPane p;
   @FXML
@@ -55,6 +59,7 @@ public class DatabaseConnectionFormController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    log.atInfo().log("Theme,{}", applicationContext.get("DARK", Boolean.class));
     val validationSupport = new ValidationSupport();
     validationSupport.registerValidator(hostField, Validator.createEmptyValidator("Host is required."));
     val dbTypes = FXCollections.observableArrayList(SupportDatabaseType.values());
@@ -70,7 +75,12 @@ public class DatabaseConnectionFormController implements Initializable {
   }
 
   public void handleConnect() {
-    eventBus.send("closeDialog", "1");
+    eventBus.invoke(eb -> {
+        eb.send("closeDialog", "1");
+      })
+      .subscribe().with(t -> {
+        log.atInfo().log(t.toString());
+      });
   }
 
   public void handleTestConnect() {

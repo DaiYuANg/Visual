@@ -7,7 +7,7 @@ import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
 
 @Factory
-public class Serialize {
+public class SerializerFactory {
 
   @Bean
   ObjectMapper objectMapper() {

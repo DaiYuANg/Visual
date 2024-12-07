@@ -17,7 +17,7 @@ public class PrintDialogTask implements ScheduleTask {
 
   @Override
   public Long delay() {
-    return 1000L;
+    return 10000L;
   }
 
   @Override

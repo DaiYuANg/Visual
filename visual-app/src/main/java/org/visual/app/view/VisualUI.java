@@ -4,6 +4,7 @@ package org.visual.app.view;
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
 import com.jthemedetecor.OsThemeDetector;
+import io.smallrye.mutiny.infrastructure.Infrastructure;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,10 +12,14 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.api.Lifecycle;
+import org.visual.app.context.ApplicationContext;
+import org.visual.app.util.SPI;
 import org.visual.config.UIConfig;
 
 import java.awt.*;
 
+import static io.smallrye.mutiny.Multi.createFrom;
 import static javafx.application.Platform.setImplicitExit;
 import static org.visual.app.context.DIContext.INSTANCE;
 
@@ -22,10 +27,19 @@ import static org.visual.app.context.DIContext.INSTANCE;
 public class VisualUI extends Application {
   private final OsThemeDetector detector = INSTANCE.get(OsThemeDetector.class);
   private final UIConfig uiConfig = INSTANCE.get(UIConfig.class);
+  private final ApplicationContext applicationContext = INSTANCE.get(ApplicationContext.class);
   private final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
   @Override
   public void init() {
+    createFrom()
+      .iterable(SPI.load(Lifecycle.class))
+      .emitOn(Infrastructure.getDefaultExecutor())
+      .onItem()
+      .invoke(Lifecycle::onStart)
+      .subscribe().with(t -> {
+        log.atInfo().log(t.toString());
+      });
     log.info("UI init");
     setImplicitExit(false);
     Application.setUserAgentStylesheet(detectTheme());
@@ -33,7 +47,9 @@ public class VisualUI extends Application {
   }
 
   private @NotNull String detectTheme() {
-    return detector.isDark() ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet();
+    val isDark = detector.isDark();
+    applicationContext.set("DARK", isDark);
+    return isDark ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet();
   }
 
   @SneakyThrows

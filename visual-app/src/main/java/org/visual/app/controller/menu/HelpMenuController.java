@@ -1,5 +1,6 @@
 package org.visual.app.controller.menu;
 
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.core.Vertx;
 import jakarta.inject.Singleton;
 import javafx.fxml.Initializable;
@@ -23,7 +24,7 @@ public class HelpMenuController implements Initializable {
 
   private final DialogManager dialogManager;
 
-  private final Vertx vertx;
+  private final Uni<Vertx> vertx;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {

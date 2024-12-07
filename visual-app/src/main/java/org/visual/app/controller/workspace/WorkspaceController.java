@@ -23,8 +23,6 @@ public class WorkspaceController implements Initializable {
   private Separator separator;
   @FXML
   private HBox leftPane;
-  @FXML
-  private Separator separatorRight;
   private double initialX;
   private double initialWidth; // 按下时左侧区域的宽度
 
@@ -33,7 +31,6 @@ public class WorkspaceController implements Initializable {
     separator.setCursor(Cursor.H_RESIZE);
     separator.setOnMousePressed(this::onMousePressed);
     separator.setOnMouseDragged(this::onMouseDragged);
-    separatorRight.setCursor(Cursor.H_RESIZE);
   }
 
   // 处理鼠标按下事件

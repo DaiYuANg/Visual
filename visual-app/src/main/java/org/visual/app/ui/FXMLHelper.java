@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.eclipse.collections.api.block.function.Function0;
 import org.eclipse.collections.api.factory.Maps;
 import org.eclipse.collections.api.map.MutableMap;
 import org.jetbrains.annotations.NotNull;
@@ -26,12 +24,10 @@ public class FXMLHelper {
   private final MutableMap<ViewConstant, Parent> fxmlCache = Maps.mutable.empty();
 
   public <T extends Parent> T load(@NotNull ViewConstant prefix, @NotNull Class<T> type) {
-    // Using a more type-safe method to retrieve the item from the cache
-    val cachedView = fxmlCache.getIfAbsent(prefix, (Function0<Parent>) () -> loadFromDisk(prefix));
-
-    // Ensure that the cached item is of the correct type
-    Preconditions.checkArgument(type.isInstance(cachedView), "FXML cache contains a mismatched type.");
-    return type.cast(cachedView); // Safe cast
+    return Try.of(() -> fxmlCache.getIfAbsent(prefix, () -> loadFromDisk(prefix)))
+      .andThenTry(view -> Preconditions.checkArgument(type.isInstance(view), "FXML cache contains a mismatched type."))
+      .map(type::cast)
+      .get();
   }
 
   private <T extends Parent> T loadFromDisk(@NotNull ViewConstant prefix) {

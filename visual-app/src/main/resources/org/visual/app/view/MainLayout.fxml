@@ -3,6 +3,8 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.visual.app.controller.MainLayoutController">
+      fx:controller="org.visual.app.controller.MainLayoutController"
+      stylesheets="style/app.css"
+>
   <fx:include VBox.vgrow="ALWAYS" source="Workspace.fxml"/>
 </VBox>

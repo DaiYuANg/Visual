@@ -35,8 +35,7 @@ val devJvmArguments =
     "-XX:+UseNUMA",
     "-Xmx256M",
     "-Dcom.sun.management.jmxremote",
-
-    )
+  )
 
 val hazelcastArguments = listOf(
   "--add-modules",

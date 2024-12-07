@@ -1,8 +1,10 @@
 package org.visual.app.api;
 
-import java.util.List;
+import io.smallrye.mutiny.Uni;
 import org.visual.app.entity.History;
 
+import java.util.List;
+
 public interface HistoryRepository {
-  List<History> queryHistory();
+  Uni<List<History>> queryHistory();
 }

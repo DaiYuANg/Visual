@@ -1,5 +1,6 @@
 package org.visual.app.controller.menu;
 
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
 import javafx.application.Platform;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 @RequiredArgsConstructor
 @Singleton
 public class ConnectionMenuController implements Initializable {
-  private final EventBus eventBus;
+  private final Uni<EventBus> eventBus;
 
   private final FXMLHelper fxmlHelper;
 
@@ -32,7 +33,11 @@ public class ConnectionMenuController implements Initializable {
   public void openConnectionForm() {
     val connectionDialog = new Dialog<Void>();
     connectionDialog.initStyle(StageStyle.UTILITY);
-    eventBus.consumer("closeDialog", message -> Platform.runLater(connectionDialog::close));
+    eventBus.invoke(eb -> {
+      eb.consumer("closeDialog", message -> Platform.runLater(connectionDialog::close));
+    }).subscribe().with(t->{
+
+    });
     val form = fxmlHelper.load(ViewConstant.DATABASE_CONNECT_FORM, DialogPane.class);
     connectionDialog.setDialogPane(form);
     connectionDialog.showAndWait();

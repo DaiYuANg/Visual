@@ -7,7 +7,7 @@ dependencies {
   testImplementation(libs.testcontainers.postgresql)
   testImplementation(libs.testcontainers.mssqlserver)
 
-  //  implementation(projects.visualCore)
+  implementation(projects.visualCore)
   implementation(libs.apache.common.text)
   implementation(libs.mysql)
   implementation(libs.sqlite)
@@ -17,5 +17,4 @@ dependencies {
   implementation(libs.schemacrawler.sqlite)
   implementation(libs.schemacrawler.mySQL)
   implementation(libs.schemacrawler.postgreSQL)
-  implementation(libs.schemacrawler.sql.server)
 }

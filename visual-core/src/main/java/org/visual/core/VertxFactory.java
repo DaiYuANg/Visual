@@ -1,8 +1,12 @@
 package org.visual.core;
 
+import com.hazelcast.config.Config;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
+import io.smallrye.mutiny.Uni;
+import io.smallrye.mutiny.infrastructure.Infrastructure;
 import io.vertx.core.VertxOptions;
+import io.vertx.core.impl.VertxInternal;
 import io.vertx.core.spi.cluster.ClusterManager;
 import io.vertx.micrometer.MicrometerMetricsOptions;
 import io.vertx.micrometer.VertxJmxMetricsOptions;
@@ -22,13 +26,13 @@ public class VertxFactory {
 
   @Bean
   ClusterManager clusterManager() {
-    com.hazelcast.config.Config hazelcastConfig = new com.hazelcast.config.Config();
+    val hazelcastConfig = new Config();
     hazelcastConfig.setProperty("hazelcast.logging.type", "slf4j");
     return new HazelcastClusterManager(hazelcastConfig);
   }
 
   @Bean
-  Vertx mutinyVertx(ClusterManager clusterManager) {
+  Uni<Vertx> mutinyVertx(ClusterManager clusterManager) {
     val option = new VertxOptions();
     val micrometer = new MicrometerMetricsOptions()
       .setJmxMetricsOptions(new VertxJmxMetricsOptions().setEnabled(true))
@@ -37,11 +41,15 @@ public class VertxFactory {
     return Vertx.builder()
       .with(option)
       .withClusterManager(clusterManager)
-      .buildClusteredAndAwait();
+      .buildClustered()
+      .invoke(v -> {
+        val internal = (VertxInternal) v.getDelegate();
+        Infrastructure.setDefaultExecutor(internal.getEventLoopGroup());
+      });
   }
 
   @Bean
-  EventBus eventBus(Vertx vertx) {
-    return vertx.eventBus();
+  Uni<EventBus> eventBus(Uni<Vertx> vertx) {
+    return vertx.map(Vertx::eventBus);
   }
 }

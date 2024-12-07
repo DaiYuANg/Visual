@@ -4,7 +4,7 @@ group = "org.visual.core"
 
 dependencies {
   compileOnly(libs.jetbrains.annotation)
-  api(libs.oshi)
+  implementation(libs.oshi)
 
   implementation(libs.mutiny)
   implementation(libs.mutiny.vertx)
@@ -12,4 +12,6 @@ dependencies {
   implementation(libs.vertx.micrometer.metrics)
   implementation(libs.micrometer.registry.jmx)
   implementation(libs.vertx.core)
+
+  implementation(variantOf(libs.netty.resolver.dns.native.macos) { classifier("osx-aarch_64") })
 }
