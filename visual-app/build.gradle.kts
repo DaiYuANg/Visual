@@ -152,6 +152,7 @@ graalvmNative {
 }
 
 tasks.shadowJar {
+  isZip64 = true
   mergeServiceFiles()
   val jar: Jar by tasks
   manifest.inheritFrom(jar.manifest)
