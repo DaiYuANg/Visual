@@ -21,7 +21,8 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '21'  # 设置 JDK 版本，JavaFX 需要 JDK 17 及以上版本
+          java-version: '21'
+          distribution: "graalvm"
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
