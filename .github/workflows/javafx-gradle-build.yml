@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # 检出代码
+        uses: actions/checkout@v4  # 检出代码
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: "graalvm"
 
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.gradle/caches  # 缓存 Gradle 的依赖
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/build.gradle*') }}  # 缓存 key
