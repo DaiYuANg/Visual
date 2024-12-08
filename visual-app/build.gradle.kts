@@ -30,11 +30,11 @@ dependencies {
   implementation(projects.visualApi)
   implementation(projects.visualI18n)
   implementation(libs.fastutil)
-  implementation(libs.vertx.web)
-  implementation(libs.mutiny.vertx.web.client)
-  implementation(libs.mutiny.vertx.web)
-  implementation(libs.vertx.web.client)
-  testImplementation(libs.vertx.junit5)
+  //  implementation(libs.vertx.web)
+  //  implementation(libs.mutiny.vertx.web.client)
+  //  implementation(libs.mutiny.vertx.web)
+  //  implementation(libs.vertx.web.client)
+  //  testImplementation(libs.vertx.junit5)
   testImplementation(libs.dataFaker)
   implementation(libs.jgrapht)
 
@@ -60,7 +60,7 @@ dependencies {
   implementation(libs.logback)
 
   implementation(libs.picocli)
-  annotationProcessor(libs.picocliCodegen)
+  annotationProcessor(libs.picocli.codegen)
 
   testImplementation(libs.javafxUnitTest)
 
@@ -179,7 +179,11 @@ jlink {
   enableCds()
   mainClass.set(mainClassPath)
   moduleName.set(mainModule)
-  //  mergedModule { uses("org.visual.api.Lifecycle") }
+  addExtraDependencies("javafx", "jackson", "picocli", "jakarta", "eclipse.collections")
+  customImage {
+    jdkModules = listOf("java.desktop", "java.xml", "jdk.unsupported", "jdk.management")
+    appModules = listOf("org.visual.app")
+  }
 }
 
 tasks.compileJava { dependsOn(tasks.compileSass) }
@@ -194,3 +198,5 @@ tasks.compileSass {
       .get()
       .asFile
 }
+
+tasks.prepareMergedJarsDir { dependsOn(tasks.jar) }

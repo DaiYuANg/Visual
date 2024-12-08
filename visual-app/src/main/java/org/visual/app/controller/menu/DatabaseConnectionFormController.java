@@ -1,8 +1,6 @@
 package org.visual.app.controller.menu;
 
 import io.avaje.inject.Lazy;
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
@@ -32,8 +30,6 @@ public class DatabaseConnectionFormController implements Initializable {
   private final DatabaseConnectionFormViewModel viewModel;
 
   private final DatabaseConnectionService databaseConnectionService;
-
-  private final Uni<EventBus> eventBus;
 
   private final ApplicationContext applicationContext;
   @FXML
@@ -75,12 +71,7 @@ public class DatabaseConnectionFormController implements Initializable {
   }
 
   public void handleConnect() {
-    eventBus.invoke(eb -> {
-        eb.send("closeDialog", "1");
-      })
-      .subscribe().with(t -> {
-        log.atInfo().log(t.toString());
-      });
+
   }
 
   public void handleTestConnect() {

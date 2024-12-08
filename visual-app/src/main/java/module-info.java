@@ -26,13 +26,9 @@ module org.visual.app {
   requires org.kordamp.ikonli.fluentui;
   requires javafx.fxml;
   requires org.apache.commons.io;
-  requires io.vertx.core;
-  requires io.smallrye.mutiny.vertx.core;
-  requires io.smallrye.mutiny.vertx.web.client;
   requires java.naming;
   requires java.compiler;
   requires org.apache.fury.core;
-  requires io.smallrye.mutiny.vertx.web;
   requires org.controlsfx.controls;
   requires org.mapstruct;
   requires org.eclipse.jgit;
@@ -44,6 +40,8 @@ module org.visual.app {
   requires io.ebean.migration;
   requires io.avaje.validation.contraints;
   requires io.avaje.validation;
+  requires com.github.benmanes.caffeine;
+  requires jdk.management;
 
   requires com.jthemedetector;
   requires org.visual.core;

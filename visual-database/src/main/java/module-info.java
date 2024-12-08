@@ -8,6 +8,7 @@ module org.visual.database {
   requires org.apache.commons.text;
   requires io.vavr;
   requires io.avaje.inject;
+  requires schemacrawler;
   provides io.avaje.validation.spi.ValidationExtension with org.visual.database.valid.GeneratedValidatorComponent;
   exports org.visual.database;
 }

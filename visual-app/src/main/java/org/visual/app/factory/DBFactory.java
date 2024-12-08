@@ -3,7 +3,6 @@ package org.visual.app.factory;
 import dev.dirs.ProjectDirectories;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import io.avaje.inject.RequiresBean;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;

@@ -1,4 +1,8 @@
+import org.javamodularity.moduleplugin.extensions.CompileModuleOptions
+
 group = "org.visual.database"
+
+plugins { alias(libs.plugins.javamodularity) }
 
 apply<ModulePlugin>()
 
@@ -17,4 +21,8 @@ dependencies {
   implementation(libs.schemacrawler.sqlite)
   implementation(libs.schemacrawler.mySQL)
   implementation(libs.schemacrawler.postgreSQL)
+}
+
+tasks.compileJava {
+  extensions.configure<CompileModuleOptions> { addModules = listOf("schemacrawler") }
 }

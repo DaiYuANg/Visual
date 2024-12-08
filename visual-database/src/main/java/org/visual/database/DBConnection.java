@@ -6,6 +6,7 @@ import io.avaje.validation.constraints.NotBlank;
 import io.avaje.validation.constraints.Valid;
 import io.vavr.control.Try;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.StringSubstitutor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @Builder
 @Valid
 @Data
+@Slf4j
 public class DBConnection {
 
   @NonNull
@@ -64,7 +66,8 @@ public class DBConnection {
         @Cleanup val connection = DriverManager.getConnection(buildConnectionUrl(), username, password);
         return Optional.ofNullable(connection.getMetaData()).map(m -> true).orElse(false);
       })
-      .recover(ConnectException.class, false)  // 如果捕获到连接异常，返回 false
+      .onFailure(t -> log.atError().log("Failed to connect to the database,:{}", t.getMessage()))
+      .recover(ConnectException.class, false)
       .get();
   }
 }

@@ -31,14 +31,8 @@
     <appender-ref ref="ASYNC"/>
   </root>
 
-  <logger name="org.visual.app" level="TRACE"/>
+  <logger name="org.visual" level="TRACE"/>
   <logger name="io.avaje.inject" level="TRACE"/>
-  <logger name="io.ebean.SQL" level="TRACE"/>
+  <logger name="io.vertx.web" level="TRACE"/>
 
-  <logger name="io.ebean.TXN" level="TRACE"/>
-  <logger name="io.ebean.DDL" level="TRACE"/>
-  <logger name="org.github.gestalt.config" level="TRACE"/>
-  <logger name="io.vertx" level="DEBUG" />
-  <logger name="io.vertx.core" level="DEBUG" />
-  <logger name="io.vertx.ext" level="DEBUG" />
 </configuration>

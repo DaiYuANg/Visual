@@ -58,3 +58,5 @@ include("visual-config")
 include("visual-api")
 
 include("visual-i18n")
+
+include("visual-collaboration-server")
