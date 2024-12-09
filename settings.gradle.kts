@@ -53,7 +53,7 @@ include("visual-app")
 
 include("visual-database")
 
-include("visual-config")
+include("visual-data-structure")
 
 include("visual-api")
 

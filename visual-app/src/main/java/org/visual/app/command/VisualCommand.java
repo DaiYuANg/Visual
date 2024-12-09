@@ -3,6 +3,7 @@ package org.visual.app.command;
 import com.google.common.util.concurrent.ServiceManager;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.infrastructure.Infrastructure;
+import io.vertx.mutiny.core.net.NetClient;
 import javafx.application.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,14 @@ public class VisualCommand implements Runnable {
       .subscribe().with(t -> {
         log.atInfo().log(t.toString());
       });
+    DIContext.INSTANCE.get(NetClient.class)
+      .connect(19090, "localhost")
+      .subscribe().with(t -> {
+        t.handler(buffer -> {
+          log.atInfo().log(buffer.toString());
+        });
+      })
+    ;
     Application.launch(VisualUI.class, args);
   }
 }

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.visual.api.Lifecycle;
 import org.visual.app.context.ApplicationContext;
 import org.visual.app.util.SPI;
-import org.visual.config.UIConfig;
+import org.visual.app.config.UIConfig;
 
 import java.awt.*;
 

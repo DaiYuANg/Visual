@@ -1,4 +1,4 @@
-package org.visual.config;
+package org.visual.app.config;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;

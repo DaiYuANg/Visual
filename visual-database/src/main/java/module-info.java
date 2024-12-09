@@ -10,5 +10,7 @@ module org.visual.database {
   requires io.avaje.inject;
   requires schemacrawler;
   provides io.avaje.validation.spi.ValidationExtension with org.visual.database.valid.GeneratedValidatorComponent;
+
+  provides io.avaje.inject.spi.InjectExtension with org.visual.database.DatabaseModule;
   exports org.visual.database;
 }

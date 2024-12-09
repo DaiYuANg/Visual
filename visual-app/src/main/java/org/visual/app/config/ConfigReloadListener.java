@@ -1,4 +1,4 @@
-package org.visual.config;
+package org.visual.app.config;
 
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;

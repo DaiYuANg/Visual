@@ -1,3 +1,5 @@
+import org.siouan.frontendgradleplugin.infrastructure.gradle.InstallFrontendTask
+
 plugins {
   application
   alias(libs.plugins.graalvm)
@@ -5,6 +7,8 @@ plugins {
   alias(libs.plugins.jlink)
   alias(libs.plugins.javamodularity)
   alias(libs.plugins.docker)
+  alias(libs.plugins.maniftest)
+  alias(libs.plugins.frontend)
 }
 
 apply<ModulePlugin>()
@@ -20,14 +24,26 @@ application {
 }
 
 dependencies {
+  implementation(projects.visualDataStructure)
+  implementation(projects.visualCore)
   implementation(libs.logback)
   implementation(libs.slf4jJulBridage)
   implementation(libs.slf4jJdkPlatform)
-  implementation(libs.vertx.tcp.eventbus.bridge)
   implementation(libs.picocli)
+  implementation(libs.fastutil)
+  implementation(libs.guava)
   annotationProcessor(libs.picocli.codegen)
-  implementation(libs.mutiny.vertx.tcp.eventbus.bridge)
-  implementation(projects.visualCore)
+  implementation(libs.mutiny)
+  implementation(libs.mutiny.vertx)
+  implementation(libs.vertx.micrometer.metrics)
+  implementation(libs.micrometer.registry.jmx)
+  implementation(libs.vertx.core)
+  implementation(libs.agrona)
+  implementation(libs.jgrapht)
+  implementation(libs.vertx.web)
+  implementation(libs.mutiny.vertx.web)
+  implementation(libs.gestalt)
+  implementation(libs.gestalt.yaml)
 }
 
 tasks.shadowJar { mergeServiceFiles() }
@@ -59,4 +75,25 @@ docker {
     images.set(setOf(group.toString().replace(".", "-")))
     jvmArgs.set(listOf("-Xms256m", "-Xmx2048m"))
   }
+}
+
+frontend {
+  nodeVersion.set("22.11.0")
+  packageJsonDirectory.set(project.layout.projectDirectory.dir("src/main/frontend"))
+  assembleScript.set("build")
+}
+
+tasks.withType(InstallFrontendTask::class.java) {
+  environmentVariables.put("COREPACK_NPM_REGISTRY", "https://registry.npmmirror.com")
+}
+
+tasks.create("copyFrontend", Copy::class) {
+  group = "build"
+  from(layout.projectDirectory.dir("src/main/frontend/dist"))
+  destinationDir = layout.buildDirectory.dir("classes/java/main/webroot").get().asFile
+  dependsOn(tasks.assembleFrontend)
+}
+
+tasks.processResources {
+  dependsOn("copyFrontend")
 }

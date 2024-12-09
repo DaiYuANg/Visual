@@ -43,6 +43,8 @@ module org.visual.app {
   requires com.github.benmanes.caffeine;
   requires jdk.management;
 
+  requires io.smallrye.mutiny.vertx.core;
+
   requires com.jthemedetector;
   requires org.visual.core;
   requires org.visual.database;
@@ -67,6 +69,13 @@ module org.visual.app {
 
   requires org.visual.api;
   requires net.sourceforge.plantuml;
+
+  requires org.github.gestalt.core;
+  requires org.github.gestalt.toml;
+  requires org.github.gestalt.yaml;
+
+  requires io.github.joeljeremy.deezpatch.core;
+
   exports org.visual.app.api;
 
   provides org.visual.api.Lifecycle with org.visual.app.lifecycle.BackgroundServiceLifecycle;

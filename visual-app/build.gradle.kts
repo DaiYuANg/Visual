@@ -25,17 +25,13 @@ group = "org.visual.app"
 
 dependencies {
   implementation(projects.visualCore)
-  implementation(projects.visualConfig)
+  implementation(projects.visualDataStructure)
   implementation(projects.visualDatabase)
   implementation(projects.visualApi)
   implementation(projects.visualI18n)
   implementation(libs.fastutil)
-  //  implementation(libs.vertx.web)
-  //  implementation(libs.mutiny.vertx.web.client)
-  //  implementation(libs.mutiny.vertx.web)
-  //  implementation(libs.vertx.web.client)
-  //  testImplementation(libs.vertx.junit5)
-  testImplementation(libs.dataFaker)
+  testImplementation(libs.vertx.junit5)
+  testImplementation(libs.data.faker)
   implementation(libs.jgrapht)
 
   implementation(libs.atlantafx)
@@ -73,6 +69,11 @@ dependencies {
   implementation(libs.ebean.data.source)
   implementation(libs.ebean.platform.h2)
   implementation(libs.ebean.migration)
+  implementation(libs.deezpatch)
+
+  implementation(libs.gestalt.toml)
+  implementation(libs.gestalt.yaml)
+  implementation(libs.gestalt)
   annotationProcessor(libs.ebean.query.bean.generator)
 
   implementation(libs.jgit)

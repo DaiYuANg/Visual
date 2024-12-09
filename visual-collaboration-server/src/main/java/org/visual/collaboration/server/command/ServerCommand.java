@@ -1,13 +1,17 @@
 package org.visual.collaboration.server.command;
 
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.net.NetServer;
-import io.vertx.mutiny.ext.eventbus.bridge.tcp.TcpEventBusBridge;
+import io.smallrye.mutiny.vertx.core.AbstractVerticle;
+import io.vertx.mutiny.core.Vertx;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.visual.collaboration.server.model.HttpConfig;
 import picocli.CommandLine;
+
+import java.util.Set;
+
+import static io.smallrye.mutiny.Uni.combine;
 
 @CommandLine.Command(name = "server", aliases = "s")
 @Slf4j
@@ -15,21 +19,21 @@ import picocli.CommandLine;
 @RequiredArgsConstructor
 public class ServerCommand implements Runnable {
 
-  private final NetServer socketServer;
-
-  private final TcpEventBusBridge tcpEventBusBridge;
-
+  private final Vertx vertx;
+  private final Set<AbstractVerticle> verticles;
+  private final HttpConfig httpConfig;
 
   @Override
   public void run() {
     log.atInfo().log("Starting server...");
-    val startSocketServer = socketServer.listen(22222).log("Start socket server");
-    val startTcpEventBusBridge = tcpEventBusBridge.listen(11111).log("Start Tcp Event Bridge");
-    Uni.combine().all()
-      .unis(startSocketServer, startTcpEventBusBridge)
-      .usingConcurrencyOf(2)
-      .discardItems()
+    val uniDeploy = verticles.stream().map(vertx::deployVerticle).toList();
+    combine()
+      .all()
+      .unis(uniDeploy)
+      .usingConcurrencyOf(uniDeploy.size()).discardItems()
       .subscribe()
-      .with(t -> log.atInfo().log("Collaboration Server Startup"));
+      .with(t ->
+        log.atInfo().log("Collaboration Server Startup:http://localhost:{}", httpConfig.port())
+      );
   }
 }

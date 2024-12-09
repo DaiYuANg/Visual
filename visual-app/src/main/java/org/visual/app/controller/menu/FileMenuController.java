@@ -28,7 +28,7 @@ public class FileMenuController implements Initializable {
   public void openSetting() {
     val dialog = new Dialog<Void>();
     dialog.initStyle(StageStyle.UTILITY);
-    val pane = fxmlHelper.load(ViewConstant.SETTING, DialogPane.class);
+    val pane = fxmlHelper.loadView(ViewConstant.SETTING, DialogPane.class);
     dialog.setDialogPane(pane);
     dialog.showAndWait();
   }

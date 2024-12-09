@@ -1,7 +1,5 @@
 package org.visual.app.controller.menu;
 
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.Vertx;
 import jakarta.inject.Singleton;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DialogPane;
@@ -32,7 +30,7 @@ public class HelpMenuController implements Initializable {
   public void showAbout() {
     val dialog = dialogManager.getDialog();
     dialog.setTitle("About");
-    val aboutContent = fxmlHelper.load(ViewConstant.ABOUT, DialogPane.class);
+    val aboutContent = fxmlHelper.loadView(ViewConstant.ABOUT, DialogPane.class);
     dialog.setDialogPane(aboutContent);
     dialog.showAndWait();
   }

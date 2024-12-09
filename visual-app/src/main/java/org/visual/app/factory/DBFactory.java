@@ -2,17 +2,20 @@ package org.visual.app.factory;
 
 import dev.dirs.ProjectDirectories;
 import io.avaje.inject.Bean;
+import io.avaje.inject.BeanScope;
 import io.avaje.inject.Factory;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 import io.smallrye.mutiny.Uni;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import java.nio.file.Paths;
 
 @Factory
+@Slf4j
 public class DBFactory {
 
   @Bean

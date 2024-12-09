@@ -21,7 +21,7 @@ public class UIFactory {
 
   @Bean
   VBox mainLayout() {
-    return fxmlHelper.load(ViewConstant.MAIN_LAYOUT, VBox.class);
+    return fxmlHelper.loadView(ViewConstant.MAIN_LAYOUT, VBox.class);
   }
 
   @Bean

@@ -11,4 +11,6 @@ module org.visual.core {
   requires io.netty.resolver.dns.classes.macos;
   requires io.netty.resolver.dns.macos.osx.aarch_64;
   exports org.visual.core;
+
+  provides io.avaje.inject.spi.InjectExtension with org.visual.core.CoreModule;
 }

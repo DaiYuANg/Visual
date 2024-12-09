@@ -5,4 +5,6 @@ module org.visual.i18n {
   requires org.eclipse.collections.api;
   requires org.eclipse.collections.impl;
   requires io.avaje.inject;
+
+  provides io.avaje.inject.spi.InjectExtension with org.visual.i18n.I18nModule;
 }

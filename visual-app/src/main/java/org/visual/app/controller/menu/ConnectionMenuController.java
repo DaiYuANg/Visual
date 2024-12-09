@@ -1,9 +1,6 @@
 package org.visual.app.controller.menu;
 
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
-import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
@@ -32,7 +29,7 @@ public class ConnectionMenuController implements Initializable {
   public void openConnectionForm() {
     val connectionDialog = new Dialog<Void>();
     connectionDialog.initStyle(StageStyle.UTILITY);
-    val form = fxmlHelper.load(ViewConstant.DATABASE_CONNECT_FORM, DialogPane.class);
+    val form = fxmlHelper.loadView(ViewConstant.DATABASE_CONNECT_FORM, DialogPane.class);
     connectionDialog.setDialogPane(form);
     connectionDialog.showAndWait();
   }

@@ -18,19 +18,20 @@ fury = "0.9.0"
 avajeValidaor = "2.3"
 h2 = "2.3.232"
 asciidoctor = "4.0.3"
-avajeInject = "11.0"
+avajeInject = "11.1-RC1"
 recordBuilder = "43"
 mutinyVertx = "3.17.1"
 schemacrawler = "16.23.2"
 polyglot = "24.1.1"
 ebean = "15.8.0"
+immutables = "2.10.1"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
 versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-maniftest = { id = "com.coditory.manifest", version = "0.2.6" }
+maniftest = { id = "com.coditory.manifest", version = "1.1.0" }
 shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta4" }
 jlink = { id = "org.beryx.jlink", version = "3.1.1" }
 graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
@@ -38,6 +39,7 @@ spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.1" }
 ebean = { id = "io.ebean", version.ref = "ebean" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
+frontend = { id = "org.siouan.frontend-jdk21", version = "10.0.0" }
 docker = { id = "com.bmuschko.docker-java-application", version = "9.4.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
@@ -53,7 +55,7 @@ apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", ver
 apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.12.0" }
 apache-common-db-util = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
+data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 
 #Slf4j
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
@@ -110,6 +112,8 @@ fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
 jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }
+immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
+agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
 
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -152,7 +156,6 @@ vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
 vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
-vertx-web-templ-thymeleaf = { group = "io.vertx", name = "vertx-web-templ-thymeleaf", version.ref = "vertx" }
 vertx-tcp-eventbus-bridge = { group = "io.vertx", name = "vertx-tcp-eventbus-bridge", version.ref = "vertx" }
 vertx-micrometer-metrics = { group = "io.vertx", name = "vertx-micrometer-metrics", version.ref = "vertx" }
 micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.1" }
@@ -171,7 +174,6 @@ mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.7.0" }
 mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version.ref = "mutinyVertx" }
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
-mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
 mutiny-vertx-tcp-eventbus-bridge = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-tcp-eventbus-bridge", version.ref = "mutinyVertx" }
 netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.Beta1" }
 
@@ -207,3 +209,5 @@ graalvm-polyglot-profile = { group = "org.graalvm.polyglot", name = "profiler", 
 theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.9.1" }
 
 lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.12" }
+
+deezpatch = { group = "io.github.joel-jeremy.deezpatch", name = "deezpatch-core", version = "1.0.0-beta.1" }
