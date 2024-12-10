@@ -21,6 +21,10 @@ dependencies {
   implementation(libs.schemacrawler.sqlite)
   implementation(libs.schemacrawler.mySQL)
   implementation(libs.schemacrawler.postgreSQL)
+
+  implementation(libs.avaje.inject)
+  annotationProcessor(libs.avaje.inject.generator)
+  testImplementation(libs.avaje.inject.test)
 }
 
 tasks.compileJava {

@@ -9,7 +9,6 @@ mockito = "5.14.2"
 gestalt = "0.35.1"
 eclipseCollections = "12.0.0.M3"
 jackson = "2.18.2"
-picocli = "4.7.6"
 mapstruct = "1.6.3"
 jgit = "7.1.0.202411261347-r"
 vertx = "4.5.11"
@@ -52,6 +51,7 @@ asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "as
 apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.0" }
 apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
 apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apache-common-collection = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0-M2" }
 apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.12.0" }
 apache-common-db-util = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
@@ -156,7 +156,7 @@ vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
 vertx-tcp-eventbus-bridge = { group = "io.vertx", name = "vertx-tcp-eventbus-bridge", version.ref = "vertx" }
 vertx-micrometer-metrics = { group = "io.vertx", name = "vertx-micrometer-metrics", version.ref = "vertx" }
-micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.1" }
+micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.2" }
 vertx-postgresql-client = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
 vertx-mySQL-client = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
 vertx-DB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
@@ -173,7 +173,7 @@ mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-c
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
 mutiny-vertx-tcp-eventbus-bridge = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-tcp-eventbus-bridge", version.ref = "mutinyVertx" }
-netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.Beta1" }
+netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.RC1" }
 
 record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "record-builder" }
 record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "record-builder" }
@@ -207,7 +207,3 @@ graalvm-polyglot-profile = { group = "org.graalvm.polyglot", name = "profiler", 
 theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.9.1" }
 
 lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.12" }
-
-deezpatch = { group = "io.github.joel-jeremy.deezpatch", name = "deezpatch-core", version = "1.0.0-beta.1" }
-
-kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.3" }

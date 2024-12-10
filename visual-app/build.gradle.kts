@@ -1,3 +1,5 @@
+import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
+
 plugins {
   java
   application
@@ -9,7 +11,7 @@ plugins {
   alias(libs.plugins.graalvm)
   alias(libs.plugins.shadow)
   alias(libs.plugins.sass)
-  kotlin("jvm") version "2.1.0"
+  alias(libs.plugins.plantuml)
 }
 
 apply<ModulePlugin>()
@@ -32,6 +34,7 @@ dependencies {
   implementation(libs.fastutil)
   testImplementation(libs.vertx.junit5)
   testImplementation(libs.data.faker)
+  implementation(libs.data.faker)
   implementation(libs.jgrapht)
 
   implementation(libs.atlantafx)
@@ -66,7 +69,6 @@ dependencies {
   implementation(libs.ebean.data.source)
   implementation(libs.ebean.platform.h2)
   implementation(libs.ebean.migration)
-  implementation(libs.deezpatch)
 
   implementation(libs.gestalt.toml)
   implementation(libs.gestalt.yaml)
@@ -90,6 +92,7 @@ dependencies {
   implementation(libs.apache.common.lang3)
   implementation(libs.apache.common.pool)
   implementation(libs.apache.common.text)
+  implementation(libs.apache.common.collection)
 
   implementation(libs.jackson.core)
   implementation(libs.jackson.data.type.guava)
@@ -108,10 +111,15 @@ dependencies {
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
-  implementation(libs.kotlin.logging)
   compileOnly(libs.avaje.spi.service)
   annotationProcessor(libs.avaje.spi.service)
   antlr(libs.antlr)
+
+  implementation(libs.avaje.inject)
+  annotationProcessor(libs.avaje.inject.generator)
+  testImplementation(libs.avaje.inject.test)
+
+  implementation(projects.document)
 }
 
 javafx {
@@ -186,11 +194,6 @@ jlink {
 }
 
 tasks.compileJava {
-  options.compilerArgumentProviders.add(
-    CommandLineArgumentProvider {
-      listOf("--patch-module", "$group=${sourceSets["main"].output.asPath}")
-    },
-  )
   dependsOn(tasks.compileSass)
 }
 
@@ -207,11 +210,29 @@ tasks.compileSass {
 
 tasks.prepareMergedJarsDir { dependsOn(tasks.jar) }
 
-kotlin {
-  jvmToolchain(libs.versions.jdk.get().toInt())
-}
-
-tasks.compileKotlin {
-  val compileJava: JavaCompile by tasks
-  destinationDirectory.set(compileJava.destinationDirectory)
+classDiagrams {
+  val glob = "${project.group}.**"
+  val internal = "internal_class_diagram"
+  val full = "full_class_diagram"
+  @Suppress("UNCHECKED_CAST")
+  diagram(
+    internal,
+    closureOf<ClassDiagramsExtension.ClassDiagram> {
+      include(packages().withNameLike(glob))
+      writeTo(
+        file(project.layout.buildDirectory.file("$internal.${project.name}.$PLANTUML_SUFFIX")),
+      )
+    }
+      as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+  )
+  @Suppress("UNCHECKED_CAST")
+  diagram(
+    full,
+    closureOf<ClassDiagramsExtension.ClassDiagram> {
+      include(packages().withNameLike(glob))
+      include(packages().recursive())
+      writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$PLANTUML_SUFFIX")))
+    }
+      as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+  )
 }

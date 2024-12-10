@@ -16,10 +16,6 @@ class ModulePlugin : Plugin<Project> {
 
       add(IMPLEMENTATION, rootLibs.slf4j)
 
-      add(IMPLEMENTATION, rootLibs.avaje.inject)
-      add(TEST_IMPLEMENTATION, rootLibs.avaje.inject.test)
-      add(ANNOTATION_PROCESSOR, rootLibs.avaje.inject.generator)
-
       add(COMPILE_ONLY, rootLibs.record.builder.core)
       add(ANNOTATION_PROCESSOR, rootLibs.record.builder.processor)
 

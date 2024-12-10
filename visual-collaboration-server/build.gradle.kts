@@ -42,6 +42,9 @@ dependencies {
   implementation(libs.mutiny.vertx.web)
   implementation(libs.gestalt)
   implementation(libs.gestalt.yaml)
+  implementation(libs.avaje.inject)
+  annotationProcessor(libs.avaje.inject.generator)
+  testImplementation(libs.avaje.inject.test)
 }
 
 tasks.shadowJar { mergeServiceFiles() }

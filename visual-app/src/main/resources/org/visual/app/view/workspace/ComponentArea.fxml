@@ -24,7 +24,7 @@
       <panes>
         <TitledPane text="Panel 1">
           <GridPane>
-            <IconButton GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <IconButton icon="si-java" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
             <Label text="Cell 1" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <Label text="Cell 2" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
           </GridPane>

@@ -45,7 +45,7 @@ gitHooks {
 
 rootProject.name = "Visual"
 
-include("website")
+include("document")
 
 include("visual-core")
 

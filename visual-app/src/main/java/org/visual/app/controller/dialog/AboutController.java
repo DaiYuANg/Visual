@@ -1,4 +1,4 @@
-package org.visual.app.controller.menu;
+package org.visual.app.controller.dialog;
 
 import io.avaje.inject.Lazy;
 import jakarta.inject.Singleton;

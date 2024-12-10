@@ -18,4 +18,8 @@ dependencies {
     logger.info(SystemUtils.OS_ARCH)
     implementation(variantOf(libs.netty.resolver.dns.native.macos) { classifier("osx-aarch_64") })
   }
+
+  implementation(libs.avaje.inject)
+  annotationProcessor(libs.avaje.inject.generator)
+  testImplementation(libs.avaje.inject.test)
 }

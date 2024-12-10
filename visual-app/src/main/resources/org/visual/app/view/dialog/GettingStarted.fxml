@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+<?import org.visual.app.component.*?>
+<NavigationPane xmlns="http://javafx.com/javafx"
+                xmlns:fx="http://javafx.com/fxml"
+                fx:controller="org.visual.app.controller.dialog.GettingStartedController"
+                prefHeight="500.0" prefWidth="700.0" fx:id="root">
+  <padding>
+    <Insets left="20" top="20" right="20" bottom="20"/>
+  </padding>
+  <VBox spacing="20">
+    <Label text="Getting Started with Visual">
+      <font>
+        <Font name="System Bold" size="20"/>
+      </font>
+    </Label>
+    <Separator/>
+    <Label text="Choose an option to get started:" wrapText="true"/>
+    <VBox spacing="10">
+      <padding>
+        <Insets left="20" top="10"/>
+      </padding>
+      <IconButton icon="mdi2g-graph-outline" text="Create New Diagram" onAction="#handleCreateNewProject"/>
+      <IconButton icon="mdi2f-folder-multiple-outline"
+                  text="Create New Workspace"
+                  onAction="#handleCreateNewProject"/>
+      <IconButton icon="mdi2f-folder-edit-outline" text="Create New Project" onAction="#handleCreateNewProject"/>
+      <IconButton icon="mdi2f-folder-open-outline" text="Open Existing Project"
+                  onAction="#handleOpenExistingProject"/>
+      <IconButton icon="mdi2f-file-document" text="View Documentation" onAction="#handleViewDocumentation"/>
+      <IconButton icon="fltfal-launcher-settings-24" text="Help" onAction="#handleSettings"/>
+      <IconButton icon="fltfmz-pane-close-16" text="Exit" onAction="#handleExit"/>
+    </VBox>
+  </VBox>
+  <WebView fx:id="webView" visible="false"/>
+  <index>
+    test
+  </index>
+</NavigationPane>

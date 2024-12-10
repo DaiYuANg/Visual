@@ -47,13 +47,15 @@ module org.visual.app {
   requires com.jthemedetector;
   requires org.visual.core;
   requires org.visual.database;
-  requires org.visual.config;
+  requires org.visual.data.structure;
+  requires org.visual.document;
 
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.databind;
 
   requires org.apache.commons.dbutils;
   requires org.apache.commons.text;
+  requires org.apache.commons.collections4;
 
   requires java.desktop;
 
@@ -71,10 +73,6 @@ module org.visual.app {
   requires org.github.gestalt.core;
   requires org.github.gestalt.toml;
   requires org.github.gestalt.yaml;
-
-  requires io.github.joeljeremy.deezpatch.core;
-
-  requires io.github.oshai.kotlinlogging;
 
   exports org.visual.app.entity;
   exports org.visual.app.lifecycle;

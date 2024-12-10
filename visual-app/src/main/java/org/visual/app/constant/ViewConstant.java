@@ -12,6 +12,8 @@ public enum ViewConstant {
 
   SETTING("Setting"),
 
+  GETTING_STARTED("dialog/GettingStarted"),
+
   ABOUT("dialog/About");
 
   private final String viewName;
