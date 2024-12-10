@@ -2,7 +2,6 @@ package org.visual.app.lifecycle;
 
 import io.avaje.spi.ServiceProvider;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.api.Lifecycle;
 
 @ServiceProvider
 @Slf4j

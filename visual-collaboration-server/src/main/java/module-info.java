@@ -11,7 +11,6 @@ module org.visual.collaboration.server {
   requires io.vertx.core;
   requires io.smallrye.mutiny;
   requires io.smallrye.mutiny.vertx.core;
-  requires info.picocli;
   requires io.smallrye.mutiny.vertx.web;
   requires org.github.gestalt.core;
   requires org.github.gestalt.yaml;
@@ -20,7 +19,7 @@ module org.visual.collaboration.server {
   requires org.visual.core;
   requires org.agrona.core;
   requires it.unimi.dsi.fastutil;
-
+  requires org.visual.data.structure;
   exports org.visual.collaboration.server;
 
   provides io.avaje.inject.spi.InjectExtension with

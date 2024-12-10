@@ -31,7 +31,7 @@
     <appender-ref ref="ASYNC"/>
   </root>
 
-  <logger name="org.visual.app" level="TRACE"/>
+  <logger name="org.visual.app" level="DEBUG"/>
   <logger name="io.avaje.inject" level="TRACE"/>
   <logger name="io.ebean.SQL" level="TRACE"/>
 

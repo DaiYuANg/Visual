@@ -3,8 +3,7 @@ package org.visual.app.task;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.api.ScheduleTask;
-import org.visual.app.pool.dialog.DialogPool;
+import org.visual.app.util.DialogPool;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +16,7 @@ public class PrintDialogTask implements ScheduleTask {
 
   @Override
   public Long delay() {
-    return 10000L;
+    return 90000L;
   }
 
   @Override

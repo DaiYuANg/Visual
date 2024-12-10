@@ -9,7 +9,6 @@ module org.visual.app {
   requires javafx.controls;
   requires javafx.web;
   requires javafx.base;
-  requires info.picocli;
   requires org.slf4j.jdk.platform.logging;
   requires io.smallrye.mutiny;
   requires it.unimi.dsi.fastutil;
@@ -67,7 +66,6 @@ module org.visual.app {
   exports org.visual.app.view to
     javafx.graphics;
 
-  requires org.visual.api;
   requires net.sourceforge.plantuml;
 
   requires org.github.gestalt.core;
@@ -76,9 +74,13 @@ module org.visual.app {
 
   requires io.github.joeljeremy.deezpatch.core;
 
-  exports org.visual.app.api;
+  requires io.github.oshai.kotlinlogging;
 
-  provides org.visual.api.Lifecycle with org.visual.app.lifecycle.BackgroundServiceLifecycle;
+  exports org.visual.app.entity;
+  exports org.visual.app.lifecycle;
+  exports org.visual.app.repository;
+
+  provides org.visual.app.lifecycle.Lifecycle with org.visual.app.lifecycle.BackgroundServiceLifecycle;
   provides io.avaje.inject.spi.InjectExtension with
     org.visual.app.AppModule;
 

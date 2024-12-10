@@ -17,32 +17,34 @@ import static io.smallrye.mutiny.infrastructure.Infrastructure.setOperatorLogger
 @Factory
 public class VertxFactory {
 
-    static {
-        setOperatorLogger(new MutinySlf4jLogger());
-    }
+  static {
+    setOperatorLogger(new MutinySlf4jLogger());
+  }
 
-    @Bean
-    Vertx mutinyVertx() {
-        val option = new VertxOptions();
-        val micrometer = new MicrometerMetricsOptions()
-                .setJmxMetricsOptions(new VertxJmxMetricsOptions().setEnabled(true))
-                .setEnabled(true);
-        option.setMetricsOptions(micrometer);
-        Vertx.vertx();
-        return Vertx.builder()
-                .with(option)
-                .build();
-    }
+  @Bean
+  Vertx mutinyVertx() {
+    val option = new VertxOptions();
+    val micrometer = new MicrometerMetricsOptions()
+      .setJmxMetricsOptions(new VertxJmxMetricsOptions().setEnabled(true))
+      .setEnabled(true);
+    option.setMetricsOptions(micrometer);
+    val vertx = Vertx.builder()
+      .with(option)
+      .build();
+    val internal = (VertxInternal) vertx.getDelegate();
+    Infrastructure.setDefaultExecutor(internal.getEventLoopGroup());
+    return vertx;
+  }
 
-    @Bean
-    Uni<Vertx> vertxUni(Vertx vertx) {
-        val internal = (VertxInternal) vertx.getDelegate();
-        Infrastructure.setDefaultExecutor(internal.getEventLoopGroup());
-        return Uni.createFrom().item(vertx);
-    }
+  @Bean
+  Uni<Vertx> vertxUni(Vertx vertx) {
+    val internal = (VertxInternal) vertx.getDelegate();
+    Infrastructure.setDefaultExecutor(internal.getEventLoopGroup());
+    return Uni.createFrom().item(vertx);
+  }
 
-    @Bean
-    EventBus eventBus(Vertx vertx) {
-        return vertx.eventBus();
-    }
+  @Bean
+  EventBus eventBus(Vertx vertx) {
+    return vertx.eventBus();
+  }
 }

@@ -6,5 +6,6 @@
       fx:controller="org.visual.app.controller.MainLayoutController"
       stylesheets="style/app.css"
 >
+  <fx:include source="GlobalMenu.fxml"/>
   <fx:include VBox.vgrow="ALWAYS" source="Workspace.fxml"/>
 </VBox>

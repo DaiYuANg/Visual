@@ -4,7 +4,6 @@ import io.avaje.inject.BeanScope;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.visual.api.ObjectDI;
 
 @Getter
 @Slf4j

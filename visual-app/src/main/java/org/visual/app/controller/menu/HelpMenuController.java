@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.app.constant.ViewConstant;
-import org.visual.app.ui.DialogManager;
-import org.visual.app.ui.FXMLHelper;
+import org.visual.app.util.DialogManager;
+import org.visual.app.util.FXMLHelper;
 
 import java.net.URL;
 import java.util.ResourceBundle;

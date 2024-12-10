@@ -9,6 +9,7 @@ plugins {
   alias(libs.plugins.graalvm)
   alias(libs.plugins.shadow)
   alias(libs.plugins.sass)
+  kotlin("jvm") version "2.1.0"
 }
 
 apply<ModulePlugin>()
@@ -27,7 +28,6 @@ dependencies {
   implementation(projects.visualCore)
   implementation(projects.visualDataStructure)
   implementation(projects.visualDatabase)
-  implementation(projects.visualApi)
   implementation(projects.visualI18n)
   implementation(libs.fastutil)
   testImplementation(libs.vertx.junit5)
@@ -54,9 +54,6 @@ dependencies {
   implementation(libs.plantuml)
 
   implementation(libs.logback)
-
-  implementation(libs.picocli)
-  annotationProcessor(libs.picocli.codegen)
 
   testImplementation(libs.javafxUnitTest)
 
@@ -111,6 +108,7 @@ dependencies {
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
+  implementation(libs.kotlin.logging)
   compileOnly(libs.avaje.spi.service)
   annotationProcessor(libs.avaje.spi.service)
   antlr(libs.antlr)
@@ -187,7 +185,14 @@ jlink {
   }
 }
 
-tasks.compileJava { dependsOn(tasks.compileSass) }
+tasks.compileJava {
+  options.compilerArgumentProviders.add(
+    CommandLineArgumentProvider {
+      listOf("--patch-module", "$group=${sourceSets["main"].output.asPath}")
+    },
+  )
+  dependsOn(tasks.compileSass)
+}
 
 tasks.compileSass {
   style = compressed
@@ -201,3 +206,12 @@ tasks.compileSass {
 }
 
 tasks.prepareMergedJarsDir { dependsOn(tasks.jar) }
+
+kotlin {
+  jvmToolchain(libs.versions.jdk.get().toInt())
+}
+
+tasks.compileKotlin {
+  val compileJava: JavaCompile by tasks
+  destinationDirectory.set(compileJava.destinationDirectory)
+}

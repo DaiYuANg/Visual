@@ -18,6 +18,7 @@ import org.github.gestalt.config.source.SystemPropertiesConfigSourceBuilder;
 import org.github.gestalt.config.toml.TomlModuleConfigBuilder;
 import org.github.gestalt.config.yaml.YamlModuleConfigBuilder;
 
+import java.awt.*;
 import java.util.Set;
 import java.util.prefs.Preferences;
 

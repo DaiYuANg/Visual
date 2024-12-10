@@ -6,13 +6,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <BorderPane
   xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="org.visual.app.controller.workspace.WorkspaceController"
 >
   <top>
-    <fx:include source="GlobalMenu.fxml"/>
+<ToolBar>
+  <Button>
+    <graphic>
+      <FontIcon iconLiteral="si-java"/>
+    </graphic>
+  </Button>
+</ToolBar>
   </top>
   <left>
     <HBox fx:id="leftPane">

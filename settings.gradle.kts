@@ -55,8 +55,6 @@ include("visual-database")
 
 include("visual-data-structure")
 
-include("visual-api")
-
 include("visual-i18n")
 
 include("visual-collaboration-server")

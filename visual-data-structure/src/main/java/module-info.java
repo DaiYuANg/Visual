@@ -1,4 +1,4 @@
-module org.visual.config {
+module org.visual.data.structure {
   requires static lombok;
   requires static org.jetbrains.annotations;
   requires static org.immutables.value;
@@ -9,5 +9,7 @@ module org.visual.config {
   requires java.compiler;
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.databind;
-  exports org.visual.data.structure;
+  exports org.visual.data.structure.collaboration;
+  exports org.visual.data.structure.constant;
+  exports org.visual.data.structure.graph;
 }

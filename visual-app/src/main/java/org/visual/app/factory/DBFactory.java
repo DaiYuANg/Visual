@@ -2,13 +2,11 @@ package org.visual.app.factory;
 
 import dev.dirs.ProjectDirectories;
 import io.avaje.inject.Bean;
-import io.avaje.inject.BeanScope;
 import io.avaje.inject.Factory;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
-import io.smallrye.mutiny.Uni;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
@@ -24,6 +22,7 @@ public class DBFactory {
     dataSourceConfig.setUsername("sa");
     dataSourceConfig.setPassword("");
     val databasePath = Paths.get(ProjectDirectories.fromPath("visual").dataDir, "visual.db");
+    log.atInfo().log("Database path:{}", databasePath);
     dataSourceConfig.setUrl("jdbc:h2:file:" + databasePath);
     return dataSourceConfig;
   }
@@ -37,7 +36,7 @@ public class DBFactory {
   }
 
   @Bean
-  Uni<Database> sessionFactory(DatabaseConfig config) {
-    return Uni.createFrom().item(DatabaseFactory.create(config));
+  Database sessionFactory(DatabaseConfig config) {
+    return DatabaseFactory.create(config);
   }
 }

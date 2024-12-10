@@ -9,6 +9,7 @@ import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.agrona.concurrent.IdGenerator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -22,8 +23,11 @@ public class SocketHandler implements Consumer<NetSocket> {
 
   private final IdGenerator idGenerator;
 
+  private final MessageHandler messageHandler;
+
   @Override
-  public void accept(NetSocket netSocket) {
+  public void accept(@NotNull NetSocket netSocket) {
+    netSocket.handler(buffer -> messageHandler.accept(netSocket,buffer));
     Uni.createFrom().item(idGenerator.nextId())
       .log()
       .invoke(id -> f.put(id, netSocket))

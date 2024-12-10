@@ -22,7 +22,6 @@ public class DatabaseConnectionFormViewModel {
   private final StringProperty usernameProperty = new SimpleStringProperty();
   private final StringProperty passwordProperty = new SimpleStringProperty();
 
-  // Getter 和 Setter
   public SupportDatabaseType getType() {
     return typeProperty.get();
   }

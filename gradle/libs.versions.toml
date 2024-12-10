@@ -1,7 +1,7 @@
 [versions]
 jdk = "21"
 ikonliJavafx = "12.3.1"
-slf4j = "2.1.0-alpha1"
+slf4j = "2.0.16"
 ikonli = "12.3.1"
 junit = "5.11.3"
 testcontainers = "1.20.4"
@@ -15,11 +15,11 @@ jgit = "7.1.0.202411261347-r"
 vertx = "4.5.11"
 jdbi = "3.45.0"
 fury = "0.9.0"
-avajeValidaor = "2.3"
+avajeValidaor = "2.4"
 h2 = "2.3.232"
 asciidoctor = "4.0.3"
 avajeInject = "11.1-RC1"
-recordBuilder = "43"
+record-builder = "44"
 mutinyVertx = "3.17.1"
 schemacrawler = "16.23.2"
 polyglot = "24.1.1"
@@ -125,8 +125,6 @@ jackson-data-type-jsonP = { group = "com.fasterxml.jackson.datatype", name = "ja
 jackson-data-type-xml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-xml", version.ref = "jackson" }
 eclipse-parsson = { group = "org.eclipse.parsson", name = "parsson", version = "1.1.7" }
 
-picocli = { group = "info.picocli", name = "picocli", version.ref = "picocli" }
-picocli-codegen = { group = "info.picocli", name = "picocli-codegen", version.ref = "picocli" }
 avaje-validaor = { group = "io.avaje", name = "avaje-validator", version.ref = "avajeValidaor" }
 avaje-validaor-constraints = { group = "io.avaje", name = "avaje-validator-constraints", version.ref = "avajeValidaor" }
 avaje-validaor-codegen = { group = "io.avaje", name = "avaje-validator-generator", version.ref = "avajeValidaor" }
@@ -177,8 +175,8 @@ mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mut
 mutiny-vertx-tcp-eventbus-bridge = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-tcp-eventbus-bridge", version.ref = "mutinyVertx" }
 netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.Beta1" }
 
-record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
-record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "record-builder" }
+record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "record-builder" }
 
 jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version = "4.9" }
 jdbiCore = { group = "org.jdbi", name = "jdbi3-core", version.ref = "jdbi" }
@@ -211,3 +209,5 @@ theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetect
 lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.12" }
 
 deezpatch = { group = "io.github.joel-jeremy.deezpatch", name = "deezpatch-core", version = "1.0.0-beta.1" }
+
+kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.3" }

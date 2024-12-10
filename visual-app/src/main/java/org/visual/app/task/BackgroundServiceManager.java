@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 public class BackgroundServiceManager extends AbstractIdleService {
   @Override
   protected void startUp() throws Exception {
-
   }
 
   @Override
