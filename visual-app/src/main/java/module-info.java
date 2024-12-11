@@ -48,7 +48,6 @@ module org.visual.app {
   requires org.visual.core;
   requires org.visual.database;
   requires org.visual.data.structure;
-  requires org.visual.document;
 
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.databind;
@@ -73,6 +72,7 @@ module org.visual.app {
   requires org.github.gestalt.core;
   requires org.github.gestalt.toml;
   requires org.github.gestalt.yaml;
+  requires io.vertx.core;
 
   exports org.visual.app.entity;
   exports org.visual.app.lifecycle;

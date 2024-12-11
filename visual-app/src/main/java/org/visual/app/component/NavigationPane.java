@@ -1,26 +1,27 @@
 package org.visual.app.component;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectMaps;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableMap;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.apache.commons.collections4.CollectionUtils;
 import org.eclipse.collections.api.factory.Stacks;
 import org.eclipse.collections.api.stack.MutableStack;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 @Slf4j
 @SuppressWarnings("unused")
 @Getter
-public class NavigationPane extends StackPane {
+public class NavigationPane extends VBox {
 
-  private final ObservableMap<String, Node> page = FXCollections.observableMap(Object2ObjectMaps.emptyMap());
+  private final ObservableList<Route> routes = observableArrayList(new ObjectArrayList<>());
 
   private final StringProperty currentPage = new SimpleStringProperty();
 
@@ -30,12 +31,21 @@ public class NavigationPane extends StackPane {
 
   private final StringProperty index = new SimpleStringProperty("/");
 
+  private final StringProperty current = new SimpleStringProperty();
+
+  private final OnlyOneStackPane stackPane = new OnlyOneStackPane();
+
+  private final NavigationBar navigationBar = new NavigationBar();
+
   {
-    page.addListener((MapChangeListener<String, Node>) change -> {
-      log.atInfo().log("change{}", change);
-    });
-    index.addListener((observable, oldValue, newValue) -> {
-      log.atInfo().log(oldValue);
+    routes.addListener((ListChangeListener<Route>) c -> {
+      log.atInfo().log("c:{}", c);
+      log.atInfo().log("Routes:{}", routes);
+      stackPane.getChildren().clear();
+      c.getList().stream()
+        .filter(route -> route.getPath().equals(index.get()))
+        .findFirst()
+        .ifPresent(route -> stackPane.setContent(route.getContent()));
     });
   }
 
@@ -50,22 +60,44 @@ public class NavigationPane extends StackPane {
   }
 
   private void setup() {
-    val children = getChildren();
-    if (CollectionUtils.isNotEmpty(children)) {
-      page.put(index.get(), children.getFirst());
-    }
+    navigationBar.setOnBack(event -> back());
+    navigationBar.setOnForward(event -> forward());
+    this.getChildren().addAll(navigationBar, new Separator(), stackPane);
   }
 
-  public void to(String route) {
+  public void to(String to) {
 
+    routes.stream()
+      .filter(route -> route.getPath().equals(to))
+      .findFirst()
+      .ifPresent(route -> {
+        // 当前页面加入到 backStack
+        backStack.push(stackPane.getContent());
+        // 清空 forwardStack，因为我们从一个新的页面跳转过来
+        forwardStack.clear();
+        // 设置新的内容
+        stackPane.setContent(route.getContent());
+        // 更新当前的 index
+//        setIndex(to);
+      });
   }
 
   public void back() {
-
+    if (backStack.isEmpty()) {
+      return;
+    }
+    forwardStack.push(stackPane.getContent());
+    val lastContent = backStack.pop();
+    stackPane.setContent(lastContent);
   }
 
   public void forward() {
-
+    if (forwardStack.isEmpty()) {
+      return;
+    }
+    backStack.push(stackPane.getContent());
+    val nextContent = forwardStack.pop();
+    stackPane.setContent(nextContent);
   }
 
   public void setIndex(String index) {
@@ -74,5 +106,17 @@ public class NavigationPane extends StackPane {
 
   public String getIndex() {
     return this.index.get();
+  }
+
+  public void setCurrent(String currentPage) {
+    current.set(currentPage);
+  }
+
+  public String getCurrent() {
+    return current.get();
+  }
+
+  public void addRoute(Route route) {
+    routes.add(route);
   }
 }

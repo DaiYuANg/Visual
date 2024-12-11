@@ -33,6 +33,7 @@ public class FXMLHelper {
       .mapTry(Pair::getKey)
       .andThenTry(view -> Preconditions.checkArgument(type.isInstance(view), "FXML cache contains a mismatched type."))
       .map(type::cast)
+      .onFailure(throwable -> log.atError().log(throwable.getMessage(), throwable))
       .get();
   }
 

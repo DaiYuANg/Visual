@@ -20,6 +20,7 @@ import org.visual.database.SupportDatabaseType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executor;
 
 @Singleton
 @Slf4j
@@ -52,10 +53,11 @@ public class DatabaseConnectionFormController implements Initializable {
   private PasswordField passwordField;
   @FXML
   private Button connectButton;
+  private final Executor executor;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    log.atInfo().log("Theme,{}", applicationContext.get("DARK", Boolean.class));
+//    log.atInfo().log("Theme,{}", applicationContext.get("DARK", Boolean.class));
     val validationSupport = new ValidationSupport();
     validationSupport.registerValidator(hostField, Validator.createEmptyValidator("Host is required."));
     val dbTypes = FXCollections.observableArrayList(SupportDatabaseType.values());
@@ -77,12 +79,9 @@ public class DatabaseConnectionFormController implements Initializable {
   public void handleTestConnect() {
     testConnect.setVisible(false);
     testConnect.setManaged(false);
-    // 显示 ProgressIndicator
     progressIndicator.setVisible(true);
-    // 模拟加载过程，使用 PauseTransition 延迟操作
     val pause = new PauseTransition(Duration.seconds(3));
     pause.setOnFinished(e -> {
-      // 加载完成后
       progressIndicator.setVisible(false); // 隐藏 ProgressIndicator
       testConnect.setVisible(true); // 启用按钮
       testConnect.setManaged(true);
@@ -91,6 +90,11 @@ public class DatabaseConnectionFormController implements Initializable {
     pause.play();
     val form = viewModel.toDatabaseConnectForm();
     log.atInfo().log("Connect Form:{}", form);
-    val isConnectSuccess = databaseConnectionService.checkConnectable(form);
+    databaseConnectionService.checkConnectable(form)
+      .subscribe()
+      .with(t -> {
+        pause.stop();
+        log.atInfo().log("Is success:{}", t);
+      });
   }
 }

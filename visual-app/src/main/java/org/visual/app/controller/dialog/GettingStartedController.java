@@ -1,20 +1,23 @@
 package org.visual.app.controller.dialog;
 
+import dev.dirs.UserDirectories;
 import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.visual.document.FindDocument;
+import org.visual.app.component.NavigationPane;
+import org.visual.app.constant.EventBusNaming;
 
+import java.io.File;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 @Singleton
@@ -23,11 +26,13 @@ import java.util.ResourceBundle;
 public class GettingStartedController implements Initializable {
 
   @FXML
-  private WebView webView;
+  private WebView webview;
   @FXML
-  private StackPane root;
+  private NavigationPane root;
 
   private final EventBus eventBus;
+
+  private final File userDir = new File(UserDirectories.get().homeDir);
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,27 +44,44 @@ public class GettingStartedController implements Initializable {
   }
 
   public void handleOpenExistingProject(ActionEvent actionEvent) {
+    val window = root.getScene().getWindow();
+    val chooser = new DirectoryChooser();
+    chooser.setInitialDirectory(userDir);
+    val dir = chooser.showDialog(window);
+    log.atInfo().log("Choose :{}", dir);
   }
 
   @SneakyThrows
   public void handleViewDocumentation(ActionEvent actionEvent) {
-    val parent = root.getParent();
-    log.atInfo().log("Parent:{}", parent);
-    root.getChildren().clear();
-    val documentPath = FindDocument.getDocumentURL(Locale.CHINA);
-    log.atInfo().log("DOcument Path:{}", documentPath);
-//    webView.setVisible(true);
-//    webView.getEngine().load(resourceInfo.url().toExternalForm());
-
-    // 将 WebView 添加到 StackPane 中
-    root.getChildren().add(webView);
+    root.to("/document");
+    webview.getEngine().load("https://github.com/DaiYuANg/Visual");
   }
 
   public void handleSettings(ActionEvent actionEvent) {
 
   }
 
-  public void handleExit(ActionEvent actionEvent) {
-    eventBus.publish("close-dialog", "close");
+  public void handleCreateNewWorkspace(ActionEvent actionEvent) {
+
+  }
+
+  public void handleCreateNewDiagram(ActionEvent actionEvent) {
+  }
+
+  public void handleExit() {
+    closeGettingStartWindow();
+  }
+
+  private void closeGettingStartWindow() {
+    eventBus.send(EventBusNaming.CLOSE_GETTING_START_WINDOW, null);
+  }
+
+  public void handleOpenExistingDiagram() {
+    val chooser = new FileChooser();
+    chooser.setInitialDirectory(userDir);
+    val window = root.getScene().getWindow();
+    chooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("visual file", ".visual"));
+    val file = chooser.showOpenDialog(window);
+    log.atInfo().log("Choose:{}", file);
   }
 }

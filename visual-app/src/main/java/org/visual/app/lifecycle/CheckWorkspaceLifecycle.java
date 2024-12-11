@@ -5,15 +5,17 @@ import io.vertx.mutiny.core.eventbus.EventBus;
 import jakarta.inject.Singleton;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.app.component.DialogStage;
-import org.visual.app.constant.ViewConstant;
+import org.visual.app.component.NavigationPane;
 import org.visual.app.repository.SavedStateRepository;
 import org.visual.app.util.FXMLHelper;
+
+import static org.visual.app.constant.EventBusNaming.CLOSE_GETTING_START_WINDOW;
+import static org.visual.app.constant.ViewConstant.GETTING_STARTED;
 
 @Singleton
 @Slf4j
@@ -38,11 +40,8 @@ public class CheckWorkspaceLifecycle implements StageLifecycle {
   private void showGettingStarted() {
     log.atInfo().log("Show init dialog");
     val stage = new DialogStage();
-    eventBus.consumer("close-dialog", message -> {
-      log.atInfo().log("message:{}", message.body());
-      Platform.runLater(stage::close);
-    });
-    val rootNode = fxmlHelper.loadView(ViewConstant.GETTING_STARTED, StackPane.class);
+    eventBus.consumer(CLOSE_GETTING_START_WINDOW, (m) -> Platform.runLater(stage::close));
+    val rootNode = fxmlHelper.loadView(GETTING_STARTED, NavigationPane.class);
     val scene = new Scene(rootNode);
     stage.setScene(scene);
     stage.showAndWait();

@@ -2,7 +2,6 @@ package org.visual.app.controller.workspace;
 
 import jakarta.inject.Singleton;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
@@ -11,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.visual.app.controller.BaseController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 @Singleton
 @Slf4j
 @RequiredArgsConstructor
-public class WorkspaceController implements Initializable {
+public class WorkspaceController extends BaseController {
   @FXML
   private Separator separator;
   @FXML

@@ -58,7 +58,7 @@ dependencies {
 
   implementation(libs.logback)
 
-  testImplementation(libs.javafxUnitTest)
+  testImplementation(libs.testfx.junit5)
 
   runtimeOnly(libs.h2)
   implementation(libs.ebean.api)
@@ -118,8 +118,6 @@ dependencies {
   implementation(libs.avaje.inject)
   annotationProcessor(libs.avaje.inject.generator)
   testImplementation(libs.avaje.inject.test)
-
-  implementation(projects.document)
 }
 
 javafx {

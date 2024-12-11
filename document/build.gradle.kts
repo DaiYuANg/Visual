@@ -7,14 +7,7 @@ plugins {
   idea
 }
 
-apply<ModulePlugin>()
-
-group = "org.visual.document"
 repositories { ruby { gems() } }
-
-dependencies {
-  implementation(libs.guava)
-}
 
 asciidoctorj { modules { diagram.use() } }
 
@@ -31,8 +24,6 @@ tasks.asciidoctor {
   }
 }
 
-tasks.build { dependsOn(tasks.asciidoctor) }
-
 idea {
   module {
     sourceDirs =
@@ -41,15 +32,4 @@ idea {
         .sourceFileTree
         .toMutableSet()
   }
-}
-
-tasks.create("copyDocument", Copy::class) {
-  group = "build"
-  from(layout.buildDirectory.dir("docs"))
-  destinationDir = layout.buildDirectory.dir("classes/java/main/org/visual/document").get().asFile
-  dependsOn(tasks.asciidoctor)
-}
-
-tasks.jar {
-  dependsOn("copyDocument")
 }

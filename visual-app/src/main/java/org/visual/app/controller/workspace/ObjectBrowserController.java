@@ -3,10 +3,10 @@ package org.visual.app.controller.workspace;
 import io.avaje.inject.Lazy;
 import jakarta.inject.Singleton;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import lombok.extern.slf4j.Slf4j;
+import org.visual.app.controller.BaseController;
 import org.visual.app.model.DatabaseObj;
 
 import java.net.URL;
@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 @Singleton
 @Lazy
 @Slf4j
-public class ObjectBrowserController implements Initializable {
+public class ObjectBrowserController extends BaseController {
   @FXML
   public TreeView<DatabaseObj> treeView;
 

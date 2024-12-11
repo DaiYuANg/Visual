@@ -11,11 +11,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 @Lazy
 @Singleton
 @Slf4j
 @RequiredArgsConstructor
-public class MainLayoutController {
+public class MainLayoutController extends BaseController {
   @FXML
   private VBox table1;
 
@@ -46,5 +49,10 @@ public class MainLayoutController {
     alert.setHeaderText(null);
     alert.setContentText(message);
     alert.showAndWait();
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+
   }
 }

@@ -3,7 +3,6 @@ package org.visual.app.view;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.visual.app.lifecycle.StageLifecycle;
