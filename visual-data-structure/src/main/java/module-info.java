@@ -12,4 +12,5 @@ module org.visual.data.structure {
   exports org.visual.data.structure.collaboration;
   exports org.visual.data.structure.constant;
   exports org.visual.data.structure.graph;
+  exports org.visual.data.structure.diagram;
 }

@@ -91,10 +91,12 @@ tasks.withType(InstallFrontendTask::class.java) {
 tasks.create("copyFrontend", Copy::class) {
   group = "build"
   from(layout.projectDirectory.dir("src/main/frontend/dist"))
-  destinationDir = layout.buildDirectory.dir("classes/java/main/webroot").get().asFile
+  destinationDir =
+    layout.buildDirectory
+      .dir("classes/java/main/webroot")
+      .get()
+      .asFile
   dependsOn(tasks.assembleFrontend)
 }
 
-tasks.processResources {
-  dependsOn("copyFrontend")
-}
+tasks.processResources { dependsOn("copyFrontend") }

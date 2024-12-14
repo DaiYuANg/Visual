@@ -3,7 +3,6 @@ import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 plugins {
   java
   application
-  antlr
   alias(libs.plugins.javafx)
   alias(libs.plugins.ebean)
   alias(libs.plugins.maniftest)
@@ -106,14 +105,11 @@ dependencies {
 
   implementation(libs.jsh)
 
-  implementation("org.webjars.npm:fontsource-variable__jetbrains-mono:5.0.6")
-
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
   compileOnly(libs.avaje.spi.service)
   annotationProcessor(libs.avaje.spi.service)
-  antlr(libs.antlr)
 
   implementation(libs.avaje.inject)
   annotationProcessor(libs.avaje.inject.generator)
@@ -145,6 +141,7 @@ manifest {
 }
 
 graalvmNative {
+  metadataRepository { enabled = true }
   binaries {
     named("main") {
       mainClass.set(mainClassPath)
@@ -168,12 +165,6 @@ tasks.withType(AbstractArchiveTask::class.java) {
   isReproducibleFileOrder = true
 }
 
-tasks.generateGrammarSource {
-  maxHeapSize = "1G"
-  arguments = arguments + listOf("-visitor", "-long-messages")
-  outputDirectory = File("${project.projectDir}/build/generated/antlr/main/java/org/visual/grammar")
-}
-
 ebean {
   debugLevel = 1
   queryBeans = true
@@ -191,9 +182,7 @@ jlink {
   }
 }
 
-tasks.compileJava {
-  dependsOn(tasks.compileSass)
-}
+tasks.compileJava { dependsOn(tasks.compileSass) }
 
 tasks.compileSass {
   style = compressed

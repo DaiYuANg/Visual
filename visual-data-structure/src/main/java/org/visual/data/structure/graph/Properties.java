@@ -11,4 +11,8 @@ public interface Properties {
   Integer borderWidth();
 
   String borderColor();
+
+  Double width();
+
+  Double height();
 }

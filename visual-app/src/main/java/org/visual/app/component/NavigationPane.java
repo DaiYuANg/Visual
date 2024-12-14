@@ -66,19 +66,13 @@ public class NavigationPane extends VBox {
   }
 
   public void to(String to) {
-
     routes.stream()
       .filter(route -> route.getPath().equals(to))
       .findFirst()
       .ifPresent(route -> {
-        // 当前页面加入到 backStack
         backStack.push(stackPane.getContent());
-        // 清空 forwardStack，因为我们从一个新的页面跳转过来
         forwardStack.clear();
-        // 设置新的内容
         stackPane.setContent(route.getContent());
-        // 更新当前的 index
-//        setIndex(to);
       });
   }
 

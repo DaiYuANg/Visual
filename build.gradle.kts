@@ -57,8 +57,6 @@ subprojects {
   }
 }
 
-
-
 spotless {
   java {
     target("*.java")

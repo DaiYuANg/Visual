@@ -11,6 +11,4 @@ public interface Workspace {
   String name();
 
   String description();
-
-
 }

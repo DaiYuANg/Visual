@@ -27,8 +27,6 @@ public class CheckWorkspaceLifecycle implements StageLifecycle {
 
   private final FXMLHelper fxmlHelper;
 
-  private final EventBus eventBus;
-
   @Override
   public void beforeShown(Stage stage) {
     val savedStates = savedStateRepository.queryState();
@@ -40,7 +38,6 @@ public class CheckWorkspaceLifecycle implements StageLifecycle {
   private void showGettingStarted() {
     log.atInfo().log("Show init dialog");
     val stage = new DialogStage();
-    eventBus.consumer(CLOSE_GETTING_START_WINDOW, (m) -> Platform.runLater(stage::close));
     val rootNode = fxmlHelper.loadView(GETTING_STARTED, NavigationPane.class);
     val scene = new Scene(rootNode);
     stage.setScene(scene);

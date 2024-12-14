@@ -1,20 +1,23 @@
 package org.visual.app.controller.dialog;
 
 import dev.dirs.UserDirectories;
-import io.vertx.mutiny.core.eventbus.EventBus;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Singleton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.web.WebView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.app.component.NavigationPane;
-import org.visual.app.constant.EventBusNaming;
+import org.visual.app.context.DiagramContext;
+import org.visual.app.util.CreateDiagram;
 
 import java.io.File;
 import java.net.URL;
@@ -30,9 +33,9 @@ public class GettingStartedController implements Initializable {
   @FXML
   private NavigationPane root;
 
-  private final EventBus eventBus;
-
   private final File userDir = new File(UserDirectories.get().homeDir);
+
+  private final DiagramContext diagramContext;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,15 +68,24 @@ public class GettingStartedController implements Initializable {
 
   }
 
-  public void handleCreateNewDiagram(ActionEvent actionEvent) {
+  public void handleCreateNewDiagram() {
+    Uni.createFrom().item(CreateDiagram.createDefaultDiagram())
+      .log()
+      .invoke(diagramContext::add)
+      .subscribe().with(t -> {
+        Platform.runLater(() -> {
+          val stage = (Stage) root.getScene().getWindow();
+          stage.close();
+        });
+      });
   }
 
   public void handleExit() {
-    closeGettingStartWindow();
-  }
-
-  private void closeGettingStartWindow() {
-    eventBus.send(EventBusNaming.CLOSE_GETTING_START_WINDOW, null);
+    Uni.createFrom().item(root)
+      .map(r -> r.getScene().getWindow())
+      .map(window -> (Stage) window)
+      .subscribe()
+      .with(stage -> Platform.runLater(stage::close));
   }
 
   public void handleOpenExistingDiagram() {

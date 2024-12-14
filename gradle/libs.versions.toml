@@ -52,7 +52,7 @@ apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.
 apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
 apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
 apache-common-collection = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0-M2" }
-apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.12.0" }
+apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.13.0" }
 apache-common-db-util = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 directories = { group = "dev.dirs", name = "directories", version = "26" }
 data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }

@@ -1,8 +1,11 @@
 import org.javamodularity.moduleplugin.extensions.CompileModuleOptions
 
-group = "org.visual.database"
+plugins {
+  antlr
+  alias(libs.plugins.javamodularity)
+}
 
-plugins { alias(libs.plugins.javamodularity) }
+group = "org.visual.database"
 
 apply<ModulePlugin>()
 
@@ -21,6 +24,7 @@ dependencies {
   implementation(libs.schemacrawler.sqlite)
   implementation(libs.schemacrawler.mySQL)
   implementation(libs.schemacrawler.postgreSQL)
+  antlr(libs.antlr)
 
   implementation(libs.avaje.inject)
   annotationProcessor(libs.avaje.inject.generator)
@@ -29,4 +33,10 @@ dependencies {
 
 tasks.compileJava {
   extensions.configure<CompileModuleOptions> { addModules = listOf("schemacrawler") }
+}
+
+tasks.generateGrammarSource {
+  maxHeapSize = "1G"
+  arguments = arguments + listOf("-visitor", "-long-messages")
+  outputDirectory = File("${project.projectDir}/build/generated/antlr/main/java/org/visual/grammar")
 }
