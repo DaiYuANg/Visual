@@ -1,5 +1,3 @@
-import org.siouan.frontendgradleplugin.infrastructure.gradle.InstallFrontendTask
-
 plugins {
   application
   alias(libs.plugins.graalvm)
@@ -8,7 +6,6 @@ plugins {
   alias(libs.plugins.javamodularity)
   alias(libs.plugins.docker)
   alias(libs.plugins.maniftest)
-  alias(libs.plugins.frontend)
 }
 
 apply<ModulePlugin>()
@@ -36,6 +33,10 @@ dependencies {
   implementation(libs.vertx.micrometer.metrics)
   implementation(libs.micrometer.registry.jmx)
   implementation(libs.vertx.core)
+  implementation(libs.mutiny.vertx.web.templ.thymeleaf)
+  implementation(libs.vertx.web.templ.thymeleaf)
+  implementation(libs.bootstrap)
+  implementation(libs.tailwindcss)
   implementation(libs.agrona)
   implementation(libs.jgrapht)
   implementation(libs.vertx.web)
@@ -77,26 +78,3 @@ docker {
     jvmArgs.set(listOf("-Xms256m", "-Xmx2048m"))
   }
 }
-
-frontend {
-  nodeVersion.set("22.11.0")
-  packageJsonDirectory.set(project.layout.projectDirectory.dir("src/main/frontend"))
-  assembleScript.set("build")
-}
-
-tasks.withType(InstallFrontendTask::class.java) {
-  environmentVariables.put("COREPACK_NPM_REGISTRY", "https://registry.npmmirror.com")
-}
-
-tasks.create("copyFrontend", Copy::class) {
-  group = "build"
-  from(layout.projectDirectory.dir("src/main/frontend/dist"))
-  destinationDir =
-    layout.buildDirectory
-      .dir("classes/java/main/webroot")
-      .get()
-      .asFile
-  dependsOn(tasks.assembleFrontend)
-}
-
-tasks.processResources { dependsOn("copyFrontend") }

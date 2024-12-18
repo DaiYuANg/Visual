@@ -16,10 +16,13 @@ module org.visual.collaboration.server {
   requires org.github.gestalt.yaml;
   requires java.compiler;
   requires io.soabase.recordbuilder.core;
+  requires io.smallrye.mutiny.vertx.web.templ.thymeleaf;
   requires org.visual.core;
   requires org.agrona.core;
   requires it.unimi.dsi.fastutil;
   requires org.visual.data.structure;
+  requires io.vertx.web.common;
+  requires thymeleaf;
   exports org.visual.collaboration.server;
 
   provides io.avaje.inject.spi.InjectExtension with

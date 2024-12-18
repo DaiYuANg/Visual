@@ -20,7 +20,7 @@ asciidoctor = "4.0.3"
 avajeInject = "11.1-RC1"
 record-builder = "44"
 mutinyVertx = "3.17.1"
-schemacrawler = "16.23.2"
+schemacrawler = "16.24.1"
 polyglot = "24.1.1"
 ebean = "15.8.0"
 immutables = "2.10.1"
@@ -96,7 +96,7 @@ gestalt = { group = "com.github.gestalt-config", name = "gestalt-core", version.
 gestalt-toml = { group = "com.github.gestalt-config", name = "gestalt-toml", version.ref = "gestalt" }
 gestalt-yaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", version.ref = "gestalt" }
 
-guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
+guava = { group = "com.google.guava", name = "guava", version = "33.4.0-jre" }
 
 mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.1.0" }
 postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
@@ -113,7 +113,7 @@ jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version 
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }
 immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
-agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
+agrona = { group = "org.agrona", name = "agrona", version = "2.0.0" }
 
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -153,6 +153,7 @@ jsh = { group = "com.github.mwiede", name = "jsch", version = "0.2.21" }
 vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
 vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
+vertx-web-templ-thymeleaf = { group = "io.vertx", name = "vertx-web-templ-thymeleaf", version.ref = "vertx" }
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
 vertx-tcp-eventbus-bridge = { group = "io.vertx", name = "vertx-tcp-eventbus-bridge", version.ref = "vertx" }
 vertx-micrometer-metrics = { group = "io.vertx", name = "vertx-micrometer-metrics", version.ref = "vertx" }
@@ -173,6 +174,7 @@ mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-c
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
 mutiny-vertx-tcp-eventbus-bridge = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-tcp-eventbus-bridge", version.ref = "mutinyVertx" }
+mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
 netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.RC1" }
 
 record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "record-builder" }
@@ -198,7 +200,7 @@ ebean-ddl-generator = { group = "io.ebean", name = "ebean-ddl-generator", versio
 fury-core = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 fury-format = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
 
-avaje-spi-service = { group = "io.avaje", name = "avaje-spi-service", version = "2.8" }
+avaje-spi-service = { group = "io.avaje", name = "avaje-spi-service", version = "2.9" }
 graalvm-polyglot = { group = "org.graalvm.polyglot", name = "polyglot", version.ref = "polyglot" }
 graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js-community", version.ref = "polyglot" }
 graalvm-polyglot-python = { group = "org.graalvm.polyglot", name = "python-community", version.ref = "polyglot" }
@@ -206,4 +208,7 @@ graalvm-polyglot-profile = { group = "org.graalvm.polyglot", name = "profiler", 
 
 theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetector", version = "3.9.1" }
 
-lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.12" }
+lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
+
+bootstrap = { group = "org.webjars", name = "bootstrap", version = "5.3.3" }
+tailwindcss = { group = "org.webjars.npm", name = "tailwindcss", version = "4.0.0-beta.3" }
