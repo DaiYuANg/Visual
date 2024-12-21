@@ -7,8 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.visual.app.service.MANIFESTService;
+import org.visual.app.model.MANIFEST;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +18,7 @@ import java.util.ResourceBundle;
 @RequiredArgsConstructor
 public class AboutController implements Initializable {
 
-  private final MANIFESTService manifestService;
+  private final MANIFEST manifest;
   @FXML
   private Label manifestVersion;
   @FXML
@@ -53,7 +52,6 @@ public class AboutController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    val manifest = manifestService.read();
     log.atInfo().log("Current:{}", manifest);
     manifestVersion.setText("Manifest Version: " + manifest.manifestVersion());
     implementationTitle.setText("Implementation Title: " + manifest.implementationTitle());

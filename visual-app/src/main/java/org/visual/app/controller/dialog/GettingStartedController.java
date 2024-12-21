@@ -46,12 +46,14 @@ public class GettingStartedController implements Initializable {
 
   }
 
-  public void handleOpenExistingProject(ActionEvent actionEvent) {
+  public void handleOpenExistingProject() {
     val window = root.getScene().getWindow();
-    val chooser = new DirectoryChooser();
-    chooser.setInitialDirectory(userDir);
-    val dir = chooser.showDialog(window);
-    log.atInfo().log("Choose :{}", dir);
+    Platform.runLater(() -> {
+      val chooser = new DirectoryChooser();
+      chooser.setInitialDirectory(userDir);
+      val dir = chooser.showDialog(window);
+      log.atInfo().log("Choose :{}", dir);
+    });
   }
 
   @SneakyThrows

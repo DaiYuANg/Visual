@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import org.visual.app.component.GridBackground?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="org.visual.app.controller.workspace.EditorController"
@@ -11,6 +12,7 @@
 >
 
   <ScrollPane fx:id="root" fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" hbarPolicy="ALWAYS">
+    <GridBackground />
     <AnchorPane prefHeight="10000" prefWidth="10000" fx:id="area">
       <!-- 内容区域可以放其他控件 -->
     </AnchorPane>

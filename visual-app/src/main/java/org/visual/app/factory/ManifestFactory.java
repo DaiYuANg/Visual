@@ -1,7 +1,8 @@
-package org.visual.app.service;
+package org.visual.app.factory;
 
+import io.avaje.inject.Bean;
+import io.avaje.inject.Factory;
 import io.vavr.control.Try;
-import jakarta.inject.Singleton;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -10,11 +11,12 @@ import org.visual.app.model.MANIFESTBuilder;
 
 import java.util.Properties;
 
-@Singleton
-public class MANIFESTService {
+@Factory
+public class ManifestFactory {
 
+  @Bean
   @SneakyThrows
-  public MANIFEST read() {
+  MANIFEST manifest() {
     @Cleanup val inputStream = getClass().getResourceAsStream("/META-INF/MANIFEST.MF");
     return Try.of(Properties::new)
       .andThenTry((manifest) -> manifest.load(inputStream))
