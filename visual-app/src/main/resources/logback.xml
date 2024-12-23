@@ -31,6 +31,7 @@
     <appender-ref ref="ASYNC"/>
   </root>
 
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
   <logger name="org.visual.app" level="DEBUG"/>
   <logger name="io.avaje.inject" level="TRACE"/>
   <logger name="io.ebean.SQL" level="TRACE"/>

@@ -67,6 +67,8 @@ module org.visual.app {
   exports org.visual.app.view to
     javafx.graphics;
 
+  exports org.visual.app.component to javafx.fxml;
+
   requires net.sourceforge.plantuml;
 
   requires org.github.gestalt.core;

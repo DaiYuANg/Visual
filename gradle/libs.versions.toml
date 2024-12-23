@@ -20,7 +20,7 @@ asciidoctor = "4.0.4"
 avajeInject = "11.1-RC1"
 record-builder = "44"
 mutinyVertx = "3.17.1"
-schemacrawler = "16.24.1"
+schemacrawler = "16.24.2"
 polyglot = "24.1.1"
 ebean = "15.8.1"
 immutables = "2.10.1"
@@ -63,7 +63,7 @@ slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", v
 slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.5" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.14" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.15" }
 
 #UI
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }

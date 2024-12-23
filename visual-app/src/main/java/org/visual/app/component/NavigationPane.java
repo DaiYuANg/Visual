@@ -39,8 +39,8 @@ public class NavigationPane extends VBox {
 
   {
     routes.addListener((ListChangeListener<Route>) c -> {
-      log.atInfo().log("c:{}", c);
-      log.atInfo().log("Routes:{}", routes);
+      log.atDebug().log("c:{}", c);
+      log.atDebug().log("Routes:{}", routes);
       stackPane.getChildren().clear();
       c.getList().stream()
         .filter(route -> route.getPath().equals(index.get()))

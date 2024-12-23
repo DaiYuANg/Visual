@@ -26,6 +26,6 @@ public class EditorController implements Initializable {
     val stackPane = new DraggableStackPane();
     val rectangle = new Rectangle(200, 200, Color.BLUE);
     stackPane.getChildren().add(rectangle);
-    area.getChildren().add(stackPane);
+//    area.getChildren().add(stackPane);
   }
 }

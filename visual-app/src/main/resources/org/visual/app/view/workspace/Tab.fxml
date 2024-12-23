@@ -10,7 +10,6 @@
          fx:controller="org.visual.app.controller.workspace.TabController"
 >
   <Tab text="Tab 1">
-    <GridBackground prefWidth="200" prefHeight="200" />
-<!--    <fx:include source="Editor.fxml"/>-->
+    <fx:include source="Editor.fxml"/>
   </Tab>
 </TabPane>

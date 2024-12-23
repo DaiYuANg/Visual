@@ -5,20 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import org.visual.app.component.GridBackground?>
+<?import org.visual.app.component.EditorContainer?>
+<?import javafx.scene.control.Label?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="org.visual.app.controller.workspace.EditorController"
            style="-fx-background-color: white;"
 >
-
   <ScrollPane fx:id="root" fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" hbarPolicy="ALWAYS">
-    <GridBackground />
-    <AnchorPane prefHeight="10000" prefWidth="10000" fx:id="area">
-      <!-- 内容区域可以放其他控件 -->
-    </AnchorPane>
+    <!--      <GridBackground prefHeight="500" prefWidth="500"/>-->
+    <EditorContainer prefWidth="500" prefHeight="500"/>
   </ScrollPane>
-
-  <!-- 浮动按钮放在 StackPane 的顶部右侧 -->
   <Button text="floating" StackPane.alignment="TOP_RIGHT" fx:id="floatingButton"/>
 
 </StackPane>

@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import org.visual.app.component.VisualScene;
 import org.visual.app.constant.ViewConstant;
 import org.visual.app.util.FXMLHelper;
 
@@ -27,11 +27,7 @@ public class UIFactory {
 
   @Bean
   Scene scene(VBox mainLayout) {
-    val scene = new Scene(mainLayout);
-    scene.setOnMouseDragged(event -> {
-      log.info("Drag detected");
-    });
-    return scene;
+    return new VisualScene(mainLayout);
   }
 
   @Bean
