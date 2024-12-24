@@ -13,13 +13,24 @@
   fx:controller="org.visual.app.controller.workspace.WorkspaceController"
 >
   <top>
-<ToolBar>
-  <Button>
-    <graphic>
-      <FontIcon iconLiteral="si-java"/>
-    </graphic>
-  </Button>
-</ToolBar>
+    <ToolBar>
+      <Button>
+        <tooltip>
+          <Tooltip text="test"/>
+        </tooltip>
+        <graphic>
+          <FontIcon iconLiteral="si-java"/>
+        </graphic>
+      </Button>
+      <Button>
+        <tooltip>
+          <Tooltip text="Toggle Grid Background"/>
+        </tooltip>
+        <graphic>
+          <FontIcon iconLiteral="mdi2g-grid"/>
+        </graphic>
+      </Button>
+    </ToolBar>
   </top>
   <left>
     <HBox fx:id="leftPane">

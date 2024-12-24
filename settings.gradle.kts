@@ -58,3 +58,5 @@ include("visual-data-structure")
 include("visual-i18n")
 
 include("visual-collaboration-server")
+
+include("visual-editor")

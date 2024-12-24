@@ -108,6 +108,8 @@ dependencies {
   implementation(libs.fury.core)
   implementation(libs.fury.format)
 
+  implementation(projects.visualEditor)
+
   compileOnly(libs.avaje.spi.service)
   annotationProcessor(libs.avaje.spi.service)
 

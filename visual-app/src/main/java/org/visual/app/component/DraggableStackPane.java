@@ -1,5 +1,6 @@
 package org.visual.app.component;
 
+import javafx.scene.Cursor;
 import javafx.scene.layout.StackPane;
 import lombok.val;
 
@@ -12,6 +13,8 @@ public class DraggableStackPane extends StackPane {
   }
 
   private void bindEvent() {
+    setOnMouseEntered(event -> setCursor(Cursor.MOVE));
+    setOnMouseExited(event -> setCursor(Cursor.DEFAULT));
     setOnMousePressed(event -> {
       dragAnchor[0] = event.getSceneX() - getLayoutX();
       dragAnchor[1] = event.getSceneY() - getLayoutY();

@@ -79,6 +79,7 @@ module org.visual.app {
   exports org.visual.app.entity;
   exports org.visual.app.lifecycle;
   exports org.visual.app.repository;
+  exports org.visual.app.model;
 
   provides org.visual.app.lifecycle.Lifecycle with org.visual.app.lifecycle.BackgroundServiceLifecycle;
   provides io.avaje.inject.spi.InjectExtension with

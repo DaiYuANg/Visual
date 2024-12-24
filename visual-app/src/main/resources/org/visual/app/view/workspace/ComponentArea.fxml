@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.visual.app.component.IconButton?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.visual.app.controller.workspace.ComponentAreaController"
@@ -12,11 +14,19 @@
     -fx-border-width: 0 0 0 3;     /* top, right, bottom, left 边框宽度，只有右边有宽度 */
     -fx-border-color: rgba(0,0,0,0.16);
 "
+      fx:id="areaRoot"
 >
   <HBox spacing="10" alignment="CENTER_LEFT">
+    <padding>
+      <Insets top="10" left="5" right="5"/>
+    </padding>
     <Label text="Toolbox"/>
     <Region HBox.hgrow="ALWAYS"/>
-    <Button text="Right Item"/>
+    <Button onAction="#dockWindow">
+      <graphic>
+        <FontIcon iconLiteral="mdi2d-dock-window"/>
+      </graphic>
+    </Button>
   </HBox>
   <Separator/>
   <VBox>

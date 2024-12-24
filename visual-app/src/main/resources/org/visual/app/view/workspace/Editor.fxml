@@ -7,14 +7,16 @@
 <?import org.visual.app.component.GridBackground?>
 <?import org.visual.app.component.EditorContainer?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.Group?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="org.visual.app.controller.workspace.EditorController"
            style="-fx-background-color: white;"
 >
   <ScrollPane fx:id="root" fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" hbarPolicy="ALWAYS">
-    <!--      <GridBackground prefHeight="500" prefWidth="500"/>-->
-    <EditorContainer prefWidth="500" prefHeight="500"/>
+    <Group>
+      <EditorContainer fx:id="container"/>
+    </Group>
   </ScrollPane>
   <Button text="floating" StackPane.alignment="TOP_RIGHT" fx:id="floatingButton"/>
 

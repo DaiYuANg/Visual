@@ -13,6 +13,7 @@ val javafxModules =
 
 val devJvmArguments =
   listOf(
+    "-XX:+EnableDynamicAgentLoading",
     "-XX:+UseZGC",
     "-XX:+ZGenerational",
     "-XX:+UseCompressedClassPointers",
