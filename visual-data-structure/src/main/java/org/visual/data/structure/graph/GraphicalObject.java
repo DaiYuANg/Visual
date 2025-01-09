@@ -1,18 +1,21 @@
 package org.visual.data.structure.graph;
 
-import org.immutables.value.Value;
-import org.visual.data.structure.style.VisualDataStructureStyle;
+import lombok.NonNull;
 
-@Value.Immutable
-@VisualDataStructureStyle
-public interface GraphicalObject {
-  String id();
+public interface GraphicalObject extends Identifiable, Classifiable {
+  Double getX();
 
-  String type();
+  void setX(@NonNull Double x);
 
-  int x();
+  Double getY();
 
-  int y();
+  void setY(@NonNull Double y);
 
-  Properties properties();
+  Double getWidth();
+
+  void setWidth(@NonNull Double width);
+
+  Double getHeight();
+
+  void setHeight(@NonNull Double height);
 }

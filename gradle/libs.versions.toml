@@ -1,11 +1,12 @@
 [versions]
 jdk = "21"
+javafx = "23"
 ikonliJavafx = "12.3.1"
 slf4j = "2.0.16"
 ikonli = "12.3.1"
 junit = "5.11.4"
 testcontainers = "1.20.4"
-mockito = "5.14.2"
+mockito = "5.15.2"
 gestalt = "0.35.1"
 eclipseCollections = "12.0.0.M3"
 jackson = "2.18.2"
@@ -17,10 +18,10 @@ fury = "0.9.0"
 avajeValidaor = "2.4"
 h2 = "2.3.232"
 asciidoctor = "4.0.4"
-avajeInject = "11.1-RC1"
+avajeInject = "11.1"
 record-builder = "44"
 mutinyVertx = "3.17.1"
-schemacrawler = "16.24.2"
+schemacrawler = "16.25.1"
 polyglot = "24.1.1"
 ebean = "15.8.1"
 immutables = "2.10.1"
@@ -34,11 +35,10 @@ maniftest = { id = "com.coditory.manifest", version = "1.1.0" }
 shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta4" }
 jlink = { id = "org.beryx.jlink", version = "3.1.1" }
 graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.1" }
 sass = { id = "io.miret.etienne.sass", version = "1.5.1" }
 ebean = { id = "io.ebean", version.ref = "ebean" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
-frontend = { id = "org.siouan.frontend-jdk21", version = "10.0.0" }
 docker = { id = "com.bmuschko.docker-java-application", version = "9.4.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
@@ -63,7 +63,7 @@ slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", v
 slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.5" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.15" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.16" }
 
 #UI
 simpleicon = { group = "org.kordamp.ikonli", name = "ikonli-simpleicons-pack", version.ref = "ikonli" }
@@ -81,7 +81,7 @@ junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junit-juiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-junit-platform-suite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.11.3" }
+junit-platform-suite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.11.4" }
 junit-perf = { group = "com.github.noconnor", name = "junitperf-junit5", version = "1.37.0" }
 testcontainers-bom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
@@ -101,7 +101,7 @@ guava = { group = "com.google.guava", name = "guava", version = "33.4.0-jre" }
 mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.1.0" }
 postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
 h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
-sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.1.0" }
+sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.2.0" }
 
 eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
@@ -148,7 +148,7 @@ jgit-lfs = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.lfs", version.
 jgit-ssh = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.ssh.apache", version.ref = "jgit" }
 jgit-http = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.http.apache", version.ref = "jgit" }
 
-jsh = { group = "com.github.mwiede", name = "jsch", version = "0.2.21" }
+jsh = { group = "com.github.mwiede", name = "jsch", version = "0.2.22" }
 
 vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
@@ -212,3 +212,4 @@ lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", v
 
 bootstrap = { group = "org.webjars", name = "bootstrap", version = "5.3.3" }
 tailwindcss = { group = "org.webjars.npm", name = "tailwindcss", version = "4.0.0-beta.3" }
+auto-factory = {group="com.google.auto.factory",name="auto-factory",version="1.1.0"}

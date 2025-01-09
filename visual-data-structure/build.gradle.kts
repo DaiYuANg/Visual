@@ -9,4 +9,6 @@ dependencies {
   implementation(libs.jgrapht)
   compileOnly(libs.immutables.value)
   annotationProcessor(libs.immutables.value)
+  implementation(libs.eclipse.collections.api)
+  implementation(libs.eclipse.collections)
 }

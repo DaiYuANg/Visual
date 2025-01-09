@@ -1,4 +1,4 @@
-package org.visual.app.component;
+package org.visual.editor.view;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.DoublePropertyBase;
@@ -8,6 +8,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Pair;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.Contract;
@@ -30,6 +31,7 @@ public class GridBackground extends Region {
   private double mLastHeight = -1;
   private final Path mGrid = new Path();
 
+  @Getter
   private final DoubleProperty spacing = new DoublePropertyBase(12) {
 
     @Override

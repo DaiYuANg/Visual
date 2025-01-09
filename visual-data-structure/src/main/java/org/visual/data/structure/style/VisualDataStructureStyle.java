@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.PACKAGE, ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS)
 @Value.Style(
-  typeImmutable = "Visual*",
+  typeImmutable = "V*",
   visibility = Value.Style.ImplementationVisibility.PUBLIC,
-  stagedBuilder = true,
+  strictBuilder = true,
   jdk9Collections = true
 )
 @JsonSerialize

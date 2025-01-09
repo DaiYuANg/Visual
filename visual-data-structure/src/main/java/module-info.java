@@ -2,6 +2,7 @@ module org.visual.data.structure {
   requires static lombok;
   requires static org.jetbrains.annotations;
   requires static org.immutables.value;
+  requires org.eclipse.collections.api;
 
   requires org.jgrapht.core;
   requires org.slf4j;
@@ -13,4 +14,5 @@ module org.visual.data.structure {
   exports org.visual.data.structure.constant;
   exports org.visual.data.structure.graph;
   exports org.visual.data.structure.diagram;
+  exports org.visual.data.structure.impl;
 }

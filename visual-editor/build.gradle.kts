@@ -6,14 +6,23 @@ group = "org.visual.editor"
 
 version = "unspecified"
 
-dependencies { compileOnly(libs.jetbrains.annotation) }
+dependencies {
+  compileOnly(libs.jetbrains.annotation)
+  implementation(projects.visualDataStructure)
+  implementation(libs.record.builder.core)
+  implementation(libs.eclipse.collections.api)
+  implementation(libs.eclipse.collections)
+  annotationProcessor(libs.record.builder.processor)
+  compileOnly(libs.immutables.value)
+  annotationProcessor(libs.immutables.value)
+}
 
 javafx {
   modules(*javafxModules.toTypedArray())
-  version = "23"
+  version = libs.versions.javafx.get()
   configurations =
     arrayOf(
-      IMPLEMENTATION,
+      COMPILE_ONLY,
       TEST_IMPLEMENTATION,
     )
 }

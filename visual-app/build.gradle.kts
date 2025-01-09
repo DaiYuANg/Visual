@@ -120,7 +120,7 @@ dependencies {
 
 javafx {
   modules(*javafxModules.toTypedArray())
-  version = "23"
+  version = libs.versions.javafx.get()
   configurations =
     arrayOf(
       IMPLEMENTATION,

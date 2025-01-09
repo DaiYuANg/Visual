@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.visual.data.structure.diagram.VisualDiagram;
+import org.visual.data.structure.diagram.VDiagram;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DiagramContext {
 
-  private final List<VisualDiagram> diagrams = new ObjectArrayList<>();
+  private final List<VDiagram> diagrams = new ObjectArrayList<>();
 
-  public void add(VisualDiagram diagram) {
+  public void add(VDiagram diagram) {
     diagrams.add(diagram);
   }
 }

@@ -17,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.visual.app.component.NavigationPane;
 import org.visual.app.context.DiagramContext;
-import org.visual.app.util.CreateDiagram;
 
 import java.io.File;
 import java.net.URL;
@@ -71,15 +70,15 @@ public class GettingStartedController implements Initializable {
   }
 
   public void handleCreateNewDiagram() {
-    Uni.createFrom().item(CreateDiagram.createDefaultDiagram())
-      .log()
-      .invoke(diagramContext::add)
-      .subscribe().with(t -> {
-        Platform.runLater(() -> {
-          val stage = (Stage) root.getScene().getWindow();
-          stage.close();
-        });
-      });
+//    Uni.createFrom().item(CreateDiagram.createDefaultDiagram())
+//      .log()
+//      .invoke(diagramContext::add)
+//      .subscribe().with(t -> {
+//        Platform.runLater(() -> {
+//          val stage = (Stage) root.getScene().getWindow();
+//          stage.close();
+//        });
+//      });
   }
 
   public void handleExit() {

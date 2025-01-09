@@ -20,6 +20,7 @@ public class SetupThemeLifecycle implements ViewLifecycle {
   @Override
   public void onInit() {
     setUserAgentStylesheet(detectTheme());
+    detector.registerListener(isDark -> setUserAgentStylesheet(isDark ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet()));
   }
 
   private @NotNull String detectTheme() {

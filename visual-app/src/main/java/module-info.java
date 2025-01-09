@@ -41,7 +41,7 @@ module org.visual.app {
   requires io.avaje.validation;
   requires com.github.benmanes.caffeine;
   requires jdk.management;
-
+  requires org.visual.editor;
   requires io.smallrye.mutiny.vertx.core;
 
   requires com.jthemedetector;
