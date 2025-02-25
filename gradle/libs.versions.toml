@@ -5,40 +5,40 @@ ikonliJavafx = "12.3.1"
 slf4j = "2.0.16"
 ikonli = "12.3.1"
 junit = "5.11.4"
-testcontainers = "1.20.4"
+testcontainers = "1.20.5"
 mockito = "5.15.2"
-gestalt = "0.35.1"
+gestalt = "0.35.2"
 eclipseCollections = "12.0.0.M3"
 jackson = "2.18.2"
 mapstruct = "1.6.3"
 jgit = "7.1.0.202411261347-r"
 vertx = "4.5.11"
 jdbi = "3.45.0"
-fury = "0.9.0"
-avajeValidaor = "2.4"
+fury = "0.10.0"
+avajeValidaor = "2.8"
 h2 = "2.3.232"
 asciidoctor = "4.0.4"
-avajeInject = "11.1"
+avajeInject = "11.2"
 record-builder = "44"
-mutinyVertx = "3.17.1"
-schemacrawler = "16.25.1"
+mutinyVertx = "3.18.0"
+schemacrawler = "16.25.2"
 polyglot = "24.1.1"
-ebean = "15.8.1"
+ebean = "15.9.0"
 immutables = "2.10.1"
 
 [plugins]
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
-versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+versionCheck = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 maniftest = { id = "com.coditory.manifest", version = "1.1.0" }
-shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta4" }
+shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta8" }
 jlink = { id = "org.beryx.jlink", version = "3.1.1" }
-graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.1" }
-sass = { id = "io.miret.etienne.sass", version = "1.5.1" }
+graalvm = { id = "org.graalvm.buildtools.native", version = "0.10.5" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.2" }
+sass = { id = "io.miret.etienne.sass", version = "1.5.2" }
 ebean = { id = "io.ebean", version.ref = "ebean" }
-semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
+semver = { id = "com.xenoterracide.gradle.semver", version = "0.12.1" }
 docker = { id = "com.bmuschko.docker-java-application", version = "9.4.0" }
 javamodularity = { id = "org.javamodularity.moduleplugin", version = "1.8.15" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
@@ -50,7 +50,7 @@ asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "as
 [libraries]
 apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.0" }
 apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
-apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.1" }
 apache-common-collection = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0-M3" }
 apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.13.0" }
 apache-common-db-util = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
@@ -62,7 +62,7 @@ slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJdkPlatform = { group = "org.slf4j", name = "slf4j-jdk-platform-logging", version.ref = "slf4j" }
 slf4jJulBridage = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
 
-oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.5" }
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.6" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version = "1.5.16" }
 
 #UI
@@ -98,10 +98,10 @@ gestalt-yaml = { group = "com.github.gestalt-config", name = "gestalt-yaml", ver
 
 guava = { group = "com.google.guava", name = "guava", version = "33.4.0-jre" }
 
-mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.1.0" }
-postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.2.0" }
+postgres = { group = "org.postgresql", name = "postgresql", version = "42.7.5" }
 h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
-sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.2.0" }
+sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.49.1.0" }
 
 eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
@@ -109,11 +109,11 @@ eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-colle
 plantuml = { group = "net.sourceforge.plantuml", name = "plantuml-mit", version = "1.2024.8" }
 jgrapht = { group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
-jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
-caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
+jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.2" }
+caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.2.0" }
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }
 immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
-agrona = { group = "org.agrona", name = "agrona", version = "2.0.0" }
+agrona = { group = "org.agrona", name = "agrona", version = "2.0.1" }
 
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
@@ -148,7 +148,7 @@ jgit-lfs = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.lfs", version.
 jgit-ssh = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.ssh.apache", version.ref = "jgit" }
 jgit-http = { group = "org.eclipse.jgit", name = "org.eclipse.jgit.http.apache", version.ref = "jgit" }
 
-jsh = { group = "com.github.mwiede", name = "jsch", version = "0.2.22" }
+jsh = { group = "com.github.mwiede", name = "jsch", version = "0.2.23" }
 
 vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
@@ -157,7 +157,7 @@ vertx-web-templ-thymeleaf = { group = "io.vertx", name = "vertx-web-templ-thymel
 vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
 vertx-tcp-eventbus-bridge = { group = "io.vertx", name = "vertx-tcp-eventbus-bridge", version.ref = "vertx" }
 vertx-micrometer-metrics = { group = "io.vertx", name = "vertx-micrometer-metrics", version.ref = "vertx" }
-micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.2" }
+micrometer-registry-jmx = { group = "io.micrometer", name = "micrometer-registry-jmx", version = "1.14.3" }
 vertx-postgresql-client = { group = "io.vertx", name = "vertx-pg-client", version.ref = "vertx" }
 vertx-mySQL-client = { group = "io.vertx", name = "vertx-mysql-client", version.ref = "vertx" }
 vertx-DB2Client = { group = "io.vertx", name = "vertx-db2-client", version.ref = "vertx" }
@@ -169,13 +169,13 @@ vertx-redis-client = { group = "io.vertx", name = "vertx-redis-client", version.
 vertx-cassandra-client = { group = "io.vertx", name = "vertx-cassandra-client", version.ref = "vertx" }
 vertx-jdbc-client = { group = "io.vertx", name = "vertx-jdbc-client", version.ref = "vertx" }
 vertx-url-template = { group = "io.vertx", name = "vertx-uri-template", version.ref = "vertx" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.7.0" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.8.0" }
 mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version.ref = "mutinyVertx" }
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
 mutiny-vertx-tcp-eventbus-bridge = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-tcp-eventbus-bridge", version.ref = "mutinyVertx" }
 mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
-netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.RC1" }
+netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version = "4.2.0.RC2" }
 
 record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "record-builder" }
 record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "record-builder" }
@@ -200,7 +200,7 @@ ebean-ddl-generator = { group = "io.ebean", name = "ebean-ddl-generator", versio
 fury-core = { group = "org.apache.fury", name = "fury-core", version.ref = "fury" }
 fury-format = { group = "org.apache.fury", name = "fury-format", version.ref = "fury" }
 
-avaje-spi-service = { group = "io.avaje", name = "avaje-spi-service", version = "2.9" }
+avaje-spi-service = { group = "io.avaje", name = "avaje-spi-service", version = "2.10" }
 graalvm-polyglot = { group = "org.graalvm.polyglot", name = "polyglot", version.ref = "polyglot" }
 graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js-community", version.ref = "polyglot" }
 graalvm-polyglot-python = { group = "org.graalvm.polyglot", name = "python-community", version.ref = "polyglot" }
@@ -211,5 +211,5 @@ theme-detector = { group = "com.github.Dansoftowner", name = "jSystemThemeDetect
 lombok-plugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
 
 bootstrap = { group = "org.webjars", name = "bootstrap", version = "5.3.3" }
-tailwindcss = { group = "org.webjars.npm", name = "tailwindcss", version = "4.0.0-beta.3" }
+tailwindcss = { group = "org.webjars.npm", name = "tailwindcss", version = "4.0.6" }
 auto-factory = {group="com.google.auto.factory",name="auto-factory",version="1.1.0"}

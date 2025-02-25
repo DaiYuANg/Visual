@@ -1,6 +1,6 @@
 package org.visual.data.structure.impl;
 
-import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
@@ -11,7 +11,7 @@ import org.visual.data.structure.graph.Node;
 import java.util.List;
 
 @Slf4j
-@Builder
+@SuperBuilder
 public class VConnector extends AbstractGraphicalObject implements Connector {
 
   private Node node;

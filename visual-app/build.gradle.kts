@@ -134,11 +134,11 @@ manifest {
   scmAttributes = true
   attributes =
     mapOf(
-      VERSION_KEY to version,
-      GIT_HASH_KEY to rootProject.extra[GIT_HASH_KEY],
-      LATEST_TAG_KEY to rootProject.extra[LATEST_TAG_KEY],
-      BRANCH_KEY to rootProject.extra[BRANCH_KEY],
-      MAIN_CLASS_KEY to mainClassPath,
+      //      VERSION_KEY to version,
+      //      GIT_HASH_KEY to rootProject.extra[GIT_HASH_KEY],
+      //      LATEST_TAG_KEY to rootProject.extra[LATEST_TAG_KEY],
+      //      BRANCH_KEY to rootProject.extra[BRANCH_KEY],
+      //      MAIN_CLASS_KEY to mainClassPath,
     )
 }
 

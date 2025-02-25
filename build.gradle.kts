@@ -1,4 +1,4 @@
-import com.xenoterracide.gradle.semver.GitMetadataExtension
+// import com.xenoterracide.gradle.semver.GitMetadataExtension
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -9,13 +9,13 @@ plugins {
   alias(libs.plugins.spotless)
 }
 
-val git: GitMetadataExtension = semver.git
+// val git: GitMetadataExtension = semver.git
 
-extra[BRANCH_KEY] = git.branch
-
-extra[GIT_HASH_KEY] = git.commit
-
-extra[LATEST_TAG_KEY] = git.latestTag
+// extra[BRANCH_KEY] = git.branch
+//
+// extra[GIT_HASH_KEY] = git.commit
+//
+// extra[LATEST_TAG_KEY] = git.latestTag
 
 allprojects {
   repositories {
