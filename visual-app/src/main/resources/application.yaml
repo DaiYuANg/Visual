@@ -1,9 +1,0 @@
-ebean:
-  ddl:
-    generate: true
-    run: true
-  migration:
-    run: true
-visual:
-  ui:
-    scale: 1.0
