@@ -1,10 +1,19 @@
 [package]
-name = "Visual"
+name = "visual"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-egui = { version = "0.30" }
-eframe = { version = "0.30", features = ["wgpu"] }
+egui = { version = "0.31.1", features = ['log'] }
+eframe = { version = "0.31.1", features = ["wgpu", "persistence", "serde", "accesskit"] }
 serde = { version = "1", features = ["derive"] }
 ron = "0.8"
+egui_file = "0.22"
+egui_material_icons = "0.3.0"
+redb = "2.4.0"
+
+[workspace]
+members = [
+    '.',
+    'ui'
+]
