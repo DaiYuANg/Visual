@@ -2,8 +2,9 @@ use crate::state::AppState;
 use crate::table::Table;
 
 /// 设计器应用
+#[derive(Default)]
 pub struct DesignerApp {
-    pub state: AppState, // 当前状态
+    pub state: AppState,
     pub(crate) tables: Vec<Table>,
     pub(crate) show_settings: bool,
     pub dark_mode: bool,
@@ -11,16 +12,6 @@ pub struct DesignerApp {
 }
 
 impl DesignerApp {
-    pub fn new() -> Self {
-        Self {
-            state: AppState::Welcome,
-            tables: vec![],
-            show_settings: false,
-            dark_mode: false,
-            selected_tab: 0,
-        }
-    }
-
     pub fn menu_bar(&mut self, ctx: &egui::Context) {
         // 创建菜单栏
         egui::TopBottomPanel::top("menubar").show(ctx, |ui| {

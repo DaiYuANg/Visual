@@ -6,7 +6,8 @@ use crate::ui::DesignerApp;
 impl DesignerApp {
     fn top_panel(&mut self, ctx: &egui::Context) {
         // 顶部菜单栏
-        egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
+        egui::TopBottomPanel::top("top_panel")
+            .show(ctx, |ui| {
             ui.add_space(5.0);
             ui.horizontal(|ui| {
                 if ui.button("🏠 Return Home").clicked() {
@@ -80,7 +81,8 @@ impl DesignerApp {
                 });
         }
         // 左侧工具栏
-        egui::SidePanel::left("left_panel").show(ctx, |ui| {
+        egui::SidePanel::left("left_panel")
+            .show(ctx, |ui| {
             ui.heading(egui_material_icons::icons::ICON_TOOLBAR.to_owned() + "Tools");
             ui.separator();
             ui.label("Drag");
@@ -96,7 +98,9 @@ impl DesignerApp {
         });
 
         // 底部状态栏
-        egui::TopBottomPanel::bottom("bottom_panel").show(ctx, |ui| {
+        egui::TopBottomPanel::bottom("bottom_panel")
+            .show_separator_line(true)
+            .show(ctx, |ui| {
             ui.horizontal(|ui| {
                 ui.label("🖥 Status: Editing...");
             });
