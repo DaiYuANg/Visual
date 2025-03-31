@@ -5,6 +5,8 @@ use crate::ui::DesignerApp;
 /// 📌 2.4 编辑器界面
 impl DesignerApp {
     fn top_panel(&mut self, ctx: &egui::Context) {
+        self.graph.add_node(node_graph::node::Node::new("Add", vec!["A", "B"], vec!["Sum"]));
+        self.graph.add_node(node_graph::node::Node::new("Multiply", vec!["X", "Y"], vec!["Product"]));
         // 顶部菜单栏
         egui::TopBottomPanel::top("top_panel")
             .show(ctx, |ui| {
@@ -112,34 +114,35 @@ impl DesignerApp {
     fn center(&mut self, ctx: &egui::Context) {
         // 中心画布
         egui::CentralPanel::default().show(ctx, |ui| {
-            let painter = ui.painter();
-
-            for (i, table) in self.tables.iter_mut().enumerate() {
-                let rect = egui::Rect::from_min_size(
-                    egui::pos2(table.base.x, table.base.y),
-                    egui::vec2(150.0, 100.0),
-                );
-
-                painter.rect_filled(rect, 5.0, egui::Color32::LIGHT_BLUE);
-                painter.text(
-                    rect.center(),
-                    egui::Align2::CENTER_CENTER,
-                    &table.base.name,
-                    egui::FontId::default(),
-                    egui::Color32::BLACK,
-                );
-
-                // 拖拽功能
-                if ui
-                    .interact(rect, egui::Id::new(i), egui::Sense::drag())
-                    .dragged()
-                {
-                    if let Some(pointer) = ui.input(|i| i.pointer.interact_pos()) {
-                        table.base.x = pointer.x - 75.0;
-                        table.base.y = pointer.y - 50.0;
-                    }
-                }
-            }
+            self.graph.show(ui);
+            // let painter = ui.painter();
+            //
+            // for (i, table) in self.tables.iter_mut().enumerate() {
+            //     let rect = egui::Rect::from_min_size(
+            //         egui::pos2(table.base.x, table.base.y),
+            //         egui::vec2(150.0, 100.0),
+            //     );
+            //
+            //     painter.rect_filled(rect, 5.0, egui::Color32::LIGHT_BLUE);
+            //     painter.text(
+            //         rect.center(),
+            //         egui::Align2::CENTER_CENTER,
+            //         &table.base.name,
+            //         egui::FontId::default(),
+            //         egui::Color32::BLACK,
+            //     );
+            //
+            //     // 拖拽功能
+            //     if ui
+            //         .interact(rect, egui::Id::new(i), egui::Sense::drag())
+            //         .dragged()
+            //     {
+            //         if let Some(pointer) = ui.input(|i| i.pointer.interact_pos()) {
+            //             table.base.x = pointer.x - 75.0;
+            //             table.base.y = pointer.y - 50.0;
+            //         }
+            //     }
+            // }
         });
     }
 }

@@ -1,6 +1,8 @@
 [package]
-name = "ui"
+name = "node_graph"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+egui = "0.31.1"
+rand = "0.9.0"

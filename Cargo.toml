@@ -11,9 +11,10 @@ ron = "0.8"
 egui_file = "0.22"
 egui_material_icons = "0.3.0"
 redb = "2.4.0"
+node_graph = { path = "node_graph" }
 
 [workspace]
 members = [
     '.',
-    'ui'
+    'node_graph'
 ]

@@ -1,3 +1,4 @@
+use node_graph::node_graph::NodeGraph;
 use crate::state::AppState;
 use crate::table::Table;
 
@@ -9,6 +10,7 @@ pub struct DesignerApp {
     pub(crate) show_settings: bool,
     pub dark_mode: bool,
     pub(crate) selected_tab: usize,
+    pub graph: NodeGraph
 }
 
 impl DesignerApp {
