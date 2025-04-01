@@ -1,4 +1,4 @@
-use crate::ui::DesignerApp;
+use crate::ui::Visual;
 
 #[derive(Default)]
 struct Setting {

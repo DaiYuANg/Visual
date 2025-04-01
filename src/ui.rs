@@ -4,7 +4,7 @@ use node_graph::node_graph::NodeGraph;
 
 /// 设计器应用
 #[derive(Default)]
-pub struct DesignerApp {
+pub struct Visual {
   pub(crate) state: AppState,
   pub(crate) tables: Vec<Table>,
   pub(crate) show_settings: bool,
@@ -13,7 +13,7 @@ pub struct DesignerApp {
   pub graph: NodeGraph,
 }
 
-impl DesignerApp {
+impl Visual {
   pub fn menu_bar(&mut self, ctx: &egui::Context) {
     // 创建菜单栏
     egui::TopBottomPanel::top("menubar").show(ctx, |ui| {

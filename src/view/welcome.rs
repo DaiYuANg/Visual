@@ -1,7 +1,7 @@
 use crate::state::AppState;
-use crate::ui::DesignerApp;
+use crate::ui::Visual;
 
-impl DesignerApp {
+impl Visual {
   pub fn show_welcome_screen(&mut self, ctx: &egui::Context) {
     egui::CentralPanel::default()
       .frame(egui::Frame {

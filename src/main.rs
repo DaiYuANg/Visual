@@ -5,7 +5,7 @@ mod ui;
 mod setting;
 mod view;
 
-use crate::ui::DesignerApp;
+use crate::ui::Visual;
 use serde::{Deserialize, Serialize};
 
 fn main() {
@@ -20,7 +20,7 @@ fn main() {
     eframe::run_native(
         "Visual",
         options,
-        Box::new(|_cc| Ok(Box::new(DesignerApp::default()))),
+        Box::new(|_cc| Ok(Box::new(Visual::default()))),
     )
     .unwrap();
 }
