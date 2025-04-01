@@ -1,10 +1,9 @@
-mod editor;
 mod eui;
 mod state;
 mod table;
 mod ui;
-mod welcome;
 mod setting;
+mod view;
 
 use crate::ui::DesignerApp;
 use serde::{Deserialize, Serialize};
