@@ -6,9 +6,48 @@ mod ui;
 mod view;
 
 use crate::ui::Visual;
+use log::debug;
+use notify::{Event, RecursiveMode, Watcher};
+use redb::{Database, TableDefinition};
 use serde::{Deserialize, Serialize};
+use std::path::Path;
+use std::sync::mpsc;
+use std::thread;
+use std::thread::Thread;
+
+fn init() {
+  let data_dir = dirs::data_dir().unwrap();
+  env_logger::init();
+  const TABLE: TableDefinition<&str, u64> = TableDefinition::new("my_data");
+  let db_path = data_dir.join("my_data.db");
+  debug!("{}", db_path.to_str().unwrap());
+  Database::create(db_path).unwrap();
+  thread::spawn(move || {
+    let (tx, rx) = mpsc::channel();
+
+    // Use recommended_watcher() to automatically select the best implementation
+    // for your platform. The `EventHandler` passed to this constructor can be a
+    // closure, a `std::sync::mpsc::Sender`, a `crossbeam_channel::Sender`, or
+    // another type the trait is implemented for.
+    let mut watcher = notify::recommended_watcher(tx).unwrap();
+
+    // Add a path to be watched. All files and directories at that path and
+    // below will be monitored for changes.
+    watcher
+      .watch(Path::new("."), RecursiveMode::Recursive)
+      .unwrap();
+    // Block forever, printing out events as they come in
+    for res in rx {
+      match res {
+        Ok(event) => println!("event: {:?}", event),
+        Err(e) => println!("watch error: {:?}", e),
+      }
+    }
+  });
+}
 
 fn main() {
+  init();
   let options = eframe::NativeOptions {
     renderer: eframe::Renderer::Wgpu,
     persist_window: true,
