@@ -1,5 +1,5 @@
+use crate::core::Visual;
 use crate::state::AppState;
-use crate::ui::Visual;
 
 impl eframe::App for Visual {
   fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {

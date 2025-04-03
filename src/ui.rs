@@ -4,19 +4,7 @@ use egui_file::FileDialog;
 use node_graph::node_graph::NodeGraph;
 use std::ffi::OsStr;
 use std::path::{Path, PathBuf};
-
-/// 设计器应用
-#[derive(Default)]
-pub struct Visual {
-  pub(crate) state: AppState,
-  pub(crate) tables: Vec<Table>,
-  pub(crate) show_settings: bool,
-  pub dark_mode: bool,
-  pub(crate) selected_tab: usize,
-  pub graph: NodeGraph,
-  opened_file: Option<PathBuf>,
-  open_file_dialog: Option<FileDialog>,
-}
+use crate::core::Visual;
 
 impl Visual {
   pub fn menu_bar(&mut self, ctx: &egui::Context) {

@@ -1,4 +1,4 @@
-use crate::ui::Visual;
+use crate::core::Visual;
 
 impl Visual {
   pub fn setting(&mut self, ctx: &egui::Context) {

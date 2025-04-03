@@ -1,6 +1,6 @@
 use crate::state::AppState;
 use crate::table::{Node, Table};
-use crate::ui::Visual;
+use crate::core::Visual;
 
 impl Visual {
   pub fn toolbar(&mut self, ctx: &egui::Context) {

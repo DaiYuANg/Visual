@@ -1,4 +1,4 @@
-use crate::ui::Visual;
+use crate::core::Visual;
 
 impl Visual {
   pub fn left_section(&mut self, ctx: &egui::Context) {

@@ -1,5 +1,5 @@
+use crate::core::Visual;
 use crate::state::AppState;
-use crate::ui::Visual;
 
 impl Visual {
   pub fn show_welcome_screen(&mut self, ctx: &egui::Context) {

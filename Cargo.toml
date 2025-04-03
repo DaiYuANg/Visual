@@ -15,6 +15,9 @@ dirs = "6.0.0"
 env_logger = "0.11.8"
 log = "0.4.27"
 notify = { version = "8.0.0", features = ["serde"] }
+shaku = { version = "0.6.2" }
+derive_builder = "0.20.2"
+tokio = {version = "1",features = ["full"]}
 
 [workspace]
 members = [

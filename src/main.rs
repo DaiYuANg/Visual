@@ -1,11 +1,13 @@
+mod core;
 mod eui;
-mod setting;
+mod module;
 mod state;
 mod table;
 mod ui;
 mod view;
 
-use crate::ui::Visual;
+use crate::core::Visual;
+use crate::module::MyModule;
 use log::debug;
 use notify::{Event, RecursiveMode, Watcher};
 use redb::{Database, TableDefinition};
@@ -22,7 +24,7 @@ fn init() {
   let db_path = data_dir.join("my_data.db");
   debug!("{}", db_path.to_str().unwrap());
   Database::create(db_path).unwrap();
-  thread::spawn(move || {
+  tokio::task::spawn_blocking(move || {
     let (tx, rx) = mpsc::channel();
 
     // Use recommended_watcher() to automatically select the best implementation
@@ -46,8 +48,10 @@ fn init() {
   });
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
   init();
+  let module = MyModule::builder().build();
   let options = eframe::NativeOptions {
     renderer: eframe::Renderer::Wgpu,
     persist_window: true,
@@ -55,7 +59,6 @@ fn main() {
     centered: true,
     ..Default::default()
   };
-
   let mut app = Visual::default();
   app.graph.add_node(node_graph::node::Node::new("Add"));
   app.graph.add_node(node_graph::node::Node::new("Multiply"));

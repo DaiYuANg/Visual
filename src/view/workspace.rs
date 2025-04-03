@@ -1,6 +1,6 @@
+use crate::core::Visual;
 use crate::state::AppState;
 use crate::table::{Node, Table};
-use crate::ui::Visual;
 
 impl Visual {
   pub fn workspace(&mut self, ctx: &egui::Context) {
