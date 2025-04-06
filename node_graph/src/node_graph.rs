@@ -1,6 +1,6 @@
 use crate::connection::Connection;
 use crate::node::Node;
-use egui::{Color32, CursorIcon, Pos2, Rect, Sense, Stroke, Ui, Vec2};
+use egui::{Color32, CursorIcon, Rect, Sense, Stroke, Ui, Vec2};
 
 #[derive(Default)]
 pub struct NodeGraph {
@@ -68,10 +68,9 @@ impl NodeGraph {
         egui::Align2::CENTER_CENTER,
         &node.title,
         egui::TextStyle::Body.resolve(ui.style()),
-        Color32::BLACK,
+        Color32::WHITE,
       );
 
-      // 绘制手柄（带交互状态反馈）
       let handle_color = if is_resizing {
         Color32::LIGHT_BLUE
       } else if handle_response.hovered() {

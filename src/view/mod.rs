@@ -6,3 +6,4 @@ mod right_section;
 mod bottom_section;
 mod toolbar;
 mod editor;
+mod tree_view;
